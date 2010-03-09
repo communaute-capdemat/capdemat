@@ -1,0 +1,152 @@
+/*--------------------------------------------------------------
+
+    MDPH Certificate style
+    
+---------------------------------------------------------------*/
+
+body {
+  margin: 0; padding: 0;
+  font-family: arial,sans-serif;
+  font-size: small;
+  font-style:normal;
+  font-variant:normal;
+  font-weight:normal;
+}
+
+h1,h2,h3,h4 { font-weight: normal; }
+h1 { font-size: 1.6em; text-align: center; font-weight: bold;}
+h2 { font-size: 1.2em; padding-left: 5px; font-weight: bold;}
+h3 { font-size: 1.5em; color: #444; }
+h4 { font-size: 1.3em; }
+
+hr.header { height: 0.6em; background-color: #474747; page-break-before: avoid;}
+
+hr {
+ page-break-before:always;
+ height: 1px;
+ background-color: #474747;
+ clear:both;
+}
+
+div.etape {
+ border-style: solid;
+ border-width: 1px;
+ padding: 0 4px 0 4px;
+ margin-top: 10px;
+ margin-bottom: 7px;
+ padding-top: 2px;
+ padding-bottom: 2px;
+ clear:both;
+
+}
+
+
+li {
+ list-style-type: none;
+}
+
+p.information {
+ margin-left: 35px;
+ margin-right: 5px;
+ margin-top:0;
+ margin-bottom: 0;
+ padding-bottom: 5px;
+ clear:both;
+}
+
+p.informationColFin {
+ margin-left: 35px;
+ margin-right: 5px;
+ clear:both;
+ padding-bottom : 5px;
+}
+
+
+div.label {
+ width: 40%;
+ float:left;
+ text-align:right;
+ margin-right: 5px;
+}
+
+
+div.labelEnTete {
+ min-width: 20%;
+ float: left;
+ text-align: center;
+ margin-left: 40%;
+ padding-left: 5px;
+}
+
+div.labelEnTeteDeux {
+ min-width: 20%;
+ float: left;
+ text-align: center;
+ padding-left: 5px;
+}
+
+div.reponse {
+ background-color: #E3E7FF;
+ min-width: 20%;
+ float:left;
+ text-align:center;
+}
+
+div.choixReponse {
+ font-size: small;
+ min-width: 20%; 
+ color: #777;
+ float:left;
+ text-align:center;
+}
+
+div.choixReponse .choix { font-size: medium; color: #000; background-color: #E3E7FF;}
+
+span.labelTitre {
+font-weight:bold;
+}
+
+span.labelDroite {
+margin-left: 30%;
+}
+
+span.labelDroiteLong {
+margin-left: 10%;
+}
+
+span.reponse {
+width: 100px;
+background-color: #E3E7FF;
+}
+
+span.choixReponse { font-size: small; color: #777;  }
+span.choixReponse .choix { font-size: medium; color: #000; background-color: #E3E7FF;}
+
+div.projetDeVie {
+ min-height:700px;
+ background-color: #E3E7FF; 
+}
+
+div.demandeScolaire {
+ min-height:100px;
+ background-color: #E3E7FF;
+}
+
+p.information table {
+ border-collapse:collapse;
+}
+
+p.information th, p.information td {
+ text-align: center; 
+ border-style: solid;
+ height: 30px; 
+ padding: 3px;}
+}
+
+td.noBord {
+ border-style: none;
+}
+
+
+
+

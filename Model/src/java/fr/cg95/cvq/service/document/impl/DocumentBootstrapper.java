@@ -199,6 +199,11 @@ public class DocumentBootstrapper {
 
         checkDocumentType("Medical Form Next Year", 55,
                 DocumentUsageType.REUSABLE, 1, DocumentTypeValidity.YEAR);
+        checkDocumentType("Certificat Medical Trois Mois", 56, 
+                DocumentUsageType.SINGLE_USE, 0, DocumentTypeValidity.YEAR);
+        
+        checkDocumentType("Attestation Jugement Protection Juridique", 57,
+                DocumentUsageType.SINGLE_USE,0 ,DocumentTypeValidity.MONTH );
     }
 
     public void setDocumentTypeDAO(IDocumentTypeDAO documentTypeDAO) {

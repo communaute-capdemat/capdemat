@@ -1,0 +1,1341 @@
+
+
+<%
+
+  import org.apache.commons.lang.StringUtils
+  import fr.cg95.cvq.util.EnumTool
+  import java.text.NumberFormat
+  def esc(s) { return org.apache.commons.lang3.StringEscapeUtils.escapeXml(s) }
+  def localReferentialWidget(wrapper, javaName, lrEntries, depth) {
+    def lrHtml = ''
+    def currentLrDatas = wrapper != null ? wrapper[javaName].collect{it.name} : null
+    if (lrTypes[javaName].isMultiple()) { 
+      lrHtml += "<ul ${depth==0 ? 'class="dataTree"' : ''}>"
+      lrEntries.eachWithIndex { entry, i -> 
+      if (entry.entries) { 
+        lrHtml += "<li>"
+        lrHtml += "<em>${esc(entry.label)} :</em>"
+        lrHtml += localReferentialWidget(wrapper, javaName, entry.entries,++depth)
+        lrHtml += "</li>"
+      } else {
+         lrHtml += "<li><span ${currentLrDatas?.contains(entry.key) ? 'class="checked"' : ''}>${esc(entry.label)}</span>${i + 1 < lrEntries.size() ? ',' : ''}</li>"
+      } 
+    } 
+    lrHtml += "</ul>"
+    } else { 
+      lrEntries.each { entry -> 
+        lrHtml += "${currentLrDatas?.contains(entry.key) ? esc(entry.label): ''}"
+      } 
+    }
+  }
+
+%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <title>${esc(i18n.translate('mar.label'))}</title>
+  <link href="file://${cssPath}" type="text/css" rel="stylesheet" media="print" />
+</head>
+<body>
+  <div id="hd">
+    <p>${esc(localAuthority.displayTitle)}</p>
+    <img src="file://${logoPath}" alt="mairie2424" />
+  </div>
+  <h1>${esc(i18n.translate('mar.label'))}</h1>
+  <div class="localAuthority">
+    <h2>${i18n.translate('pdf.localAutorityReservedSection')}</h2>
+    <ul>
+      <li>${i18n.translate('property.creationDate')} : <strong>${String.format('%td/%<tm/%<tY',rqt.creationDate)}</strong></li>
+      <li>${i18n.translate('property.requester')} : <strong>${esc(rqt.requesterFirstName +' '+ rqt.requesterLastName)}</strong></li>
+      <li>${i18n.translate('pdf.requestId')} : <strong>${rqt.id}</strong></li>
+      <li>${i18n.translate('pdf.agentId')} : <strong>${rqt.lastInterveningUserId != null ? rqt.lastInterveningUserId : ''}</strong></li>
+    </ul>
+  </div>
+  <h2>${i18n.translate('request.property.requester')}</h2>
+  
+          <p class="label">
+            ${i18n.translate('homeFolder.adult.property.title')}
+            ${i18n.translate('homeFolder.individual.property.firstName')}
+            ${i18n.translate('homeFolder.individual.property.lastName')}
+          </p>
+          <div class="response">
+            <% if(requester?.title) { %>
+              ${i18n.translate('homeFolder.adult.title.' + StringUtils.lowerCase(requester?.title.toString()))}
+            <% } %>
+            ${esc(requester?.firstName)}
+            ${esc(requester?.lastName)}
+          </div>
+          <p class="label">${i18n.translate('homeFolder.individual.property.address')}</p>
+          <div class="response">
+            <% if (requester?.address) { %>
+              <p>${esc(StringUtils.defaultString(requester?.address?.additionalDeliveryInformation))}</p>
+              <p>${esc(StringUtils.defaultString(requester?.address?.additionalGeographicalInformation))}</p>
+              <p>${esc(StringUtils.defaultString(requester?.address?.streetNumber))} ${esc(StringUtils.defaultString(requester?.address?.streetName))}</p>
+              <p>${esc(StringUtils.defaultString(requester?.address?.placeNameOrService))}</p>
+              <p>${esc(StringUtils.defaultString(requester?.address?.postalCode))} ${esc(StringUtils.defaultString(requester?.address?.city))}</p>
+              <p>${esc(StringUtils.defaultString(requester?.address?.countryName))}</p>
+            <% } %>
+          </div>
+          <p class="label">${i18n.translate('homeFolder.adult.property.email')}</p>
+          <div class="response">${esc(StringUtils.defaultString(requester?.email))}</div>
+          <p class="label">${i18n.translate('homeFolder.adult.property.homePhone')}</p>
+          <div class="response">${esc(StringUtils.defaultString(requester?.homePhone))}</div>
+          <p class="label">${i18n.translate('homeFolder.adult.property.mobilePhone')}</p>
+          <div class="response">${esc(StringUtils.defaultString(requester?.mobilePhone))}</div>
+          <p class="label">${i18n.translate('homeFolder.adult.property.officePhone')}</p>
+          <div class="response">${esc(StringUtils.defaultString(requester?.officePhone))}</div>
+          
+
+
+  
+  <h2>${i18n.translate('mar.step.subject.label')}</h2>
+  
+    
+      
+          <p class="label">${esc(i18n.translate('mar.property.subject.label'))}</p>
+          <div class="response">${esc(subjectIsChild && !subject?.born ? i18n.translate('request.subject.childNoBorn', subject?.fullName) : subject?.fullName)}</div>
+          
+
+    
+  
+    
+      <p class="label">${esc(i18n.translate('mar.property.faxSujet.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.faxSujet?.toString()))}</div>
+
+    
+  
+    
+      <p class="label">${esc(i18n.translate('mar.property.nationalite.label'))}</p>
+          <div class="response">
+            <% if(rqt.nationalite) { %>
+              ${esc(i18n.translate('mar.property.nationalite.' + EnumTool.toLowerCamelCase(rqt.nationalite.toString())))}
+            <% } %>
+          </div>
+          
+
+    
+  
+    
+      <p class="label">${esc(i18n.translate('mar.property.dateNaissanceSujet.label'))}</p>
+          <div class="response">${rqt.dateNaissanceSujet ? String.format('%td/%<tm/%<tY',rqt.dateNaissanceSujet) : ''}</div>
+          
+
+    
+  
+    
+      <h3>${i18n.translate('mar.property.lieuNaissanceSujet.label')}</h3>
+      <div class="complex">
+        
+          <p class="label">${esc(i18n.translate('mar.property.postalCode.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.lieuNaissanceSujet?.postalCode?.toString()))}</div>
+
+        
+          <p class="label">${esc(i18n.translate('mar.property.city.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.lieuNaissanceSujet?.city?.toString()))}</div>
+
+        
+          <p class="label">${esc(i18n.translate('mar.property.country.label'))}</p>
+          <div class="response">
+            <% if(rqt.lieuNaissanceSujet?.country) { %>
+              ${esc(i18n.translate('mar.property.country.' + EnumTool.toLowerCamelCase(rqt.lieuNaissanceSujet?.country.toString())))}
+            <% } %>
+          </div>
+          
+
+        
+      </div>
+    
+  
+    
+      <p class="label">${esc(i18n.translate('mar.property.dateArriveeFrance.label'))}</p>
+          <div class="response">${rqt.dateArriveeFrance ? String.format('%td/%<tm/%<tY',rqt.dateArriveeFrance) : ''}</div>
+          
+
+    
+  
+    
+      <p class="label">${esc(i18n.translate('mar.property.numeroSecuriteSocialeSujet.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.numeroSecuriteSocialeSujet?.toString()))}</div>
+
+    
+  
+    
+      <p class="label">${esc(i18n.translate('mar.property.nomOrganismeSecuriteSociale.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.nomOrganismeSecuriteSociale?.toString()))}</div>
+
+    
+  
+    
+      <h3>${i18n.translate('mar.property.precedentDossierMdph.label')}</h3>
+      <div class="complex">
+        
+          <p class="label">${esc(i18n.translate('mar.property.numeroMdph.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.precedentDossierMdph?.numeroMdph?.toString()))}</div>
+
+        
+          <p class="label">${esc(i18n.translate('mar.property.departementMdph.label'))}</p>
+          <div class="response">
+            <% if(rqt.precedentDossierMdph?.departementMdph) { %>
+              ${esc(i18n.translate('mar.property.departementMdph.' + EnumTool.toLowerCamelCase(rqt.precedentDossierMdph?.departementMdph.toString())))}
+            <% } %>
+          </div>
+          
+
+        
+      </div>
+    
+  
+    
+      <p class="label">${esc(i18n.translate('mar.property.precisionSiDomicileAupresOrganisme.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.precisionSiDomicileAupresOrganisme?.toString()))}</div>
+
+    
+  
+
+  
+  <h2>${i18n.translate('mar.step.representantLegal.label')}</h2>
+  
+    
+      <p class="label">${esc(i18n.translate('mar.property.representantLegal.label'))}</p>
+          <div class="response">
+            <% if(rqt.representantLegal) { %>
+              ${esc(i18n.translate('mar.property.representantLegal.' + EnumTool.toLowerCamelCase(rqt.representantLegal.toString())))}
+            <% } %>
+          </div>
+          
+
+    
+  
+    
+      <p class="label">${esc(i18n.translate('mar.property.nomResponsableLegal.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.nomResponsableLegal?.toString()))}</div>
+
+    
+  
+    
+      <p class="label">${esc(i18n.translate('mar.property.adresseResponsableLegal.label'))}</p>
+          <div class="response">
+            <% if(rqt.adresseResponsableLegal) { %>
+              <p>${esc(StringUtils.defaultString(rqt.adresseResponsableLegal?.additionalDeliveryInformation))}</p>
+              <p>${esc(StringUtils.defaultString(rqt.adresseResponsableLegal?.additionalGeographicalInformation))}</p>
+              <p>${esc(StringUtils.defaultString(rqt.adresseResponsableLegal?.streetNumber))} ${esc(StringUtils.defaultString(rqt.adresseResponsableLegal?.streetName))}</p>
+              <p>${esc(StringUtils.defaultString(rqt.adresseResponsableLegal?.placeNameOrService))}</p>
+              <p>${esc(StringUtils.defaultString(rqt.adresseResponsableLegal?.postalCode))} ${esc(StringUtils.defaultString(rqt.adresseResponsableLegal?.city))}</p>
+              <p>${esc(StringUtils.defaultString(rqt.adresseResponsableLegal?.countryName))}</p>
+            <% } %>
+          </div>
+          
+
+    
+  
+    
+      <p class="label">${esc(i18n.translate('mar.property.telResponsableLegal.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.telResponsableLegal?.toString()))}</div>
+
+    
+  
+    
+      <p class="label">${esc(i18n.translate('mar.property.faxResponsableLegal.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.faxResponsableLegal?.toString()))}</div>
+
+    
+  
+    
+      <p class="label">${esc(i18n.translate('mar.property.emailResponsableLegal.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.emailResponsableLegal?.toString()))}</div>
+
+    
+  
+
+  
+  <h2>${i18n.translate('mar.step.organismePrestationFamiliale.label')}</h2>
+  
+    
+      <p class="label">${esc(i18n.translate('mar.property.numeroAllocataire.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.numeroAllocataire?.toString()))}</div>
+
+    
+  
+    
+      <p class="label">${esc(i18n.translate('mar.property.organismePayeur.label'))}</p>
+          <div class="response">
+            <% if(rqt.organismePayeur) { %>
+              ${esc(i18n.translate('mar.property.organismePayeur.' + EnumTool.toLowerCamelCase(rqt.organismePayeur.toString())))}
+            <% } %>
+          </div>
+          
+
+    
+  
+    
+      <p class="label">${esc(i18n.translate('mar.property.nomAllocataire.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.nomAllocataire?.toString()))}</div>
+
+    
+  
+    
+      <p class="label">${esc(i18n.translate('mar.property.prenomAllocataire.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.prenomAllocataire?.toString()))}</div>
+
+    
+  
+    
+      <p class="label">${esc(i18n.translate('mar.property.nomOrganismePayeur.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.nomOrganismePayeur?.toString()))}</div>
+
+    
+  
+    
+      <p class="label">${esc(i18n.translate('mar.property.domiciliationOrganismePayeur.label'))}</p>
+          <div class="response">
+            <% if(rqt.domiciliationOrganismePayeur) { %>
+              <p>${esc(StringUtils.defaultString(rqt.domiciliationOrganismePayeur?.additionalDeliveryInformation))}</p>
+              <p>${esc(StringUtils.defaultString(rqt.domiciliationOrganismePayeur?.additionalGeographicalInformation))}</p>
+              <p>${esc(StringUtils.defaultString(rqt.domiciliationOrganismePayeur?.streetNumber))} ${esc(StringUtils.defaultString(rqt.domiciliationOrganismePayeur?.streetName))}</p>
+              <p>${esc(StringUtils.defaultString(rqt.domiciliationOrganismePayeur?.placeNameOrService))}</p>
+              <p>${esc(StringUtils.defaultString(rqt.domiciliationOrganismePayeur?.postalCode))} ${esc(StringUtils.defaultString(rqt.domiciliationOrganismePayeur?.city))}</p>
+              <p>${esc(StringUtils.defaultString(rqt.domiciliationOrganismePayeur?.countryName))}</p>
+            <% } %>
+          </div>
+          
+
+    
+  
+
+  
+  <h2>${i18n.translate('mar.step.situationFamiliale.label')}</h2>
+  
+    
+      <p class="label">${esc(i18n.translate('mar.property.situationMaritale.label'))}</p>
+          <div class="response">
+            <% if(rqt.situationMaritale) { %>
+              ${esc(i18n.translate('mar.property.situationMaritale.' + EnumTool.toLowerCamelCase(rqt.situationMaritale.toString())))}
+            <% } %>
+          </div>
+          
+
+    
+  
+    
+      <p class="label">${esc(i18n.translate('mar.property.dateSituationFamiliale.label'))}</p>
+          <div class="response">${rqt.dateSituationFamiliale ? String.format('%td/%<tm/%<tY',rqt.dateSituationFamiliale) : ''}</div>
+          
+
+    
+  
+    
+      <p class="label">${esc(i18n.translate('mar.property.nombreEnfantsACharge.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.nombreEnfantsACharge?.toString()))}</div>
+
+    
+  
+    
+      <h3>${i18n.translate('mar.property.identiteConjoint.label')}</h3>
+      <div class="complex">
+        
+          <p class="label">${esc(i18n.translate('mar.property.nomNaissanceConjoint.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.identiteConjoint?.nomNaissanceConjoint?.toString()))}</div>
+
+        
+          <p class="label">${esc(i18n.translate('mar.property.prenomConjoint.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.identiteConjoint?.prenomConjoint?.toString()))}</div>
+
+        
+          <p class="label">${esc(i18n.translate('mar.property.dateNaissanceConjoint.label'))}</p>
+          <div class="response">${rqt.identiteConjoint?.dateNaissanceConjoint ? String.format('%td/%<tm/%<tY',rqt.identiteConjoint?.dateNaissanceConjoint) : ''}</div>
+          
+
+        
+      </div>
+    
+  
+
+  
+  <h2>${i18n.translate('mar.step.situationProfessionnelle.label')}</h2>
+  
+    
+      <p class="label">${esc(i18n.translate('mar.property.situationProfessionnelleVous.label'))}</p>
+          <div class="response">
+            <% if(rqt.situationProfessionnelleVous) { %>
+              ${esc(i18n.translate('mar.property.situationProfessionnelleVous.' + EnumTool.toLowerCamelCase(rqt.situationProfessionnelleVous.toString())))}
+            <% } %>
+          </div>
+          
+
+    
+  
+    
+      <h3>${i18n.translate('mar.property.situationProfessionnelleVousSalarie.label')}</h3>
+      <div class="complex">
+        
+          <p class="label">${esc(i18n.translate('mar.property.salarieDepuisLe.label'))}</p>
+          <div class="response">${rqt.situationProfessionnelleVousSalarie?.salarieDepuisLe ? String.format('%td/%<tm/%<tY',rqt.situationProfessionnelleVousSalarie?.salarieDepuisLe) : ''}</div>
+          
+
+        
+          <p class="label">${esc(i18n.translate('mar.property.typeContrat.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.situationProfessionnelleVousSalarie?.typeContrat?.toString()))}</div>
+
+        
+          <p class="label">${esc(i18n.translate('mar.property.salarieDateDebutContrat.label'))}</p>
+          <div class="response">${rqt.situationProfessionnelleVousSalarie?.salarieDateDebutContrat ? String.format('%td/%<tm/%<tY',rqt.situationProfessionnelleVousSalarie?.salarieDateDebutContrat) : ''}</div>
+          
+
+        
+          <p class="label">${esc(i18n.translate('mar.property.salarieDateFinContrat.label'))}</p>
+          <div class="response">${rqt.situationProfessionnelleVousSalarie?.salarieDateFinContrat ? String.format('%td/%<tm/%<tY',rqt.situationProfessionnelleVousSalarie?.salarieDateFinContrat) : ''}</div>
+          
+
+        
+          <p class="label">${esc(i18n.translate('mar.property.esatDepuisLe.label'))}</p>
+          <div class="response">${rqt.situationProfessionnelleVousSalarie?.esatDepuisLe ? String.format('%td/%<tm/%<tY',rqt.situationProfessionnelleVousSalarie?.esatDepuisLe) : ''}</div>
+          
+
+        
+      </div>
+    
+  
+    
+      <h3>${i18n.translate('mar.property.situationProfessionnelleVousStagiaire.label')}</h3>
+      <div class="complex">
+        
+          <p class="label">${esc(i18n.translate('mar.property.stagiaireDepuisLe.label'))}</p>
+          <div class="response">${rqt.situationProfessionnelleVousStagiaire?.stagiaireDepuisLe ? String.format('%td/%<tm/%<tY',rqt.situationProfessionnelleVousStagiaire?.stagiaireDepuisLe) : ''}</div>
+          
+
+        
+          <p class="label">${esc(i18n.translate('mar.property.stageRenumeration.label'))}</p>
+          <div class="response choice">
+            <% [true,false].each { %>
+              <span ${it == rqt.situationProfessionnelleVousStagiaire?.stageRenumeration ? 'class="checked"': ''}>
+                ${esc(i18n.translate('message.' + (it ? 'yes' : 'no')))}
+              </span>
+              ${it ? ' / ' : ''}
+            <% } %>
+          </div>
+          
+
+        
+          <p class="label">${esc(i18n.translate('mar.property.nomEmployeurStage.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.situationProfessionnelleVousStagiaire?.nomEmployeurStage?.toString()))}</div>
+
+        
+          <p class="label">${esc(i18n.translate('mar.property.adresseEmployeurStage.label'))}</p>
+          <div class="response">
+            <% if(rqt.situationProfessionnelleVousStagiaire?.adresseEmployeurStage) { %>
+              <p>${esc(StringUtils.defaultString(rqt.situationProfessionnelleVousStagiaire?.adresseEmployeurStage?.additionalDeliveryInformation))}</p>
+              <p>${esc(StringUtils.defaultString(rqt.situationProfessionnelleVousStagiaire?.adresseEmployeurStage?.additionalGeographicalInformation))}</p>
+              <p>${esc(StringUtils.defaultString(rqt.situationProfessionnelleVousStagiaire?.adresseEmployeurStage?.streetNumber))} ${esc(StringUtils.defaultString(rqt.situationProfessionnelleVousStagiaire?.adresseEmployeurStage?.streetName))}</p>
+              <p>${esc(StringUtils.defaultString(rqt.situationProfessionnelleVousStagiaire?.adresseEmployeurStage?.placeNameOrService))}</p>
+              <p>${esc(StringUtils.defaultString(rqt.situationProfessionnelleVousStagiaire?.adresseEmployeurStage?.postalCode))} ${esc(StringUtils.defaultString(rqt.situationProfessionnelleVousStagiaire?.adresseEmployeurStage?.city))}</p>
+              <p>${esc(StringUtils.defaultString(rqt.situationProfessionnelleVousStagiaire?.adresseEmployeurStage?.countryName))}</p>
+            <% } %>
+          </div>
+          
+
+        
+          <p class="label">${esc(i18n.translate('mar.property.telephoneEmployeurStage.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.situationProfessionnelleVousStagiaire?.telephoneEmployeurStage?.toString()))}</div>
+
+        
+      </div>
+    
+  
+    
+      <h3>${i18n.translate('mar.property.situationProfessionnelleVousNonSalarie.label')}</h3>
+      <div class="complex">
+        
+          <p class="label">${esc(i18n.translate('mar.property.nonSalarieDepuisLe.label'))}</p>
+          <div class="response">${rqt.situationProfessionnelleVousNonSalarie?.nonSalarieDepuisLe ? String.format('%td/%<tm/%<tY',rqt.situationProfessionnelleVousNonSalarie?.nonSalarieDepuisLe) : ''}</div>
+          
+
+        
+          <p class="label">${esc(i18n.translate('mar.property.regimeCotisations.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.situationProfessionnelleVousNonSalarie?.regimeCotisations?.toString()))}</div>
+
+        
+      </div>
+    
+  
+    
+      <h3>${i18n.translate('mar.property.situationProfessionnelleVousDemandeurEmploi.label')}</h3>
+      <div class="complex">
+        
+          <p class="label">${esc(i18n.translate('mar.property.demandeurEmploiDepuisLe.label'))}</p>
+          <div class="response">${rqt.situationProfessionnelleVousDemandeurEmploi?.demandeurEmploiDepuisLe ? String.format('%td/%<tm/%<tY',rqt.situationProfessionnelleVousDemandeurEmploi?.demandeurEmploiDepuisLe) : ''}</div>
+          
+
+        
+          <p class="label">${esc(i18n.translate('mar.property.indemnisationDepuisLe.label'))}</p>
+          <div class="response">${rqt.situationProfessionnelleVousDemandeurEmploi?.indemnisationDepuisLe ? String.format('%td/%<tm/%<tY',rqt.situationProfessionnelleVousDemandeurEmploi?.indemnisationDepuisLe) : ''}</div>
+          
+
+        
+          <p class="label">${esc(i18n.translate('mar.property.allocationSolidariteSpecifique.label'))}</p>
+          <div class="response choice">
+            <% [true,false].each { %>
+              <span ${it == rqt.situationProfessionnelleVousDemandeurEmploi?.allocationSolidariteSpecifique ? 'class="checked"': ''}>
+                ${esc(i18n.translate('message.' + (it ? 'yes' : 'no')))}
+              </span>
+              ${it ? ' / ' : ''}
+            <% } %>
+          </div>
+          
+
+        
+      </div>
+    
+  
+    
+      <h3>${i18n.translate('mar.property.situationProfessionnelleVousRetraite.label')}</h3>
+      <div class="complex">
+        
+          <p class="label">${esc(i18n.translate('mar.property.retraiteDepuisLe.label'))}</p>
+          <div class="response">${rqt.situationProfessionnelleVousRetraite?.retraiteDepuisLe ? String.format('%td/%<tm/%<tY',rqt.situationProfessionnelleVousRetraite?.retraiteDepuisLe) : ''}</div>
+          
+
+        
+          <p class="label">${esc(i18n.translate('mar.property.supplementairePersonneAgee.label'))}</p>
+          <div class="response choice">
+            <% [true,false].each { %>
+              <span ${it == rqt.situationProfessionnelleVousRetraite?.supplementairePersonneAgee ? 'class="checked"': ''}>
+                ${esc(i18n.translate('message.' + (it ? 'yes' : 'no')))}
+              </span>
+              ${it ? ' / ' : ''}
+            <% } %>
+          </div>
+          
+
+        
+          <p class="label">${esc(i18n.translate('mar.property.pensionRetraite.label'))}</p>
+          <div class="response choice">
+            <% [true,false].each { %>
+              <span ${it == rqt.situationProfessionnelleVousRetraite?.pensionRetraite ? 'class="checked"': ''}>
+                ${esc(i18n.translate('message.' + (it ? 'yes' : 'no')))}
+              </span>
+              ${it ? ' / ' : ''}
+            <% } %>
+          </div>
+          
+
+        
+      </div>
+    
+  
+    
+      <h3>${i18n.translate('mar.property.situationProfessionnelleVousBeneficiairePension.label')}</h3>
+      <div class="complex">
+        
+          <p class="label">${esc(i18n.translate('mar.property.beneficiairePensionDepuisLe.label'))}</p>
+          <div class="response">${rqt.situationProfessionnelleVousBeneficiairePension?.beneficiairePensionDepuisLe ? String.format('%td/%<tm/%<tY',rqt.situationProfessionnelleVousBeneficiairePension?.beneficiairePensionDepuisLe) : ''}</div>
+          
+
+        
+          <p class="label">${esc(i18n.translate('mar.property.categoriePensionInvalidite.label'))}</p>
+          <div class="response">
+            <% if(rqt.situationProfessionnelleVousBeneficiairePension?.categoriePensionInvalidite) { %>
+              ${esc(i18n.translate('mar.property.categoriePensionInvalidite.' + EnumTool.toLowerCamelCase(rqt.situationProfessionnelleVousBeneficiairePension?.categoriePensionInvalidite.toString())))}
+            <% } %>
+          </div>
+          
+
+        
+          <p class="label">${esc(i18n.translate('mar.property.renteAccidentTravail.label'))}</p>
+          <div class="response choice">
+            <% [true,false].each { %>
+              <span ${it == rqt.situationProfessionnelleVousBeneficiairePension?.renteAccidentTravail ? 'class="checked"': ''}>
+                ${esc(i18n.translate('message.' + (it ? 'yes' : 'no')))}
+              </span>
+              ${it ? ' / ' : ''}
+            <% } %>
+          </div>
+          
+
+        
+          <p class="label">${esc(i18n.translate('mar.property.allocationSupplementaireInvalidite.label'))}</p>
+          <div class="response choice">
+            <% [true,false].each { %>
+              <span ${it == rqt.situationProfessionnelleVousBeneficiairePension?.allocationSupplementaireInvalidite ? 'class="checked"': ''}>
+                ${esc(i18n.translate('message.' + (it ? 'yes' : 'no')))}
+              </span>
+              ${it ? ' / ' : ''}
+            <% } %>
+          </div>
+          
+
+        
+      </div>
+    
+  
+    
+      <h3>${i18n.translate('mar.property.situationProfessionnelleVousAutre.label')}</h3>
+      <div class="complex">
+        
+          <p class="label">${esc(i18n.translate('mar.property.autreDepuisLe.label'))}</p>
+          <div class="response">${rqt.situationProfessionnelleVousAutre?.autreDepuisLe ? String.format('%td/%<tm/%<tY',rqt.situationProfessionnelleVousAutre?.autreDepuisLe) : ''}</div>
+          
+
+        
+          <p class="label">${esc(i18n.translate('mar.property.precisionAutreSituationProfessionnelle.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.situationProfessionnelleVousAutre?.precisionAutreSituationProfessionnelle?.toString()))}</div>
+
+        
+      </div>
+    
+  
+    
+      <p class="label">${esc(i18n.translate('mar.property.situationProfessionnelleConjoint.label'))}</p>
+          <div class="response">
+            <% if(rqt.situationProfessionnelleConjoint) { %>
+              ${esc(i18n.translate('mar.property.situationProfessionnelleConjoint.' + EnumTool.toLowerCamelCase(rqt.situationProfessionnelleConjoint.toString())))}
+            <% } %>
+          </div>
+          
+
+    
+  
+    
+      <h3>${i18n.translate('mar.property.situationProfessionnelleConjointSalarie.label')}</h3>
+      <div class="complex">
+        
+          <p class="label">${esc(i18n.translate('mar.property.salarieDepuisLe.label'))}</p>
+          <div class="response">${rqt.situationProfessionnelleConjointSalarie?.salarieDepuisLe ? String.format('%td/%<tm/%<tY',rqt.situationProfessionnelleConjointSalarie?.salarieDepuisLe) : ''}</div>
+          
+
+        
+          <p class="label">${esc(i18n.translate('mar.property.typeContrat.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.situationProfessionnelleConjointSalarie?.typeContrat?.toString()))}</div>
+
+        
+          <p class="label">${esc(i18n.translate('mar.property.salarieDateDebutContrat.label'))}</p>
+          <div class="response">${rqt.situationProfessionnelleConjointSalarie?.salarieDateDebutContrat ? String.format('%td/%<tm/%<tY',rqt.situationProfessionnelleConjointSalarie?.salarieDateDebutContrat) : ''}</div>
+          
+
+        
+          <p class="label">${esc(i18n.translate('mar.property.salarieDateFinContrat.label'))}</p>
+          <div class="response">${rqt.situationProfessionnelleConjointSalarie?.salarieDateFinContrat ? String.format('%td/%<tm/%<tY',rqt.situationProfessionnelleConjointSalarie?.salarieDateFinContrat) : ''}</div>
+          
+
+        
+          <p class="label">${esc(i18n.translate('mar.property.esatDepuisLe.label'))}</p>
+          <div class="response">${rqt.situationProfessionnelleConjointSalarie?.esatDepuisLe ? String.format('%td/%<tm/%<tY',rqt.situationProfessionnelleConjointSalarie?.esatDepuisLe) : ''}</div>
+          
+
+        
+      </div>
+    
+  
+    
+      <h3>${i18n.translate('mar.property.situationProfessionnelleConjointStagiaire.label')}</h3>
+      <div class="complex">
+        
+          <p class="label">${esc(i18n.translate('mar.property.stagiaireDepuisLe.label'))}</p>
+          <div class="response">${rqt.situationProfessionnelleConjointStagiaire?.stagiaireDepuisLe ? String.format('%td/%<tm/%<tY',rqt.situationProfessionnelleConjointStagiaire?.stagiaireDepuisLe) : ''}</div>
+          
+
+        
+          <p class="label">${esc(i18n.translate('mar.property.stageRenumeration.label'))}</p>
+          <div class="response choice">
+            <% [true,false].each { %>
+              <span ${it == rqt.situationProfessionnelleConjointStagiaire?.stageRenumeration ? 'class="checked"': ''}>
+                ${esc(i18n.translate('message.' + (it ? 'yes' : 'no')))}
+              </span>
+              ${it ? ' / ' : ''}
+            <% } %>
+          </div>
+          
+
+        
+          <p class="label">${esc(i18n.translate('mar.property.nomEmployeurStage.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.situationProfessionnelleConjointStagiaire?.nomEmployeurStage?.toString()))}</div>
+
+        
+          <p class="label">${esc(i18n.translate('mar.property.adresseEmployeurStage.label'))}</p>
+          <div class="response">
+            <% if(rqt.situationProfessionnelleConjointStagiaire?.adresseEmployeurStage) { %>
+              <p>${esc(StringUtils.defaultString(rqt.situationProfessionnelleConjointStagiaire?.adresseEmployeurStage?.additionalDeliveryInformation))}</p>
+              <p>${esc(StringUtils.defaultString(rqt.situationProfessionnelleConjointStagiaire?.adresseEmployeurStage?.additionalGeographicalInformation))}</p>
+              <p>${esc(StringUtils.defaultString(rqt.situationProfessionnelleConjointStagiaire?.adresseEmployeurStage?.streetNumber))} ${esc(StringUtils.defaultString(rqt.situationProfessionnelleConjointStagiaire?.adresseEmployeurStage?.streetName))}</p>
+              <p>${esc(StringUtils.defaultString(rqt.situationProfessionnelleConjointStagiaire?.adresseEmployeurStage?.placeNameOrService))}</p>
+              <p>${esc(StringUtils.defaultString(rqt.situationProfessionnelleConjointStagiaire?.adresseEmployeurStage?.postalCode))} ${esc(StringUtils.defaultString(rqt.situationProfessionnelleConjointStagiaire?.adresseEmployeurStage?.city))}</p>
+              <p>${esc(StringUtils.defaultString(rqt.situationProfessionnelleConjointStagiaire?.adresseEmployeurStage?.countryName))}</p>
+            <% } %>
+          </div>
+          
+
+        
+          <p class="label">${esc(i18n.translate('mar.property.telephoneEmployeurStage.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.situationProfessionnelleConjointStagiaire?.telephoneEmployeurStage?.toString()))}</div>
+
+        
+      </div>
+    
+  
+    
+      <h3>${i18n.translate('mar.property.situationProfessionnelleConjointNonSalarie.label')}</h3>
+      <div class="complex">
+        
+          <p class="label">${esc(i18n.translate('mar.property.nonSalarieDepuisLe.label'))}</p>
+          <div class="response">${rqt.situationProfessionnelleConjointNonSalarie?.nonSalarieDepuisLe ? String.format('%td/%<tm/%<tY',rqt.situationProfessionnelleConjointNonSalarie?.nonSalarieDepuisLe) : ''}</div>
+          
+
+        
+          <p class="label">${esc(i18n.translate('mar.property.regimeCotisations.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.situationProfessionnelleConjointNonSalarie?.regimeCotisations?.toString()))}</div>
+
+        
+      </div>
+    
+  
+    
+      <h3>${i18n.translate('mar.property.situationProfessionnelleConjointDemandeurEmploi.label')}</h3>
+      <div class="complex">
+        
+          <p class="label">${esc(i18n.translate('mar.property.demandeurEmploiDepuisLe.label'))}</p>
+          <div class="response">${rqt.situationProfessionnelleConjointDemandeurEmploi?.demandeurEmploiDepuisLe ? String.format('%td/%<tm/%<tY',rqt.situationProfessionnelleConjointDemandeurEmploi?.demandeurEmploiDepuisLe) : ''}</div>
+          
+
+        
+          <p class="label">${esc(i18n.translate('mar.property.indemnisationDepuisLe.label'))}</p>
+          <div class="response">${rqt.situationProfessionnelleConjointDemandeurEmploi?.indemnisationDepuisLe ? String.format('%td/%<tm/%<tY',rqt.situationProfessionnelleConjointDemandeurEmploi?.indemnisationDepuisLe) : ''}</div>
+          
+
+        
+          <p class="label">${esc(i18n.translate('mar.property.allocationSolidariteSpecifique.label'))}</p>
+          <div class="response choice">
+            <% [true,false].each { %>
+              <span ${it == rqt.situationProfessionnelleConjointDemandeurEmploi?.allocationSolidariteSpecifique ? 'class="checked"': ''}>
+                ${esc(i18n.translate('message.' + (it ? 'yes' : 'no')))}
+              </span>
+              ${it ? ' / ' : ''}
+            <% } %>
+          </div>
+          
+
+        
+      </div>
+    
+  
+    
+      <h3>${i18n.translate('mar.property.situationProfessionnelleConjointRetraite.label')}</h3>
+      <div class="complex">
+        
+          <p class="label">${esc(i18n.translate('mar.property.retraiteDepuisLe.label'))}</p>
+          <div class="response">${rqt.situationProfessionnelleConjointRetraite?.retraiteDepuisLe ? String.format('%td/%<tm/%<tY',rqt.situationProfessionnelleConjointRetraite?.retraiteDepuisLe) : ''}</div>
+          
+
+        
+          <p class="label">${esc(i18n.translate('mar.property.supplementairePersonneAgee.label'))}</p>
+          <div class="response choice">
+            <% [true,false].each { %>
+              <span ${it == rqt.situationProfessionnelleConjointRetraite?.supplementairePersonneAgee ? 'class="checked"': ''}>
+                ${esc(i18n.translate('message.' + (it ? 'yes' : 'no')))}
+              </span>
+              ${it ? ' / ' : ''}
+            <% } %>
+          </div>
+          
+
+        
+          <p class="label">${esc(i18n.translate('mar.property.pensionRetraite.label'))}</p>
+          <div class="response choice">
+            <% [true,false].each { %>
+              <span ${it == rqt.situationProfessionnelleConjointRetraite?.pensionRetraite ? 'class="checked"': ''}>
+                ${esc(i18n.translate('message.' + (it ? 'yes' : 'no')))}
+              </span>
+              ${it ? ' / ' : ''}
+            <% } %>
+          </div>
+          
+
+        
+      </div>
+    
+  
+    
+      <h3>${i18n.translate('mar.property.situationProfessionnelleConjointBeneficiairePension.label')}</h3>
+      <div class="complex">
+        
+          <p class="label">${esc(i18n.translate('mar.property.beneficiairePensionDepuisLe.label'))}</p>
+          <div class="response">${rqt.situationProfessionnelleConjointBeneficiairePension?.beneficiairePensionDepuisLe ? String.format('%td/%<tm/%<tY',rqt.situationProfessionnelleConjointBeneficiairePension?.beneficiairePensionDepuisLe) : ''}</div>
+          
+
+        
+          <p class="label">${esc(i18n.translate('mar.property.categoriePensionInvalidite.label'))}</p>
+          <div class="response">
+            <% if(rqt.situationProfessionnelleConjointBeneficiairePension?.categoriePensionInvalidite) { %>
+              ${esc(i18n.translate('mar.property.categoriePensionInvalidite.' + EnumTool.toLowerCamelCase(rqt.situationProfessionnelleConjointBeneficiairePension?.categoriePensionInvalidite.toString())))}
+            <% } %>
+          </div>
+          
+
+        
+          <p class="label">${esc(i18n.translate('mar.property.renteAccidentTravail.label'))}</p>
+          <div class="response choice">
+            <% [true,false].each { %>
+              <span ${it == rqt.situationProfessionnelleConjointBeneficiairePension?.renteAccidentTravail ? 'class="checked"': ''}>
+                ${esc(i18n.translate('message.' + (it ? 'yes' : 'no')))}
+              </span>
+              ${it ? ' / ' : ''}
+            <% } %>
+          </div>
+          
+
+        
+          <p class="label">${esc(i18n.translate('mar.property.allocationSupplementaireInvalidite.label'))}</p>
+          <div class="response choice">
+            <% [true,false].each { %>
+              <span ${it == rqt.situationProfessionnelleConjointBeneficiairePension?.allocationSupplementaireInvalidite ? 'class="checked"': ''}>
+                ${esc(i18n.translate('message.' + (it ? 'yes' : 'no')))}
+              </span>
+              ${it ? ' / ' : ''}
+            <% } %>
+          </div>
+          
+
+        
+      </div>
+    
+  
+    
+      <h3>${i18n.translate('mar.property.situationProfessionnelleConjointAutre.label')}</h3>
+      <div class="complex">
+        
+          <p class="label">${esc(i18n.translate('mar.property.autreDepuisLe.label'))}</p>
+          <div class="response">${rqt.situationProfessionnelleConjointAutre?.autreDepuisLe ? String.format('%td/%<tm/%<tY',rqt.situationProfessionnelleConjointAutre?.autreDepuisLe) : ''}</div>
+          
+
+        
+          <p class="label">${esc(i18n.translate('mar.property.precisionAutreSituationProfessionnelle.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.situationProfessionnelleConjointAutre?.precisionAutreSituationProfessionnelle?.toString()))}</div>
+
+        
+      </div>
+    
+  
+
+  
+  <h2>${i18n.translate('mar.step.autreSituation.label')}</h2>
+  
+    
+      <p class="label">${esc(i18n.translate('mar.property.situationParticuliere.label'))}</p>
+          <div class="response">
+            <% if(rqt.situationParticuliere) { %>
+              ${esc(i18n.translate('mar.property.situationParticuliere.' + EnumTool.toLowerCamelCase(rqt.situationParticuliere.toString())))}
+            <% } %>
+          </div>
+          
+
+    
+  
+    
+      <p class="label">${esc(i18n.translate('mar.property.precisionAutre.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.precisionAutre?.toString()))}</div>
+
+    
+  
+    
+      <p class="label">${esc(i18n.translate('mar.property.nomEtablissement.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.nomEtablissement?.toString()))}</div>
+
+    
+  
+    
+      <p class="label">${esc(i18n.translate('mar.property.domiciliationEtablissement.label'))}</p>
+          <div class="response">
+            <% if(rqt.domiciliationEtablissement) { %>
+              <p>${esc(StringUtils.defaultString(rqt.domiciliationEtablissement?.additionalDeliveryInformation))}</p>
+              <p>${esc(StringUtils.defaultString(rqt.domiciliationEtablissement?.additionalGeographicalInformation))}</p>
+              <p>${esc(StringUtils.defaultString(rqt.domiciliationEtablissement?.streetNumber))} ${esc(StringUtils.defaultString(rqt.domiciliationEtablissement?.streetName))}</p>
+              <p>${esc(StringUtils.defaultString(rqt.domiciliationEtablissement?.placeNameOrService))}</p>
+              <p>${esc(StringUtils.defaultString(rqt.domiciliationEtablissement?.postalCode))} ${esc(StringUtils.defaultString(rqt.domiciliationEtablissement?.city))}</p>
+              <p>${esc(StringUtils.defaultString(rqt.domiciliationEtablissement?.countryName))}</p>
+            <% } %>
+          </div>
+          
+
+    
+  
+    
+      <p class="label">${esc(i18n.translate('mar.property.typeLogement.label'))}</p>
+          <div class="response">
+            <% if(rqt.typeLogement) { %>
+              ${esc(i18n.translate('mar.property.typeLogement.' + EnumTool.toLowerCamelCase(rqt.typeLogement.toString())))}
+            <% } %>
+          </div>
+          
+
+    
+  
+    
+      <p class="label">${esc(i18n.translate('mar.property.precisionLogementAutre.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.precisionLogementAutre?.toString()))}</div>
+
+    
+  
+
+  
+  <h2>${i18n.translate('mar.step.projetDeVie.label')}</h2>
+  
+    
+      <p class="label">${esc(i18n.translate('mar.property.choixProjetDeVie.label'))}</p>
+          <div class="response">
+            <% if(rqt.choixProjetDeVie) { %>
+              ${esc(i18n.translate('mar.property.choixProjetDeVie.' + EnumTool.toLowerCamelCase(rqt.choixProjetDeVie.toString())))}
+            <% } %>
+          </div>
+          
+
+    
+  
+    
+      <p class="label">${esc(i18n.translate('mar.property.expressionProjetDeVie.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.expressionProjetDeVie?.toString()))}</div>
+
+    
+  
+    
+      <p class="label">${esc(i18n.translate('mar.property.conseilleProjetDeVie.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.conseilleProjetDeVie?.toString()))}</div>
+
+    
+  
+
+  
+  <h2>${i18n.translate('mar.step.demandeParcoursScolaireEtFormation.label')}</h2>
+  
+    
+      <p class="label">${esc(i18n.translate('mar.property.demandeLibreScolaire.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.demandeLibreScolaire?.toString()))}</div>
+
+    
+  
+    
+      <p class="label">${esc(i18n.translate('mar.property.preferencesEtablissementOuService.label'))}</p>
+          <div class="response choice">
+            <% [true,false].each { %>
+              <span ${it == rqt.preferencesEtablissementOuService ? 'class="checked"': ''}>
+                ${esc(i18n.translate('message.' + (it ? 'yes' : 'no')))}
+              </span>
+              ${it ? ' / ' : ''}
+            <% } %>
+          </div>
+          
+
+    
+  
+    
+      <h3>${i18n.translate('mar.property.precisionPreferencesEtablissementOuService.label')}</h3>
+      <div class="complex">
+        
+          <p class="label">${esc(i18n.translate('mar.property.nomPreferenceEtablissementOuService.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.precisionPreferencesEtablissementOuService?.nomPreferenceEtablissementOuService?.toString()))}</div>
+
+        
+          <p class="label">${esc(i18n.translate('mar.property.codePostalPreferenceEtablissementOuService.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.precisionPreferencesEtablissementOuService?.codePostalPreferenceEtablissementOuService?.toString()))}</div>
+
+        
+          <p class="label">${esc(i18n.translate('mar.property.communePreferenceEtablissementOuService.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.precisionPreferencesEtablissementOuService?.communePreferenceEtablissementOuService?.toString()))}</div>
+
+        
+      </div>
+    
+  
+
+  
+  <h2>${i18n.translate('mar.step.demandeCartes.label')}</h2>
+  
+    
+      <p class="label">${esc(i18n.translate('mar.property.carteInvalidite.label'))}</p>
+          <div class="response choice">
+            <% [true,false].each { %>
+              <span ${it == rqt.carteInvalidite ? 'class="checked"': ''}>
+                ${esc(i18n.translate('message.' + (it ? 'yes' : 'no')))}
+              </span>
+              ${it ? ' / ' : ''}
+            <% } %>
+          </div>
+          
+
+    
+  
+    
+      <p class="label">${esc(i18n.translate('mar.property.carteAccompagnement.label'))}</p>
+          <div class="response choice">
+            <% [true,false].each { %>
+              <span ${it == rqt.carteAccompagnement ? 'class="checked"': ''}>
+                ${esc(i18n.translate('message.' + (it ? 'yes' : 'no')))}
+              </span>
+              ${it ? ' / ' : ''}
+            <% } %>
+          </div>
+          
+
+    
+  
+    
+      <p class="label">${esc(i18n.translate('mar.property.carteStationnement.label'))}</p>
+          <div class="response choice">
+            <% [true,false].each { %>
+              <span ${it == rqt.carteStationnement ? 'class="checked"': ''}>
+                ${esc(i18n.translate('message.' + (it ? 'yes' : 'no')))}
+              </span>
+              ${it ? ' / ' : ''}
+            <% } %>
+          </div>
+          
+
+    
+  
+
+  
+  <h2>${i18n.translate('mar.step.demandePrestationCompensation.label')}</h2>
+  
+    
+      <p class="label">${esc(i18n.translate('mar.property.choixPrestationCompensation.label'))}</p>
+          <div class="response">
+            <% if(rqt.choixPrestationCompensation) { %>
+              ${esc(i18n.translate('mar.property.choixPrestationCompensation.' + EnumTool.toLowerCamelCase(rqt.choixPrestationCompensation.toString())))}
+            <% } %>
+          </div>
+          
+
+    
+  
+    
+      <p class="label">${esc(i18n.translate('mar.property.allocationPersonnaliseeAutonomie.label'))}</p>
+          <div class="response choice">
+            <% [true,false].each { %>
+              <span ${it == rqt.allocationPersonnaliseeAutonomie ? 'class="checked"': ''}>
+                ${esc(i18n.translate('message.' + (it ? 'yes' : 'no')))}
+              </span>
+              ${it ? ' / ' : ''}
+            <% } %>
+          </div>
+          
+
+    
+  
+    
+      <h3>${i18n.translate('mar.property.besoinsDemandePCH.label')}</h3>
+      <div class="complex">
+        
+          <p class="label">${esc(i18n.translate('mar.property.aideHumaine.label'))}</p>
+          <div class="response choice">
+            <% [true,false].each { %>
+              <span ${it == rqt.besoinsDemandePCH?.aideHumaine ? 'class="checked"': ''}>
+                ${esc(i18n.translate('message.' + (it ? 'yes' : 'no')))}
+              </span>
+              ${it ? ' / ' : ''}
+            <% } %>
+          </div>
+          
+
+        
+          <p class="label">${esc(i18n.translate('mar.property.precisionAideHumaine.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.besoinsDemandePCH?.precisionAideHumaine?.toString()))}</div>
+
+        
+          <p class="label">${esc(i18n.translate('mar.property.aideTechnique.label'))}</p>
+          <div class="response choice">
+            <% [true,false].each { %>
+              <span ${it == rqt.besoinsDemandePCH?.aideTechnique ? 'class="checked"': ''}>
+                ${esc(i18n.translate('message.' + (it ? 'yes' : 'no')))}
+              </span>
+              ${it ? ' / ' : ''}
+            <% } %>
+          </div>
+          
+
+        
+          <p class="label">${esc(i18n.translate('mar.property.precisionAideTechnique.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.besoinsDemandePCH?.precisionAideTechnique?.toString()))}</div>
+
+        
+          <p class="label">${esc(i18n.translate('mar.property.amenagementLogementDemenagement.label'))}</p>
+          <div class="response choice">
+            <% [true,false].each { %>
+              <span ${it == rqt.besoinsDemandePCH?.amenagementLogementDemenagement ? 'class="checked"': ''}>
+                ${esc(i18n.translate('message.' + (it ? 'yes' : 'no')))}
+              </span>
+              ${it ? ' / ' : ''}
+            <% } %>
+          </div>
+          
+
+        
+          <p class="label">${esc(i18n.translate('mar.property.precisionAmenagementLogementDemenagement.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.besoinsDemandePCH?.precisionAmenagementLogementDemenagement?.toString()))}</div>
+
+        
+          <p class="label">${esc(i18n.translate('mar.property.amenagementVehicule.label'))}</p>
+          <div class="response choice">
+            <% [true,false].each { %>
+              <span ${it == rqt.besoinsDemandePCH?.amenagementVehicule ? 'class="checked"': ''}>
+                ${esc(i18n.translate('message.' + (it ? 'yes' : 'no')))}
+              </span>
+              ${it ? ' / ' : ''}
+            <% } %>
+          </div>
+          
+
+        
+          <p class="label">${esc(i18n.translate('mar.property.precisionAmenagementVehicule.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.besoinsDemandePCH?.precisionAmenagementVehicule?.toString()))}</div>
+
+        
+          <p class="label">${esc(i18n.translate('mar.property.chargesSpecifiques.label'))}</p>
+          <div class="response choice">
+            <% [true,false].each { %>
+              <span ${it == rqt.besoinsDemandePCH?.chargesSpecifiques ? 'class="checked"': ''}>
+                ${esc(i18n.translate('message.' + (it ? 'yes' : 'no')))}
+              </span>
+              ${it ? ' / ' : ''}
+            <% } %>
+          </div>
+          
+
+        
+          <p class="label">${esc(i18n.translate('mar.property.precisionChargesSpecifiques.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.besoinsDemandePCH?.precisionChargesSpecifiques?.toString()))}</div>
+
+        
+          <p class="label">${esc(i18n.translate('mar.property.aideAnimaliere.label'))}</p>
+          <div class="response choice">
+            <% [true,false].each { %>
+              <span ${it == rqt.besoinsDemandePCH?.aideAnimaliere ? 'class="checked"': ''}>
+                ${esc(i18n.translate('message.' + (it ? 'yes' : 'no')))}
+              </span>
+              ${it ? ' / ' : ''}
+            <% } %>
+          </div>
+          
+
+        
+          <p class="label">${esc(i18n.translate('mar.property.precisionAideAnimaliere.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.besoinsDemandePCH?.precisionAideAnimaliere?.toString()))}</div>
+
+        
+      </div>
+    
+  
+
+  
+  <h2>${i18n.translate('mar.step.affilitationAidant.label')}</h2>
+  
+    
+      <p class="label">${esc(i18n.translate('mar.property.nomAidant.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.nomAidant?.toString()))}</div>
+
+    
+  
+    
+      <p class="label">${esc(i18n.translate('mar.property.domiciliationAidant.label'))}</p>
+          <div class="response">
+            <% if(rqt.domiciliationAidant) { %>
+              <p>${esc(StringUtils.defaultString(rqt.domiciliationAidant?.additionalDeliveryInformation))}</p>
+              <p>${esc(StringUtils.defaultString(rqt.domiciliationAidant?.additionalGeographicalInformation))}</p>
+              <p>${esc(StringUtils.defaultString(rqt.domiciliationAidant?.streetNumber))} ${esc(StringUtils.defaultString(rqt.domiciliationAidant?.streetName))}</p>
+              <p>${esc(StringUtils.defaultString(rqt.domiciliationAidant?.placeNameOrService))}</p>
+              <p>${esc(StringUtils.defaultString(rqt.domiciliationAidant?.postalCode))} ${esc(StringUtils.defaultString(rqt.domiciliationAidant?.city))}</p>
+              <p>${esc(StringUtils.defaultString(rqt.domiciliationAidant?.countryName))}</p>
+            <% } %>
+          </div>
+          
+
+    
+  
+    
+      <p class="label">${esc(i18n.translate('mar.property.dateNaissanceAidant.label'))}</p>
+          <div class="response">${rqt.dateNaissanceAidant ? String.format('%td/%<tm/%<tY',rqt.dateNaissanceAidant) : ''}</div>
+          
+
+    
+  
+    
+      <p class="label">${esc(i18n.translate('mar.property.lienParenteAidant.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.lienParenteAidant?.toString()))}</div>
+
+    
+  
+
+  
+  <h2>${i18n.translate('mar.step.demandeAllocationEtComplementRessources.label')}</h2>
+  
+    
+      <h3>${i18n.translate('mar.property.choixTypeDemandeAllocEtCompl.label')}</h3>
+      <div class="complex">
+        
+          <p class="label">${esc(i18n.translate('mar.property.aah.label'))}</p>
+          <div class="response choice">
+            <% [true,false].each { %>
+              <span ${it == rqt.choixTypeDemandeAllocEtCompl?.aah ? 'class="checked"': ''}>
+                ${esc(i18n.translate('message.' + (it ? 'yes' : 'no')))}
+              </span>
+              ${it ? ' / ' : ''}
+            <% } %>
+          </div>
+          
+
+        
+          <p class="label">${esc(i18n.translate('mar.property.complementRessources.label'))}</p>
+          <div class="response choice">
+            <% [true,false].each { %>
+              <span ${it == rqt.choixTypeDemandeAllocEtCompl?.complementRessources ? 'class="checked"': ''}>
+                ${esc(i18n.translate('message.' + (it ? 'yes' : 'no')))}
+              </span>
+              ${it ? ' / ' : ''}
+            <% } %>
+          </div>
+          
+
+        
+      </div>
+    
+  
+    
+      <p class="label">${esc(i18n.translate('mar.property.precedentsRevenusRecus.label'))}</p>
+          <div class="response">
+            <% if(rqt.precedentsRevenusRecus) { %>
+              ${esc(i18n.translate('mar.property.precedentsRevenusRecus.' + EnumTool.toLowerCamelCase(rqt.precedentsRevenusRecus.toString())))}
+            <% } %>
+          </div>
+          
+
+    
+  
+    
+      <p class="label">${esc(i18n.translate('mar.property.dateDebutRevenuRecu.label'))}</p>
+          <div class="response">${rqt.dateDebutRevenuRecu ? String.format('%td/%<tm/%<tY',rqt.dateDebutRevenuRecu) : ''}</div>
+          
+
+    
+  
+    
+      <p class="label">${esc(i18n.translate('mar.property.dateFinRevenuRecu.label'))}</p>
+          <div class="response">${rqt.dateFinRevenuRecu ? String.format('%td/%<tm/%<tY',rqt.dateFinRevenuRecu) : ''}</div>
+          
+
+    
+  
+    
+      <p class="label">${esc(i18n.translate('mar.property.precisionRevenuRecu.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.precisionRevenuRecu?.toString()))}</div>
+
+    
+  
+
+  
+  <h2>${i18n.translate('mar.step.demandeProfessionnelle.label')}</h2>
+  
+    
+      <p class="label">${esc(i18n.translate('mar.property.rqth.label'))}</p>
+          <div class="response choice">
+            <% [true,false].each { %>
+              <span ${it == rqt.rqth ? 'class="checked"': ''}>
+                ${esc(i18n.translate('message.' + (it ? 'yes' : 'no')))}
+              </span>
+              ${it ? ' / ' : ''}
+            <% } %>
+          </div>
+          
+
+    
+  
+    
+      <p class="label">${esc(i18n.translate('mar.property.primeReclassement.label'))}</p>
+          <div class="response choice">
+            <% [true,false].each { %>
+              <span ${it == rqt.primeReclassement ? 'class="checked"': ''}>
+                ${esc(i18n.translate('message.' + (it ? 'yes' : 'no')))}
+              </span>
+              ${it ? ' / ' : ''}
+            <% } %>
+          </div>
+          
+
+    
+  
+    
+      <p class="label">${esc(i18n.translate('mar.property.autre.label'))}</p>
+          <div class="response choice">
+            <% [true,false].each { %>
+              <span ${it == rqt.autre ? 'class="checked"': ''}>
+                ${esc(i18n.translate('message.' + (it ? 'yes' : 'no')))}
+              </span>
+              ${it ? ' / ' : ''}
+            <% } %>
+          </div>
+          
+
+    
+  
+    
+      <p class="label">${esc(i18n.translate('mar.property.orientationReclassement.label'))}</p>
+          <div class="response choice">
+            <% [true,false].each { %>
+              <span ${it == rqt.orientationReclassement ? 'class="checked"': ''}>
+                ${esc(i18n.translate('message.' + (it ? 'yes' : 'no')))}
+              </span>
+              ${it ? ' / ' : ''}
+            <% } %>
+          </div>
+          
+
+    
+  
+    
+      <p class="label">${esc(i18n.translate('mar.property.choixOrientationReclassement.label'))}</p>
+          <div class="response">
+            <% if(rqt.choixOrientationReclassement) { %>
+              ${esc(i18n.translate('mar.property.choixOrientationReclassement.' + EnumTool.toLowerCamelCase(rqt.choixOrientationReclassement.toString())))}
+            <% } %>
+          </div>
+          
+
+    
+  
+
+  
+  <h2>${i18n.translate('mar.step.demandeOrientationMedicoSociale.label')}</h2>
+  
+    
+      <p class="label">${esc(i18n.translate('mar.property.situationActuelle.label'))}</p>
+          <div class="response">
+            <% if(rqt.situationActuelle) { %>
+              ${esc(i18n.translate('mar.property.situationActuelle.' + EnumTool.toLowerCamelCase(rqt.situationActuelle.toString())))}
+            <% } %>
+          </div>
+          
+
+    
+  
+    
+      <p class="label">${esc(i18n.translate('mar.property.situationActuellePrecision.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.situationActuellePrecision?.toString()))}</div>
+
+    
+  
+    
+      <p class="label">${esc(i18n.translate('mar.property.orientationSouhaitee.label'))}</p>
+          <div class="response">
+            <% if(rqt.orientationSouhaitee) { %>
+              ${esc(i18n.translate('mar.property.orientationSouhaitee.' + EnumTool.toLowerCamelCase(rqt.orientationSouhaitee.toString())))}
+            <% } %>
+          </div>
+          
+
+    
+  
+    
+      <p class="label">${esc(i18n.translate('mar.property.dateEntreeSouhaitee.label'))}</p>
+          <div class="response">${rqt.dateEntreeSouhaitee ? String.format('%td/%<tm/%<tY',rqt.dateEntreeSouhaitee) : ''}</div>
+          
+
+    
+  
+    
+      <p class="label">${esc(i18n.translate('mar.property.preferenceEtablissementOuService.label'))}</p>
+          <div class="response choice">
+            <% [true,false].each { %>
+              <span ${it == rqt.preferenceEtablissementOuService ? 'class="checked"': ''}>
+                ${esc(i18n.translate('message.' + (it ? 'yes' : 'no')))}
+              </span>
+              ${it ? ' / ' : ''}
+            <% } %>
+          </div>
+          
+
+    
+  
+    
+      <h3>${i18n.translate('mar.property.precisionPreferenceEtablissementOuService.label')}</h3>
+      <div class="complex">
+        
+          <p class="label">${esc(i18n.translate('mar.property.nomEtablissementPreference.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.precisionPreferenceEtablissementOuService?.nomEtablissementPreference?.toString()))}</div>
+
+        
+          <p class="label">${esc(i18n.translate('mar.property.codePostalEtablissementPreference.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.precisionPreferenceEtablissementOuService?.codePostalEtablissementPreference?.toString()))}</div>
+
+        
+          <p class="label">${esc(i18n.translate('mar.property.communeEtablissementPreference.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.precisionPreferenceEtablissementOuService?.communeEtablissementPreference?.toString()))}</div>
+
+        
+          <p class="label">${esc(i18n.translate('mar.property.telephoneEtablissementPreference.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.precisionPreferenceEtablissementOuService?.telephoneEtablissementPreference?.toString()))}</div>
+
+        
+      </div>
+    
+  
+
+  <h2>${i18n.translate('contact.property.meansOfContact')}</h2>
+  <div class="response choice">
+    <% if (rqt.meansOfContact) { %>
+      <% rqt.meansOfContact.type.allMeansOfContactEnums.eachWithIndex {it, i -> %>
+        <span ${it == rqt.meansOfContact.type ? 'class="checked"': ''}>
+          ${i18n.translate('meansOfContact.' + StringUtils.uncapitalize(it.legacyLabel))}
+        </span>${i + 1 < rqt.meansOfContact.type.allMeansOfContactEnums.length ? ', ' : ''}
+      <% } %>
+    <% } else { %>
+      <span class="checked">${i18n.translate('meansOfContact.none')}</span>
+    <% } %>
+  </div>
+</body>
+</html>
+

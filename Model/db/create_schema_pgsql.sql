@@ -269,6 +269,9 @@
     alter table local_referential_data 
         drop constraint FK49407E748F4CC15E;
 
+    alter table mar_situation_professionnelle_stagiaire 
+        drop constraint FKF7052B4E62A75AD3;
+
     alter table marriage_details_request 
         drop constraint FK38315C1D3A1CCF66;
 
@@ -283,6 +286,156 @@
 
     alter table marriage_details_request 
         drop constraint FK38315C1D3C2E0479;
+
+    alter table mdph_adult_request 
+        drop constraint FKB0266E9AB7264787;
+
+    alter table mdph_adult_request 
+        drop constraint FKB0266E9A63BFEC12;
+
+    alter table mdph_adult_request 
+        drop constraint FKB0266E9AFF86C1EE;
+
+    alter table mdph_adult_request 
+        drop constraint FKB0266E9A99FF2501;
+
+    alter table mdph_adult_request 
+        drop constraint FKB0266E9AF5443B12;
+
+    alter table mdph_adult_request 
+        drop constraint FKB0266E9A10E64941;
+
+    alter table mdph_adult_request 
+        drop constraint FKB0266E9AFDD4D637;
+
+    alter table mdph_adult_request 
+        drop constraint FKB0266E9A6F6E0F42;
+
+    alter table mdph_adult_request 
+        drop constraint FKB0266E9AD52FB460;
+
+    alter table mdph_adult_request 
+        drop constraint FKB0266E9AD596CF96;
+
+    alter table mdph_adult_request 
+        drop constraint FKB0266E9A36B07BF3;
+
+    alter table mdph_adult_request 
+        drop constraint FKB0266E9A845CF77C;
+
+    alter table mdph_adult_request 
+        drop constraint FKB0266E9AA9E7FEA5;
+
+    alter table mdph_adult_request 
+        drop constraint FKB0266E9A19686137;
+
+    alter table mdph_adult_request 
+        drop constraint FKB0266E9A26F87B5D;
+
+    alter table mdph_adult_request 
+        drop constraint FKB0266E9A5ABFDF4;
+
+    alter table mdph_adult_request 
+        drop constraint FKB0266E9AEFDB1FD2;
+
+    alter table mdph_adult_request 
+        drop constraint FKB0266E9ACDADA1AA;
+
+    alter table mdph_adult_request 
+        drop constraint FKB0266E9A3CE43CFE;
+
+    alter table mdph_adult_request 
+        drop constraint FKB0266E9A757D114D;
+
+    alter table mdph_adult_request 
+        drop constraint FKB0266E9A9898F441;
+
+    alter table mdph_adult_request 
+        drop constraint FKB0266E9AC2C717FB;
+
+    alter table mdph_adult_request 
+        drop constraint FKB0266E9A64C05EEE;
+
+    alter table mdph_adult_request 
+        drop constraint FKB0266E9A5F568781;
+
+    alter table mdph_adult_request 
+        drop constraint FKB0266E9A82EE72B2;
+
+    alter table mdph_youth_request 
+        drop constraint FK10277AB35992B22A;
+
+    alter table mdph_youth_request 
+        drop constraint FK10277AB38FD1EB19;
+
+    alter table mdph_youth_request 
+        drop constraint FK10277AB3BF6C0D9B;
+
+    alter table mdph_youth_request 
+        drop constraint FK10277AB3C17DDB2A;
+
+    alter table mdph_youth_request 
+        drop constraint FK10277AB3B5384359;
+
+    alter table mdph_youth_request 
+        drop constraint FK10277AB3AF51D11F;
+
+    alter table mdph_youth_request 
+        drop constraint FK10277AB32A68722A;
+
+    alter table mdph_youth_request 
+        drop constraint FK10277AB371B93348;
+
+    alter table mdph_youth_request 
+        drop constraint FK10277AB3F1AADEDB;
+
+    alter table mdph_youth_request 
+        drop constraint FK10277AB3845CF77C;
+
+    alter table mdph_youth_request 
+        drop constraint FK10277AB32A10DA0F;
+
+    alter table mdph_youth_request 
+        drop constraint FK10277AB3628F7F8D;
+
+    alter table mdph_youth_request 
+        drop constraint FK10277AB394A5AE45;
+
+    alter table mdph_youth_request 
+        drop constraint FK10277AB35ABFDF4;
+
+    alter table mdph_youth_request 
+        drop constraint FK10277AB37DCFA968;
+
+    alter table mdph_youth_request 
+        drop constraint FK10277AB3942D19EA;
+
+    alter table mdph_youth_request 
+        drop constraint FK10277AB3B39AEA92;
+
+    alter table mdph_youth_request 
+        drop constraint FK10277AB36BE84516;
+
+    alter table mdph_youth_request 
+        drop constraint FK10277AB3A4811965;
+
+    alter table mdph_youth_request 
+        drop constraint FK10277AB364D29459;
+
+    alter table mdph_youth_request 
+        drop constraint FK10277AB35E1EBF5E;
+
+    alter table mdph_youth_request 
+        drop constraint FK10277AB3A8B460E3;
+
+    alter table mdph_youth_request 
+        drop constraint FK10277AB3ACB98906;
+
+    alter table mdph_youth_request 
+        drop constraint FK10277AB3DE68C399;
+
+    alter table mdph_youth_request 
+        drop constraint FK10277AB3200AECA;
 
     alter table military_census_request 
         drop constraint FK56137C47B00DD8B6;
@@ -301,6 +454,18 @@
 
     alter table music_school_registration_request_activity 
         drop constraint FK6393FFD48F0273CA;
+
+    alter table myr_autorite_parentale 
+        drop constraint FKFE8F9821725D4DCB;
+
+    alter table myr_autorite_parentale_autre 
+        drop constraint FKC3D57755725D4DCB;
+
+    alter table myr_frais_supp_lies_handicap 
+        drop constraint FKBB377E08E1F81DAC;
+
+    alter table myr_situation_professionnelle_stagiaire 
+        drop constraint FK16C3DA3662A75AD3;
 
     alter table perischool_activity_registration_request 
         drop constraint FK76BAA59A20540B7;
@@ -718,6 +883,34 @@
 
     drop table local_referential_data cascade;
 
+    drop table mar_besoins_demande_pch cascade;
+
+    drop table mar_birth_place cascade;
+
+    drop table mar_choix_demande_alloc_et_compl cascade;
+
+    drop table mar_conjoint_identite cascade;
+
+    drop table mar_precedent_dossier_mdph cascade;
+
+    drop table mar_precision_preference_etablissement_ou_service cascade;
+
+    drop table mar_preference_etablissement_ou_service_scolaire cascade;
+
+    drop table mar_situation_professionnelle_autre cascade;
+
+    drop table mar_situation_professionnelle_beneficiaire_pension cascade;
+
+    drop table mar_situation_professionnelle_demandeur_emploi cascade;
+
+    drop table mar_situation_professionnelle_non_salarie cascade;
+
+    drop table mar_situation_professionnelle_retraite cascade;
+
+    drop table mar_situation_professionnelle_salarie cascade;
+
+    drop table mar_situation_professionnelle_stagiaire cascade;
+
     drop table marriage_details_request cascade;
 
     drop table marriage_father_information cascade;
@@ -729,6 +922,10 @@
     drop table marriage_mother_information cascade;
 
     drop table marriage_wife_information cascade;
+
+    drop table mdph_adult_request cascade;
+
+    drop table mdph_youth_request cascade;
 
     drop table means_of_contact cascade;
 
@@ -743,6 +940,38 @@
     drop table music_school_registration_request cascade;
 
     drop table music_school_registration_request_activity cascade;
+
+    drop table myr_autorite_parentale cascade;
+
+    drop table myr_autorite_parentale_autre cascade;
+
+    drop table myr_besoins_demande_pch cascade;
+
+    drop table myr_birth_place cascade;
+
+    drop table myr_conjoint_identite cascade;
+
+    drop table myr_frais_supp_lies_handicap cascade;
+
+    drop table myr_precedent_dossier_mdph cascade;
+
+    drop table myr_preference_etablissement_ou_service_scolaire cascade;
+
+    drop table myr_presence_personne_aupres_enfant cascade;
+
+    drop table myr_situation_professionnelle_autre cascade;
+
+    drop table myr_situation_professionnelle_beneficiaire_pension cascade;
+
+    drop table myr_situation_professionnelle_demandeur_emploi cascade;
+
+    drop table myr_situation_professionnelle_non_salarie cascade;
+
+    drop table myr_situation_professionnelle_retraite cascade;
+
+    drop table myr_situation_professionnelle_salarie cascade;
+
+    drop table myr_situation_professionnelle_stagiaire cascade;
 
     drop table payment cascade;
 
@@ -1835,6 +2064,129 @@
         primary key (id)
     );
 
+    create table mar_besoins_demande_pch (
+        id int8 not null,
+        aide_animaliere bool,
+        aide_humaine bool,
+        aide_technique bool,
+        amenagement_logement_demenagement bool,
+        amenagement_vehicule bool,
+        charges_specifiques bool,
+        precision_aide_animaliere varchar(255),
+        precision_aide_humaine varchar(255),
+        precision_aide_technique varchar(255),
+        precision_amenagement_logement_demenagement varchar(255),
+        precision_amenagement_vehicule varchar(255),
+        precision_charges_specifiques varchar(255),
+        primary key (id)
+    );
+
+    create table mar_birth_place (
+        id int8 not null,
+        city varchar(32),
+        country varchar(255),
+        postal_code varchar(5),
+        primary key (id)
+    );
+
+    create table mar_choix_demande_alloc_et_compl (
+        id int8 not null,
+        aah bool,
+        complement_ressources bool,
+        primary key (id)
+    );
+
+    create table mar_conjoint_identite (
+        id int8 not null,
+        date_naissance_conjoint timestamp,
+        nom_naissance_conjoint varchar(38),
+        prenom_conjoint varchar(38),
+        primary key (id)
+    );
+
+    create table mar_precedent_dossier_mdph (
+        id int8 not null,
+        departement_mdph varchar(255),
+        numero_mdph varchar(13),
+        primary key (id)
+    );
+
+    create table mar_precision_preference_etablissement_ou_service (
+        id int8 not null,
+        code_postal_etablissement_preference varchar(5),
+        commune_etablissement_preference varchar(32),
+        nom_etablissement_preference varchar(255),
+        telephone_etablissement_preference varchar(10),
+        primary key (id)
+    );
+
+    create table mar_preference_etablissement_ou_service_scolaire (
+        id int8 not null,
+        code_postal_preference_etablissement_ou_service varchar(5),
+        commune_preference_etablissement_ou_service varchar(32),
+        nom_preference_etablissement_ou_service varchar(255),
+        primary key (id)
+    );
+
+    create table mar_situation_professionnelle_autre (
+        id int8 not null,
+        autre_depuis_le timestamp,
+        precision_autre_situation_professionnelle varchar(255),
+        primary key (id)
+    );
+
+    create table mar_situation_professionnelle_beneficiaire_pension (
+        id int8 not null,
+        allocation_supplementaire_invalidite bool,
+        beneficiaire_pension_depuis_le timestamp,
+        categorie_pension_invalidite varchar(255),
+        rente_accident_travail bool,
+        primary key (id)
+    );
+
+    create table mar_situation_professionnelle_demandeur_emploi (
+        id int8 not null,
+        allocation_solidarite_specifique bool,
+        demandeur_emploi_depuis_le timestamp,
+        indemnisation_depuis_le timestamp,
+        primary key (id)
+    );
+
+    create table mar_situation_professionnelle_non_salarie (
+        id int8 not null,
+        non_salarie_depuis_le timestamp,
+        regime_cotisations varchar(255),
+        primary key (id)
+    );
+
+    create table mar_situation_professionnelle_retraite (
+        id int8 not null,
+        pension_retraite bool,
+        retraite_depuis_le timestamp,
+        supplementaire_personne_agee bool,
+        primary key (id)
+    );
+
+    create table mar_situation_professionnelle_salarie (
+        id int8 not null,
+        esat_depuis_le timestamp,
+        salarie_date_debut_contrat timestamp,
+        salarie_date_fin_contrat timestamp,
+        salarie_depuis_le timestamp,
+        type_contrat varchar(255),
+        primary key (id)
+    );
+
+    create table mar_situation_professionnelle_stagiaire (
+        id int8 not null,
+        nom_employeur_stage varchar(38),
+        stage_renumeration bool,
+        stagiaire_depuis_le timestamp,
+        telephone_employeur_stage varchar(10),
+        adresse_employeur_stage_id int8,
+        primary key (id)
+    );
+
     create table marriage_details_request (
         id int8 not null,
         comment varchar(255),
@@ -1885,6 +2237,158 @@
         id int8 not null,
         marriage_wife_first_names varchar(255),
         marriage_wife_last_name varchar(38),
+        primary key (id)
+    );
+
+    create table mdph_adult_request (
+        id int8 not null,
+        allocation_personnalisee_autonomie bool,
+        autre bool,
+        carte_accompagnement bool,
+        carte_invalidite bool,
+        carte_stationnement bool,
+        choix_orientation_reclassement varchar(255),
+        choix_prestation_compensation varchar(255),
+        choix_projet_de_vie varchar(255),
+        conseille_projet_de_vie varchar(255),
+        date_arrivee_france timestamp,
+        date_debut_revenu_recu timestamp,
+        date_entree_souhaitee timestamp,
+        date_fin_revenu_recu timestamp,
+        date_naissance_aidant timestamp,
+        date_naissance_sujet timestamp,
+        date_situation_familiale timestamp,
+        demande_libre_scolaire varchar(2048),
+        email_responsable_legal varchar(255),
+        expression_projet_de_vie varchar(5096),
+        fax_responsable_legal varchar(10),
+        fax_sujet varchar(10),
+        lien_parente_aidant varchar(255),
+        nationalite varchar(255),
+        nom_aidant varchar(38),
+        nom_allocataire varchar(38),
+        nom_etablissement varchar(255),
+        nom_organisme_payeur varchar(255),
+        nom_organisme_securite_sociale varchar(50),
+        nom_responsable_legal varchar(255),
+        nombre_enfants_a_charge varchar(2),
+        numero_allocataire varchar(255),
+        numero_securite_sociale_sujet varchar(13),
+        organisme_payeur varchar(255),
+        orientation_reclassement bool,
+        orientation_souhaitee varchar(255),
+        precedents_revenus_recus varchar(255),
+        precision_autre varchar(255),
+        precision_logement_autre varchar(255),
+        precision_revenu_recu varchar(255),
+        precision_si_domicile_aupres_organisme varchar(255),
+        preference_etablissement_ou_service bool,
+        preferences_etablissement_ou_service bool,
+        prenom_allocataire varchar(38),
+        prime_reclassement bool,
+        representant_legal varchar(255),
+        rqth bool,
+        situation_actuelle varchar(255),
+        situation_actuelle_precision varchar(255),
+        situation_maritale varchar(255),
+        situation_particuliere varchar(255),
+        situation_professionnelle_conjoint varchar(255),
+        situation_professionnelle_vous varchar(255),
+        tel_responsable_legal varchar(10),
+        type_logement varchar(255),
+        adresse_responsable_legal_id int8,
+        besoins_demande_p_c_h_id int8,
+        choix_type_demande_alloc_et_compl_id int8,
+        domiciliation_aidant_id int8,
+        domiciliation_etablissement_id int8,
+        domiciliation_organisme_payeur_id int8,
+        identite_conjoint_id int8,
+        lieu_naissance_sujet_id int8,
+        precedent_dossier_mdph_id int8,
+        precision_preference_etablissement_ou_service_id int8,
+        precision_preferences_etablissement_ou_service_id int8,
+        situation_professionnelle_conjoint_autre_id int8,
+        situation_professionnelle_conjoint_beneficiaire_pension_id int8,
+        situation_professionnelle_conjoint_demandeur_emploi_id int8,
+        situation_professionnelle_conjoint_non_salarie_id int8,
+        situation_professionnelle_conjoint_retraite_id int8,
+        situation_professionnelle_conjoint_salarie_id int8,
+        situation_professionnelle_conjoint_stagiaire_id int8,
+        situation_professionnelle_vous_autre_id int8,
+        situation_professionnelle_vous_beneficiaire_pension_id int8,
+        situation_professionnelle_vous_demandeur_emploi_id int8,
+        situation_professionnelle_vous_non_salarie_id int8,
+        situation_professionnelle_vous_retraite_id int8,
+        situation_professionnelle_vous_salarie_id int8,
+        situation_professionnelle_vous_stagiaire_id int8,
+        primary key (id)
+    );
+
+    create table mdph_youth_request (
+        id int8 not null,
+        allocation_personnalisee_autonomie bool,
+        carte_accompagnement bool,
+        carte_invalidite bool,
+        carte_stationnement bool,
+        choix_prestation_compensation varchar(255),
+        choix_projet_de_vie varchar(255),
+        conseille_projet_de_vie varchar(255),
+        date_arrivee_france timestamp,
+        date_naissance_sujet timestamp,
+        date_situation_familiale timestamp,
+        demande_libre_scolaire varchar(2048),
+        deteneur_autorite_parentale varchar(255),
+        en_internat_depuis_le timestamp,
+        enfant_en_internat bool,
+        expression_projet_de_vie varchar(5096),
+        fax_sujet varchar(10),
+        frais_sejour_pris_en_charge bool,
+        nationalite varchar(255),
+        nom_allocataire varchar(38),
+        nom_etablissement varchar(255),
+        nom_organisme_payeur varchar(255),
+        nom_organisme_securite_sociale varchar(50),
+        nombre_enfants_a_charge varchar(2),
+        numero_allocataire varchar(50),
+        numero_securite_sociale_sujet varchar(13),
+        organisme_payeur varchar(255),
+        precision_autre varchar(255),
+        precision_logement_autre varchar(255),
+        precision_si_domicile_aupres_organisme varchar(255),
+        preferences_etablissement_ou_service bool,
+        prenom_allocataire varchar(38),
+        situation_maritale varchar(255),
+        situation_particuliere varchar(255),
+        situation_professionnelle_conjoint varchar(255),
+        situation_professionnelle_vous varchar(255),
+        type_accueil varchar(1024),
+        type_logement varchar(255),
+        type_scolarisation varchar(1024),
+        autorite_parentale_mere_id int8,
+        autorite_parentale_pere_id int8,
+        besoins_demande_p_c_h_id int8,
+        domiciliation_etablissement_id int8,
+        domiciliation_organisme_payeur_id int8,
+        identite_conjoint_id int8,
+        information_autre_deteneur_autorite_parentale_id int8,
+        lieu_naissance_sujet_id int8,
+        precedent_dossier_mdph_id int8,
+        precision_preferences_etablissement_ou_service_id int8,
+        presence_personne_aupres_enfant_id int8,
+        situation_professionnelle_conjoint_autre_id int8,
+        situation_professionnelle_conjoint_beneficiaire_pension_id int8,
+        situation_professionnelle_conjoint_demandeur_emploi_id int8,
+        situation_professionnelle_conjoint_non_salarie_id int8,
+        situation_professionnelle_conjoint_retraite_id int8,
+        situation_professionnelle_conjoint_salarie_id int8,
+        situation_professionnelle_conjoint_stagiaire_id int8,
+        situation_professionnelle_vous_autre_id int8,
+        situation_professionnelle_vous_beneficiaire_pension_id int8,
+        situation_professionnelle_vous_demandeur_emploi_id int8,
+        situation_professionnelle_vous_non_salarie_id int8,
+        situation_professionnelle_vous_retraite_id int8,
+        situation_professionnelle_vous_salarie_id int8,
+        situation_professionnelle_vous_stagiaire_id int8,
         primary key (id)
     );
 
@@ -1958,6 +2462,154 @@
         activity_id int8 not null,
         activity_index int4 not null,
         primary key (music_school_registration_request_id, activity_index)
+    );
+
+    create table myr_autorite_parentale (
+        id int8 not null,
+        email varchar(255),
+        fax varchar(10),
+        nom varchar(38),
+        prenom varchar(38),
+        telephone varchar(10),
+        domiciliation_id int8,
+        primary key (id)
+    );
+
+    create table myr_autorite_parentale_autre (
+        id int8 not null,
+        email varchar(255),
+        fax varchar(10),
+        nom varchar(38),
+        telephone varchar(10),
+        domiciliation_id int8,
+        primary key (id)
+    );
+
+    create table myr_besoins_demande_pch (
+        id int8 not null,
+        aide_animaliere bool,
+        aide_humaine bool,
+        aide_technique bool,
+        amenagement_logement_demenagement bool,
+        amenagement_vehicule bool,
+        charges_specifiques bool,
+        precision_aide_animaliere varchar(255),
+        precision_aide_humaine varchar(255),
+        precision_aide_technique varchar(255),
+        precision_amenagement_logement_demenagement varchar(255),
+        precision_amenagement_vehicule varchar(255),
+        precision_charges_specifiques varchar(255),
+        primary key (id)
+    );
+
+    create table myr_birth_place (
+        id int8 not null,
+        city varchar(32),
+        country varchar(255),
+        postal_code varchar(5),
+        primary key (id)
+    );
+
+    create table myr_conjoint_identite (
+        id int8 not null,
+        date_naissance_conjoint timestamp,
+        nom_naissance_conjoint varchar(38),
+        prenom_conjoint varchar(38),
+        primary key (id)
+    );
+
+    create table myr_frais_supp_lies_handicap (
+        id int8 not null,
+        financeurs_sollicites varchar(255),
+        montants_obtenus varchar(10),
+        nature_frais varchar(255),
+        periodicite varchar(255),
+        reste_a_votre_charge varchar(10),
+        mdph_youth_request_id int8,
+        frais_supp_lies_handicap_index int4,
+        primary key (id)
+    );
+
+    create table myr_precedent_dossier_mdph (
+        id int8 not null,
+        departement_mdph varchar(255),
+        numero_mdph varchar(13),
+        primary key (id)
+    );
+
+    create table myr_preference_etablissement_ou_service_scolaire (
+        id int8 not null,
+        code_postal_preference_etablissement_ou_service varchar(5),
+        commune_preference_etablissement_ou_service varchar(32),
+        nom_preference_etablissement_ou_service varchar(255),
+        primary key (id)
+    );
+
+    create table myr_presence_personne_aupres_enfant (
+        id int8 not null,
+        exercice_activite_professionnelle bool,
+        nb_heure_par_an_emploi_non_regulier varchar(3),
+        recours_emploi_remunere_tierce_personne varchar(3),
+        primary key (id)
+    );
+
+    create table myr_situation_professionnelle_autre (
+        id int8 not null,
+        autre_depuis_le timestamp,
+        precision_autre_situation_professionnelle varchar(255),
+        primary key (id)
+    );
+
+    create table myr_situation_professionnelle_beneficiaire_pension (
+        id int8 not null,
+        allocation_supplementaire_invalidite bool,
+        beneficiaire_pension_depuis_le timestamp,
+        categorie_pension_invalidite varchar(255),
+        rente_accident_travail bool,
+        primary key (id)
+    );
+
+    create table myr_situation_professionnelle_demandeur_emploi (
+        id int8 not null,
+        allocation_solidarite_specifique bool,
+        demandeur_emploi_depuis_le timestamp,
+        indemnisation_depuis_le timestamp,
+        primary key (id)
+    );
+
+    create table myr_situation_professionnelle_non_salarie (
+        id int8 not null,
+        non_salarie_depuis_le timestamp,
+        regime_cotisations varchar(255),
+        primary key (id)
+    );
+
+    create table myr_situation_professionnelle_retraite (
+        id int8 not null,
+        pension_retraite bool,
+        retraite_depuis_le timestamp,
+        supplementaire_personne_agee bool,
+        primary key (id)
+    );
+
+    create table myr_situation_professionnelle_salarie (
+        id int8 not null,
+        esat_depuis_le timestamp,
+        salarie_date_debut_contrat timestamp,
+        salarie_date_fin_contrat timestamp,
+        salarie_depuis_le timestamp,
+        type_contrat varchar(255),
+        primary key (id)
+    );
+
+    create table myr_situation_professionnelle_stagiaire (
+        id int8 not null,
+        nom_employeur_stage varchar(38),
+        stage_renumeration bool,
+        stagiaire_depuis_le timestamp,
+        telephone_employeur_stage varchar(10),
+        adresse_employeur_stage_id int8,
+        primary key (id)
     );
 
     create table payment (
@@ -2050,6 +2702,10 @@
         external_item_id varchar(255),
         external_notification_status varchar(32),
         external_service_label varchar(255),
+        key varchar(255),
+        key_owner varchar(255),
+        quantity int4,
+        unit_price float8,
         old_value float8,
         old_value_date timestamp,
         expiration_date timestamp,
@@ -2060,11 +2716,7 @@
         max_buy int4,
         min_buy int4,
         old_quantity int4,
-        quantity int4,
         subject_id int8,
-        unit_price float8,
-        key varchar(255),
-        key_owner varchar(255),
         payment_id int8,
         primary key (id)
     );
@@ -3206,6 +3858,11 @@
         foreign key (local_referential_parent_data_id) 
         references local_referential_data;
 
+    alter table mar_situation_professionnelle_stagiaire 
+        add constraint FKF7052B4E62A75AD3 
+        foreign key (adresse_employeur_stage_id) 
+        references address;
+
     alter table marriage_details_request 
         add constraint FK38315C1D3A1CCF66 
         foreign key (marriage_id) 
@@ -3230,6 +3887,256 @@
         add constraint FK38315C1D3C2E0479 
         foreign key (marriage_wife_id) 
         references marriage_wife_information;
+
+    alter table mdph_adult_request 
+        add constraint FKB0266E9AB7264787 
+        foreign key (choix_type_demande_alloc_et_compl_id) 
+        references mar_choix_demande_alloc_et_compl;
+
+    alter table mdph_adult_request 
+        add constraint FKB0266E9A63BFEC12 
+        foreign key (situation_professionnelle_vous_autre_id) 
+        references mar_situation_professionnelle_autre;
+
+    alter table mdph_adult_request 
+        add constraint FKB0266E9AFF86C1EE 
+        foreign key (adresse_responsable_legal_id) 
+        references address;
+
+    alter table mdph_adult_request 
+        add constraint FKB0266E9A99FF2501 
+        foreign key (situation_professionnelle_conjoint_autre_id) 
+        references mar_situation_professionnelle_autre;
+
+    alter table mdph_adult_request 
+        add constraint FKB0266E9AF5443B12 
+        foreign key (situation_professionnelle_vous_salarie_id) 
+        references mar_situation_professionnelle_salarie;
+
+    alter table mdph_adult_request 
+        add constraint FKB0266E9A10E64941 
+        foreign key (situation_professionnelle_conjoint_stagiaire_id) 
+        references mar_situation_professionnelle_stagiaire;
+
+    alter table mdph_adult_request 
+        add constraint FKB0266E9AFDD4D637 
+        foreign key (precision_preferences_etablissement_ou_service_id) 
+        references mar_preference_etablissement_ou_service_scolaire;
+
+    alter table mdph_adult_request 
+        add constraint FKB0266E9A6F6E0F42 
+        foreign key (situation_professionnelle_vous_retraite_id) 
+        references mar_situation_professionnelle_retraite;
+
+    alter table mdph_adult_request 
+        add constraint FKB0266E9AD52FB460 
+        foreign key (precedent_dossier_mdph_id) 
+        references mar_precedent_dossier_mdph;
+
+    alter table mdph_adult_request 
+        add constraint FKB0266E9AD596CF96 
+        foreign key (precision_preference_etablissement_ou_service_id) 
+        references mar_precision_preference_etablissement_ou_service;
+
+    alter table mdph_adult_request 
+        add constraint FKB0266E9A36B07BF3 
+        foreign key (situation_professionnelle_conjoint_retraite_id) 
+        references mar_situation_professionnelle_retraite;
+
+    alter table mdph_adult_request 
+        add constraint FKB0266E9A845CF77C 
+        foreign key (domiciliation_organisme_payeur_id) 
+        references address;
+
+    alter table mdph_adult_request 
+        add constraint FKB0266E9AA9E7FEA5 
+        foreign key (lieu_naissance_sujet_id) 
+        references mar_birth_place;
+
+    alter table mdph_adult_request 
+        add constraint FKB0266E9A19686137 
+        foreign key (domiciliation_aidant_id) 
+        references address;
+
+    alter table mdph_adult_request 
+        add constraint FKB0266E9A26F87B5D 
+        foreign key (identite_conjoint_id) 
+        references mar_conjoint_identite;
+
+    alter table mdph_adult_request 
+        add constraint FKB0266E9A5ABFDF4 
+        foreign key (domiciliation_etablissement_id) 
+        references address;
+
+    alter table mdph_adult_request 
+        add constraint FKB0266E9AEFDB1FD2 
+        foreign key (situation_professionnelle_vous_stagiaire_id) 
+        references mar_situation_professionnelle_stagiaire;
+
+    alter table mdph_adult_request 
+        add constraint FKB0266E9ACDADA1AA 
+        foreign key (situation_professionnelle_conjoint_non_salarie_id) 
+        references mar_situation_professionnelle_non_salarie;
+
+    alter table mdph_adult_request 
+        add constraint FKB0266E9A3CE43CFE 
+        foreign key (situation_professionnelle_conjoint_demandeur_emploi_id) 
+        references mar_situation_professionnelle_demandeur_emploi;
+
+    alter table mdph_adult_request 
+        add constraint FKB0266E9A757D114D 
+        foreign key (situation_professionnelle_vous_demandeur_emploi_id) 
+        references mar_situation_professionnelle_demandeur_emploi;
+
+    alter table mdph_adult_request 
+        add constraint FKB0266E9A9898F441 
+        foreign key (situation_professionnelle_conjoint_salarie_id) 
+        references mar_situation_professionnelle_salarie;
+
+    alter table mdph_adult_request 
+        add constraint FKB0266E9AC2C717FB 
+        foreign key (situation_professionnelle_vous_non_salarie_id) 
+        references mar_situation_professionnelle_non_salarie;
+
+    alter table mdph_adult_request 
+        add constraint FKB0266E9A64C05EEE 
+        foreign key (besoins_demande_p_c_h_id) 
+        references mar_besoins_demande_pch;
+
+    alter table mdph_adult_request 
+        add constraint FKB0266E9A5F568781 
+        foreign key (situation_professionnelle_vous_beneficiaire_pension_id) 
+        references mar_situation_professionnelle_beneficiaire_pension;
+
+    alter table mdph_adult_request 
+        add constraint FKB0266E9A82EE72B2 
+        foreign key (situation_professionnelle_conjoint_beneficiaire_pension_id) 
+        references mar_situation_professionnelle_beneficiaire_pension;
+
+    alter table mdph_youth_request 
+        add constraint FK10277AB35992B22A 
+        foreign key (situation_professionnelle_vous_autre_id) 
+        references myr_situation_professionnelle_autre;
+
+    alter table mdph_youth_request 
+        add constraint FK10277AB38FD1EB19 
+        foreign key (situation_professionnelle_conjoint_autre_id) 
+        references myr_situation_professionnelle_autre;
+
+    alter table mdph_youth_request 
+        add constraint FK10277AB3BF6C0D9B 
+        foreign key (autorite_parentale_mere_id) 
+        references myr_autorite_parentale;
+
+    alter table mdph_youth_request 
+        add constraint FK10277AB3C17DDB2A 
+        foreign key (situation_professionnelle_vous_salarie_id) 
+        references myr_situation_professionnelle_salarie;
+
+    alter table mdph_youth_request 
+        add constraint FK10277AB3B5384359 
+        foreign key (situation_professionnelle_conjoint_stagiaire_id) 
+        references myr_situation_professionnelle_stagiaire;
+
+    alter table mdph_youth_request 
+        add constraint FK10277AB3AF51D11F 
+        foreign key (precision_preferences_etablissement_ou_service_id) 
+        references myr_preference_etablissement_ou_service_scolaire;
+
+    alter table mdph_youth_request 
+        add constraint FK10277AB32A68722A 
+        foreign key (situation_professionnelle_vous_retraite_id) 
+        references myr_situation_professionnelle_retraite;
+
+    alter table mdph_youth_request 
+        add constraint FK10277AB371B93348 
+        foreign key (precedent_dossier_mdph_id) 
+        references myr_precedent_dossier_mdph;
+
+    alter table mdph_youth_request 
+        add constraint FK10277AB3F1AADEDB 
+        foreign key (situation_professionnelle_conjoint_retraite_id) 
+        references myr_situation_professionnelle_retraite;
+
+    alter table mdph_youth_request 
+        add constraint FK10277AB3845CF77C 
+        foreign key (domiciliation_organisme_payeur_id) 
+        references address;
+
+    alter table mdph_youth_request 
+        add constraint FK10277AB32A10DA0F 
+        foreign key (presence_personne_aupres_enfant_id) 
+        references myr_presence_personne_aupres_enfant;
+
+    alter table mdph_youth_request 
+        add constraint FK10277AB3628F7F8D 
+        foreign key (lieu_naissance_sujet_id) 
+        references myr_birth_place;
+
+    alter table mdph_youth_request 
+        add constraint FK10277AB394A5AE45 
+        foreign key (identite_conjoint_id) 
+        references myr_conjoint_identite;
+
+    alter table mdph_youth_request 
+        add constraint FK10277AB35ABFDF4 
+        foreign key (domiciliation_etablissement_id) 
+        references address;
+
+    alter table mdph_youth_request 
+        add constraint FK10277AB37DCFA968 
+        foreign key (information_autre_deteneur_autorite_parentale_id) 
+        references myr_autorite_parentale_autre;
+
+    alter table mdph_youth_request 
+        add constraint FK10277AB3942D19EA 
+        foreign key (situation_professionnelle_vous_stagiaire_id) 
+        references myr_situation_professionnelle_stagiaire;
+
+    alter table mdph_youth_request 
+        add constraint FK10277AB3B39AEA92 
+        foreign key (situation_professionnelle_conjoint_non_salarie_id) 
+        references myr_situation_professionnelle_non_salarie;
+
+    alter table mdph_youth_request 
+        add constraint FK10277AB36BE84516 
+        foreign key (situation_professionnelle_conjoint_demandeur_emploi_id) 
+        references myr_situation_professionnelle_demandeur_emploi;
+
+    alter table mdph_youth_request 
+        add constraint FK10277AB3A4811965 
+        foreign key (situation_professionnelle_vous_demandeur_emploi_id) 
+        references myr_situation_professionnelle_demandeur_emploi;
+
+    alter table mdph_youth_request 
+        add constraint FK10277AB364D29459 
+        foreign key (situation_professionnelle_conjoint_salarie_id) 
+        references myr_situation_professionnelle_salarie;
+
+    alter table mdph_youth_request 
+        add constraint FK10277AB35E1EBF5E 
+        foreign key (autorite_parentale_pere_id) 
+        references myr_autorite_parentale;
+
+    alter table mdph_youth_request 
+        add constraint FK10277AB3A8B460E3 
+        foreign key (situation_professionnelle_vous_non_salarie_id) 
+        references myr_situation_professionnelle_non_salarie;
+
+    alter table mdph_youth_request 
+        add constraint FK10277AB3ACB98906 
+        foreign key (besoins_demande_p_c_h_id) 
+        references myr_besoins_demande_pch;
+
+    alter table mdph_youth_request 
+        add constraint FK10277AB3DE68C399 
+        foreign key (situation_professionnelle_vous_beneficiaire_pension_id) 
+        references myr_situation_professionnelle_beneficiaire_pension;
+
+    alter table mdph_youth_request 
+        add constraint FK10277AB3200AECA 
+        foreign key (situation_professionnelle_conjoint_beneficiaire_pension_id) 
+        references myr_situation_professionnelle_beneficiaire_pension;
 
     alter table military_census_request 
         add constraint FK56137C47B00DD8B6 
@@ -3260,6 +4167,26 @@
         add constraint FK6393FFD48F0273CA 
         foreign key (music_school_registration_request_id) 
         references music_school_registration_request;
+
+    alter table myr_autorite_parentale 
+        add constraint FKFE8F9821725D4DCB 
+        foreign key (domiciliation_id) 
+        references address;
+
+    alter table myr_autorite_parentale_autre 
+        add constraint FKC3D57755725D4DCB 
+        foreign key (domiciliation_id) 
+        references address;
+
+    alter table myr_frais_supp_lies_handicap 
+        add constraint FKBB377E08E1F81DAC 
+        foreign key (mdph_youth_request_id) 
+        references mdph_youth_request;
+
+    alter table myr_situation_professionnelle_stagiaire 
+        add constraint FK16C3DA3662A75AD3 
+        foreign key (adresse_employeur_stage_id) 
+        references address;
 
     alter table perischool_activity_registration_request 
         add constraint FK76BAA59A20540B7 

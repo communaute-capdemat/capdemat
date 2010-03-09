@@ -1451,6 +1451,16 @@
           </xs:documentation>
         </xs:annotation>
       </xs:element>
+      <xs:element name="Country" type="cvq:CountryType">
+        <xs:annotation>
+          <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">
+            Pays de naissance
+          </xs:documentation>
+          <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
+            Pays
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
     </xs:sequence>
   </xs:complexType>
 

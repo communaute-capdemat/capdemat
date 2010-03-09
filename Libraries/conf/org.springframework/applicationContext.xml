@@ -754,6 +754,25 @@ http://www.springframework.org/schema/task http://www.springframework.org/schema
     <property name="defaultDisplayGroup" value="social" />
   </bean>
   
+  <bean id="mdphAdultRequestService" 
+     class="fr.cg95.cvq.service.request.social.impl.MdphAdultRequestService" 
+     parent="requestService">
+     <property name="label" value="Mdph Adult"/>
+     <property name="subjectPolicy" value="SUBJECT_POLICY_ADULT" />
+     <property name="defaultDisplayGroup" value="social" />
+     <property name="specificPdfTemplate" value="mdphCerfaTemplate" />
+     <property name="specificCssFilename" value="mdphCertificate" />
+  </bean>
+  
+  <bean id="mdphYouthRequestService" 
+     class="fr.cg95.cvq.service.request.social.impl.MdphYouthRequestService" 
+     parent="requestService">
+     <property name="label" value="Mdph Youth"/>
+     <property name="subjectPolicy" value="SUBJECT_POLICY_CHILD" />
+     <property name="defaultDisplayGroup" value="social" />
+     <property name="specificPdfTemplate" value="mdphCerfaTemplate" />
+     <property name="specificCssFilename" value="mdphCertificate" />
+  </bean> 
 
   <bean id="militaryCensusRequestService" 
     class="fr.cg95.cvq.service.request.military.impl.MilitaryCensusRequestService" 

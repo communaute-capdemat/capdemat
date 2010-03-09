@@ -1,6 +1,3 @@
-   
-   alter table birth_details_request modify birth_postal_code varchar(3);
-   alter table death_details_request modify death_postal_code varchar(3);
   
    /* Migration type complexe local */
    create table current_school (
@@ -22,7 +19,6 @@
         sgr_current_school_id int8 not null,
         current_school_name_id int8 not null,
         current_school_name_index int4 not null,
-        primary key (current_school_name_id, current_school_name_index)
         primary key (sgr_current_school_id, current_school_name_index)
     );
 
@@ -1633,6 +1629,7 @@ DROP FUNCTION migrate_study_grant_request();
        esat_depuis_le timestamp,
        salarie_date_fin_contrat timestamp,
        salarie_depuis_le timestamp,
+       type_contrat varchar(255),
        primary key (id)
    );
 
@@ -1932,6 +1929,7 @@ DROP FUNCTION migrate_study_grant_request();
        esat_depuis_le timestamp,
        salarie_date_fin_contrat timestamp,
        salarie_depuis_le timestamp,
+       type_contrat varchar(255),
        primary key (id)
    );
 
