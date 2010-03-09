@@ -54,6 +54,8 @@
       <include name="LeisureCenterRegistrationRequest.xsd" />
       <include name="LibraryRegistrationRequest.xsd" />
       <include name="MarriageDetailsRequest.xsd" />
+      <include name="MdphAdultRequest.xsd" />
+      <include name="MdphYouthRequest.xsd" />
       <include name="MilitaryCensusRequest.xsd" />
       <include name="MusicSchoolRegistrationRequest.xsd" />
       <include name="PerischoolActivityRegistrationRequest.xsd" />

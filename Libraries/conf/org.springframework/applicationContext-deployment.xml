@@ -65,7 +65,39 @@ http://www.springframework.org/schema/aop http://www.springframework.org/schema/
         <value>fr/cg95/cvq/business/request/school/HolidayCampRegistrationRequestData.hbm.xml</value>
         <value>fr/cg95/cvq/business/request/technical/TechnicalInterventionRequestData.hbm.xml</value>
         <value>fr/cg95/cvq/business/request/social/RemoteSupportRequestData.hbm.xml</value>
+        <value>fr/cg95/cvq/business/request/social/MdphAdultRequestData.hbm.xml</value>
+        <value>fr/cg95/cvq/business/request/social/MdphYouthRequestData.hbm.xml</value>
         <value>fr/cg95/cvq/business/request/social/DomesticHelpRequestData.hbm.xml</value>
+        <value>fr/cg95/cvq/business/request/social/MarBesoinsDemandePch.hbm.xml</value>
+        <value>fr/cg95/cvq/business/request/social/MarBirthPlace.hbm.xml</value>
+        <value>fr/cg95/cvq/business/request/social/MarChoixDemandeAllocEtCompl.hbm.xml</value>
+        <value>fr/cg95/cvq/business/request/social/MarConjointIdentite.hbm.xml</value>
+        <value>fr/cg95/cvq/business/request/social/MarPrecedentDossierMdph.hbm.xml</value>
+        <value>fr/cg95/cvq/business/request/social/MarPrecisionPreferenceEtablissementOuService.hbm.xml</value>
+        <value>fr/cg95/cvq/business/request/social/MarPreferenceEtablissementOuServiceScolaire.hbm.xml</value>
+        <value>fr/cg95/cvq/business/request/social/MarSituationProfessionnelleAutre.hbm.xml</value>
+        <value>fr/cg95/cvq/business/request/social/MarSituationProfessionnelleBeneficiairePension.hbm.xml</value>
+        <value>fr/cg95/cvq/business/request/social/MarSituationProfessionnelleDemandeurEmploi.hbm.xml</value>
+        <value>fr/cg95/cvq/business/request/social/MarSituationProfessionnelleNonSalarie.hbm.xml</value>
+        <value>fr/cg95/cvq/business/request/social/MarSituationProfessionnelleRetraite.hbm.xml</value>
+        <value>fr/cg95/cvq/business/request/social/MarSituationProfessionnelleSalarie.hbm.xml</value>
+        <value>fr/cg95/cvq/business/request/social/MarSituationProfessionnelleStagiaire.hbm.xml</value>
+        <value>fr/cg95/cvq/business/request/social/MyrAutoriteParentale.hbm.xml</value>
+        <value>fr/cg95/cvq/business/request/social/MyrAutoriteParentaleAutre.hbm.xml</value>
+        <value>fr/cg95/cvq/business/request/social/MyrBesoinsDemandePch.hbm.xml</value>
+        <value>fr/cg95/cvq/business/request/social/MyrBirthPlace.hbm.xml</value>
+        <value>fr/cg95/cvq/business/request/social/MyrConjointIdentite.hbm.xml</value>
+        <value>fr/cg95/cvq/business/request/social/MyrFraisSuppLiesHandicap.hbm.xml</value>
+        <value>fr/cg95/cvq/business/request/social/MyrPrecedentDossierMdph.hbm.xml</value>
+        <value>fr/cg95/cvq/business/request/social/MyrPreferenceEtablissementOuServiceScolaire.hbm.xml</value>
+        <value>fr/cg95/cvq/business/request/social/MyrPresencePersonneAupresEnfant.hbm.xml</value>
+        <value>fr/cg95/cvq/business/request/social/MyrSituationProfessionnelleAutre.hbm.xml</value>
+        <value>fr/cg95/cvq/business/request/social/MyrSituationProfessionnelleBeneficiairePension.hbm.xml</value>
+        <value>fr/cg95/cvq/business/request/social/MyrSituationProfessionnelleDemandeurEmploi.hbm.xml</value>
+        <value>fr/cg95/cvq/business/request/social/MyrSituationProfessionnelleNonSalarie.hbm.xml</value>
+        <value>fr/cg95/cvq/business/request/social/MyrSituationProfessionnelleRetraite.hbm.xml</value>
+        <value>fr/cg95/cvq/business/request/social/MyrSituationProfessionnelleSalarie.hbm.xml</value>
+        <value>fr/cg95/cvq/business/request/social/MyrSituationProfessionnelleStagiaire.hbm.xml</value>
         <value>fr/cg95/cvq/business/request/environment/BulkyWasteCollectionRequestData.hbm.xml</value>
         <value>fr/cg95/cvq/business/request/environment/CompostableWasteCollectionRequestData.hbm.xml</value>
         <value>fr/cg95/cvq/business/request/urbanism/AlignmentCertificateRequestData.hbm.xml</value>

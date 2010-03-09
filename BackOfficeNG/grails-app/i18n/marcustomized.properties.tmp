@@ -1,0 +1,669 @@
+mar.duration.value =
+
+mar.step.subject.label =
+mar.step.subject.desc =
+
+mar.step.representantLegal.label =
+mar.step.representantLegal.desc =
+
+mar.step.organismePrestationFamiliale.label =
+mar.step.organismePrestationFamiliale.desc =
+
+mar.step.situationFamiliale.label =
+mar.step.situationFamiliale.desc =
+
+mar.step.situationProfessionnelle.label =
+mar.step.situationProfessionnelle.desc =
+
+mar.step.autreSituation.label =
+mar.step.autreSituation.desc =
+
+mar.step.projetDeVie.label =
+mar.step.projetDeVie.desc =
+
+mar.step.demandeParcoursScolaireEtFormation.label =
+mar.step.demandeParcoursScolaireEtFormation.desc =
+
+mar.step.demandeCartes.label =
+mar.step.demandeCartes.desc =
+
+mar.step.demandePrestationCompensation.label =
+mar.step.demandePrestationCompensation.desc =
+
+mar.step.affilitationAidant.label =
+mar.step.affilitationAidant.desc =
+
+mar.step.demandeAllocationEtComplementRessources.label =
+mar.step.demandeAllocationEtComplementRessources.desc =
+
+mar.step.demandeProfessionnelle.label =
+mar.step.demandeProfessionnelle.desc =
+
+mar.step.demandeOrientationMedicoSociale.label =
+mar.step.demandeOrientationMedicoSociale.desc =
+
+
+mar.property.faxSujet.help =
+mar.property.faxSujet.validationError =
+
+
+mar.property.nationalite.help =
+mar.property.nationalite.validationError =
+
+
+mar.property.dateNaissanceSujet.help =
+mar.property.dateNaissanceSujet.validationError =
+
+
+mar.property.lieuNaissanceSujet.help =
+mar.property.lieuNaissanceSujet.validationError =
+
+
+mar.property.postalCode.help =
+mar.property.postalCode.validationError =
+
+
+mar.property.city.help =
+mar.property.city.validationError =
+
+
+mar.property.country.help =
+mar.property.country.validationError =
+
+
+mar.property.dateArriveeFrance.help =
+mar.property.dateArriveeFrance.validationError =
+
+
+mar.property.numeroSecuriteSocialeSujet.help =
+mar.property.numeroSecuriteSocialeSujet.validationError =
+
+
+mar.property.nomOrganismeSecuriteSociale.help =
+mar.property.nomOrganismeSecuriteSociale.validationError =
+
+
+mar.property.precedentDossierMdph.help =
+mar.property.precedentDossierMdph.validationError =
+
+
+mar.property.numeroMdph.help =
+mar.property.numeroMdph.validationError =
+
+
+mar.property.departementMdph.help =
+mar.property.departementMdph.validationError =
+
+
+mar.property.precisionSiDomicileAupresOrganisme.help =
+mar.property.precisionSiDomicileAupresOrganisme.validationError =
+
+
+mar.property.representantLegal.help =
+mar.property.representantLegal.validationError =
+
+
+mar.property.nomResponsableLegal.help =
+mar.property.nomResponsableLegal.validationError =
+
+
+mar.property.adresseResponsableLegal.help =
+mar.property.adresseResponsableLegal.validationError =
+
+
+mar.property.telResponsableLegal.help =
+mar.property.telResponsableLegal.validationError =
+
+
+mar.property.faxResponsableLegal.help =
+mar.property.faxResponsableLegal.validationError =
+
+
+mar.property.emailResponsableLegal.help =
+mar.property.emailResponsableLegal.validationError =
+
+
+mar.property.numeroAllocataire.help =
+mar.property.numeroAllocataire.validationError =
+
+
+mar.property.organismePayeur.help =
+mar.property.organismePayeur.validationError =
+
+
+mar.property.nomAllocataire.help =
+mar.property.nomAllocataire.validationError =
+
+
+mar.property.prenomAllocataire.help =
+mar.property.prenomAllocataire.validationError =
+
+
+mar.property.nomOrganismePayeur.help =
+mar.property.nomOrganismePayeur.validationError =
+
+
+mar.property.domiciliationOrganismePayeur.help =
+mar.property.domiciliationOrganismePayeur.validationError =
+
+
+mar.property.situationMaritale.help =
+mar.property.situationMaritale.validationError =
+
+
+mar.property.dateSituationFamiliale.help =
+mar.property.dateSituationFamiliale.validationError =
+
+
+mar.property.nombreEnfantsACharge.help =
+mar.property.nombreEnfantsACharge.validationError =
+
+
+mar.property.identiteConjoint.help =
+mar.property.identiteConjoint.validationError =
+
+
+mar.property.nomNaissanceConjoint.help =
+mar.property.nomNaissanceConjoint.validationError =
+
+
+mar.property.prenomConjoint.help =
+mar.property.prenomConjoint.validationError =
+
+
+mar.property.dateNaissanceConjoint.help =
+mar.property.dateNaissanceConjoint.validationError =
+
+
+mar.property.situationProfessionnelleVous.help =
+mar.property.situationProfessionnelleVous.validationError =
+
+
+mar.property.situationProfessionnelleVousSalarie.help =
+mar.property.situationProfessionnelleVousSalarie.validationError =
+
+
+mar.property.salarieDepuisLe.help =
+mar.property.salarieDepuisLe.validationError =
+
+
+mar.property.typeContrat.help =
+mar.property.typeContrat.validationError =
+
+
+mar.property.salarieDateDebutContrat.help =
+mar.property.salarieDateDebutContrat.validationError =
+
+
+mar.property.salarieDateFinContrat.help =
+mar.property.salarieDateFinContrat.validationError =
+
+
+mar.property.esatDepuisLe.help =
+mar.property.esatDepuisLe.validationError =
+
+
+mar.property.situationProfessionnelleVousStagiaire.help =
+mar.property.situationProfessionnelleVousStagiaire.validationError =
+
+
+mar.property.stagiaireDepuisLe.help =
+mar.property.stagiaireDepuisLe.validationError =
+
+
+mar.property.stageRenumeration.help =
+mar.property.stageRenumeration.validationError =
+
+
+mar.property.nomEmployeurStage.help =
+mar.property.nomEmployeurStage.validationError =
+
+
+mar.property.adresseEmployeurStage.help =
+mar.property.adresseEmployeurStage.validationError =
+
+
+mar.property.telephoneEmployeurStage.help =
+mar.property.telephoneEmployeurStage.validationError =
+
+
+mar.property.situationProfessionnelleVousNonSalarie.help =
+mar.property.situationProfessionnelleVousNonSalarie.validationError =
+
+
+mar.property.nonSalarieDepuisLe.help =
+mar.property.nonSalarieDepuisLe.validationError =
+
+
+mar.property.regimeCotisations.help =
+mar.property.regimeCotisations.validationError =
+
+
+mar.property.situationProfessionnelleVousDemandeurEmploi.help =
+mar.property.situationProfessionnelleVousDemandeurEmploi.validationError =
+
+
+mar.property.demandeurEmploiDepuisLe.help =
+mar.property.demandeurEmploiDepuisLe.validationError =
+
+
+mar.property.indemnisationDepuisLe.help =
+mar.property.indemnisationDepuisLe.validationError =
+
+
+mar.property.allocationSolidariteSpecifique.help =
+mar.property.allocationSolidariteSpecifique.validationError =
+
+
+mar.property.situationProfessionnelleVousRetraite.help =
+mar.property.situationProfessionnelleVousRetraite.validationError =
+
+
+mar.property.retraiteDepuisLe.help =
+mar.property.retraiteDepuisLe.validationError =
+
+
+mar.property.supplementairePersonneAgee.help =
+mar.property.supplementairePersonneAgee.validationError =
+
+
+mar.property.pensionRetraite.help =
+mar.property.pensionRetraite.validationError =
+
+
+mar.property.situationProfessionnelleVousBeneficiairePension.help =
+mar.property.situationProfessionnelleVousBeneficiairePension.validationError =
+
+
+mar.property.beneficiairePensionDepuisLe.help =
+mar.property.beneficiairePensionDepuisLe.validationError =
+
+
+mar.property.categoriePensionInvalidite.help =
+mar.property.categoriePensionInvalidite.validationError =
+
+
+mar.property.renteAccidentTravail.help =
+mar.property.renteAccidentTravail.validationError =
+
+
+mar.property.allocationSupplementaireInvalidite.help =
+mar.property.allocationSupplementaireInvalidite.validationError =
+
+
+mar.property.situationProfessionnelleVousAutre.help =
+mar.property.situationProfessionnelleVousAutre.validationError =
+
+
+mar.property.autreDepuisLe.help =
+mar.property.autreDepuisLe.validationError =
+
+
+mar.property.precisionAutreSituationProfessionnelle.help =
+mar.property.precisionAutreSituationProfessionnelle.validationError =
+
+
+mar.property.situationProfessionnelleConjoint.help =
+mar.property.situationProfessionnelleConjoint.validationError =
+
+
+mar.property.situationProfessionnelleConjointSalarie.help =
+mar.property.situationProfessionnelleConjointSalarie.validationError =
+
+
+mar.property.salarieDepuisLe.help =
+mar.property.salarieDepuisLe.validationError =
+
+
+mar.property.typeContrat.help =
+mar.property.typeContrat.validationError =
+
+
+mar.property.salarieDateDebutContrat.help =
+mar.property.salarieDateDebutContrat.validationError =
+
+
+mar.property.salarieDateFinContrat.help =
+mar.property.salarieDateFinContrat.validationError =
+
+
+mar.property.esatDepuisLe.help =
+mar.property.esatDepuisLe.validationError =
+
+
+mar.property.situationProfessionnelleConjointStagiaire.help =
+mar.property.situationProfessionnelleConjointStagiaire.validationError =
+
+
+mar.property.stagiaireDepuisLe.help =
+mar.property.stagiaireDepuisLe.validationError =
+
+
+mar.property.stageRenumeration.help =
+mar.property.stageRenumeration.validationError =
+
+
+mar.property.nomEmployeurStage.help =
+mar.property.nomEmployeurStage.validationError =
+
+
+mar.property.adresseEmployeurStage.help =
+mar.property.adresseEmployeurStage.validationError =
+
+
+mar.property.telephoneEmployeurStage.help =
+mar.property.telephoneEmployeurStage.validationError =
+
+
+mar.property.situationProfessionnelleConjointNonSalarie.help =
+mar.property.situationProfessionnelleConjointNonSalarie.validationError =
+
+
+mar.property.nonSalarieDepuisLe.help =
+mar.property.nonSalarieDepuisLe.validationError =
+
+
+mar.property.regimeCotisations.help =
+mar.property.regimeCotisations.validationError =
+
+
+mar.property.situationProfessionnelleConjointDemandeurEmploi.help =
+mar.property.situationProfessionnelleConjointDemandeurEmploi.validationError =
+
+
+mar.property.demandeurEmploiDepuisLe.help =
+mar.property.demandeurEmploiDepuisLe.validationError =
+
+
+mar.property.indemnisationDepuisLe.help =
+mar.property.indemnisationDepuisLe.validationError =
+
+
+mar.property.allocationSolidariteSpecifique.help =
+mar.property.allocationSolidariteSpecifique.validationError =
+
+
+mar.property.situationProfessionnelleConjointRetraite.help =
+mar.property.situationProfessionnelleConjointRetraite.validationError =
+
+
+mar.property.retraiteDepuisLe.help =
+mar.property.retraiteDepuisLe.validationError =
+
+
+mar.property.supplementairePersonneAgee.help =
+mar.property.supplementairePersonneAgee.validationError =
+
+
+mar.property.pensionRetraite.help =
+mar.property.pensionRetraite.validationError =
+
+
+mar.property.situationProfessionnelleConjointBeneficiairePension.help =
+mar.property.situationProfessionnelleConjointBeneficiairePension.validationError =
+
+
+mar.property.beneficiairePensionDepuisLe.help =
+mar.property.beneficiairePensionDepuisLe.validationError =
+
+
+mar.property.categoriePensionInvalidite.help =
+mar.property.categoriePensionInvalidite.validationError =
+
+
+mar.property.renteAccidentTravail.help =
+mar.property.renteAccidentTravail.validationError =
+
+
+mar.property.allocationSupplementaireInvalidite.help =
+mar.property.allocationSupplementaireInvalidite.validationError =
+
+
+mar.property.situationProfessionnelleConjointAutre.help =
+mar.property.situationProfessionnelleConjointAutre.validationError =
+
+
+mar.property.autreDepuisLe.help =
+mar.property.autreDepuisLe.validationError =
+
+
+mar.property.precisionAutreSituationProfessionnelle.help =
+mar.property.precisionAutreSituationProfessionnelle.validationError =
+
+
+mar.property.situationParticuliere.help =
+mar.property.situationParticuliere.validationError =
+
+
+mar.property.precisionAutre.help =
+mar.property.precisionAutre.validationError =
+
+
+mar.property.nomEtablissement.help =
+mar.property.nomEtablissement.validationError =
+
+
+mar.property.domiciliationEtablissement.help =
+mar.property.domiciliationEtablissement.validationError =
+
+
+mar.property.typeLogement.help =
+mar.property.typeLogement.validationError =
+
+
+mar.property.precisionLogementAutre.help =
+mar.property.precisionLogementAutre.validationError =
+
+
+mar.property.choixProjetDeVie.help =
+mar.property.choixProjetDeVie.validationError =
+
+
+mar.property.expressionProjetDeVie.help =
+mar.property.expressionProjetDeVie.validationError =
+
+
+mar.property.conseilleProjetDeVie.help =
+mar.property.conseilleProjetDeVie.validationError =
+
+
+mar.property.demandeLibreScolaire.help =
+mar.property.demandeLibreScolaire.validationError =
+
+
+mar.property.preferencesEtablissementOuService.help =
+mar.property.preferencesEtablissementOuService.validationError =
+
+
+mar.property.precisionPreferencesEtablissementOuService.help =
+mar.property.precisionPreferencesEtablissementOuService.validationError =
+
+
+mar.property.nomPreferenceEtablissementOuService.help =
+mar.property.nomPreferenceEtablissementOuService.validationError =
+
+
+mar.property.codePostalPreferenceEtablissementOuService.help =
+mar.property.codePostalPreferenceEtablissementOuService.validationError =
+
+
+mar.property.communePreferenceEtablissementOuService.help =
+mar.property.communePreferenceEtablissementOuService.validationError =
+
+
+mar.property.carteInvalidite.help =
+mar.property.carteInvalidite.validationError =
+
+
+mar.property.carteAccompagnement.help =
+mar.property.carteAccompagnement.validationError =
+
+
+mar.property.carteStationnement.help =
+mar.property.carteStationnement.validationError =
+
+
+mar.property.choixPrestationCompensation.help =
+mar.property.choixPrestationCompensation.validationError =
+
+
+mar.property.allocationPersonnaliseeAutonomie.help =
+mar.property.allocationPersonnaliseeAutonomie.validationError =
+
+
+mar.property.besoinsDemandePCH.help =
+mar.property.besoinsDemandePCH.validationError =
+
+
+mar.property.aideHumaine.help =
+mar.property.aideHumaine.validationError =
+
+
+mar.property.precisionAideHumaine.help =
+mar.property.precisionAideHumaine.validationError =
+
+
+mar.property.aideTechnique.help =
+mar.property.aideTechnique.validationError =
+
+
+mar.property.precisionAideTechnique.help =
+mar.property.precisionAideTechnique.validationError =
+
+
+mar.property.amenagementLogementDemenagement.help =
+mar.property.amenagementLogementDemenagement.validationError =
+
+
+mar.property.precisionAmenagementLogementDemenagement.help =
+mar.property.precisionAmenagementLogementDemenagement.validationError =
+
+
+mar.property.amenagementVehicule.help =
+mar.property.amenagementVehicule.validationError =
+
+
+mar.property.precisionAmenagementVehicule.help =
+mar.property.precisionAmenagementVehicule.validationError =
+
+
+mar.property.chargesSpecifiques.help =
+mar.property.chargesSpecifiques.validationError =
+
+
+mar.property.precisionChargesSpecifiques.help =
+mar.property.precisionChargesSpecifiques.validationError =
+
+
+mar.property.aideAnimaliere.help =
+mar.property.aideAnimaliere.validationError =
+
+
+mar.property.precisionAideAnimaliere.help =
+mar.property.precisionAideAnimaliere.validationError =
+
+
+mar.property.nomAidant.help =
+mar.property.nomAidant.validationError =
+
+
+mar.property.domiciliationAidant.help =
+mar.property.domiciliationAidant.validationError =
+
+
+mar.property.dateNaissanceAidant.help =
+mar.property.dateNaissanceAidant.validationError =
+
+
+mar.property.lienParenteAidant.help =
+mar.property.lienParenteAidant.validationError =
+
+
+mar.property.choixTypeDemandeAllocEtCompl.help =
+mar.property.choixTypeDemandeAllocEtCompl.validationError =
+
+
+mar.property.aah.help =
+mar.property.aah.validationError =
+
+
+mar.property.complementRessources.help =
+mar.property.complementRessources.validationError =
+
+
+mar.property.precedentsRevenusRecus.help =
+mar.property.precedentsRevenusRecus.validationError =
+
+
+mar.property.dateDebutRevenuRecu.help =
+mar.property.dateDebutRevenuRecu.validationError =
+
+
+mar.property.dateFinRevenuRecu.help =
+mar.property.dateFinRevenuRecu.validationError =
+
+
+mar.property.precisionRevenuRecu.help =
+mar.property.precisionRevenuRecu.validationError =
+
+
+mar.property.rqth.help =
+mar.property.rqth.validationError =
+
+
+mar.property.primeReclassement.help =
+mar.property.primeReclassement.validationError =
+
+
+mar.property.autre.help =
+mar.property.autre.validationError =
+
+
+mar.property.orientationReclassement.help =
+mar.property.orientationReclassement.validationError =
+
+
+mar.property.choixOrientationReclassement.help =
+mar.property.choixOrientationReclassement.validationError =
+
+
+mar.property.situationActuelle.help =
+mar.property.situationActuelle.validationError =
+
+
+mar.property.situationActuellePrecision.help =
+mar.property.situationActuellePrecision.validationError =
+
+
+mar.property.orientationSouhaitee.help =
+mar.property.orientationSouhaitee.validationError =
+
+
+mar.property.dateEntreeSouhaitee.help =
+mar.property.dateEntreeSouhaitee.validationError =
+
+
+mar.property.preferenceEtablissementOuService.help =
+mar.property.preferenceEtablissementOuService.validationError =
+
+
+mar.property.precisionPreferenceEtablissementOuService.help =
+mar.property.precisionPreferenceEtablissementOuService.validationError =
+
+
+mar.property.nomEtablissementPreference.help =
+mar.property.nomEtablissementPreference.validationError =
+
+
+mar.property.codePostalEtablissementPreference.help =
+mar.property.codePostalEtablissementPreference.validationError =
+
+
+mar.property.communeEtablissementPreference.help =
+mar.property.communeEtablissementPreference.validationError =
+
+
+mar.property.telephoneEtablissementPreference.help =
+mar.property.telephoneEtablissementPreference.validationError =
+
+

@@ -149,6 +149,15 @@
     <xb:package>fr.cg95.cvq.xml.request.social</xb:package>
   </xb:namespace>
   
+  <!-- Mdph Adult Request -->
+  <xb:namespace uri="http://www.cg95.fr/cvq/schema/mar">
+    <xb:package>fr.cg95.cvq.xml.request.social</xb:package>
+  </xb:namespace>
+  
+  <!-- Mdph Youth Request -->
+  <xb:namespace uri="http://www.cg95.fr/cvq/schema/myr">
+    <xb:package>fr.cg95.cvq.xml.request.social</xb:package>
+  </xb:namespace>
 
     <!-- Military Census Request -->
   <xb:namespace uri="http://www.cg95.fr/cvq/schema/mcr">

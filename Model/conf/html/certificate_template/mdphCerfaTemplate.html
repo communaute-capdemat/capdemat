@@ -1,0 +1,1388 @@
+
+
+<%
+  import fr.cg95.cvq.business.users.Child
+  import org.apache.commons.lang.StringUtils
+  
+  def localReferentialWidget(rqt, javaName, lrEntries, depth) {
+    def lrHtml = ''
+    def currentLrDatas = rqt[javaName].collect{it.name}
+    if (lrTypes[javaName].entriesSupportMultiple) { 
+      lrHtml += "<ul ${depth==0 ? 'class="dataTree"' : ''}>"
+      lrEntries.eachWithIndex { entry, i -> 
+      if (entry.entries) { 
+        lrHtml += "<li>"
+        lrHtml += "<em>${entry.labelsMap.fr} :</em>"
+        lrHtml += localReferentialWidget(rqt, javaName, entry.entries,++depth)
+        lrHtml += "</li>"
+      } else {
+         lrHtml += "<li><span ${currentLrDatas?.contains(entry.key) ? 'class="choix"' : ''}>${entry.labelsMap.fr}</span>${i + 1 < lrEntries.size() ? ',' : ''}</li>"
+      } 
+    } 
+    lrHtml += "</ul>"
+    } else { 
+      lrEntries.each { entry -> 
+        lrHtml += "${currentLrDatas?.contains(entry.key) ? entry.labelsMap.fr: ''}"
+      } 
+    }
+    println lrHtml
+  }
+
+  def request = [:]
+  request.mar = rqt.requestType.label == 'Mdph Adult' ? rqt : null
+  request.myr = rqt.requestType.label == 'Mdph Youth' ? rqt : null
+
+%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <title>${i18n.translate('mar.label')}</title>
+  <link href="file://${cssPath}" type="text/css" rel="stylesheet" media="print" />
+
+</head>
+<body>
+
+
+  <h1>Formulaire de demande(s) auprès de la MDPH</h1>
+  <hr class="header" />
+
+<!-- A - Identification de l'enfant ou de l'adulte -->
+<div class="etape">  
+    <h2>A - Identification de l'enfant ou de l'adulte concerné par la demande</h2>
+
+      <p class="information">
+	  <span class="label">Nom de naissance : </span>
+	  <span class="reponse">
+        <% if(rqt.requestType.label == 'Mdph Adult' && subject?.maidenName != null) { %>
+              ${subject?.maidenName}
+        <% } else { %>
+            ${subject?.lastName}
+        <% } %>
+      </span>
+      </p> 
+
+      <p class="information">
+	  <span class="label">Nom d'épouse ou nom d'usage : </span>
+	  <span class="reponse">${subject?.lastName}</span>
+      </p>
+
+      <p class="information">
+	  <span class="label">Prénom(s) : </span>
+	  <span class="reponse">${subject?.firstName}</span>
+      </p>
+
+      <% if (subject instanceof Child) { %>
+      <p class="information">
+	  <span class="label">Sexe : </span>
+	  <span class="reponse">
+        ${i18n.translate('homeFolder.child.property.sex.' + StringUtils.uncapitalize(subject?.sex.toString()))}
+      </span>
+      </p>
+      <% } %>
+
+      <p class="information">
+	  <span class="label">Nationalité : </span>
+	  <span class="choixReponse"><% ['Francaise','Eeesuisse','Autre'].eachWithIndex {it, i -> %>
+              <span ${it == rqt.nationalite.toString() ? 'class="choix"': ''}>
+                ${i18n.translate('mar.property.nationalite.' + StringUtils.uncapitalize(it))}
+              </span>${i + 1 < ['Francaise','Eeesuisse','Autre']?.size() ? ', ' : ''}
+            <% } %></span>
+      </p> 
+    
+
+      <p class="information">
+	  <span class="label">${i18n.translate('mar.property.dateNaissanceSujet.label')} : </span>
+	  <span class="reponse">${rqt.dateNaissanceSujet ? String.format('%td/%<tm/%<tY',rqt.dateNaissanceSujet) : ''}</span>
+      </p>
+
+      <p class="information">
+	  <span class="label">${i18n.translate('mar.property.lieuNaissanceSujet.label')} : </span>
+	      <ul>
+	    <li><span class="label">${i18n.translate('mar.property.postalCode.label')} : </span><span class="reponse">${StringUtils.defaultString(rqt.lieuNaissanceSujet?.postalCode?.toString())}</span></li>
+            
+            <li><span class="label">${i18n.translate('mar.property.city.label')} : </span><span class="reponse">${StringUtils.defaultString(rqt.lieuNaissanceSujet?.city?.toString())}</span></li>
+            
+            <li><span class="label">${i18n.translate('mar.property.country.label')} : </span><span class="reponse"><% if(rqt.lieuNaissanceSujet?.country) { %>
+              ${i18n.translate('mar.property.country.' + StringUtils.uncapitalize(rqt.lieuNaissanceSujet?.country.toString()))}
+            <% } %></span></li>
+	       </ul>
+      </p>
+
+
+      <p class="information">
+	  <span class="label">${i18n.translate('mar.property.dateArriveeFrance.label')} : </span>
+	  <span class="reponse">${rqt.dateArriveeFrance ? 
+	  String.format('%td/%<tm/%<tY',rqt.dateArriveeFrance) : ''}</span>
+      </p>
+
+      <p class="information">
+	  <span class="label">${i18n.translate('mar.property.numeroSecuriteSocialeSujet.label')} : </span>
+	  <span class="reponse">${StringUtils.defaultString(rqt.numeroSecuriteSocialeSujet?.toString())}</span>
+      </p>
+
+      <p class="information">
+	  <span class="label">${i18n.translate('mar.property.nomOrganismeSecuriteSociale.label')} : </span>
+	  <span class="reponse">${StringUtils.defaultString(rqt.nomOrganismeSecuriteSociale?.toString())}</span>
+      </p>
+    
+      <p class="information">
+	  <span class="label">${i18n.translate('mar.property.precedentDossierMdph.label')} : </span>
+      </p>
+      <p class="information">
+	  <span class="label">${i18n.translate('mar.property.numeroMdph.label')} : </span>
+	  <span class="reponse">${StringUtils.defaultString(rqt.precedentDossierMdph?.numeroMdph?.toString())}</span> 
+	  <span class="labelDroite">${i18n.translate('mar.property.departementMdph.label')}</span>
+          <span class="reponse">
+          <% if(rqt.precedentDossierMdph?.departementMdph) { %>
+            ${i18n.translate('mar.property.departementMdph.' + StringUtils.uncapitalize(rqt.precedentDossierMdph?.departementMdph?.toString()))}
+         <% } %>
+         </span>
+      </p> 
+</div>
+
+<!--A2 -  Adresse parentale ou délégation d'autorité parentale (pour les mineurs) -->
+<div class="etape">
+  <h2>A2 - Adresse actuelle de l'enfant ou de l'adulte concerné par la demande</h2>
+      
+      <p class="information">
+	  <span class="label">N° : </span>
+	  <span class="reponse">${StringUtils.defaultString(subject?.address?.streetNumber)}</span>
+	  <span class="label">Rue : </span>
+	  <span class="reponse">${StringUtils.defaultString(subject?.address?.streetName)}</span>
+      </p>
+
+      <p class="information">
+	  <span class="label">Complément d'adresse : </span>
+	  <span class="reponse"><br />
+                ${StringUtils.defaultString(subject?.address?.additionalDeliveryInformation)}<br />
+                ${StringUtils.defaultString(subject?.address?.additionalGeographicalInformation)}
+      </span>
+      </p>
+
+      <p class="information">
+	  <span class="label">Code postal : </span>
+	  <span class="reponse">${StringUtils.defaultString(subject?.address?.postalCode)}</span>
+  
+	  <span class="labelDroite">Commune : </span>
+	  <span class="reponse">${StringUtils.defaultString(subject?.address?.city)}</span>
+      </p>
+
+      <p class="information">
+	  <span class="label">Téléphone : </span>
+	  <span class="reponse">
+      <% if (rqt.requestType.label == 'Mdph Adult') { %>
+              ${StringUtils.defaultString(subject?.homePhone?.toString())}
+      <% } %>
+    </span>
+     
+          <span class="labelDroite">Fax : </span>
+	  <span class="reponse">${StringUtils.defaultString(rqt.faxSujet?.toString())}</span>
+      </p>
+
+      <p class="information">
+	  <span class="label">Adresse électronique : </span>
+          <span class="reponse">
+          <% if (rqt.requestType.label == 'Mdph Adult') { %>
+                ${StringUtils.defaultString(subject?.email?.toString())}
+          <% } %>
+          </span>
+      </p>
+
+      <p class="information">
+          <span class="label">${i18n.translate('mar.property.precisionSiDomicileAupresOrganisme.label')} : </span>
+	  <span class="reponse">${StringUtils.defaultString(rqt.precisionSiDomicileAupresOrganisme?.toString())}</span>
+      </p>
+
+</div>
+
+<!-- A3 - Autorité parentale -->
+<div class="etape">
+    <h2>A3 - ${i18n.translate('myr.step.autoriteParentale.desc')}</h2>
+    
+      <p class="information">
+	  <div class="labelEnTete">Mère</div>
+          <div class="labelEnTeteDeux">Père</div>
+      </p>
+
+      <p class="information">
+          <div class="label">${i18n.translate('myr.property.nom.label')} : </div>
+	  <div class="reponse">${StringUtils.defaultString(request?.myr?.autoriteParentaleMere?.nom?.toString())}</div>
+          <div class="reponse">${StringUtils.defaultString(request?.myr?.autoriteParentalePere?.nom?.toString())}</div>
+      </p>
+
+      <p class="information">  
+          <div class="label">${i18n.translate('myr.property.prenom.label')} : </div>
+	  <div class="reponse">${StringUtils.defaultString(request?.myr?.autoriteParentaleMere?.prenom?.toString())}</div>
+          <div class="reponse">${StringUtils.defaultString(request?.myr?.autoriteParentalePere?.prenom?.toString())}</div>     
+      </p>
+        
+      <p class="information">
+	  <div class="label">${i18n.translate('myr.property.domiciliation.label')} : </div>
+          <div class="reponse">
+            <% if(request?.myr?.autoriteParentaleMere?.domiciliation) { %>
+              <p>${StringUtils.defaultString(request?.myr?.autoriteParentaleMere?.domiciliation?.additionalDeliveryInformation)}</p>
+              <p>${StringUtils.defaultString(request?.myr?.autoriteParentaleMere?.domiciliation?.additionalGeographicalInformation)}</p>
+              <p>${StringUtils.defaultString(request?.myr?.autoriteParentaleMere?.domiciliation?.streetNumber)} ${StringUtils.defaultString(request?.myr?.autoriteParentaleMere?.domiciliation?.streetName)}</p>
+              <p>${StringUtils.defaultString(request?.myr?.autoriteParentaleMere?.domiciliation?.placeNameOrService)}</p>
+              <p>${StringUtils.defaultString(request?.myr?.autoriteParentaleMere?.domiciliation?.postalCode)} ${StringUtils.defaultString(request?.myr?.autoriteParentaleMere?.domiciliation?.city)}</p>
+              <p>${StringUtils.defaultString(request?.myr?.autoriteParentaleMere?.domiciliation?.countryName)}</p>
+            <% } %>
+          </div>
+          <div class="reponse">
+            <% if(request?.myr?.autoriteParentalePere?.domiciliation) { %>
+              <p>${StringUtils.defaultString(request?.myr?.autoriteParentalePere?.domiciliation?.additionalDeliveryInformation)}</p>
+              <p>${StringUtils.defaultString(request?.myr?.autoriteParentalePere?.domiciliation?.additionalGeographicalInformation)}</p>
+              <p>${StringUtils.defaultString(request?.myr?.autoriteParentalePere?.domiciliation?.streetNumber)} ${StringUtils.defaultString(request?.myr?.autoriteParentalePere?.domiciliation?.streetName)}</p>
+              <p>${StringUtils.defaultString(request?.myr?.autoriteParentalePere?.domiciliation?.placeNameOrService)}</p>
+              <p>${StringUtils.defaultString(request?.myr?.autoriteParentalePere?.domiciliation?.postalCode)} ${StringUtils.defaultString(request?.myr?.autoriteParentalePere?.domiciliation?.city)}</p>
+              <p>${StringUtils.defaultString(request?.myr?.autoriteParentalePere?.domiciliation?.countryName)}</p>
+            <% } %>
+          </div>
+      </p>          
+
+      <p class="information">
+          <div class="label">${i18n.translate('myr.property.telephone.label')} : </div>
+	  <div class="reponse">${StringUtils.defaultString(request?.myr?.autoriteParentaleMere?.telephone?.toString())}</div>
+          <div class="reponse">${StringUtils.defaultString(request?.myr?.autoriteParentalePere?.telephone?.toString())}</div>
+      </p>
+
+      <p class="information">  
+          <div class="label">${i18n.translate('myr.property.fax.label')} : </div>
+	  <div class="reponse">${StringUtils.defaultString(request?.myr?.autoriteParentaleMere?.fax?.toString())}</div>
+          <div class="reponse">${StringUtils.defaultString(request?.myr?.autoriteParentalePere?.fax?.toString())}</div>
+      </p>
+
+      <p class="informationColFin">
+          <div class="label">${i18n.translate('myr.property.email.label')} : </div>
+	  <div class="reponse">${StringUtils.defaultString(request?.myr?.autoriteParentaleMere?.email?.toString())}</div>
+	  <div class="reponse">${StringUtils.defaultString(request?.myr?.autoriteParentalePere?.email?.toString())}</div>
+      </p> 
+</div>
+
+<hr />
+
+<div class="etape">
+
+      <p class="information">
+	  <span class="label">${i18n.translate('myr.property.deteneurAutoriteParentale.label')} : </span>
+          <span class="choixReponse">
+            <% ['Mere','Pere','LesDeux','Autre'].eachWithIndex {it, i -> %>
+              <span ${it == request?.myr?.deteneurAutoriteParentale.toString() ? 'class="choix"': ''}>
+                ${i18n.translate('myr.property.deteneurAutoriteParentale.' + StringUtils.uncapitalize(it))}
+              </span>${i + 1 < ['Mere','Pere','LesDeux','Autre']?.size() ? ', ' : ''}
+            <% } %>
+          </span>
+      </p>
+    
+     
+      <p class="information">        
+          <span class="label">${i18n.translate('myr.property.nom.label')} : </span>
+	  <span class="reponse">${StringUtils.defaultString(request?.myr?.informationAutreDeteneurAutoriteParentale?.nom?.toString())}</span>
+      </p>
+
+      <p class="information">        
+          <span class="label">${i18n.translate('myr.property.domiciliation.label')} : </span>
+          <span class="reponse">
+            <% if(request?.myr?.informationAutreDeteneurAutoriteParentale?.domiciliation) { %>
+              <p>${StringUtils.defaultString(request?.myr?.informationAutreDeteneurAutoriteParentale?.domiciliation?.additionalDeliveryInformation)}</p>
+              <p>${StringUtils.defaultString(request?.myr?.informationAutreDeteneurAutoriteParentale?.domiciliation?.additionalGeographicalInformation)}</p>
+              <p>${StringUtils.defaultString(request?.myr?.informationAutreDeteneurAutoriteParentale?.domiciliation?.streetNumber)} ${StringUtils.defaultString(request?.myr?.informationAutreDeteneurAutoriteParentale?.domiciliation?.streetName)}</p>
+              <p>${StringUtils.defaultString(request?.myr?.informationAutreDeteneurAutoriteParentale?.domiciliation?.placeNameOrService)}</p>
+              <p>${StringUtils.defaultString(request?.myr?.informationAutreDeteneurAutoriteParentale?.domiciliation?.postalCode)} ${StringUtils.defaultString(request?.myr?.informationAutreDeteneurAutoriteParentale?.domiciliation?.city)}</p>
+              <p>${StringUtils.defaultString(request?.myr?.informationAutreDeteneurAutoriteParentale?.domiciliation?.countryName)}</p>
+            <% } %>
+          </span>
+       </p>   
+
+      <p class="information">        
+          <span class="label">${i18n.translate('myr.property.telephone.label')} : </span>
+	  <span class="reponse">${StringUtils.defaultString(request?.myr?.informationAutreDeteneurAutoriteParentale?.telephone?.toString())}</span>
+          <span class="labelDroite">${i18n.translate('myr.property.fax.label')} : </span>
+	  <span class="reponse">${StringUtils.defaultString(request?.myr?.informationAutreDeteneurAutoriteParentale?.fax?.toString())}</span>
+      </p>
+
+      <p class="information">        
+	  <span class="label">${i18n.translate('myr.property.email.label')} : </span>
+	  <span class="reponse">${StringUtils.defaultString(request?.myr?.informationAutreDeteneurAutoriteParentale?.email?.toString())}</span>
+      </p>
+
+</div>
+
+<!-- A4 - Représentant Légal (pour les adultes le cas échéant) -->
+<div class="etape">  
+  <h2>A4 - ${i18n.translate('mar.step.representantLegal.desc')}</h2>   
+    
+     
+      <p class="information">
+	  <span class="choixReponse"><% ['Tutelle','CuratelleSimple','CuratelleRenforcee','Autre'].eachWithIndex {it, i -> %>
+              <span ${it == request?.mar?.representantLegal.toString() ? 'class="choix"': ''}>
+                ${i18n.translate('mar.property.representantLegal.' + StringUtils.uncapitalize(it))}
+              </span>${i + 1 < ['Tutelle','CuratelleSimple','CuratelleRenforcee','Autre']?.size() ? ', ' : ''}
+            <% } %></span>
+      </p> 
+
+      <p class="information">
+	  <span class="label">${i18n.translate('mar.property.nomResponsableLegal.label')} : </span>
+	  <span class="reponse">${StringUtils.defaultString(request?.mar?.nomResponsableLegal?.toString())}</span>
+      </p>
+
+      <p class="information">
+	  <span class="label">${i18n.translate('mar.property.adresseResponsableLegal.label')} : </span>
+          <span class="reponse">
+            <% if(request?.mar?.adresseResponsableLegal) { %>
+              <p>${StringUtils.defaultString(request?.mar?.adresseResponsableLegal?.additionalDeliveryInformation)}</p>
+              <p>${StringUtils.defaultString(request?.mar?.adresseResponsableLegal?.additionalGeographicalInformation)}</p>
+              <p>${StringUtils.defaultString(request?.mar?.adresseResponsableLegal?.streetNumber)} ${StringUtils.defaultString(request?.mar?.adresseResponsableLegal?.streetName)}</p>
+              <p>${StringUtils.defaultString(request?.mar?.adresseResponsableLegal?.placeNameOrService)}</p>
+              <p>${StringUtils.defaultString(request?.mar?.adresseResponsableLegal?.postalCode)} ${StringUtils.defaultString(request?.mar?.adresseResponsableLegal?.city)}</p>
+              <p>${StringUtils.defaultString(request?.mar?.adresseResponsableLegal?.countryName)}</p>
+            <% } %>
+          </span>
+       </p>
+  
+    
+       <p class="information">
+          <span class="label">${i18n.translate('mar.property.telResponsableLegal.label')} : </span>
+	  <span class="reponse">${StringUtils.defaultString(request?.mar?.telResponsableLegal?.toString())}</span>
+          <span class="labelDroite">${i18n.translate('mar.property.faxResponsableLegal.label')} : </span>
+	  <span class="reponse">${StringUtils.defaultString(request?.mar?.faxResponsableLegal?.toString())}</span>
+       </p>
+
+
+      <p class="information">
+          <span class="label">${i18n.translate('mar.property.emailResponsableLegal.label')} : </span>
+	  <span class="reponse">${StringUtils.defaultString(request?.mar?.emailResponsableLegal?.toString())}</span>
+      </p>
+
+</div>
+
+<!-- A5 - Identification de l'organisme payeur de prestations familiales -->
+<div class="etape">
+
+   <h2>A5 - ${i18n.translate('mar.step.organismePrestationFamiliale.desc')}</h2>
+  
+    
+      <p class="information">
+	  <span class="label">${i18n.translate('mar.property.numeroAllocataire.label')} : </span>
+	  <span class="reponse">${StringUtils.defaultString(rqt.numeroAllocataire?.toString())}</span>
+	  <span class="labelDroite"></span>
+          <span class="choixReponse"><% ['Caf','Msa','Autre'].eachWithIndex {it, i -> %>
+              <span ${it == rqt.organismePayeur.toString() ? 'class="choix"': ''}>
+                ${i18n.translate('mar.property.organismePayeur.' + StringUtils.uncapitalize(it))}
+              </span>${i + 1 < ['Caf','Msa','Autre']?.size() ? ', ' : ''}
+            <% } %></span>
+      </p>
+          
+
+    
+  
+      <p class="information">
+           <span class="label">Nom et prénom de l'allocataire : </span>
+	   <span class="reponse">${StringUtils.defaultString(rqt.nomAllocataire?.toString())}</span>
+	   <span class="reponse">${StringUtils.defaultString(rqt.prenomAllocataire?.toString())}</span>
+      </p>
+
+    
+  
+    
+      <p class="information">
+	    <span class="label">${i18n.translate('mar.property.nomOrganismePayeur.label')} : </span>
+	    <span class="reponse">${StringUtils.defaultString(rqt.nomOrganismePayeur?.toString())}</span>
+      </p>
+
+
+      <p class="information">
+	  <span class="label">${i18n.translate('mar.property.domiciliationOrganismePayeur.label')} : </span>
+          <span class="reponse">
+            <% if(rqt.domiciliationOrganismePayeur) { %>
+              <p>${StringUtils.defaultString(rqt.domiciliationOrganismePayeur?.additionalDeliveryInformation)}</p>
+              <p>${StringUtils.defaultString(rqt.domiciliationOrganismePayeur?.additionalGeographicalInformation)}</p>
+              <p>${StringUtils.defaultString(rqt.domiciliationOrganismePayeur?.streetNumber)} ${StringUtils.defaultString(rqt.domiciliationOrganismePayeur?.streetName)}</p>
+              <p>${StringUtils.defaultString(rqt.domiciliationOrganismePayeur?.placeNameOrService)}</p>
+              <p>${StringUtils.defaultString(rqt.domiciliationOrganismePayeur?.postalCode)} ${StringUtils.defaultString(rqt.domiciliationOrganismePayeur?.city)}</p>
+              <p>${StringUtils.defaultString(rqt.domiciliationOrganismePayeur?.countryName)}</p>
+            <% } %>
+          </span>
+      </p>
+</div>
+
+<!-- A6 - Situation familiale -->
+<div class="etape">
+  <h2>A6 - ${i18n.translate('mar.step.situationFamiliale.desc')}</h2>
+  
+    
+      <p class="information">
+	  <span class="label">${i18n.translate('mar.property.situationMaritale.label')} : </span>
+          <span class="choixReponse">
+            <% ['Celibataire','Marie','Concubinage','Autre'].eachWithIndex {it, i -> %>
+              <span ${it == rqt.situationMaritale.toString() ? 'class="choix"': ''}>
+                ${i18n.translate('mar.property.situationMaritale.' + StringUtils.uncapitalize(it))}
+              </span>${i + 1 < ['Celibataire','Marie','Concubinage','Autre']?.size() ? ', ' : ''}
+            <% } %>
+          </span>
+      </p>
+          
+
+      <p class="information">
+	  <span class="label">${i18n.translate('mar.property.dateSituationFamiliale.label')} : </span>
+          <span class="reponse">${rqt.dateSituationFamiliale ? String.format('%td/%<tm/%<tY',rqt.dateSituationFamiliale) : ''}</span>
+	  <span class="labelDroite">${i18n.translate('mar.property.nombreEnfantsACharge.label')} : </span>
+	  <span class="reponse">${StringUtils.defaultString(rqt.nombreEnfantsACharge?.toString())}</span>
+      </p>
+
+      <p class="information">
+	<span class="label">${i18n.translate('mar.property.identiteConjoint.label')} : </span>
+      </p>
+
+      
+       <p class="information">
+          <span class="label">${i18n.translate('mar.property.nomNaissanceConjoint.label')} : </span>
+	  <span class="reponse">${StringUtils.defaultString(rqt.identiteConjoint?.nomNaissanceConjoint?.toString())}</span>
+       </p>
+
+       <p class="information"> 
+          <span class="label">${i18n.translate('mar.property.prenomConjoint.label')} : </span>
+	  <span class="reponse">${StringUtils.defaultString(rqt.identiteConjoint?.prenomConjoint?.toString())}</span>
+          <span class="labelDroite">${i18n.translate('mar.property.dateNaissanceConjoint.label')} : </span>
+          <span class="reponse">${rqt.identiteConjoint?.dateNaissanceConjoint ? String.format('%td/%<tm/%<tY',rqt.identiteConjoint?.dateNaissanceConjoint) : ''}</span>
+       </p> 
+</div>
+
+<!-- A7 - Situation professionnelle -->
+<div class="etape">
+  <h2>A7 - ${i18n.translate('mar.step.situationProfessionnelle.desc')}</h2>
+
+      <p class="information">
+	  <div class="labelEnTete">Vous</div>
+	  <div class="labelEnTeteDeux">Votre conjoint(e)</div>
+      </p>
+
+       <p class="information">
+	  <div class="label">${i18n.translate('mar.property.salarieDepuisLe.label')} </div>
+	  <div class="reponse">${rqt.situationProfessionnelleVousSalarie?.salarieDepuisLe ? String.format('%td/%<tm/%<tY',rqt.situationProfessionnelleVousSalarie?.salarieDepuisLe) : ''}</div>
+	  <div class="reponse">${rqt.situationProfessionnelleConjointSalarie?.salarieDepuisLe ? String.format('%td/%<tm/%<tY',rqt.situationProfessionnelleConjointSalarie?.salarieDepuisLe) : ''}</div>
+      </p>
+
+      <p class="information">
+	  <div class="label">Type de contrat : </div>
+	  <div class="reponse"></div>
+	  <div class="reponse"></div>
+      </p>
+
+       <p class="information">
+	  <div class="label">${i18n.translate('mar.property.salarieDateDebutContrat.label')}</div>
+	  <div class="reponse">${rqt.situationProfessionnelleVousSalarie?.salarieDateDebutContrat ? String.format('%td/%<tm/%<tY',rqt.situationProfessionnelleVousSalarie?.salarieDateDebutContrat) : ''}</div>
+	  <div class="reponse">${rqt.situationProfessionnelleConjointSalarie?.salarieDateDebutContrat ? String.format('%td/%<tm/%<tY',rqt.situationProfessionnelleConjointSalarie?.salarieDateDebutContrat) : ''}</div>
+      </p>
+
+       <p class="information">
+	  <div class="label">${i18n.translate('mar.property.salarieDateFinContrat.label')} : </div>
+	  <div class="reponse">${rqt.situationProfessionnelleVousSalarie?.salarieDateFinContrat ? String.format('%td/%<tm/%<tY',rqt.situationProfessionnelleVousSalarie?.salarieDateFinContrat) : ''}</div>
+	  <div class="reponse">${rqt.situationProfessionnelleConjointSalarie?.salarieDateFinContrat ? String.format('%td/%<tm/%<tY',rqt.situationProfessionnelleConjointSalarie?.salarieDateFinContrat) : ''}</div>
+      </p>
+
+       <p class="informationColFin">
+	  <div class="label">${i18n.translate('mar.property.esatDepuisLe.label')}</div>
+	  <div class="reponse">${rqt.situationProfessionnelleVousSalarie?.esatDepuisLe ? String.format('%td/%<tm/%<tY',rqt.situationProfessionnelleVousSalarie?.esatDepuisLe) : ''}</div>
+	  <div class="reponse">${rqt.situationProfessionnelleConjointSalarie?.esatDepuisLe ? String.format('%td/%<tm/%<tY',rqt.situationProfessionnelleConjointSalarie?.esatDepuisLe) : ''}</div>
+      </p>
+</div>
+
+<hr />
+
+<div class="etape">
+
+      <p class="information">
+	  <div class="label">${i18n.translate('mar.property.stagiaireDepuisLe.label')}</div>
+	  <div class="reponse">${rqt.situationProfessionnelleVousStagiaire?.stagiaireDepuisLe ? String.format('%td/%<tm/%<tY',rqt.situationProfessionnelleVousStagiaire?.stagiaireDepuisLe) : ''}</div>
+	  <div class="reponse">${rqt.situationProfessionnelleConjointStagiaire?.stagiaireDepuisLe ? String.format('%td/%<tm/%<tY',rqt.situationProfessionnelleConjointStagiaire?.stagiaireDepuisLe) : ''}</div>
+      </p>
+
+      <p class="information">
+	  <div class="label">${i18n.translate('mar.property.stageRenumeration.label')}</div>
+	  <div class="choixReponse">
+	      <% [true,false].each { %>
+              <span ${it == rqt.situationProfessionnelleVousStagiaire?.stageRenumeration ? 'class="choix"': ''}>
+                ${i18n.translate('message.' + (it ? 'yes' : 'no'))}
+              </span>
+              ${it ? ' / ' : ''}
+            <% } %>
+	  </div>
+	  <div class="choixReponse">
+	      <% [true,false].each { %>
+              <span ${it == rqt.situationProfessionnelleConjointStagiaire?.stageRenumeration ? 'class="choix"': ''}>
+                ${i18n.translate('message.' + (it ? 'yes' : 'no'))}
+              </span>
+              ${it ? ' / ' : ''}
+            <% } %>
+	  </div>
+      </p>
+
+      <p class="information">
+	  <div class="label">${i18n.translate('mar.property.nomEmployeurStage.label')} : </div>
+	  <div class="reponse">${StringUtils.defaultString(rqt.situationProfessionnelleVousStagiaire?.nomEmployeurStage?.toString())}</div>
+	  <div class="reponse">${StringUtils.defaultString(rqt.situationProfessionnelleConjointStagiaire?.nomEmployeurStage?.toString())}</div>
+      </p>
+
+      <p class="information">
+	  <div class="label">${i18n.translate('mar.property.adresseEmployeurStage.label')} : </div>
+	  <div class="reponse">
+	  <% if(rqt.situationProfessionnelleVousStagiaire?.adresseEmployeurStage) { %>
+              <p>${StringUtils.defaultString(rqt.situationProfessionnelleVousStagiaire?.adresseEmployeurStage?.additionalDeliveryInformation)}</p>
+              <p>${StringUtils.defaultString(rqt.situationProfessionnelleVousStagiaire?.adresseEmployeurStage?.additionalGeographicalInformation)}</p>
+              <p>${StringUtils.defaultString(rqt.situationProfessionnelleVousStagiaire?.adresseEmployeurStage?.streetNumber)} ${StringUtils.defaultString(rqt.situationProfessionnelleVousStagiaire?.adresseEmployeurStage?.streetName)}</p>
+              <p>${StringUtils.defaultString(rqt.situationProfessionnelleVousStagiaire?.adresseEmployeurStage?.placeNameOrService)}</p>
+              <p>${StringUtils.defaultString(rqt.situationProfessionnelleVousStagiaire?.adresseEmployeurStage?.postalCode)} ${StringUtils.defaultString(rqt.situationProfessionnelleVousStagiaire?.adresseEmployeurStage?.city)}</p>
+              <p>${StringUtils.defaultString(rqt.situationProfessionnelleVousStagiaire?.adresseEmployeurStage?.countryName)}</p>
+            <% } %>
+	  </div>
+	  <div class="reponse">
+	  <% if(rqt.situationProfessionnelleConjointStagiaire?.adresseEmployeurStage) { %>
+              <p>${StringUtils.defaultString(rqt.situationProfessionnelleConjointStagiaire?.adresseEmployeurStage?.additionalDeliveryInformation)}</p>
+              <p>${StringUtils.defaultString(rqt.situationProfessionnelleConjointStagiaire?.adresseEmployeurStage?.additionalGeographicalInformation)}</p>
+              <p>${StringUtils.defaultString(rqt.situationProfessionnelleConjointStagiaire?.adresseEmployeurStage?.streetNumber)} ${StringUtils.defaultString(rqt.situationProfessionnelleConjointStagiaire?.adresseEmployeurStage?.streetName)}</p>
+              <p>${StringUtils.defaultString(rqt.situationProfessionnelleConjointStagiaire?.adresseEmployeurStage?.placeNameOrService)}</p>
+              <p>${StringUtils.defaultString(rqt.situationProfessionnelleConjointStagiaire?.adresseEmployeurStage?.postalCode)} ${StringUtils.defaultString(rqt.situationProfessionnelleConjointStagiaire?.adresseEmployeurStage?.city)}</p>
+              <p>${StringUtils.defaultString(rqt.situationProfessionnelleConjointStagiaire?.adresseEmployeurStage?.countryName)}</p>
+            <% } %>
+	  </div>
+      </p>
+
+      <p class="information">
+	  <div class="label">${i18n.translate('mar.property.telephoneEmployeurStage.label')} : </div>
+	  <div class="reponse">${StringUtils.defaultString(rqt.situationProfessionnelleVousStagiaire?.telephoneEmployeurStage?.toString())}</div>
+	  <div class="reponse">${StringUtils.defaultString(rqt.situationProfessionnelleConjointStagiaire?.telephoneEmployeurStage?.toString())}</div>
+      </p>
+
+<!--  -->
+
+      <p class="information">
+	  <div class="label">${i18n.translate('mar.property.nonSalarieDepuisLe.label')}</div>
+	  <div class="reponse">${rqt.situationProfessionnelleVousNonSalarie?.nonSalarieDepuisLe ? String.format('%td/%<tm/%<tY',rqt.situationProfessionnelleVousNonSalarie?.nonSalarieDepuisLe) : ''}</div>
+	  <div class="reponse">${rqt.situationProfessionnelleConjointNonSalarie?.nonSalarieDepuisLe ? String.format('%td/%<tm/%<tY',rqt.situationProfessionnelleConjointNonSalarie?.nonSalarieDepuisLe) : ''}</div>
+      </p>
+
+      <p class="information">
+	  <div class="label">${i18n.translate('mar.property.regimeCotisations.label')} : </div>
+	  <div class="reponse">${StringUtils.defaultString(rqt.situationProfessionnelleVousNonSalarie?.regimeCotisations?.toString())}</div>
+	  <div class="reponse">${StringUtils.defaultString(rqt.situationProfessionnelleConjointNonSalarie?.regimeCotisations?.toString())}</div>
+      </p>
+
+<!-- -->
+
+      <p class="information">
+	  <div class="label">${i18n.translate('mar.property.demandeurEmploiDepuisLe.label')}</div>
+	  <div class="reponse">${rqt.situationProfessionnelleVousDemandeurEmploi?.demandeurEmploiDepuisLe ? String.format('%td/%<tm/%<tY',rqt.situationProfessionnelleVousDemandeurEmploi?.demandeurEmploiDepuisLe) : ''}</div>
+	  <div class="reponse">${rqt.situationProfessionnelleConjointDemandeurEmploi?.demandeurEmploiDepuisLe ? String.format('%td/%<tm/%<tY',rqt.situationProfessionnelleConjointDemandeurEmploi?.demandeurEmploiDepuisLe) : ''}</div>
+      </p>
+
+      <p class="information">
+	  <div class="label">${i18n.translate('mar.property.indemnisationDepuisLe.label')}</div>
+	  <div class="reponse">${rqt.situationProfessionnelleVousDemandeurEmploi?.indemnisationDepuisLe ? String.format('%td/%<tm/%<tY',rqt.situationProfessionnelleVousDemandeurEmploi?.indemnisationDepuisLe) : ''}</div>
+	  <div class="reponse">${rqt.situationProfessionnelleConjointDemandeurEmploi?.indemnisationDepuisLe ? String.format('%td/%<tm/%<tY',rqt.situationProfessionnelleConjointDemandeurEmploi?.indemnisationDepuisLe) : ''}</div>
+      </p>
+
+      <p class="information">
+	  <div class="label">${i18n.translate('mar.property.allocationSolidariteSpecifique.label')} : </div>
+	  <div class="choixReponse">
+	    <% [true,false].each { %>
+              <span ${it == rqt.situationProfessionnelleVousDemandeurEmploi?.allocationSolidariteSpecifique ? 'class="choix"': ''}>
+                ${i18n.translate('message.' + (it ? 'yes' : 'no'))}
+              </span>
+              ${it ? ' / ' : ''}
+            <% } %>
+	  </div>
+	  <div class="choixReponse">
+	    <% [true,false].each { %>
+              <span ${it == rqt.situationProfessionnelleConjointDemandeurEmploi?.allocationSolidariteSpecifique ? 'class="choix"': ''}>
+                ${i18n.translate('message.' + (it ? 'yes' : 'no'))}
+              </span>
+              ${it ? ' / ' : ''}
+            <% } %>
+	  </div>
+      </p>
+
+<!-- -->
+
+      <p class="information">
+	  <div class="label">${i18n.translate('mar.property.retraiteDepuisLe.label')}</div>
+	  <div class="reponse">${rqt.situationProfessionnelleVousRetraite?.retraiteDepuisLe ? String.format('%td/%<tm/%<tY',rqt.situationProfessionnelleVousRetraite?.retraiteDepuisLe) : ''}</div>
+	  <div class="reponse">${rqt.situationProfessionnelleConjointRetraite?.retraiteDepuisLe ? String.format('%td/%<tm/%<tY',rqt.situationProfessionnelleConjointRetraite?.retraiteDepuisLe) : ''}</div>
+      </p>
+
+      <p class="information">
+	  <div class="label">${i18n.translate('mar.property.supplementairePersonneAgee.label')}</div>
+	  <div class="choixReponse">
+	    <% [true,false].each { %>
+              <span ${it == rqt.situationProfessionnelleVousRetraite?.supplementairePersonneAgee ? 'class="choix"': ''}>
+                ${i18n.translate('message.' + (it ? 'yes' : 'no'))}
+              </span>
+              ${it ? ' / ' : ''}
+            <% } %>
+	  </div>
+	  <div class="choixReponse">
+	    <% [true,false].each { %>
+              <span ${it == rqt.situationProfessionnelleConjointRetraite?.supplementairePersonneAgee ? 'class="choix"': ''}>
+                ${i18n.translate('message.' + (it ? 'yes' : 'no'))}
+              </span>
+              ${it ? ' / ' : ''}
+            <% } %>
+	  </div>
+      </p>
+
+      <p class="information">
+	  <div class="label">${i18n.translate('mar.property.pensionRetraite.label')}</div>
+	  <div class="choixReponse">
+	    <% [true,false].each { %>
+              <span ${it == rqt.situationProfessionnelleVousRetraite?.pensionRetraite ? 'class="choix"': ''}>
+                ${i18n.translate('message.' + (it ? 'yes' : 'no'))}
+              </span>
+              ${it ? ' / ' : ''}
+            <% } %>
+	  </div>
+	  <div class="choixReponse">
+	    <% [true,false].each { %>
+              <span ${it == rqt.situationProfessionnelleConjointRetraite?.pensionRetraite ? 'class="choix"': ''}>
+                ${i18n.translate('message.' + (it ? 'yes' : 'no'))}
+              </span>
+              ${it ? ' / ' : ''}
+            <% } %>
+	  </div>
+      </p>
+
+<!-- -->
+
+      <p class="information">
+	  <div class="label">${i18n.translate('mar.property.beneficiairePensionDepuisLe.label')}</div>
+	  <div class="reponse">${rqt.situationProfessionnelleVousBeneficiairePension?.beneficiairePensionDepuisLe ? String.format('%td/%<tm/%<tY',rqt.situationProfessionnelleConjointBeneficiairePension?.beneficiairePensionDepuisLe) : ''}</div>
+	  <div class="reponse">${rqt.situationProfessionnelleConjointBeneficiairePension?.beneficiairePensionDepuisLe ? String.format('%td/%<tm/%<tY',rqt.situationProfessionnelleConjointBeneficiairePension?.beneficiairePensionDepuisLe) : ''}</div>
+      </p>
+
+      <p class="information">
+	  <div class="label">${i18n.translate('mar.property.categoriePensionInvalidite.label')} : </div>
+	  <div class="choixReponse">
+	              <% ['Un','Deux','Trois'].eachWithIndex {it, i -> %>
+              <span ${it == rqt.situationProfessionnelleVousBeneficiairePension?.categoriePensionInvalidite.toString() ? 'class="choix"': ''}>
+                ${i18n.translate('mar.property.categoriePensionInvalidite.' + StringUtils.uncapitalize(it))}
+              </span>${i + 1 < ['Un','Deux','Trois']?.size() ? ', ' : ''}
+            <% } %>
+	  </div>
+	  <div class="choixReponse">
+	              <% ['Un','Deux','Trois'].eachWithIndex {it, i -> %>
+              <span ${it == rqt.situationProfessionnelleConjointBeneficiairePension?.categoriePensionInvalidite.toString() ? 'class="choix"': ''}>
+                ${i18n.translate('mar.property.categoriePensionInvalidite.' + StringUtils.uncapitalize(it))}
+              </span>${i + 1 < ['Un','Deux','Trois']?.size() ? ', ' : ''}
+            <% } %>
+	  </div>
+      </p>
+
+
+
+      <p class="information">
+	  <div class="label">${i18n.translate('mar.property.renteAccidentTravail.label')} : </div>
+	  <div class="choixReponse">
+	    <% [true,false].each { %>
+              <span ${it == rqt.situationProfessionnelleVousBeneficiairePension?.renteAccidentTravail ? 'class="choix"': ''}>
+                ${i18n.translate('message.' + (it ? 'yes' : 'no'))}
+              </span>
+              ${it ? ' / ' : ''}
+            <% } %>
+	  </div>
+	  <div class="choixReponse">
+	    <% [true,false].each { %>
+              <span ${it == rqt.situationProfessionnelleConjointBeneficiairePension?.renteAccidentTravail ? 'class="choix"': ''}>
+                ${i18n.translate('message.' + (it ? 'yes' : 'no'))}
+              </span>
+              ${it ? ' / ' : ''}
+            <% } %>
+	  </div>
+      </p>
+
+      <p class="information">
+	  <div class="label">${i18n.translate('mar.property.allocationSupplementaireInvalidite.label')}</div>
+	  <div class="choixReponse">
+	    <% [true,false].each { %>
+              <span ${it == rqt.situationProfessionnelleVousBeneficiairePension?.allocationSupplementaireInvalidite ? 'class="choix"': ''}>
+                ${i18n.translate('message.' + (it ? 'yes' : 'no'))}
+              </span>
+              ${it ? ' / ' : ''}
+            <% } %>
+	  </div>
+	  <div class="choixReponse">
+	    <% [true,false].each { %>
+              <span ${it == rqt.situationProfessionnelleConjointBeneficiairePension?.allocationSupplementaireInvalidite ? 'class="choix"': ''}>
+                ${i18n.translate('message.' + (it ? 'yes' : 'no'))}
+              </span>
+              ${it ? ' / ' : ''}
+            <% } %>
+	  </div>
+      </p>
+
+<!-- -->
+
+      <p class="information">
+	  <div class="label">${i18n.translate('mar.property.autreDepuisLe.label')}</div>
+	  <div class="reponse">${rqt.situationProfessionnelleVousAutre?.autreDepuisLe ? String.format('%td/%<tm/%<tY',rqt.situationProfessionnelleVousAutre?.autreDepuisLe) : ''}</div>
+	  <div class="reponse">${rqt.situationProfessionnelleConjointAutre?.autreDepuisLe ? String.format('%td/%<tm/%<tY',rqt.situationProfessionnelleConjointAutre?.autreDepuisLe) : ''}</div>
+      </p>
+
+      <p class="informationColFin">
+	  <div class="label">${i18n.translate('mar.property.precisionAutreSituationProfessionnelle.label')} : </div>
+	  <div class="reponse">${StringUtils.defaultString(rqt.situationProfessionnelleVousAutre?.precisionAutreSituationProfessionnelle?.toString())}</div>
+	  <div class="reponse">${StringUtils.defaultString(rqt.situationProfessionnelleConjointAutre?.precisionAutreSituationProfessionnelle?.toString())}</div>
+      </p>
+</div>
+
+<!-- A8 - Autre situation de la personne concernée -->
+<div class="etape">
+    <h2>A8 - Autre situation de la personne concernée</h2>
+  
+    
+      <p class="information">
+          <span class="choixReponse">
+             <% ['EtablissementMedicoSocial','Hospitalise','Autre'].eachWithIndex {it, i -> %>
+              <span ${it == rqt.situationParticuliere.toString() ? 'class="choix"': ''}>
+                ${i18n.translate('mar.property.situationParticuliere.' + StringUtils.uncapitalize(it))}
+              </span>${i + 1 < ['EtablissementMedicoSocial','Hospitalise','Autre']?.size() ? '<br />' : ''}
+            <% } %>
+          </span>
+	  <span class="label">, précisez : </span>
+	  <span class="reponse">${StringUtils.defaultString(rqt.precisionAutre?.toString())}</span>
+      </p>
+
+      <p class="information">
+	  <span class="label">${i18n.translate('mar.property.nomEtablissement.label')} : </span>
+	  <span class="reponse">${StringUtils.defaultString(rqt.nomEtablissement?.toString())}</span>
+      </p>
+
+      <p class="information">
+	  <span class="label">${i18n.translate('mar.property.domiciliationEtablissement.label')} : </span>
+          <span class="reponse">
+            <% if(rqt.domiciliationEtablissement) { %>
+              <p>${StringUtils.defaultString(rqt.domiciliationEtablissement?.additionalDeliveryInformation)}</p>
+              <p>${StringUtils.defaultString(rqt.domiciliationEtablissement?.additionalGeographicalInformation)}</p>
+              <p>${StringUtils.defaultString(rqt.domiciliationEtablissement?.streetNumber)} ${StringUtils.defaultString(rqt.domiciliationEtablissement?.streetName)}</p>
+              <p>${StringUtils.defaultString(rqt.domiciliationEtablissement?.placeNameOrService)}</p>
+              <p>${StringUtils.defaultString(rqt.domiciliationEtablissement?.postalCode)} ${StringUtils.defaultString(rqt.domiciliationEtablissement?.city)}</p>
+              <p>${StringUtils.defaultString(rqt.domiciliationEtablissement?.countryName)}</p>
+            <% } %>
+          </span>
+      </p>
+
+</div>
+
+<!-- A9 - Logement de la personne concernée -->
+<div class="etape">
+    <h2>A9 - Logement de la personne concernée ou de la personne ayant l'enfant à charge</h2>
+
+
+       <p class="information">
+          <span class="choixReponse">
+           <% ['Locataire','Heberge'].eachWithIndex {it, i -> %>
+              <span ${it == rqt.typeLogement.toString() ? 'class="choix"': ''}>
+                ${i18n.translate('mar.property.typeLogement.' + StringUtils.uncapitalize(it))}
+              </span>${i + 1 < ['Locataire','Heberge']?.size() ? ' --- ' : ''}
+            <% } %>
+          </span>
+	</p>
+	<p class="information">
+	  <span class="choixReponse">
+	       <% ['Proprietaire','Autre'].eachWithIndex {it, i -> %>
+              <span ${it == rqt.typeLogement.toString() ? 'class="choix"': ''}>
+                ${i18n.translate('mar.property.typeLogement.' + StringUtils.uncapitalize(it))}
+              </span>${i + 1 < ['Proprietaire','Autre']?.size() ? ' --- ' : ''}
+            <% } %>
+	  </span>
+	  <span class="label">, précisez : </span>
+	  <span class="reponse">${StringUtils.defaultString(rqt.precisionLogementAutre?.toString())}</span>
+       </p>
+
+</div>
+
+<!-- B - Projet de vie -->
+<hr />
+
+<div class="etape">
+ <h2>B - ${i18n.translate('mar.step.projetDeVie.desc')}</h2>
+  
+
+    <p class="information">
+	 <p> (Si vous manquez de place, n'hésitez pas à poursuivre sur papier libre)</p>
+	  
+	  <div class="projetDeVie">${StringUtils.defaultString(rqt.expressionProjetDeVie?.toString())}</div>
+    </p>
+
+      <p class="information">
+         <span class="choixReponse">
+           <% ['Aide','Non'].eachWithIndex {it, i -> %>
+              <span ${it == rqt.choixProjetDeVie.toString() ? 'class="choix"': ''}>
+                ${i18n.translate('mar.property.choixProjetDeVie.' + StringUtils.uncapitalize(it))}
+              </span>${i + 1 < ['Oui','Aide','Non']?.size() ? '<br />' : ''}
+            <% } %>
+          </span>
+      </p>
+	
+      <p class="information">
+	  <span class="label">${i18n.translate('mar.property.conseilleProjetDeVie.label')} : </span>
+	  <span class="reponse">${StringUtils.defaultString(rqt.conseilleProjetDeVie?.toString())}</span>
+      </p>
+
+</div>
+
+<!-- C - Demande d'Allocation d'Education de l'Enfant Handicapé et son complément -->
+<hr />
+
+<div class="etape">
+    <h2>C - ${i18n.translate('myr.step.allocationEducationEnfantHandicape.label')}</h2>
+
+      <p class="information">
+	  <span class="label">${i18n.translate('myr.property.enfantEnInternat.label')}</span>
+          <span class="choixReponse">
+            <% [true,false].each { %>
+              <span ${it == request?.myr?.enfantEnInternat ? 'class="choix"': ''}>
+                ${i18n.translate('message.' + (it ? 'yes' : 'no'))}
+              </span>
+              ${it ? ' / ' : ''}
+            <% } %>
+          </span>
+	  <span class="labelDroite">${i18n.translate('myr.property.enInternatDepuisLe.label')} : </span>
+          <span class="reponse">${request?.myr?.enInternatDepuisLe ? String.format('%td/%<tm/%<tY',request?.myr?.enInternatDepuisLe) : ''}</span>
+      </p>
+ 
+      <p class="information">      
+	  <span class="label">${i18n.translate('myr.property.typeAccueil.label')}</span>
+      </p>
+      <p class="information">	  
+	  <span class="reponse">${StringUtils.defaultString(request?.myr?.typeAccueil?.toString())}</span>
+      </p>
+
+      <p class="information">
+	  <span class="label">${i18n.translate('myr.property.typeScolarisation.label')}</span>
+      </p>
+      <p class="information">
+	  <span class="reponse">${StringUtils.defaultString(request?.myr?.typeScolarisation?.toString())}</span>
+      </p>
+
+
+     <p class="information">
+	  <span class="label">${i18n.translate('myr.property.fraisSejourPrisEnCharge.label')}</span>
+          <span class="choixReponse">
+            <% [true,false].each { %>
+              <span ${it == request?.myr?.fraisSejourPrisEnCharge ? 'class="choix"': ''}>
+                ${i18n.translate('message.' + (it ? 'yes' : 'no'))}
+              </span>
+              ${it ? ' / ' : ''}
+            <% } %>
+          </span>
+      </p>
+    
+  
+   <br /> 
+      <p class="information">
+	  <span class="labelTitre">${i18n.translate('myr.property.presencePersonneAupresEnfant.label')}</span>
+      </p>
+        
+      <p class="information">        
+	  <span class="label">${i18n.translate('myr.property.exerciceActiviteProfessionnelle.label')}</span>
+          <span class="choixReponse">
+            <% [true,false].each { %>
+              <span ${it == request?.myr?.presencePersonneAupresEnfant?.exerciceActiviteProfessionnelle ? 'class="choix"': ''}>
+                ${i18n.translate('message.' + (it ? 'yes' : 'no'))}
+              </span>
+              ${it ? ' / ' : ''}
+            <% } %>
+          </span>
+      </p>
+          
+
+      <p class="information">        
+          <span class="label">${i18n.translate('myr.property.recoursEmploiRemunereTiercePersonne.label')} : </span>
+	  <span class="reponse">${StringUtils.defaultString(request?.myr?.presencePersonneAupresEnfant?.recoursEmploiRemunereTiercePersonne?.toString())} heures par semaine</span>
+      </p>
+
+      <p class="information">        
+          <span class="label">${i18n.translate('myr.property.nbHeureParAnEmploiNonRegulier.label')} : </span>
+	  <span class="reponse">${StringUtils.defaultString(request?.myr?.presencePersonneAupresEnfant?.nbHeureParAnEmploiNonRegulier?.toString())} heures</span>
+      </p>
+  
+   <br />
+      <p class="information"> 
+	  <span class="labelTitre">${i18n.translate('myr.property.fraisSuppLiesHandicap.label')}</span>
+      </p>
+
+      <p class="information">
+	    <table>
+	      <tr>
+		<th>NATURE DES FRAIS</th>
+		<th colspan="3">COUTS</th>
+		<th>PERIODICITE</th>
+	      </tr>
+	      <tr>
+		<td></td>
+		<td>Financeurs sollicités</td>
+		<td>Montants obtenus</td>
+		<td>Reste à votre charge</td>
+		<td>Semaine, mois, année, occasionnelle</td>
+	      </tr>
+	      
+	    <% if(! request?.myr?.fraisSuppLiesHandicap) {%>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+	    <% } else { %>
+	   
+	    <% request?.myr?.fraisSuppLiesHandicap.each { collectionIt -> %>
+	      <tr>
+		<td>
+		  ${StringUtils.defaultString(collectionIt.natureFrais?.toString())}
+		</td>
+		
+		<td>
+		  ${StringUtils.defaultString(collectionIt.financeursSollicites?.toString())}
+		</td>
+		
+		<td>
+		  ${StringUtils.defaultString(collectionIt.montantsObtenus?.toString())}
+		</td>
+		
+		<td>
+		  ${StringUtils.defaultString(collectionIt.resteAVotreCharge?.toString())}
+		</td>
+		
+		<td>
+		<% if(collectionIt.periodicite) { %>
+		  ${i18n.translate('myr.property.periodicite.' + StringUtils.uncapitalize(collectionIt.periodicite.toString()))}
+		<% } %>
+		</td>
+		
+	      </tr>
+	    
+	    <% } }%>
+	    <tr>
+		<td colspan="2" style="border:none;text-align:right">TOTAL</td>
+		<td></td>
+		<td></td>
+		<td style="border:none"></td>
+	    </tr>
+	    </table>
+      </p>
+
+</div>
+
+<!-- D - Demande relative à un parcours de scolarisation et/ou de formation -->
+<div class="etape">
+    <h2>D - ${i18n.translate('mar.step.demandeParcoursScolaireEtFormation.desc')}</h2>
+  
+    
+      <p class="information">
+	  <div class="demandeScolaire">${StringUtils.defaultString(rqt.demandeLibreScolaire?.toString())}</div>
+      </p>
+  
+    
+      <p class="information">
+	  <span class="label">${i18n.translate('mar.property.preferencesEtablissementOuService.label')} Précisez : </span>
+      </p>
+
+      <p class="information">
+	  <span class="label">${i18n.translate('mar.property.nomPreferenceEtablissementOuService.label')} : </span>
+	  <span class="reponse">${StringUtils.defaultString(rqt.precisionPreferencesEtablissementOuService?.nomPreferenceEtablissementOuService?.toString())}</span>
+      </p>
+
+      <p class="information">  
+          <span class="label">${i18n.translate('mar.property.codePostalPreferenceEtablissementOuService.label')} : </span>
+	  <span class="reponse">${StringUtils.defaultString(rqt.precisionPreferencesEtablissementOuService?.codePostalPreferenceEtablissementOuService?.toString())}</span>
+          <span class="labelDroite">${i18n.translate('mar.property.communePreferenceEtablissementOuService.label')} : </span>
+	  <span class="reponse">${StringUtils.defaultString(rqt.precisionPreferencesEtablissementOuService?.communePreferenceEtablissementOuService?.toString())}</span>
+      </p>
+    
+</div>
+
+<!-- E - Demande de carte -->
+<hr />
+
+<div class="etape"> 
+    <h2>E - ${i18n.translate('mar.step.demandeCartes.label')}</h2>
+  
+    
+      <p class="information">
+	  <span class="label">${i18n.translate('mar.property.carteInvalidite.label')} : </span>
+          <span class="choixReponse">
+            <% [true,false].each { %>
+              <span ${it == rqt.carteInvalidite ? 'class="choix"': ''}>
+                ${i18n.translate('message.' + (it ? 'yes' : 'no'))}
+              </span>
+              ${it ? ' / ' : ''}
+            <% } %>
+          </span>
+      </p>
+         
+      <p class="information">
+	  <span class="label">${i18n.translate('mar.property.carteAccompagnement.label')} : </span>
+          <span class="choixReponse">
+            <% [true,false].each { %>
+              <span ${it == rqt.carteAccompagnement ? 'class="choix"': ''}>
+                ${i18n.translate('message.' + (it ? 'yes' : 'no'))}
+              </span>
+              ${it ? ' / ' : ''}
+            <% } %>
+          </span>
+      </p>
+          
+      <p class="information">
+	  <span class="label">${i18n.translate('mar.property.carteStationnement.label')} : </span>
+          <span class="choixReponse">
+            <% [true,false].each { %>
+              <span ${it == rqt.carteStationnement ? 'class="choix"': ''}>
+                ${i18n.translate('message.' + (it ? 'yes' : 'no'))}
+              </span>
+              ${it ? ' / ' : ''}
+            <% } %>
+          </span>
+      </p>
+</div>
+
+<!-- F - Demande de prestation de compensation -->
+<div class="etape">
+    <h2>F - ${i18n.translate('mar.step.demandePrestationCompensation.label')}</h2>
+  
+    
+      <p class="information">
+          <span class="choixReponse">
+            <% ['Pch','Actp','Acfp'].eachWithIndex {it, i -> %>
+              <span ${it == rqt.choixPrestationCompensation.toString() ? 'class="choix"': ''}>
+                ${i18n.translate('mar.property.choixPrestationCompensation.' + StringUtils.uncapitalize(it))}
+              </span>${i + 1 < ['Pch','Actp','Acfp']?.size() ? '<br />' : ''}
+            <% } %>
+          </span>
+      </p>
+          
+
+      <p class="information">
+	  <span class="label">${i18n.translate('mar.property.allocationPersonnaliseeAutonomie.label')}</span>
+          <span class="choixReponse">
+            <% [true,false].each { %>
+              <span ${it == rqt.allocationPersonnaliseeAutonomie ? 'class="choix"': ''}>
+                ${i18n.translate('message.' + (it ? 'yes' : 'no'))}
+              </span>
+              ${it ? ' / ' : ''}
+            <% } %>
+          </span>
+      </p>
+
+      <p class="information">
+	  <span class="labelTitre">${i18n.translate('mar.property.besoinsDemandePCH.label')}</span>
+      </p>
+
+      <p class="information">
+          <span class="label">${i18n.translate('mar.property.aideHumaine.label')} : </span>
+          <span class="choixReponse">
+            <% [true,false].each { %>
+              <span ${it == rqt.besoinsDemandePCH?.aideHumaine ? 'class="choix"': ''}>
+                ${i18n.translate('message.' + (it ? 'yes' : 'no'))}
+              </span>
+              ${it ? ' / ' : ''}
+            <% } %>
+          </span>
+	  <br />
+          <span class="label">${i18n.translate('mar.property.precisionAideHumaine.label')} : </span>
+	  <span class="reponse">${StringUtils.defaultString(rqt.besoinsDemandePCH?.precisionAideHumaine?.toString())}</span>
+      </p>
+
+      <p class="information">
+          <span class="label">${i18n.translate('mar.property.aideTechnique.label')} : </span>
+          <span class="choixReponse">
+            <% [true,false].each { %>
+              <span ${it == rqt.besoinsDemandePCH?.aideTechnique ? 'class="choix"': ''}>
+                ${i18n.translate('message.' + (it ? 'yes' : 'no'))}
+              </span>
+              ${it ? ' / ' : ''}
+            <% } %>
+          </span>
+	  <br />
+          <span class="label">${i18n.translate('mar.property.precisionAideTechnique.label')} : </span>
+	  <span class="reponse">${StringUtils.defaultString(rqt.besoinsDemandePCH?.precisionAideTechnique?.toString())}</span>
+      </p>
+
+
+      <p class="information">
+          <span class="label">${i18n.translate('mar.property.amenagementLogementDemenagement.label')} : </span>
+          <span class="choixReponse">
+            <% [true,false].each { %>
+              <span ${it == rqt.besoinsDemandePCH?.amenagementLogementDemenagement ? 'class="choix"': ''}>
+                ${i18n.translate('message.' + (it ? 'yes' : 'no'))}
+              </span>
+              ${it ? ' / ' : ''}
+            <% } %>
+          </span>
+	  <br />
+          <span class="label">${i18n.translate('mar.property.precisionAmenagementLogementDemenagement.label')} : </span>
+	  <span class="reponse">${StringUtils.defaultString(rqt.besoinsDemandePCH?.precisionAmenagementLogementDemenagement?.toString())}</span>
+      </p>
+
+      <p class="information">
+          <span class="label">${i18n.translate('mar.property.amenagementVehicule.label')} : </span>
+          <span class="choixReponse">
+            <% [true,false].each { %>
+              <span ${it == rqt.besoinsDemandePCH?.amenagementVehicule ? 'class="choix"': ''}>
+                ${i18n.translate('message.' + (it ? 'yes' : 'no'))}
+              </span>
+              ${it ? ' / ' : ''}
+            <% } %>
+          </span>
+	  <br />
+          <span class="label">${i18n.translate('mar.property.precisionAmenagementVehicule.label')} : </span>
+	  <span class="reponse">${StringUtils.defaultString(rqt.besoinsDemandePCH?.precisionAmenagementVehicule?.toString())}</span>
+      </p>
+
+      <p class="information">
+          <span class="label">${i18n.translate('mar.property.chargesSpecifiques.label')} : </span>
+          <span class="choixReponse">
+            <% [true,false].each { %>
+              <span ${it == rqt.besoinsDemandePCH?.chargesSpecifiques ? 'class="choix"': ''}>
+                ${i18n.translate('message.' + (it ? 'yes' : 'no'))}
+              </span>
+              ${it ? ' / ' : ''}
+            <% } %>
+          </span>
+	  <br />
+          <span class="label">${i18n.translate('mar.property.precisionChargesSpecifiques.label')} : </span>
+	  <span class="reponse">${StringUtils.defaultString(rqt.besoinsDemandePCH?.precisionChargesSpecifiques?.toString())}</span>
+      </p>
+
+      <p class="information">
+          <span class="label">${i18n.translate('mar.property.aideAnimaliere.label')} : </span>
+          <span class="choixReponse">
+            <% [true,false].each { %>
+              <span ${it == rqt.besoinsDemandePCH?.aideAnimaliere ? 'class="choix"': ''}>
+                ${i18n.translate('message.' + (it ? 'yes' : 'no'))}
+              </span>
+              ${it ? ' / ' : ''}
+            <% } %>
+          </span>
+	  <br />
+          <span class="label">${i18n.translate('mar.property.precisionAideAnimaliere.label')} : </span>
+	  <span class="reponse">${StringUtils.defaultString(rqt.besoinsDemandePCH?.precisionAideAnimaliere?.toString())}</span>
+      </p>
+</div>
+
+<!--G - Affiliation gratuit d'un aidant familiale -->
+<div class="etape">
+   <h2>G - ${i18n.translate('mar.step.affilitationAidant.desc')}</h2>
+  
+      <p class="information">
+	  <span class="label">${i18n.translate('mar.property.nomAidant.label')} : </span>
+	  <span class="reponse">${StringUtils.defaultString(request?.mar?.nomAidant?.toString())}</span>
+      </p>
+
+      <p class="information">
+	  <span class="label">${i18n.translate('mar.property.domiciliationAidant.label')} : </span>
+          <span class="reponse">
+            <% if(request?.mar?.domiciliationAidant) { %>
+              <p>${StringUtils.defaultString(request?.mar?.domiciliationAidant?.additionalDeliveryInformation)}</p>
+              <p>${StringUtils.defaultString(request?.mar?.domiciliationAidant?.additionalGeographicalInformation)}</p>
+              <p>${StringUtils.defaultString(request?.mar?.domiciliationAidant?.streetNumber)} ${StringUtils.defaultString(request?.mar?.domiciliationAidant?.streetName)}</p>
+              <p>${StringUtils.defaultString(request?.mar?.domiciliationAidant?.placeNameOrService)}</p>
+              <p>${StringUtils.defaultString(request?.mar?.domiciliationAidant?.postalCode)} ${StringUtils.defaultString(request?.mar?.domiciliationAidant?.city)}</p>
+              <p>${StringUtils.defaultString(request?.mar?.domiciliationAidant?.countryName)}</p>
+            <% } %>
+          </span>
+      </p>
+          
+
+      <p class="information">
+	  <span class="label">${i18n.translate('mar.property.dateNaissanceAidant.label')} : </span>
+          <span class="reponse">${request?.mar?.dateNaissanceAidant ? String.format('%td/%<tm/%<tY',request?.mar?.dateNaissanceAidant) : ''}</span>
+	  <span class="labelDroite">${i18n.translate('mar.property.lienParenteAidant.label')} : </span>
+	  <span class="reponse">${StringUtils.defaultString(request?.mar?.lienParenteAidant?.toString())}</span>
+      </p>
+</div>
+
+<!-- H - Demande d'Allocation aux Adultes Handicapés et son complément -->
+<hr />
+
+<div class="etape">
+    <h2>H - ${i18n.translate('mar.step.demandeAllocationEtComplementRessources.desc')}</h2>
+  
+    
+          <p class="information">
+	      <span class="label">${i18n.translate('mar.property.aah.label')} : </span>
+	      <span class="choixReponse">
+            <% [true,false].each { %>
+              <span ${it == request?.mar?.choixTypeDemandeAllocEtCompl?.aah ? 'class="choix"': ''}>
+                ${i18n.translate('message.' + (it ? 'yes' : 'no'))}
+              </span>
+              ${it ? ' / ' : ''}
+            <% } %>
+	      </span>
+	      <span class="labelDroiteLong">${i18n.translate('mar.property.complementRessources.label')} : </span>
+	      <span class="choixReponse">
+            <% [true,false].each { %>
+              <span ${it == request?.mar?.choixTypeDemandeAllocEtCompl?.complementRessources ? 'class="choix"': ''}>
+                ${i18n.translate('message.' + (it ? 'yes' : 'no'))}
+              </span>
+              ${it ? ' / ' : ''}
+            <% } %>
+	    </span>
+	  </p>
+    
+	  
+	  <p class="information">
+	      <span class="label">${i18n.translate('mar.property.precedentsRevenusRecus.label')}</span>
+	      <br />
+	      <span class="choixReponse">
+		  <% ['Activite','Esat','Indemnites'].eachWithIndex {it, i -> %>
+		      <span ${it == request?.mar?.precedentsRevenusRecus.toString() ? 'class="choix"': ''}>
+		      ${i18n.translate('mar.property.precedentsRevenusRecus.' + StringUtils.uncapitalize(it))}
+		      </span>${i + 1 < ['Activite','Esat','Indemnites']?.size() ? '<br />' : ''}
+		  <% } %>
+	      </span>
+	  </p>
+         
+      <p class="information">
+	  <span class="label">${i18n.translate('mar.property.dateDebutRevenuRecu.label')}</span>
+          <span class="reponse">${request?.mar?.dateDebutRevenuRecu ? String.format('%td/%<tm/%<tY',request?.mar?.dateDebutRevenuRecu) : ''}</span>
+	  <span class="labelDroite">${i18n.translate('mar.property.dateFinRevenuRecu.label')}</span>
+          <span class="reponse">${request?.mar?.dateFinRevenuRecu ? String.format('%td/%<tm/%<tY',request?.mar?.dateFinRevenuRecu) : ''}</span>
+      </p>
+          
+
+      <p class="information">
+	<span class="label">${i18n.translate('mar.property.precisionRevenuRecu.label')}</span>
+	<br />
+	<span class="reponse">${StringUtils.defaultString(request?.mar?.precisionRevenuRecu?.toString())}</span>
+      </p>
+</div>
+
+<!-- I - Demande relative au travail -->
+<div class="etape">
+    <h2>I - ${i18n.translate('mar.step.demandeProfessionnelle.desc')}</h2>
+  
+    
+      <p class="information">
+	  <span class="label">${i18n.translate('mar.property.rqth.label')} : </span>
+          <span class="choixReponse">
+            <% [true,false].each { %>
+              <span ${it == request?.mar?.rqth ? 'class="choix"': ''}>
+                ${i18n.translate('message.' + (it ? 'yes' : 'no'))}
+              </span>
+              ${it ? ' / ' : ''}
+            <% } %>
+          </span>
+      </p>
+
+      <p class="information">
+	  <span class="label">${i18n.translate('mar.property.primeReclassement.label')} : </span>
+          <span class="choixReponse">
+            <% [true,false].each { %>
+              <span ${it == request?.mar?.primeReclassement ? 'class="choix"': ''}>
+                ${i18n.translate('message.' + (it ? 'yes' : 'no'))}
+              </span>
+              ${it ? ' / ' : ''}
+            <% } %>
+          </span>
+      </p>
+
+      <p class="information">
+	  <span class="label">${i18n.translate('mar.property.autre.label')} : </span>
+          <span class="choixReponse">
+            <% [true,false].each { %>
+              <span ${it == request?.mar?.autre ? 'class="choix"': ''}>
+                ${i18n.translate('message.' + (it ? 'yes' : 'no'))}
+              </span>
+              ${it ? ' / ' : ''}
+            <% } %>
+          </span>
+      </p>
+
+      <p class="information">
+	  <span class="label">${i18n.translate('mar.property.orientationReclassement.label')}</span>
+          <span class="choixReponse">
+            <% [true,false].each { %>
+              <span ${it == request?.mar?.orientationReclassement ? 'class="choix"': ''}>
+                ${i18n.translate('message.' + (it ? 'yes' : 'no'))}
+              </span>
+              ${it ? ' / ' : ''}
+            <% } %>
+          </span>
+          <span class="choixReponse">
+	      <ul>
+            <% ['Formation','Ordinaire','Protege'].eachWithIndex {it, i -> %>
+		  <span ${it == request?.mar?.choixOrientationReclassement.toString() ? 'class="choix"': ''}>
+		  ${i18n.translate('mar.property.choixOrientationReclassement.' + StringUtils.uncapitalize(it))}
+		  </span>${i + 1 < ['Formation','Ordinaire','Protege']?.size() ? '<br />' : ''}
+	    <% } %>
+	      </ul>
+          </span>
+      </p>       
+</div>
+
+<!-- J - Demande d'orientation vers un établissement ou service médico-social pour adultes -->
+<div class="etape">
+   <h2>J - ${i18n.translate('mar.step.demandeOrientationMedicoSociale.desc')}</h2>
+  
+      <p class="information">
+	  <span class="labelTitre">${i18n.translate('mar.property.situationActuelle.label')}</span>
+      </p>
+
+      <p class="information">
+          <span class="choixReponse">
+            <% ['Accueiljour','Hebergementnuit','Hebergementpermanent','Accompagnement','Autres'].eachWithIndex {it, i -> %>
+		  <span ${it == request?.mar?.situationActuelle.toString() ? 'class="choix"': ''}>
+		  ${i18n.translate('mar.property.situationActuelle.' + StringUtils.uncapitalize(it))}
+		  </span>${i + 1 < ['Accueiljour','Hebergementnuit','Hebergementpermanent','Accompagnement','Autres']?.size() ? '<br />' : ''}
+	    <% } %>
+          </span>
+      </p>
+ 
+      <p class="information">
+	    <span class="label">${i18n.translate('mar.property.situationActuellePrecision.label')} </span>
+	    <span class="reponse">${StringUtils.defaultString(request?.mar?.situationActuellePrecision?.toString())}</span>
+      </p>
+    
+  
+    
+      <p class="information">
+	  <span class="labelTitre">${i18n.translate('mar.property.orientationSouhaitee.label')}</span>
+      </p>
+
+      <p class="information">
+          <span class="choixReponse">
+            <% ['Accueiljour','Hebergementnuit','Hebergementpermanent','Accompagnement','Autres'].eachWithIndex {it, i -> %>
+		  <span ${it == request?.mar?.orientationSouhaitee.toString() ? 'class="choix"': ''}>
+		  ${i18n.translate('mar.property.orientationSouhaitee.' + StringUtils.uncapitalize(it))}
+		  </span>${i + 1 < ['Accueiljour','Hebergementnuit','Hebergementpermanent','Accompagnement','Autres']?.size() ? '<br />' : ''}
+	    <% } %>
+          </span>
+      </p>
+          
+    
+      <p class="information">
+	  <span class="labelTitre">${i18n.translate('mar.property.dateEntreeSouhaitee.label')} : </span>
+          <span class="reponse">${request?.mar?.dateEntreeSouhaitee ? String.format('%td/%<tm/%<tY',request?.mar?.dateEntreeSouhaitee) : ''}</span>
+      </p>
+     
+      <p class="information">
+	  <span class="label">${i18n.translate('mar.property.preferenceEtablissementOuService.label')} Précisez lequel : </span>
+      </p>
+      <p class="information">
+          <span class="label">${i18n.translate('mar.property.nomEtablissementPreference.label')} : </span>
+	  <span class="reponse">${StringUtils.defaultString(request?.mar?.precisionPreferenceEtablissementOuService?.nomEtablissementPreference?.toString())}</span>
+      </p>
+      <p class="information">
+          <span class="label">${i18n.translate('mar.property.codePostalEtablissementPreference.label')} : </span>
+	  <span class="reponse">${StringUtils.defaultString(request?.mar?.precisionPreferenceEtablissementOuService?.codePostalEtablissementPreference?.toString())}</span>
+          <span class="labelDroite">${i18n.translate('mar.property.communeEtablissementPreference.label')} : </span>
+	  <span class="reponse">${StringUtils.defaultString(request?.mar?.precisionPreferenceEtablissementOuService?.communeEtablissementPreference?.toString())}</span>
+      </p>
+      <p class="information">
+          <span class="label">${i18n.translate('mar.property.telephoneEtablissementPreference.label')} : </span>
+	  <span class="reponse">${StringUtils.defaultString(request?.mar?.precisionPreferenceEtablissementOuService?.telephoneEtablissementPreference?.toString())}</span>
+      </p>
+</div> 
+
+
+</body>
+</html>

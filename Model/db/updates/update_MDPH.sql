@@ -1,6 +1,3 @@
-   
-   alter table birth_details_request modify birth_postal_code varchar(3);
-   alter table death_details_request modify death_postal_code varchar(3);
   
    /* Migration type complexe local */
    create table current_school (
