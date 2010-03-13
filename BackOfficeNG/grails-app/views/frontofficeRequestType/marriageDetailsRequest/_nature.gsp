@@ -25,15 +25,15 @@
     <fieldset class="required">
     <legend><g:message code="mdr.property.marriageHusband.label" /></legend>
     
-      <label for="marriageHusbandLastName" class="required"><g:message code="mdr.property.marriageHusbandLastName.label" /> *  <span><g:message code="mdr.property.marriageHusbandLastName.help" /></span></label>
-            <input type="text" id="marriageHusbandLastName" name="marriageHusbandLastName" value="${rqt.marriageHusbandLastName?.toString()}" 
-                    class="required  validate-lastName ${rqt.stepStates['nature'].invalidFields.contains('marriageHusbandLastName') ? 'validation-failed' : ''}" title="<g:message code="mdr.property.marriageHusbandLastName.validationError" />"  maxlength="38" />
+      <label for="marriageHusband.marriageHusbandLastName" class="required"><g:message code="mdr.property.marriageHusbandLastName.label" /> *  <span><g:message code="mdr.property.marriageHusbandLastName.help" /></span></label>
+            <input type="text" id="marriageHusband.marriageHusbandLastName" name="marriageHusband.marriageHusbandLastName" value="${rqt.marriageHusband?.marriageHusbandLastName?.toString()}" 
+                    class="required  validate-lastName ${rqt.stepStates['nature'].invalidFields.contains('marriageHusband.marriageHusbandLastName') ? 'validation-failed' : ''}" title="<g:message code="mdr.property.marriageHusbandLastName.validationError" />"  maxlength="38" />
             
 
     
-      <label for="marriageHusbandFirstNames" class="required"><g:message code="mdr.property.marriageHusbandFirstNames.label" /> *  <span><g:message code="mdr.property.marriageHusbandFirstNames.help" /></span></label>
-            <input type="text" id="marriageHusbandFirstNames" name="marriageHusbandFirstNames" value="${rqt.marriageHusbandFirstNames?.toString()}" 
-                    class="required  validate-string ${rqt.stepStates['nature'].invalidFields.contains('marriageHusbandFirstNames') ? 'validation-failed' : ''}" title="<g:message code="mdr.property.marriageHusbandFirstNames.validationError" />"   />
+      <label for="marriageHusband.marriageHusbandFirstNames" class="required"><g:message code="mdr.property.marriageHusbandFirstNames.label" /> *  <span><g:message code="mdr.property.marriageHusbandFirstNames.help" /></span></label>
+            <input type="text" id="marriageHusband.marriageHusbandFirstNames" name="marriageHusband.marriageHusbandFirstNames" value="${rqt.marriageHusband?.marriageHusbandFirstNames?.toString()}" 
+                    class="required  validate-string ${rqt.stepStates['nature'].invalidFields.contains('marriageHusband.marriageHusbandFirstNames') ? 'validation-failed' : ''}" title="<g:message code="mdr.property.marriageHusbandFirstNames.validationError" />"   />
             
 
     
@@ -44,15 +44,15 @@
     <fieldset class="required">
     <legend><g:message code="mdr.property.marriageWife.label" /></legend>
     
-      <label for="marriageWifeLastName" class="required"><g:message code="mdr.property.marriageWifeLastName.label" /> *  <span><g:message code="mdr.property.marriageWifeLastName.help" /></span></label>
-            <input type="text" id="marriageWifeLastName" name="marriageWifeLastName" value="${rqt.marriageWifeLastName?.toString()}" 
-                    class="required  validate-lastName ${rqt.stepStates['nature'].invalidFields.contains('marriageWifeLastName') ? 'validation-failed' : ''}" title="<g:message code="mdr.property.marriageWifeLastName.validationError" />"  maxlength="38" />
+      <label for="marriageWife.marriageWifeLastName" class="required"><g:message code="mdr.property.marriageWifeLastName.label" /> *  <span><g:message code="mdr.property.marriageWifeLastName.help" /></span></label>
+            <input type="text" id="marriageWife.marriageWifeLastName" name="marriageWife.marriageWifeLastName" value="${rqt.marriageWife?.marriageWifeLastName?.toString()}" 
+                    class="required  validate-lastName ${rqt.stepStates['nature'].invalidFields.contains('marriageWife.marriageWifeLastName') ? 'validation-failed' : ''}" title="<g:message code="mdr.property.marriageWifeLastName.validationError" />"  maxlength="38" />
             
 
     
-      <label for="marriageWifeFirstNames" class="required"><g:message code="mdr.property.marriageWifeFirstNames.label" /> *  <span><g:message code="mdr.property.marriageWifeFirstNames.help" /></span></label>
-            <input type="text" id="marriageWifeFirstNames" name="marriageWifeFirstNames" value="${rqt.marriageWifeFirstNames?.toString()}" 
-                    class="required  validate-string ${rqt.stepStates['nature'].invalidFields.contains('marriageWifeFirstNames') ? 'validation-failed' : ''}" title="<g:message code="mdr.property.marriageWifeFirstNames.validationError" />"   />
+      <label for="marriageWife.marriageWifeFirstNames" class="required"><g:message code="mdr.property.marriageWifeFirstNames.label" /> *  <span><g:message code="mdr.property.marriageWifeFirstNames.help" /></span></label>
+            <input type="text" id="marriageWife.marriageWifeFirstNames" name="marriageWife.marriageWifeFirstNames" value="${rqt.marriageWife?.marriageWifeFirstNames?.toString()}" 
+                    class="required  validate-string ${rqt.stepStates['nature'].invalidFields.contains('marriageWife.marriageWifeFirstNames') ? 'validation-failed' : ''}" title="<g:message code="mdr.property.marriageWifeFirstNames.validationError" />"   />
             
 
     
@@ -65,28 +65,28 @@
     
       <label class="required"><g:message code="mdr.property.marriageDate.label" /> *  <span><g:message code="mdr.property.marriageDate.help" /></span></label>
             <div class="date required  validate-date required ">
-              <select class="day ${rqt.stepStates['nature'].invalidFields.contains('marriageDate') ? 'validation-failed' : ''}"
-                id="marriageDate_day"
-                name="marriageDate_day">
+              <select class="day ${rqt.stepStates['nature'].invalidFields.contains('marriage.marriageDate') ? 'validation-failed' : ''}"
+                id="marriage.marriageDate_day"
+                name="marriage.marriageDate_day">
                 <option value=""><g:message code="message.select.defaultOption" /></option>
                 <g:each in="${1..31}">
                   <option value="${it}"
-                    <g:if test="${rqt.marriageDate?.date == it
-                      || (rqt.marriageDate == null && params['marriageDate_day'] == it.toString())}">
+                    <g:if test="${rqt.marriage?.marriageDate?.date == it
+                      || (rqt.marriage?.marriageDate == null && params['marriage.marriageDate_day'] == it.toString())}">
                       selected="selected"
                     </g:if>>
                     ${it}
                   </option>
                 </g:each>
               </select>
-              <select class="month ${rqt.stepStates['nature'].invalidFields.contains('marriageDate') ? 'validation-failed' : ''}"
-                id="marriageDate_month"
-                name="marriageDate_month">
+              <select class="month ${rqt.stepStates['nature'].invalidFields.contains('marriage.marriageDate') ? 'validation-failed' : ''}"
+                id="marriage.marriageDate_month"
+                name="marriage.marriageDate_month">
                 <option value=""><g:message code="message.select.defaultOption" /></option>
                 <g:each in="${1..12}">
                   <option value="${it}"
-                    <g:if test="${rqt.marriageDate?.month == (it - 1)
-                      || (rqt.marriageDate == null && params['marriageDate_month'] == it.toString())}">
+                    <g:if test="${rqt.marriage?.marriageDate?.month == (it - 1)
+                      || (rqt.marriage?.marriageDate == null && params['marriage.marriageDate_month'] == it.toString())}">
                       selected="selected"
                     </g:if>>
                     <g:message code="month.${it}" />
@@ -94,24 +94,24 @@
                 </g:each>
               </select>
               <input type="text" maxlength="4" size="3"
-                class="year ${rqt.stepStates['nature'].invalidFields.contains('marriageDate') ? 'validation-failed' : ''}"
-                id="marriageDate_year"
-                name="marriageDate_year"
-                value="${rqt.marriageDate ? rqt.marriageDate.year + 1900 : params['marriageDate_year']}"
+                class="year ${rqt.stepStates['nature'].invalidFields.contains('marriage.marriageDate') ? 'validation-failed' : ''}"
+                id="marriage.marriageDate_year"
+                name="marriage.marriageDate_year"
+                value="${rqt.marriage?.marriageDate ? rqt.marriage?.marriageDate.year + 1900 : params['marriage.marriageDate_year']}"
                 title="<g:message code="mdr.property.marriageDate.validationError" />" />
             </div>
             
 
     
-      <label for="marriageCity" class="required"><g:message code="mdr.property.marriageCity.label" /> *  <span><g:message code="mdr.property.marriageCity.help" /></span></label>
-            <input type="text" id="marriageCity" name="marriageCity" value="${rqt.marriageCity?.toString()}" 
-                    class="required  validate-city ${rqt.stepStates['nature'].invalidFields.contains('marriageCity') ? 'validation-failed' : ''}" title="<g:message code="mdr.property.marriageCity.validationError" />"  maxlength="32" />
+      <label for="marriage.marriageCity" class="required"><g:message code="mdr.property.marriageCity.label" /> *  <span><g:message code="mdr.property.marriageCity.help" /></span></label>
+            <input type="text" id="marriage.marriageCity" name="marriage.marriageCity" value="${rqt.marriage?.marriageCity?.toString()}" 
+                    class="required  validate-city ${rqt.stepStates['nature'].invalidFields.contains('marriage.marriageCity') ? 'validation-failed' : ''}" title="<g:message code="mdr.property.marriageCity.validationError" />"  maxlength="32" />
             
 
     
-      <label for="marriagePostalCode" class="required"><g:message code="mdr.property.marriagePostalCode.label" /> *  <span><g:message code="mdr.property.marriagePostalCode.help" /></span></label>
-            <input type="text" id="marriagePostalCode" name="marriagePostalCode" value="${rqt.marriagePostalCode?.toString()}" 
-                    class="required  validate-departmentCode ${rqt.stepStates['nature'].invalidFields.contains('marriagePostalCode') ? 'validation-failed' : ''}" title="<g:message code="mdr.property.marriagePostalCode.validationError" />"  maxlength="2" />
+      <label for="marriage.marriagePostalCode" class="required"><g:message code="mdr.property.marriagePostalCode.label" /> *  <span><g:message code="mdr.property.marriagePostalCode.help" /></span></label>
+            <input type="text" id="marriage.marriagePostalCode" name="marriage.marriagePostalCode" value="${rqt.marriage?.marriagePostalCode?.toString()}" 
+                    class="required  validate-departmentCode ${rqt.stepStates['nature'].invalidFields.contains('marriage.marriagePostalCode') ? 'validation-failed' : ''}" title="<g:message code="mdr.property.marriagePostalCode.validationError" />"  maxlength="2" />
             
 
     

@@ -74,27 +74,27 @@
       <h4><g:message code="hsr.property.otherContactInformations.label" /></h4>
       <dl>
         
-          <dt><g:message code="hsr.property.otherContactLastName.label" /></dt><dd>${rqt.otherContactLastName?.toString()}</dd>
+          <dt><g:message code="hsr.property.otherContactLastName.label" /></dt><dd>${rqt.otherContactInformations?.otherContactLastName?.toString()}</dd>
 
         
-          <dt><g:message code="hsr.property.otherContactFirstName.label" /></dt><dd>${rqt.otherContactFirstName?.toString()}</dd>
+          <dt><g:message code="hsr.property.otherContactFirstName.label" /></dt><dd>${rqt.otherContactInformations?.otherContactFirstName?.toString()}</dd>
 
         
           <dt><g:message code="hsr.property.otherContactAddress.label" /></dt>
           <dd>
-          <g:if test="${rqt.otherContactAddress}">
-              <p>${rqt.otherContactAddress?.additionalDeliveryInformation}</p>
-              <p>${rqt.otherContactAddress?.additionalGeographicalInformation}</p>
-              <p>${rqt.otherContactAddress?.streetNumber} ${rqt.otherContactAddress?.streetName}</p>
-              <p>${rqt.otherContactAddress?.placeNameOrService}</p>
-              <p>${rqt.otherContactAddress?.postalCode} ${rqt.otherContactAddress?.city}</p>
-              <p>${rqt.otherContactAddress?.countryName}</p>
+          <g:if test="${rqt.otherContactInformations?.otherContactAddress}">
+              <p>${rqt.otherContactInformations?.otherContactAddress?.additionalDeliveryInformation}</p>
+              <p>${rqt.otherContactInformations?.otherContactAddress?.additionalGeographicalInformation}</p>
+              <p>${rqt.otherContactInformations?.otherContactAddress?.streetNumber} ${rqt.otherContactInformations?.otherContactAddress?.streetName}</p>
+              <p>${rqt.otherContactInformations?.otherContactAddress?.placeNameOrService}</p>
+              <p>${rqt.otherContactInformations?.otherContactAddress?.postalCode} ${rqt.otherContactInformations?.otherContactAddress?.city}</p>
+              <p>${rqt.otherContactInformations?.otherContactAddress?.countryName}</p>
           </g:if>
           </dd>
           
 
         
-          <dt><g:message code="hsr.property.otherContactPhone.label" /></dt><dd>${rqt.otherContactPhone?.toString()}</dd>
+          <dt><g:message code="hsr.property.otherContactPhone.label" /></dt><dd>${rqt.otherContactInformations?.otherContactPhone?.toString()}</dd>
 
         
       </dl>

@@ -4,6 +4,7 @@ import fr.cg95.cvq.business.request.Request;
 import fr.cg95.cvq.business.request.social.RemoteSupportRequest;
 import fr.cg95.cvq.business.request.social.RsrContactKindType;
 import fr.cg95.cvq.business.request.social.RsrRequestInformationRequestKindType;
+import fr.cg95.cvq.business.request.social.RsrRequestInformation;
 import fr.cg95.cvq.service.request.condition.EqualityChecker;
 import fr.cg95.cvq.service.request.impl.RequestService;
 
@@ -21,6 +22,14 @@ public class RemoteSupportRequestService extends RequestService {
         RemoteSupportRequest.conditions.put("requestInformationEmergency",
             new EqualityChecker("true"));
         RemoteSupportRequest.conditions.put("contactKind", new EqualityChecker(RsrContactKindType.OTHER.name()));
+        
+        // kept them for client side JS validation script
+        RemoteSupportRequest.conditions.put("requestInformation.requestInformationEmergency",
+                new EqualityChecker("true"));
+        
+        // added for server side vaidation
+        RsrRequestInformation.conditions.put("rsrRequestInformation.requestInformationEmergency",
+                new EqualityChecker("true"));
     }
 
     @Override

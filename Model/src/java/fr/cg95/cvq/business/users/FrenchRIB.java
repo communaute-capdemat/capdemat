@@ -37,13 +37,12 @@ public class FrenchRIB implements Serializable, Cloneable {
         return frenchRIB;
     }
 
-    public static FrenchRIBType modelToXml(FrenchRIB frenchRIB) {
-        if (frenchRIB == null) return null;
+    public FrenchRIBType modelToXml() {
         FrenchRIBType frenchRIBType = FrenchRIBType.Factory.newInstance();
-        frenchRIBType.setAccountKey(frenchRIB.getAccountKey());
-        frenchRIBType.setAccountNumber(frenchRIB.getAccountNumber());
-        frenchRIBType.setBankCode(frenchRIB.getBankCode());
-        frenchRIBType.setCounterCode(frenchRIB.getCounterCode());
+        frenchRIBType.setAccountKey(this.getAccountKey());
+        frenchRIBType.setAccountNumber(this.getAccountNumber());
+        frenchRIBType.setBankCode(this.getBankCode());
+        frenchRIBType.setCounterCode(this.getCounterCode());
         return frenchRIBType;
     }
 

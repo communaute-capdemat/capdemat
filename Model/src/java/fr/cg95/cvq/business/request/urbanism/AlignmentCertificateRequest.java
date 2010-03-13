@@ -110,7 +110,7 @@ public class AlignmentCertificateRequest extends Request implements Serializable
             alignmentCertificateRequest.setNumber(new BigInteger(getNumber().toString()));
       
         if (getOwnerAddress() != null)
-            alignmentCertificateRequest.setOwnerAddress(Address.modelToXml(getOwnerAddress()));
+            alignmentCertificateRequest.setOwnerAddress(getOwnerAddress().modelToXml());
       
         alignmentCertificateRequest.setOwnerFirstNames(getOwnerFirstNames());
       

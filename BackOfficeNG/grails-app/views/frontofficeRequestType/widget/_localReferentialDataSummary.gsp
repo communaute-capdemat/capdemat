@@ -1,5 +1,6 @@
-<g:set var="lrDatas" value="${rqt[javaName].collect{it.name}}" />
-<ul ${depth==0 ? 'class="dataTree"' : ''}>
+<g:set var="lrDatas" value="${wrapper != null ? wrapper[javaName].collect{it.name} : null}" />
+<g:if test="${lrTypes[javaName].isMultiple()}">
+  <ul ${depth==0 ? 'class="dataTree"' : ''}>
   <g:each status="i" var="entry" in="${lrEntries}">
     <g:if test="${entry.entries}">
       <li>

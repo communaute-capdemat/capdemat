@@ -109,6 +109,22 @@ public class Address implements Serializable,Cloneable {
         return addressType;
     }
 
+    public AddressType modelToXml() {
+
+        AddressType addressType = AddressType.Factory.newInstance();
+        if (this.getId() != null)
+            addressType.setId(this.getId().longValue());
+        addressType.setAdditionalDeliveryInformation(this.getAdditionalDeliveryInformation());
+        addressType.setAdditionalGeographicalInformation(this.getAdditionalGeographicalInformation());
+        addressType.setStreetNumber(this.getStreetNumber());
+        addressType.setStreetName(this.getStreetName());
+        addressType.setPostalCode(this.getPostalCode());
+        addressType.setCity(this.getCity());
+        addressType.setPlaceNameOrService(this.getPlaceNameOrService());
+        addressType.setCountryName(this.getCountryName());
+        return addressType;
+    }
+
     public static Address xmlToModel(AddressType addressType) {
 
         if (addressType != null) {

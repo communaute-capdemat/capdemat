@@ -39,12 +39,6 @@ public class ModelPlugin implements IPluginGenerator {
     /** whether or not we are currently inspecting a locally defined complex type */
     private boolean insideLocalComplexType = false;
 
-    /**
-     * for a locally defined complex type, whether or not we expand its elements directly
-     * inside the request object (the case for one to one relationships)
-     */
-    private boolean explodeLocalComplexType = false;
-
     /*
      * left choice elements support for historical purposes
      * but there are currently not used anymore
@@ -127,7 +121,6 @@ public class ModelPlugin implements IPluginGenerator {
         if (depth == 1) {
             insideChoiceElement = false;
             insideLocalComplexType = false;
-            explodeLocalComplexType = false;
             choiceKey = null;
             choiceName = null;
             choiceDefaultValue = null;
@@ -156,30 +149,21 @@ public class ModelPlugin implements IPluginGenerator {
                 return;
             } else if (elementProperties.isRequestType() && elementProperties.isComplexType()) {
 
+                logger.debug(getIndent() + "Local complex type : " + elementProperties.getXmlSchemaType());
+
                 currentContainerComplexElement = currentElement;
                 // keep a trace of the parent complex element type
                 currentContainerComplexElementType = elementProperties.getXmlSchemaType();
 
                 insideLocalComplexType = true;
 
-                if (elementProperties.getMaxOccurs() != null
-                    && elementProperties.getMaxOccurs().intValue() == 1) {
-                    // a local complex type, expand its elements inside current request
-                    // if maxOccurs = 1 (so ignore container type)
-                    logger.debug(getIndent() + "Local complex type with a one relationship");
-                    explodeLocalComplexType = true;
-                } else {
-                    // a local complex type with a one-to-many relationship
-                    // add as a field of the request itself
-                    logger.debug(getIndent() + "Local complex type with a many relationship : " 
-                            + elementProperties.getXmlSchemaType());
-                    modelRequestObject.addField(currentElement, elementProperties, null, null);
-                    explodeLocalComplexType = false;
-                    // and also add as to be generated as its own type
-                    modelRequestObject
-                        .addComplexType(elementProperties.getXmlSchemaType(), elementProperties)
-                            .getProperties().setElementName(currentElement);
-                }
+                // add the complex type as a request field
+                modelRequestObject.addField(currentElement, elementProperties, null, null);
+
+                // also add as to be generated as its own type
+                modelRequestObject.addComplexType(elementProperties.getXmlSchemaType(), elementProperties)
+                    .getProperties().setElementName(currentElement);
+
             } else {
                 // a "normal" first-level element :-)
                 modelRequestObject.addField(currentElement, elementProperties, null, null);
@@ -191,15 +175,8 @@ public class ModelPlugin implements IPluginGenerator {
         // depth can now only be equal to 2
         if (depth == 2) {
             if (insideLocalComplexType) {
-                if (!explodeLocalComplexType) {
-                    modelRequestObject.addElementToComplexType(currentContainerComplexElementType,
-                            currentElement, elementProperties);
-                } else {
-                    // at this depth, only interested in locally defined elements
-                    modelRequestObject.addField(currentElement, elementProperties,
-                            currentContainerComplexElementType,
-                            currentContainerComplexElement);
-                }
+                modelRequestObject.addElementToComplexType(currentContainerComplexElementType,
+                        currentElement, elementProperties);
             } else if (insideChoiceElement) {
                 if (!elementProperties.isChoiceElement()) {
                     logger.error("startElementProperties() Was expecting choice element !");

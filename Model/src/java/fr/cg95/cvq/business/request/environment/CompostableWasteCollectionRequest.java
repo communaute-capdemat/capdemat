@@ -105,7 +105,7 @@ public class CompostableWasteCollectionRequest extends Request implements Serial
         int i = 0;
         
         if (getCollectionAddress() != null)
-            compostableWasteCollectionRequest.setCollectionAddress(Address.modelToXml(getCollectionAddress()));
+            compostableWasteCollectionRequest.setCollectionAddress(getCollectionAddress().modelToXml());
       
         i = 0;
         if (getCompostableWasteType() != null) {

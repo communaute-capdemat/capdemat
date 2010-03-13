@@ -61,13 +61,8 @@ public class MarriageDetailsRequestData implements Serializable {
         
           
             
-        result.setFatherFirstNames(fatherFirstNames);
-      
-          
-        
-          
-            
-        result.setFatherLastName(fatherLastName);
+        if (fatherInformation != null)
+            result.setFatherInformation(fatherInformation.clone());
       
           
         
@@ -82,55 +77,29 @@ public class MarriageDetailsRequestData implements Serializable {
         
           
             
-        result.setMarriageCity(marriageCity);
+        if (marriage != null)
+            result.setMarriage(marriage.clone());
       
           
         
           
             
-        result.setMarriageDate(marriageDate);
+        if (marriageHusband != null)
+            result.setMarriageHusband(marriageHusband.clone());
       
           
         
           
             
-        result.setMarriageHusbandFirstNames(marriageHusbandFirstNames);
+        if (marriageWife != null)
+            result.setMarriageWife(marriageWife.clone());
       
           
         
           
             
-        result.setMarriageHusbandLastName(marriageHusbandLastName);
-      
-          
-        
-          
-            
-        result.setMarriagePostalCode(marriagePostalCode);
-      
-          
-        
-          
-            
-        result.setMarriageWifeFirstNames(marriageWifeFirstNames);
-      
-          
-        
-          
-            
-        result.setMarriageWifeLastName(marriageWifeLastName);
-      
-          
-        
-          
-            
-        result.setMotherFirstNames(motherFirstNames);
-      
-          
-        
-          
-            
-        result.setMotherMaidenName(motherMaidenName);
+        if (motherInformation != null)
+            result.setMotherInformation(motherInformation.clone());
       
           
         
@@ -236,14 +205,14 @@ public class MarriageDetailsRequestData implements Serializable {
     }
   
     
-      @NotNull(
+      @AssertValid(
         
         
           when = "groovy:def active = true;" +
           
-            
             "active &= _this.conditions['format'].test(_this.format.toString());" +
                 
+              
               
             
             "return active",
@@ -252,16 +221,31 @@ public class MarriageDetailsRequestData implements Serializable {
         message = "fatherFirstNames"
       )
     
-      @NotBlank(
+    private String fatherFirstNames;
+
+    public final void setFatherFirstNames(final String fatherFirstNames) {
+        this.fatherFirstNames = fatherFirstNames;
+    }
+
+    /**
+ 
+        * @hibernate.property
+        *  column="father_first_names"
+        
+      
+    */
+    public final String getFatherFirstNames() {
+        return this.fatherFirstNames;
+    }
+  
+    
+      @MaxLength(
+        
+          value = 38,
         
         
           when = "groovy:def active = true;" +
           
-            
-            "active &= _this.conditions['format'].test(_this.format.toString());" +
-                
-              
-            
             "return active",
         
         profiles = {"type"},
@@ -290,59 +274,40 @@ public class MarriageDetailsRequestData implements Serializable {
           when = "groovy:def active = true;" +
           
             
-            "active &= _this.conditions['format'].test(_this.format.toString());" +
-                
-              
-            
             "return active",
         
         profiles = {"type"},
-        message = "fatherLastName"
+        message = "fatherInformation"
       )
     
-      @NotNull(
-        
-        
-          when = "groovy:def active = true;" +
-          
-            
-            "active &= _this.conditions['format'].test(_this.format.toString());" +
-                
-              
-            
-            "return active",
-        
-        profiles = {"type"},
-        message = "fatherLastName"
-      )
-    
-      @NotBlank(
-        
-        
-          when = "groovy:def active = true;" +
-          
-            
-            "active &= _this.conditions['format'].test(_this.format.toString());" +
-                
-              
-            
-            "return active",
-        
-        profiles = {"type"},
-        message = "fatherLastName"
-      )
-    
-    private String fatherLastName;
+    private fr.cg95.cvq.business.request.civil.MarriageFatherInformation fatherInformation;
 
+    public final void setFatherLastName(final String fatherLastName) {
+        this.fatherLastName = fatherLastName;
     public void setFatherLastName(final String fatherLastName) {
         this.fatherLastName = fatherLastName;
+    public final void setFatherInformation(final fr.cg95.cvq.business.request.civil.MarriageFatherInformation fatherInformation) {
+        this.fatherInformation = fatherInformation;
     }
 
  
+        * @hibernate.property
+        *  column="father_last_name"
+        *  length="38"
     @Column(name="father_last_name" , length=38 )
+        * @hibernate.many-to-one
+        *  cascade="all"
+        *  column="father_information_id"
+        *  class="fr.cg95.cvq.business.request.civil.MarriageFatherInformation"
       
+    */
+    public final String getFatherLastName() {
+        return this.fatherLastName;
     public String getFatherLastName() {
         return this.fatherLastName;
+    */
+    public final fr.cg95.cvq.business.request.civil.MarriageFatherInformation getFatherInformation() {
+        return this.fatherInformation;
     }
   
     
@@ -368,40 +333,48 @@ public class MarriageDetailsRequestData implements Serializable {
     }
   
     
-      @MaxLength(
-        
-          value = 32,
-        
-        
-        profiles = {"nature"},
-        message = "marriageCity"
-      )
-    
       @NotNull(
         
         
         profiles = {"nature"},
-        message = "marriageCity"
+        message = "marriage"
       )
     
-      @NotBlank(
+      @AssertValid(
         
         
         profiles = {"nature"},
-        message = "marriageCity"
+        message = "marriage"
       )
     
-    private String marriageCity;
+    private fr.cg95.cvq.business.request.civil.MarriageInformation marriage;
 
+    public final void setMarriageCity(final String marriageCity) {
+        this.marriageCity = marriageCity;
     public void setMarriageCity(final String marriageCity) {
         this.marriageCity = marriageCity;
+    public final void setMarriage(final fr.cg95.cvq.business.request.civil.MarriageInformation marriage) {
+        this.marriage = marriage;
     }
 
  
+        * @hibernate.property
+        *  column="marriage_city"
+        *  length="32"
     @Column(name="marriage_city" , length=32 )
+        * @hibernate.many-to-one
+        *  cascade="all"
+        *  column="marriage_id"
+        *  class="fr.cg95.cvq.business.request.civil.MarriageInformation"
       
+    */
+    public final String getMarriageCity() {
+        return this.marriageCity;
     public String getMarriageCity() {
         return this.marriageCity;
+    */
+    public final fr.cg95.cvq.business.request.civil.MarriageInformation getMarriage() {
+        return this.marriage;
     }
   
     
@@ -409,9 +382,28 @@ public class MarriageDetailsRequestData implements Serializable {
         
         
         profiles = {"nature"},
-        message = "marriageDate"
+        message = "marriageHusband"
       )
     
+    private java.util.Date marriageDate;
+
+    public final void setMarriageDate(final java.util.Date marriageDate) {
+        this.marriageDate = marriageDate;
+    }
+
+    /**
+ 
+        * @hibernate.property
+        *  column="marriage_date"
+        
+      
+    */
+    public final java.util.Date getMarriageDate() {
+        return this.marriageDate;
+    }
+  
+    
+      @NotNull(
     private java.util.Date marriageDate;
 
     public void setMarriageDate(final java.util.Date marriageDate) {
@@ -427,28 +419,66 @@ public class MarriageDetailsRequestData implements Serializable {
   
     
       @NotNull(
+      @AssertValid(
         
         
         profiles = {"nature"},
-        message = "marriageHusbandFirstNames"
+        message = "marriageHusband"
+      )
+    
+    private fr.cg95.cvq.business.request.civil.MarriageHusbandInformation marriageHusband;
+
+    public final void setMarriageHusbandFirstNames(final String marriageHusbandFirstNames) {
+        this.marriageHusbandFirstNames = marriageHusbandFirstNames;
+    public void setMarriageHusbandFirstNames(final String marriageHusbandFirstNames) {
+        this.marriageHusbandFirstNames = marriageHusbandFirstNames;
+    public final void setMarriageHusband(final fr.cg95.cvq.business.request.civil.MarriageHusbandInformation marriageHusband) {
+        this.marriageHusband = marriageHusband;
+    }
+
+ 
+        * @hibernate.property
+        *  column="marriage_husband_first_names"
+        
+    @Column(name="marriage_husband_first_names"  )
+        * @hibernate.many-to-one
+        *  cascade="all"
+        *  column="marriage_husband_id"
+        *  class="fr.cg95.cvq.business.request.civil.MarriageHusbandInformation"
+      
+    */
+    public final String getMarriageHusbandFirstNames() {
+        return this.marriageHusbandFirstNames;
+    }
+  
+    
+      @MaxLength(
+        
+          value = 38,
+        
+        
+        profiles = {"nature"},
+        message = "marriageHusbandLastName"
+      )
+    
+      @NotNull(
+        
+        
+        profiles = {"nature"},
+        message = "marriageHusbandLastName"
       )
     
       @NotBlank(
         
         
         profiles = {"nature"},
-        message = "marriageHusbandFirstNames"
+        message = "marriageHusbandLastName"
       )
     
-    private String marriageHusbandFirstNames;
+    private String marriageHusbandLastName;
 
-    public void setMarriageHusbandFirstNames(final String marriageHusbandFirstNames) {
-        this.marriageHusbandFirstNames = marriageHusbandFirstNames;
-    }
-
- 
-    @Column(name="marriage_husband_first_names"  )
-      
+    public final void setMarriageHusbandLastName(final String marriageHusbandLastName) {
+        this.marriageHusbandLastName = marriageHusbandLastName;
     public String getMarriageHusbandFirstNames() {
         return this.marriageHusbandFirstNames;
     }
@@ -481,9 +511,18 @@ public class MarriageDetailsRequestData implements Serializable {
 
     public void setMarriageHusbandLastName(final String marriageHusbandLastName) {
         this.marriageHusbandLastName = marriageHusbandLastName;
+    */
+    public final fr.cg95.cvq.business.request.civil.MarriageHusbandInformation getMarriageHusband() {
+        return this.marriageHusband;
     }
-
- 
+        * @hibernate.property
+        *  column="marriage_husband_last_name"
+        *  length="38"
+      
+    */
+    public final String getMarriageHusbandLastName() {
+        return this.marriageHusbandLastName;
+    }
     @Column(name="marriage_husband_last_name" , length=38 )
       
     public String getMarriageHusbandLastName() {
@@ -491,51 +530,118 @@ public class MarriageDetailsRequestData implements Serializable {
     }
   
     
-      @MaxLength(
-        
-          value = 2,
-        
-        
-        profiles = {"nature"},
-        message = "marriagePostalCode"
-      )
-    
       @NotNull(
         
         
         profiles = {"nature"},
-        message = "marriagePostalCode"
+        message = "marriageWife"
       )
     
-      @NotBlank(
+      @AssertValid(
         
         
         profiles = {"nature"},
-        message = "marriagePostalCode"
+        message = "marriageWife"
       )
     
-    private String marriagePostalCode;
+    private fr.cg95.cvq.business.request.civil.MarriageWifeInformation marriageWife;
 
+    public final void setMarriagePostalCode(final String marriagePostalCode) {
+        this.marriagePostalCode = marriagePostalCode;
     public void setMarriagePostalCode(final String marriagePostalCode) {
         this.marriagePostalCode = marriagePostalCode;
+    public final void setMarriageWife(final fr.cg95.cvq.business.request.civil.MarriageWifeInformation marriageWife) {
+        this.marriageWife = marriageWife;
     }
 
  
+        * @hibernate.property
+        *  column="marriage_postal_code"
+        *  length="2"
     @Column(name="marriage_postal_code" , length=2 )
+        * @hibernate.many-to-one
+        *  cascade="all"
+        *  column="marriage_wife_id"
+        *  class="fr.cg95.cvq.business.request.civil.MarriageWifeInformation"
       
+    */
+    public final String getMarriagePostalCode() {
+        return this.marriagePostalCode;
     public String getMarriagePostalCode() {
         return this.marriagePostalCode;
+    */
+    public final fr.cg95.cvq.business.request.civil.MarriageWifeInformation getMarriageWife() {
+        return this.marriageWife;
     }
   
     
-      @NotNull(
+      @AssertValid(
         
         
         profiles = {"nature"},
         message = "marriageWifeFirstNames"
       )
     
+    private String marriageWifeFirstNames;
+
+    public final void setMarriageWifeFirstNames(final String marriageWifeFirstNames) {
+        this.marriageWifeFirstNames = marriageWifeFirstNames;
+    }
+
+    /**
+ 
+        * @hibernate.property
+        *  column="marriage_wife_first_names"
+        
+      
+    */
+    public final String getMarriageWifeFirstNames() {
+        return this.marriageWifeFirstNames;
+    }
+  
+    
+      @MaxLength(
+        
+          value = 38,
+        
+        
+        profiles = {"nature"},
+        message = "marriageWifeLastName"
+      )
+    
+      @NotNull(
+        
+        
+        profiles = {"nature"},
+        message = "marriageWifeLastName"
+      )
+    
       @NotBlank(
+        
+        
+        profiles = {"nature"},
+        message = "marriageWifeLastName"
+      )
+    
+    private String marriageWifeLastName;
+
+    public final void setMarriageWifeLastName(final String marriageWifeLastName) {
+        this.marriageWifeLastName = marriageWifeLastName;
+    }
+
+    /**
+ 
+        * @hibernate.property
+        *  column="marriage_wife_last_name"
+        *  length="38"
+      
+    */
+    public final String getMarriageWifeLastName() {
+        return this.marriageWifeLastName;
+    }
+  
+    
+      @NotNull(
         
         
         profiles = {"nature"},
@@ -598,9 +704,9 @@ public class MarriageDetailsRequestData implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            
             "active &= _this.conditions['format'].test(_this.format.toString());" +
                 
+              
               
             
             "return active",
@@ -609,7 +715,27 @@ public class MarriageDetailsRequestData implements Serializable {
         message = "motherFirstNames"
       )
     
-      @NotBlank(
+    private String motherFirstNames;
+
+    public final void setMotherFirstNames(final String motherFirstNames) {
+        this.motherFirstNames = motherFirstNames;
+    }
+
+    /**
+ 
+        * @hibernate.property
+        *  column="mother_first_names"
+        
+      
+    */
+    public final String getMotherFirstNames() {
+        return this.motherFirstNames;
+    }
+  
+    
+      @MaxLength(
+        
+          value = 38,
         
         
           when = "groovy:def active = true;" +
@@ -618,7 +744,6 @@ public class MarriageDetailsRequestData implements Serializable {
             "active &= _this.conditions['format'].test(_this.format.toString());" +
                 
               
-            
             "return active",
         
         profiles = {"type"},
@@ -654,52 +779,37 @@ public class MarriageDetailsRequestData implements Serializable {
             "return active",
         
         profiles = {"type"},
-        message = "motherMaidenName"
+        message = "motherInformation"
       )
     
-      @NotNull(
-        
-        
-          when = "groovy:def active = true;" +
-          
-            
-            "active &= _this.conditions['format'].test(_this.format.toString());" +
-                
-              
-            
-            "return active",
-        
-        profiles = {"type"},
-        message = "motherMaidenName"
-      )
-    
-      @NotBlank(
-        
-        
-          when = "groovy:def active = true;" +
-          
-            
-            "active &= _this.conditions['format'].test(_this.format.toString());" +
-                
-              
-            
-            "return active",
-        
-        profiles = {"type"},
-        message = "motherMaidenName"
-      )
-    
-    private String motherMaidenName;
+    private fr.cg95.cvq.business.request.civil.MarriageMotherInformation motherInformation;
 
+    public final void setMotherMaidenName(final String motherMaidenName) {
+        this.motherMaidenName = motherMaidenName;
     public void setMotherMaidenName(final String motherMaidenName) {
         this.motherMaidenName = motherMaidenName;
+    public final void setMotherInformation(final fr.cg95.cvq.business.request.civil.MarriageMotherInformation motherInformation) {
+        this.motherInformation = motherInformation;
     }
 
  
+        * @hibernate.property
+        *  column="mother_maiden_name"
+        *  length="38"
     @Column(name="mother_maiden_name" , length=38 )
+        * @hibernate.many-to-one
+        *  cascade="all"
+        *  column="mother_information_id"
+        *  class="fr.cg95.cvq.business.request.civil.MarriageMotherInformation"
       
+    */
+    public final String getMotherMaidenName() {
+        return this.motherMaidenName;
     public String getMotherMaidenName() {
         return this.motherMaidenName;
+    */
+    public final fr.cg95.cvq.business.request.civil.MarriageMotherInformation getMotherInformation() {
+        return this.motherInformation;
     }
   
     
@@ -725,6 +835,7 @@ public class MarriageDetailsRequestData implements Serializable {
           
             "active &= _this.conditions['format'].test(_this.format.toString());" +
                 
+              
               
             
             

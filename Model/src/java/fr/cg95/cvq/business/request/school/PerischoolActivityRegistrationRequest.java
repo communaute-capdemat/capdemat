@@ -172,7 +172,7 @@ public class PerischoolActivityRegistrationRequest extends Request implements Se
             perischoolActivityRegistrationRequest.setRulesAndRegulationsAcceptance(getRulesAndRegulationsAcceptance().booleanValue());
       
         if (getSchool() != null)
-            perischoolActivityRegistrationRequest.setSchool(School.modelToXml(getSchool()));
+            perischoolActivityRegistrationRequest.setSchool(getSchool().modelToXml());
       
         if (getSection() != null)
             perischoolActivityRegistrationRequest.setSection(fr.cg95.cvq.xml.common.SectionType.Enum.forString(getSection().getLegacyLabel()));

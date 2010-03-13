@@ -9,6 +9,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.HashMap;
 import org.joda.time.LocalTime;
 
 import net.sf.oval.constraint.*;
@@ -36,6 +37,7 @@ public class RecreationAuthorizedIndividual implements Serializable {
 
     public static final Map<String, IConditionChecker> conditions =
         RecreationActivityRegistrationRequest.conditions;
+        new HashMap<String, IConditionChecker>();
 
     public RecreationAuthorizedIndividual() {
         super();
@@ -63,7 +65,7 @@ public class RecreationAuthorizedIndividual implements Serializable {
         recreationAuthorizedIndividual.setOfficePhone(this.officePhone);
       
         if (this.address != null)
-            recreationAuthorizedIndividual.setAddress(Address.modelToXml(this.address));
+            recreationAuthorizedIndividual.setAddress(this.address.modelToXml());
       
         recreationAuthorizedIndividual.setFirstName(this.firstName);
       

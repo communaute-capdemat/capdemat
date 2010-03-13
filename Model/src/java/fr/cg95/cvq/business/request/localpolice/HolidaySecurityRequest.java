@@ -154,15 +154,9 @@ public class HolidaySecurityRequest extends Request implements Serializable {
       
         if (getOtherContact() != null)
             holidaySecurityRequest.setOtherContact(getOtherContact().booleanValue());
-        HsrOtherContactType hsrOtherContactTypeOtherContactInformations = holidaySecurityRequest.addNewOtherContactInformations();
-        if (getOtherContactAddress() != null)
-            hsrOtherContactTypeOtherContactInformations.setOtherContactAddress(Address.modelToXml(getOtherContactAddress()));
       
-        hsrOtherContactTypeOtherContactInformations.setOtherContactFirstName(getOtherContactFirstName());
-      
-        hsrOtherContactTypeOtherContactInformations.setOtherContactLastName(getOtherContactLastName());
-      
-        hsrOtherContactTypeOtherContactInformations.setOtherContactPhone(getOtherContactPhone());
+        if (getOtherContactInformations() != null)
+            holidaySecurityRequest.setOtherContactInformations(getOtherContactInformations().modelToXml());
       
         if (getRulesAndRegulationsAcceptance() != null)
             holidaySecurityRequest.setRulesAndRegulationsAcceptance(getRulesAndRegulationsAcceptance().booleanValue());
@@ -201,14 +195,8 @@ public class HolidaySecurityRequest extends Request implements Serializable {
       
         holidaySecurityRequest.setOtherContact(Boolean.valueOf(holidaySecurityRequestXml.getOtherContact()));
       
-        if (holidaySecurityRequestXml.getOtherContactInformations().getOtherContactAddress() != null)
-            holidaySecurityRequest.setOtherContactAddress(Address.xmlToModel(holidaySecurityRequestXml.getOtherContactInformations().getOtherContactAddress()));
-      
-        holidaySecurityRequest.setOtherContactFirstName(holidaySecurityRequestXml.getOtherContactInformations().getOtherContactFirstName());
-      
-        holidaySecurityRequest.setOtherContactLastName(holidaySecurityRequestXml.getOtherContactInformations().getOtherContactLastName());
-      
-        holidaySecurityRequest.setOtherContactPhone(holidaySecurityRequestXml.getOtherContactInformations().getOtherContactPhone());
+        if (holidaySecurityRequestXml.getOtherContactInformations() != null)
+            holidaySecurityRequest.setOtherContactInformations(HsrOtherContact.xmlToModel(holidaySecurityRequestXml.getOtherContactInformations()));
       
         holidaySecurityRequest.setRulesAndRegulationsAcceptance(Boolean.valueOf(holidaySecurityRequestXml.getRulesAndRegulationsAcceptance()));
       
@@ -327,40 +315,13 @@ public class HolidaySecurityRequest extends Request implements Serializable {
         return holidaySecurityRequestData.getOtherContact();
     }
   
-    public final void setOtherContactAddress(final fr.cg95.cvq.business.users.Address otherContactAddress) {
-        holidaySecurityRequestData.setOtherContactAddress(otherContactAddress);
+    public final void setOtherContactInformations(final fr.cg95.cvq.business.request.localpolice.HsrOtherContact otherContactInformations) {
+        holidaySecurityRequestData.setOtherContactInformations(otherContactInformations);
     }
 
     
-    public final fr.cg95.cvq.business.users.Address getOtherContactAddress() {
-        return holidaySecurityRequestData.getOtherContactAddress();
-    }
-  
-    public final void setOtherContactFirstName(final String otherContactFirstName) {
-        holidaySecurityRequestData.setOtherContactFirstName(otherContactFirstName);
-    }
-
-    
-    public final String getOtherContactFirstName() {
-        return holidaySecurityRequestData.getOtherContactFirstName();
-    }
-  
-    public final void setOtherContactLastName(final String otherContactLastName) {
-        holidaySecurityRequestData.setOtherContactLastName(otherContactLastName);
-    }
-
-    
-    public final String getOtherContactLastName() {
-        return holidaySecurityRequestData.getOtherContactLastName();
-    }
-  
-    public final void setOtherContactPhone(final String otherContactPhone) {
-        holidaySecurityRequestData.setOtherContactPhone(otherContactPhone);
-    }
-
-    
-    public final String getOtherContactPhone() {
-        return holidaySecurityRequestData.getOtherContactPhone();
+    public final fr.cg95.cvq.business.request.localpolice.HsrOtherContact getOtherContactInformations() {
+        return holidaySecurityRequestData.getOtherContactInformations();
     }
   
     public final void setRulesAndRegulationsAcceptance(final Boolean rulesAndRegulationsAcceptance) {

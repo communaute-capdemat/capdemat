@@ -17,7 +17,11 @@ public class DataBindingUtils {
                     else
                         fieldConstructor = getterMethod.returnType.getConstructor(null)
 
-                    setterMethod.invoke(object, [fieldConstructor.newInstance(null)] as Object[])
+                    def fieldInstance = fieldConstructor.newInstance(null)
+                    setterMethod.invoke(object, [fieldInstance] as Object[])
+
+                    if (!getterMethod.returnType.equals(Class.forName('java.util.List')))
+                        initBind(fieldInstance, param.value)
                 }
                 // add/update a new element to list (it will be update by databinder)
                 if (getterMethod.returnType.equals(Class.forName('java.util.List'))) {

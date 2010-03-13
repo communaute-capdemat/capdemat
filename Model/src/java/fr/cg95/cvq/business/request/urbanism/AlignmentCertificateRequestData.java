@@ -158,6 +158,7 @@ public class AlignmentCertificateRequestData implements Serializable {
             "active &= _this.conditions['requesterQuality'].test(_this.requesterQuality.toString());" +
                 
               
+              
             
             
             "return active",
@@ -173,6 +174,7 @@ public class AlignmentCertificateRequestData implements Serializable {
           
             "active &= _this.conditions['requesterQuality'].test(_this.requesterQuality.toString());" +
                 
+              
               
             
             
@@ -205,6 +207,7 @@ public class AlignmentCertificateRequestData implements Serializable {
             "active &= _this.conditions['requesterQuality'].test(_this.requesterQuality.toString());" +
                 
               
+              
             
             
             "return active",
@@ -220,6 +223,7 @@ public class AlignmentCertificateRequestData implements Serializable {
           
             "active &= _this.conditions['requesterQuality'].test(_this.requesterQuality.toString());" +
                 
+              
               
             
             
@@ -253,6 +257,7 @@ public class AlignmentCertificateRequestData implements Serializable {
             "active &= _this.conditions['requesterQuality'].test(_this.requesterQuality.toString());" +
                 
               
+              
             
             
             "return active",
@@ -269,6 +274,7 @@ public class AlignmentCertificateRequestData implements Serializable {
             "active &= _this.conditions['requesterQuality'].test(_this.requesterQuality.toString());" +
                 
               
+              
             
             
             "return active",
@@ -284,6 +290,7 @@ public class AlignmentCertificateRequestData implements Serializable {
           
             "active &= _this.conditions['requesterQuality'].test(_this.requesterQuality.toString());" +
                 
+              
               
             
             

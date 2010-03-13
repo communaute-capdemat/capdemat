@@ -9,7 +9,7 @@
         <dt><g:message code="bwcr.property.bulkyWasteType.label" /></dt>
           <dd>
           <g:render template="/frontofficeRequestType/widget/localReferentialDataSummary" 
-                    model="['javaName':'bulkyWasteType', 'lrEntries': lrTypes.bulkyWasteType.entries, 'depth':0]" />
+                    model="['wrapper':rqt, 'javaName':'bulkyWasteType', 'lrEntries': lrTypes.bulkyWasteType.entries, 'depth':0]" />
           </dd>
           
 

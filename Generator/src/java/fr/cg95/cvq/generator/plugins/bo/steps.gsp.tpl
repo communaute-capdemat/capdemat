@@ -8,7 +8,9 @@
     }
 %>
 <%
-  def displayWidget(element, wrapper) {
+  def displayWidget(element, parent) {
+    def wrapper = parent == '' ? 'rqt' : 'rqt.' + parent
+    def bindingPath = parent == '' ? element.javaFieldName : parent + '.' + element.javaFieldName
     def widgets = [
       'date' :
           "<span><g:formatDate formatName=\"format.date\" date=\"\${${wrapper}?.${element.javaFieldName}}\"/></span>"
@@ -56,7 +58,7 @@
           """
            <g:render template="/backofficeRequestInstruction/widget/localReferentialDataStatic" 
                      model="['javaName':'${element.javaFieldName}', 'lrEntries': lrTypes.${element.javaFieldName}?.entries, 
-                             'rqt':rqt, 'isMultiple':lrTypes.${element.javaFieldName}?.isMultiple(), 'depth':0]" />
+                             'wrapper':${wrapper}, 'isMultiple':lrTypes.${element.javaFieldName}?.isMultiple(), 'depth':0]" />
  
           """
       ,'school' :
@@ -92,7 +94,7 @@
       default:
         output =
           ["<dt class=\"${element.conditionsClass}\">\${message(code:'" + element.i18nPrefixCode + ".label')}${element.mandatory ? ' *' : ''} :</dt>"
-          ,"<dd id=\"${element.javaFieldName}\" class=\"${element.htmlClass}\" ${element.jsRegexp}>"
+          ,"<dd id=\"${bindingPath}\" class=\"${element.htmlClass}\" ${element.jsRegexp}>"
           ,(widgets[element.widget] != null ? widgets[element.widget] : widgets['text'])
           ,"</dd>"
           ].join()
@@ -121,13 +123,13 @@
       <% for (element in requestBo.getElementsByStep(step, column)) { %>
         <% if (element.typeClass == "SIMPLE") { %>
         <dl>
-          <% displayWidget(element, 'rqt') %>
+          <% displayWidget(element, '') %>
         </dl>
         <% } else if (element.typeClass == "COMPLEX") { %>
         <h3><g:message code="${element.i18nPrefixCode}.label" /></h3>
         <dl class="${element.conditionsClass}">
           <% for (subElement in element.elements) { %>
-              <% displayWidget(subElement, 'rqt') %>
+              <% displayWidget(subElement, element.javaFieldName) %>
           <% } %>
         </dl>
         <% } else if (element.typeClass == "COLLECTION") { %>

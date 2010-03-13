@@ -8,7 +8,9 @@
     }
 %>
 <%
-  def displayWidget(element, wrapper) {
+  def displayWidget(element, parent) {
+    def wrapper = parent == '' ? 'rqt' : 'rqt.' + parent
+    def bindingPath = parent == '' ? element.javaFieldName : parent + '.' + element.javaFieldName
     def widgets = [
       'date' :
           "<span><g:formatDate formatName=\"format.date\" date=\"\${${wrapper}?.${element.javaFieldName}}\"/></span>"
@@ -56,7 +58,11 @@
           """
            <g:render template="/backofficeRequestInstruction/widget/localReferentialDataStatic" 
                      model="['javaName':'${element.javaFieldName}', 'lrEntries': lrTypes.${element.javaFieldName}?.entries, 
+<<<<<<< HEAD
                              'rqt':rqt, 'isMultiple':lrTypes.${element.javaFieldName}?.isMultiple(), 'depth':0]" />
+=======
+                             'wrapper':${wrapper}, 'isMultiple':lrTypes.${element.javaFieldName}?.entriesSupportMultiple, 'depth':0]" />
+>>>>>>> Do not explode local complex types anymore and instead generate them into their own classes
  
           """
       ,'school' :
@@ -74,6 +80,7 @@
       ,'requester' :
           """<g:render template="/backofficeRequestInstruction/requestType/requester" model="['requester':requester]" />"""
     ]
+<<<<<<< HEAD
 
     def outpout
       switch (element.widget) {
@@ -98,6 +105,17 @@
             break
       }
 
+=======
+    
+    
+    def output = ['requester','subject'].contains(element.widget) ? 
+            widgets[element.widget] : 
+          ["<dt class=\"${element.conditionsClass}\"><g:message code=\"${element.i18nPrefixCode}.label\" /> ${element.mandatory ? '*' : ''} : </dt>"
+          ,"<dd id=\"${bindingPath}\" class=\"${element.htmlClass}\" ${element.jsRegexp}>"
+          ,(widgets[element.widget] != null ? widgets[element.widget]: widgets['text'])
+          ,"</dd>"].join()
+          
+>>>>>>> Do not explode local complex types anymore and instead generate them into their own classes
     print output
   } 
 %>
@@ -135,13 +153,13 @@
             <% for (element in requestBo.getElementsByStep(step, column)) { %>
               <% if (element.typeClass == "SIMPLE") { %>
               <dl>
-                <% displayWidget(element, 'rqt') %>
+                <% displayWidget(element, '') %>
               </dl>
               <% } else if (element.typeClass == "COMPLEX") { %>
               <h3><g:message code="${element.i18nPrefixCode}.label" /></h3>
               <dl class="${element.conditionsClass}">
                 <% for (subElement in element.elements) { %>
-                  <% displayWidget(subElement, 'rqt') %>
+                  <% displayWidget(subElement, element.javaFieldName) %>
                 <% } %>
               </dl>
               <% } else if (element.typeClass == "COLLECTION") { %>

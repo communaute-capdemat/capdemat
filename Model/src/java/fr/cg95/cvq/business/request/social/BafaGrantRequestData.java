@@ -178,6 +178,7 @@ public class BafaGrantRequestData implements Serializable {
             "active &= !_this.conditions['isSubjectAccountHolder'].test(_this.isSubjectAccountHolder.toString());" +
                 
               
+              
             
             
             "return active",
@@ -238,6 +239,7 @@ public class BafaGrantRequestData implements Serializable {
             "active &= !_this.conditions['isSubjectAccountHolder'].test(_this.isSubjectAccountHolder.toString());" +
                 
               
+              
             
             
             "return active",
@@ -254,6 +256,7 @@ public class BafaGrantRequestData implements Serializable {
             "active &= !_this.conditions['isSubjectAccountHolder'].test(_this.isSubjectAccountHolder.toString());" +
                 
               
+              
             
             
             "return active",
@@ -269,6 +272,7 @@ public class BafaGrantRequestData implements Serializable {
           
             "active &= !_this.conditions['isSubjectAccountHolder'].test(_this.isSubjectAccountHolder.toString());" +
                 
+              
               
             
             
@@ -302,6 +306,7 @@ public class BafaGrantRequestData implements Serializable {
             "active &= !_this.conditions['isSubjectAccountHolder'].test(_this.isSubjectAccountHolder.toString());" +
                 
               
+              
             
             
             "return active",
@@ -318,6 +323,7 @@ public class BafaGrantRequestData implements Serializable {
             "active &= !_this.conditions['isSubjectAccountHolder'].test(_this.isSubjectAccountHolder.toString());" +
                 
               
+              
             
             
             "return active",
@@ -333,6 +339,7 @@ public class BafaGrantRequestData implements Serializable {
           
             "active &= !_this.conditions['isSubjectAccountHolder'].test(_this.isSubjectAccountHolder.toString());" +
                 
+              
               
             
             
@@ -363,6 +370,7 @@ public class BafaGrantRequestData implements Serializable {
           
             "active &= !_this.conditions['isSubjectAccountHolder'].test(_this.isSubjectAccountHolder.toString());" +
                 
+              
               
             
             

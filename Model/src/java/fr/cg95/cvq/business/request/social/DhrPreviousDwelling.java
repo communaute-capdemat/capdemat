@@ -9,6 +9,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.HashMap;
 import org.joda.time.LocalTime;
 
 import net.sf.oval.constraint.*;
@@ -36,6 +37,7 @@ public class DhrPreviousDwelling implements Serializable {
 
     public static final Map<String, IConditionChecker> conditions =
         DomesticHelpRequest.conditions;
+        new HashMap<String, IConditionChecker>();
 
     public DhrPreviousDwelling() {
         super();
@@ -75,7 +77,7 @@ public class DhrPreviousDwelling implements Serializable {
         }
       
         if (this.dhrPreviousDwellingAddress != null)
-            dhrPreviousDwelling.setDhrPreviousDwellingAddress(Address.modelToXml(this.dhrPreviousDwellingAddress));
+            dhrPreviousDwelling.setDhrPreviousDwellingAddress(this.dhrPreviousDwellingAddress.modelToXml());
       
         date = this.dhrPreviousDwellingArrivalDate;
         if (date != null) {

@@ -5,7 +5,9 @@
     <label class="required"><g:message code="tir.property.interventionType.label" /> *  <span><g:message code="tir.property.interventionType.help" /></span></label>
             <g:set var="interventionTypeIndex" value="${0}" scope="flash" />
             <g:render template="/frontofficeRequestType/widget/localReferentialData" 
-                      model="['javaName':'interventionType', 'i18nPrefixCode':'tir.property.interventionType', 'htmlClass':'required condition-otherIntervention-trigger  ', 
+                      model="['wrapper':rqt, 'wrapperJavaName':'',
+                              'javaName':'interventionType', 'i18nPrefixCode':'tir.property.interventionType',
+                              'htmlClass':'required condition-otherIntervention-trigger  ', 
                               'lrEntries': lrTypes.interventionType.entries, 'depth':0]" />
             
 

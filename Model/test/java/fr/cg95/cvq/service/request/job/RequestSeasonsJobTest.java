@@ -77,9 +77,9 @@ public class RequestSeasonsJobTest extends RequestTestCase {
         request.setRulesAndRegulationsAcceptance(Boolean.valueOf(true));
         request.setSchool(schoolService.getAll().iterator().next());
         request.setUrgencyPhone("0101010101");
-        request.setCurrentSection(SectionType.BEFORE_FIRST_SECTION);
-        request.setCurrentSchoolAddress("CurrentSchoolAddress");
-        request.setCurrentSchoolName("CurrentSchoolName");
+        request.getCurrentSchool().setCurrentSection(SectionType.BEFORE_FIRST_SECTION);
+        request.getCurrentSchool().setCurrentSchoolAddress("CurrentSchoolAddress");
+        request.getCurrentSchool().setCurrentSchoolName("CurrentSchoolName");
         request.setRequesterId(fake.responsibleId);
         request.setSubjectId(fake.childId);
         MeansOfContact meansOfContact =

@@ -113,7 +113,7 @@ public class SewerConnectionRequest extends Request implements Serializable {
             sewerConnectionRequest.setNumber(new BigInteger(getNumber().toString()));
       
         if (getOwnerAddress() != null)
-            sewerConnectionRequest.setOwnerAddress(Address.modelToXml(getOwnerAddress()));
+            sewerConnectionRequest.setOwnerAddress(getOwnerAddress().modelToXml());
       
         sewerConnectionRequest.setOwnerFirstNames(getOwnerFirstNames());
       

@@ -97,13 +97,8 @@ public class BirthDetailsRequestData implements Serializable {
         
           
             
-        result.setFatherFirstNames(fatherFirstNames);
-      
-          
-        
-          
-            
-        result.setFatherLastName(fatherLastName);
+        if (fatherInformation != null)
+            result.setFatherInformation(fatherInformation.clone());
       
           
         
@@ -118,13 +113,8 @@ public class BirthDetailsRequestData implements Serializable {
         
           
             
-        result.setMotherFirstNames(motherFirstNames);
-      
-          
-        
-          
-            
-        result.setMotherMaidenName(motherMaidenName);
+        if (motherInformation != null)
+            result.setMotherInformation(motherInformation.clone());
       
           
         
@@ -404,14 +394,14 @@ public class BirthDetailsRequestData implements Serializable {
     }
   
     
-      @NotNull(
+      @AssertValid(
         
         
           when = "groovy:def active = true;" +
           
-            
             "active &= _this.conditions['format'].test(_this.format.toString());" +
                 
+              
               
             
             "return active",
@@ -420,7 +410,27 @@ public class BirthDetailsRequestData implements Serializable {
         message = "fatherFirstNames"
       )
     
-      @NotBlank(
+    private String fatherFirstNames;
+
+    public final void setFatherFirstNames(final String fatherFirstNames) {
+        this.fatherFirstNames = fatherFirstNames;
+    }
+
+    /**
+ 
+        * @hibernate.property
+        *  column="father_first_names"
+        
+      
+    */
+    public final String getFatherFirstNames() {
+        return this.fatherFirstNames;
+    }
+  
+    
+      @MaxLength(
+        
+          value = 38,
         
         
           when = "groovy:def active = true;" +
@@ -429,7 +439,6 @@ public class BirthDetailsRequestData implements Serializable {
             "active &= _this.conditions['format'].test(_this.format.toString());" +
                 
               
-            
             "return active",
         
         profiles = {"type"},
@@ -465,52 +474,37 @@ public class BirthDetailsRequestData implements Serializable {
             "return active",
         
         profiles = {"type"},
-        message = "fatherLastName"
+        message = "fatherInformation"
       )
     
-      @NotNull(
-        
-        
-          when = "groovy:def active = true;" +
-          
-            
-            "active &= _this.conditions['format'].test(_this.format.toString());" +
-                
-              
-            
-            "return active",
-        
-        profiles = {"type"},
-        message = "fatherLastName"
-      )
-    
-      @NotBlank(
-        
-        
-          when = "groovy:def active = true;" +
-          
-            
-            "active &= _this.conditions['format'].test(_this.format.toString());" +
-                
-              
-            
-            "return active",
-        
-        profiles = {"type"},
-        message = "fatherLastName"
-      )
-    
-    private String fatherLastName;
+    private fr.cg95.cvq.business.request.civil.FatherInformation fatherInformation;
 
+    public final void setFatherLastName(final String fatherLastName) {
+        this.fatherLastName = fatherLastName;
     public void setFatherLastName(final String fatherLastName) {
         this.fatherLastName = fatherLastName;
+    public final void setFatherInformation(final fr.cg95.cvq.business.request.civil.FatherInformation fatherInformation) {
+        this.fatherInformation = fatherInformation;
     }
 
  
+        * @hibernate.property
+        *  column="father_last_name"
+        *  length="38"
     @Column(name="father_last_name" , length=38 )
+        * @hibernate.many-to-one
+        *  cascade="all"
+        *  column="father_information_id"
+        *  class="fr.cg95.cvq.business.request.civil.FatherInformation"
       
+    */
+    public final String getFatherLastName() {
+        return this.fatherLastName;
     public String getFatherLastName() {
         return this.fatherLastName;
+    */
+    public final fr.cg95.cvq.business.request.civil.FatherInformation getFatherInformation() {
+        return this.fatherInformation;
     }
   
     
@@ -536,14 +530,14 @@ public class BirthDetailsRequestData implements Serializable {
     }
   
     
-      @NotNull(
+      @AssertValid(
         
         
           when = "groovy:def active = true;" +
           
-            
             "active &= _this.conditions['format'].test(_this.format.toString());" +
                 
+              
               
             
             "return active",
@@ -552,16 +546,31 @@ public class BirthDetailsRequestData implements Serializable {
         message = "motherFirstNames"
       )
     
-      @NotBlank(
+    private String motherFirstNames;
+
+    public final void setMotherFirstNames(final String motherFirstNames) {
+        this.motherFirstNames = motherFirstNames;
+    }
+
+    /**
+ 
+        * @hibernate.property
+        *  column="mother_first_names"
+        
+      
+    */
+    public final String getMotherFirstNames() {
+        return this.motherFirstNames;
+    }
+  
+    
+      @MaxLength(
+        
+          value = 38,
         
         
           when = "groovy:def active = true;" +
           
-            
-            "active &= _this.conditions['format'].test(_this.format.toString());" +
-                
-              
-            
             "return active",
         
         profiles = {"type"},
@@ -590,59 +599,40 @@ public class BirthDetailsRequestData implements Serializable {
           when = "groovy:def active = true;" +
           
             
-            "active &= _this.conditions['format'].test(_this.format.toString());" +
-                
-              
-            
             "return active",
         
         profiles = {"type"},
-        message = "motherMaidenName"
+        message = "motherInformation"
       )
     
-      @NotNull(
-        
-        
-          when = "groovy:def active = true;" +
-          
-            
-            "active &= _this.conditions['format'].test(_this.format.toString());" +
-                
-              
-            
-            "return active",
-        
-        profiles = {"type"},
-        message = "motherMaidenName"
-      )
-    
-      @NotBlank(
-        
-        
-          when = "groovy:def active = true;" +
-          
-            
-            "active &= _this.conditions['format'].test(_this.format.toString());" +
-                
-              
-            
-            "return active",
-        
-        profiles = {"type"},
-        message = "motherMaidenName"
-      )
-    
-    private String motherMaidenName;
+    private fr.cg95.cvq.business.request.civil.MotherInformation motherInformation;
 
+    public final void setMotherMaidenName(final String motherMaidenName) {
+        this.motherMaidenName = motherMaidenName;
     public void setMotherMaidenName(final String motherMaidenName) {
         this.motherMaidenName = motherMaidenName;
+    public final void setMotherInformation(final fr.cg95.cvq.business.request.civil.MotherInformation motherInformation) {
+        this.motherInformation = motherInformation;
     }
 
  
+        * @hibernate.property
+        *  column="mother_maiden_name"
+        *  length="38"
     @Column(name="mother_maiden_name" , length=38 )
+        * @hibernate.many-to-one
+        *  cascade="all"
+        *  column="mother_information_id"
+        *  class="fr.cg95.cvq.business.request.civil.MotherInformation"
       
+    */
+    public final String getMotherMaidenName() {
+        return this.motherMaidenName;
     public String getMotherMaidenName() {
         return this.motherMaidenName;
+    */
+    public final fr.cg95.cvq.business.request.civil.MotherInformation getMotherInformation() {
+        return this.motherInformation;
     }
   
     

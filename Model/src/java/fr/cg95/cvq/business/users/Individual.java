@@ -200,7 +200,7 @@ public abstract class Individual implements Serializable {
             individualType.setCreationDate(calendar);
         }
         if (this.address != null)
-            individualType.setAddress(Address.modelToXml(this.address));
+            individualType.setAddress(this.address.modelToXml());
         if (this.state != null)
             individualType.setState(fr.cg95.cvq.xml.common.UserStateType.Enum.forString(this.state.toString()));
         IndividualRoleType roles[] = new IndividualRoleType[individualRoles.size()];

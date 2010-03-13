@@ -145,6 +145,12 @@ public class BafaGrantRequest extends Request implements Serializable {
       
         bafaGrantRequest.setEdemandeId(getEdemandeId());
       
+        if (getFrenchRIB() != null)
+            bafaGrantRequest.setFrenchRIB(FrenchRIB.modelToXml(getFrenchRIB()));
+      
+        if (getFrenchRIB() != null)
+            bafaGrantRequest.setFrenchRIB(getFrenchRIB().modelToXml());
+      
         date = getInternshipEndDate();
         if (date != null) {
             calendar.setTime(date);
@@ -152,7 +158,7 @@ public class BafaGrantRequest extends Request implements Serializable {
         }
       
         if (getInternshipInstituteAddress() != null)
-            bafaGrantRequest.setInternshipInstituteAddress(Address.modelToXml(getInternshipInstituteAddress()));
+            bafaGrantRequest.setInternshipInstituteAddress(getInternshipInstituteAddress().modelToXml());
       
         bafaGrantRequest.setInternshipInstituteName(getInternshipInstituteName());
       
@@ -166,7 +172,7 @@ public class BafaGrantRequest extends Request implements Serializable {
             bafaGrantRequest.setIsSubjectAccountHolder(getIsSubjectAccountHolder().booleanValue());
       
         if (getSubjectAddress() != null)
-            bafaGrantRequest.setSubjectAddress(Address.modelToXml(getSubjectAddress()));
+            bafaGrantRequest.setSubjectAddress(getSubjectAddress().modelToXml());
       
         bafaGrantRequest.setSubjectBirthCity(getSubjectBirthCity());
       

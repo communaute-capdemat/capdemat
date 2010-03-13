@@ -14,39 +14,39 @@
         
           <dt><g:message code="rsr.property.subjectTitle.label" /></dt>
           <dd>
-            <g:if test="${rqt.subjectTitle}">
-              <g:capdematEnumToField var="${rqt.subjectTitle}" i18nKeyPrefix="rsr.property.subjectTitle" />
+            <g:if test="${rqt.rsrSubject?.subjectTitle}">
+              <g:capdematEnumToField var="${rqt.rsrSubject?.subjectTitle}" i18nKeyPrefix="rsr.property.subjectTitle" />
             </g:if>
           </dd>
           
 
         
           <dt><g:message code="rsr.property.subjectBirthDate.label" /></dt>
-          <dd><g:formatDate formatName="format.date" date="${rqt.subjectBirthDate}"/></dd>
+          <dd><g:formatDate formatName="format.date" date="${rqt.rsrSubject?.subjectBirthDate}"/></dd>
           
 
         
           <dt><g:message code="rsr.property.subjectResideWith.label" /></dt>
           <dd>
-            <g:if test="${rqt.subjectResideWith}">
-              <g:capdematEnumToField var="${rqt.subjectResideWith}" i18nKeyPrefix="rsr.property.subjectResideWith" />
+            <g:if test="${rqt.rsrSubject?.subjectResideWith}">
+              <g:capdematEnumToField var="${rqt.rsrSubject?.subjectResideWith}" i18nKeyPrefix="rsr.property.subjectResideWith" />
             </g:if>
           </dd>
           
 
         
           <dt><g:message code="rsr.property.subjectIsTaxable.label" /></dt>
-          <dd><g:message code="message.${rqt.subjectIsTaxable ? 'yes' : 'no'}" /></dd>
+          <dd><g:message code="message.${rqt.rsrSubject?.subjectIsTaxable ? 'yes' : 'no'}" /></dd>
           
 
         
           <dt><g:message code="rsr.property.subjectIsAPABeneficiary.label" /></dt>
-          <dd><g:message code="message.${rqt.subjectIsAPABeneficiary ? 'yes' : 'no'}" /></dd>
+          <dd><g:message code="message.${rqt.rsrSubject?.subjectIsAPABeneficiary ? 'yes' : 'no'}" /></dd>
           
 
         
           <dt><g:message code="rsr.property.subjectIsDisabledPerson.label" /></dt>
-          <dd><g:message code="message.${rqt.subjectIsDisabledPerson ? 'yes' : 'no'}" /></dd>
+          <dd><g:message code="message.${rqt.rsrSubject?.subjectIsDisabledPerson ? 'yes' : 'no'}" /></dd>
           
 
         
@@ -59,19 +59,19 @@
         
           <dt><g:message code="rsr.property.requestInformationRequestKind.label" /></dt>
           <dd>
-            <g:if test="${rqt.requestInformationRequestKind}">
-              <g:capdematEnumToField var="${rqt.requestInformationRequestKind}" i18nKeyPrefix="rsr.property.requestInformationRequestKind" />
+            <g:if test="${rqt.requestInformation?.requestInformationRequestKind}">
+              <g:capdematEnumToField var="${rqt.requestInformation?.requestInformationRequestKind}" i18nKeyPrefix="rsr.property.requestInformationRequestKind" />
             </g:if>
           </dd>
           
 
         
           <dt><g:message code="rsr.property.requestInformationEmergency.label" /></dt>
-          <dd><g:message code="message.${rqt.requestInformationEmergency ? 'yes' : 'no'}" /></dd>
+          <dd><g:message code="message.${rqt.requestInformation?.requestInformationEmergency ? 'yes' : 'no'}" /></dd>
           
 
         
-          <dt><g:message code="rsr.property.requestInformationEmergencyMotive.label" /></dt><dd>${rqt.requestInformationEmergencyMotive?.toString()}</dd>
+          <dt><g:message code="rsr.property.requestInformationEmergencyMotive.label" /></dt><dd>${rqt.requestInformation?.requestInformationEmergencyMotive?.toString()}</dd>
 
         
       </dl>
@@ -81,28 +81,28 @@
       <h4><g:message code="rsr.property.spouse.label" /></h4>
       <dl>
         
-          <dt><g:message code="rsr.property.spouseLastName.label" /></dt><dd>${rqt.spouseLastName?.toString()}</dd>
+          <dt><g:message code="rsr.property.spouseLastName.label" /></dt><dd>${rqt.spouse?.spouseLastName?.toString()}</dd>
 
         
-          <dt><g:message code="rsr.property.spouseFirstName.label" /></dt><dd>${rqt.spouseFirstName?.toString()}</dd>
+          <dt><g:message code="rsr.property.spouseFirstName.label" /></dt><dd>${rqt.spouse?.spouseFirstName?.toString()}</dd>
 
         
           <dt><g:message code="rsr.property.spouseTitle.label" /></dt>
           <dd>
-            <g:if test="${rqt.spouseTitle}">
-              <g:capdematEnumToField var="${rqt.spouseTitle}" i18nKeyPrefix="rsr.property.spouseTitle" />
+            <g:if test="${rqt.spouse?.spouseTitle}">
+              <g:capdematEnumToField var="${rqt.spouse?.spouseTitle}" i18nKeyPrefix="rsr.property.spouseTitle" />
             </g:if>
           </dd>
           
 
         
           <dt><g:message code="rsr.property.spouseBirthDate.label" /></dt>
-          <dd><g:formatDate formatName="format.date" date="${rqt.spouseBirthDate}"/></dd>
+          <dd><g:formatDate formatName="format.date" date="${rqt.spouse?.spouseBirthDate}"/></dd>
           
 
         
           <dt><g:message code="rsr.property.spouseIsDisabledPerson.label" /></dt>
-          <dd><g:message code="message.${rqt.spouseIsDisabledPerson ? 'yes' : 'no'}" /></dd>
+          <dd><g:message code="message.${rqt.spouse?.spouseIsDisabledPerson ? 'yes' : 'no'}" /></dd>
           
 
         
@@ -131,13 +131,13 @@
       <h4><g:message code="rsr.property.firstContact.label" /></h4>
       <dl>
         
-          <dt><g:message code="rsr.property.contactLastName.label" /></dt><dd>${rqt.contactLastName?.toString()}</dd>
+          <dt><g:message code="rsr.property.contactLastName.label" /></dt><dd>${rqt.firstContact?.contactLastName?.toString()}</dd>
 
         
-          <dt><g:message code="rsr.property.contactFirstName.label" /></dt><dd>${rqt.contactFirstName?.toString()}</dd>
+          <dt><g:message code="rsr.property.contactFirstName.label" /></dt><dd>${rqt.firstContact?.contactFirstName?.toString()}</dd>
 
         
-          <dt><g:message code="rsr.property.contactPhone.label" /></dt><dd>${rqt.contactPhone?.toString()}</dd>
+          <dt><g:message code="rsr.property.contactPhone.label" /></dt><dd>${rqt.firstContact?.contactPhone?.toString()}</dd>
 
         
       </dl>
@@ -147,13 +147,13 @@
       <h4><g:message code="rsr.property.secondContact.label" /></h4>
       <dl>
         
-          <dt><g:message code="rsr.property.secondContactLastName.label" /></dt><dd>${rqt.secondContactLastName?.toString()}</dd>
+          <dt><g:message code="rsr.property.secondContactLastName.label" /></dt><dd>${rqt.secondContact?.secondContactLastName?.toString()}</dd>
 
         
-          <dt><g:message code="rsr.property.secondContactFirstName.label" /></dt><dd>${rqt.secondContactFirstName?.toString()}</dd>
+          <dt><g:message code="rsr.property.secondContactFirstName.label" /></dt><dd>${rqt.secondContact?.secondContactFirstName?.toString()}</dd>
 
         
-          <dt><g:message code="rsr.property.secondContactPhone.label" /></dt><dd>${rqt.secondContactPhone?.toString()}</dd>
+          <dt><g:message code="rsr.property.secondContactPhone.label" /></dt><dd>${rqt.secondContact?.secondContactPhone?.toString()}</dd>
 
         
       </dl>
@@ -163,13 +163,13 @@
       <h4><g:message code="rsr.property.trustee.label" /></h4>
       <dl>
         
-          <dt><g:message code="rsr.property.trusteeLastName.label" /></dt><dd>${rqt.trusteeLastName?.toString()}</dd>
+          <dt><g:message code="rsr.property.trusteeLastName.label" /></dt><dd>${rqt.trustee?.trusteeLastName?.toString()}</dd>
 
         
-          <dt><g:message code="rsr.property.trusteeFirstName.label" /></dt><dd>${rqt.trusteeFirstName?.toString()}</dd>
+          <dt><g:message code="rsr.property.trusteeFirstName.label" /></dt><dd>${rqt.trustee?.trusteeFirstName?.toString()}</dd>
 
         
-          <dt><g:message code="rsr.property.trusteePhone.label" /></dt><dd>${rqt.trusteePhone?.toString()}</dd>
+          <dt><g:message code="rsr.property.trusteePhone.label" /></dt><dd>${rqt.trustee?.trusteePhone?.toString()}</dd>
 
         
       </dl>

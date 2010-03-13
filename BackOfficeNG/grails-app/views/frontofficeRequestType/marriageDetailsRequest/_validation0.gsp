@@ -28,10 +28,10 @@
       <h4><g:message code="mdr.property.marriageHusband.label" /></h4>
       <dl>
         
-          <dt><g:message code="mdr.property.marriageHusbandLastName.label" /></dt><dd>${rqt.marriageHusbandLastName?.toString()}</dd>
+          <dt><g:message code="mdr.property.marriageHusbandLastName.label" /></dt><dd>${rqt.marriageHusband?.marriageHusbandLastName?.toString()}</dd>
 
         
-          <dt><g:message code="mdr.property.marriageHusbandFirstNames.label" /></dt><dd>${rqt.marriageHusbandFirstNames?.toString()}</dd>
+          <dt><g:message code="mdr.property.marriageHusbandFirstNames.label" /></dt><dd>${rqt.marriageHusband?.marriageHusbandFirstNames?.toString()}</dd>
 
         
       </dl>
@@ -41,10 +41,10 @@
       <h4><g:message code="mdr.property.marriageWife.label" /></h4>
       <dl>
         
-          <dt><g:message code="mdr.property.marriageWifeLastName.label" /></dt><dd>${rqt.marriageWifeLastName?.toString()}</dd>
+          <dt><g:message code="mdr.property.marriageWifeLastName.label" /></dt><dd>${rqt.marriageWife?.marriageWifeLastName?.toString()}</dd>
 
         
-          <dt><g:message code="mdr.property.marriageWifeFirstNames.label" /></dt><dd>${rqt.marriageWifeFirstNames?.toString()}</dd>
+          <dt><g:message code="mdr.property.marriageWifeFirstNames.label" /></dt><dd>${rqt.marriageWife?.marriageWifeFirstNames?.toString()}</dd>
 
         
       </dl>
@@ -55,14 +55,14 @@
       <dl>
         
           <dt><g:message code="mdr.property.marriageDate.label" /></dt>
-          <dd><g:formatDate formatName="format.date" date="${rqt.marriageDate}"/></dd>
+          <dd><g:formatDate formatName="format.date" date="${rqt.marriage?.marriageDate}"/></dd>
           
 
         
-          <dt><g:message code="mdr.property.marriageCity.label" /></dt><dd>${rqt.marriageCity?.toString()}</dd>
+          <dt><g:message code="mdr.property.marriageCity.label" /></dt><dd>${rqt.marriage?.marriageCity?.toString()}</dd>
 
         
-          <dt><g:message code="mdr.property.marriagePostalCode.label" /></dt><dd>${rqt.marriagePostalCode?.toString()}</dd>
+          <dt><g:message code="mdr.property.marriagePostalCode.label" /></dt><dd>${rqt.marriage?.marriagePostalCode?.toString()}</dd>
 
         
       </dl>
@@ -130,10 +130,10 @@
       <h4><g:message code="mdr.property.fatherInformation.label" /></h4>
       <dl>
         
-          <dt><g:message code="mdr.property.fatherLastName.label" /></dt><dd>${rqt.fatherLastName?.toString()}</dd>
+          <dt><g:message code="mdr.property.fatherLastName.label" /></dt><dd>${rqt.fatherInformation?.fatherLastName?.toString()}</dd>
 
         
-          <dt><g:message code="mdr.property.fatherFirstNames.label" /></dt><dd>${rqt.fatherFirstNames?.toString()}</dd>
+          <dt><g:message code="mdr.property.fatherFirstNames.label" /></dt><dd>${rqt.fatherInformation?.fatherFirstNames?.toString()}</dd>
 
         
       </dl>
@@ -143,10 +143,10 @@
       <h4><g:message code="mdr.property.motherInformation.label" /></h4>
       <dl>
         
-          <dt><g:message code="mdr.property.motherMaidenName.label" /></dt><dd>${rqt.motherMaidenName?.toString()}</dd>
+          <dt><g:message code="mdr.property.motherMaidenName.label" /></dt><dd>${rqt.motherInformation?.motherMaidenName?.toString()}</dd>
 
         
-          <dt><g:message code="mdr.property.motherFirstNames.label" /></dt><dd>${rqt.motherFirstNames?.toString()}</dd>
+          <dt><g:message code="mdr.property.motherFirstNames.label" /></dt><dd>${rqt.motherInformation?.motherFirstNames?.toString()}</dd>
 
         
       </dl>

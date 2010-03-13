@@ -115,35 +115,30 @@ public class MarriageDetailsRequest extends Request implements Serializable {
       
         if (getCopies() != null)
             marriageDetailsRequest.setCopies(new BigInteger(getCopies().toString()));
-        MarriageFatherInformationType marriageFatherInformationTypeFatherInformation = marriageDetailsRequest.addNewFatherInformation();
-        marriageFatherInformationTypeFatherInformation.setFatherFirstNames(getFatherFirstNames());
       
-        marriageFatherInformationTypeFatherInformation.setFatherLastName(getFatherLastName());
+        if (getFatherInformation() != null)
+            marriageDetailsRequest.setFatherInformation(getFatherInformation().modelToXml());
       
         if (getFormat() != null)
+            marriageDetailsRequest.setFormat(fr.cg95.cvq.xml.request.civil.MarriageCertificateFormatType.Enum.forString(getFormat().toString()));
+        MarriageInformationType marriageInformationTypeMarriage = marriageDetailsRequest.addNewMarriage();
+        marriageInformationTypeMarriage.setMarriageCity(getMarriageCity());
             marriageDetailsRequest.setFormat(fr.cg95.cvq.xml.request.civil.MarriageCertificateFormatType.Enum.forString(getFormat().getLegacyLabel()));
         MarriageInformationType marriageInformationTypeMarriage = marriageDetailsRequest.addNewMarriage();
         marriageInformationTypeMarriage.setMarriageCity(getMarriageCity());
+            marriageDetailsRequest.setFormat(fr.cg95.cvq.xml.request.civil.MarriageCertificateFormatType.Enum.forString(getFormat().toString()));
       
-        date = getMarriageDate();
-        if (date != null) {
-            calendar.setTime(date);
-            marriageInformationTypeMarriage.setMarriageDate(calendar);
-        }
-        MarriageHusbandInformationType marriageHusbandInformationTypeMarriageHusband = marriageDetailsRequest.addNewMarriageHusband();
-        marriageHusbandInformationTypeMarriageHusband.setMarriageHusbandFirstNames(getMarriageHusbandFirstNames());
+        if (getMarriage() != null)
+            marriageDetailsRequest.setMarriage(getMarriage().modelToXml());
       
-        marriageHusbandInformationTypeMarriageHusband.setMarriageHusbandLastName(getMarriageHusbandLastName());
+        if (getMarriageHusband() != null)
+            marriageDetailsRequest.setMarriageHusband(getMarriageHusband().modelToXml());
       
-        marriageInformationTypeMarriage.setMarriagePostalCode(getMarriagePostalCode());
-        MarriageWifeInformationType marriageWifeInformationTypeMarriageWife = marriageDetailsRequest.addNewMarriageWife();
-        marriageWifeInformationTypeMarriageWife.setMarriageWifeFirstNames(getMarriageWifeFirstNames());
+        if (getMarriageWife() != null)
+            marriageDetailsRequest.setMarriageWife(getMarriageWife().modelToXml());
       
-        marriageWifeInformationTypeMarriageWife.setMarriageWifeLastName(getMarriageWifeLastName());
-        MarriageMotherInformationType marriageMotherInformationTypeMotherInformation = marriageDetailsRequest.addNewMotherInformation();
-        marriageMotherInformationTypeMotherInformation.setMotherFirstNames(getMotherFirstNames());
-      
-        marriageMotherInformationTypeMotherInformation.setMotherMaidenName(getMotherMaidenName());
+        if (getMotherInformation() != null)
+            marriageDetailsRequest.setMotherInformation(getMotherInformation().modelToXml());
       
         if (getMotive() != null)
             marriageDetailsRequest.setMotive(fr.cg95.cvq.xml.request.civil.MarriageCertificateMotiveType.Enum.forString(getMotive().getLegacyLabel()));
@@ -176,35 +171,25 @@ public class MarriageDetailsRequest extends Request implements Serializable {
       
         marriageDetailsRequest.setCopies(marriageDetailsRequestXml.getCopies());
       
-        marriageDetailsRequest.setFatherFirstNames(marriageDetailsRequestXml.getFatherInformation().getFatherFirstNames());
-      
-        marriageDetailsRequest.setFatherLastName(marriageDetailsRequestXml.getFatherInformation().getFatherLastName());
+        if (marriageDetailsRequestXml.getFatherInformation() != null)
+            marriageDetailsRequest.setFatherInformation(MarriageFatherInformation.xmlToModel(marriageDetailsRequestXml.getFatherInformation()));
       
         if (marriageDetailsRequestXml.getFormat() != null)
             marriageDetailsRequest.setFormat(fr.cg95.cvq.business.request.civil.MarriageCertificateFormatType.forString(marriageDetailsRequestXml.getFormat().toString()));
         else
             marriageDetailsRequest.setFormat(fr.cg95.cvq.business.request.civil.MarriageCertificateFormatType.getDefaultMarriageCertificateFormatType());
       
-        marriageDetailsRequest.setMarriageCity(marriageDetailsRequestXml.getMarriage().getMarriageCity());
+        if (marriageDetailsRequestXml.getMarriage() != null)
+            marriageDetailsRequest.setMarriage(MarriageInformation.xmlToModel(marriageDetailsRequestXml.getMarriage()));
       
-        calendar = marriageDetailsRequestXml.getMarriage().getMarriageDate();
-        if (calendar != null) {
-            marriageDetailsRequest.setMarriageDate(calendar.getTime());
-        }
+        if (marriageDetailsRequestXml.getMarriageHusband() != null)
+            marriageDetailsRequest.setMarriageHusband(MarriageHusbandInformation.xmlToModel(marriageDetailsRequestXml.getMarriageHusband()));
       
-        marriageDetailsRequest.setMarriageHusbandFirstNames(marriageDetailsRequestXml.getMarriageHusband().getMarriageHusbandFirstNames());
+        if (marriageDetailsRequestXml.getMarriageWife() != null)
+            marriageDetailsRequest.setMarriageWife(MarriageWifeInformation.xmlToModel(marriageDetailsRequestXml.getMarriageWife()));
       
-        marriageDetailsRequest.setMarriageHusbandLastName(marriageDetailsRequestXml.getMarriageHusband().getMarriageHusbandLastName());
-      
-        marriageDetailsRequest.setMarriagePostalCode(marriageDetailsRequestXml.getMarriage().getMarriagePostalCode());
-      
-        marriageDetailsRequest.setMarriageWifeFirstNames(marriageDetailsRequestXml.getMarriageWife().getMarriageWifeFirstNames());
-      
-        marriageDetailsRequest.setMarriageWifeLastName(marriageDetailsRequestXml.getMarriageWife().getMarriageWifeLastName());
-      
-        marriageDetailsRequest.setMotherFirstNames(marriageDetailsRequestXml.getMotherInformation().getMotherFirstNames());
-      
-        marriageDetailsRequest.setMotherMaidenName(marriageDetailsRequestXml.getMotherInformation().getMotherMaidenName());
+        if (marriageDetailsRequestXml.getMotherInformation() != null)
+            marriageDetailsRequest.setMotherInformation(MarriageMotherInformation.xmlToModel(marriageDetailsRequestXml.getMotherInformation()));
       
         if (marriageDetailsRequestXml.getMotive() != null)
             marriageDetailsRequest.setMotive(fr.cg95.cvq.business.request.civil.MarriageCertificateMotiveType.forString(marriageDetailsRequestXml.getMotive().toString()));
@@ -281,22 +266,13 @@ public class MarriageDetailsRequest extends Request implements Serializable {
         return marriageDetailsRequestData.getCopies();
     }
   
-    public final void setFatherFirstNames(final String fatherFirstNames) {
-        marriageDetailsRequestData.setFatherFirstNames(fatherFirstNames);
+    public final void setFatherInformation(final fr.cg95.cvq.business.request.civil.MarriageFatherInformation fatherInformation) {
+        marriageDetailsRequestData.setFatherInformation(fatherInformation);
     }
 
     
-    public final String getFatherFirstNames() {
-        return marriageDetailsRequestData.getFatherFirstNames();
-    }
-  
-    public final void setFatherLastName(final String fatherLastName) {
-        marriageDetailsRequestData.setFatherLastName(fatherLastName);
-    }
-
-    
-    public final String getFatherLastName() {
-        return marriageDetailsRequestData.getFatherLastName();
+    public final fr.cg95.cvq.business.request.civil.MarriageFatherInformation getFatherInformation() {
+        return marriageDetailsRequestData.getFatherInformation();
     }
   
     public final void setFormat(final fr.cg95.cvq.business.request.civil.MarriageCertificateFormatType format) {
@@ -308,85 +284,40 @@ public class MarriageDetailsRequest extends Request implements Serializable {
         return marriageDetailsRequestData.getFormat();
     }
   
-    public final void setMarriageCity(final String marriageCity) {
-        marriageDetailsRequestData.setMarriageCity(marriageCity);
+    public final void setMarriage(final fr.cg95.cvq.business.request.civil.MarriageInformation marriage) {
+        marriageDetailsRequestData.setMarriage(marriage);
     }
 
     
-    public final String getMarriageCity() {
-        return marriageDetailsRequestData.getMarriageCity();
+    public final fr.cg95.cvq.business.request.civil.MarriageInformation getMarriage() {
+        return marriageDetailsRequestData.getMarriage();
     }
   
-    public final void setMarriageDate(final java.util.Date marriageDate) {
-        marriageDetailsRequestData.setMarriageDate(marriageDate);
+    public final void setMarriageHusband(final fr.cg95.cvq.business.request.civil.MarriageHusbandInformation marriageHusband) {
+        marriageDetailsRequestData.setMarriageHusband(marriageHusband);
     }
 
     
-    public final java.util.Date getMarriageDate() {
-        return marriageDetailsRequestData.getMarriageDate();
+    public final fr.cg95.cvq.business.request.civil.MarriageHusbandInformation getMarriageHusband() {
+        return marriageDetailsRequestData.getMarriageHusband();
     }
   
-    public final void setMarriageHusbandFirstNames(final String marriageHusbandFirstNames) {
-        marriageDetailsRequestData.setMarriageHusbandFirstNames(marriageHusbandFirstNames);
+    public final void setMarriageWife(final fr.cg95.cvq.business.request.civil.MarriageWifeInformation marriageWife) {
+        marriageDetailsRequestData.setMarriageWife(marriageWife);
     }
 
     
-    public final String getMarriageHusbandFirstNames() {
-        return marriageDetailsRequestData.getMarriageHusbandFirstNames();
+    public final fr.cg95.cvq.business.request.civil.MarriageWifeInformation getMarriageWife() {
+        return marriageDetailsRequestData.getMarriageWife();
     }
   
-    public final void setMarriageHusbandLastName(final String marriageHusbandLastName) {
-        marriageDetailsRequestData.setMarriageHusbandLastName(marriageHusbandLastName);
+    public final void setMotherInformation(final fr.cg95.cvq.business.request.civil.MarriageMotherInformation motherInformation) {
+        marriageDetailsRequestData.setMotherInformation(motherInformation);
     }
 
     
-    public final String getMarriageHusbandLastName() {
-        return marriageDetailsRequestData.getMarriageHusbandLastName();
-    }
-  
-    public final void setMarriagePostalCode(final String marriagePostalCode) {
-        marriageDetailsRequestData.setMarriagePostalCode(marriagePostalCode);
-    }
-
-    
-    public final String getMarriagePostalCode() {
-        return marriageDetailsRequestData.getMarriagePostalCode();
-    }
-  
-    public final void setMarriageWifeFirstNames(final String marriageWifeFirstNames) {
-        marriageDetailsRequestData.setMarriageWifeFirstNames(marriageWifeFirstNames);
-    }
-
-    
-    public final String getMarriageWifeFirstNames() {
-        return marriageDetailsRequestData.getMarriageWifeFirstNames();
-    }
-  
-    public final void setMarriageWifeLastName(final String marriageWifeLastName) {
-        marriageDetailsRequestData.setMarriageWifeLastName(marriageWifeLastName);
-    }
-
-    
-    public final String getMarriageWifeLastName() {
-        return marriageDetailsRequestData.getMarriageWifeLastName();
-    }
-  
-    public final void setMotherFirstNames(final String motherFirstNames) {
-        marriageDetailsRequestData.setMotherFirstNames(motherFirstNames);
-    }
-
-    
-    public final String getMotherFirstNames() {
-        return marriageDetailsRequestData.getMotherFirstNames();
-    }
-  
-    public final void setMotherMaidenName(final String motherMaidenName) {
-        marriageDetailsRequestData.setMotherMaidenName(motherMaidenName);
-    }
-
-    
-    public final String getMotherMaidenName() {
-        return marriageDetailsRequestData.getMotherMaidenName();
+    public final fr.cg95.cvq.business.request.civil.MarriageMotherInformation getMotherInformation() {
+        return marriageDetailsRequestData.getMotherInformation();
     }
   
     public final void setMotive(final fr.cg95.cvq.business.request.civil.MarriageCertificateMotiveType motive) {

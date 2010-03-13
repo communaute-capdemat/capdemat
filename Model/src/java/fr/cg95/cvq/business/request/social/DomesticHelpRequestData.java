@@ -39,18 +39,6 @@ public class DomesticHelpRequestData implements Serializable {
 
     public DomesticHelpRequestData() {
       
-        dhrHaveFamilyReferent = Boolean.valueOf(false);
-      
-        dhrIsSpouseRetired = Boolean.valueOf(false);
-      
-        dhrRequestKind = fr.cg95.cvq.business.request.social.DhrRequestKindType.INDIVIDUAL;
-      
-        dhrRequesterHaveGuardian = Boolean.valueOf(false);
-      
-        dhrRequesterIsFrenchResident = Boolean.valueOf(false);
-      
-        dhrSpouseIsFrenchResident = Boolean.valueOf(false);
-      
     }
 
     @Override
@@ -59,120 +47,15 @@ public class DomesticHelpRequestData implements Serializable {
         
           
             
-        result.setDhrAllowances(dhrAllowances);
+        if (dhrCurrentDwelling != null)
+            result.setDhrCurrentDwelling(dhrCurrentDwelling.clone());
       
           
         
           
             
-        result.setDhrComplementaryPensionPlan(dhrComplementaryPensionPlan);
-      
-          
-        
-          
-            
-        if (dhrCurrentDwellingAddress != null)
-            result.setDhrCurrentDwellingAddress(dhrCurrentDwellingAddress.clone());
-      
-          
-        
-          
-            
-        result.setDhrCurrentDwellingArrivalDate(dhrCurrentDwellingArrivalDate);
-      
-          
-        
-          
-            
-        if (dhrCurrentDwellingKind != null)
-            result.setDhrCurrentDwellingKind(dhrCurrentDwellingKind);
-        else
-            result.setDhrCurrentDwellingKind(fr.cg95.cvq.business.request.social.DhrDwellingKindType.getDefaultDhrDwellingKindType());
-      
-          
-        
-          
-            
-        result.setDhrCurrentDwellingNetArea(dhrCurrentDwellingNetArea);
-      
-          
-        
-          
-            
-        result.setDhrCurrentDwellingNumberOfRoom(dhrCurrentDwellingNumberOfRoom);
-      
-          
-        
-          
-            
-        result.setDhrCurrentDwellingPhone(dhrCurrentDwellingPhone);
-      
-          
-        
-          
-            
-        if (dhrCurrentDwellingStatus != null)
-            result.setDhrCurrentDwellingStatus(dhrCurrentDwellingStatus);
-        else
-            result.setDhrCurrentDwellingStatus(fr.cg95.cvq.business.request.social.DhrDwellingStatusType.getDefaultDhrDwellingStatusType());
-      
-          
-        
-          
-            
-        result.setDhrFurnitureInvestmentIncome(dhrFurnitureInvestmentIncome);
-      
-          
-        
-          
-            
-        if (dhrGuardianAddress != null)
-            result.setDhrGuardianAddress(dhrGuardianAddress.clone());
-      
-          
-        
-          
-            
-        if (dhrGuardianMeasure != null)
-            result.setDhrGuardianMeasure(dhrGuardianMeasure);
-        else
-            result.setDhrGuardianMeasure(fr.cg95.cvq.business.request.social.DhrGuardianMeasureType.getDefaultDhrGuardianMeasureType());
-      
-          
-        
-          
-            
-        result.setDhrGuardianName(dhrGuardianName);
-      
-          
-        
-          
-            
-        result.setDhrHaveFamilyReferent(dhrHaveFamilyReferent);
-      
-          
-        
-          
-            
-        result.setDhrIncomeTax(dhrIncomeTax);
-      
-          
-        
-          
-            
-        result.setDhrIncomesAnnualTotal(dhrIncomesAnnualTotal);
-      
-          
-        
-          
-            
-        result.setDhrIsSpouseRetired(dhrIsSpouseRetired);
-      
-          
-        
-          
-            
-        result.setDhrNetIncome(dhrNetIncome);
+        if (dhrFamilyReferent != null)
+            result.setDhrFamilyReferent(dhrFamilyReferent.clone());
       
           
         
@@ -188,26 +71,11 @@ public class DomesticHelpRequestData implements Serializable {
         
           
             
-        result.setDhrPensionPlanDetail(dhrPensionPlanDetail);
-      
-          
-        
-          
-            
         List<fr.cg95.cvq.business.request.social.DhrPreviousDwelling> dhrPreviousDwellingList = new ArrayList<fr.cg95.cvq.business.request.social.DhrPreviousDwelling>();
         for (DhrPreviousDwelling object : dhrPreviousDwelling) {
             dhrPreviousDwellingList.add(object.clone());
         }
         result.setDhrPreviousDwelling(dhrPreviousDwellingList);
-      
-          
-        
-          
-            
-        if (dhrPrincipalPensionPlan != null)
-            result.setDhrPrincipalPensionPlan(dhrPrincipalPensionPlan);
-        else
-            result.setDhrPrincipalPensionPlan(fr.cg95.cvq.business.request.social.DhrPrincipalPensionPlanType.getDefaultDhrPrincipalPensionPlanType());
       
           
         
@@ -223,207 +91,57 @@ public class DomesticHelpRequestData implements Serializable {
         
           
             
-        result.setDhrRealEstateInvestmentIncome(dhrRealEstateInvestmentIncome);
+        if (dhrRequester != null)
+            result.setDhrRequester(dhrRequester.clone());
       
           
         
           
             
-        if (dhrReferentAddress != null)
-            result.setDhrReferentAddress(dhrReferentAddress.clone());
+        if (dhrRequesterGuardian != null)
+            result.setDhrRequesterGuardian(dhrRequesterGuardian.clone());
       
           
         
           
             
-        result.setDhrReferentFirstName(dhrReferentFirstName);
+        if (dhrRequesterIncomes != null)
+            result.setDhrRequesterIncomes(dhrRequesterIncomes.clone());
       
           
         
           
             
-        result.setDhrReferentName(dhrReferentName);
+        if (dhrRequesterPensionPlan != null)
+            result.setDhrRequesterPensionPlan(dhrRequesterPensionPlan.clone());
       
           
         
           
             
-        if (dhrRequestKind != null)
-            result.setDhrRequestKind(dhrRequestKind);
-        else
-            result.setDhrRequestKind(fr.cg95.cvq.business.request.social.DhrRequestKindType.getDefaultDhrRequestKindType());
+        if (dhrSpouse != null)
+            result.setDhrSpouse(dhrSpouse.clone());
       
           
         
           
             
-        result.setDhrRequesterBirthDate(dhrRequesterBirthDate);
+        if (dhrSpouseIncomes != null)
+            result.setDhrSpouseIncomes(dhrSpouseIncomes.clone());
       
           
         
           
             
-        result.setDhrRequesterBirthPlace(dhrRequesterBirthPlace);
+        if (dhrSpouseStatus != null)
+            result.setDhrSpouseStatus(dhrSpouseStatus.clone());
       
           
         
           
             
-        result.setDhrRequesterFranceArrivalDate(dhrRequesterFranceArrivalDate);
-      
-          
-        
-          
-            
-        result.setDhrRequesterHaveGuardian(dhrRequesterHaveGuardian);
-      
-          
-        
-          
-            
-        result.setDhrRequesterIsFrenchResident(dhrRequesterIsFrenchResident);
-      
-          
-        
-          
-            
-        if (dhrRequesterNationality != null)
-            result.setDhrRequesterNationality(dhrRequesterNationality);
-        else
-            result.setDhrRequesterNationality(fr.cg95.cvq.business.users.NationalityType.getDefaultNationalityType());
-      
-          
-        
-          
-            
-        if (dhrSpouseAddress != null)
-            result.setDhrSpouseAddress(dhrSpouseAddress.clone());
-      
-          
-        
-          
-            
-        result.setDhrSpouseBirthDate(dhrSpouseBirthDate);
-      
-          
-        
-          
-            
-        result.setDhrSpouseBirthPlace(dhrSpouseBirthPlace);
-      
-          
-        
-          
-            
-        result.setDhrSpouseComplementaryPensionPlan(dhrSpouseComplementaryPensionPlan);
-      
-          
-        
-          
-            
-        result.setDhrSpouseEmployer(dhrSpouseEmployer);
-      
-          
-        
-          
-            
-        if (dhrSpouseFamilyStatus != null)
-            result.setDhrSpouseFamilyStatus(dhrSpouseFamilyStatus);
-        else
-            result.setDhrSpouseFamilyStatus(fr.cg95.cvq.business.users.FamilyStatusType.getDefaultFamilyStatusType());
-      
-          
-        
-          
-            
-        result.setDhrSpouseFirstName(dhrSpouseFirstName);
-      
-          
-        
-          
-            
-        result.setDhrSpouseFranceArrivalDate(dhrSpouseFranceArrivalDate);
-      
-          
-        
-          
-            
-        result.setDhrSpouseIsFrenchResident(dhrSpouseIsFrenchResident);
-      
-          
-        
-          
-            
-        result.setDhrSpouseMaidenName(dhrSpouseMaidenName);
-      
-          
-        
-          
-            
-        result.setDhrSpouseName(dhrSpouseName);
-      
-          
-        
-          
-            
-        if (dhrSpouseNationality != null)
-            result.setDhrSpouseNationality(dhrSpouseNationality);
-        else
-            result.setDhrSpouseNationality(fr.cg95.cvq.business.users.NationalityType.getDefaultNationalityType());
-      
-          
-        
-          
-            
-        result.setDhrSpousePensionPlanDetail(dhrSpousePensionPlanDetail);
-      
-          
-        
-          
-            
-        if (dhrSpousePrincipalPensionPlan != null)
-            result.setDhrSpousePrincipalPensionPlan(dhrSpousePrincipalPensionPlan);
-        else
-            result.setDhrSpousePrincipalPensionPlan(fr.cg95.cvq.business.request.social.DhrPrincipalPensionPlanType.getDefaultDhrPrincipalPensionPlanType());
-      
-          
-        
-          
-            
-        result.setDhrSpouseProfession(dhrSpouseProfession);
-      
-          
-        
-          
-            
-        if (dhrSpouseTitle != null)
-            result.setDhrSpouseTitle(dhrSpouseTitle);
-        else
-            result.setDhrSpouseTitle(fr.cg95.cvq.business.users.TitleType.getDefaultTitleType());
-      
-          
-        
-          
-            
-        result.setLocalRate(localRate);
-      
-          
-        
-          
-            
-        result.setPensions(pensions);
-      
-          
-        
-          
-            
-        result.setProfessionalTaxes(professionalTaxes);
-      
-          
-        
-          
-            
-        result.setPropertyTaxes(propertyTaxes);
+        if (dhrTaxesAmount != null)
+            result.setDhrTaxesAmount(dhrTaxesAmount.clone());
       
           
         
@@ -440,6 +158,57 @@ public class DomesticHelpRequestData implements Serializable {
         return this.id;
     }
 
+  
+    
+    private java.math.BigInteger dhrAllowances;
+
+    public final void setDhrAllowances(final java.math.BigInteger dhrAllowances) {
+        this.dhrAllowances = dhrAllowances;
+    }
+
+    /**
+ 
+        * @hibernate.property
+        *  column="dhr_allowances"
+        *  type="serializable"
+        
+      
+    */
+    public final java.math.BigInteger getDhrAllowances() {
+        return this.dhrAllowances;
+    }
+  
+    
+      @NotNull(
+        
+        
+        profiles = {"subject"},
+        message = "dhrComplementaryPensionPlan"
+      )
+    
+      @NotBlank(
+        
+        
+        profiles = {"subject"},
+        message = "dhrComplementaryPensionPlan"
+      )
+    
+    private String dhrComplementaryPensionPlan;
+
+    public final void setDhrComplementaryPensionPlan(final String dhrComplementaryPensionPlan) {
+        this.dhrComplementaryPensionPlan = dhrComplementaryPensionPlan;
+    }
+
+    /**
+ 
+        * @hibernate.property
+        *  column="dhr_complementary_pension_plan"
+        
+      
+    */
+    public final String getDhrComplementaryPensionPlan() {
+        return this.dhrComplementaryPensionPlan;
+    }
   
     
     private java.math.BigInteger dhrAllowances;
@@ -489,34 +258,88 @@ public class DomesticHelpRequestData implements Serializable {
         
         
         profiles = {"dwelling"},
-        message = "dhrCurrentDwellingAddress"
+        message = "dhrCurrentDwelling"
       )
     
       @AssertValid(
         
         
         profiles = {"dwelling"},
-        message = "dhrCurrentDwellingAddress"
+        message = "dhrCurrentDwelling"
       )
     
-    private fr.cg95.cvq.business.users.Address dhrCurrentDwellingAddress;
+    private fr.cg95.cvq.business.request.social.DhrCurrentDwelling dhrCurrentDwelling;
 
+    public final void setDhrCurrentDwellingAddress(final fr.cg95.cvq.business.users.Address dhrCurrentDwellingAddress) {
+        this.dhrCurrentDwellingAddress = dhrCurrentDwellingAddress;
     public void setDhrCurrentDwellingAddress(final fr.cg95.cvq.business.users.Address dhrCurrentDwellingAddress) {
         this.dhrCurrentDwellingAddress = dhrCurrentDwellingAddress;
+    public final void setDhrCurrentDwelling(final fr.cg95.cvq.business.request.social.DhrCurrentDwelling dhrCurrentDwelling) {
+        this.dhrCurrentDwelling = dhrCurrentDwelling;
     }
 
  
+        * @hibernate.many-to-one
+        *  cascade="all"
+        *  column="dhr_current_dwelling_address_id"
+        *  class="fr.cg95.cvq.business.users.Address"
     @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
     @JoinColumn(name="dhr_current_dwelling_address_id")
+        * @hibernate.many-to-one
+        *  cascade="all"
+        *  column="dhr_current_dwelling_id"
+        *  class="fr.cg95.cvq.business.request.social.DhrCurrentDwelling"
       
+    */
+    public final fr.cg95.cvq.business.users.Address getDhrCurrentDwellingAddress() {
+        return this.dhrCurrentDwellingAddress;
     public fr.cg95.cvq.business.users.Address getDhrCurrentDwellingAddress() {
         return this.dhrCurrentDwellingAddress;
+    */
+    public final fr.cg95.cvq.business.request.social.DhrCurrentDwelling getDhrCurrentDwelling() {
+        return this.dhrCurrentDwelling;
     }
   
     
       @NotNull(
         
         
+          when = "groovy:def active = true;" +
+          
+            "active &= _this.conditions['dhrCurrentDwellingKind'].test(_this.dhrCurrentDwellingKind.toString());" +
+                
+              
+            
+            
+            "return active",
+        
+        profiles = {"dwelling"},
+        message = "dhrCurrentDwellingArrivalDate"
+      )
+    
+    private java.util.Date dhrCurrentDwellingArrivalDate;
+
+    public final void setDhrCurrentDwellingArrivalDate(final java.util.Date dhrCurrentDwellingArrivalDate) {
+        this.dhrCurrentDwellingArrivalDate = dhrCurrentDwellingArrivalDate;
+    }
+
+    /**
+ 
+        * @hibernate.property
+        *  column="dhr_current_dwelling_arrival_date"
+        
+      
+    */
+    public final java.util.Date getDhrCurrentDwellingArrivalDate() {
+        return this.dhrCurrentDwellingArrivalDate;
+    }
+  
+    
+      @NotNull(
+        
+        
+        profiles = {"dwelling"},
+        message = "dhrCurrentDwellingKind"
           when = "groovy:def active = true;" +
           
             "active &= _this.conditions['dhrCurrentDwellingKind'].test(_this.dhrCurrentDwellingKind.toString());" +
@@ -549,6 +372,208 @@ public class DomesticHelpRequestData implements Serializable {
         
         profiles = {"dwelling"},
         message = "dhrCurrentDwellingKind"
+        profiles = {"familyReferent"},
+        message = "dhrFamilyReferent"
+      )
+    
+    private fr.cg95.cvq.business.request.social.DhrDwellingKindType dhrCurrentDwellingKind;
+
+    public final void setDhrCurrentDwellingKind(final fr.cg95.cvq.business.request.social.DhrDwellingKindType dhrCurrentDwellingKind) {
+        this.dhrCurrentDwellingKind = dhrCurrentDwellingKind;
+    }
+
+    /**
+ 
+        * @hibernate.property
+        *  column="dhr_current_dwelling_kind"
+        
+      
+    */
+    public final fr.cg95.cvq.business.request.social.DhrDwellingKindType getDhrCurrentDwellingKind() {
+        return this.dhrCurrentDwellingKind;
+    }
+  
+    
+      @NotNull(
+        
+        
+          when = "groovy:def active = true;" +
+          
+            "active &= _this.conditions['dhrCurrentDwellingKind'].test(_this.dhrCurrentDwellingKind.toString());" +
+                
+              
+            
+            
+            "return active",
+        
+        profiles = {"dwelling"},
+        message = "dhrCurrentDwellingNetArea"
+      )
+    
+      @MatchPattern(
+        
+          pattern = "^[1-9]$|^[1-9][0-9]$|^[1-4][0-9][0-9]$|^500$",
+        
+        
+          when = "groovy:def active = true;" +
+          
+            "active &= _this.conditions['dhrCurrentDwellingKind'].test(_this.dhrCurrentDwellingKind.toString());" +
+                
+              
+            
+            
+            "return active",
+        
+        profiles = {"dwelling"},
+        message = "dhrCurrentDwellingNetArea"
+      )
+    
+    private java.math.BigDecimal dhrCurrentDwellingNetArea;
+
+    public final void setDhrCurrentDwellingNetArea(final java.math.BigDecimal dhrCurrentDwellingNetArea) {
+        this.dhrCurrentDwellingNetArea = dhrCurrentDwellingNetArea;
+    }
+
+    /**
+ 
+        * @hibernate.property
+        *  column="dhr_current_dwelling_net_area"
+        
+      
+    */
+    public final java.math.BigDecimal getDhrCurrentDwellingNetArea() {
+        return this.dhrCurrentDwellingNetArea;
+    }
+  
+    
+      @NotNull(
+        
+        
+          when = "groovy:def active = true;" +
+          
+            "active &= _this.conditions['dhrCurrentDwellingKind'].test(_this.dhrCurrentDwellingKind.toString());" +
+                
+              
+            
+            
+            "return active",
+        
+        profiles = {"dwelling"},
+        message = "dhrCurrentDwellingNumberOfRoom"
+      )
+    
+    private java.math.BigDecimal dhrCurrentDwellingNumberOfRoom;
+
+    public final void setDhrCurrentDwellingNumberOfRoom(final java.math.BigDecimal dhrCurrentDwellingNumberOfRoom) {
+        this.dhrCurrentDwellingNumberOfRoom = dhrCurrentDwellingNumberOfRoom;
+    }
+
+    /**
+ 
+        * @hibernate.property
+        *  column="dhr_current_dwelling_number_of_room"
+        
+      
+    */
+    public final java.math.BigDecimal getDhrCurrentDwellingNumberOfRoom() {
+        return this.dhrCurrentDwellingNumberOfRoom;
+    }
+  
+    
+      @MaxLength(
+        
+          value = 10,
+        
+        
+        profiles = {"dwelling"},
+        message = "dhrCurrentDwellingPhone"
+      )
+    
+    private String dhrCurrentDwellingPhone;
+
+    public final void setDhrCurrentDwellingPhone(final String dhrCurrentDwellingPhone) {
+        this.dhrCurrentDwellingPhone = dhrCurrentDwellingPhone;
+    }
+
+    /**
+ 
+        * @hibernate.property
+        *  column="dhr_current_dwelling_phone"
+        *  length="10"
+      
+    */
+    public final String getDhrCurrentDwellingPhone() {
+        return this.dhrCurrentDwellingPhone;
+    }
+  
+    
+      @NotNull(
+        
+        
+          when = "groovy:def active = true;" +
+          
+            "active &= _this.conditions['dhrCurrentDwellingKind'].test(_this.dhrCurrentDwellingKind.toString());" +
+                
+              
+            
+            
+            "return active",
+        
+        profiles = {"dwelling"},
+        message = "dhrCurrentDwellingStatus"
+      )
+    
+    private fr.cg95.cvq.business.request.social.DhrDwellingStatusType dhrCurrentDwellingStatus;
+
+    public final void setDhrCurrentDwellingStatus(final fr.cg95.cvq.business.request.social.DhrDwellingStatusType dhrCurrentDwellingStatus) {
+        this.dhrCurrentDwellingStatus = dhrCurrentDwellingStatus;
+    }
+
+    /**
+ 
+        * @hibernate.property
+        *  column="dhr_current_dwelling_status"
+        
+      
+    */
+    public final fr.cg95.cvq.business.request.social.DhrDwellingStatusType getDhrCurrentDwellingStatus() {
+        return this.dhrCurrentDwellingStatus;
+    }
+  
+    
+    private java.math.BigInteger dhrFurnitureInvestmentIncome;
+
+    public final void setDhrFurnitureInvestmentIncome(final java.math.BigInteger dhrFurnitureInvestmentIncome) {
+        this.dhrFurnitureInvestmentIncome = dhrFurnitureInvestmentIncome;
+    }
+
+    /**
+ 
+        * @hibernate.property
+        *  column="dhr_furniture_investment_income"
+        *  type="serializable"
+        
+      
+    */
+    public final java.math.BigInteger getDhrFurnitureInvestmentIncome() {
+        return this.dhrFurnitureInvestmentIncome;
+    }
+  
+    
+      @NotNull(
+        
+        
+          when = "groovy:def active = true;" +
+          
+            "active &= _this.conditions['dhrRequesterHaveGuardian'].test(_this.dhrRequesterHaveGuardian.toString());" +
+                
+              
+            
+            
+            "return active",
+        
+        profiles = {"subject"},
+        message = "dhrGuardianAddress"
       )
     
     private fr.cg95.cvq.business.request.social.DhrDwellingKindType dhrCurrentDwellingKind;
@@ -732,6 +757,41 @@ public class DomesticHelpRequestData implements Serializable {
       @AssertValid(
         
         
+        profiles = {"familyReferent"},
+        message = "dhrFamilyReferent"
+      )
+    
+    private fr.cg95.cvq.business.request.social.DhrFamilyReferent dhrFamilyReferent;
+
+    public final void setDhrGuardianAddress(final fr.cg95.cvq.business.users.Address dhrGuardianAddress) {
+        this.dhrGuardianAddress = dhrGuardianAddress;
+    public void setDhrGuardianAddress(final fr.cg95.cvq.business.users.Address dhrGuardianAddress) {
+        this.dhrGuardianAddress = dhrGuardianAddress;
+    public final void setDhrFamilyReferent(final fr.cg95.cvq.business.request.social.DhrFamilyReferent dhrFamilyReferent) {
+        this.dhrFamilyReferent = dhrFamilyReferent;
+    }
+
+ 
+        * @hibernate.many-to-one
+        *  cascade="all"
+        *  column="dhr_guardian_address_id"
+        *  class="fr.cg95.cvq.business.users.Address"
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name="dhr_guardian_address_id")
+        * @hibernate.many-to-one
+        *  cascade="all"
+        *  column="dhr_family_referent_id"
+        *  class="fr.cg95.cvq.business.request.social.DhrFamilyReferent"
+      
+    */
+    public final fr.cg95.cvq.business.users.Address getDhrGuardianAddress() {
+        return this.dhrGuardianAddress;
+    }
+  
+    
+      @NotNull(
+        
+        
           when = "groovy:def active = true;" +
           
             "active &= _this.conditions['dhrRequesterHaveGuardian'].test(_this.dhrRequesterHaveGuardian.toString());" +
@@ -742,19 +802,24 @@ public class DomesticHelpRequestData implements Serializable {
             "return active",
         
         profiles = {"subject"},
-        message = "dhrGuardianAddress"
+        message = "dhrGuardianMeasure"
       )
     
-    private fr.cg95.cvq.business.users.Address dhrGuardianAddress;
+    private fr.cg95.cvq.business.request.social.DhrGuardianMeasureType dhrGuardianMeasure;
 
-    public void setDhrGuardianAddress(final fr.cg95.cvq.business.users.Address dhrGuardianAddress) {
-        this.dhrGuardianAddress = dhrGuardianAddress;
+    public final void setDhrGuardianMeasure(final fr.cg95.cvq.business.request.social.DhrGuardianMeasureType dhrGuardianMeasure) {
+        this.dhrGuardianMeasure = dhrGuardianMeasure;
     }
 
+    /**
  
-    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
-    @JoinColumn(name="dhr_guardian_address_id")
+        * @hibernate.property
+        *  column="dhr_guardian_measure"
+        
       
+    */
+    public final fr.cg95.cvq.business.request.social.DhrGuardianMeasureType getDhrGuardianMeasure() {
+        return this.dhrGuardianMeasure;
     public fr.cg95.cvq.business.users.Address getDhrGuardianAddress() {
         return this.dhrGuardianAddress;
     }
@@ -788,6 +853,200 @@ public class DomesticHelpRequestData implements Serializable {
       
     public fr.cg95.cvq.business.request.social.DhrGuardianMeasureType getDhrGuardianMeasure() {
         return this.dhrGuardianMeasure;
+    */
+    public final fr.cg95.cvq.business.request.social.DhrFamilyReferent getDhrFamilyReferent() {
+        return this.dhrFamilyReferent;
+    }
+  
+    
+      @MaxLength(
+        
+          value = 38,
+        
+        
+          when = "groovy:def active = true;" +
+          
+            "active &= _this.conditions['dhrRequesterHaveGuardian'].test(_this.dhrRequesterHaveGuardian.toString());" +
+                
+              
+            
+            
+            "return active",
+        
+        profiles = {"subject"},
+        message = "dhrGuardianName"
+      )
+    
+      @NotNull(
+        
+        
+          when = "groovy:def active = true;" +
+          
+            "active &= _this.conditions['dhrRequesterHaveGuardian'].test(_this.dhrRequesterHaveGuardian.toString());" +
+                
+              
+            
+            
+            "return active",
+        
+        profiles = {"subject"},
+        message = "dhrGuardianName"
+      )
+    
+      @NotBlank(
+        
+        
+          when = "groovy:def active = true;" +
+          
+            "active &= _this.conditions['dhrRequesterHaveGuardian'].test(_this.dhrRequesterHaveGuardian.toString());" +
+                
+              
+            
+            
+            "return active",
+        
+        profiles = {"subject"},
+        message = "dhrGuardianName"
+      )
+    
+    private String dhrGuardianName;
+
+    public final void setDhrGuardianName(final String dhrGuardianName) {
+        this.dhrGuardianName = dhrGuardianName;
+    }
+
+    /**
+ 
+        * @hibernate.property
+        *  column="dhr_guardian_name"
+        *  length="38"
+      
+    */
+    public final String getDhrGuardianName() {
+        return this.dhrGuardianName;
+    }
+  
+    
+      @NotNull(
+        
+        
+        profiles = {"familyReferent"},
+        message = "dhrHaveFamilyReferent"
+      )
+    
+    private Boolean dhrHaveFamilyReferent;
+
+    public final void setDhrHaveFamilyReferent(final Boolean dhrHaveFamilyReferent) {
+        this.dhrHaveFamilyReferent = dhrHaveFamilyReferent;
+    }
+
+    /**
+ 
+        * @hibernate.property
+        *  column="dhr_have_family_referent"
+        
+      
+    */
+    public final Boolean getDhrHaveFamilyReferent() {
+        return this.dhrHaveFamilyReferent;
+    }
+  
+    
+    private java.math.BigInteger dhrIncomeTax;
+
+    public final void setDhrIncomeTax(final java.math.BigInteger dhrIncomeTax) {
+        this.dhrIncomeTax = dhrIncomeTax;
+    }
+
+    /**
+ 
+        * @hibernate.property
+        *  column="dhr_income_tax"
+        *  type="serializable"
+        
+      
+    */
+    public final java.math.BigInteger getDhrIncomeTax() {
+        return this.dhrIncomeTax;
+    }
+  
+    
+      @NotNull(
+        
+        
+        profiles = {"resources"},
+        message = "dhrIncomesAnnualTotal"
+      )
+    
+    private java.math.BigInteger dhrIncomesAnnualTotal;
+
+    public final void setDhrIncomesAnnualTotal(final java.math.BigInteger dhrIncomesAnnualTotal) {
+        this.dhrIncomesAnnualTotal = dhrIncomesAnnualTotal;
+    }
+
+    /**
+ 
+        * @hibernate.property
+        *  column="dhr_incomes_annual_total"
+        *  type="serializable"
+        
+      
+    */
+    public final java.math.BigInteger getDhrIncomesAnnualTotal() {
+        return this.dhrIncomesAnnualTotal;
+    }
+  
+    
+      @NotNull(
+        
+        
+          when = "groovy:def active = true;" +
+          
+            
+            "active &= _this.conditions['dhrRequestKind'].test(_this.dhrRequestKind.toString());" +
+                
+              
+            
+            "return active",
+        
+        profiles = {"spouse"},
+        message = "dhrIsSpouseRetired"
+      )
+    
+    private Boolean dhrIsSpouseRetired;
+
+    public final void setDhrIsSpouseRetired(final Boolean dhrIsSpouseRetired) {
+        this.dhrIsSpouseRetired = dhrIsSpouseRetired;
+    }
+
+    /**
+ 
+        * @hibernate.property
+        *  column="dhr_is_spouse_retired"
+        
+      
+    */
+    public final Boolean getDhrIsSpouseRetired() {
+        return this.dhrIsSpouseRetired;
+    }
+  
+    
+    private java.math.BigInteger dhrNetIncome;
+
+    public final void setDhrNetIncome(final java.math.BigInteger dhrNetIncome) {
+        this.dhrNetIncome = dhrNetIncome;
+    }
+
+    /**
+ 
+        * @hibernate.property
+        *  column="dhr_net_income"
+        *  type="serializable"
+        
+      
+    */
+    public final java.math.BigInteger getDhrNetIncome() {
+        return this.dhrNetIncome;
     }
   
     
@@ -1024,6 +1283,56 @@ public class DomesticHelpRequestData implements Serializable {
     
     private String dhrPensionPlanDetail;
 
+    public final void setDhrPensionPlanDetail(final String dhrPensionPlanDetail) {
+        this.dhrPensionPlanDetail = dhrPensionPlanDetail;
+    }
+
+    /**
+ 
+        * @hibernate.property
+        *  column="dhr_pension_plan_detail"
+        
+      
+    */
+    public final String getDhrPensionPlanDetail() {
+        return this.dhrPensionPlanDetail;
+    }
+  
+    
+      @NotNull(
+        
+        
+          when = "groovy:def active = true;" +
+          
+            "active &= _this.conditions['dhrPrincipalPensionPlan'].test(_this.dhrPrincipalPensionPlan.toString());" +
+                
+              
+            
+            
+            "return active",
+        
+        profiles = {"subject"},
+        message = "dhrPensionPlanDetail"
+      )
+    
+      @NotBlank(
+        
+        
+          when = "groovy:def active = true;" +
+          
+            "active &= _this.conditions['dhrPrincipalPensionPlan'].test(_this.dhrPrincipalPensionPlan.toString());" +
+                
+              
+            
+            
+            "return active",
+        
+        profiles = {"subject"},
+        message = "dhrPensionPlanDetail"
+      )
+    
+    private String dhrPensionPlanDetail;
+
     public void setDhrPensionPlanDetail(final String dhrPensionPlanDetail) {
         this.dhrPensionPlanDetail = dhrPensionPlanDetail;
     }
@@ -1065,6 +1374,31 @@ public class DomesticHelpRequestData implements Serializable {
       
     public List<fr.cg95.cvq.business.request.social.DhrPreviousDwelling> getDhrPreviousDwelling() {
         return this.dhrPreviousDwelling;
+    }
+  
+    
+      @NotNull(
+        
+        
+        profiles = {"subject"},
+        message = "dhrPrincipalPensionPlan"
+      )
+    
+    private fr.cg95.cvq.business.request.social.DhrPrincipalPensionPlanType dhrPrincipalPensionPlan;
+
+    public final void setDhrPrincipalPensionPlan(final fr.cg95.cvq.business.request.social.DhrPrincipalPensionPlanType dhrPrincipalPensionPlan) {
+        this.dhrPrincipalPensionPlan = dhrPrincipalPensionPlan;
+    }
+
+    /**
+ 
+        * @hibernate.property
+        *  column="dhr_principal_pension_plan"
+        
+      
+    */
+    public final fr.cg95.cvq.business.request.social.DhrPrincipalPensionPlanType getDhrPrincipalPensionPlan() {
+        return this.dhrPrincipalPensionPlan;
     }
   
     
@@ -1124,6 +1458,25 @@ public class DomesticHelpRequestData implements Serializable {
     
     private java.math.BigInteger dhrRealEstateInvestmentIncome;
 
+    public final void setDhrRealEstateInvestmentIncome(final java.math.BigInteger dhrRealEstateInvestmentIncome) {
+        this.dhrRealEstateInvestmentIncome = dhrRealEstateInvestmentIncome;
+    }
+
+    /**
+ 
+        * @hibernate.property
+        *  column="dhr_real_estate_investment_income"
+        *  type="serializable"
+        
+      
+    */
+    public final java.math.BigInteger getDhrRealEstateInvestmentIncome() {
+        return this.dhrRealEstateInvestmentIncome;
+    }
+  
+    
+    private java.math.BigInteger dhrRealEstateInvestmentIncome;
+
     public void setDhrRealEstateInvestmentIncome(final java.math.BigInteger dhrRealEstateInvestmentIncome) {
         this.dhrRealEstateInvestmentIncome = dhrRealEstateInvestmentIncome;
     }
@@ -1140,22 +1493,50 @@ public class DomesticHelpRequestData implements Serializable {
       @NotNull(
         
         
-          when = "groovy:def active = true;" +
-          
-            "active &= _this.conditions['dhrHaveFamilyReferent'].test(_this.dhrHaveFamilyReferent.toString());" +
-                
-              
-            
-            
-            "return active",
-        
-        profiles = {"familyReferent"},
-        message = "dhrReferentAddress"
+        profiles = {"subject"},
+        message = "dhrRequester"
       )
     
       @AssertValid(
         
         
+        profiles = {"subject"},
+        message = "dhrRequester"
+      )
+    
+    private fr.cg95.cvq.business.request.social.DhrRequester dhrRequester;
+
+    public final void setDhrReferentAddress(final fr.cg95.cvq.business.users.Address dhrReferentAddress) {
+        this.dhrReferentAddress = dhrReferentAddress;
+    public void setDhrReferentAddress(final fr.cg95.cvq.business.users.Address dhrReferentAddress) {
+        this.dhrReferentAddress = dhrReferentAddress;
+    public final void setDhrRequester(final fr.cg95.cvq.business.request.social.DhrRequester dhrRequester) {
+        this.dhrRequester = dhrRequester;
+    }
+
+ 
+        * @hibernate.many-to-one
+        *  cascade="all"
+        *  column="dhr_referent_address_id"
+        *  class="fr.cg95.cvq.business.users.Address"
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name="dhr_referent_address_id")
+        * @hibernate.many-to-one
+        *  cascade="all"
+        *  column="dhr_requester_id"
+        *  class="fr.cg95.cvq.business.request.social.DhrRequester"
+      
+    */
+    public final fr.cg95.cvq.business.users.Address getDhrReferentAddress() {
+        return this.dhrReferentAddress;
+    }
+  
+    
+      @MaxLength(
+        
+          value = 38,
+        
+        
           when = "groovy:def active = true;" +
           
             "active &= _this.conditions['dhrHaveFamilyReferent'].test(_this.dhrHaveFamilyReferent.toString());" +
@@ -1166,19 +1547,56 @@ public class DomesticHelpRequestData implements Serializable {
             "return active",
         
         profiles = {"familyReferent"},
-        message = "dhrReferentAddress"
+        message = "dhrReferentFirstName"
       )
     
-    private fr.cg95.cvq.business.users.Address dhrReferentAddress;
+      @NotNull(
+        
+        
+          when = "groovy:def active = true;" +
+          
+            "active &= _this.conditions['dhrHaveFamilyReferent'].test(_this.dhrHaveFamilyReferent.toString());" +
+                
+              
+            
+            
+            "return active",
+        
+        profiles = {"familyReferent"},
+        message = "dhrReferentFirstName"
+      )
+    
+      @NotBlank(
+        
+        
+          when = "groovy:def active = true;" +
+          
+            "active &= _this.conditions['dhrHaveFamilyReferent'].test(_this.dhrHaveFamilyReferent.toString());" +
+                
+              
+            
+            
+            "return active",
+        
+        profiles = {"familyReferent"},
+        message = "dhrReferentFirstName"
+      )
+    
+    private String dhrReferentFirstName;
 
-    public void setDhrReferentAddress(final fr.cg95.cvq.business.users.Address dhrReferentAddress) {
-        this.dhrReferentAddress = dhrReferentAddress;
+    public final void setDhrReferentFirstName(final String dhrReferentFirstName) {
+        this.dhrReferentFirstName = dhrReferentFirstName;
     }
 
+    /**
  
-    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
-    @JoinColumn(name="dhr_referent_address_id")
+        * @hibernate.property
+        *  column="dhr_referent_first_name"
+        *  length="38"
       
+    */
+    public final String getDhrReferentFirstName() {
+        return this.dhrReferentFirstName;
     public fr.cg95.cvq.business.users.Address getDhrReferentAddress() {
         return this.dhrReferentAddress;
     }
@@ -1245,12 +1663,13 @@ public class DomesticHelpRequestData implements Serializable {
       
     public String getDhrReferentFirstName() {
         return this.dhrReferentFirstName;
+    */
+    public final fr.cg95.cvq.business.request.social.DhrRequester getDhrRequester() {
+        return this.dhrRequester;
     }
   
     
-      @MaxLength(
-        
-          value = 38,
+      @NotNull(
         
         
           when = "groovy:def active = true;" +
@@ -1265,6 +1684,65 @@ public class DomesticHelpRequestData implements Serializable {
         profiles = {"familyReferent"},
         message = "dhrReferentName"
       )
+    
+      @NotBlank(
+        
+        
+          when = "groovy:def active = true;" +
+          
+            "active &= _this.conditions['dhrHaveFamilyReferent'].test(_this.dhrHaveFamilyReferent.toString());" +
+                
+              
+            
+            
+            "return active",
+        
+        profiles = {"familyReferent"},
+        message = "dhrReferentName"
+      )
+    
+    private String dhrReferentName;
+
+    public final void setDhrReferentName(final String dhrReferentName) {
+        this.dhrReferentName = dhrReferentName;
+    }
+
+    /**
+ 
+        * @hibernate.property
+        *  column="dhr_referent_name"
+        *  length="38"
+      
+    */
+    public final String getDhrReferentName() {
+        return this.dhrReferentName;
+    }
+  
+    
+      @NotNull(
+        
+        
+        profiles = {"spouse"},
+        message = "dhrRequestKind"
+      )
+    
+    private fr.cg95.cvq.business.request.social.DhrRequestKindType dhrRequestKind;
+
+    public final void setDhrRequestKind(final fr.cg95.cvq.business.request.social.DhrRequestKindType dhrRequestKind) {
+        this.dhrRequestKind = dhrRequestKind;
+    }
+
+    /**
+ 
+        * @hibernate.property
+        *  column="dhr_request_kind"
+        
+      
+    */
+    public final fr.cg95.cvq.business.request.social.DhrRequestKindType getDhrRequestKind() {
+        return this.dhrRequestKind;
+    }
+  
     
       @NotNull(
         
@@ -1338,9 +1816,28 @@ public class DomesticHelpRequestData implements Serializable {
         
         
         profiles = {"subject"},
-        message = "dhrRequesterBirthDate"
+        message = "dhrRequesterGuardian"
       )
     
+    private java.util.Date dhrRequesterBirthDate;
+
+    public final void setDhrRequesterBirthDate(final java.util.Date dhrRequesterBirthDate) {
+        this.dhrRequesterBirthDate = dhrRequesterBirthDate;
+    }
+
+    /**
+ 
+        * @hibernate.property
+        *  column="dhr_requester_birth_date"
+        
+      
+    */
+    public final java.util.Date getDhrRequesterBirthDate() {
+        return this.dhrRequesterBirthDate;
+    }
+  
+    
+      @NotNull(
     private java.util.Date dhrRequesterBirthDate;
 
     public void setDhrRequesterBirthDate(final java.util.Date dhrRequesterBirthDate) {
@@ -1356,49 +1853,70 @@ public class DomesticHelpRequestData implements Serializable {
   
     
       @NotNull(
+      @AssertValid(
         
         
         profiles = {"subject"},
-        message = "dhrRequesterBirthPlace"
+        message = "dhrRequesterGuardian"
       )
     
-      @NotBlank(
-        
-        
-        profiles = {"subject"},
-        message = "dhrRequesterBirthPlace"
-      )
-    
-    private String dhrRequesterBirthPlace;
+    private fr.cg95.cvq.business.request.social.DhrRequesterGuardian dhrRequesterGuardian;
 
+    public final void setDhrRequesterBirthPlace(final String dhrRequesterBirthPlace) {
+        this.dhrRequesterBirthPlace = dhrRequesterBirthPlace;
     public void setDhrRequesterBirthPlace(final String dhrRequesterBirthPlace) {
         this.dhrRequesterBirthPlace = dhrRequesterBirthPlace;
+    public final void setDhrRequesterGuardian(final fr.cg95.cvq.business.request.social.DhrRequesterGuardian dhrRequesterGuardian) {
+        this.dhrRequesterGuardian = dhrRequesterGuardian;
     }
 
  
+        * @hibernate.property
+        *  column="dhr_requester_birth_place"
+        
     @Column(name="dhr_requester_birth_place"  )
+        * @hibernate.many-to-one
+        *  cascade="all"
+        *  column="dhr_requester_guardian_id"
+        *  class="fr.cg95.cvq.business.request.social.DhrRequesterGuardian"
       
+    */
+    public final String getDhrRequesterBirthPlace() {
+        return this.dhrRequesterBirthPlace;
     public String getDhrRequesterBirthPlace() {
         return this.dhrRequesterBirthPlace;
+    */
+    public final fr.cg95.cvq.business.request.social.DhrRequesterGuardian getDhrRequesterGuardian() {
+        return this.dhrRequesterGuardian;
     }
   
     
       @NotNull(
         
         
-          when = "groovy:def active = true;" +
-          
-            "active &= _this.conditions['dhrRequesterNationality'].test(_this.dhrRequesterNationality.toString());" +
-                
-              
-            
-            
-            "return active",
-        
-        profiles = {"subject"},
-        message = "dhrRequesterFranceArrivalDate"
+        profiles = {"resources"},
+        message = "dhrRequesterIncomes"
       )
     
+    private java.util.Date dhrRequesterFranceArrivalDate;
+
+    public final void setDhrRequesterFranceArrivalDate(final java.util.Date dhrRequesterFranceArrivalDate) {
+        this.dhrRequesterFranceArrivalDate = dhrRequesterFranceArrivalDate;
+    }
+
+    /**
+ 
+        * @hibernate.property
+        *  column="dhr_requester_france_arrival_date"
+        
+      
+    */
+    public final java.util.Date getDhrRequesterFranceArrivalDate() {
+        return this.dhrRequesterFranceArrivalDate;
+    }
+  
+    
+      @NotNull(
     private java.util.Date dhrRequesterFranceArrivalDate;
 
     public void setDhrRequesterFranceArrivalDate(final java.util.Date dhrRequesterFranceArrivalDate) {
@@ -1414,42 +1932,71 @@ public class DomesticHelpRequestData implements Serializable {
   
     
       @NotNull(
+      @AssertValid(
         
         
-        profiles = {"subject"},
-        message = "dhrRequesterHaveGuardian"
+        profiles = {"resources"},
+        message = "dhrRequesterIncomes"
       )
     
-    private Boolean dhrRequesterHaveGuardian;
+    private fr.cg95.cvq.business.request.social.DhrIncomes dhrRequesterIncomes;
 
+    public final void setDhrRequesterHaveGuardian(final Boolean dhrRequesterHaveGuardian) {
+        this.dhrRequesterHaveGuardian = dhrRequesterHaveGuardian;
     public void setDhrRequesterHaveGuardian(final Boolean dhrRequesterHaveGuardian) {
         this.dhrRequesterHaveGuardian = dhrRequesterHaveGuardian;
+    public final void setDhrRequesterIncomes(final fr.cg95.cvq.business.request.social.DhrIncomes dhrRequesterIncomes) {
+        this.dhrRequesterIncomes = dhrRequesterIncomes;
     }
 
  
+        * @hibernate.property
+        *  column="dhr_requester_have_guardian"
+        
     @Column(name="dhr_requester_have_guardian"  )
+        * @hibernate.many-to-one
+        *  cascade="all"
+        *  column="dhr_requester_incomes_id"
+        *  class="fr.cg95.cvq.business.request.social.DhrIncomes"
       
+    */
+    public final Boolean getDhrRequesterHaveGuardian() {
+        return this.dhrRequesterHaveGuardian;
     public Boolean getDhrRequesterHaveGuardian() {
         return this.dhrRequesterHaveGuardian;
+    */
+    public final fr.cg95.cvq.business.request.social.DhrIncomes getDhrRequesterIncomes() {
+        return this.dhrRequesterIncomes;
     }
   
     
       @NotNull(
         
         
-          when = "groovy:def active = true;" +
-          
-            "active &= _this.conditions['dhrRequesterNationality'].test(_this.dhrRequesterNationality.toString());" +
-                
-              
-            
-            
-            "return active",
-        
         profiles = {"subject"},
-        message = "dhrRequesterIsFrenchResident"
+        message = "dhrRequesterPensionPlan"
       )
     
+    private Boolean dhrRequesterIsFrenchResident;
+
+    public final void setDhrRequesterIsFrenchResident(final Boolean dhrRequesterIsFrenchResident) {
+        this.dhrRequesterIsFrenchResident = dhrRequesterIsFrenchResident;
+    }
+
+    /**
+ 
+        * @hibernate.property
+        *  column="dhr_requester_is_french_resident"
+        
+      
+    */
+    public final Boolean getDhrRequesterIsFrenchResident() {
+        return this.dhrRequesterIsFrenchResident;
+    }
+  
+    
+      @NotNull(
+        
     private Boolean dhrRequesterIsFrenchResident;
 
     public void setDhrRequesterIsFrenchResident(final Boolean dhrRequesterIsFrenchResident) {
@@ -1466,23 +2013,134 @@ public class DomesticHelpRequestData implements Serializable {
     
       @NotNull(
         
+      @AssertValid(
+        
         
         profiles = {"subject"},
-        message = "dhrRequesterNationality"
+        message = "dhrRequesterPensionPlan"
       )
     
-    private fr.cg95.cvq.business.users.NationalityType dhrRequesterNationality;
+    private fr.cg95.cvq.business.request.social.DhrRequesterPensionPlan dhrRequesterPensionPlan;
 
+    public final void setDhrRequesterNationality(final fr.cg95.cvq.business.users.NationalityType dhrRequesterNationality) {
+        this.dhrRequesterNationality = dhrRequesterNationality;
     public void setDhrRequesterNationality(final fr.cg95.cvq.business.users.NationalityType dhrRequesterNationality) {
         this.dhrRequesterNationality = dhrRequesterNationality;
+    public final void setDhrRequesterPensionPlan(final fr.cg95.cvq.business.request.social.DhrRequesterPensionPlan dhrRequesterPensionPlan) {
+        this.dhrRequesterPensionPlan = dhrRequesterPensionPlan;
     }
 
  
+        * @hibernate.property
+        *  column="dhr_requester_nationality"
+        *  length="32"
     @Enumerated(EnumType.STRING)
     @Column(name="dhr_requester_nationality" , length=32 )
+        * @hibernate.many-to-one
+        *  cascade="all"
+        *  column="dhr_requester_pension_plan_id"
+        *  class="fr.cg95.cvq.business.request.social.DhrRequesterPensionPlan"
       
+    */
+    public final fr.cg95.cvq.business.users.NationalityType getDhrRequesterNationality() {
+        return this.dhrRequesterNationality;
     public fr.cg95.cvq.business.users.NationalityType getDhrRequesterNationality() {
         return this.dhrRequesterNationality;
+    */
+    public final fr.cg95.cvq.business.request.social.DhrRequesterPensionPlan getDhrRequesterPensionPlan() {
+        return this.dhrRequesterPensionPlan;
+    }
+  
+    
+      @NotNull(
+        
+        
+        profiles = {"spouse"},
+        message = "dhrSpouse"
+      )
+    
+      @AssertValid(
+        
+        
+        profiles = {"spouse"},
+        message = "dhrSpouse"
+      )
+    
+    private fr.cg95.cvq.business.request.social.DhrSpouse dhrSpouse;
+
+    public final void setDhrSpouseAddress(final fr.cg95.cvq.business.users.Address dhrSpouseAddress) {
+        this.dhrSpouseAddress = dhrSpouseAddress;
+    public void setDhrSpouseAddress(final fr.cg95.cvq.business.users.Address dhrSpouseAddress) {
+        this.dhrSpouseAddress = dhrSpouseAddress;
+    public final void setDhrSpouse(final fr.cg95.cvq.business.request.social.DhrSpouse dhrSpouse) {
+        this.dhrSpouse = dhrSpouse;
+    }
+
+ 
+        * @hibernate.many-to-one
+        *  cascade="all"
+        *  column="dhr_spouse_address_id"
+        *  class="fr.cg95.cvq.business.users.Address"
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name="dhr_spouse_address_id")
+        * @hibernate.many-to-one
+        *  cascade="all"
+        *  column="dhr_spouse_id"
+        *  class="fr.cg95.cvq.business.request.social.DhrSpouse"
+      
+    */
+    public final fr.cg95.cvq.business.users.Address getDhrSpouseAddress() {
+        return this.dhrSpouseAddress;
+    public fr.cg95.cvq.business.users.Address getDhrSpouseAddress() {
+        return this.dhrSpouseAddress;
+    */
+    public final fr.cg95.cvq.business.request.social.DhrSpouse getDhrSpouse() {
+        return this.dhrSpouse;
+    }
+  
+    
+      @AssertValid(
+        
+        
+          when = "groovy:def active = true;" +
+          
+              
+            
+            
+            "return active",
+        
+        profiles = {"spouse"},
+        message = "dhrSpouseIncomes"
+      )
+    
+    private fr.cg95.cvq.business.request.social.DhrIncomes dhrSpouseIncomes;
+
+    public final void setDhrSpouseBirthDate(final java.util.Date dhrSpouseBirthDate) {
+        this.dhrSpouseBirthDate = dhrSpouseBirthDate;
+    public void setDhrSpouseBirthDate(final java.util.Date dhrSpouseBirthDate) {
+        this.dhrSpouseBirthDate = dhrSpouseBirthDate;
+    public final void setDhrSpouseIncomes(final fr.cg95.cvq.business.request.social.DhrIncomes dhrSpouseIncomes) {
+        this.dhrSpouseIncomes = dhrSpouseIncomes;
+    }
+
+ 
+        * @hibernate.property
+        *  column="dhr_spouse_birth_date"
+        
+    @Column(name="dhr_spouse_birth_date"  )
+        * @hibernate.many-to-one
+        *  cascade="all"
+        *  column="dhr_spouse_incomes_id"
+        *  class="fr.cg95.cvq.business.request.social.DhrIncomes"
+      
+    */
+    public final java.util.Date getDhrSpouseBirthDate() {
+        return this.dhrSpouseBirthDate;
+    public java.util.Date getDhrSpouseBirthDate() {
+        return this.dhrSpouseBirthDate;
+    */
+    public final fr.cg95.cvq.business.request.social.DhrIncomes getDhrSpouseIncomes() {
+        return this.dhrSpouseIncomes;
     }
   
     
@@ -1491,18 +2149,13 @@ public class DomesticHelpRequestData implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= !_this.conditions['dhrIsSpouseRetired'].test(_this.dhrIsSpouseRetired.toString());" +
-                
               
             
-            "active &= _this.conditions['dhrRequestKind'].test(_this.dhrRequestKind.toString());" +
-                
-              
             
             "return active",
         
         profiles = {"spouse"},
-        message = "dhrSpouseAddress"
+        message = "dhrSpouseStatus"
       )
     
       @AssertValid(
@@ -1510,6 +2163,91 @@ public class DomesticHelpRequestData implements Serializable {
         
           when = "groovy:def active = true;" +
           
+              
+            
+            
+            "return active",
+        
+        profiles = {"spouse"},
+        message = "dhrSpouseStatus"
+      )
+    
+    private fr.cg95.cvq.business.request.social.DhrSpouseStatus dhrSpouseStatus;
+
+    public final void setDhrSpouseBirthPlace(final String dhrSpouseBirthPlace) {
+        this.dhrSpouseBirthPlace = dhrSpouseBirthPlace;
+    public void setDhrSpouseBirthPlace(final String dhrSpouseBirthPlace) {
+        this.dhrSpouseBirthPlace = dhrSpouseBirthPlace;
+    public final void setDhrSpouseStatus(final fr.cg95.cvq.business.request.social.DhrSpouseStatus dhrSpouseStatus) {
+        this.dhrSpouseStatus = dhrSpouseStatus;
+    }
+
+ 
+        * @hibernate.property
+        *  column="dhr_spouse_birth_place"
+        
+    @Column(name="dhr_spouse_birth_place"  )
+        * @hibernate.many-to-one
+        *  cascade="all"
+        *  column="dhr_spouse_status_id"
+        *  class="fr.cg95.cvq.business.request.social.DhrSpouseStatus"
+      
+    */
+    public final String getDhrSpouseBirthPlace() {
+        return this.dhrSpouseBirthPlace;
+    public String getDhrSpouseBirthPlace() {
+        return this.dhrSpouseBirthPlace;
+    */
+    public final fr.cg95.cvq.business.request.social.DhrSpouseStatus getDhrSpouseStatus() {
+        return this.dhrSpouseStatus;
+    }
+  
+    
+      @NotNull(
+        
+        
+        profiles = {"taxes"},
+        message = "dhrTaxesAmount"
+      )
+    
+      @AssertValid(
+        
+        
+        profiles = {"taxes"},
+        message = "dhrTaxesAmount"
+      )
+    
+    private fr.cg95.cvq.business.request.social.DhrTaxesAmount dhrTaxesAmount;
+
+    public final void setDhrSpouseComplementaryPensionPlan(final String dhrSpouseComplementaryPensionPlan) {
+        this.dhrSpouseComplementaryPensionPlan = dhrSpouseComplementaryPensionPlan;
+    public void setDhrSpouseComplementaryPensionPlan(final String dhrSpouseComplementaryPensionPlan) {
+        this.dhrSpouseComplementaryPensionPlan = dhrSpouseComplementaryPensionPlan;
+    public final void setDhrTaxesAmount(final fr.cg95.cvq.business.request.social.DhrTaxesAmount dhrTaxesAmount) {
+        this.dhrTaxesAmount = dhrTaxesAmount;
+    }
+
+ 
+        * @hibernate.property
+        *  column="dhr_spouse_complementary_pension_plan"
+        
+    @Column(name="dhr_spouse_complementary_pension_plan"  )
+        * @hibernate.many-to-one
+        *  cascade="all"
+        *  column="dhr_taxes_amount_id"
+        *  class="fr.cg95.cvq.business.request.social.DhrTaxesAmount"
+      
+    */
+    public final String getDhrSpouseComplementaryPensionPlan() {
+        return this.dhrSpouseComplementaryPensionPlan;
+    }
+  
+    
+      @NotNull(
+        
+        
+          when = "groovy:def active = true;" +
+          
             "active &= !_this.conditions['dhrIsSpouseRetired'].test(_this.dhrIsSpouseRetired.toString());" +
                 
               
@@ -1521,21 +2259,43 @@ public class DomesticHelpRequestData implements Serializable {
             "return active",
         
         profiles = {"spouse"},
-        message = "dhrSpouseAddress"
+        message = "dhrSpouseEmployer"
       )
     
-    private fr.cg95.cvq.business.users.Address dhrSpouseAddress;
+      @NotBlank(
+        
+        
+          when = "groovy:def active = true;" +
+          
+            "active &= !_this.conditions['dhrIsSpouseRetired'].test(_this.dhrIsSpouseRetired.toString());" +
+                
+              
+            
+            "active &= _this.conditions['dhrRequestKind'].test(_this.dhrRequestKind.toString());" +
+                
+              
+            
+            "return active",
+        
+        profiles = {"spouse"},
+        message = "dhrSpouseEmployer"
+      )
+    
+    private String dhrSpouseEmployer;
 
-    public void setDhrSpouseAddress(final fr.cg95.cvq.business.users.Address dhrSpouseAddress) {
-        this.dhrSpouseAddress = dhrSpouseAddress;
+    public final void setDhrSpouseEmployer(final String dhrSpouseEmployer) {
+        this.dhrSpouseEmployer = dhrSpouseEmployer;
     }
 
+    /**
  
-    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
-    @JoinColumn(name="dhr_spouse_address_id")
+        * @hibernate.property
+        *  column="dhr_spouse_employer"
+        
       
-    public fr.cg95.cvq.business.users.Address getDhrSpouseAddress() {
-        return this.dhrSpouseAddress;
+    */
+    public final String getDhrSpouseEmployer() {
+        return this.dhrSpouseEmployer;
     }
   
     
@@ -1552,22 +2312,44 @@ public class DomesticHelpRequestData implements Serializable {
             "return active",
         
         profiles = {"spouse"},
-        message = "dhrSpouseBirthDate"
+        message = "dhrSpouseFamilyStatus"
       )
     
-    private java.util.Date dhrSpouseBirthDate;
+    private fr.cg95.cvq.business.users.FamilyStatusType dhrSpouseFamilyStatus;
 
-    public void setDhrSpouseBirthDate(final java.util.Date dhrSpouseBirthDate) {
-        this.dhrSpouseBirthDate = dhrSpouseBirthDate;
+    public final void setDhrSpouseFamilyStatus(final fr.cg95.cvq.business.users.FamilyStatusType dhrSpouseFamilyStatus) {
+        this.dhrSpouseFamilyStatus = dhrSpouseFamilyStatus;
     }
 
+    /**
  
-    @Column(name="dhr_spouse_birth_date"  )
+        * @hibernate.property
+        *  column="dhr_spouse_family_status"
+        
       
-    public java.util.Date getDhrSpouseBirthDate() {
-        return this.dhrSpouseBirthDate;
+    */
+    public final fr.cg95.cvq.business.users.FamilyStatusType getDhrSpouseFamilyStatus() {
+        return this.dhrSpouseFamilyStatus;
     }
   
+    
+      @MaxLength(
+        
+          value = 38,
+        
+        
+          when = "groovy:def active = true;" +
+          
+            "active &= _this.conditions['dhrRequestKind'].test(_this.dhrRequestKind.toString());" +
+                
+              
+            
+            
+            "return active",
+        
+        profiles = {"spouse"},
+        message = "dhrSpouseFirstName"
+      )
     
       @NotNull(
         
@@ -1582,7 +2364,7 @@ public class DomesticHelpRequestData implements Serializable {
             "return active",
         
         profiles = {"spouse"},
-        message = "dhrSpouseBirthPlace"
+        message = "dhrSpouseFirstName"
       )
     
       @NotBlank(
@@ -1598,20 +2380,318 @@ public class DomesticHelpRequestData implements Serializable {
             "return active",
         
         profiles = {"spouse"},
-        message = "dhrSpouseBirthPlace"
+        message = "dhrSpouseFirstName"
       )
     
-    private String dhrSpouseBirthPlace;
+    private String dhrSpouseFirstName;
 
-    public void setDhrSpouseBirthPlace(final String dhrSpouseBirthPlace) {
-        this.dhrSpouseBirthPlace = dhrSpouseBirthPlace;
+    public final void setDhrSpouseFirstName(final String dhrSpouseFirstName) {
+        this.dhrSpouseFirstName = dhrSpouseFirstName;
     }
 
+    /**
  
-    @Column(name="dhr_spouse_birth_place"  )
+        * @hibernate.property
+        *  column="dhr_spouse_first_name"
+        *  length="38"
       
-    public String getDhrSpouseBirthPlace() {
-        return this.dhrSpouseBirthPlace;
+    */
+    public final String getDhrSpouseFirstName() {
+        return this.dhrSpouseFirstName;
+    }
+  
+    
+      @NotNull(
+        
+        
+          when = "groovy:def active = true;" +
+          
+            "active &= _this.conditions['dhrSpouseNationality'].test(_this.dhrSpouseNationality.toString());" +
+                
+              
+            
+            
+            "return active",
+        
+        profiles = {"spouse"},
+        message = "dhrSpouseFranceArrivalDate"
+      )
+    
+    private java.util.Date dhrSpouseFranceArrivalDate;
+
+    public final void setDhrSpouseFranceArrivalDate(final java.util.Date dhrSpouseFranceArrivalDate) {
+        this.dhrSpouseFranceArrivalDate = dhrSpouseFranceArrivalDate;
+    }
+
+    /**
+ 
+        * @hibernate.property
+        *  column="dhr_spouse_france_arrival_date"
+        
+      
+    */
+    public final java.util.Date getDhrSpouseFranceArrivalDate() {
+        return this.dhrSpouseFranceArrivalDate;
+    }
+  
+    
+      @NotNull(
+        
+        
+          when = "groovy:def active = true;" +
+          
+            "active &= _this.conditions['dhrSpouseNationality'].test(_this.dhrSpouseNationality.toString());" +
+                
+              
+            
+            
+            "return active",
+        
+        profiles = {"spouse"},
+        message = "dhrSpouseIsFrenchResident"
+      )
+    
+    private Boolean dhrSpouseIsFrenchResident;
+
+    public final void setDhrSpouseIsFrenchResident(final Boolean dhrSpouseIsFrenchResident) {
+        this.dhrSpouseIsFrenchResident = dhrSpouseIsFrenchResident;
+    }
+
+    /**
+ 
+        * @hibernate.property
+        *  column="dhr_spouse_is_french_resident"
+        
+      
+    */
+    public final Boolean getDhrSpouseIsFrenchResident() {
+        return this.dhrSpouseIsFrenchResident;
+    }
+  
+    
+      @MaxLength(
+        
+          value = 38,
+        
+        
+          when = "groovy:def active = true;" +
+          
+            "active &= _this.conditions['dhrSpouseTitle'].test(_this.dhrSpouseTitle.toString());" +
+                
+              
+            
+            
+            "return active",
+        
+        profiles = {"spouse"},
+        message = "dhrSpouseMaidenName"
+      )
+    
+      @NotNull(
+        
+        
+          when = "groovy:def active = true;" +
+          
+            "active &= _this.conditions['dhrSpouseTitle'].test(_this.dhrSpouseTitle.toString());" +
+                
+              
+            
+            
+            "return active",
+        
+        profiles = {"spouse"},
+        message = "dhrSpouseMaidenName"
+      )
+    
+      @NotBlank(
+        
+        
+          when = "groovy:def active = true;" +
+          
+            "active &= _this.conditions['dhrSpouseTitle'].test(_this.dhrSpouseTitle.toString());" +
+                
+              
+            
+            
+            "return active",
+        
+        profiles = {"spouse"},
+        message = "dhrSpouseMaidenName"
+      )
+    
+    private String dhrSpouseMaidenName;
+
+    public final void setDhrSpouseMaidenName(final String dhrSpouseMaidenName) {
+        this.dhrSpouseMaidenName = dhrSpouseMaidenName;
+    }
+
+    /**
+ 
+        * @hibernate.property
+        *  column="dhr_spouse_maiden_name"
+        *  length="38"
+      
+    */
+    public final String getDhrSpouseMaidenName() {
+        return this.dhrSpouseMaidenName;
+    }
+  
+    
+      @MaxLength(
+        
+          value = 38,
+        
+        
+          when = "groovy:def active = true;" +
+          
+            "active &= _this.conditions['dhrRequestKind'].test(_this.dhrRequestKind.toString());" +
+                
+              
+            
+            
+            "return active",
+        
+        profiles = {"spouse"},
+        message = "dhrSpouseName"
+      )
+    
+      @NotNull(
+        
+        
+          when = "groovy:def active = true;" +
+          
+            "active &= _this.conditions['dhrRequestKind'].test(_this.dhrRequestKind.toString());" +
+                
+              
+            
+            
+            "return active",
+        
+        profiles = {"spouse"},
+        message = "dhrSpouseName"
+      )
+    
+      @NotBlank(
+        
+        
+          when = "groovy:def active = true;" +
+          
+            "active &= _this.conditions['dhrRequestKind'].test(_this.dhrRequestKind.toString());" +
+                
+              
+            
+            
+            "return active",
+        
+        profiles = {"spouse"},
+        message = "dhrSpouseName"
+      )
+    
+    private String dhrSpouseName;
+
+    public final void setDhrSpouseName(final String dhrSpouseName) {
+        this.dhrSpouseName = dhrSpouseName;
+    }
+
+    /**
+ 
+        * @hibernate.property
+        *  column="dhr_spouse_name"
+        *  length="38"
+      
+    */
+    public final String getDhrSpouseName() {
+        return this.dhrSpouseName;
+    }
+  
+    
+      @NotNull(
+        
+        
+          when = "groovy:def active = true;" +
+          
+            "active &= _this.conditions['dhrRequestKind'].test(_this.dhrRequestKind.toString());" +
+                
+              
+            
+            
+            "return active",
+        
+        profiles = {"spouse"},
+        message = "dhrSpouseNationality"
+      )
+    
+    private fr.cg95.cvq.business.users.NationalityType dhrSpouseNationality;
+
+    public final void setDhrSpouseNationality(final fr.cg95.cvq.business.users.NationalityType dhrSpouseNationality) {
+        this.dhrSpouseNationality = dhrSpouseNationality;
+    }
+
+    /**
+ 
+        * @hibernate.property
+        *  column="dhr_spouse_nationality"
+        *  length="32"
+      
+    */
+    public final fr.cg95.cvq.business.users.NationalityType getDhrSpouseNationality() {
+        return this.dhrSpouseNationality;
+    }
+  
+    
+      @NotNull(
+        
+        
+          when = "groovy:def active = true;" +
+          
+            "active &= _this.conditions['dhrSpousePrincipalPensionPlan'].test(_this.dhrSpousePrincipalPensionPlan.toString());" +
+                
+              
+            
+            "active &= _this.conditions['dhrRequestKind'].test(_this.dhrRequestKind.toString());" +
+                
+              
+            
+            "return active",
+        
+        profiles = {"spouse"},
+        message = "dhrSpousePensionPlanDetail"
+      )
+    
+      @NotBlank(
+        
+        
+          when = "groovy:def active = true;" +
+          
+            "active &= _this.conditions['dhrSpousePrincipalPensionPlan'].test(_this.dhrSpousePrincipalPensionPlan.toString());" +
+                
+              
+            
+            "active &= _this.conditions['dhrRequestKind'].test(_this.dhrRequestKind.toString());" +
+                
+              
+            
+            "return active",
+        
+        profiles = {"spouse"},
+        message = "dhrSpousePensionPlanDetail"
+      )
+    
+    private String dhrSpousePensionPlanDetail;
+
+    public final void setDhrSpousePensionPlanDetail(final String dhrSpousePensionPlanDetail) {
+        this.dhrSpousePensionPlanDetail = dhrSpousePensionPlanDetail;
+    }
+
+    /**
+ 
+        * @hibernate.property
+        *  column="dhr_spouse_pension_plan_detail"
+        
+      
+    */
+    public final String getDhrSpousePensionPlanDetail() {
+        return this.dhrSpousePensionPlanDetail;
     }
   
     
@@ -1631,15 +2711,33 @@ public class DomesticHelpRequestData implements Serializable {
             "return active",
         
         profiles = {"spouse"},
-        message = "dhrSpouseComplementaryPensionPlan"
+        message = "dhrSpousePrincipalPensionPlan"
       )
     
-      @NotBlank(
+    private fr.cg95.cvq.business.request.social.DhrPrincipalPensionPlanType dhrSpousePrincipalPensionPlan;
+
+    public final void setDhrSpousePrincipalPensionPlan(final fr.cg95.cvq.business.request.social.DhrPrincipalPensionPlanType dhrSpousePrincipalPensionPlan) {
+        this.dhrSpousePrincipalPensionPlan = dhrSpousePrincipalPensionPlan;
+    }
+
+    /**
+ 
+        * @hibernate.property
+        *  column="dhr_spouse_principal_pension_plan"
+        
+      
+    */
+    public final fr.cg95.cvq.business.request.social.DhrPrincipalPensionPlanType getDhrSpousePrincipalPensionPlan() {
+        return this.dhrSpousePrincipalPensionPlan;
+    }
+  
+    
+      @NotNull(
         
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['dhrIsSpouseRetired'].test(_this.dhrIsSpouseRetired.toString());" +
+            "active &= !_this.conditions['dhrIsSpouseRetired'].test(_this.dhrIsSpouseRetired.toString());" +
                 
               
             
@@ -1650,18 +2748,153 @@ public class DomesticHelpRequestData implements Serializable {
             "return active",
         
         profiles = {"spouse"},
-        message = "dhrSpouseComplementaryPensionPlan"
+        message = "dhrSpouseProfession"
       )
     
-    private String dhrSpouseComplementaryPensionPlan;
+      @NotBlank(
+        
+        
+          when = "groovy:def active = true;" +
+          
+            "active &= !_this.conditions['dhrIsSpouseRetired'].test(_this.dhrIsSpouseRetired.toString());" +
+                
+              
+            
+            "active &= _this.conditions['dhrRequestKind'].test(_this.dhrRequestKind.toString());" +
+                
+              
+            
+            "return active",
+        
+        profiles = {"spouse"},
+        message = "dhrSpouseProfession"
+      )
+    
+    private String dhrSpouseProfession;
 
-    public void setDhrSpouseComplementaryPensionPlan(final String dhrSpouseComplementaryPensionPlan) {
-        this.dhrSpouseComplementaryPensionPlan = dhrSpouseComplementaryPensionPlan;
+    public final void setDhrSpouseProfession(final String dhrSpouseProfession) {
+        this.dhrSpouseProfession = dhrSpouseProfession;
     }
 
+    /**
  
-    @Column(name="dhr_spouse_complementary_pension_plan"  )
+        * @hibernate.property
+        *  column="dhr_spouse_profession"
+        
       
+    */
+    public final String getDhrSpouseProfession() {
+        return this.dhrSpouseProfession;
+    }
+  
+    
+      @NotNull(
+        
+        
+          when = "groovy:def active = true;" +
+          
+            "active &= _this.conditions['dhrRequestKind'].test(_this.dhrRequestKind.toString());" +
+                
+              
+            
+            
+            "return active",
+        
+        profiles = {"spouse"},
+        message = "dhrSpouseTitle"
+      )
+    
+    private fr.cg95.cvq.business.users.TitleType dhrSpouseTitle;
+
+    public final void setDhrSpouseTitle(final fr.cg95.cvq.business.users.TitleType dhrSpouseTitle) {
+        this.dhrSpouseTitle = dhrSpouseTitle;
+    }
+
+    /**
+ 
+        * @hibernate.property
+        *  column="dhr_spouse_title"
+        
+      
+    */
+    public final fr.cg95.cvq.business.users.TitleType getDhrSpouseTitle() {
+        return this.dhrSpouseTitle;
+    }
+  
+    
+    private java.math.BigInteger localRate;
+
+    public final void setLocalRate(final java.math.BigInteger localRate) {
+        this.localRate = localRate;
+    }
+
+    /**
+ 
+        * @hibernate.property
+        *  column="local_rate"
+        *  type="serializable"
+        
+      
+    */
+    public final java.math.BigInteger getLocalRate() {
+        return this.localRate;
+    }
+  
+    
+    private java.math.BigInteger pensions;
+
+    public final void setPensions(final java.math.BigInteger pensions) {
+        this.pensions = pensions;
+    }
+
+    /**
+ 
+        * @hibernate.property
+        *  column="pensions"
+        *  type="serializable"
+        
+      
+    */
+    public final java.math.BigInteger getPensions() {
+        return this.pensions;
+    }
+  
+    
+    private java.math.BigInteger professionalTaxes;
+
+    public final void setProfessionalTaxes(final java.math.BigInteger professionalTaxes) {
+        this.professionalTaxes = professionalTaxes;
+    }
+
+    /**
+ 
+        * @hibernate.property
+        *  column="professional_taxes"
+        *  type="serializable"
+        
+      
+    */
+    public final java.math.BigInteger getProfessionalTaxes() {
+        return this.professionalTaxes;
+    }
+  
+    
+    private java.math.BigInteger propertyTaxes;
+
+    public final void setPropertyTaxes(final java.math.BigInteger propertyTaxes) {
+        this.propertyTaxes = propertyTaxes;
+    }
+
+    /**
+ 
+        * @hibernate.property
+        *  column="property_taxes"
+        *  type="serializable"
+        
+      
+    */
+    public final java.math.BigInteger getPropertyTaxes() {
+        return this.propertyTaxes;
     public String getDhrSpouseComplementaryPensionPlan() {
         return this.dhrSpouseComplementaryPensionPlan;
     }
@@ -2259,6 +3492,9 @@ public class DomesticHelpRequestData implements Serializable {
       
     public java.math.BigInteger getPropertyTaxes() {
         return this.propertyTaxes;
+    */
+    public final fr.cg95.cvq.business.request.social.DhrTaxesAmount getDhrTaxesAmount() {
+        return this.dhrTaxesAmount;
     }
   
 }

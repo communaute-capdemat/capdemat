@@ -36,7 +36,9 @@
     <label class="required"><g:message code="rarr.property.recreationActivity.label" /> *  <span><g:message code="rarr.property.recreationActivity.help" /></span></label>
             <g:set var="recreationActivityIndex" value="${0}" scope="flash" />
             <g:render template="/frontofficeRequestType/widget/localReferentialData" 
-                      model="['javaName':'recreationActivity', 'i18nPrefixCode':'rarr.property.recreationActivity', 'htmlClass':'required  ', 
+                      model="['wrapper':rqt, 'wrapperJavaName':'',
+                              'javaName':'recreationActivity', 'i18nPrefixCode':'rarr.property.recreationActivity',
+                              'htmlClass':'required  ', 
                               'lrEntries': lrTypes.recreationActivity.entries, 'depth':0]" />
             
 

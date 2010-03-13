@@ -83,7 +83,7 @@
       ,'localReferentialData' :
           """
           <div class="response choice">
-            ${toGT("localReferentialWidget(rqt, '${element.javaFieldName}', lrTypes.${element.javaFieldName}.entries, 0)")}
+            ${toGT("localReferentialWidget(" + wrapper.replace('?', '') + ", '${element.javaFieldName}', lrTypes.${element.javaFieldName}.entries, 0)")}
           </div>
           """
       ,'date' :
@@ -187,27 +187,26 @@ ${beginGT()}
   import fr.cg95.cvq.util.EnumTool
   import java.text.NumberFormat
   def esc(s) { return org.apache.commons.lang3.StringEscapeUtils.escapeXml(s) }
-  def localReferentialWidget(rqt, javaName, lrEntries, depth) {
-    def currentLrDatas = rqt[javaName].collect{it.name}
-    if (lrEntries.any{it.entries}) {
-      println "<ul \${depth==0 ? 'class=\"dataTree\"' : ''}>"
-      
-      lrEntries.each { entry ->
-        println "<li>"
-        if (entry.entries) {
-          println "<em \${currentLrDatas?.contains(entry.key) ? 'class=\"checked\"' : ''}>\${entry.label} :</em>"
-          localReferentialWidget(rqt, javaName, entry.entries, depth + 1)
-        } else {
-          println "<span \${currentLrDatas?.contains(entry.key) ? 'class=\"checked\"' : ''}>\${entry.label}</span>"
-        }
-        println "</li>"
-      }
-
-      println "</ul>"
-    } else {
-      lrEntries.eachWithIndex { entry, i ->
-        println "<span \${currentLrDatas?.contains(entry.key) ? 'class=\"checked\"' : ''}>\${entry.label}</span>\${i + 1 < lrEntries.size() ? ', ' : ''}"
-      }
+  def localReferentialWidget(wrapper, javaName, lrEntries, depth) {
+    def lrHtml = ''
+    def currentLrDatas = wrapper != null ? wrapper[javaName].collect{it.name} : null
+    if (lrTypes[javaName].isMultiple()) { 
+      lrHtml += "<ul \${depth==0 ? 'class=\"dataTree\"' : ''}>"
+      lrEntries.eachWithIndex { entry, i -> 
+      if (entry.entries) { 
+        lrHtml += "<li>"
+        lrHtml += "<em>\${esc(entry.label)} :</em>"
+        lrHtml += localReferentialWidget(wrapper, javaName, entry.entries,++depth)
+        lrHtml += "</li>"
+      } else {
+         lrHtml += "<li><span \${currentLrDatas?.contains(entry.key) ? 'class=\"checked\"' : ''}>\${esc(entry.label)}</span>\${i + 1 < lrEntries.size() ? ',' : ''}</li>"
+      } 
+    } 
+    lrHtml += "</ul>"
+    } else { 
+      lrEntries.each { entry -> 
+        lrHtml += "\${currentLrDatas?.contains(entry.key) ? esc(entry.label): ''}"
+      } 
     }
   }
 ${endGT()}
@@ -252,7 +251,7 @@ ${endGT()}
       <h3>\${i18n.translate('${element.i18nPrefixCode}.label')}</h3>
       <div class="complex">
         <% element.elements.each { subElement -> %>
-          <% displayWidget(subElement, "rqt") %>
+          <% displayWidget(subElement, "rqt." + element.javaFieldName + '?') %>
         <% } %>
       </div>
     <% } else { %>

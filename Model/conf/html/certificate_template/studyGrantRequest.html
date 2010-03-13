@@ -7,7 +7,28 @@
   import java.text.NumberFormat
   def esc(s) { return org.apache.commons.lang3.StringEscapeUtils.escapeXml(s) }
   def localReferentialWidget(rqt, javaName, lrEntries, depth) {
-    def currentLrDatas = rqt[javaName].collect{it.name}
+    def lrHtml = ''
+  def localReferentialWidget(rqt, javaName, lrEntries, depth) {
+  def localReferentialWidget(wrapper, javaName, lrEntries, depth) {
+    def lrHtml = ''
+    def currentLrDatas = wrapper != null ? wrapper[javaName].collect{it.name} : null
+    if (lrTypes[javaName].entriesSupportMultiple) { 
+      lrHtml += "<ul ${depth==0 ? 'class="dataTree"' : ''}>"
+      lrEntries.eachWithIndex { entry, i -> 
+      if (entry.entries) { 
+        lrHtml += "<li>"
+        lrHtml += "<em>${esc(entry.labelsMap.fr)} :</em>"
+        lrHtml += localReferentialWidget(rqt, javaName, entry.entries,++depth)
+        lrHtml += "</li>"
+      } else {
+         lrHtml += "<li><span ${currentLrDatas?.contains(entry.key) ? 'class="checked"' : ''}>${esc(entry.labelsMap.fr)}</span>${i + 1 < lrEntries.size() ? ',' : ''}</li>"
+      } 
+    } 
+    lrHtml += "</ul>"
+    } else { 
+      lrEntries.each { entry -> 
+        lrHtml += "${currentLrDatas?.contains(entry.key) ? esc(entry.labelsMap.fr): ''}"
+      } 
     if (lrEntries.any{it.entries}) {
       println "<ul ${depth==0 ? 'class="dataTree"' : ''}>"
       
@@ -27,6 +48,23 @@
       lrEntries.eachWithIndex { entry, i ->
         println "<span ${currentLrDatas?.contains(entry.key) ? 'class="checked"' : ''}>${entry.label}</span>${i + 1 < lrEntries.size() ? ', ' : ''}"
       }
+    if (lrTypes[javaName].entriesSupportMultiple) { 
+      lrHtml += "<ul ${depth==0 ? 'class="dataTree"' : ''}>"
+      lrEntries.eachWithIndex { entry, i -> 
+      if (entry.entries) { 
+        lrHtml += "<li>"
+        lrHtml += "<em>${esc(entry.labelsMap.fr)} :</em>"
+        lrHtml += localReferentialWidget(wrapper, javaName, entry.entries,++depth)
+        lrHtml += "</li>"
+      } else {
+         lrHtml += "<li><span ${currentLrDatas?.contains(entry.key) ? 'class="checked"' : ''}>${esc(entry.labelsMap.fr)}</span>${i + 1 < lrEntries.size() ? ',' : ''}</li>"
+      } 
+    } 
+    lrHtml += "</ul>"
+    } else { 
+      lrEntries.each { entry -> 
+        lrHtml += "${currentLrDatas?.contains(entry.key) ? esc(entry.labelsMap.fr): ''}"
+      } 
     }
   }
 
@@ -103,14 +141,14 @@
 
         
           <p class="label">${esc(i18n.translate('sgr.property.subjectBirthDate.label'))}</p>
-          <div class="response">${rqt.subjectBirthDate ? String.format('%td/%<tm/%<tY',rqt.subjectBirthDate) : ''}</div>
+          <div class="response">${rqt.subjectInformations?.subjectBirthDate ? String.format('%td/%<tm/%<tY',rqt.subjectInformations?.subjectBirthDate) : ''}</div>
           
 
         
           <p class="label">${esc(i18n.translate('sgr.property.subjectFirstRequest.label'))}</p>
           <div class="response choice">
             <% [true,false].each { %>
-              <span ${it == rqt.subjectFirstRequest ? 'class="checked"': ''}>
+              <span ${it == rqt.subjectInformations?.subjectFirstRequest ? 'class="checked"': ''}>
                 ${esc(i18n.translate('message.' + (it ? 'yes' : 'no')))}
               </span>
               ${it ? ' / ' : ''}
@@ -225,16 +263,32 @@
         
           <p class="label">${esc(i18n.translate('sgr.property.currentSchoolName.label'))}</p>
           <div class="response choice">
-            <% localReferentialWidget(rqt, 'currentSchoolName', lrTypes.currentSchoolName.entries, 0) %>
+            <% localReferentialWidget(rqt.currentSchool, 'currentSchoolName', lrTypes.currentSchoolName.entries, 0) %>
           </div>
           
 
         
-          <p class="label">${esc(i18n.translate('sgr.property.currentSchoolNamePrecision.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.currentSchoolNamePrecision?.toString()))}</div>
+          <p class="label">${esc(i18n.translate('sgr.property.currentSchoolNamePrecision.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.currentSchool?.currentSchoolNamePrecision?.toString()))}</div>
 
         
+          <p class="label">${esc(i18n.translate('sgr.property.currentSchoolPostalCode.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.currentSchoolPostalCode?.toString()))}</div>
+
+        
+          <p class="label">${esc(i18n.translate('sgr.property.currentSchoolCity.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.currentSchoolCity?.toString()))}</div>
+
+        
+          <p class="label">${esc(i18n.translate('sgr.property.currentSchoolCountry.label'))}</p>
           <p class="label">${esc(i18n.translate('sgr.property.currentSchoolAddress.label'))}</p>
+          <p class="label">${esc(i18n.translate('sgr.property.currentSchoolPostalCode.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.currentSchool?.currentSchoolPostalCode?.toString()))}</div>
+
+        
+          <p class="label">${esc(i18n.translate('sgr.property.currentSchoolCity.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.currentSchool?.currentSchoolCity?.toString()))}</div>
+
+        
+          <p class="label">${esc(i18n.translate('sgr.property.currentSchoolCountry.label'))}</p>
           <div class="response">
+            <% if(rqt.currentSchoolCountry) { %>
+              ${esc(i18n.translate('sgr.property.currentSchoolCountry.' + StringUtils.uncapitalize(rqt.currentSchoolCountry.toString())))}
             <% if(rqt.currentSchoolAddress) { %>
               <p>${esc(StringUtils.defaultString(rqt.currentSchoolAddress?.additionalDeliveryInformation))}</p>
               <p>${esc(StringUtils.defaultString(rqt.currentSchoolAddress?.additionalGeographicalInformation))}</p>
@@ -242,6 +296,8 @@
               <p>${esc(StringUtils.defaultString(rqt.currentSchoolAddress?.placeNameOrService))}</p>
               <p>${esc(StringUtils.defaultString(rqt.currentSchoolAddress?.postalCode))} ${esc(StringUtils.defaultString(rqt.currentSchoolAddress?.city))}</p>
               <p>${esc(StringUtils.defaultString(rqt.currentSchoolAddress?.countryName))}</p>
+            <% if(rqt.currentSchool?.currentSchoolCountry) { %>
+              ${esc(i18n.translate('sgr.property.currentSchoolCountry.' + StringUtils.uncapitalize(rqt.currentSchool?.currentSchoolCountry.toString())))}
             <% } %>
           </div>
           
@@ -251,16 +307,20 @@
     
   
     
-      <h3>${i18n.translate('sgr.property.aLevelsInformations.label')}</h3>
+      <h3>${i18n.translate('sgr.property.alevelsInformations.label')}</h3>
       <div class="complex">
         
-          <p class="label">${esc(i18n.translate('sgr.property.alevelsDate.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.alevelsDate?.toString()))}</div>
+          <p class="label">${esc(i18n.translate('sgr.property.alevelsDate.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.alevelsInformations?.alevelsDate?.toString()))}</div>
 
         
           <p class="label">${esc(i18n.translate('sgr.property.alevels.label'))}</p>
           <div class="response">
             <% if(rqt.alevels) { %>
+              ${esc(i18n.translate('sgr.property.alevels.' + StringUtils.uncapitalize(rqt.alevels.toString())))}
+            <% if(rqt.alevels) { %>
               ${esc(i18n.translate('sgr.property.alevels.' + EnumTool.toLowerCamelCase(rqt.alevels.toString())))}
+            <% if(rqt.alevelsInformations?.alevels) { %>
+              ${esc(i18n.translate('sgr.property.alevels.' + StringUtils.uncapitalize(rqt.alevelsInformations?.alevels.toString())))}
             <% } %>
           </div>
           
@@ -276,19 +336,27 @@
           <p class="label">${esc(i18n.translate('sgr.property.currentStudiesDiploma.label'))}</p>
           <div class="response">
             <% if(rqt.currentStudiesDiploma) { %>
+              ${esc(i18n.translate('sgr.property.currentStudiesDiploma.' + StringUtils.uncapitalize(rqt.currentStudiesDiploma.toString())))}
+            <% if(rqt.currentStudiesDiploma) { %>
               ${esc(i18n.translate('sgr.property.currentStudiesDiploma.' + EnumTool.toLowerCamelCase(rqt.currentStudiesDiploma.toString())))}
+            <% if(rqt.currentStudiesInformations?.currentStudiesDiploma) { %>
+              ${esc(i18n.translate('sgr.property.currentStudiesDiploma.' + StringUtils.uncapitalize(rqt.currentStudiesInformations?.currentStudiesDiploma.toString())))}
             <% } %>
           </div>
           
 
         
-          <p class="label">${esc(i18n.translate('sgr.property.otherStudiesLabel.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.otherStudiesLabel?.toString()))}</div>
+          <p class="label">${esc(i18n.translate('sgr.property.otherStudiesLabel.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.currentStudiesInformations?.otherStudiesLabel?.toString()))}</div>
 
         
           <p class="label">${esc(i18n.translate('sgr.property.currentStudiesLevel.label'))}</p>
           <div class="response">
             <% if(rqt.currentStudiesLevel) { %>
+              ${esc(i18n.translate('sgr.property.currentStudiesLevel.' + StringUtils.uncapitalize(rqt.currentStudiesLevel.toString())))}
+            <% if(rqt.currentStudiesLevel) { %>
               ${esc(i18n.translate('sgr.property.currentStudiesLevel.' + EnumTool.toLowerCamelCase(rqt.currentStudiesLevel.toString())))}
+            <% if(rqt.currentStudiesInformations?.currentStudiesLevel) { %>
+              ${esc(i18n.translate('sgr.property.currentStudiesLevel.' + StringUtils.uncapitalize(rqt.currentStudiesInformations?.currentStudiesLevel.toString())))}
             <% } %>
           </div>
           
@@ -297,7 +365,7 @@
           <p class="label">${esc(i18n.translate('sgr.property.sandwichCourses.label'))}</p>
           <div class="response choice">
             <% [true,false].each { %>
-              <span ${it == rqt.sandwichCourses ? 'class="checked"': ''}>
+              <span ${it == rqt.currentStudiesInformations?.sandwichCourses ? 'class="checked"': ''}>
                 ${esc(i18n.translate('message.' + (it ? 'yes' : 'no')))}
               </span>
               ${it ? ' / ' : ''}
@@ -309,7 +377,7 @@
           <p class="label">${esc(i18n.translate('sgr.property.abroadInternship.label'))}</p>
           <div class="response choice">
             <% [true,false].each { %>
-              <span ${it == rqt.abroadInternship ? 'class="checked"': ''}>
+              <span ${it == rqt.currentStudiesInformations?.abroadInternship ? 'class="checked"': ''}>
                 ${esc(i18n.translate('message.' + (it ? 'yes' : 'no')))}
               </span>
               ${it ? ' / ' : ''}
@@ -319,22 +387,26 @@
 
         
           <p class="label">${esc(i18n.translate('sgr.property.abroadInternshipStartDate.label'))}</p>
-          <div class="response">${rqt.abroadInternshipStartDate ? String.format('%td/%<tm/%<tY',rqt.abroadInternshipStartDate) : ''}</div>
+          <div class="response">${rqt.currentStudiesInformations?.abroadInternshipStartDate ? String.format('%td/%<tm/%<tY',rqt.currentStudiesInformations?.abroadInternshipStartDate) : ''}</div>
           
 
         
           <p class="label">${esc(i18n.translate('sgr.property.abroadInternshipEndDate.label'))}</p>
-          <div class="response">${rqt.abroadInternshipEndDate ? String.format('%td/%<tm/%<tY',rqt.abroadInternshipEndDate) : ''}</div>
+          <div class="response">${rqt.currentStudiesInformations?.abroadInternshipEndDate ? String.format('%td/%<tm/%<tY',rqt.currentStudiesInformations?.abroadInternshipEndDate) : ''}</div>
           
 
         
-          <p class="label">${esc(i18n.translate('sgr.property.abroadInternshipSchoolName.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.abroadInternshipSchoolName?.toString()))}</div>
+          <p class="label">${esc(i18n.translate('sgr.property.abroadInternshipSchoolName.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.currentStudiesInformations?.abroadInternshipSchoolName?.toString()))}</div>
 
         
           <p class="label">${esc(i18n.translate('sgr.property.abroadInternshipSchoolCountry.label'))}</p>
           <div class="response">
             <% if(rqt.abroadInternshipSchoolCountry) { %>
+              ${esc(i18n.translate('sgr.property.abroadInternshipSchoolCountry.' + StringUtils.uncapitalize(rqt.abroadInternshipSchoolCountry.toString())))}
+            <% if(rqt.abroadInternshipSchoolCountry) { %>
               ${esc(i18n.translate('sgr.property.abroadInternshipSchoolCountry.' + EnumTool.toLowerCamelCase(rqt.abroadInternshipSchoolCountry.toString())))}
+            <% if(rqt.currentStudiesInformations?.abroadInternshipSchoolCountry) { %>
+              ${esc(i18n.translate('sgr.property.abroadInternshipSchoolCountry.' + StringUtils.uncapitalize(rqt.currentStudiesInformations?.abroadInternshipSchoolCountry.toString())))}
             <% } %>
           </div>
           

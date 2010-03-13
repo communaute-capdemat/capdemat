@@ -64,7 +64,7 @@
       """,
       "complex" : """
         if (this.${element.nameAsParam} != null)
-            ${wrapper}.set${StringUtils.capitalize(element.nameAsParam)}(${element.modelClassName}.modelToXml(this.${element.nameAsParam}));
+            ${wrapper}.set${StringUtils.capitalize(element.nameAsParam)}(this.${element.nameAsParam}.modelToXml());
       """,
       "referentialList" : """
         i = 0;
@@ -149,8 +149,9 @@
     def output = widgets[element.widget]
     if (output != null) print output
   }
-  def displayAnnotation = { element ->
-    def sqlName = ModelPluginUtils.getSQLName(StringUtils.capitalize(element.nameAsParam))
+  def displayAnnotation = { element, wrapper ->
+    def sqlName = ModelPluginUtils.getSQLName(element.nameAsParam)
+    def wrapperSQLName = ModelPluginUtils.getSQLName(wrapper)
     def widgets = [
       "simple" : """
     @Column(name="${sqlName}" ${element.maxLength > 0 ? ', length=' + element.maxLength : element.length > 0 ? ', length=' + element.length : ""} )
@@ -166,6 +167,7 @@
       "localTime" : """
     @Column(name="${sqlName}" ${element.maxLength > 0 ? ', length=' + element.maxLength : element.length > 0 ? ', length=' + element.length : ""} )
       """,
+      // FIXME: collection are not cleanly supported in Generator
       "one-to-many" : """
     @OneToMany(cascade=CascadeType.ALL)
     @OrderColumn(name="${sqlName}_index")
@@ -243,6 +245,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.HashMap;
 import org.joda.time.LocalTime;
 
 import net.sf.oval.constraint.*;
@@ -270,6 +273,7 @@ public class ${className} implements Serializable {
 
     public static final Map<String, IConditionChecker> conditions =
         ${requestName}.conditions;
+        new HashMap<String, IConditionChecker>();
 
     public ${className}() {
         super();
@@ -392,8 +396,16 @@ public class ${className} implements Serializable {
         this.${element.nameAsParam} = ${element.nameAsParam};
     }
 
+    /**
+  <% displayAnnotation(element) %>
+    */
+    public final ${element.type()} get${StringUtils.capitalize(element.nameAsParam)}() {
 <% displayAnnotation(element) %>
     public ${element.type()} get${StringUtils.capitalize(element.nameAsParam)}() {
+    /**
+  <% displayAnnotation(element,className) %>
+    */
+    public final ${element.type()} get${StringUtils.capitalize(element.nameAsParam)}() {
         return this.${element.nameAsParam};
     }
   <% } %>

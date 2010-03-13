@@ -123,13 +123,23 @@ public class SchoolRegistrationRequest extends Request implements Serializable {
         currentSchoolTypeCurrentSchool.setCurrentSchoolName(getCurrentSchoolName());
       
         if (getCurrentSection() != null)
+            currentSchoolTypeCurrentSchool.setCurrentSection(fr.cg95.cvq.xml.common.SectionType.Enum.forString(getCurrentSection().toString()));
+          CurrentSchoolType currentSchoolTypeCurrentSchool = schoolRegistrationRequest.addNewCurrentSchool();
+        currentSchoolTypeCurrentSchool.setCurrentSchoolAddress(getCurrentSchoolAddress());
+      
+        currentSchoolTypeCurrentSchool.setCurrentSchoolName(getCurrentSchoolName());
+      
+        if (getCurrentSection() != null)
             currentSchoolTypeCurrentSchool.setCurrentSection(fr.cg95.cvq.xml.common.SectionType.Enum.forString(getCurrentSection().getLegacyLabel()));
+        
+        if (getCurrentSchool() != null)
+            schoolRegistrationRequest.setCurrentSchool(getCurrentSchool().modelToXml());
       
         if (getRulesAndRegulationsAcceptance() != null)
             schoolRegistrationRequest.setRulesAndRegulationsAcceptance(getRulesAndRegulationsAcceptance().booleanValue());
       
         if (getSchool() != null)
-            schoolRegistrationRequest.setSchool(School.modelToXml(getSchool()));
+            schoolRegistrationRequest.setSchool(getSchool().modelToXml());
       
         if (getSection() != null)
             schoolRegistrationRequest.setSection(fr.cg95.cvq.xml.common.SectionType.Enum.forString(getSection().getLegacyLabel()));
@@ -152,14 +162,8 @@ public class SchoolRegistrationRequest extends Request implements Serializable {
         SchoolRegistrationRequest schoolRegistrationRequest = new SchoolRegistrationRequest();
         schoolRegistrationRequest.fillCommonModelInfo(schoolRegistrationRequest, schoolRegistrationRequestXml);
         
-        schoolRegistrationRequest.setCurrentSchoolAddress(schoolRegistrationRequestXml.getCurrentSchool().getCurrentSchoolAddress());
-      
-        schoolRegistrationRequest.setCurrentSchoolName(schoolRegistrationRequestXml.getCurrentSchool().getCurrentSchoolName());
-      
-        if (schoolRegistrationRequestXml.getCurrentSchool().getCurrentSection() != null)
-            schoolRegistrationRequest.setCurrentSection(fr.cg95.cvq.business.users.SectionType.forString(schoolRegistrationRequestXml.getCurrentSchool().getCurrentSection().toString()));
-        else
-            schoolRegistrationRequest.setCurrentSection(fr.cg95.cvq.business.users.SectionType.getDefaultSectionType());
+        if (schoolRegistrationRequestXml.getCurrentSchool() != null)
+            schoolRegistrationRequest.setCurrentSchool(CurrentSchool.xmlToModel(schoolRegistrationRequestXml.getCurrentSchool()));
       
         schoolRegistrationRequest.setRulesAndRegulationsAcceptance(Boolean.valueOf(schoolRegistrationRequestXml.getRulesAndRegulationsAcceptance()));
       
@@ -220,31 +224,13 @@ public class SchoolRegistrationRequest extends Request implements Serializable {
     }
 
   
-    public final void setCurrentSchoolAddress(final String currentSchoolAddress) {
-        schoolRegistrationRequestData.setCurrentSchoolAddress(currentSchoolAddress);
+    public final void setCurrentSchool(final fr.cg95.cvq.business.request.school.CurrentSchool currentSchool) {
+        schoolRegistrationRequestData.setCurrentSchool(currentSchool);
     }
 
     
-    public final String getCurrentSchoolAddress() {
-        return schoolRegistrationRequestData.getCurrentSchoolAddress();
-    }
-  
-    public final void setCurrentSchoolName(final String currentSchoolName) {
-        schoolRegistrationRequestData.setCurrentSchoolName(currentSchoolName);
-    }
-
-    
-    public final String getCurrentSchoolName() {
-        return schoolRegistrationRequestData.getCurrentSchoolName();
-    }
-  
-    public final void setCurrentSection(final fr.cg95.cvq.business.users.SectionType currentSection) {
-        schoolRegistrationRequestData.setCurrentSection(currentSection);
-    }
-
-    
-    public final fr.cg95.cvq.business.users.SectionType getCurrentSection() {
-        return schoolRegistrationRequestData.getCurrentSection();
+    public final fr.cg95.cvq.business.request.school.CurrentSchool getCurrentSchool() {
+        return schoolRegistrationRequestData.getCurrentSchool();
     }
   
     public final void setRulesAndRegulationsAcceptance(final Boolean rulesAndRegulationsAcceptance) {

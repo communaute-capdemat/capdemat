@@ -36,7 +36,9 @@
     <label class="required"><g:message code="lrr.property.subscription.label" /> *  <span><g:message code="lrr.property.subscription.help" /></span></label>
             <g:set var="subscriptionIndex" value="${0}" scope="flash" />
             <g:render template="/frontofficeRequestType/widget/localReferentialData" 
-                      model="['javaName':'subscription', 'i18nPrefixCode':'lrr.property.subscription', 'htmlClass':'required  ', 
+                      model="['wrapper':rqt, 'wrapperJavaName':'',
+                              'javaName':'subscription', 'i18nPrefixCode':'lrr.property.subscription',
+                              'htmlClass':'required  ', 
                               'lrEntries': lrTypes.subscription.entries, 'depth':0]" />
             
 

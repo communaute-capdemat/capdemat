@@ -44,7 +44,9 @@
     <label class="required"><g:message code="scrr.property.foodDiet.label" /> *  <span><g:message code="scrr.property.foodDiet.help" /></span></label>
             <g:set var="foodDietIndex" value="${0}" scope="flash" />
             <g:render template="/frontofficeRequestType/widget/localReferentialData" 
-                      model="['javaName':'foodDiet', 'i18nPrefixCode':'scrr.property.foodDiet', 'htmlClass':'required  ', 
+                      model="['wrapper':rqt, 'wrapperJavaName':'',
+                              'javaName':'foodDiet', 'i18nPrefixCode':'scrr.property.foodDiet',
+                              'htmlClass':'required  ', 
                               'lrEntries': lrTypes.foodDiet.entries, 'depth':0]" />
             
 
@@ -54,7 +56,9 @@
     <label class="required"><g:message code="scrr.property.canteenAttendingDays.label" /> *  <span><g:message code="scrr.property.canteenAttendingDays.help" /></span></label>
             <g:set var="canteenAttendingDaysIndex" value="${0}" scope="flash" />
             <g:render template="/frontofficeRequestType/widget/localReferentialData" 
-                      model="['javaName':'canteenAttendingDays', 'i18nPrefixCode':'scrr.property.canteenAttendingDays', 'htmlClass':'required  ', 
+                      model="['wrapper':rqt, 'wrapperJavaName':'',
+                              'javaName':'canteenAttendingDays', 'i18nPrefixCode':'scrr.property.canteenAttendingDays',
+                              'htmlClass':'required  ', 
                               'lrEntries': lrTypes.canteenAttendingDays.entries, 'depth':0]" />
             
 

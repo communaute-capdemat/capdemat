@@ -82,8 +82,8 @@ sgr.property.currentSchoolAddress.help =
 sgr.property.currentSchoolAddress.validationError =
 
 
-sgr.property.aLevelsInformations.help =
-sgr.property.aLevelsInformations.validationError =
+sgr.property.alevelsInformations.help =
+sgr.property.alevelsInformations.validationError =
 
 
 sgr.property.alevelsDate.help =

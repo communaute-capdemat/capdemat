@@ -183,6 +183,7 @@ public class ElectoralRollRegistrationRequestData implements Serializable {
             "active &= _this.conditions['motive'].test(_this.motive.toString());" +
                 
               
+              
             
             
             "return active",
@@ -198,6 +199,7 @@ public class ElectoralRollRegistrationRequestData implements Serializable {
           
             "active &= _this.conditions['motive'].test(_this.motive.toString());" +
                 
+              
               
             
             
@@ -254,6 +256,7 @@ public class ElectoralRollRegistrationRequestData implements Serializable {
             "active &= !_this.conditions['motive'].test(_this.motive.toString());" +
                 
               
+              
             
             
             "return active",
@@ -270,6 +273,7 @@ public class ElectoralRollRegistrationRequestData implements Serializable {
             "active &= !_this.conditions['motive'].test(_this.motive.toString());" +
                 
               
+              
             
             
             "return active",
@@ -285,6 +289,7 @@ public class ElectoralRollRegistrationRequestData implements Serializable {
           
             "active &= !_this.conditions['motive'].test(_this.motive.toString());" +
                 
+              
               
             
             

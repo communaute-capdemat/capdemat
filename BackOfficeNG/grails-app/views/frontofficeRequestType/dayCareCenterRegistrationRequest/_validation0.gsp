@@ -18,43 +18,43 @@
         
           <dt><g:message code="dccrr.property.situationActuelleMere.label" /></dt>
           <dd>
-            <g:if test="${rqt.situationActuelleMere}">
-              <g:capdematEnumToField var="${rqt.situationActuelleMere}" i18nKeyPrefix="dccrr.property.situationActuelleMere" />
+            <g:if test="${rqt.informationMere?.situationActuelleMere}">
+              <g:capdematEnumToField var="${rqt.informationMere?.situationActuelleMere}" i18nKeyPrefix="dccrr.property.situationActuelleMere" />
             </g:if>
           </dd>
           
 
         
-          <dt><g:message code="dccrr.property.precisionAutreSituationActuelleMere.label" /></dt><dd>${rqt.precisionAutreSituationActuelleMere?.toString()}</dd>
+          <dt><g:message code="dccrr.property.precisionAutreSituationActuelleMere.label" /></dt><dd>${rqt.informationMere?.precisionAutreSituationActuelleMere?.toString()}</dd>
 
         
-          <dt><g:message code="dccrr.property.professionMere.label" /></dt><dd>${rqt.professionMere?.toString()}</dd>
+          <dt><g:message code="dccrr.property.professionMere.label" /></dt><dd>${rqt.informationMere?.professionMere?.toString()}</dd>
 
         
           <dt><g:message code="dccrr.property.estHorairesReguliersMere.label" /></dt>
-          <dd><g:message code="message.${rqt.estHorairesReguliersMere ? 'yes' : 'no'}" /></dd>
+          <dd><g:message code="message.${rqt.informationMere?.estHorairesReguliersMere ? 'yes' : 'no'}" /></dd>
           
 
         
-          <dt><g:message code="dccrr.property.horairesReguliersMere.label" /></dt><dd>${rqt.horairesReguliersMere?.toString()}</dd>
+          <dt><g:message code="dccrr.property.horairesReguliersMere.label" /></dt><dd>${rqt.informationMere?.horairesReguliersMere?.toString()}</dd>
 
         
-          <dt><g:message code="dccrr.property.horairesTravailLundiMere.label" /></dt><dd>${rqt.horairesTravailLundiMere?.toString()}</dd>
+          <dt><g:message code="dccrr.property.horairesTravailLundiMere.label" /></dt><dd>${rqt.informationMere?.horairesTravailLundiMere?.toString()}</dd>
 
         
-          <dt><g:message code="dccrr.property.horairesTravailMardiMere.label" /></dt><dd>${rqt.horairesTravailMardiMere?.toString()}</dd>
+          <dt><g:message code="dccrr.property.horairesTravailMardiMere.label" /></dt><dd>${rqt.informationMere?.horairesTravailMardiMere?.toString()}</dd>
 
         
-          <dt><g:message code="dccrr.property.horairesTravailMercrediMere.label" /></dt><dd>${rqt.horairesTravailMercrediMere?.toString()}</dd>
+          <dt><g:message code="dccrr.property.horairesTravailMercrediMere.label" /></dt><dd>${rqt.informationMere?.horairesTravailMercrediMere?.toString()}</dd>
 
         
-          <dt><g:message code="dccrr.property.horairesTravailJeudiMere.label" /></dt><dd>${rqt.horairesTravailJeudiMere?.toString()}</dd>
+          <dt><g:message code="dccrr.property.horairesTravailJeudiMere.label" /></dt><dd>${rqt.informationMere?.horairesTravailJeudiMere?.toString()}</dd>
 
         
-          <dt><g:message code="dccrr.property.horairesTravailVendrediMere.label" /></dt><dd>${rqt.horairesTravailVendrediMere?.toString()}</dd>
+          <dt><g:message code="dccrr.property.horairesTravailVendrediMere.label" /></dt><dd>${rqt.informationMere?.horairesTravailVendrediMere?.toString()}</dd>
 
         
-          <dt><g:message code="dccrr.property.communeLieuTravailMere.label" /></dt><dd>${rqt.communeLieuTravailMere?.toString()}</dd>
+          <dt><g:message code="dccrr.property.communeLieuTravailMere.label" /></dt><dd>${rqt.informationMere?.communeLieuTravailMere?.toString()}</dd>
 
         
       </dl>
@@ -66,43 +66,43 @@
         
           <dt><g:message code="dccrr.property.situationActuellePere.label" /></dt>
           <dd>
-            <g:if test="${rqt.situationActuellePere}">
-              <g:capdematEnumToField var="${rqt.situationActuellePere}" i18nKeyPrefix="dccrr.property.situationActuellePere" />
+            <g:if test="${rqt.informationPere?.situationActuellePere}">
+              <g:capdematEnumToField var="${rqt.informationPere?.situationActuellePere}" i18nKeyPrefix="dccrr.property.situationActuellePere" />
             </g:if>
           </dd>
           
 
         
-          <dt><g:message code="dccrr.property.precisionAutreSituationActuellePere.label" /></dt><dd>${rqt.precisionAutreSituationActuellePere?.toString()}</dd>
+          <dt><g:message code="dccrr.property.precisionAutreSituationActuellePere.label" /></dt><dd>${rqt.informationPere?.precisionAutreSituationActuellePere?.toString()}</dd>
 
         
-          <dt><g:message code="dccrr.property.professionPere.label" /></dt><dd>${rqt.professionPere?.toString()}</dd>
+          <dt><g:message code="dccrr.property.professionPere.label" /></dt><dd>${rqt.informationPere?.professionPere?.toString()}</dd>
 
         
           <dt><g:message code="dccrr.property.estHorairesReguliersPere.label" /></dt>
-          <dd><g:message code="message.${rqt.estHorairesReguliersPere ? 'yes' : 'no'}" /></dd>
+          <dd><g:message code="message.${rqt.informationPere?.estHorairesReguliersPere ? 'yes' : 'no'}" /></dd>
           
 
         
-          <dt><g:message code="dccrr.property.horairesReguliersPere.label" /></dt><dd>${rqt.horairesReguliersPere?.toString()}</dd>
+          <dt><g:message code="dccrr.property.horairesReguliersPere.label" /></dt><dd>${rqt.informationPere?.horairesReguliersPere?.toString()}</dd>
 
         
-          <dt><g:message code="dccrr.property.horairesTravailLundiPere.label" /></dt><dd>${rqt.horairesTravailLundiPere?.toString()}</dd>
+          <dt><g:message code="dccrr.property.horairesTravailLundiPere.label" /></dt><dd>${rqt.informationPere?.horairesTravailLundiPere?.toString()}</dd>
 
         
-          <dt><g:message code="dccrr.property.horairesTravailMardiPere.label" /></dt><dd>${rqt.horairesTravailMardiPere?.toString()}</dd>
+          <dt><g:message code="dccrr.property.horairesTravailMardiPere.label" /></dt><dd>${rqt.informationPere?.horairesTravailMardiPere?.toString()}</dd>
 
         
-          <dt><g:message code="dccrr.property.horairesTravailMercrediPere.label" /></dt><dd>${rqt.horairesTravailMercrediPere?.toString()}</dd>
+          <dt><g:message code="dccrr.property.horairesTravailMercrediPere.label" /></dt><dd>${rqt.informationPere?.horairesTravailMercrediPere?.toString()}</dd>
 
         
-          <dt><g:message code="dccrr.property.horairesTravailJeudiPere.label" /></dt><dd>${rqt.horairesTravailJeudiPere?.toString()}</dd>
+          <dt><g:message code="dccrr.property.horairesTravailJeudiPere.label" /></dt><dd>${rqt.informationPere?.horairesTravailJeudiPere?.toString()}</dd>
 
         
-          <dt><g:message code="dccrr.property.horairesTravailVendrediPere.label" /></dt><dd>${rqt.horairesTravailVendrediPere?.toString()}</dd>
+          <dt><g:message code="dccrr.property.horairesTravailVendrediPere.label" /></dt><dd>${rqt.informationPere?.horairesTravailVendrediPere?.toString()}</dd>
 
         
-          <dt><g:message code="dccrr.property.communeLieuTravailPere.label" /></dt><dd>${rqt.communeLieuTravailPere?.toString()}</dd>
+          <dt><g:message code="dccrr.property.communeLieuTravailPere.label" /></dt><dd>${rqt.informationPere?.communeLieuTravailPere?.toString()}</dd>
 
         
       </dl>
@@ -161,15 +161,25 @@
         
           <dt><g:message code="dccrr.property.choixTypeDatePlacementAccueilRegulier.label" /></dt>
           <dd>
-            <g:if test="${rqt.choixTypeDatePlacementAccueilRegulier}">
-              <g:capdematEnumToField var="${rqt.choixTypeDatePlacementAccueilRegulier}" i18nKeyPrefix="dccrr.property.choixTypeDatePlacementAccueilRegulier" />
+            <g:if test="${rqt.datePlacementAccueilRegulier?.choixTypeDatePlacementAccueilRegulier}">
+              <g:capdematEnumToField var="${rqt.datePlacementAccueilRegulier?.choixTypeDatePlacementAccueilRegulier}" i18nKeyPrefix="dccrr.property.choixTypeDatePlacementAccueilRegulier" />
             </g:if>
           </dd>
           
 
         
           <dt><g:message code="dccrr.property.datePlacementDebut.label" /></dt>
-          <dd><g:formatDate formatName="format.date" date="${rqt.datePlacementDebut}"/></dd>
+          <dd><g:formatDate formatName="format.date" date="${rqt.datePlacementAccueilRegulier?.datePlacementDebut}"/></dd>
+          
+
+        
+          <dt><g:message code="dccrr.property.datePlacementFin.label" /></dt>
+          <dd><g:formatDate formatName="format.date" date="${rqt.datePlacementFin}"/></dd>
+          
+
+        
+          <dt><g:message code="dccrr.property.datePlacementFin.label" /></dt>
+          <dd><g:formatDate formatName="format.date" date="${rqt.datePlacementAccueilRegulier?.datePlacementFin}"/></dd>
           
 
         
@@ -195,36 +205,36 @@
         
           <dt><g:message code="dccrr.property.horairePlacementMatinDebut.label" /></dt>
           <dd>
-            ${rqt.horairePlacementMatinDebut?.getHourOfDay()} : 
-            <g:if test="${rqt.horairePlacementMatinDebut && rqt.horairePlacementMatinDebut.getMinuteOfHour() < 10}">
-            0</g:if>${rqt.horairePlacementMatinDebut?.getMinuteOfHour()}
+            ${rqt.plageHoraireAccueilReguliere?.horairePlacementMatinDebut?.getHourOfDay()} : 
+            <g:if test="${rqt.plageHoraireAccueilReguliere?.horairePlacementMatinDebut && rqt.plageHoraireAccueilReguliere?.horairePlacementMatinDebut.getMinuteOfHour() < 10}">
+            0</g:if>${rqt.plageHoraireAccueilReguliere?.horairePlacementMatinDebut?.getMinuteOfHour()}
           </dd>
           
 
         
           <dt><g:message code="dccrr.property.horairePlacementMatinFin.label" /></dt>
           <dd>
-            ${rqt.horairePlacementMatinFin?.getHourOfDay()} : 
-            <g:if test="${rqt.horairePlacementMatinFin && rqt.horairePlacementMatinFin.getMinuteOfHour() < 10}">
-            0</g:if>${rqt.horairePlacementMatinFin?.getMinuteOfHour()}
+            ${rqt.plageHoraireAccueilReguliere?.horairePlacementMatinFin?.getHourOfDay()} : 
+            <g:if test="${rqt.plageHoraireAccueilReguliere?.horairePlacementMatinFin && rqt.plageHoraireAccueilReguliere?.horairePlacementMatinFin.getMinuteOfHour() < 10}">
+            0</g:if>${rqt.plageHoraireAccueilReguliere?.horairePlacementMatinFin?.getMinuteOfHour()}
           </dd>
           
 
         
           <dt><g:message code="dccrr.property.horairePlacementApresMidiDebut.label" /></dt>
           <dd>
-            ${rqt.horairePlacementApresMidiDebut?.getHourOfDay()} : 
-            <g:if test="${rqt.horairePlacementApresMidiDebut && rqt.horairePlacementApresMidiDebut.getMinuteOfHour() < 10}">
-            0</g:if>${rqt.horairePlacementApresMidiDebut?.getMinuteOfHour()}
+            ${rqt.plageHoraireAccueilReguliere?.horairePlacementApresMidiDebut?.getHourOfDay()} : 
+            <g:if test="${rqt.plageHoraireAccueilReguliere?.horairePlacementApresMidiDebut && rqt.plageHoraireAccueilReguliere?.horairePlacementApresMidiDebut.getMinuteOfHour() < 10}">
+            0</g:if>${rqt.plageHoraireAccueilReguliere?.horairePlacementApresMidiDebut?.getMinuteOfHour()}
           </dd>
           
 
         
           <dt><g:message code="dccrr.property.horairePlacementApresMidiFin.label" /></dt>
           <dd>
-            ${rqt.horairePlacementApresMidiFin?.getHourOfDay()} : 
-            <g:if test="${rqt.horairePlacementApresMidiFin && rqt.horairePlacementApresMidiFin.getMinuteOfHour() < 10}">
-            0</g:if>${rqt.horairePlacementApresMidiFin?.getMinuteOfHour()}
+            ${rqt.plageHoraireAccueilReguliere?.horairePlacementApresMidiFin?.getHourOfDay()} : 
+            <g:if test="${rqt.plageHoraireAccueilReguliere?.horairePlacementApresMidiFin && rqt.plageHoraireAccueilReguliere?.horairePlacementApresMidiFin.getMinuteOfHour() < 10}">
+            0</g:if>${rqt.plageHoraireAccueilReguliere?.horairePlacementApresMidiFin?.getMinuteOfHour()}
           </dd>
           
 
@@ -238,36 +248,36 @@
         
           <dt><g:message code="dccrr.property.horairePlacementMatinDebutLundi.label" /></dt>
           <dd>
-            ${rqt.horairePlacementMatinDebutLundi?.getHourOfDay()} : 
-            <g:if test="${rqt.horairePlacementMatinDebutLundi && rqt.horairePlacementMatinDebutLundi.getMinuteOfHour() < 10}">
-            0</g:if>${rqt.horairePlacementMatinDebutLundi?.getMinuteOfHour()}
+            ${rqt.lundi?.horairePlacementMatinDebutLundi?.getHourOfDay()} : 
+            <g:if test="${rqt.lundi?.horairePlacementMatinDebutLundi && rqt.lundi?.horairePlacementMatinDebutLundi.getMinuteOfHour() < 10}">
+            0</g:if>${rqt.lundi?.horairePlacementMatinDebutLundi?.getMinuteOfHour()}
           </dd>
           
 
         
           <dt><g:message code="dccrr.property.horairePlacementMatinFinLundi.label" /></dt>
           <dd>
-            ${rqt.horairePlacementMatinFinLundi?.getHourOfDay()} : 
-            <g:if test="${rqt.horairePlacementMatinFinLundi && rqt.horairePlacementMatinFinLundi.getMinuteOfHour() < 10}">
-            0</g:if>${rqt.horairePlacementMatinFinLundi?.getMinuteOfHour()}
+            ${rqt.lundi?.horairePlacementMatinFinLundi?.getHourOfDay()} : 
+            <g:if test="${rqt.lundi?.horairePlacementMatinFinLundi && rqt.lundi?.horairePlacementMatinFinLundi.getMinuteOfHour() < 10}">
+            0</g:if>${rqt.lundi?.horairePlacementMatinFinLundi?.getMinuteOfHour()}
           </dd>
           
 
         
           <dt><g:message code="dccrr.property.horairePlacementApresMidiDebutLundi.label" /></dt>
           <dd>
-            ${rqt.horairePlacementApresMidiDebutLundi?.getHourOfDay()} : 
-            <g:if test="${rqt.horairePlacementApresMidiDebutLundi && rqt.horairePlacementApresMidiDebutLundi.getMinuteOfHour() < 10}">
-            0</g:if>${rqt.horairePlacementApresMidiDebutLundi?.getMinuteOfHour()}
+            ${rqt.lundi?.horairePlacementApresMidiDebutLundi?.getHourOfDay()} : 
+            <g:if test="${rqt.lundi?.horairePlacementApresMidiDebutLundi && rqt.lundi?.horairePlacementApresMidiDebutLundi.getMinuteOfHour() < 10}">
+            0</g:if>${rqt.lundi?.horairePlacementApresMidiDebutLundi?.getMinuteOfHour()}
           </dd>
           
 
         
           <dt><g:message code="dccrr.property.horairePlacementApresMidiFinLundi.label" /></dt>
           <dd>
-            ${rqt.horairePlacementApresMidiFinLundi?.getHourOfDay()} : 
-            <g:if test="${rqt.horairePlacementApresMidiFinLundi && rqt.horairePlacementApresMidiFinLundi.getMinuteOfHour() < 10}">
-            0</g:if>${rqt.horairePlacementApresMidiFinLundi?.getMinuteOfHour()}
+            ${rqt.lundi?.horairePlacementApresMidiFinLundi?.getHourOfDay()} : 
+            <g:if test="${rqt.lundi?.horairePlacementApresMidiFinLundi && rqt.lundi?.horairePlacementApresMidiFinLundi.getMinuteOfHour() < 10}">
+            0</g:if>${rqt.lundi?.horairePlacementApresMidiFinLundi?.getMinuteOfHour()}
           </dd>
           
 
@@ -281,36 +291,36 @@
         
           <dt><g:message code="dccrr.property.horairePlacementMatinDebutMardi.label" /></dt>
           <dd>
-            ${rqt.horairePlacementMatinDebutMardi?.getHourOfDay()} : 
-            <g:if test="${rqt.horairePlacementMatinDebutMardi && rqt.horairePlacementMatinDebutMardi.getMinuteOfHour() < 10}">
-            0</g:if>${rqt.horairePlacementMatinDebutMardi?.getMinuteOfHour()}
+            ${rqt.mardi?.horairePlacementMatinDebutMardi?.getHourOfDay()} : 
+            <g:if test="${rqt.mardi?.horairePlacementMatinDebutMardi && rqt.mardi?.horairePlacementMatinDebutMardi.getMinuteOfHour() < 10}">
+            0</g:if>${rqt.mardi?.horairePlacementMatinDebutMardi?.getMinuteOfHour()}
           </dd>
           
 
         
           <dt><g:message code="dccrr.property.horairePlacementMatinFinMardi.label" /></dt>
           <dd>
-            ${rqt.horairePlacementMatinFinMardi?.getHourOfDay()} : 
-            <g:if test="${rqt.horairePlacementMatinFinMardi && rqt.horairePlacementMatinFinMardi.getMinuteOfHour() < 10}">
-            0</g:if>${rqt.horairePlacementMatinFinMardi?.getMinuteOfHour()}
+            ${rqt.mardi?.horairePlacementMatinFinMardi?.getHourOfDay()} : 
+            <g:if test="${rqt.mardi?.horairePlacementMatinFinMardi && rqt.mardi?.horairePlacementMatinFinMardi.getMinuteOfHour() < 10}">
+            0</g:if>${rqt.mardi?.horairePlacementMatinFinMardi?.getMinuteOfHour()}
           </dd>
           
 
         
           <dt><g:message code="dccrr.property.horairePlacementApresMidiDebutMardi.label" /></dt>
           <dd>
-            ${rqt.horairePlacementApresMidiDebutMardi?.getHourOfDay()} : 
-            <g:if test="${rqt.horairePlacementApresMidiDebutMardi && rqt.horairePlacementApresMidiDebutMardi.getMinuteOfHour() < 10}">
-            0</g:if>${rqt.horairePlacementApresMidiDebutMardi?.getMinuteOfHour()}
+            ${rqt.mardi?.horairePlacementApresMidiDebutMardi?.getHourOfDay()} : 
+            <g:if test="${rqt.mardi?.horairePlacementApresMidiDebutMardi && rqt.mardi?.horairePlacementApresMidiDebutMardi.getMinuteOfHour() < 10}">
+            0</g:if>${rqt.mardi?.horairePlacementApresMidiDebutMardi?.getMinuteOfHour()}
           </dd>
           
 
         
           <dt><g:message code="dccrr.property.horairePlacementApresMidiFinMardi.label" /></dt>
           <dd>
-            ${rqt.horairePlacementApresMidiFinMardi?.getHourOfDay()} : 
-            <g:if test="${rqt.horairePlacementApresMidiFinMardi && rqt.horairePlacementApresMidiFinMardi.getMinuteOfHour() < 10}">
-            0</g:if>${rqt.horairePlacementApresMidiFinMardi?.getMinuteOfHour()}
+            ${rqt.mardi?.horairePlacementApresMidiFinMardi?.getHourOfDay()} : 
+            <g:if test="${rqt.mardi?.horairePlacementApresMidiFinMardi && rqt.mardi?.horairePlacementApresMidiFinMardi.getMinuteOfHour() < 10}">
+            0</g:if>${rqt.mardi?.horairePlacementApresMidiFinMardi?.getMinuteOfHour()}
           </dd>
           
 
@@ -324,36 +334,36 @@
         
           <dt><g:message code="dccrr.property.horairePlacementMatinDebutMercredi.label" /></dt>
           <dd>
-            ${rqt.horairePlacementMatinDebutMercredi?.getHourOfDay()} : 
-            <g:if test="${rqt.horairePlacementMatinDebutMercredi && rqt.horairePlacementMatinDebutMercredi.getMinuteOfHour() < 10}">
-            0</g:if>${rqt.horairePlacementMatinDebutMercredi?.getMinuteOfHour()}
+            ${rqt.mercredi?.horairePlacementMatinDebutMercredi?.getHourOfDay()} : 
+            <g:if test="${rqt.mercredi?.horairePlacementMatinDebutMercredi && rqt.mercredi?.horairePlacementMatinDebutMercredi.getMinuteOfHour() < 10}">
+            0</g:if>${rqt.mercredi?.horairePlacementMatinDebutMercredi?.getMinuteOfHour()}
           </dd>
           
 
         
           <dt><g:message code="dccrr.property.horairePlacementMatinFinMercredi.label" /></dt>
           <dd>
-            ${rqt.horairePlacementMatinFinMercredi?.getHourOfDay()} : 
-            <g:if test="${rqt.horairePlacementMatinFinMercredi && rqt.horairePlacementMatinFinMercredi.getMinuteOfHour() < 10}">
-            0</g:if>${rqt.horairePlacementMatinFinMercredi?.getMinuteOfHour()}
+            ${rqt.mercredi?.horairePlacementMatinFinMercredi?.getHourOfDay()} : 
+            <g:if test="${rqt.mercredi?.horairePlacementMatinFinMercredi && rqt.mercredi?.horairePlacementMatinFinMercredi.getMinuteOfHour() < 10}">
+            0</g:if>${rqt.mercredi?.horairePlacementMatinFinMercredi?.getMinuteOfHour()}
           </dd>
           
 
         
           <dt><g:message code="dccrr.property.horairePlacementApresMidiDebutMercredi.label" /></dt>
           <dd>
-            ${rqt.horairePlacementApresMidiDebutMercredi?.getHourOfDay()} : 
-            <g:if test="${rqt.horairePlacementApresMidiDebutMercredi && rqt.horairePlacementApresMidiDebutMercredi.getMinuteOfHour() < 10}">
-            0</g:if>${rqt.horairePlacementApresMidiDebutMercredi?.getMinuteOfHour()}
+            ${rqt.mercredi?.horairePlacementApresMidiDebutMercredi?.getHourOfDay()} : 
+            <g:if test="${rqt.mercredi?.horairePlacementApresMidiDebutMercredi && rqt.mercredi?.horairePlacementApresMidiDebutMercredi.getMinuteOfHour() < 10}">
+            0</g:if>${rqt.mercredi?.horairePlacementApresMidiDebutMercredi?.getMinuteOfHour()}
           </dd>
           
 
         
           <dt><g:message code="dccrr.property.horairePlacementApresMidiFinMercredi.label" /></dt>
           <dd>
-            ${rqt.horairePlacementApresMidiFinMercredi?.getHourOfDay()} : 
-            <g:if test="${rqt.horairePlacementApresMidiFinMercredi && rqt.horairePlacementApresMidiFinMercredi.getMinuteOfHour() < 10}">
-            0</g:if>${rqt.horairePlacementApresMidiFinMercredi?.getMinuteOfHour()}
+            ${rqt.mercredi?.horairePlacementApresMidiFinMercredi?.getHourOfDay()} : 
+            <g:if test="${rqt.mercredi?.horairePlacementApresMidiFinMercredi && rqt.mercredi?.horairePlacementApresMidiFinMercredi.getMinuteOfHour() < 10}">
+            0</g:if>${rqt.mercredi?.horairePlacementApresMidiFinMercredi?.getMinuteOfHour()}
           </dd>
           
 
@@ -367,36 +377,36 @@
         
           <dt><g:message code="dccrr.property.horairePlacementMatinDebutJeudi.label" /></dt>
           <dd>
-            ${rqt.horairePlacementMatinDebutJeudi?.getHourOfDay()} : 
-            <g:if test="${rqt.horairePlacementMatinDebutJeudi && rqt.horairePlacementMatinDebutJeudi.getMinuteOfHour() < 10}">
-            0</g:if>${rqt.horairePlacementMatinDebutJeudi?.getMinuteOfHour()}
+            ${rqt.jeudi?.horairePlacementMatinDebutJeudi?.getHourOfDay()} : 
+            <g:if test="${rqt.jeudi?.horairePlacementMatinDebutJeudi && rqt.jeudi?.horairePlacementMatinDebutJeudi.getMinuteOfHour() < 10}">
+            0</g:if>${rqt.jeudi?.horairePlacementMatinDebutJeudi?.getMinuteOfHour()}
           </dd>
           
 
         
           <dt><g:message code="dccrr.property.horairePlacementMatinFinJeudi.label" /></dt>
           <dd>
-            ${rqt.horairePlacementMatinFinJeudi?.getHourOfDay()} : 
-            <g:if test="${rqt.horairePlacementMatinFinJeudi && rqt.horairePlacementMatinFinJeudi.getMinuteOfHour() < 10}">
-            0</g:if>${rqt.horairePlacementMatinFinJeudi?.getMinuteOfHour()}
+            ${rqt.jeudi?.horairePlacementMatinFinJeudi?.getHourOfDay()} : 
+            <g:if test="${rqt.jeudi?.horairePlacementMatinFinJeudi && rqt.jeudi?.horairePlacementMatinFinJeudi.getMinuteOfHour() < 10}">
+            0</g:if>${rqt.jeudi?.horairePlacementMatinFinJeudi?.getMinuteOfHour()}
           </dd>
           
 
         
           <dt><g:message code="dccrr.property.horairePlacementApresMidiDebutJeudi.label" /></dt>
           <dd>
-            ${rqt.horairePlacementApresMidiDebutJeudi?.getHourOfDay()} : 
-            <g:if test="${rqt.horairePlacementApresMidiDebutJeudi && rqt.horairePlacementApresMidiDebutJeudi.getMinuteOfHour() < 10}">
-            0</g:if>${rqt.horairePlacementApresMidiDebutJeudi?.getMinuteOfHour()}
+            ${rqt.jeudi?.horairePlacementApresMidiDebutJeudi?.getHourOfDay()} : 
+            <g:if test="${rqt.jeudi?.horairePlacementApresMidiDebutJeudi && rqt.jeudi?.horairePlacementApresMidiDebutJeudi.getMinuteOfHour() < 10}">
+            0</g:if>${rqt.jeudi?.horairePlacementApresMidiDebutJeudi?.getMinuteOfHour()}
           </dd>
           
 
         
           <dt><g:message code="dccrr.property.horairePlacementApresMidiFinJeudi.label" /></dt>
           <dd>
-            ${rqt.horairePlacementApresMidiFinJeudi?.getHourOfDay()} : 
-            <g:if test="${rqt.horairePlacementApresMidiFinJeudi && rqt.horairePlacementApresMidiFinJeudi.getMinuteOfHour() < 10}">
-            0</g:if>${rqt.horairePlacementApresMidiFinJeudi?.getMinuteOfHour()}
+            ${rqt.jeudi?.horairePlacementApresMidiFinJeudi?.getHourOfDay()} : 
+            <g:if test="${rqt.jeudi?.horairePlacementApresMidiFinJeudi && rqt.jeudi?.horairePlacementApresMidiFinJeudi.getMinuteOfHour() < 10}">
+            0</g:if>${rqt.jeudi?.horairePlacementApresMidiFinJeudi?.getMinuteOfHour()}
           </dd>
           
 
@@ -410,36 +420,36 @@
         
           <dt><g:message code="dccrr.property.horairePlacementMatinDebutVendredi.label" /></dt>
           <dd>
-            ${rqt.horairePlacementMatinDebutVendredi?.getHourOfDay()} : 
-            <g:if test="${rqt.horairePlacementMatinDebutVendredi && rqt.horairePlacementMatinDebutVendredi.getMinuteOfHour() < 10}">
-            0</g:if>${rqt.horairePlacementMatinDebutVendredi?.getMinuteOfHour()}
+            ${rqt.vendredi?.horairePlacementMatinDebutVendredi?.getHourOfDay()} : 
+            <g:if test="${rqt.vendredi?.horairePlacementMatinDebutVendredi && rqt.vendredi?.horairePlacementMatinDebutVendredi.getMinuteOfHour() < 10}">
+            0</g:if>${rqt.vendredi?.horairePlacementMatinDebutVendredi?.getMinuteOfHour()}
           </dd>
           
 
         
           <dt><g:message code="dccrr.property.horairePlacementMatinFinVendredi.label" /></dt>
           <dd>
-            ${rqt.horairePlacementMatinFinVendredi?.getHourOfDay()} : 
-            <g:if test="${rqt.horairePlacementMatinFinVendredi && rqt.horairePlacementMatinFinVendredi.getMinuteOfHour() < 10}">
-            0</g:if>${rqt.horairePlacementMatinFinVendredi?.getMinuteOfHour()}
+            ${rqt.vendredi?.horairePlacementMatinFinVendredi?.getHourOfDay()} : 
+            <g:if test="${rqt.vendredi?.horairePlacementMatinFinVendredi && rqt.vendredi?.horairePlacementMatinFinVendredi.getMinuteOfHour() < 10}">
+            0</g:if>${rqt.vendredi?.horairePlacementMatinFinVendredi?.getMinuteOfHour()}
           </dd>
           
 
         
           <dt><g:message code="dccrr.property.horairePlacementApresMidiDebutVendredi.label" /></dt>
           <dd>
-            ${rqt.horairePlacementApresMidiDebutVendredi?.getHourOfDay()} : 
-            <g:if test="${rqt.horairePlacementApresMidiDebutVendredi && rqt.horairePlacementApresMidiDebutVendredi.getMinuteOfHour() < 10}">
-            0</g:if>${rqt.horairePlacementApresMidiDebutVendredi?.getMinuteOfHour()}
+            ${rqt.vendredi?.horairePlacementApresMidiDebutVendredi?.getHourOfDay()} : 
+            <g:if test="${rqt.vendredi?.horairePlacementApresMidiDebutVendredi && rqt.vendredi?.horairePlacementApresMidiDebutVendredi.getMinuteOfHour() < 10}">
+            0</g:if>${rqt.vendredi?.horairePlacementApresMidiDebutVendredi?.getMinuteOfHour()}
           </dd>
           
 
         
           <dt><g:message code="dccrr.property.horairePlacementApresMidiFinVendredi.label" /></dt>
           <dd>
-            ${rqt.horairePlacementApresMidiFinVendredi?.getHourOfDay()} : 
-            <g:if test="${rqt.horairePlacementApresMidiFinVendredi && rqt.horairePlacementApresMidiFinVendredi.getMinuteOfHour() < 10}">
-            0</g:if>${rqt.horairePlacementApresMidiFinVendredi?.getMinuteOfHour()}
+            ${rqt.vendredi?.horairePlacementApresMidiFinVendredi?.getHourOfDay()} : 
+            <g:if test="${rqt.vendredi?.horairePlacementApresMidiFinVendredi && rqt.vendredi?.horairePlacementApresMidiFinVendredi.getMinuteOfHour() < 10}">
+            0</g:if>${rqt.vendredi?.horairePlacementApresMidiFinVendredi?.getMinuteOfHour()}
           </dd>
           
 

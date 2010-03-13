@@ -91,26 +91,8 @@ public class HolidaySecurityRequestData implements Serializable {
         
           
             
-        if (otherContactAddress != null)
-            result.setOtherContactAddress(otherContactAddress.clone());
-      
-          
-        
-          
-            
-        result.setOtherContactFirstName(otherContactFirstName);
-      
-          
-        
-          
-            
-        result.setOtherContactLastName(otherContactLastName);
-      
-          
-        
-          
-            
-        result.setOtherContactPhone(otherContactPhone);
+        if (otherContactInformations != null)
+            result.setOtherContactInformations(otherContactInformations.clone());
       
           
         
@@ -311,6 +293,60 @@ public class HolidaySecurityRequestData implements Serializable {
     
     private fr.cg95.cvq.business.users.Address otherContactAddress;
 
+    public final void setOtherContactAddress(final fr.cg95.cvq.business.users.Address otherContactAddress) {
+        this.otherContactAddress = otherContactAddress;
+    }
+
+    /**
+ 
+        * @hibernate.many-to-one
+        *  cascade="all"
+        *  column="other_contact_address_id"
+        *  class="fr.cg95.cvq.business.users.Address"
+      
+    */
+    public final fr.cg95.cvq.business.users.Address getOtherContactAddress() {
+        return this.otherContactAddress;
+    }
+  
+    
+      @MaxLength(
+        
+          value = 38,
+        
+        
+          when = "groovy:def active = true;" +
+          
+            
+            
+            "active &= _this.conditions['otherContact'].test(_this.otherContact.toString());" +
+                
+              
+            
+            "return active",
+        
+        profiles = {"contact"},
+        message = "otherContactAddress"
+      )
+    
+      @AssertValid(
+        
+        
+          when = "groovy:def active = true;" +
+          
+            
+            "active &= _this.conditions['otherContact'].test(_this.otherContact.toString());" +
+                
+              
+            
+            "return active",
+        
+        profiles = {"contact"},
+        message = "otherContactAddress"
+      )
+    
+    private fr.cg95.cvq.business.users.Address otherContactAddress;
+
     public void setOtherContactAddress(final fr.cg95.cvq.business.users.Address otherContactAddress) {
         this.otherContactAddress = otherContactAddress;
     }
@@ -335,45 +371,34 @@ public class HolidaySecurityRequestData implements Serializable {
             "active &= _this.conditions['otherContact'].test(_this.otherContact.toString());" +
                 
               
-            
-            "return active",
-        
-        profiles = {"contact"},
-        message = "otherContactFirstName"
-      )
-    
-      @NotNull(
-        
-        
-          when = "groovy:def active = true;" +
-          
-            
-            "active &= _this.conditions['otherContact'].test(_this.otherContact.toString());" +
-                
               
             
-            "return active",
-        
-        profiles = {"contact"},
-        message = "otherContactFirstName"
-      )
-    
-      @NotBlank(
-        
-        
-          when = "groovy:def active = true;" +
-          
-            
-            "active &= _this.conditions['otherContact'].test(_this.otherContact.toString());" +
-                
-              
             
             "return active",
         
         profiles = {"contact"},
-        message = "otherContactFirstName"
+        message = "otherContactInformations"
       )
     
+    private String otherContactFirstName;
+
+    public final void setOtherContactFirstName(final String otherContactFirstName) {
+        this.otherContactFirstName = otherContactFirstName;
+    }
+
+    /**
+ 
+        * @hibernate.property
+        *  column="other_contact_first_name"
+        *  length="38"
+      
+    */
+    public final String getOtherContactFirstName() {
+        return this.otherContactFirstName;
+    }
+  
+    
+      @MaxLength(
     private String otherContactFirstName;
 
     public void setOtherContactFirstName(final String otherContactFirstName) {
@@ -389,8 +414,52 @@ public class HolidaySecurityRequestData implements Serializable {
   
     
       @MaxLength(
+      @AssertValid(
         
-          value = 38,
+        
+          when = "groovy:def active = true;" +
+          
+            "active &= _this.conditions['otherContact'].test(_this.otherContact.toString());" +
+                
+              
+              
+            
+            
+            "return active",
+        
+        profiles = {"contact"},
+        message = "otherContactInformations"
+      )
+    
+    private fr.cg95.cvq.business.request.localpolice.HsrOtherContact otherContactInformations;
+
+    public final void setOtherContactLastName(final String otherContactLastName) {
+        this.otherContactLastName = otherContactLastName;
+    public void setOtherContactLastName(final String otherContactLastName) {
+        this.otherContactLastName = otherContactLastName;
+    public final void setOtherContactInformations(final fr.cg95.cvq.business.request.localpolice.HsrOtherContact otherContactInformations) {
+        this.otherContactInformations = otherContactInformations;
+    }
+
+ 
+        * @hibernate.property
+        *  column="other_contact_last_name"
+        *  length="38"
+    @Column(name="other_contact_last_name" , length=38 )
+        * @hibernate.many-to-one
+        *  cascade="all"
+        *  column="other_contact_informations_id"
+        *  class="fr.cg95.cvq.business.request.localpolice.HsrOtherContact"
+      
+    */
+    public final String getOtherContactLastName() {
+        return this.otherContactLastName;
+    }
+  
+    
+      @MaxLength(
+        
+          value = 10,
         
         
           when = "groovy:def active = true;" +
@@ -403,7 +472,7 @@ public class HolidaySecurityRequestData implements Serializable {
             "return active",
         
         profiles = {"contact"},
-        message = "otherContactLastName"
+        message = "otherContactPhone"
       )
     
       @NotNull(
@@ -419,7 +488,7 @@ public class HolidaySecurityRequestData implements Serializable {
             "return active",
         
         profiles = {"contact"},
-        message = "otherContactLastName"
+        message = "otherContactPhone"
       )
     
       @NotBlank(
@@ -435,18 +504,24 @@ public class HolidaySecurityRequestData implements Serializable {
             "return active",
         
         profiles = {"contact"},
-        message = "otherContactLastName"
+        message = "otherContactPhone"
       )
     
-    private String otherContactLastName;
+    private String otherContactPhone;
 
-    public void setOtherContactLastName(final String otherContactLastName) {
-        this.otherContactLastName = otherContactLastName;
+    public final void setOtherContactPhone(final String otherContactPhone) {
+        this.otherContactPhone = otherContactPhone;
     }
 
+    /**
  
-    @Column(name="other_contact_last_name" , length=38 )
+        * @hibernate.property
+        *  column="other_contact_phone"
+        *  length="10"
       
+    */
+    public final String getOtherContactPhone() {
+        return this.otherContactPhone;
     public String getOtherContactLastName() {
         return this.otherContactLastName;
     }
@@ -513,6 +588,9 @@ public class HolidaySecurityRequestData implements Serializable {
       
     public String getOtherContactPhone() {
         return this.otherContactPhone;
+    */
+    public final fr.cg95.cvq.business.request.localpolice.HsrOtherContact getOtherContactInformations() {
+        return this.otherContactInformations;
     }
   
     

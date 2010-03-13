@@ -13,12 +13,12 @@
 
         
           <dt><g:message code="sgr.property.subjectBirthDate.label" /></dt>
-          <dd><g:formatDate formatName="format.date" date="${rqt.subjectBirthDate}"/></dd>
+          <dd><g:formatDate formatName="format.date" date="${rqt.subjectInformations?.subjectBirthDate}"/></dd>
           
 
         
           <dt><g:message code="sgr.property.subjectFirstRequest.label" /></dt>
-          <dd><g:message code="message.${rqt.subjectFirstRequest ? 'yes' : 'no'}" /></dd>
+          <dd><g:message code="message.${rqt.subjectInformations?.subjectFirstRequest ? 'yes' : 'no'}" /></dd>
           
 
         
@@ -49,7 +49,7 @@
         <dt><g:message code="sgr.property.taxHouseholdCity.label" /></dt>
           <dd>
           <g:render template="/frontofficeRequestType/widget/localReferentialDataSummary" 
-                    model="['javaName':'taxHouseholdCity', 'lrEntries': lrTypes.taxHouseholdCity.entries, 'depth':0]" />
+                    model="['wrapper':rqt, 'javaName':'taxHouseholdCity', 'lrEntries': lrTypes.taxHouseholdCity.entries, 'depth':0]" />
           </dd>
           
 
@@ -123,16 +123,33 @@
           <dt><g:message code="sgr.property.currentSchoolName.label" /></dt>
           <dd>
           <g:render template="/frontofficeRequestType/widget/localReferentialDataSummary" 
-                    model="['javaName':'currentSchoolName', 'lrEntries': lrTypes.currentSchoolName.entries, 'depth':0]" />
+                    model="['wrapper':rqt.currentSchool, 'javaName':'currentSchoolName', 'lrEntries': lrTypes.currentSchoolName.entries, 'depth':0]" />
           </dd>
           
 
         
-          <dt><g:message code="sgr.property.currentSchoolNamePrecision.label" /></dt><dd>${rqt.currentSchoolNamePrecision?.toString()}</dd>
+          <dt><g:message code="sgr.property.currentSchoolNamePrecision.label" /></dt><dd>${rqt.currentSchool?.currentSchoolNamePrecision?.toString()}</dd>
 
         
+          <dt><g:message code="sgr.property.currentSchoolPostalCode.label" /></dt><dd>${rqt.currentSchoolPostalCode?.toString()}</dd>
+
+        
+          <dt><g:message code="sgr.property.currentSchoolCity.label" /></dt><dd>${rqt.currentSchoolCity?.toString()}</dd>
+
+        
+          <dt><g:message code="sgr.property.currentSchoolCountry.label" /></dt>
           <dt><g:message code="sgr.property.currentSchoolAddress.label" /></dt>
+          <dt><g:message code="sgr.property.currentSchoolPostalCode.label" /></dt><dd>${rqt.currentSchool?.currentSchoolPostalCode?.toString()}</dd>
+
+        
+          <dt><g:message code="sgr.property.currentSchoolCity.label" /></dt><dd>${rqt.currentSchool?.currentSchoolCity?.toString()}</dd>
+
+        
+          <dt><g:message code="sgr.property.currentSchoolCountry.label" /></dt>
           <dd>
+            <g:if test="${rqt.currentSchoolCountry}">
+              <g:capdematEnumToField var="${rqt.currentSchoolCountry}" i18nKeyPrefix="sgr.property.currentSchoolCountry" />
+            </g:if>
           <g:if test="${rqt.currentSchoolAddress}">
               <p>${rqt.currentSchoolAddress?.additionalDeliveryInformation}</p>
               <p>${rqt.currentSchoolAddress?.additionalGeographicalInformation}</p>
@@ -141,6 +158,9 @@
               <p>${rqt.currentSchoolAddress?.postalCode} ${rqt.currentSchoolAddress?.city}</p>
               <p>${rqt.currentSchoolAddress?.countryName}</p>
           </g:if>
+            <g:if test="${rqt.currentSchool?.currentSchoolCountry}">
+              <g:capdematEnumToField var="${rqt.currentSchool?.currentSchoolCountry}" i18nKeyPrefix="sgr.property.currentSchoolCountry" />
+            </g:if>
           </dd>
           
 
@@ -149,16 +169,16 @@
       
     
       
-      <h4><g:message code="sgr.property.aLevelsInformations.label" /></h4>
+      <h4><g:message code="sgr.property.alevelsInformations.label" /></h4>
       <dl>
         
-          <dt><g:message code="sgr.property.alevelsDate.label" /></dt><dd>${rqt.alevelsDate?.toString()}</dd>
+          <dt><g:message code="sgr.property.alevelsDate.label" /></dt><dd>${rqt.alevelsInformations?.alevelsDate?.toString()}</dd>
 
         
           <dt><g:message code="sgr.property.alevels.label" /></dt>
           <dd>
-            <g:if test="${rqt.alevels}">
-              <g:capdematEnumToField var="${rqt.alevels}" i18nKeyPrefix="sgr.property.alevels" />
+            <g:if test="${rqt.alevelsInformations?.alevels}">
+              <g:capdematEnumToField var="${rqt.alevelsInformations?.alevels}" i18nKeyPrefix="sgr.property.alevels" />
             </g:if>
           </dd>
           
@@ -173,52 +193,52 @@
         
           <dt><g:message code="sgr.property.currentStudiesDiploma.label" /></dt>
           <dd>
-            <g:if test="${rqt.currentStudiesDiploma}">
-              <g:capdematEnumToField var="${rqt.currentStudiesDiploma}" i18nKeyPrefix="sgr.property.currentStudiesDiploma" />
+            <g:if test="${rqt.currentStudiesInformations?.currentStudiesDiploma}">
+              <g:capdematEnumToField var="${rqt.currentStudiesInformations?.currentStudiesDiploma}" i18nKeyPrefix="sgr.property.currentStudiesDiploma" />
             </g:if>
           </dd>
           
 
         
-          <dt><g:message code="sgr.property.otherStudiesLabel.label" /></dt><dd>${rqt.otherStudiesLabel?.toString()}</dd>
+          <dt><g:message code="sgr.property.otherStudiesLabel.label" /></dt><dd>${rqt.currentStudiesInformations?.otherStudiesLabel?.toString()}</dd>
 
         
           <dt><g:message code="sgr.property.currentStudiesLevel.label" /></dt>
           <dd>
-            <g:if test="${rqt.currentStudiesLevel}">
-              <g:capdematEnumToField var="${rqt.currentStudiesLevel}" i18nKeyPrefix="sgr.property.currentStudiesLevel" />
+            <g:if test="${rqt.currentStudiesInformations?.currentStudiesLevel}">
+              <g:capdematEnumToField var="${rqt.currentStudiesInformations?.currentStudiesLevel}" i18nKeyPrefix="sgr.property.currentStudiesLevel" />
             </g:if>
           </dd>
           
 
         
           <dt><g:message code="sgr.property.sandwichCourses.label" /></dt>
-          <dd><g:message code="message.${rqt.sandwichCourses ? 'yes' : 'no'}" /></dd>
+          <dd><g:message code="message.${rqt.currentStudiesInformations?.sandwichCourses ? 'yes' : 'no'}" /></dd>
           
 
         
           <dt><g:message code="sgr.property.abroadInternship.label" /></dt>
-          <dd><g:message code="message.${rqt.abroadInternship ? 'yes' : 'no'}" /></dd>
+          <dd><g:message code="message.${rqt.currentStudiesInformations?.abroadInternship ? 'yes' : 'no'}" /></dd>
           
 
         
           <dt><g:message code="sgr.property.abroadInternshipStartDate.label" /></dt>
-          <dd><g:formatDate formatName="format.date" date="${rqt.abroadInternshipStartDate}"/></dd>
+          <dd><g:formatDate formatName="format.date" date="${rqt.currentStudiesInformations?.abroadInternshipStartDate}"/></dd>
           
 
         
           <dt><g:message code="sgr.property.abroadInternshipEndDate.label" /></dt>
-          <dd><g:formatDate formatName="format.date" date="${rqt.abroadInternshipEndDate}"/></dd>
+          <dd><g:formatDate formatName="format.date" date="${rqt.currentStudiesInformations?.abroadInternshipEndDate}"/></dd>
           
 
         
-          <dt><g:message code="sgr.property.abroadInternshipSchoolName.label" /></dt><dd>${rqt.abroadInternshipSchoolName?.toString()}</dd>
+          <dt><g:message code="sgr.property.abroadInternshipSchoolName.label" /></dt><dd>${rqt.currentStudiesInformations?.abroadInternshipSchoolName?.toString()}</dd>
 
         
           <dt><g:message code="sgr.property.abroadInternshipSchoolCountry.label" /></dt>
           <dd>
-            <g:if test="${rqt.abroadInternshipSchoolCountry}">
-              <g:capdematEnumToField var="${rqt.abroadInternshipSchoolCountry}" i18nKeyPrefix="sgr.property.abroadInternshipSchoolCountry" />
+            <g:if test="${rqt.currentStudiesInformations?.abroadInternshipSchoolCountry}">
+              <g:capdematEnumToField var="${rqt.currentStudiesInformations?.abroadInternshipSchoolCountry}" i18nKeyPrefix="sgr.property.abroadInternshipSchoolCountry" />
             </g:if>
           </dd>
           

@@ -58,7 +58,9 @@
     <label class="required"><g:message code="snr.property.interests.label" /> *  <span><g:message code="snr.property.interests.help" /></span></label>
             <g:set var="interestsIndex" value="${0}" scope="flash" />
             <g:render template="/frontofficeRequestType/widget/localReferentialData" 
-                      model="['javaName':'interests', 'i18nPrefixCode':'snr.property.interests', 'htmlClass':'required  ', 
+                      model="['wrapper':rqt, 'wrapperJavaName':'',
+                              'javaName':'interests', 'i18nPrefixCode':'snr.property.interests',
+                              'htmlClass':'required  ', 
                               'lrEntries': lrTypes.interests.entries, 'depth':0]" />
             
 

@@ -21,7 +21,9 @@
     <label class="required"><g:message code="sgr.property.taxHouseholdCity.label" /> *  <span><g:message code="sgr.property.taxHouseholdCity.help" /></span></label>
             <g:set var="taxHouseholdCityIndex" value="${0}" scope="flash" />
             <g:render template="/frontofficeRequestType/widget/localReferentialData" 
-                      model="['javaName':'taxHouseholdCity', 'i18nPrefixCode':'sgr.property.taxHouseholdCity', 'htmlClass':'required condition-isTaxHouseholdCityOther-trigger  ', 
+                      model="['wrapper':rqt, 'wrapperJavaName':'',
+                              'javaName':'taxHouseholdCity', 'i18nPrefixCode':'sgr.property.taxHouseholdCity',
+                              'htmlClass':'required condition-isTaxHouseholdCityOther-trigger  ', 
                               'lrEntries': lrTypes.taxHouseholdCity.entries, 'depth':0]" />
             
 

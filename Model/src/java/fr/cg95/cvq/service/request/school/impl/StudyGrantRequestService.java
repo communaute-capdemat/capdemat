@@ -29,6 +29,8 @@ import fr.cg95.cvq.business.request.RequestState;
 import fr.cg95.cvq.business.request.external.RequestExternalAction;
 import fr.cg95.cvq.business.request.school.DistanceType;
 import fr.cg95.cvq.business.request.school.CurrentStudiesType;
+import fr.cg95.cvq.business.request.school.CurrentStudiesInformations;
+import fr.cg95.cvq.business.request.school.SgrCurrentSchool;
 import fr.cg95.cvq.business.request.school.StudyGrantRequest;
 import fr.cg95.cvq.business.users.Individual;
 import fr.cg95.cvq.business.users.UserAction;
@@ -88,8 +90,19 @@ public class StudyGrantRequestService extends RequestService implements ILocalAu
         StudyGrantRequest.conditions.put("currentStudiesDiploma",
             new EqualityChecker(CurrentStudiesType.OTHER_STUDIES.name()));
         StudyGrantRequest.conditions.put("taxHouseholdCity", new EqualityChecker("573"));
-        StudyGrantRequest.conditions.put("currentSchoolName", new EqualityChecker("autre"));
         StudyGrantRequest.conditions.put("isSubjectAccountHolder", new EqualityChecker("true"));
+        
+        // kept them for client side JS validation script
+        StudyGrantRequest.conditions.put("currentSchool.currentSchoolName", new EqualityChecker("autre"));
+        StudyGrantRequest.conditions.put("currentStudiesInformations.currentStudiesDiploma",
+                new EqualityChecker("otherStudies"));
+        StudyGrantRequest.conditions.put("currentStudiesInformations.abroadInternship", new EqualityChecker("true"));
+        
+        // added for server side vaidation
+        SgrCurrentSchool.conditions.put("sgrCurrentSchool.currentSchoolName", new EqualityChecker("autre"));
+        CurrentStudiesInformations.conditions.put("currentStudiesInformations.currentStudiesDiploma",
+                new EqualityChecker("otherStudies"));
+        CurrentStudiesInformations.conditions.put("currentStudiesInformations.abroadInternship", new EqualityChecker("true"));
     }
 
     public boolean accept(Request request) {
@@ -176,7 +189,7 @@ public class StudyGrantRequestService extends RequestService implements ILocalAu
     public void onRequestCompleted(Request request) throws CvqException {
         StudyGrantRequest sgr = (StudyGrantRequest) request;
         Individual subject = (Individual) genericDAO.findById(Individual.class, sgr.getSubjectId());
-        subject.setBirthDate(sgr.getSubjectBirthDate());
+        subject.setBirthDate(sgr.getSubjectInformations().getSubjectBirthDate());
     }
 
     @Override

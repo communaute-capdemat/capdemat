@@ -74,6 +74,7 @@ http://www.springframework.org/schema/aop http://www.springframework.org/schema/
         <value>fr/cg95/cvq/business/request/ecitizen/VoCardRequestData.hbm.xml</value>
         <value>fr/cg95/cvq/business/request/ecitizen/HomeFolderModificationRequestData.hbm.xml</value>
         <value>fr/cg95/cvq/business/request/localpolice/HolidaySecurityRequestData.hbm.xml</value>
+        <value>fr/cg95/cvq/business/request/localpolice/HsrOtherContact.hbm.xml</value>
         <value>fr/cg95/cvq/business/request/civil/MarriageDetailsRequestData.hbm.xml</value>
         <value>fr/cg95/cvq/business/request/civil/DeathDetailsRequestData.hbm.xml</value>
         <value>fr/cg95/cvq/business/request/civil/BirthDetailsRequestData.hbm.xml</value>
@@ -114,6 +115,46 @@ http://www.springframework.org/schema/aop http://www.springframework.org/schema/
         <value>fr/cg95/cvq/business/request/ticket/Subscriber.hbm.xml</value>
         <value>fr/cg95/cvq/business/users/UserAction.hbm.xml</value>
         <value>fr/cg95/cvq/business/users/UserSecurityRule.hbm.xml</value>
+        <value>fr/cg95/cvq/business/request/civil/FatherInformation.hbm.xml</value>
+        <value>fr/cg95/cvq/business/request/civil/MarriageFatherInformation.hbm.xml</value>
+        <value>fr/cg95/cvq/business/request/civil/MarriageHusbandInformation.hbm.xml</value>
+        <value>fr/cg95/cvq/business/request/civil/MarriageInformation.hbm.xml</value>
+        <value>fr/cg95/cvq/business/request/civil/MarriageMotherInformation.hbm.xml</value>
+        <value>fr/cg95/cvq/business/request/civil/MarriageWifeInformation.hbm.xml</value>
+        <value>fr/cg95/cvq/business/request/civil/MotherInformation.hbm.xml</value>
+        <value>fr/cg95/cvq/business/request/military/FamilySituationInformation.hbm.xml</value>
+        <value>fr/cg95/cvq/business/request/military/MilitaryFatherInformation.hbm.xml</value>
+        <value>fr/cg95/cvq/business/request/military/MilitaryMotherInformation.hbm.xml</value>
+        <value>fr/cg95/cvq/business/request/military/ProfessionalSituationInformation.hbm.xml</value>
+        <value>fr/cg95/cvq/business/request/school/ALevelsInformations.hbm.xml</value>
+        <value>fr/cg95/cvq/business/request/school/CurrentSchool.hbm.xml</value>
+        <value>fr/cg95/cvq/business/request/school/CurrentStudiesInformations.hbm.xml</value>
+        <value>fr/cg95/cvq/business/request/school/DccrrDatesPlacement.hbm.xml</value>
+        <value>fr/cg95/cvq/business/request/school/DccrrMere.hbm.xml</value>
+        <value>fr/cg95/cvq/business/request/school/DccrrPere.hbm.xml</value>
+        <value>fr/cg95/cvq/business/request/school/DccrrPlageHoraire.hbm.xml</value>
+        <value>fr/cg95/cvq/business/request/school/DccrrPlageHoraireJeudi.hbm.xml</value>
+        <value>fr/cg95/cvq/business/request/school/DccrrPlageHoraireLundi.hbm.xml</value>
+        <value>fr/cg95/cvq/business/request/school/DccrrPlageHoraireMardi.hbm.xml</value>
+        <value>fr/cg95/cvq/business/request/school/DccrrPlageHoraireMercredi.hbm.xml</value>
+        <value>fr/cg95/cvq/business/request/school/DccrrPlageHoraireVendredi.hbm.xml</value>
+        <value>fr/cg95/cvq/business/request/school/SgrCurrentSchool.hbm.xml</value>
+        <value>fr/cg95/cvq/business/request/school/SubjectInformations.hbm.xml</value>
+        <value>fr/cg95/cvq/business/request/social/DhrCurrentDwelling.hbm.xml</value>
+        <value>fr/cg95/cvq/business/request/social/DhrFamilyReferent.hbm.xml</value>
+        <value>fr/cg95/cvq/business/request/social/DhrIncomes.hbm.xml</value>
+        <value>fr/cg95/cvq/business/request/social/DhrRequester.hbm.xml</value>
+        <value>fr/cg95/cvq/business/request/social/DhrRequesterGuardian.hbm.xml</value>
+        <value>fr/cg95/cvq/business/request/social/DhrRequesterPensionPlan.hbm.xml</value>
+        <value>fr/cg95/cvq/business/request/social/DhrSpouse.hbm.xml</value>
+        <value>fr/cg95/cvq/business/request/social/DhrSpouseStatus.hbm.xml</value>
+        <value>fr/cg95/cvq/business/request/social/DhrTaxesAmount.hbm.xml</value>
+        <value>fr/cg95/cvq/business/request/social/RsrContact.hbm.xml</value>
+        <value>fr/cg95/cvq/business/request/social/RsrRequestInformation.hbm.xml</value>
+        <value>fr/cg95/cvq/business/request/social/RsrSecondContact.hbm.xml</value>
+        <value>fr/cg95/cvq/business/request/social/RsrSpouse.hbm.xml</value>
+        <value>fr/cg95/cvq/business/request/social/RsrSubject.hbm.xml</value>
+        <value>fr/cg95/cvq/business/request/social/RsrTrustee.hbm.xml</value>
       </list>
     </property>
 

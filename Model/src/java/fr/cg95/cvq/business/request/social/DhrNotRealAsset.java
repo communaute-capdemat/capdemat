@@ -9,6 +9,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.HashMap;
 import org.joda.time.LocalTime;
 
 import net.sf.oval.constraint.*;
@@ -36,6 +37,7 @@ public class DhrNotRealAsset implements Serializable {
 
     public static final Map<String, IConditionChecker> conditions =
         DomesticHelpRequest.conditions;
+        new HashMap<String, IConditionChecker>();
 
     public DhrNotRealAsset() {
         super();
@@ -64,7 +66,7 @@ public class DhrNotRealAsset implements Serializable {
             dhrNotRealAsset.setDhrNotRealAssetValue(new BigInteger(this.dhrNotRealAssetValue.toString()));
       
         if (this.dhrNotRealAssetAddress != null)
-            dhrNotRealAsset.setDhrNotRealAssetAddress(Address.modelToXml(this.dhrNotRealAssetAddress));
+            dhrNotRealAsset.setDhrNotRealAssetAddress(this.dhrNotRealAssetAddress.modelToXml());
       
         date = this.dhrNotRealAssetDate;
         if (date != null) {
@@ -82,10 +84,10 @@ public class DhrNotRealAsset implements Serializable {
             dhrNotRealAsset.setDhrNotRealAssetType(fr.cg95.cvq.xml.request.social.DhrAssetTypeType.Enum.forString(this.dhrNotRealAssetType.getLegacyLabel()));
       
         if (this.dhrNotRealAssetBeneficiaryAddress != null)
-            dhrNotRealAsset.setDhrNotRealAssetBeneficiaryAddress(Address.modelToXml(this.dhrNotRealAssetBeneficiaryAddress));
+            dhrNotRealAsset.setDhrNotRealAssetBeneficiaryAddress(this.dhrNotRealAssetBeneficiaryAddress.modelToXml());
       
         if (this.dhrNotRealAssetNotaryAddress != null)
-            dhrNotRealAsset.setDhrNotRealAssetNotaryAddress(Address.modelToXml(this.dhrNotRealAssetNotaryAddress));
+            dhrNotRealAsset.setDhrNotRealAssetNotaryAddress(this.dhrNotRealAssetNotaryAddress.modelToXml());
       
         if (this.dhrNotRealAssetKind != null)
             dhrNotRealAsset.setDhrNotRealAssetKind(fr.cg95.cvq.xml.request.social.DhrAssetKindType.Enum.forString(this.dhrNotRealAssetKind.getLegacyLabel()));

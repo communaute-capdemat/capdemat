@@ -9,6 +9,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.HashMap;
 import org.joda.time.LocalTime;
 
 import net.sf.oval.constraint.*;
@@ -36,6 +37,7 @@ public class DhrRealAsset implements Serializable {
 
     public static final Map<String, IConditionChecker> conditions =
         DomesticHelpRequest.conditions;
+        new HashMap<String, IConditionChecker>();
 
     public DhrRealAsset() {
         super();
@@ -64,7 +66,7 @@ public class DhrRealAsset implements Serializable {
             dhrRealAsset.setRealAssetNetFloorArea(new BigInteger(this.realAssetNetFloorArea.toString()));
       
         if (this.dhrRealAssetAddress != null)
-            dhrRealAsset.setDhrRealAssetAddress(Address.modelToXml(this.dhrRealAssetAddress));
+            dhrRealAsset.setDhrRealAssetAddress(this.dhrRealAssetAddress.modelToXml());
       
         if (this.dhrRealAssetValue != null)
             dhrRealAsset.setDhrRealAssetValue(new BigInteger(this.dhrRealAssetValue.toString()));
