@@ -10,29 +10,32 @@ import org.w3c.dom.Node;
  * <ul>
  *   <li>startRequest
  *     <ul>
- *       <li>onUserInformation (information about the request itself)
- *       <li>onApplicationInformation (idem)
- *       <li>onSampleXml
+ *       <li>onUserInformation (information about the request itself)</li>
+ *       <li>onApplicationInformation (idem)</li>
  *       <li>startElement
  *         <ul>
- *           <li>onUserInformation (information associated to element declaration in current request)
- *           <li>onApplicationInformation (idem)
+ *           <li>onUserInformation (information associated to element declaration in current request)</li>
+ *           <li>onApplicationInformation (idem)</li>
  *           <li>startElementProperties
  *             <ul>
- *               <li>onUserInformation (information associated to element type definition - whether locally or in referential namespace)
- *               <li>onApplicationInformation (idem)
+ *               <li>onUserInformation (information associated to element type definition - whether locally or in referential namespace)</li>
+ *               <li>onApplicationInformation (idem)</li>
  *             </ul>
- *           <li>endElementProperties
- *           <li>while element is of complex type and contains elements of type Sequence or Element or Choice
+ *           </li>
+ *           <li>endElementProperties</li>
+ *           <li>while element is of complex type and contains elements of type Sequence or Element or Choice</li>
  *             <ul>
  *               <li>startElement (play loop from startElement above)</li>
  *               <li>...</li>
  *               <li>endElement</li>
  *             </ul>
+ *           </li>
  *         </ul>
+ *       </li>
  *       <li>endElement</li>
  *     </ul>
- *   <li>endRequest
+ *   </li>
+ *   <li>endRequest</li>
  * </ul>
  *
  * @author bor@zenexity.fr
