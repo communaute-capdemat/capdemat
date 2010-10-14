@@ -64,6 +64,8 @@ public interface IDocumentTypeService {
     Integer MEDICAL_FORM_NEXT_YEAR = new Integer(55);
     Integer CERTIFICAT_MEDICAL_TROIS_MOIS = new Integer(56);
     Integer ATTESTATION_JUGEMENT_PROTECTION_JURIDIQUE = new Integer(57);
+    Integer DECLARATION_CAF_OU_MSA = new Integer(58);
+    Integer ATTESTATION_FOURNITURE_CERTIFICAT_MEDICAL = new Integer(59);
 
     /**
      * Get a document type by type id.

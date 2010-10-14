@@ -204,6 +204,12 @@ public class DocumentBootstrapper {
         
         checkDocumentType("Attestation Jugement Protection Juridique", 57,
                 DocumentUsageType.SINGLE_USE,0 ,DocumentTypeValidity.MONTH );
+
+        checkDocumentType("Declaration CAF Ou MSA", 58,
+                DocumentUsageType.REUSABLE,1 ,DocumentTypeValidity.YEAR );
+
+        checkDocumentType("Attestation Fourniture Certificat Medical", 59,
+                DocumentUsageType.SINGLE_USE,0 ,DocumentTypeValidity.MONTH );
     }
 
     public void setDocumentTypeDAO(IDocumentTypeDAO documentTypeDAO) {
