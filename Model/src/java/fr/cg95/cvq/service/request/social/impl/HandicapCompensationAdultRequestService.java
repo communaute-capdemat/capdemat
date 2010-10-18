@@ -12,7 +12,6 @@ import fr.cg95.cvq.business.request.social.HcarLegalAccessRepresentativeKindType
 import fr.cg95.cvq.business.request.social.HcarPaymentAgencyBeneficiaryType;
 import fr.cg95.cvq.business.request.social.HcarProfessionalStatusKindType;
 import fr.cg95.cvq.business.request.social.HcarSocialSecurityMemberShipKindType;
-import fr.cg95.cvq.business.request.social.HcarPaymentAgencyBeneficiaryType;
 import fr.cg95.cvq.service.request.condition.EqualityChecker;
 import fr.cg95.cvq.service.request.condition.EqualityListChecker;
 import fr.cg95.cvq.service.request.impl.RequestService;

@@ -745,21 +745,6 @@ http://www.springframework.org/schema/task http://www.springframework.org/schema
     <property name="defaultDisplayGroup" value="social" />
   </bean>
   
-  <bean id="handicapCompensationAdultRequestService" 
-    class="fr.cg95.cvq.service.request.social.impl.HandicapCompensationAdultRequestService" 
-    parent="requestService">
-    <property name="label" value="Handicap Compensation Adult"/>
-    <property name="subjectPolicy" value="SUBJECT_POLICY_ADULT" />
-    <property name="defaultDisplayGroup" value="social" />
-  </bean>
-  
-  <bean id="handicapCompensationChildRequestService" 
-    class="fr.cg95.cvq.service.request.social.impl.HandicapCompensationChildRequestService" 
-    parent="requestService">
-    <property name="label" value="Handicap Compensation Child"/>
-    <property name="subjectPolicy" value="SUBJECT_POLICY_CHILD" />
-    <property name="defaultDisplayGroup" value="social" />
-  </bean>  
 
   <bean id="militaryCensusRequestService" 
     class="fr.cg95.cvq.service.request.military.impl.MilitaryCensusRequestService" 
