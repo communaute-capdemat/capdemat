@@ -138,7 +138,8 @@ class FrontofficeRequestController {
                     // bind the selected means of contact into request
                     MeansOfContactEnum moce = MeansOfContactEnum.forString(params.meansOfContact)
                     rqt.setMeansOfContact(meansOfContactService.getMeansOfContactByType(moce))
-                    requestWorkflowService.validate(rqt, null)
+                    if (!(rqt.requestType.label == "Mdph Adult" || rqt.requestType.label == "Mdph Youth"))
+                        requestWorkflowService.validate(rqt, null)
                     def parameters = [:]
                     if (!RequestState.DRAFT.equals(rqt.state)) {
                         parameters.isEdition = true
