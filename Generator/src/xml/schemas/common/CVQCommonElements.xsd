@@ -1235,27 +1235,6 @@
     </xs:restriction>
   </xs:simpleType>
 
-  <xs:simpleType name="DepartmentCodeType">
-    <xs:annotation>
-      <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">
-        Numéro de département
-      </xs:documentation>
-      <xs:documentation xml:lang="en" source="http://www.cg95.fr/cvq/schema/longdesc">
-        Department code
-      </xs:documentation>
-      <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
-        Département
-      </xs:documentation>
-      <xs:documentation xml:lang="en" source="http://www.cg95.fr/cvq/schema/shortdesc">
-        Department
-      </xs:documentation>
-    </xs:annotation>
-    <xs:restriction base="xs:string">
-      <xs:maxLength value="2" />
-      <xs:pattern value="[0-9]{2}" />
-    </xs:restriction>
-  </xs:simpleType>
-
   <xs:simpleType name="CityType">
     <xs:annotation>
       <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">

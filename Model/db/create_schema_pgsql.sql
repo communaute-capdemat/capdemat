@@ -1199,7 +1199,7 @@
         birth_first_names varchar(255),
         birth_last_name varchar(38),
         birth_marriage_name varchar(38),
-        birth_postal_code varchar(2),
+        birth_postal_code varchar(255),
         comment varchar(255),
         copies bytea,
         father_information_id int8,
@@ -1420,7 +1420,7 @@
         death_date timestamp,
         death_first_names varchar(255),
         death_last_name varchar(38),
-        death_postal_code varchar(2),
+        death_postal_code varchar(255),
         format varchar(255),
         motive varchar(255),
         primary key (id)
@@ -3082,7 +3082,7 @@
         id int8 not null,
         marriage_date timestamp,
         marriage_city varchar(32),
-        marriage_postal_code varchar(2),
+        marriage_postal_code varchar(255),
         primary key (id)
     );
 

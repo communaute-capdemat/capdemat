@@ -85,7 +85,10 @@ public class DeathDetailsRequestData implements Serializable {
         
           
             
-        result.setDeathPostalCode(deathPostalCode);
+        if (deathPostalCode != null)
+            result.setDeathPostalCode(deathPostalCode);
+        else
+            result.setDeathPostalCode(fr.cg95.cvq.business.users.InseeDepartementCodeType.getDefaultInseeDepartementCodeType());
       
           
         
@@ -299,15 +302,6 @@ public class DeathDetailsRequestData implements Serializable {
     }
   
     
-      @MaxLength(
-        
-          value = 2,
-        
-        
-        profiles = {"nature"},
-        message = "deathPostalCode"
-      )
-    
       @NotNull(
         
         
@@ -315,23 +309,28 @@ public class DeathDetailsRequestData implements Serializable {
         message = "deathPostalCode"
       )
     
-      @NotBlank(
-        
-        
-        profiles = {"nature"},
-        message = "deathPostalCode"
-      )
-    
-    private String deathPostalCode;
+    private fr.cg95.cvq.business.users.InseeDepartementCodeType deathPostalCode;
 
+    public final void setDeathPostalCode(final String deathPostalCode) {
     public void setDeathPostalCode(final String deathPostalCode) {
+    public final void setDeathPostalCode(final fr.cg95.cvq.business.users.InseeDepartementCodeType deathPostalCode) {
         this.deathPostalCode = deathPostalCode;
     }
 
  
+        * @hibernate.property
+        *  column="death_postal_code"
+        *  length="2"
     @Column(name="death_postal_code" , length=2 )
+        * @hibernate.property
+        *  column="death_postal_code"
+        
       
+    */
+    public final String getDeathPostalCode() {
     public String getDeathPostalCode() {
+    */
+    public final fr.cg95.cvq.business.users.InseeDepartementCodeType getDeathPostalCode() {
         return this.deathPostalCode;
     }
   

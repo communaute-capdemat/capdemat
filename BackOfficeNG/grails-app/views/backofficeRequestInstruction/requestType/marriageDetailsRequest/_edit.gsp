@@ -88,9 +88,11 @@
                   <dt class="required">${message(code:'mdr.property.marriageCity.label')}¬†*¬†:</dt><dd id="marriageCity" class="action-editField validate-city required-true i18n-mdr.property.marriageCity maxLength-32" ><span>${rqt?.marriageCity}</span></dd>
                   <dt class="required"><g:message code="mdr.property.marriageCity.label" /> * : </dt><dd id="marriage.marriageCity" class="action-editField validate-city required-true i18n-mdr.property.marriageCity maxLength-32" ><span>${rqt.marriage?.marriageCity}</span></dd>
                 
+                  <dt class="required"><g:message code="mdr.property.marriagePostalCode.label" /> * : </dt><dd id="marriage.marriagePostalCode" class="action-editField validate-departmentCode required-true i18n-mdr.property.marriagePostalCode maxLength-2" ><span>${rqt.marriage?.marriagePostalCode}</span></dd>
                   <dt class="required"><g:message code="mdr.property.marriagePostalCode.label" /> * : </dt><dd id="marriagePostalCode" class="action-editField validate-departmentCode required-true i18n-mdr.property.marriagePostalCode maxLength-2" ><span>${rqt?.marriagePostalCode}</span></dd>
                   <dt class="required">${message(code:'mdr.property.marriagePostalCode.label')}¬†*¬†:</dt><dd id="marriagePostalCode" class="action-editField validate-departmentCode required-true i18n-mdr.property.marriagePostalCode maxLength-2" ><span>${rqt?.marriagePostalCode}</span></dd>
                   <dt class="required"><g:message code="mdr.property.marriagePostalCode.label" /> * : </dt><dd id="marriage.marriagePostalCode" class="action-editField validate-departmentCode required-true i18n-mdr.property.marriagePostalCode maxLength-2" ><span>${rqt.marriage?.marriagePostalCode}</span></dd>
+                  <dt class="required"><g:message code="mdr.property.marriagePostalCode.label" /> * : </dt><dd id="marriage.marriagePostalCode" class="action-editField validate-capdematEnum required-true i18n-mdr.property.marriagePostalCode javatype-fr.cg95.cvq.business.users.InseeDepartementCodeType" ><g:capdematEnumToField var="${rqt.marriage?.marriagePostalCode}" i18nKeyPrefix="mdr.property.marriagePostalCode" /></dd>
                 
               </dl>
               

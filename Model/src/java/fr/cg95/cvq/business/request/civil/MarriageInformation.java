@@ -68,7 +68,8 @@ public class MarriageInformation implements Serializable {
       
         marriageInformation.setMarriageCity(this.marriageCity);
       
-        marriageInformation.setMarriagePostalCode(this.marriagePostalCode);
+        if (this.marriagePostalCode != null)
+            marriageInformation.setMarriagePostalCode(fr.cg95.cvq.xml.common.InseeDepartementCodeType.Enum.forString(this.marriagePostalCode.toString()));
       
         return marriageInformation;
     }
@@ -86,7 +87,10 @@ public class MarriageInformation implements Serializable {
       
         marriageInformation.setMarriageCity(marriageInformationDoc.getMarriageCity());
       
-        marriageInformation.setMarriagePostalCode(marriageInformationDoc.getMarriagePostalCode());
+        if (marriageInformationDoc.getMarriagePostalCode() != null)
+            marriageInformation.setMarriagePostalCode(fr.cg95.cvq.business.users.InseeDepartementCodeType.forString(marriageInformationDoc.getMarriagePostalCode().toString()));
+        else
+            marriageInformation.setMarriagePostalCode(fr.cg95.cvq.business.users.InseeDepartementCodeType.getDefaultInseeDepartementCodeType());
       
         return marriageInformation;
     }
@@ -109,7 +113,10 @@ public class MarriageInformation implements Serializable {
         
           
             
-        result.setMarriagePostalCode(marriagePostalCode);
+        if (marriagePostalCode != null)
+            result.setMarriagePostalCode(marriagePostalCode);
+        else
+            result.setMarriagePostalCode(fr.cg95.cvq.business.users.InseeDepartementCodeType.getDefaultInseeDepartementCodeType());
       
           
         
@@ -199,15 +206,6 @@ public class MarriageInformation implements Serializable {
     }
   
     
-      @MaxLength(
-        
-          value = 2,
-        
-        
-        profiles = {"nature"},
-        message = "marriagePostalCode"
-      )
-    
       @NotNull(
         
         
@@ -215,16 +213,9 @@ public class MarriageInformation implements Serializable {
         message = "marriagePostalCode"
       )
     
-      @NotBlank(
-        
-        
-        profiles = {"nature"},
-        message = "marriagePostalCode"
-      )
-    
-    private String marriagePostalCode;
+    private fr.cg95.cvq.business.users.InseeDepartementCodeType marriagePostalCode;
 
-    public final void setMarriagePostalCode(final String marriagePostalCode) {
+    public final void setMarriagePostalCode(final fr.cg95.cvq.business.users.InseeDepartementCodeType marriagePostalCode) {
         this.marriagePostalCode = marriagePostalCode;
     }
 
@@ -232,10 +223,10 @@ public class MarriageInformation implements Serializable {
   
         * @hibernate.property
         *  column="marriage_postal_code"
-        *  length="2"
+        
       
     */
-    public final String getMarriagePostalCode() {
+    public final fr.cg95.cvq.business.users.InseeDepartementCodeType getMarriagePostalCode() {
         return this.marriagePostalCode;
     }
   

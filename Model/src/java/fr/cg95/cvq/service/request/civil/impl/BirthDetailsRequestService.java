@@ -6,7 +6,7 @@ import fr.cg95.cvq.business.authority.LocalAuthority;
 import fr.cg95.cvq.business.request.Request;
 import fr.cg95.cvq.business.request.civil.BirthCertificateFormatType;
 import fr.cg95.cvq.business.request.civil.BirthDetailsRequest;
-import fr.cg95.cvq.business.request.civil.BirthRequesterQualityType;
+import fr.cg95.cvq.business.users.InseeDepartementCodeType;
 import fr.cg95.cvq.security.SecurityContext;
 import fr.cg95.cvq.service.request.condition.EqualityChecker;
 import fr.cg95.cvq.service.request.condition.EqualityListChecker;
@@ -40,7 +40,7 @@ public final class BirthDetailsRequestService extends RequestService {
         if (SecurityContext.getCurrentSite() != null) {
             LocalAuthority localAuthority = SecurityContext.getCurrentSite();
             request.setBirthCity(localAuthority.getDisplayTitle());
-            request.setBirthPostalCode(localAuthority.getPostalCode().substring(0,2));
+            request.setBirthPostalCode(InseeDepartementCodeType.getDepartementCodeByPostalCode(localAuthority.getPostalCode()));
         }
         return request;
     }

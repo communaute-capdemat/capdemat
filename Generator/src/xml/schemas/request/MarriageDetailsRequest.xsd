@@ -461,7 +461,7 @@
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="MarriagePostalCode" type="cvq:DepartmentCodeType" minOccurs="1">
+      <xs:element name="MarriagePostalCode" type="cvq:InseeDepartementCodeType" minOccurs="1">
         <xs:annotation>
           <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">
             Département de mariage de l'individu
@@ -470,6 +470,7 @@
             Département de mariage
           </xs:documentation>
           <xs:appinfo>
+            <model namespace="users" />
             <common>
               <step name="nature" />
             </common>

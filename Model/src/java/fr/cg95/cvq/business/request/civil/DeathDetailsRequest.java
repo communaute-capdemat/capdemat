@@ -128,7 +128,8 @@ public class DeathDetailsRequest extends Request implements Serializable {
       
         deathDetailsRequest.setDeathLastName(getDeathLastName());
       
-        deathDetailsRequest.setDeathPostalCode(getDeathPostalCode());
+        if (getDeathPostalCode() != null)
+            deathDetailsRequest.setDeathPostalCode(fr.cg95.cvq.xml.common.InseeDepartementCodeType.Enum.forString(getDeathPostalCode().toString()));
       
         if (getFormat() != null)
             deathDetailsRequest.setFormat(fr.cg95.cvq.xml.request.civil.DeathCertificateFormatType.Enum.forString(getFormat().getLegacyLabel()));
@@ -167,7 +168,10 @@ public class DeathDetailsRequest extends Request implements Serializable {
       
         deathDetailsRequest.setDeathLastName(deathDetailsRequestXml.getDeathLastName());
       
-        deathDetailsRequest.setDeathPostalCode(deathDetailsRequestXml.getDeathPostalCode());
+        if (deathDetailsRequestXml.getDeathPostalCode() != null)
+            deathDetailsRequest.setDeathPostalCode(fr.cg95.cvq.business.users.InseeDepartementCodeType.forString(deathDetailsRequestXml.getDeathPostalCode().toString()));
+        else
+            deathDetailsRequest.setDeathPostalCode(fr.cg95.cvq.business.users.InseeDepartementCodeType.getDefaultInseeDepartementCodeType());
       
         if (deathDetailsRequestXml.getFormat() != null)
             deathDetailsRequest.setFormat(fr.cg95.cvq.business.request.civil.DeathCertificateFormatType.forString(deathDetailsRequestXml.getFormat().toString()));
@@ -273,12 +277,12 @@ public class DeathDetailsRequest extends Request implements Serializable {
         return deathDetailsRequestData.getDeathLastName();
     }
   
-    public final void setDeathPostalCode(final String deathPostalCode) {
+    public final void setDeathPostalCode(final fr.cg95.cvq.business.users.InseeDepartementCodeType deathPostalCode) {
         deathDetailsRequestData.setDeathPostalCode(deathPostalCode);
     }
 
     
-    public final String getDeathPostalCode() {
+    public final fr.cg95.cvq.business.users.InseeDepartementCodeType getDeathPostalCode() {
         return deathDetailsRequestData.getDeathPostalCode();
     }
   

@@ -78,7 +78,9 @@
             
               
               <dl>
+                <dt class="required"><g:message code="bdr.property.birthPostalCode.label" /> * : </dt><dd id="birthPostalCode" class="action-editField validate-departmentCode required-true i18n-bdr.property.birthPostalCode maxLength-2" ><span>${rqt?.birthPostalCode}</span></dd>
                 <dt class="required">${message(code:'bdr.property.birthPostalCode.label')}¬†*¬†:</dt><dd id="birthPostalCode" class="action-editField validate-departmentCode required-true i18n-bdr.property.birthPostalCode maxLength-2" ><span>${rqt?.birthPostalCode}</span></dd>
+                <dt class="required"><g:message code="bdr.property.birthPostalCode.label" /> * : </dt><dd id="birthPostalCode" class="action-editField validate-capdematEnum required-true i18n-bdr.property.birthPostalCode javatype-fr.cg95.cvq.business.users.InseeDepartementCodeType" ><g:capdematEnumToField var="${rqt?.birthPostalCode}" i18nKeyPrefix="bdr.property.birthPostalCode" /></dd>
               </dl>
               
             
