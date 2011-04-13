@@ -216,6 +216,15 @@
         
           <p class="label">${esc(i18n.translate('rsr.property.requestInformationRequestKind.label'))}</p>
           <div class="response">
+            <% if(rqt.requestInformation?.requestInformationRequestKind) { %>
+              ${esc(i18n.translate('rsr.property.requestInformationRequestKind.' + StringUtils.uncapitalize(rqt.requestInformation?.requestInformationRequestKind.toString())))}
+            <% } %>
+          </div>
+          
+
+        
+          <p class="label">${esc(i18n.translate('rsr.property.requestInformationRequestKind.label'))}</p>
+          <div class="response">
             <% if(rqt.requestInformationRequestKind) { %>
               ${esc(i18n.translate('rsr.property.requestInformationRequestKind.' + StringUtils.uncapitalize(rqt.requestInformationRequestKind.toString())))}
             <% if(rqt.requestInformationRequestKind) { %>
@@ -243,6 +252,17 @@
 
         
       </div>
+    
+  
+    
+      <p class="label">${esc(i18n.translate('rsr.property.requestInformationRequestKind.label'))}</p>
+          <div class="response">
+            <% if(rqt.requestInformationRequestKind) { %>
+              ${esc(i18n.translate('rsr.property.requestInformationRequestKind.' + StringUtils.uncapitalize(rqt.requestInformationRequestKind.toString())))}
+            <% } %>
+          </div>
+          
+
     
   
     

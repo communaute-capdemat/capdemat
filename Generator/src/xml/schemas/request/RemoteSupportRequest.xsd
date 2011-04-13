@@ -97,6 +97,30 @@
               </xs:annotation>
             </xs:element>
 
+      <xs:element name="RequestInformationRequestKind" type="rsr:RsrRequestInformationRequestKindType" default="Individual">
+        <xs:annotation>
+          <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">
+            Le type de la demande
+          </xs:documentation>
+          <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
+            Type de la demande
+          </xs:documentation>
+          <xs:appinfo>
+            <common>
+              <step name="subject" />
+              <conditions>
+                <condition name="isCoupleRequest" type="trigger" />
+              </conditions>
+            </common>
+            <fo>
+              <radio />
+            </fo>
+            <bo column="1" />
+            <pdf />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+
             <xs:element name="Spouse" type="rsr:RsrSpouseType">
               <xs:annotation>
                 <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">
@@ -230,30 +254,6 @@
       </xs:documentation>
     </xs:annotation>
     <xs:sequence>
-
-      <xs:element name="RequestInformationRequestKind" type="rsr:RsrRequestInformationRequestKindType" default="Individual">
-        <xs:annotation>
-          <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">
-            Le type de la demande
-          </xs:documentation>
-          <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
-            Type de la demande
-          </xs:documentation>
-          <xs:appinfo>
-            <common>
-              <step name="subject" />
-              <conditions>
-                <condition name="isCoupleRequest" type="trigger" />
-              </conditions>
-            </common>
-            <fo>
-              <radio />
-            </fo>
-            <bo column="1" />
-            <pdf />
-          </xs:appinfo>
-        </xs:annotation>
-      </xs:element>
 
       <xs:element name="RequestInformationEmergency" type="xs:boolean" default="false">
         <xs:annotation>

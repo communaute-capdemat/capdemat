@@ -120,6 +120,9 @@ public class RemoteSupportRequest extends Request implements Serializable {
         if (getRequestInformation() != null)
             remoteSupportRequest.setRequestInformation(getRequestInformation().modelToXml());
       
+        if (getRequestInformationRequestKind() != null)
+            remoteSupportRequest.setRequestInformationRequestKind(fr.cg95.cvq.xml.request.social.RsrRequestInformationRequestKindType.Enum.forString(getRequestInformationRequestKind().toString()));
+      
         if (getRsrSubject() != null)
             remoteSupportRequest.setRsrSubject(getRsrSubject().modelToXml());
       
@@ -255,6 +258,11 @@ public class RemoteSupportRequest extends Request implements Serializable {
         if (remoteSupportRequestXml.getRequestInformation() != null)
             remoteSupportRequest.setRequestInformation(RsrRequestInformation.xmlToModel(remoteSupportRequestXml.getRequestInformation()));
       
+        if (remoteSupportRequestXml.getRequestInformationRequestKind() != null)
+            remoteSupportRequest.setRequestInformationRequestKind(fr.cg95.cvq.business.request.social.RsrRequestInformationRequestKindType.forString(remoteSupportRequestXml.getRequestInformationRequestKind().toString()));
+        else
+            remoteSupportRequest.setRequestInformationRequestKind(fr.cg95.cvq.business.request.social.RsrRequestInformationRequestKindType.getDefaultRsrRequestInformationRequestKindType());
+      
         if (remoteSupportRequestXml.getRsrSubject() != null)
             remoteSupportRequest.setRsrSubject(RsrSubject.xmlToModel(remoteSupportRequestXml.getRsrSubject()));
       
@@ -332,6 +340,15 @@ public class RemoteSupportRequest extends Request implements Serializable {
     
     public final fr.cg95.cvq.business.request.social.RsrRequestInformation getRequestInformation() {
         return remoteSupportRequestData.getRequestInformation();
+    }
+  
+    public final void setRequestInformationRequestKind(final fr.cg95.cvq.business.request.social.RsrRequestInformationRequestKindType requestInformationRequestKind) {
+        remoteSupportRequestData.setRequestInformationRequestKind(requestInformationRequestKind);
+    }
+
+    
+    public final fr.cg95.cvq.business.request.social.RsrRequestInformationRequestKindType getRequestInformationRequestKind() {
+        return remoteSupportRequestData.getRequestInformationRequestKind();
     }
   
     public final void setRsrSubject(final fr.cg95.cvq.business.request.social.RsrSubject rsrSubject) {

@@ -39,6 +39,8 @@ public class DomesticHelpRequestData implements Serializable {
 
     public DomesticHelpRequestData() {
       
+        dhrRequestKind = fr.cg95.cvq.business.request.social.DhrRequestKindType.INDIVIDUAL;
+      
     }
 
     @Override
@@ -86,6 +88,15 @@ public class DomesticHelpRequestData implements Serializable {
             dhrRealAssetList.add(object.clone());
         }
         result.setDhrRealAsset(dhrRealAssetList);
+      
+          
+        
+          
+            
+        if (dhrRequestKind != null)
+            result.setDhrRequestKind(dhrRequestKind);
+        else
+            result.setDhrRequestKind(fr.cg95.cvq.business.request.social.DhrRequestKindType.getDefaultDhrRequestKindType());
       
           
         
@@ -1493,6 +1504,31 @@ public class DomesticHelpRequestData implements Serializable {
       @NotNull(
         
         
+        profiles = {"spouse"},
+        message = "dhrRequestKind"
+      )
+    
+    private fr.cg95.cvq.business.request.social.DhrRequestKindType dhrRequestKind;
+
+    public final void setDhrRequestKind(final fr.cg95.cvq.business.request.social.DhrRequestKindType dhrRequestKind) {
+        this.dhrRequestKind = dhrRequestKind;
+    }
+
+    /**
+ 
+        * @hibernate.property
+        *  column="dhr_request_kind"
+        
+      
+    */
+    public final fr.cg95.cvq.business.request.social.DhrRequestKindType getDhrRequestKind() {
+        return this.dhrRequestKind;
+    }
+  
+    
+      @NotNull(
+        
+        
         profiles = {"subject"},
         message = "dhrRequester"
       )
@@ -2055,12 +2091,32 @@ public class DomesticHelpRequestData implements Serializable {
       @NotNull(
         
         
+          when = "groovy:def active = true;" +
+          
+            "active &= _this.conditions['dhrRequestKind'].test(_this.dhrRequestKind.toString());" +
+                
+              
+              
+            
+            
+            "return active",
+        
         profiles = {"spouse"},
         message = "dhrSpouse"
       )
     
       @AssertValid(
         
+        
+          when = "groovy:def active = true;" +
+          
+            "active &= _this.conditions['dhrRequestKind'].test(_this.dhrRequestKind.toString());" +
+                
+              
+              
+            
+            
+            "return active",
         
         profiles = {"spouse"},
         message = "dhrSpouse"
@@ -2104,6 +2160,9 @@ public class DomesticHelpRequestData implements Serializable {
         
           when = "groovy:def active = true;" +
           
+            "active &= _this.conditions['dhrRequestKind'].test(_this.dhrRequestKind.toString());" +
+                
+              
               
             
             
@@ -2149,6 +2208,9 @@ public class DomesticHelpRequestData implements Serializable {
         
           when = "groovy:def active = true;" +
           
+            "active &= _this.conditions['dhrRequestKind'].test(_this.dhrRequestKind.toString());" +
+                
+              
               
             
             
@@ -2163,6 +2225,9 @@ public class DomesticHelpRequestData implements Serializable {
         
           when = "groovy:def active = true;" +
           
+            "active &= _this.conditions['dhrRequestKind'].test(_this.dhrRequestKind.toString());" +
+                
+              
               
             
             

@@ -2,15 +2,14 @@
 
 
   
-    <fieldset class="required">
-    <legend><g:message code="dhr.property.dhrSpouse.label" /></legend>
-    
-      <label class="required"><g:message code="dhr.property.dhrRequestKind.label" /> *  <span><g:message code="dhr.property.dhrRequestKind.help" /></span></label>
-            <ul class="required ${rqt.stepStates['spouse'].invalidFields.contains('dhrSpouse.dhrRequestKind') ? 'validation-failed' : ''}">
+    <label class="required"><g:message code="dhr.property.dhrRequestKind.label" /> *  <span><g:message code="dhr.property.dhrRequestKind.help" /></span></label>
+            <ul class="required ${rqt.stepStates['spouse'].invalidFields.contains('dhrRequestKind') ? 'validation-failed' : ''}">
               <g:each in="${['INDIVIDUAL','COUPLE']}">
               <li>
                 <input type="radio" id="dhrRequestKind_${it}" class="required condition-isCoupleRequest-trigger  validate-one-required" value="fr.cg95.cvq.business.request.social.DhrRequestKindType_${it}" name="dhrRequestKind" ${it == rqt.dhrRequestKind.toString() ? 'checked="checked"': ''} title="<g:message code="dhr.property.dhrRequestKind.validationError" />" />
                 <label for="dhrRequestKind_${it}"><g:capdematEnumToText var="${it}" i18nKeyPrefix="dhr.property.dhrRequestKind" /></label>
+                <input type="radio" id="dhrSpouse.dhrRequestKind_${it}" class="required condition-isCoupleRequest-trigger  validate-one-required" value="fr.cg95.cvq.business.request.social.DhrRequestKindType_${it}" name="dhrSpouse.dhrRequestKind" ${it == rqt.dhrSpouse?.dhrRequestKind.toString() ? 'checked="checked"': ''} title="<g:message code="dhr.property.dhrRequestKind.validationError" />" />
+                <label for="dhrSpouse.dhrRequestKind_${it}"><g:capdematEnumToText var="${it}" i18nKeyPrefix="dhr.property.dhrRequestKind" /></label>
                 <input type="radio" id="dhrRequestKind_${it}" class="required condition-isCoupleRequest-trigger  validate-one-required" value="${it}" name="dhrRequestKind" ${it == rqt.dhrRequestKind.toString() ? 'checked="checked"': ''} title="<g:message code="dhr.property.dhrRequestKind.validationError" />" />
                 <label for="dhrRequestKind_${it}"><g:capdematEnumToText var="${it}" i18nKeyPrefix="dhr.property.dhrRequestKind" /></label>
                 <input type="radio" id="dhrSpouse.dhrRequestKind_${it}" class="required condition-isCoupleRequest-trigger  validate-one-required" value="fr.cg95.cvq.business.request.social.DhrRequestKindType_${it}" name="dhrSpouse.dhrRequestKind" ${it == rqt.dhrSpouse?.dhrRequestKind.toString() ? 'checked="checked"': ''} title="<g:message code="dhr.property.dhrRequestKind.validationError" />" />
@@ -20,9 +19,14 @@
             </ul>
             
 
+  
+
+  
+    <fieldset class="required condition-isCoupleRequest-filled">
+    <legend><g:message code="dhr.property.dhrSpouse.label" /></legend>
     
-      <label for="dhrSpouse.dhrSpouseTitle" class="required condition-isCoupleRequest-filled"><g:message code="dhr.property.dhrSpouseTitle.label" /> *  <span><g:message code="dhr.property.dhrSpouseTitle.help" /></span></label>
-            <select id="dhrSpouse.dhrSpouseTitle" name="dhrSpouse.dhrSpouseTitle" class="required condition-isCoupleRequest-filled condition-isSpouseMadam-trigger  validate-not-first ${rqt.stepStates['spouse'].invalidFields.contains('dhrSpouse.dhrSpouseTitle') ? 'validation-failed' : ''}" title="<g:message code="dhr.property.dhrSpouseTitle.validationError" />">
+      <label for="dhrSpouse.dhrSpouseTitle" class="required"><g:message code="dhr.property.dhrSpouseTitle.label" /> *  <span><g:message code="dhr.property.dhrSpouseTitle.help" /></span></label>
+            <select id="dhrSpouse.dhrSpouseTitle" name="dhrSpouse.dhrSpouseTitle" class="required condition-isSpouseMadam-trigger  validate-not-first ${rqt.stepStates['spouse'].invalidFields.contains('dhrSpouse.dhrSpouseTitle') ? 'validation-failed' : ''}" title="<g:message code="dhr.property.dhrSpouseTitle.validationError" />">
               <option value=""><g:message code="message.select.defaultOption" /></option>
               <g:each in="${['Mister','Madam','Miss','Agency','Unknown']}">
                 <option value="fr.cg95.cvq.business.users.TitleType_${it}" ${it == rqt.dhrSpouseTitle?.toString() ? 'selected="selected"': ''}><g:capdematEnumToText var="${it}" i18nKeyPrefix="dhr.property.dhrSpouseTitle" /></option>
@@ -35,8 +39,8 @@
             
 
     
-      <label for="dhrSpouse.dhrSpouseFamilyStatus" class="required condition-isCoupleRequest-filled"><g:message code="dhr.property.dhrSpouseFamilyStatus.label" /> *  <span><g:message code="dhr.property.dhrSpouseFamilyStatus.help" /></span></label>
-            <select id="dhrSpouse.dhrSpouseFamilyStatus" name="dhrSpouse.dhrSpouseFamilyStatus" class="required condition-isCoupleRequest-filled  validate-not-first ${rqt.stepStates['spouse'].invalidFields.contains('dhrSpouse.dhrSpouseFamilyStatus') ? 'validation-failed' : ''}" title="<g:message code="dhr.property.dhrSpouseFamilyStatus.validationError" />">
+      <label for="dhrSpouse.dhrSpouseFamilyStatus" class="required"><g:message code="dhr.property.dhrSpouseFamilyStatus.label" /> *  <span><g:message code="dhr.property.dhrSpouseFamilyStatus.help" /></span></label>
+            <select id="dhrSpouse.dhrSpouseFamilyStatus" name="dhrSpouse.dhrSpouseFamilyStatus" class="required  validate-not-first ${rqt.stepStates['spouse'].invalidFields.contains('dhrSpouse.dhrSpouseFamilyStatus') ? 'validation-failed' : ''}" title="<g:message code="dhr.property.dhrSpouseFamilyStatus.validationError" />">
               <option value=""><g:message code="message.select.defaultOption" /></option>
               <g:each in="${['Married','Single','Divorced','Widow','CommonLawMarriage','PACS','Other']}">
                 <option value="fr.cg95.cvq.business.users.FamilyStatusType_${it}" ${it == rqt.dhrSpouseFamilyStatus?.toString() ? 'selected="selected"': ''}><g:capdematEnumToText var="${it}" i18nKeyPrefix="dhr.property.dhrSpouseFamilyStatus" /></option>
@@ -49,15 +53,15 @@
             
 
     
-      <label for="dhrSpouse.dhrSpouseName" class="required condition-isCoupleRequest-filled"><g:message code="dhr.property.dhrSpouseName.label" /> *  <span><g:message code="dhr.property.dhrSpouseName.help" /></span></label>
+      <label for="dhrSpouse.dhrSpouseName" class="required"><g:message code="dhr.property.dhrSpouseName.label" /> *  <span><g:message code="dhr.property.dhrSpouseName.help" /></span></label>
             <input type="text" id="dhrSpouse.dhrSpouseName" name="dhrSpouse.dhrSpouseName" value="${rqt.dhrSpouse?.dhrSpouseName?.toString()}" 
-                    class="required condition-isCoupleRequest-filled  validate-lastName ${rqt.stepStates['spouse'].invalidFields.contains('dhrSpouse.dhrSpouseName') ? 'validation-failed' : ''}" title="<g:message code="dhr.property.dhrSpouseName.validationError" />"  maxlength="38" />
+                    class="required  validate-lastName ${rqt.stepStates['spouse'].invalidFields.contains('dhrSpouse.dhrSpouseName') ? 'validation-failed' : ''}" title="<g:message code="dhr.property.dhrSpouseName.validationError" />"  maxlength="38" />
             
 
     
-      <label for="dhrSpouse.dhrSpouseFirstName" class="required condition-isCoupleRequest-filled"><g:message code="dhr.property.dhrSpouseFirstName.label" /> *  <span><g:message code="dhr.property.dhrSpouseFirstName.help" /></span></label>
+      <label for="dhrSpouse.dhrSpouseFirstName" class="required"><g:message code="dhr.property.dhrSpouseFirstName.label" /> *  <span><g:message code="dhr.property.dhrSpouseFirstName.help" /></span></label>
             <input type="text" id="dhrSpouse.dhrSpouseFirstName" name="dhrSpouse.dhrSpouseFirstName" value="${rqt.dhrSpouse?.dhrSpouseFirstName?.toString()}" 
-                    class="required condition-isCoupleRequest-filled  validate-firstName ${rqt.stepStates['spouse'].invalidFields.contains('dhrSpouse.dhrSpouseFirstName') ? 'validation-failed' : ''}" title="<g:message code="dhr.property.dhrSpouseFirstName.validationError" />"  maxlength="38" />
+                    class="required  validate-firstName ${rqt.stepStates['spouse'].invalidFields.contains('dhrSpouse.dhrSpouseFirstName') ? 'validation-failed' : ''}" title="<g:message code="dhr.property.dhrSpouseFirstName.validationError" />"  maxlength="38" />
             
 
     
@@ -67,8 +71,8 @@
             
 
     
-      <label class="required condition-isCoupleRequest-filled"><g:message code="dhr.property.dhrSpouseBirthDate.label" /> *  <span><g:message code="dhr.property.dhrSpouseBirthDate.help" /></span></label>
-            <div class="date required condition-isCoupleRequest-filled  validate-date required condition-isCoupleRequest-filled ">
+      <label class="required"><g:message code="dhr.property.dhrSpouseBirthDate.label" /> *  <span><g:message code="dhr.property.dhrSpouseBirthDate.help" /></span></label>
+            <div class="date required  validate-date required ">
               <select class="day ${rqt.stepStates['spouse'].invalidFields.contains('dhrSpouse.dhrSpouseBirthDate') ? 'validation-failed' : ''}"
                 id="dhrSpouse.dhrSpouseBirthDate_day"
                 name="dhrSpouse.dhrSpouseBirthDate_day">
@@ -107,14 +111,14 @@
             
 
     
-      <label for="dhrSpouse.dhrSpouseBirthPlace" class="required condition-isCoupleRequest-filled"><g:message code="dhr.property.dhrSpouseBirthPlace.label" /> *  <span><g:message code="dhr.property.dhrSpouseBirthPlace.help" /></span></label>
+      <label for="dhrSpouse.dhrSpouseBirthPlace" class="required"><g:message code="dhr.property.dhrSpouseBirthPlace.label" /> *  <span><g:message code="dhr.property.dhrSpouseBirthPlace.help" /></span></label>
             <input type="text" id="dhrSpouse.dhrSpouseBirthPlace" name="dhrSpouse.dhrSpouseBirthPlace" value="${rqt.dhrSpouse?.dhrSpouseBirthPlace?.toString()}" 
-                    class="required condition-isCoupleRequest-filled  validate-string ${rqt.stepStates['spouse'].invalidFields.contains('dhrSpouse.dhrSpouseBirthPlace') ? 'validation-failed' : ''}" title="<g:message code="dhr.property.dhrSpouseBirthPlace.validationError" />"   />
+                    class="required  validate-string ${rqt.stepStates['spouse'].invalidFields.contains('dhrSpouse.dhrSpouseBirthPlace') ? 'validation-failed' : ''}" title="<g:message code="dhr.property.dhrSpouseBirthPlace.validationError" />"   />
             
 
     
-      <label for="dhrSpouse.dhrSpouseNationality" class="required condition-isCoupleRequest-filled"><g:message code="dhr.property.dhrSpouseNationality.label" /> *  <span><g:message code="dhr.property.dhrSpouseNationality.help" /></span></label>
-            <select id="dhrSpouse.dhrSpouseNationality" name="dhrSpouse.dhrSpouseNationality" class="required condition-isCoupleRequest-filled condition-isSpouseNonEuropean-trigger  validate-not-first ${rqt.stepStates['spouse'].invalidFields.contains('dhrSpouse.dhrSpouseNationality') ? 'validation-failed' : ''}" title="<g:message code="dhr.property.dhrSpouseNationality.validationError" />">
+      <label for="dhrSpouse.dhrSpouseNationality" class="required"><g:message code="dhr.property.dhrSpouseNationality.label" /> *  <span><g:message code="dhr.property.dhrSpouseNationality.help" /></span></label>
+            <select id="dhrSpouse.dhrSpouseNationality" name="dhrSpouse.dhrSpouseNationality" class="required condition-isSpouseNonEuropean-trigger  validate-not-first ${rqt.stepStates['spouse'].invalidFields.contains('dhrSpouse.dhrSpouseNationality') ? 'validation-failed' : ''}" title="<g:message code="dhr.property.dhrSpouseNationality.validationError" />">
               <option value=""><g:message code="message.select.defaultOption" /></option>
               <g:each in="${['French','EuropeanUnion','OutsideEuropeanUnion']}">
                 <option value="fr.cg95.cvq.business.users.NationalityType_${it}" ${it == rqt.dhrSpouseNationality?.toString() ? 'selected="selected"': ''}><g:capdematEnumToText var="${it}" i18nKeyPrefix="dhr.property.dhrSpouseNationality" /></option>

@@ -145,17 +145,21 @@
     <h3><g:message code="dhr.step.spouse.label" /></h3>
     
       
-      <h4><g:message code="dhr.property.dhrSpouse.label" /></h4>
       <dl>
-        
-          <dt><g:message code="dhr.property.dhrRequestKind.label" /></dt>
+        <dt><g:message code="dhr.property.dhrRequestKind.label" /></dt>
           <dd>
-            <g:if test="${rqt.dhrSpouse?.dhrRequestKind}">
-              <g:capdematEnumToField var="${rqt.dhrSpouse?.dhrRequestKind}" i18nKeyPrefix="dhr.property.dhrRequestKind" />
+            <g:if test="${rqt.dhrRequestKind}">
+              <g:capdematEnumToField var="${rqt.dhrRequestKind}" i18nKeyPrefix="dhr.property.dhrRequestKind" />
             </g:if>
           </dd>
           
 
+      </dl>
+      
+    
+      
+      <h4><g:message code="dhr.property.dhrSpouse.label" /></h4>
+      <dl>
         
           <dt><g:message code="dhr.property.dhrSpouseTitle.label" /></dt>
           <dd>

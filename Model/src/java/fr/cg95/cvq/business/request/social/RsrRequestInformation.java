@@ -42,8 +42,6 @@ public class RsrRequestInformation implements Serializable {
       
         requestInformationEmergency = Boolean.valueOf(false);
       
-        requestInformationRequestKind = fr.cg95.cvq.business.request.social.RsrRequestInformationRequestKindType.INDIVIDUAL;
-      
     }
 
     public final String modelToXmlString() {
@@ -67,9 +65,6 @@ public class RsrRequestInformation implements Serializable {
         if (this.requestInformationEmergency != null)
             rsrRequestInformation.setRequestInformationEmergency(this.requestInformationEmergency.booleanValue());
       
-        if (this.requestInformationRequestKind != null)
-            rsrRequestInformation.setRequestInformationRequestKind(fr.cg95.cvq.xml.request.social.RsrRequestInformationRequestKindType.Enum.forString(this.requestInformationRequestKind.toString()));
-      
         rsrRequestInformation.setRequestInformationEmergencyMotive(this.requestInformationEmergencyMotive);
       
         return rsrRequestInformation;
@@ -83,11 +78,6 @@ public class RsrRequestInformation implements Serializable {
     
         rsrRequestInformation.setRequestInformationEmergency(Boolean.valueOf(rsrRequestInformationDoc.getRequestInformationEmergency()));
       
-        if (rsrRequestInformationDoc.getRequestInformationRequestKind() != null)
-            rsrRequestInformation.setRequestInformationRequestKind(fr.cg95.cvq.business.request.social.RsrRequestInformationRequestKindType.forString(rsrRequestInformationDoc.getRequestInformationRequestKind().toString()));
-        else
-            rsrRequestInformation.setRequestInformationRequestKind(fr.cg95.cvq.business.request.social.RsrRequestInformationRequestKindType.getDefaultRsrRequestInformationRequestKindType());
-      
         rsrRequestInformation.setRequestInformationEmergencyMotive(rsrRequestInformationDoc.getRequestInformationEmergencyMotive());
       
         return rsrRequestInformation;
@@ -100,15 +90,6 @@ public class RsrRequestInformation implements Serializable {
           
             
         result.setRequestInformationEmergency(requestInformationEmergency);
-      
-          
-        
-          
-            
-        if (requestInformationRequestKind != null)
-            result.setRequestInformationRequestKind(requestInformationRequestKind);
-        else
-            result.setRequestInformationRequestKind(fr.cg95.cvq.business.request.social.RsrRequestInformationRequestKindType.getDefaultRsrRequestInformationRequestKindType());
       
           
         
@@ -160,31 +141,6 @@ public class RsrRequestInformation implements Serializable {
     */
     public final Boolean getRequestInformationEmergency() {
         return this.requestInformationEmergency;
-    }
-  
-    
-      @NotNull(
-        
-        
-        profiles = {"subject"},
-        message = "requestInformationRequestKind"
-      )
-    
-    private fr.cg95.cvq.business.request.social.RsrRequestInformationRequestKindType requestInformationRequestKind;
-
-    public final void setRequestInformationRequestKind(final fr.cg95.cvq.business.request.social.RsrRequestInformationRequestKindType requestInformationRequestKind) {
-        this.requestInformationRequestKind = requestInformationRequestKind;
-    }
-
-    /**
-  
-        * @hibernate.property
-        *  column="request_information_request_kind"
-        
-      
-    */
-    public final fr.cg95.cvq.business.request.social.RsrRequestInformationRequestKindType getRequestInformationRequestKind() {
-        return this.requestInformationRequestKind;
     }
   
     

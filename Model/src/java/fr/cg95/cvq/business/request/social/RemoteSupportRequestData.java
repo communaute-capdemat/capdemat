@@ -41,6 +41,8 @@ public class RemoteSupportRequestData implements Serializable {
       
         contactKind = fr.cg95.cvq.business.request.social.RsrContactKindType.REQUESTER;
       
+        requestInformationRequestKind = fr.cg95.cvq.business.request.social.RsrRequestInformationRequestKindType.INDIVIDUAL;
+      
     }
 
     @Override
@@ -67,6 +69,15 @@ public class RemoteSupportRequestData implements Serializable {
             
         if (requestInformation != null)
             result.setRequestInformation(requestInformation.clone());
+      
+          
+        
+          
+            
+        if (requestInformationRequestKind != null)
+            result.setRequestInformationRequestKind(requestInformationRequestKind);
+        else
+            result.setRequestInformationRequestKind(fr.cg95.cvq.business.request.social.RsrRequestInformationRequestKindType.getDefaultRsrRequestInformationRequestKindType());
       
           
         
@@ -423,7 +434,32 @@ public class RemoteSupportRequestData implements Serializable {
         
         
         profiles = {"subject"},
+        message = "requestInformationRequestKind"
         message = "rsrSubject"
+      )
+    
+    private fr.cg95.cvq.business.request.social.RsrRequestInformationRequestKindType requestInformationRequestKind;
+
+    public final void setRequestInformationRequestKind(final fr.cg95.cvq.business.request.social.RsrRequestInformationRequestKindType requestInformationRequestKind) {
+        this.requestInformationRequestKind = requestInformationRequestKind;
+    }
+
+    /**
+ 
+        * @hibernate.property
+        *  column="request_information_request_kind"
+        
+      
+    */
+    public final fr.cg95.cvq.business.request.social.RsrRequestInformationRequestKindType getRequestInformationRequestKind() {
+        return this.requestInformationRequestKind;
+    }
+  
+    
+      @NotNull(
+        
+        
+        profiles = {"subject"},
       )
     
     private fr.cg95.cvq.business.request.social.RsrRequestInformationRequestKindType requestInformationRequestKind;
@@ -723,6 +759,9 @@ public class RemoteSupportRequestData implements Serializable {
         
           when = "groovy:def active = true;" +
           
+            "active &= _this.conditions['requestInformationRequestKind'].test(_this.requestInformationRequestKind.toString());" +
+                
+              
               
             
             "return active",
@@ -795,6 +834,9 @@ public class RemoteSupportRequestData implements Serializable {
         
           when = "groovy:def active = true;" +
           
+            "active &= _this.conditions['requestInformationRequestKind'].test(_this.requestInformationRequestKind.toString());" +
+                
+              
               
             
             

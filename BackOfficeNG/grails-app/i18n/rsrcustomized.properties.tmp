@@ -41,16 +41,16 @@ rsr.property.requestInformation.help =
 rsr.property.requestInformation.validationError =
 
 
-rsr.property.requestInformationRequestKind.help =
-rsr.property.requestInformationRequestKind.validationError =
-
-
 rsr.property.requestInformationEmergency.help =
 rsr.property.requestInformationEmergency.validationError =
 
 
 rsr.property.requestInformationEmergencyMotive.help =
 rsr.property.requestInformationEmergencyMotive.validationError =
+
+
+rsr.property.requestInformationRequestKind.help =
+rsr.property.requestInformationRequestKind.validationError =
 
 
 rsr.property.spouse.help =

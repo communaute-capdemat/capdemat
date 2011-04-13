@@ -57,15 +57,6 @@
       <h4><g:message code="rsr.property.requestInformation.label" /></h4>
       <dl>
         
-          <dt><g:message code="rsr.property.requestInformationRequestKind.label" /></dt>
-          <dd>
-            <g:if test="${rqt.requestInformation?.requestInformationRequestKind}">
-              <g:capdematEnumToField var="${rqt.requestInformation?.requestInformationRequestKind}" i18nKeyPrefix="rsr.property.requestInformationRequestKind" />
-            </g:if>
-          </dd>
-          
-
-        
           <dt><g:message code="rsr.property.requestInformationEmergency.label" /></dt>
           <dd><g:message code="message.${rqt.requestInformation?.requestInformationEmergency ? 'yes' : 'no'}" /></dd>
           
@@ -74,6 +65,19 @@
           <dt><g:message code="rsr.property.requestInformationEmergencyMotive.label" /></dt><dd>${rqt.requestInformation?.requestInformationEmergencyMotive?.toString()}</dd>
 
         
+      </dl>
+      
+    
+      
+      <dl>
+        <dt><g:message code="rsr.property.requestInformationRequestKind.label" /></dt>
+          <dd>
+            <g:if test="${rqt.requestInformationRequestKind}">
+              <g:capdematEnumToField var="${rqt.requestInformationRequestKind}" i18nKeyPrefix="rsr.property.requestInformationRequestKind" />
+            </g:if>
+          </dd>
+          
+
       </dl>
       
     

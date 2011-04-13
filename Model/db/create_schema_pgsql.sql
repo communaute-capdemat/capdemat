@@ -1770,7 +1770,6 @@
         dhr_spouse_name varchar(38),
         dhr_spouse_birth_place varchar(255),
         dhr_spouse_birth_date timestamp,
-        dhr_request_kind varchar(255),
         dhr_spouse_title varchar(255),
         dhr_spouse_is_french_resident bool,
         primary key (id)
@@ -1959,6 +1958,7 @@
         dhr_spouse_address_id int8,
         dhr_current_dwelling_id int8,
         dhr_family_referent_id int8,
+        dhr_request_kind varchar(255),
         dhr_requester_id int8,
         dhr_requester_guardian_id int8,
         dhr_requester_incomes_id int8,
@@ -4000,6 +4000,7 @@
         contact_kind varchar(255),
         first_contact_id int8,
         request_information_id int8,
+        request_information_request_kind varchar(255),
         rsr_subject_id int8,
         second_contact_id int8,
         spouse_id int8,
@@ -4199,7 +4200,6 @@
     create table rsr_request_information (
         id int8 not null,
         request_information_emergency bool,
-        request_information_request_kind varchar(255),
         request_information_emergency_motive varchar(180),
         primary key (id)
     );
