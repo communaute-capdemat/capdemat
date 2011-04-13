@@ -49,6 +49,8 @@ import fr.cg95.cvq.service.document.IDocumentService;
 import fr.cg95.cvq.service.request.ILocalReferentialService;
 import fr.cg95.cvq.service.request.IRequestPdfService;
 import fr.cg95.cvq.service.request.IRequestSearchService;
+import fr.cg95.cvq.service.request.IRequestService;
+import fr.cg95.cvq.service.request.IRequestServiceRegistry;
 import fr.cg95.cvq.service.request.external.IRequestExternalActionService;
 import fr.cg95.cvq.service.users.IUserSearchService;
 import fr.cg95.cvq.util.Critere;
@@ -71,11 +73,15 @@ public class RequestPdfService implements IRequestPdfService {
     private IAgentService agentService;
     private IRequestExternalActionService requestExternalActionService;
     private IDocumentService documentService;
+    private IRequestServiceRegistry requestServiceRegistry;
 
     @Override
     public byte[] generateCertificate(Request request) throws CvqException {
-        String htmlFilename = 
-            StringUtils.uncapitalize(request.getRequestType().getLabel().replace(" ", "")) + "Request";
+        IRequestService requestService = requestServiceRegistry.getRequestService(request);
+
+        String htmlFilename = requestService.getSpecificPdfTemplate() == null ? 
+                StringUtils.uncapitalize(request.getRequestType().getLabel().replace(" ", "")) + "Request" :
+                requestService.getSpecificPdfTemplate();
         File htmlTemplate =
             localAuthorityRegistry.getReferentialResource(Type.CERTIFICATE_TEMPLATE, htmlFilename);
         if (htmlTemplate == null || !htmlTemplate.exists()) {
@@ -85,8 +91,9 @@ public class RequestPdfService implements IRequestPdfService {
         File logoFile = localAuthorityRegistry.getLocalAuthorityResourceFile(
                 LocalAuthorityResource.LOGO_PDF.getId());
         
-        File cssFile = localAuthorityRegistry.getLocalAuthorityResourceFile(
-                LocalAuthorityResource.Type.CSS,"certificate", true);
+        File cssFile = requestService.getSpecificCssFilename() == null ?
+                localAuthorityRegistry.getLocalAuthorityResourceFile(LocalAuthorityResource.Type.CSS, "certificate", true) :
+                localAuthorityRegistry.getLocalAuthorityResourceFile(LocalAuthorityResource.Type.CSS, requestService.getSpecificCssFilename(), true);
         
         Adult requester = null;
         if (request.getRequesterId() != null)
@@ -395,5 +402,9 @@ public class RequestPdfService implements IRequestPdfService {
 
     public void setDocumentService(IDocumentService documentService) {
         this.documentService = documentService;
+    }
+
+    public void setRequestServiceRegistry(IRequestServiceRegistry requestServiceRegistry) {
+        this.requestServiceRegistry = requestServiceRegistry;
     }
 }

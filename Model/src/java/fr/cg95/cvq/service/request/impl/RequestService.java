@@ -23,6 +23,8 @@ public abstract class RequestService implements IRequestService {
     protected Boolean supportUnregisteredCreation = Boolean.FALSE;
     protected String subjectPolicy = IRequestWorkflowService.SUBJECT_POLICY_NONE;
     protected String label;
+    protected String specificPdfTemplate;
+    protected String specificCssFilename;
     protected Boolean isOfRegistrationKind;
     protected String defaultDisplayGroup;
     protected int filingDelay;
@@ -106,6 +108,24 @@ public abstract class RequestService implements IRequestService {
 
     public void setLabel(final String label) {
         this.label = label;
+    }
+
+    @Override
+    public String getSpecificPdfTemplate() {
+        return specificPdfTemplate;
+    }
+
+    public void setSpecificPdfTemplate(String specificPdfTemplate) {
+        this.specificPdfTemplate = specificPdfTemplate;
+    }
+
+    @Override
+    public String getSpecificCssFilename() {
+        return specificCssFilename;
+    }
+
+    public void setSpecificCssFilename(String specificCssFilename) {
+        this.specificCssFilename = specificCssFilename;
     }
 
     public void setSupportUnregisteredCreation(String supportUnregisteredCreation) {
