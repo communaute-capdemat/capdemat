@@ -60,6 +60,7 @@ http://www.springframework.org/schema/task http://www.springframework.org/schema
     <property name="agentService" ref="agentService"/>
     <property name="requestExternalActionService" ref="requestExternalActionService"/>
     <property name="documentService" ref="documentService"/>
+    <property name="requestServiceRegistry" ref="requestServiceRegistry" />
   </bean>
 
   <bean id="securityContext" class="fr.cg95.cvq.security.SecurityContext">

@@ -25,6 +25,17 @@ public interface IRequestService extends ApplicationListener<CapDematEvent> {
     String getLabel();
 
     /**
+     * Return name of a specific PDF template (eg, a Cerfa) to be used to render request certificate.
+     */
+    String getSpecificPdfTemplate();
+    
+    /**
+     * Return name of a specific CSS to be used to render request certificate (typically used in conjonction
+     * with a specific PDF template).
+     */
+    String getSpecificCssFilename();
+    
+    /**
      * Return the file name of local referential data specific to this request type (or null if
      * none defined).
      */
