@@ -259,7 +259,7 @@ class FrontofficeRequestController {
         }
         for (def i = 0; i < stepStates.size(); i++) {
             if (stepStates[i].equals(step)) {
-                if (params.nextStep) { updateStepState(rqt, step); return stepStates[i + 1] }
+                if (params.nextStep) { updateStepState(rqt, stepStates[i + 1]); return stepStates[i + 1] }
                 if (params.previousStep) return stepStates[i - 1]
             }
         }
@@ -267,24 +267,11 @@ class FrontofficeRequestController {
     }
 
     def updateStepState(rqt, step) {
-        def afterCurrentStep = false
-        def it = rqt.stepStates.entrySet().iterator()
-        while (it.hasNext()) {
-            def entry = it.next()
-            if (entry.key == step) {
-                afterCurrentStep = true
-                continue 
-            }
-            def stepState = entry.value
-            if (afterCurrentStep) {
-                if (stepState.state == 'unavailable') {
-                    stepState.state = 'uncomplete'
-                    stepState.errorMsg = null
-                    stepState.invalidFields = []
-                }
-                if (stepState.required) 
-                    break
-            }
+        def stepState = rqt.stepStates[step]
+        if (stepState.state == 'unavailable') {
+            stepState.state = stepState.required ? 'uncomplete' : 'optional'
+            stepState.errorMsg = null
+            stepState.invalidFields = []
         }
         if (requestWorkflowService.getMissingSteps(rqt).size() > 0)
             rqt.stepStates.validation.state = 'unavailable'
