@@ -106,6 +106,14 @@
 
 <g:else>
   <div id="${currentStep}" class="form ${rqt.stepStates[currentStep]?.state}">
+    <g:if test="${!rqt.stepStates[currentStep].required}">
+      <p style="margin: 1em 0 0; padding:0; font-size: 1.1em; font-style: italic;">
+        ${message(code:'request.step.message.optionalStep')}
+        <a href="${createLink(controller:'frontofficeRequest', action : 'edit', params:['id':rqt.id,'currentStep':currentStep, 'nextStep':'nextStep'])}">
+          ${message(code:'request.step.navigation.skipAndNext')}
+        </a>
+      </p>
+    </g:if>
     <g:if test="${!(customReferential.businessStep == currentStep)}">
       <form method="post" id="stepForm" action="${createLink(controller:'frontofficeRequest', action:'edit')}">
     </g:if>

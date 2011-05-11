@@ -48,9 +48,11 @@
 #request .steps li .number { float: right; margin-left: .4em; font-size: 1.4em; }
 
 #request .steps li.uncomplete .number,
+#request .steps li.optional .number,
 #request .steps li.complete .number,
 #request .steps li.invalid .number, 
 #request .steps li.uncomplete a,
+#request .steps li.optional a,
 #request .steps li.complete a,
 #request .steps li.invalid a  { color: #fff; }
 
@@ -60,12 +62,14 @@
   border-radius-topleft: 0; border-radius-bottomleft: 0;
 }
 #request .steps li.uncomplete { border-color: #fc0; background: #fc0; }
-#request .steps li.complete   { border-color: #20CC20; background: #20CC20; }
+#request .steps li.complete,
+#request .steps li.optional   { border-color: #20CC20; background: #20CC20; }
 #request .steps li.invalid    { border-color: #CC2020; background: #CC2020; }
 
 #request .steps li.unavailable:hover a { color: #555 !important; }
 #request .steps li.uncomplete:hover { border-color: #fa0; background: #fa0;}
-#request .steps li.complete:hover   { border-color: #20aa20; background: #20aa20; }
+#request .steps li.complete:hover,
+#request .steps li.optional:hover   { border-color: #20aa20; background: #20aa20; }
 #request .steps li.invalid:hover    { border-color: #aa2020; background: #aa2020; }
 
 /* override inherited properties */
@@ -82,7 +86,8 @@
 #request form { overflow: auto; }
 
 #request div.form.uncomplete { border-color: #fc0; }
-#request div.form.complete   { border-color: #20CC20; }
+#request div.form.complete,
+#request div.form.optional   { border-color: #20CC20; }
 #request div.form.invalid    { border-color: #CC2020; }
 
 #request h2 { font-size: 2.5em; border: 0; }
