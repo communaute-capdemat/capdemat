@@ -645,6 +645,14 @@ http://www.springframework.org/schema/task http://www.springframework.org/schema
     <property name="label" value="Birth Details"/>
     <property name="defaultDisplayGroup" value="civil" />
  </bean>
+
+ <bean id="civilStatusCertificateRequestService" 
+    class="fr.cg95.cvq.service.request.civil.impl.CivilStatusCertificateRequestService" 
+    parent="requestService">
+    <property name="supportUnregisteredCreation" value="true" />
+    <property name="label" value="Civil Status Certificate"/>
+    <property name="defaultDisplayGroup" value="civil" />
+ </bean>
   
   <bean id="marriageDetailsRequestService" 
     class="fr.cg95.cvq.service.request.civil.impl.MarriageDetailsRequestService" 

@@ -1,0 +1,119 @@
+cscr.duration.value =
+
+cscr.property.subject.label = Sujet
+
+cscr.step.acte.label =
+cscr.step.acte.desc =
+
+cscr.step.informations.label =
+cscr.step.informations.desc =
+
+
+cscr.property.typeActe.help =
+cscr.property.typeActe.validationError =
+
+
+cscr.property.formatActe.help =
+cscr.property.formatActe.validationError =
+
+
+cscr.property.nombreActes.help =
+cscr.property.nombreActes.validationError =
+
+
+cscr.property.dateEvenement.help =
+cscr.property.dateEvenement.validationError =
+
+
+cscr.property.nomTitulaireActe.help =
+cscr.property.nomTitulaireActe.validationError =
+
+
+cscr.property.prenomsTitulaireActe.help =
+cscr.property.prenomsTitulaireActe.validationError =
+
+
+cscr.property.motif.help =
+cscr.property.motif.validationError =
+
+
+cscr.property.precisionAutreMotif.help =
+cscr.property.precisionAutreMotif.validationError =
+
+
+cscr.property.complementTypeActe.help =
+cscr.property.complementTypeActe.validationError =
+
+
+cscr.property.pereNom.help =
+cscr.property.pereNom.validationError =
+
+
+cscr.property.perePrenoms.help =
+cscr.property.perePrenoms.validationError =
+
+
+cscr.property.mereNom.help =
+cscr.property.mereNom.validationError =
+
+
+cscr.property.merePrenoms.help =
+cscr.property.merePrenoms.validationError =
+
+
+cscr.property.typeDemandeur.help =
+cscr.property.typeDemandeur.validationError =
+
+
+cscr.property.informationsParticulier.help =
+cscr.property.informationsParticulier.validationError =
+
+
+cscr.property.qualiteDemandeurParticulier.help =
+cscr.property.qualiteDemandeurParticulier.validationError =
+
+
+cscr.property.precisionAutreQualiteDemandeurParticulier.help =
+cscr.property.precisionAutreQualiteDemandeurParticulier.validationError =
+
+
+cscr.property.informationsAdministration.help =
+cscr.property.informationsAdministration.validationError =
+
+
+cscr.property.nomAdministration.help =
+cscr.property.nomAdministration.validationError =
+
+
+cscr.property.nomMandataireAdministration.help =
+cscr.property.nomMandataireAdministration.validationError =
+
+
+cscr.property.qualiteMandataireAdministration.help =
+cscr.property.qualiteMandataireAdministration.validationError =
+
+
+cscr.property.precisionAutreQualiteMandataireAdministration.help =
+cscr.property.precisionAutreQualiteMandataireAdministration.validationError =
+
+
+cscr.property.informationsJuridique.help =
+cscr.property.informationsJuridique.validationError =
+
+
+cscr.property.nomMandataireJuridique.help =
+cscr.property.nomMandataireJuridique.validationError =
+
+
+cscr.property.qualiteMandataireJuridique.help =
+cscr.property.qualiteMandataireJuridique.validationError =
+
+
+cscr.property.precisionAutreQualiteMandataireJuridique.help =
+cscr.property.precisionAutreQualiteMandataireJuridique.validationError =
+
+
+cscr.property.commentaire.help =
+cscr.property.commentaire.validationError =
+
+

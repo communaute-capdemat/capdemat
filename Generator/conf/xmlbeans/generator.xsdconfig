@@ -104,6 +104,11 @@
     <xb:package>fr.cg95.cvq.xml.request.civil</xb:package>
   </xb:namespace>
 
+  <!-- Civil Status Certificate Request -->
+  <xb:namespace uri="http://www.cg95.fr/cvq/schema/cscr">
+    <xb:package>fr.cg95.cvq.xml.request.civil</xb:package>
+  </xb:namespace>
+
   <!-- Electoral Roll Registration Request -->
   <xb:namespace uri="http://www.cg95.fr/cvq/schema/errr">
     <xb:package>fr.cg95.cvq.xml.request.election</xb:package>

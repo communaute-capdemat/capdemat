@@ -1,0 +1,730 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://www.cg95.fr/cvq/schema/cscr"
+  xmlns:cscr="http://www.cg95.fr/cvq/schema/cscr" 
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns:cvq="http://www.cg95.fr/cvq/schema/common" 
+  elementFormDefault="qualified"
+  attributeFormDefault="unqualified">
+
+  <xs:import namespace="http://www.cg95.fr/cvq/schema/common" 
+    schemaLocation="../common/CVQCommonElements.xsd" />
+
+  <xs:element name="CivilStatusCertificateRequest">
+    <xs:annotation>
+      <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">
+        Demande d'acte d'état civil
+      </xs:documentation>
+      <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
+        Demande d'acte d'état civil
+      </xs:documentation>
+      <xs:appinfo>
+        <model namespace="civil" />
+        <common>
+          <namespace name="civil" />
+          <steps>
+            <step index="0" name="acte">
+                <conditions>
+                    <condition name="estExtraitSansFiliation" />
+                    <condition name="estAutreMotif" />
+                </conditions>
+            </step>
+            <step index="1" name="informations">
+                <conditions>
+                    <condition name="estParticulier" />
+                    <condition name="estAdministration" />
+                    <condition name="estJuridique" />
+                    <condition name="estAutreQualiteDemandeurParticulier" />
+                    <condition name="estAutreQualiteMandataireAdministration" />
+                    <condition name="estAutreQualiteMandataireJuridique" />
+                </conditions>
+            </step>
+            <step index="2" ref="validation" />
+          </steps>
+        </common>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cvq:RequestType">
+          <xs:sequence>
+          
+          <xs:element name="TypeActe" type="cscr:CscTypeActeType" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">
+                  Acte
+                </xs:documentation>
+                <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
+                  Acte
+                </xs:documentation>
+                <xs:appinfo>
+                  <common>
+                    <step name="acte" />
+                  </common>
+                  <fo>
+                    <radio />
+                  </fo>
+                  <bo column="1" />
+                  <pdf>
+                    <choice />
+                  </pdf>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+            
+            <xs:element name="FormatActe" type="cscr:CscFormatActeType">
+              <xs:annotation>
+                <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">
+                  Format de l'acte
+                </xs:documentation>
+                <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
+                  Format de l'acte
+                </xs:documentation>
+                <xs:appinfo>
+                  <common>
+                    <step name="acte" />
+                    <conditions>
+                      <condition name="estExtraitSansFiliation" type="trigger" />
+                    </conditions>
+                  </common>
+                  <fo />
+                  <bo column="1" />
+                  <pdf>
+                    <pick />
+                  </pdf>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+          
+          <xs:element name="NombreActes" type="xs:positiveInteger" default="1">
+              <xs:annotation>
+                <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">
+                  Nombre de copies
+                </xs:documentation>
+                <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
+                  Nombre de copies
+                </xs:documentation>
+                <xs:appinfo>
+                  <common>
+                    <step name="acte" />
+                  </common>
+                  <fo />
+                  <bo column="1" />
+                  <pdf />
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+          
+          <xs:element name="DateEvenement" type="xs:date">
+              <xs:annotation>
+                <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">
+                  Date de l'évènement (Naissance, Mariage ou Décès)
+                </xs:documentation>
+                <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
+                  Date de l'évènement (Naissance, Mariage ou Décès)
+                </xs:documentation>
+                <xs:appinfo>
+                  <common>
+                    <step name="acte" />
+                  </common>
+                  <fo />
+                  <bo column="1" />
+                  <pdf />
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+          
+          <xs:element name="NomTitulaireActe" type="cvq:LastNameType">
+              <xs:annotation>
+                <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">
+                  Nom de naissance du titulaire de l'acte
+                </xs:documentation>
+                <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
+                  Nom de naissance du titulaire de l'acte
+                </xs:documentation>
+                <xs:appinfo>
+                  <common>
+                    <step name="acte" />
+                  </common>
+                  <fo />
+                  <bo column="2" />
+                  <pdf />
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+          
+          <xs:element name="PrenomsTitulaireActe" type="xs:string">
+              <xs:annotation>
+                <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">
+                  Prénom du titulaire de l'acte
+                </xs:documentation>
+                <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
+                  Prénom du titulaire de l'acte
+                </xs:documentation>
+                <xs:appinfo>
+                  <common>
+                    <step name="acte" />
+                  </common>
+                  <fo />
+                  <bo column="2" />
+                  <pdf />
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+          
+          <xs:element name="Motif" type="cscr:CscMotifType">
+              <xs:annotation>
+               <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">
+                  Motif de la demande
+                </xs:documentation>
+                <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
+                  Motif de la demande
+                </xs:documentation>
+                <xs:appinfo>
+                  <common>
+                    <step name="acte" />
+                    <conditions>
+                      <condition name="estAutreMotif" type="trigger" />
+                    </conditions>
+                  </common>
+                  <fo />
+                  <bo column="2" />
+                  <pdf>
+                    <pick />
+                  </pdf>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+          
+          <xs:element name="PrecisionAutreMotif" type="xs:string">
+              <xs:annotation>
+                <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">
+                  Précision
+                </xs:documentation>
+                <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
+                  Précision
+                </xs:documentation>
+                <xs:appinfo>
+                  <common>
+                    <step name="acte" />
+                    <conditions>
+                      <condition name="estAutreMotif" type="filled" />
+                    </conditions>
+                  </common>
+                  <fo />
+                  <bo column="2" />
+                  <pdf />
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+          
+          <xs:element name="ComplementTypeActe" type="cscr:CscrComplementTypeActeType" minOccurs="0">
+              <xs:annotation>
+              <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">
+                  Si l'extrait est une copie intégrale, avec filiation ou plurilingue
+                </xs:documentation>
+                <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
+                  Si l'extrait est une copie intégrale, avec filiation ou plurilingue
+                </xs:documentation>
+                <xs:appinfo>
+                  <common>
+                    <step name="acte" />
+                    <conditions>
+                      <condition name="estExtraitSansFiliation" type="unfilled" />
+                    </conditions>
+                  </common>
+                  <fo />
+                  <bo column="1" />
+                  <pdf />
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+          
+          <xs:element name="TypeDemandeur" type="cscr:CscTypeDemandeurType" default="Particulier">
+              <xs:annotation>
+                <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">
+                  Vous êtes
+                </xs:documentation>
+                <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
+                  Vous êtes
+                </xs:documentation>
+                <xs:appinfo>
+                  <common>
+                    <step name="informations" />
+                    <conditions>
+                      <condition name="estParticulier" type="trigger" />
+                      <condition name="estAdministration" type="trigger" />
+                      <condition name="estJuridique" type="trigger" />
+                    </conditions>
+                  </common>
+                  <fo>
+                    <radio />
+                  </fo>
+                  <bo column="1" />
+                  <pdf />
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+            
+            <xs:element name="InformationsParticulier" type="cscr:CscrInformationsParticulierType" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">
+                  Informations pour le particulier
+                </xs:documentation>
+                <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
+                  Informations pour le particulier
+                </xs:documentation>
+                <xs:appinfo>
+                  <common>
+                    <step name="informations" />
+                    <conditions>
+                      <condition name="estParticulier" type="filled" />
+                    </conditions>
+                  </common>
+                  <fo />
+                  <bo column="1" />
+                  <pdf />
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+            
+            <xs:element name="InformationsAdministration" type="cscr:CscrInformationsAdministrationType" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">
+                  Informations pour l'administration
+                </xs:documentation>
+                <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
+                  Informations pour l'administration
+                </xs:documentation>
+                <xs:appinfo>
+                  <common>
+                    <step name="informations" />
+                    <conditions>
+                      <condition name="estAdministration" type="filled" />
+                    </conditions>
+                  </common>
+                  <fo />
+                  <bo column="1" />
+                  <pdf />
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+            
+            <xs:element name="InformationsJuridique" type="cscr:CscrInformationsJuridiqueType" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">
+                  Informations pour notaire, huissier ou avocat
+                </xs:documentation>
+                <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
+                  Informations pour notaire, huissier ou avocat
+                </xs:documentation>
+                <xs:appinfo>
+                  <common>
+                    <step name="informations" />
+                    <conditions>
+                      <condition name="estJuridique" type="filled" />
+                    </conditions>
+                  </common>
+                  <fo />
+                  <bo column="1" />
+                  <pdf />
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+            
+            <xs:element name="Commentaire" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">
+                  Commentaire
+                </xs:documentation>
+                <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
+                  Commentaire
+                </xs:documentation>
+                <xs:appinfo>
+                  <common>
+                    <step name="informations" />
+                    <validation jsregexp="^[\w\W]{0,1024}$" />
+                  </common>
+                  <fo>
+                    <textarea rows="3" />
+                  </fo>
+                  <bo column="2">
+                    <textarea rows="3" />
+                  </bo>
+                  <pdf />
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:pattern value="^[\w\W]{0,1024}$" />
+                  <xs:maxLength value="2048" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            
+          </xs:sequence>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:simpleType name="CscTypeActeType">
+    <xs:annotation>
+      <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">
+        Type de l'acte
+      </xs:documentation>
+      <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
+        Type de l'acte
+      </xs:documentation>
+      <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/translation/enum">
+        <enum key="Naissance" value="Acte de naissance" />
+        <enum key="Deces" value="Acte de décès" />
+        <enum key="Mariage" value="Acte de mariage" />
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Naissance" />
+      <xs:enumeration value="Deces" />
+      <xs:enumeration value="Mariage" />
+    </xs:restriction>
+  </xs:simpleType>
+  
+  <xs:simpleType name="CscFormatActeType">
+    <xs:annotation>
+      <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">
+        Format de l'acte
+      </xs:documentation>
+      <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
+        Format de l'acte
+      </xs:documentation>
+      <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/translation/enum">
+        <enum key="CopieIntegrale" value="Copie intégrale" />
+        <enum key="AvecFiliation" value="Extrait avec filiation" />
+        <enum key="SansFiliation" value="Extrait sans filiation" />
+        <enum key="Plurilingue" value="Extrait plurilingue" />
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="CopieIntegrale" />
+      <xs:enumeration value="AvecFiliation" />
+      <xs:enumeration value="SansFiliation" />
+      <xs:enumeration value="Plurilingue" />
+    </xs:restriction>
+  </xs:simpleType>
+  
+  <xs:simpleType name="CscMotifType">
+    <xs:annotation>
+      <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">
+        Motif de la demande
+      </xs:documentation>
+      <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
+        Motif de la demande
+      </xs:documentation>
+      <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/translation/enum">
+        <enum key="CarteIdentite" value="Carte nationale d'identité" />
+        <enum key="Passeport" value="Passeport" />
+        <enum key="CertificatNationaliteFrancaise" value="Certificat de nationalité française" />
+        <enum key="Mariage" value="Mariage" />
+        <enum key="Genealogie" value="Généalogie" />
+        <enum key="Succession" value="Succession" />
+        <enum key="Pension" value="Pension" />
+        <enum key="Autre" value="Autre motif" />
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="CarteIdentite" />
+      <xs:enumeration value="Passeport" />
+      <xs:enumeration value="CertificatNationaliteFrancaise" />
+      <xs:enumeration value="Mariage" />
+      <xs:enumeration value="Genealogie" />
+      <xs:enumeration value="Succession" />
+      <xs:enumeration value="Pension" />
+      <xs:enumeration value="Autre" />
+    </xs:restriction>
+  </xs:simpleType>
+  
+  <xs:simpleType name="CscTypeDemandeurType">
+    <xs:annotation>
+      <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">
+        Type du demandeur
+      </xs:documentation>
+      <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
+        Type du demandeur
+      </xs:documentation>
+      <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/translation/enum">
+        <enum key="Particulier" value="Particulier" />
+        <enum key="Notaire" value="Notaire" />
+        <enum key="Avocat" value="Avocat" />
+        <enum key="Administration" value="Administration" />
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Particulier" />
+      <xs:enumeration value="Notaire" />
+      <xs:enumeration value="Avocat" />
+      <xs:enumeration value="Administration" />
+    </xs:restriction>
+  </xs:simpleType>
+  
+  <xs:simpleType name="CscQualiteDemandeurType">
+    <xs:annotation>
+      <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/translation/enum">
+        <enum key="Titulaire" value="Le titulaire de l'acte" />
+        <enum key="Conjoint" value="Son conjoint" />
+        <enum key="Parent" value="Son père ou sa mère" />
+        <enum key="Enfant" value="Son fils ou sa fille" />
+        <enum key="GrandParent" value="Son grand-père ou sa grand-mère" />
+        <enum key="HeritierFamille" value="Son héritier et aussi son frère ou sa soeur" />
+        <enum key="Heritier" value="Son héritier sans être son frère ou sa soeur" />
+        <enum key="AutreLienParente" value="Autre lien de parenté" />
+        <enum key="AutreCas" value="Autre cas" />
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Titulaire" />
+      <xs:enumeration value="Conjoint" />
+      <xs:enumeration value="Parent" />
+      <xs:enumeration value="Enfant" />
+      <xs:enumeration value="GrandParent" />
+      <xs:enumeration value="HeritierFamille" />
+      <xs:enumeration value="Heritier" />
+      <xs:enumeration value="AutreLienParente" />
+      <xs:enumeration value="AutreCas" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  
+
+  <xs:complexType name="CscrComplementTypeActeType">
+    <xs:sequence>
+      <xs:element name="PereNom" type="cvq:LastNameType">
+        <xs:annotation>
+          <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
+            Nom de famille du père
+          </xs:documentation>
+          <xs:appinfo>
+            <common>
+              <step name="acte" />
+            </common>
+            <fo />
+            <bo />
+            <pdf />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PerePrenoms" type="xs:string">
+        <xs:annotation>
+          <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
+            Prénom(s) du père
+          </xs:documentation>
+          <xs:appinfo>
+            <common>
+              <step name="acte" />
+            </common>
+            <fo />
+            <bo />
+            <pdf />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="MereNom" type="cvq:LastNameType">
+        <xs:annotation>
+          <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
+            Nom de famille de la mère
+          </xs:documentation>
+          <xs:appinfo>
+            <common>
+              <step name="acte" />
+            </common>
+            <fo />
+            <bo />
+            <pdf />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="MerePrenoms" type="xs:string">
+        <xs:annotation>
+          <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
+            Prénom(s) de la mère
+          </xs:documentation>
+          <xs:appinfo>
+            <common>
+              <step name="acte" />
+            </common>
+            <fo />
+            <bo />
+            <pdf />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="CscrInformationsParticulierType">
+    <xs:sequence>
+      <xs:element name="QualiteDemandeurParticulier" type="cscr:CscQualiteDemandeurType" minOccurs="0">
+        <xs:annotation>
+        <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
+            Qualité du demandeur
+          </xs:documentation>
+          <xs:appinfo>
+            <common>
+              <step name="informations" />
+              <conditions>
+                      <condition name="estAutreQualiteDemandeurParticulier" type="trigger" />
+              </conditions>
+            </common>
+            <fo />
+            <bo />
+            <pdf />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PrecisionAutreQualiteDemandeurParticulier" type="xs:string" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
+            Précisez
+          </xs:documentation>
+          <xs:appinfo>
+            <common>
+              <step name="informations" />
+                <conditions>
+                      <condition name="estAutreQualiteDemandeurParticulier" type="filled" />
+                </conditions>
+            </common>
+            <fo />
+            <bo />
+            <pdf />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="CscrInformationsAdministrationType" >
+    <xs:sequence>
+      <xs:element name="NomAdministration" type="xs:string" minOccurs="0">
+        <xs:annotation>
+        <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
+            Nom de l'administration
+          </xs:documentation>
+          <xs:appinfo>
+            <common>
+              <step name="informations" />
+            </common>
+            <fo />
+            <bo />
+            <pdf />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="NomMandataireAdministration" type="xs:string" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
+            Nom de la personne ayant donné le mandat
+          </xs:documentation>
+          <xs:appinfo>
+            <common>
+              <step name="informations" />
+            </common>
+            <fo />
+            <bo />
+            <pdf />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="QualiteMandataireAdministration" type="cscr:CscQualiteDemandeurType" minOccurs="0">
+        <xs:annotation>
+        <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
+            Qualité du mandataire
+          </xs:documentation>
+          <xs:appinfo>
+            <common>
+              <step name="informations" />
+              <conditions>
+                      <condition name="estAutreQualiteMandataireAdministration" type="trigger" />
+              </conditions>
+            </common>
+            <fo />
+            <bo />
+            <pdf />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PrecisionAutreQualiteMandataireAdministration" type="xs:string" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
+            Précisez
+          </xs:documentation>
+          <xs:appinfo>
+            <common>
+              <step name="informations" />
+              <conditions>
+                      <condition name="estAutreQualiteMandataireAdministration" type="filled" />
+              </conditions>
+            </common>
+            <fo />
+            <bo />
+            <pdf />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="CscrInformationsJuridiqueType">
+    <xs:sequence>
+      <xs:element name="NomMandataireJuridique" type="xs:string" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
+            Nom de la personne ayant donné le mandat
+          </xs:documentation>
+          <xs:appinfo>
+            <common>
+              <step name="informations" />
+            </common>
+            <fo />
+            <bo />
+            <pdf />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+     <xs:element name="QualiteMandataireJuridique" type="cscr:CscQualiteDemandeurType" minOccurs="0">
+        <xs:annotation>
+        <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
+            Qualité du mandataire
+          </xs:documentation>
+          <xs:appinfo>
+            <common>
+              <step name="informations" />
+              <conditions>
+                      <condition name="estAutreQualiteMandataireJuridique" type="trigger" />
+              </conditions>
+            </common>
+            <fo />
+            <bo />
+            <pdf />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PrecisionAutreQualiteMandataireJuridique" type="xs:string" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
+            Précisez
+          </xs:documentation>
+          <xs:appinfo>
+            <common>
+              <step name="informations" />
+              <conditions>
+                      <condition name="estAutreQualiteMandataireJuridique" type="filled" />
+              </conditions>
+            </common>
+            <fo />
+            <bo />
+            <pdf />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>
