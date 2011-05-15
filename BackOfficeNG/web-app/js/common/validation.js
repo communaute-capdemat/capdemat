@@ -242,14 +242,18 @@
     }),
     'dateWidget': new me.complexRule(function(){
       var required = yud.hasClass(yud.getAncestorByTagName(arguments[0].enhanceErrorEl, 'div'), 'required');
-      var count = '';
-      for (i = 0; i < 3; i++) { count += arguments[i].value + ''; }
-      if (required || count.length > 0) {
-        return me.rules["date"].func({
-          "value" : arguments[1].value + '/' + arguments[0].value + '/' + arguments[2].value
-        });
+      var count = 0;
+      for (i = 0; i < 3; i++) {
+        count += (arguments[i].value === null || arguments[i].value === "") ? 0 : 1;
+      }
+      if ((required && count != 3) || count === 1 || count === 2)
+        return false;
+      if (required || count === 3) {
+          return me.rules["date"].func({
+              "value" : new Date(arguments[0].value, arguments[1].value - 1, arguments[2].value).getTime()
+          });
       } else {
-        return true;
+         return true;
       }
     })
   });
