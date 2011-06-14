@@ -1,0 +1,39 @@
+<xs:schema targetNamespace="http://www.capwebct.fr/capdemat"
+  xmlns:capdemat="http://www.capwebct.fr/capdemat"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns:common="http://www.cg95.fr/cvq/schema/common" 
+  elementFormDefault="qualified" 
+  attributeFormDefault="unqualified">
+
+  <xs:import namespace="http://www.cg95.fr/cvq/schema/common"
+    schemaLocation="http://people.zenexity.fr/~bor/capdemat/V4_2/common/CVQCommonElements.xsd" />
+
+  <xs:element name="UpdateStateRequestRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Id" type="xs:long" />
+        <xs:element name="State" type="common:RequestStateType" />
+        <xs:element name="Note" type="xs:string"  minOccurs="0" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="UpdateStateRequestResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Code" type="capdemat:HttpCodeType"/>
+        <xs:element name="Message" type="xs:string" minOccurs="0" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:simpleType name="HttpCodeType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="200" />
+      <xs:enumeration value="403" />
+      <xs:enumeration value="404" />
+      <xs:enumeration value="500" />
+    </xs:restriction>
+  </xs:simpleType>
+
+</xs:schema>

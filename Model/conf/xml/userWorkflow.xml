@@ -5,6 +5,7 @@
 	</transition>
 	<transition from="New" to="Invalid">
 		<context>backOffice</context>
+		<context>externalServiceContext</context>
 	</transition>
 	<transition from="New" to="Archived">
 		<context>frontOffice</context>
@@ -29,7 +30,7 @@
 	</transition>
 	<transition from="Modified" to="Archived">
 		<context>frontOffice</context>
-		<context>backOffice</context>²
+		<context>backOffice</context>
 	</transition>
 	<transition from="Invalid" to="Valid">
 		<context>backOffice</context>

@@ -551,7 +551,7 @@ public class UserWorkflowService implements IUserWorkflowService, ApplicationEve
     }
 
     @Override
-    @Context(types = {ContextType.ECITIZEN, ContextType.AGENT}, privilege = ContextPrivilege.WRITE)
+    @Context(types = {ContextType.ECITIZEN, ContextType.AGENT, ContextType.EXTERNAL_SERVICE}, privilege = ContextPrivilege.WRITE)
     public void changeState(HomeFolder homeFolder, UserState state)
         throws CvqModelException, CvqInvalidTransitionException {
         if (!isValidTransition(homeFolder.getState(), state))
