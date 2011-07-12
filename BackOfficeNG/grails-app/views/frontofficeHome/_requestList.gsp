@@ -24,19 +24,16 @@
             <g:if test="${record.subjectName && record.subjectName != ''}">
               <p>> <g:message code="layout.for" /> ${record.subjectName}</p>
             </g:if>
-            <!-- Not working atm. If we re-enable request notes, .agent-note class should be styled, won't work as-it.
-            <g:if test="${record.lastAgentNote}">
-              <p class="agent-note">
-                > <g:message code="request.property.lastAgentNote" />
-                <g:if test="${record.lastAgentNote.date != null}">
-                  <g:message code="layout.on.date" />${formatDate(date:record.lastAgentNote.date,formatName:'format.date')}
-                </g:if>
-                <g:message code="layout.by" />${record.lastAgentNote.user_name} :
-                <strong>${record.lastAgentNote.note}</strong>
-              </p>
-            </g:if>-->
-          </div>
-
+          <g:if test="${record.lastAgentNote}">
+            <p class="agent-note">
+              > <g:message code="request.property.lastAgentNote" />
+              <g:if test="${record.lastAgentNote.date != null}">
+                <g:message code="layout.on.date" /> <g:formatDate date="${record.lastAgentNote.date}" formatName="format.date" />
+              </g:if>
+%{--              <g:message code="layout.by" />&nbsp;${record.lastAgentNote.user_name} :--}%
+              <strong>${record.lastAgentNote.note}</strong>
+            </p>
+          </g:if>
         </li>
       </g:each>
     </ul>

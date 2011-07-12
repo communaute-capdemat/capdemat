@@ -118,13 +118,6 @@ class BackofficeRequestInstructionController {
             }
         }
 
-        def lastActionNote
-        rqt.actions.each {
-            if (RequestActionType.STATE_CHANGE.equals(it.type)) {
-                lastActionNote = it.note
-            }
-        }
-
         def subject = rqt.subjectId != null ? userSearchService.getById(rqt.subjectId) : null
 
         def subMenuEntries = ["request.search"]
@@ -141,7 +134,7 @@ class BackofficeRequestInstructionController {
             "agentCanWrite": categoryService.hasWriteProfileOnCategory(SecurityContext.currentAgent, 
                 rqt.requestType.category.id),
             "requestState": CapdematUtils.adaptCapdematEnum(rqt.state, "request.state"),
-            "lastActionNote" : lastActionNote,
+            "lastActionNote" : requestNoteService.getLastAgentNote(rqt.id, null)?.note,
             "requestDataState": CapdematUtils.adaptCapdematEnum(rqt.dataState, "request.dataState"),
             "requestLabel": translationService.translateRequestTypeLabel(rqt.requestType.label).encodeAsHTML(),
             "requestTypeTemplate": CapdematUtils.requestTypeLabelAsDir(rqt.requestType.label),

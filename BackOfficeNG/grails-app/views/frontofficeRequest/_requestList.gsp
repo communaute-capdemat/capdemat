@@ -63,8 +63,8 @@
             <g:if test="${record.lastAgentNote.date}">
                 <g:message code="layout.on.date" /> <g:formatDate date="${record.lastAgentNote.date}" formatName="format.date" />
               </g:if>
-            <g:message code="layout.by" />&nbsp;${record.lastAgentNote.user_name} :
-            ${record.lastAgentNote.note}
+%{--            <g:message code="layout.by" />&nbsp;${record.lastAgentNote.user_name} :--}%
+            : <strong>${record.lastAgentNote.note}</strong>
           </p>
         </g:if>
       </li>

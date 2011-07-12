@@ -7,11 +7,14 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 
 import fr.cg95.cvq.business.request.Request;
+import fr.cg95.cvq.business.request.RequestAction;
+import fr.cg95.cvq.business.request.RequestActionType;
 import fr.cg95.cvq.business.request.RequestEvent;
 import fr.cg95.cvq.business.request.RequestNote;
 import fr.cg95.cvq.business.request.RequestNoteType;
@@ -72,10 +75,22 @@ public class RequestNoteService implements IRequestNoteService, ApplicationConte
     public RequestNote getLastAgentNote(final Long requestId, RequestNoteType type)
         throws CvqException {
         List<RequestNote> notes = getNotes(requestId, type);
-        if (notes == null || notes.isEmpty()) return null;
         Collections.reverse(notes);
         for (RequestNote note : notes) {
             if (agentService.exists(note.getUserId())) {
+                return note;
+            }
+        }
+        Request request = requestDAO.findById(requestId);
+        for (RequestAction action : request.getActions()) {
+            if (RequestActionType.STATE_CHANGE.equals(action.getType())) {
+                if (StringUtils.isBlank(action.getNote())) {
+                    return null;
+                }
+                RequestNote note = new RequestNote();
+                note.setDate(action.getDate());
+                note.setNote(action.getNote());
+                note.setUserId(action.getAgentId());
                 return note;
             }
         }
