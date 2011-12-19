@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LocalReferential xmlns="http://www.cg95.fr/cvq/schema/referential">
+    <data name="ChoixMesuresDemandees" allowMultipleChoices="true" manager="CapDémat">
+        <label>Mesures demandées nécessitant un arrêté de travaux</label>
+        <entries>
+            <entry key="Modification-de-circulation-des-ve-hicules">
+                <label>Modification de circulation des véhicules</label>
+                <message/>
+                <entries>
+                    <entry key="Modification-de-circulation-des-ve-hicules-Avec-de-viation">
+                        <label>Avec déviation</label>
+                        <message/>
+                    </entry>
+                    <entry key="Modification-de-circulation-des-ve-hicules-Sans-de-viation">
+                        <label>Sans déviation</label>
+                        <message/>
+                    </entry>
+                </entries>
+            </entry>
+            <entry key="De-viation-des-pie-tons">
+                <label>Déviation des piétons</label>
+                <message/>
+                <entries>
+                    <entry key="De-viation-des-pie-tons-Sur-trottoir-oppose-">
+                        <label>Sur trottoir opposé</label>
+                        <message/>
+                    </entry>
+                    <entry key="De-viation-des-pie-tons-Sous-passage-prote-ge-">
+                        <label>Sous passage protégé</label>
+                        <message/>
+                    </entry>
+                </entries>
+            </entry>
+            <entry key="Autre">
+                <label>Autre</label>
+                <message/>
+                <entries>
+                    <entry key="Autre-Stationnement-interdit">
+                        <label>Stationnement interdit</label>
+                        <message/>
+                    </entry>
+                </entries>
+            </entry>
+        </entries>
+    </data>
+    <data name="ChoixObjetDemande" allowMultipleChoices="true" manager="CapDémat">
+        <label>Objet de la demande</label>
+        <entries>
+            <entry key="Stationnement-de-benne-a--gravats">
+                <label>Stationnement de benne à gravats</label>
+                <message/>
+            </entry>
+            <entry key="Palissade-de-chantier">
+                <label>Palissade de chantier</label>
+                <message/>
+            </entry>
+            <entry key="Stationnement-de-ve-hicules--d-engins">
+                <label>Stationnement de véhicules, d'engins</label>
+                <message/>
+            </entry>
+            <entry key="Stationnement-pour-de-me-nagement">
+                <label>Stationnement pour déménagement</label>
+                <message/>
+            </entry>
+            <entry key="E-chafaudage">
+                <label>Échafaudage</label>
+                <message/>
+            </entry>
+            <entry key="Terrasse---e-talge---bureau-de-vente---installation-et-baraque-de-chantier">
+                <label>Terrasse - étalge - bureau de vente - installation et baraque de chantier</label>
+                <message/>
+            </entry>
+            <entry key="De-po-t-de-mate-riaux">
+                <label>Dépôt de matériaux</label>
+                <message/>
+            </entry>
+            <entry key="Cre-ation-d-un-acce-s--bateau-">
+                <label>Création d'un accès (bateau)</label>
+                <message/>
+            </entry>
+            <entry key="Cre-ation-d-une-gargouille">
+                <label>Création d'une gargouille</label>
+                <message/>
+            </entry>
+            <entry key="Raccordement-au-re-seau-d-eau-potable">
+                <label>Raccordement au réseau d'eau potable</label>
+                <message/>
+            </entry>
+            <entry key="Raccordement-au-re-seau-public-d-assainissement-des-eaux-use-es---des-eaux-pluviales">
+                <label>Raccordement au réseau public d'assainissement des eaux usées - des eaux pluviales</label>
+                <message/>
+            </entry>
+        </entries>
+    </data>
+    <data name="ChoixTypeTravaux" allowMultipleChoices="true" manager="CapDémat">
+        <label>Type de travaux</label>
+        <entries>
+            <entry key="surface">
+                <label>surface</label>
+                <message/>
+            </entry>
+            <entry key="sous-sol">
+                <label>sous-sol</label>
+                <message/>
+            </entry>
+            <entry key="sursol--ae-rien-">
+                <label>sursol (aérien)</label>
+                <message/>
+            </entry>
+        </entries>
+    </data>
+    <data name="ChoixZonesConcernees" allowMultipleChoices="true" manager="CapDémat">
+        <label>Zones concernées</label>
+        <entries>
+            <entry key="Chausse-e">
+                <label>Chaussée</label>
+                <message/>
+                <entries>
+                    <entry key="Chausse-e-pair">
+                        <label>pair</label>
+                        <message/>
+                    </entry>
+                    <entry key="Chausse-e-impair">
+                        <label>impair</label>
+                        <message/>
+                    </entry>
+                    <entry key="Chausse-e-centre">
+                        <label>centre</label>
+                        <message/>
+                    </entry>
+                </entries>
+            </entry>
+            <entry key="Trottoir">
+                <label>Trottoir</label>
+                <message/>
+                <entries>
+                    <entry key="Trottoir-pair">
+                        <label>pair</label>
+                        <message/>
+                    </entry>
+                    <entry key="Trottoir-impaire">
+                        <label>impair</label>
+                        <message/>
+                    </entry>
+                </entries>
+            </entry>
+            <entry key="Stationnement">
+                <label>Stationnement</label>
+                <message/>
+                <entries>
+                    <entry key="Stationnement-pair">
+                        <label>pair</label>
+                        <message/>
+                    </entry>
+                    <entry key="Stationnement-impair">
+                        <label>impair</label>
+                        <message/>
+                    </entry>
+                </entries>
+            </entry>
+            <entry key="Accotement">
+                <label>Accotement</label>
+                <message/>
+                <entries>
+                    <entry key="Accotement-pair">
+                        <label>pair</label>
+                        <message/>
+                    </entry>
+                    <entry key="Accotement-impair">
+                        <label>impair</label>
+                        <message/>
+                    </entry>
+                </entries>
+            </entry>
+        </entries>
+    </data>
+</LocalReferential>

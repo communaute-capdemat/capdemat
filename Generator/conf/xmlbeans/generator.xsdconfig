@@ -134,6 +134,11 @@
     <xb:package>fr.cg95.cvq.xml.request.urbanism</xb:package>
   </xb:namespace>
 
+  <!-- Taverny Approval Road Occupancy Request -->
+  <xb:namespace uri="http://www.cg95.fr/cvq/schema/taror">
+    <xb:package>fr.cg95.cvq.xml.request.urbanism</xb:package>
+  </xb:namespace>
+
   <!-- Sewer Connection Request -->
   <xb:namespace uri="http://www.cg95.fr/cvq/schema/scr">
     <xb:package>fr.cg95.cvq.xml.request.urbanism</xb:package>

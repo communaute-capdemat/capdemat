@@ -1,0 +1,659 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://www.cg95.fr/cvq/schema/taror"
+  xmlns:taror="http://www.cg95.fr/cvq/schema/taror"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns:cvq="http://www.cg95.fr/cvq/schema/common"
+  elementFormDefault="qualified"
+  attributeFormDefault="unqualified">
+
+  <xs:import namespace="http://www.cg95.fr/cvq/schema/common"
+    schemaLocation="../common/CVQCommonElements.xsd" />
+
+  <xs:element name="TavernyApprovalRoadOccupancyRequest">
+    <xs:annotation>
+      <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">
+        Demande d'occupation du domaine public
+      </xs:documentation>
+      <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
+        Occupation du domaine public
+      </xs:documentation>
+      <xs:appinfo>
+        <model namespace="urbanism" />
+        <common>
+          <namespace name="urbanism" />
+          <steps>
+            <step index="0" name="general" />
+            <step index="1" name="technique" />
+            <step index="2" name="reglement" />
+            <step index="3" ref="document" />
+            <step index="4" ref="validation" />
+            <step index="5" ref="administration" />
+          </steps>
+        </common>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cvq:RequestType">
+          <xs:sequence>
+            <xs:element name="LieuConcerne" type="taror:TarorLieuConcerneType">
+              <xs:annotation>
+                <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
+                  Lieu concerné
+                </xs:documentation>
+                <xs:appinfo>
+                  <common>
+                    <step name="general" />
+                  </common>
+                  <fo />
+                  <bo column="1" />
+                  <pdf />
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="Periode" type="taror:TarorPeriodeType">
+              <xs:annotation>
+                <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">
+                  Période d'occupation de la voirie
+                </xs:documentation>
+                <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
+                  Période d'occupation de la voirie
+                </xs:documentation>
+                <xs:appinfo>
+                  <common>
+                    <step name="general" />
+                  </common>
+                  <fo />
+                  <bo column="1" />
+                  <pdf />
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="EntrepriseChargeeTravaux" type="taror:TarorEntrepriseChargeeTravauxType">
+              <xs:annotation>
+                <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">
+                  Entreprise chargée des travaux
+                </xs:documentation>
+                <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
+                  Entreprise chargée des travaux
+                </xs:documentation>
+                <xs:appinfo>
+                  <common>
+                    <step name="general" />
+                  </common>
+                  <fo />
+                  <bo column="2" />
+                  <pdf />
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+
+            <xs:element name="ObjetDemande" type="taror:TarorObjetDemandeType">
+              <xs:annotation>
+                <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">
+                  Objet de la demande
+                </xs:documentation>
+                <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
+                  Objet de la demande
+                </xs:documentation>
+                <xs:appinfo>
+                  <model namespace="request" isTiedToRequest="true" />
+                  <common>
+                    <step name="technique" />
+                  </common>
+                  <fo />
+                  <bo column="1" />
+                  <pdf />
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="TypeTravaux" type="taror:TarorTypeTravauxType">
+              <xs:annotation>
+                <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">
+                  Type de travaux
+                </xs:documentation>
+                <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
+                  Type de travaux
+                </xs:documentation>
+                <xs:appinfo>
+                  <model namespace="request" isTiedToRequest="true" />
+                  <common>
+                    <step name="technique" />
+                  </common>
+                  <fo />
+                  <bo column="1" />
+                  <pdf />
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="ZonesConcernees" type="taror:TarorZonesConcerneesType">
+              <xs:annotation>
+                <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">
+                  Zones concernées
+                </xs:documentation>
+                <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
+                  Zones concernées
+                </xs:documentation>
+                <xs:appinfo>
+                  <model namespace="request" isTiedToRequest="true" />
+                  <common>
+                    <step name="technique" />
+                  </common>
+                  <fo />
+                  <bo column="1" />
+                  <pdf />
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="SurfaceOccupee" type="taror:TarorSurfaceOccupeeType">
+              <xs:annotation>
+                <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">
+                  Surface occupée du domaine public
+                </xs:documentation>
+                <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
+                  Surface occupée du domaine public
+                </xs:documentation>
+                <xs:appinfo>
+                  <common>
+                    <step name="technique" />
+                  </common>
+                  <fo />
+                  <bo column="1" />
+                  <pdf />
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="MesuresDemandees" type="taror:TarorMesuresDemandeesType">
+              <xs:annotation>
+                <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">
+                  Mesures demandées nécessitant un arrêté de travaux
+                </xs:documentation>
+                <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
+                  Mesures demandées nécessitant un arrêté de travaux
+                </xs:documentation>
+                <xs:appinfo>
+                  <model namespace="request" isTiedToRequest="true" />
+                  <common>
+                    <step name="technique" />
+                  </common>
+                  <fo />
+                  <bo column="1" />
+                  <pdf />
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+
+           <xs:element name="Reglement" type="cvq:AcceptanceType" default="false">
+              <xs:annotation>
+                <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">
+                  J’ai pris connaissance du tarif des droits de voirie pour certaines occupations.
+                </xs:documentation>
+                <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
+                  J’ai pris connaissance du tarif des droits de voirie pour certaines occupations.
+                </xs:documentation>
+                <xs:appinfo>
+                  <common>
+                    <step name="reglement" />
+                  </common>
+                  <fo>
+                    <checkbox />
+                  </fo>
+                  <bo column="1" />
+                  <pdf />
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+
+            <xs:element name="AvisServiceTechnique" type="xs:string" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">
+                  Avis du Service Technique
+                </xs:documentation>
+                <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
+                  Avis du Service Technique
+                </xs:documentation>
+                <xs:appinfo>
+                  <common>
+                    <step ref="administration" />
+                  </common>
+                  <bo column="1">
+                    <textarea rows="5" />
+                  </bo>
+                  <pdf />
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+
+            <xs:element name="DroitsVoirie" type="xs:string" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">
+                  Droits de voirie
+                </xs:documentation>
+                <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
+                  Droits de voirie
+                </xs:documentation>
+                <xs:appinfo>
+                  <common>
+                    <step ref="administration" />
+                  </common>
+                  <bo column="1" />
+                  <pdf />
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+
+          </xs:sequence>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
+<xs:complexType name="TarorLieuConcerneType">
+    <xs:sequence>
+      <xs:element name="AdresseLieuConcerne" type="cvq:AddressType">
+        <xs:annotation>
+          <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
+            Adresse
+          </xs:documentation>
+          <xs:appinfo>
+            <common>
+              <step name="general" />
+            </common>
+            <model namespace="users" isTiedToRequest="true" />
+            <fo />
+            <bo />
+            <pdf />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ProprietaireLieuConcerne" type="xs:string">
+        <xs:annotation>
+          <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
+            Propriétaire
+          </xs:documentation>
+          <xs:appinfo>
+            <common>
+              <step name="general" />
+            </common>
+            <fo />
+            <bo />
+            <pdf />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DescriptifLieuConcerne" type="xs:string" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
+            Descriptif du lieu d'occupation
+          </xs:documentation>
+          <xs:appinfo>
+            <common>
+              <step name="general" />
+            </common>
+            <fo >
+              <textarea rows="3" />
+            </fo>
+            <bo column="1">
+                <textarea rows="3" />
+            </bo>
+            <pdf />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+<xs:complexType name="TarorPeriodeType">
+    <xs:sequence>
+      <xs:element name="DebutPeriode" type="xs:date">
+        <xs:annotation>
+          <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
+            du
+          </xs:documentation>
+          <xs:appinfo>
+            <common>
+              <step name="general" />
+            </common>
+            <fo />
+            <bo />
+            <pdf />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="FinPeriode" type="xs:date">
+        <xs:annotation>
+          <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
+            au
+          </xs:documentation>
+          <xs:appinfo>
+            <common>
+              <step name="general" />
+            </common>
+            <fo />
+            <bo />
+            <pdf />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+<xs:complexType name="TarorEntrepriseChargeeTravauxType">
+    <xs:sequence>
+      <xs:element name="NomEntreprise" type="xs:string">
+        <xs:annotation>
+          <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
+            Nom
+          </xs:documentation>
+          <xs:appinfo>
+            <common>
+              <step name="general" />
+            </common>
+            <fo />
+            <bo />
+            <pdf />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="AdresseEntreprise" type="cvq:AddressType">
+        <xs:annotation>
+          <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
+            Adresse
+          </xs:documentation>
+          <xs:appinfo>
+            <model namespace="users" isTiedToRequest="true" />
+            <common>
+              <step name="general" />
+            </common>
+            <fo />
+            <bo />
+            <pdf />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TelephoneEntreprise" type="cvq:PhoneType">
+        <xs:annotation>
+          <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
+            Téléphone
+          </xs:documentation>
+          <xs:appinfo>
+            <common>
+              <step name="general" />
+            </common>
+            <fo />
+            <bo />
+            <pdf />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TelecopieEntreprise" type="cvq:PhoneType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
+            Télécopie
+          </xs:documentation>
+          <xs:appinfo>
+            <common>
+              <step name="general" />
+            </common>
+            <fo />
+            <bo />
+            <pdf />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+<xs:complexType name="TarorObjetDemandeType">
+    <xs:sequence>
+      <xs:element name="ChoixObjetDemande" type="cvq:LocalReferentialDataType" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">
+            Objet de la demande
+          </xs:documentation>
+          <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
+            Objet de la demande
+          </xs:documentation>
+          <xs:appinfo>
+            <model namespace="request" isTiedToRequest="true" />
+            <common>
+              <step name="technique" />
+            </common>
+            <fo />
+            <bo column="1" />
+            <pdf />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PrecisionsObjetDemande" type="xs:string" minOccurs="0">
+        <xs:annotation>
+        <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">
+            Précisions
+          </xs:documentation>
+          <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
+            Précisions
+          </xs:documentation>
+          <xs:appinfo>
+            <model namespace="request" isTiedToRequest="true" />
+            <common>
+              <step name="technique" />
+            </common>
+            <fo >
+              <textarea rows="3" />
+            </fo>
+            <bo column="1">
+                <textarea rows="3" />
+            </bo>
+            <pdf />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+<xs:complexType name="TarorTypeTravauxType">
+    <xs:sequence>
+      <xs:element name="ChoixTypeTravaux" type="cvq:LocalReferentialDataType" maxOccurs="unbounded">
+        <xs:annotation>
+        <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">
+            Type de travaux
+          </xs:documentation>
+          <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
+            Type de travaux
+          </xs:documentation>
+          <xs:appinfo>
+            <model namespace="request" isTiedToRequest="true" />
+            <common>
+              <step name="technique" />
+            </common>
+            <fo />
+            <bo column="1" />
+            <pdf />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PrecisionsTypeTravaux" type="xs:string" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">
+            Précisions
+          </xs:documentation>
+          <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
+            Précisions
+          </xs:documentation>
+          <xs:appinfo>
+            <model namespace="request" isTiedToRequest="true" />
+            <common>
+              <step name="technique" />
+            </common>
+            <fo >
+              <textarea rows="3" />
+            </fo>
+            <bo column="1">
+                <textarea rows="3" />
+            </bo>
+            <pdf />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+<xs:complexType name="TarorZonesConcerneesType">
+    <xs:sequence>
+      <xs:element name="ChoixZonesConcernees" type="cvq:LocalReferentialDataType" maxOccurs="unbounded">
+        <xs:annotation>
+        <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">
+            Zones concernées
+          </xs:documentation>
+          <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
+            Zones concernées
+          </xs:documentation>
+          <xs:appinfo>
+            <model namespace="request" isTiedToRequest="true" />
+            <common>
+              <step name="technique" />
+            </common>
+            <fo />
+            <bo column="1" />
+            <pdf />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PrecisionsZonesConcernees" type="xs:string" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">
+            Précisions
+          </xs:documentation>
+          <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
+            Précisions
+          </xs:documentation>
+          <xs:appinfo>
+            <model namespace="request" isTiedToRequest="true" />
+            <common>
+              <step name="technique" />
+            </common>
+            <fo >
+              <textarea rows="3" />
+            </fo>
+            <bo column="1">
+                <textarea rows="3" />
+            </bo>
+            <pdf />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+<xs:complexType name="TarorMesuresDemandeesType">
+    <xs:sequence>
+      <xs:element name="ChoixMesuresDemandees" type="cvq:LocalReferentialDataType" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">
+            Mesures demandées nécessitant un arrêté de travaux
+          </xs:documentation>
+          <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
+            Mesures demandées nécessitant un arrêté de travaux
+          </xs:documentation>
+          <xs:appinfo>
+            <model namespace="request" isTiedToRequest="true" />
+            <common>
+              <step name="technique" />
+            </common>
+            <fo />
+            <bo column="1" />
+            <pdf />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PrecisionsMesuresDemandees" type="xs:string" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">
+            Précisions
+          </xs:documentation>
+          <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
+            Précisions
+          </xs:documentation>
+          <xs:appinfo>
+            <model namespace="request" isTiedToRequest="true" />
+            <common>
+              <step name="technique" />
+            </common>
+            <fo >
+              <textarea rows="3" />
+            </fo>
+            <bo column="1">
+                <textarea rows="3" />
+            </bo>
+            <pdf />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="TarorSurfaceOccupeeType">
+    <xs:sequence>
+      <xs:element name="LongueurSurfaceOccupee" type="xs:string">
+        <xs:annotation>
+          <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
+            Longueur
+          </xs:documentation>
+          <xs:appinfo>
+            <common>
+              <step name="technique" />
+            </common>
+            <fo />
+            <bo />
+            <pdf />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="LargeurSurfaceOccupee" type="xs:string">
+        <xs:annotation>
+          <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
+            Largeur
+          </xs:documentation>
+          <xs:appinfo>
+            <common>
+              <step name="technique" />
+            </common>
+            <fo />
+            <bo />
+            <pdf />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="HauteurSurfaceOccupee" type="xs:string">
+        <xs:annotation>
+          <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
+            Hauteur
+          </xs:documentation>
+          <xs:appinfo>
+            <common>
+              <step name="technique" />
+            </common>
+            <fo />
+            <bo />
+            <pdf />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="SurfaceTotale" type="xs:string">
+        <xs:annotation>
+          <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
+            Surface totale
+          </xs:documentation>
+          <xs:appinfo>
+            <common>
+              <step name="technique" />
+            </common>
+            <fo />
+            <bo />
+            <pdf />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
