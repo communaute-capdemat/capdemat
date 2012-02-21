@@ -18,8 +18,8 @@ import org.apache.log4j.Logger;
 import org.apache.log4j.PatternLayout;
 
 import au.com.bytecode.opencsv.CSVWriter;
-
 import fr.cg95.cvq.business.payment.Payment;
+import fr.cg95.cvq.business.request.Request;
 import fr.cg95.cvq.business.users.Adult;
 import fr.cg95.cvq.security.SecurityContext;
 import fr.cg95.cvq.service.authority.ILocalAuthorityLifecycleAware;
@@ -29,7 +29,7 @@ import fr.cg95.cvq.util.logging.ILog;
 public class Log implements ILog, ILocalAuthorityLifecycleAware {
 
     private ILocalAuthorityRegistry localAuthorityRegistry;
-    
+
     private static String assetBase;
 
     private static SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -136,6 +136,23 @@ public class Log implements ILog, ILocalAuthorityLifecycleAware {
         }
     }
 
+    public static void requestAsXml(Request request) {
+        try {
+            String requestXmlDir = assetBase + SecurityContext.getCurrentSite().getName()
+                + "/log/request-" + dateFormat.format(new Date());
+
+            if (! new File(requestXmlDir).exists())
+                new File(requestXmlDir).mkdir();
+
+            Writer writer = new FileWriter(requestXmlDir + "/" + request.getId() + ".xml", true);
+            writer.write(request.modelToXml().toString());
+            writer.flush();
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     @Override
     public void removeLocalAuthority(String localAuthorityName) {
     }
@@ -143,4 +160,5 @@ public class Log implements ILog, ILocalAuthorityLifecycleAware {
     public void setLocalAuthorityRegistry(ILocalAuthorityRegistry localAuthorityRegistry) {
         this.localAuthorityRegistry = localAuthorityRegistry;
     }
+
 }

@@ -735,6 +735,8 @@ public class RequestWorkflowService implements IRequestWorkflowService, Applicat
                 + " " + request.getRequestType().getLabel()
                 + " by " + request.getRequesterFirstName() + " " + request.getRequesterLastName());
 
+        Log.requestAsXml(request);
+
         /* Set all the states to pending */
         request.setState(RequestState.PENDING);
         request.setDataState(DataState.PENDING);
