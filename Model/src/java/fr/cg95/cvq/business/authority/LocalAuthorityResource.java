@@ -55,8 +55,6 @@ public class LocalAuthorityResource {
     public static final Hashtable<String, LocalAuthorityResource> localAuthorityResources = new Hashtable<String, LocalAuthorityResource>(10);
     public static final LocalAuthorityResource CSS_FO = new LocalAuthorityResource("cssFo", "cssFo", Type.CSS, false);
     public static final LocalAuthorityResource LOGO_FO = new LocalAuthorityResource("logoFo", "logoFo", Type.IMAGE, false);
-    public static final LocalAuthorityResource LOGO_BO = new LocalAuthorityResource("logoBo", "logoBo", Type.IMAGE, false);
-    public static final LocalAuthorityResource BANNER = new LocalAuthorityResource("banner", "banner", Type.IMAGE, false);
     public static final LocalAuthorityResource LOGO_PDF = new LocalAuthorityResource("logoPdf", "logoPdf", Type.IMAGE, false);
     public static final LocalAuthorityResource FOOTER_PDF = new LocalAuthorityResource("footerPdf", "footerPdf", Type.IMAGE, false);
     public static final LocalAuthorityResource FAQ_FO = new LocalAuthorityResource("faqFo", "faqFo", Type.PDF, true);
