@@ -33,6 +33,7 @@ public final class LocalAuthorityConfigurationBean {
     private String name;
     private String defaultServerName;
     private String defaultEmail;
+    private String authenticationMethod;
 
     private Map<IPaymentProviderService, PaymentServiceBean> paymentServices;
     private ExternalServiceConfigurationBean escb;
@@ -194,6 +195,14 @@ public final class LocalAuthorityConfigurationBean {
 
     public void setDefaultServerName(String defaultServerName) {
         this.defaultServerName = defaultServerName;
+    }
+
+    public String getAuthenticationMethod() {
+        return authenticationMethod;
+    }
+
+    public void setAuthenticationMethod(String authenticationMethod) {
+        this.authenticationMethod = authenticationMethod;
     }
 
     public Properties getJpaConfigurations() {
