@@ -6,25 +6,27 @@ import fr.cg95.cvq.service.authority.ILocalAuthorityRegistry
 import fr.cg95.cvq.security.SecurityContext
 
 class LayoutTagLib {
-
     def localAuthorityRegistry
 
-    def externalLayout = { attrs, body ->
-    
-        // Hack : Set manually SecurityContext
+    def layoutFO = { attrs ->
+        // Hack: set manually SecurityContext
         def localAuthority = localAuthorityRegistry.getLocalAuthorityByServerName(request.serverName)
         SecurityContext.setCurrentSite(localAuthority, SecurityContext.FRONT_OFFICE_CONTEXT)
         def file = localAuthorityRegistry.getLocalAuthorityResourceFile(
-            Type.HTML, 'externalLayout', Version.CURRENT, true)
+            Type.HTML,
+            'templates/fo/default', // .html is appended later.
+            Version.CURRENT,
+            true)
         SecurityContext.resetCurrentSite()
 
         def layout = file.text
-        layout = layout.replace('#[RESOURCE]', attrs.resource)
+        layout = layout.replace('#[HEAD]', attrs.head)
                        .replace('#[HEADER]', attrs.header)
-                       .replace('#[BODY]', attrs.body)
-                       .replace('#[MENU]', attrs.menu)
+                       .replace('#[LOGIN]', attrs.login)
+                       .replace('#[NAV]', attrs.nav)
+                       .replace('#[CONTENTS]', attrs.contents)
+                       .replace('#[FOOTER]', attrs.footer)
 
-        out << body() << layout
+        out << layout
     }
-
 }
