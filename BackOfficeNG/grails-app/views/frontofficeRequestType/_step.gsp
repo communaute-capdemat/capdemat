@@ -1,6 +1,7 @@
 <g:if test="${currentStep == 'validation'}">
   <div id="validation" class="form ${rqt.stepStates[currentStep]?.state}">
    <form method="post" id="stepForm" action="${createLink(action:'edit')}">
+      <input type="hidden" name="synchroniserToken" value="${synchroniserToken}"/>
      <h3>
        ${message(code:'request.step.validation.label')}
        <span>${message(code:'request.step.validation.desc')}</span>

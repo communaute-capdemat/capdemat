@@ -17,6 +17,9 @@ import fr.cg95.cvq.service.authority.IAgentService
 import fr.cg95.cvq.service.authority.ILocalAuthorityRegistry
 import fr.cg95.cvq.service.authority.LocalAuthorityConfigurationBean
 import fr.cg95.cvq.service.request.ICategoryService
+import fr.cg95.cvq.service.request.IRequestSearchService
+import fr.cg95.cvq.business.request.Request
+import fr.cg95.cvq.business.request.RequestState
 import fr.cg95.cvq.util.web.filter.CASFilter
 
 class SessionFilters {
@@ -27,9 +30,10 @@ class SessionFilters {
     ICategoryService categoryService
     ILocalAuthorityRegistry localAuthorityRegistry
     IAuthenticationService authenticationService
+    IRequestSearchService requestSearchService
 
     static filters = {
-        
+
         logBefore(controller: '*', action: '*') {
             before = {
                 log.debug(
@@ -429,6 +433,38 @@ class SessionFilters {
         setProvisioningContext(uri: '/service/provisioning/**') {
             before = {
                 SecurityContext.setCurrentContext(SecurityContext.ADMIN_CONTEXT)
+            }
+        }
+
+        synchroniserToken(controller : 'frontofficeRequest', action : 'edit' ){
+            before = {
+                if (request.post) {
+                    if (params.currentStep == 'validation'){
+                        if (params.synchroniserToken.toString() == session.getAttribute("synchroniserToken").toString()){
+                            session.removeAttribute("synchroniserToken")
+                            return true
+                        }
+                        else {
+                            def parameters = [:]
+                            parameters.requesterLogin = session.currentCredentialBean.ecitizen.login
+                            parameters.temporary = session.currentCredentialBean.ecitizen.homeFolder.temporary
+                            def rqt = requestSearchService.getById(Long.valueOf(params.id), true)
+                            parameters.id = rqt.id
+                            parameters.label = rqt == null ? "" : rqt.requestType.label
+                            if (params.returnUrl != "") {
+                                parameters.returnUrl = params.returnUrl
+                            }
+                            redirect(controller: "frontofficeRequest", action : "exit", params: parameters)
+                            return false
+                        }
+                    }
+                }
+            }
+            after = { model ->
+                if (model != null && model.currentStep == 'validation'){
+                    session.setAttribute("synchroniserToken", java.util.UUID.randomUUID())
+                    model.synchroniserToken = session.getAttribute("synchroniserToken")
+                }
             }
         }
     }
