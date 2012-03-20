@@ -145,7 +145,8 @@ zenexity.capdemat.tools.namespace('zenexity.capdemat.bong.homeFolder');
         yue.preventDefault(e);
         var target = yue.getTarget(e);
         var dl = yud.getAncestorByTagName(target, 'dl');
-        if((target.form.getAttribute('id') == 'addChild' && !isSavingChild)||(target.form.getAttribute('id') == 'addAdult' && !isSavingAdult)){
+        if((target.form.getAttribute('id') == 'addChild' && !isSavingChild)||(target.form.getAttribute('id') == 'addAdult' && !isSavingAdult)
+          || (!isSavingChild && !isSavingAdult)){
           isSavingChild = true;
           isSavingAdult = true;
           zct.doAjaxFormSubmitCall(target.form.getAttribute('id'), [], function(o) {
