@@ -1,31 +1,40 @@
-import fr.cg95.cvq.business.authority.LocalAuthorityResource
 import fr.cg95.cvq.business.authority.LocalAuthorityResource.Type
 import fr.cg95.cvq.business.authority.LocalAuthorityResource.Version
-import fr.cg95.cvq.service.authority.ILocalAuthorityRegistry
-
-import fr.cg95.cvq.security.SecurityContext
 
 class LayoutTagLib {
     def localAuthorityRegistry
 
     def layoutFO = { attrs ->
-        // Hack: set manually SecurityContext
-        def localAuthority = localAuthorityRegistry.getLocalAuthorityByServerName(request.serverName)
-        SecurityContext.setCurrentSite(localAuthority, SecurityContext.FRONT_OFFICE_CONTEXT)
-        def file = localAuthorityRegistry.getLocalAuthorityResourceFile(
-            Type.HTML,
-            'templates/fo/default', // .html is appended later.
-            Version.CURRENT,
-            true)
-        SecurityContext.resetCurrentSite()
 
-        def layout = file.text
-        layout = layout.replace('#[HEAD]', attrs.head)
-                       .replace('#[HEADER]', attrs.header)
-                       .replace('#[LOGIN]', attrs.login)
-                       .replace('#[NAV]', attrs.nav)
-                       .replace('#[CONTENTS]', attrs.contents)
-                       .replace('#[FOOTER]', attrs.footer)
+        if (params.owner) {
+            session.setAttribute(
+                'templatePath',
+                'templates/fo/' + params.owner + '/' + params.template)
+        }
+
+        def path = session.getAttribute('templatePath')
+        def template
+
+        // Try …/fo/$owner/$template, then …/fo/$owner/default, then …/fo/default
+        [path,
+         (path =~ /(.*\/).*/)[0][1] + 'default',
+         'templates/fo/default'].each {
+            if (!template) {
+                session.setAttribute('templatePath', it)
+                template = localAuthorityRegistry.getLocalAuthorityResourceFile(
+                    Type.HTML,
+                    it,
+                    Version.CURRENT,
+                    true)?.text
+            }
+        }
+
+        def layout = template.replace('#[HEAD]', attrs.head)
+                             .replace('#[HEADER]', attrs.header)
+                             .replace('#[LOGIN]', attrs.login)
+                             .replace('#[NAV]', attrs.nav)
+                             .replace('#[CONTENTS]', attrs.contents)
+                             .replace('#[FOOTER]', attrs.footer)
 
         out << layout
     }
