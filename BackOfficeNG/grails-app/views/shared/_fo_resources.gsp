@@ -6,12 +6,6 @@
 <link rel="stylesheet" type="text/css" href="${resource(dir:'css/frontoffice/common', file:'layout.css')}" />
 <link rel="stylesheet" type="text/css" href="${resource(dir:'css/frontoffice/common', file:'box.css')}" />
 <link rel="stylesheet" type="text/css" href="${createLink(controller : 'localAuthorityResource', action : 'resource', id : 'cssFo')}" />
-<!--[if IE 6]>
-<link rel="stylesheet" href="${resource(dir:'css/frontoffice/hacks',file:'ie6.css')}" />
-<![endif]-->
-<!--[if IE 7]>
-<link rel="stylesheet" href="${resource(dir:'css/frontoffice/hacks',file:'ie7.css')}" />
-<![endif]-->
 <!-- Dependencies for tabview and button and probably our own scripts -->
 <script type="text/javascript" src="${resource(dir:'js/yui/utilities',file:'utilities.js')}"></script>
 <!-- Dependency for tools / FIXME : should not be required for FO -->
