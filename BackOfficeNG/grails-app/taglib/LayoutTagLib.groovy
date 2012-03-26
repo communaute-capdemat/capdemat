@@ -9,10 +9,10 @@ class LayoutTagLib {
         if (params.owner) {
             session.setAttribute(
                 'templatePath',
-                'templates/fo/' + params.owner + '/' + params.template)
+                'templates/fo/' + params.owner + '/' + (params.template?: 'default'))
         }
 
-        def path = session.getAttribute('templatePath')
+        def path = session.getAttribute('templatePath')?: 'templates/fo/default'
         def template
 
         // Try …/fo/$owner/$template, then …/fo/$owner/default, then …/fo/default
