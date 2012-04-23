@@ -213,5 +213,10 @@
   <xb:namespace uri="http://www.cg95.fr/cvq/schema/sagr">
     <xb:package>fr.cg95.cvq.xml.request.social</xb:package>
   </xb:namespace>
+  
+  <!-- CG34 ReservationEvenement Request -->
+  <xb:namespace uri="http://www.cg95.fr/cvq/schema/crer">
+    <xb:package>fr.cg95.cvq.xml.request.leisure</xb:package>
+  </xb:namespace>
 
 </xb:config>

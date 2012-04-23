@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://www.cg95.fr/cvq/schema/crer"
+  xmlns:crer="http://www.cg95.fr/cvq/schema/crer"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns:cvq="http://www.cg95.fr/cvq/schema/common" 
+  elementFormDefault="qualified"
+  attributeFormDefault="unqualified">
+
+  <xs:import namespace="http://www.cg95.fr/cvq/schema/common"
+    schemaLocation="../common/CVQCommonElements.xsd" />
+
+  <xs:element name="CG34ReservationEvenementRequest">
+    <xs:annotation>
+      <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">Réservation d'évènement</xs:documentation>
+      <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">Réservation d'évènement</xs:documentation>
+      <xs:appinfo>
+        <model namespace="leisure" />
+        <common>
+          <namespace name="leisure" />
+        <steps>
+          <step index="0" name="reservation" />
+          <step index="1" ref="validation" />
+        </steps>
+        </common>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cvq:RequestType">
+          <xs:sequence>
+
+            <xs:element name="IdEvenement" type="xs:string">
+              <xs:annotation>
+               <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">ID d'évènement</xs:documentation>
+               <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">ID d'évènement</xs:documentation>
+                <xs:appinfo>
+                  <common>
+                    <step ref="reservation" />
+                  </common>
+                  <fo/>
+                  <bo column="1" />
+                  <pdf />
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+
+            <xs:element name="IdPrestation" type="xs:string">
+              <xs:annotation>
+               <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">ID prestation</xs:documentation>
+               <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">ID prestation</xs:documentation>
+                <xs:appinfo>
+                  <common>
+                    <step ref="reservation" />
+                  </common>
+                  <fo/>
+                  <bo column="1" />
+                  <pdf />
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+
+            <xs:element name="LabelReservation" type="xs:string">
+              <xs:annotation>
+               <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">Label reservation</xs:documentation>
+               <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">Label reservation</xs:documentation>
+                <xs:appinfo>
+                  <common>
+                    <step ref="reservation" />
+                  </common>
+                  <fo/>
+                  <bo column="1" />
+                  <pdf />
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+
+          </xs:sequence>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>

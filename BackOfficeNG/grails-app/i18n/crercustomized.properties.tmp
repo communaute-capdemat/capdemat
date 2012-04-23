@@ -1,0 +1,20 @@
+crer.duration.value =
+
+crer.property.subject.label = Sujet
+
+crer.step.reservation.label = Résevation
+crer.step.reservation.desc =
+
+
+crer.property.idEvenement.help =
+crer.property.idEvenement.validationError =
+
+
+crer.property.idPrestation.help =
+crer.property.idPrestation.validationError =
+
+
+crer.property.labelReservation.help =
+crer.property.labelReservation.validationError =
+
+
