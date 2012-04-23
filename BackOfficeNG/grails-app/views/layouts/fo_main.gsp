@@ -28,6 +28,7 @@
               <p class="error">${error}</p>
             </g:if>
             <label for="login"><g:message code="account.property.login"/></label>
+            <input type="hidden" name="callback" value="${params.callback}" />
             <input type="text" class="text" name="login" id="login"/>
             <label for="password"><g:message code="account.property.password"/></label>
             <input type="password" class="text" name="password" id="password"/>
