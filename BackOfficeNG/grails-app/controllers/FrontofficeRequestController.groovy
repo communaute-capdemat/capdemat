@@ -115,6 +115,9 @@ class FrontofficeRequestController {
         } else {
             rqt = requestWorkflowService.getSkeletonRequest(params.label, params.long("requestSeasonId"))
         }
+        def extensionParams = params.findAll { !['action','controller','label','requestSeasonId','renewedId'].contains(it.key) }
+        DataBindingUtils.initBind(rqt, extensionParams)
+        bind(rqt)
         redirect(action : "edit", id : rqt.id)
     }
 
