@@ -2,9 +2,11 @@
   //Hack:
   if (flash.invalidFields) invalidFields = flash.invalidFields
   if (flash.adult) adult = flash.adult
+  if (flash.redirectionParams) rdparams = flash.redirectionParams
 %>
-<form action="${createLink(controller : 'frontofficeHomeFolder', action : 'create', params : callback.params)}" method="post">
+<form action="${createLink(controller : 'frontofficeHomeFolder', action : 'create', params :callback.params +  rdparams  ) }" method="post">
   <div>
+    <input type="hidden" name="redirectionParams" value="<% print rdparams.collect{k,v->k} %>" />
     <g:if test="${invalidFields?.any()}">
       <p class="error">${message(code:'form.error.invalidFields')}</p>
     </g:if>

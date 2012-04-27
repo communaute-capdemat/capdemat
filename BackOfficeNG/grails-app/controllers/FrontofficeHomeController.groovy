@@ -108,7 +108,7 @@ class FrontofficeHomeController {
             try {
                 securityService.setEcitizenSessionInformation(
                     authenticationService.authenticate(params.login,params.password), session)
-                params.targetURL ? redirect(url : params.targetURL) : redirect(controller : "frontofficeHome")
+                params.targetURL ? redirect(url : params.targetURL + params.extensionParams) : redirect(controller : "frontofficeHome", params : params.extensionParams)
                 return false
             } catch (CvqUnknownUserException e) {
                 error = "account.error.authenticationFailed"

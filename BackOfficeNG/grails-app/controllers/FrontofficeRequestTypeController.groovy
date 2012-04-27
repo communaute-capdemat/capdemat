@@ -37,8 +37,9 @@ class FrontofficeRequestTypeController {
             return false
         }
 
+        def extensionParams = params.findAll { !['action','controller','requestTypeLabel','id','noSeason'].contains(it.key) }
         if (SecurityContext.currentEcitizen == null) {
-            redirect(controller : "frontofficeRequestType", action : "login", params : ["requestTypeLabel" : label])
+            redirect(controller : "frontofficeRequestType", action : "login", params : ["requestTypeLabel" : label] + extensionParams )
             return false
         }
         def requestType = requestTypeService.getRequestTypeByLabel(label)
@@ -63,7 +64,6 @@ class FrontofficeRequestTypeController {
         criterias.add(critere)
         def drafts = requestSearchService.get(criterias, null, null, 0, 0, false)
         
-        def extensionParams = params.findAll { !['action','controller','requestTypeLabel','id','noSeason'].contains(it.key) }
         if (extensionParams.size() > 0) {
             redirect(controller : "frontofficeRequest", action : "create", params : ["label" : label] + extensionParams)
             return false

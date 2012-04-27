@@ -106,6 +106,7 @@ class FrontofficeHomeFolderController {
                     break
 
                 case 'onTheFly' :
+                    flash.redirectionParams = params.findAll{ !['action','controller','requestSeasonId','id','noSeason'].contains(it.key)}
                     render(view : 'createOnTheFly', model : model)
                     break
             }
@@ -155,6 +156,9 @@ class FrontofficeHomeFolderController {
             'params' : null ]
 
         def requestKeys = ['requestTypeLabel', 'requestSeasonId']
+
+        if(params.redirectionParams)
+          requestKeys = requestKeys + params.findAll{ params.redirectionParams.contains(it.key)}.collect { key, value -> key }
 
         if (params.reduce(requestKeys).any()) {
             result.controller = 'frontofficeRequestType'
