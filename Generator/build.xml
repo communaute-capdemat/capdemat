@@ -72,6 +72,7 @@
       <include name="TavernyApprovalRoadOccupancyRequest.xsd" />
       <include name="TechnicalInterventionRequest.xsd" />
       <include name="CG34ReservationEvenementRequest.xsd" />
+      <include name="CG34CardRegistrationRequest.xsd" />
     </fileset>
 
   </target>

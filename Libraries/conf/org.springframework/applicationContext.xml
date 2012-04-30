@@ -819,6 +819,14 @@ http://www.springframework.org/schema/task http://www.springframework.org/schema
     <property name="defaultDisplayGroup" value="leisure" />
   </bean>
 
+  <bean id="cG34CardRegistrationRequestService"
+    class="fr.cg95.cvq.service.request.leisure.impl.CG34CardRegistrationRequestService"
+    parent="requestService">
+    <property name="label" value="CG34 Card Registration" />
+    <property name="defaultDisplayGroup" value="leisure" />
+    <property name="subjectPolicy" value="SUBJECT_POLICY_ADULT" />
+  </bean>
+
   <bean id="displayGroupService" class="fr.cg95.cvq.service.request.impl.DisplayGroupService">
     <property name="genericDAO" ref="genericDAO" />
     <property name="requestTypeDAO" ref="requestTypeDAO" />

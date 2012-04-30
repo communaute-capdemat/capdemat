@@ -524,6 +524,8 @@
 
     drop table bulky_waste_collection_request_bulky_waste_type cascade;
 
+    drop table c_g34_card_registration_request cascade;
+
     drop table c_g34_reservation_evenement_request cascade;
 
     drop table category cascade;
@@ -946,6 +948,12 @@
         bulky_waste_type_id int8 not null,
         bulky_waste_type_index int4 not null,
         primary key (bulky_waste_collection_request_id, bulky_waste_type_index)
+    );
+
+    create table c_g34_card_registration_request (
+        id int8 not null,
+        rules_and_regulations_acceptance bool,
+        primary key (id)
     );
 
     create table c_g34_reservation_evenement_request (
