@@ -25,6 +25,27 @@
       </dl>
       
     
+      
+      <dl>
+        <dt><g:message code="crer.property.typePrestation.label" /></dt><dd>${rqt.typePrestation?.toString()}</dd>
+
+      </dl>
+      
+    
+      
+      <dl>
+        <dt><g:message code="crer.property.nombrePlaces.label" /></dt><dd>${rqt.nombrePlaces?.toString()}</dd>
+
+      </dl>
+      
+    
+      
+      <dl>
+        <dt><g:message code="crer.property.dispositionParticuliere.label" /></dt><dd>${rqt.dispositionParticuliere?.toString()}</dd>
+
+      </dl>
+      
+    
   
 
   

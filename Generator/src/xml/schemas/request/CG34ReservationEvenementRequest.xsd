@@ -74,6 +74,53 @@
               </xs:annotation>
             </xs:element>
 
+            <xs:element name="TypePrestation" type="xs:string">
+              <xs:annotation>
+               <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">Type prestation</xs:documentation>
+               <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">Type prestation</xs:documentation>
+                <xs:appinfo>
+                  <common>
+                    <step ref="reservation" />
+                  </common>
+                  <fo/>
+                  <bo column="1" />
+                  <pdf />
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+
+            <xs:element name="NombrePlaces" type="xs:positiveInteger">
+              <xs:annotation>
+               <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">Nombre de places</xs:documentation>
+               <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">Nombre de places</xs:documentation>
+                <xs:appinfo>
+                  <common>
+                    <step ref="reservation" />
+                  </common>
+                  <fo/>
+                  <bo column="1" />
+                  <pdf />
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+
+
+            <xs:element name="DispositionParticuliere" type="xs:string" minOccurs="0">
+              <xs:annotation>
+               <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">Disposistion particulière</xs:documentation>
+               <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">Disposition particulière</xs:documentation>
+                <xs:appinfo>
+                  <common>
+                    <step ref="reservation" />
+                  </common>
+                  <fo/>
+                  <bo column="1" />
+                  <pdf />
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+
+
           </xs:sequence>
         </xs:extension>
       </xs:complexContent>

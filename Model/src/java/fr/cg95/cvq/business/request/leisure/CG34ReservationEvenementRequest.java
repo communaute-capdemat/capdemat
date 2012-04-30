@@ -97,11 +97,18 @@ public class CG34ReservationEvenementRequest extends Request implements Serializ
         super.fillCommonXmlInfo(cG34ReservationEvenementRequest);
         int i = 0;
         
+        cG34ReservationEvenementRequest.setDispositionParticuliere(getDispositionParticuliere());
+      
         cG34ReservationEvenementRequest.setIdEvenement(getIdEvenement());
       
         cG34ReservationEvenementRequest.setIdPrestation(getIdPrestation());
       
         cG34ReservationEvenementRequest.setLabelReservation(getLabelReservation());
+      
+        if (getNombrePlaces() != null)
+            cG34ReservationEvenementRequest.setNombrePlaces(new BigInteger(getNombrePlaces().toString()));
+      
+        cG34ReservationEvenementRequest.setTypePrestation(getTypePrestation());
       
         return cG34ReservationEvenementRequestDoc;
     }
@@ -119,11 +126,17 @@ public class CG34ReservationEvenementRequest extends Request implements Serializ
         CG34ReservationEvenementRequest cG34ReservationEvenementRequest = new CG34ReservationEvenementRequest();
         cG34ReservationEvenementRequest.fillCommonModelInfo(cG34ReservationEvenementRequest, cG34ReservationEvenementRequestXml);
         
+        cG34ReservationEvenementRequest.setDispositionParticuliere(cG34ReservationEvenementRequestXml.getDispositionParticuliere());
+      
         cG34ReservationEvenementRequest.setIdEvenement(cG34ReservationEvenementRequestXml.getIdEvenement());
       
         cG34ReservationEvenementRequest.setIdPrestation(cG34ReservationEvenementRequestXml.getIdPrestation());
       
         cG34ReservationEvenementRequest.setLabelReservation(cG34ReservationEvenementRequestXml.getLabelReservation());
+      
+        cG34ReservationEvenementRequest.setNombrePlaces(cG34ReservationEvenementRequestXml.getNombrePlaces());
+      
+        cG34ReservationEvenementRequest.setTypePrestation(cG34ReservationEvenementRequestXml.getTypePrestation());
       
         return cG34ReservationEvenementRequest;
     }
@@ -151,6 +164,15 @@ public class CG34ReservationEvenementRequest extends Request implements Serializ
     }
 
   
+    public final void setDispositionParticuliere(final String dispositionParticuliere) {
+        cG34ReservationEvenementRequestData.setDispositionParticuliere(dispositionParticuliere);
+    }
+
+    
+    public final String getDispositionParticuliere() {
+        return cG34ReservationEvenementRequestData.getDispositionParticuliere();
+    }
+  
     public final void setIdEvenement(final String idEvenement) {
         cG34ReservationEvenementRequestData.setIdEvenement(idEvenement);
     }
@@ -176,6 +198,24 @@ public class CG34ReservationEvenementRequest extends Request implements Serializ
     
     public final String getLabelReservation() {
         return cG34ReservationEvenementRequestData.getLabelReservation();
+    }
+  
+    public final void setNombrePlaces(final java.math.BigInteger nombrePlaces) {
+        cG34ReservationEvenementRequestData.setNombrePlaces(nombrePlaces);
+    }
+
+    
+    public final java.math.BigInteger getNombrePlaces() {
+        return cG34ReservationEvenementRequestData.getNombrePlaces();
+    }
+  
+    public final void setTypePrestation(final String typePrestation) {
+        cG34ReservationEvenementRequestData.setTypePrestation(typePrestation);
+    }
+
+    
+    public final String getTypePrestation() {
+        return cG34ReservationEvenementRequestData.getTypePrestation();
     }
   
 }

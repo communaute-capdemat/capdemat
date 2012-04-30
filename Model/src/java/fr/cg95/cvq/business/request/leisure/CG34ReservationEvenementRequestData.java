@@ -47,6 +47,12 @@ public class CG34ReservationEvenementRequestData implements Serializable {
         
           
             
+        result.setDispositionParticuliere(dispositionParticuliere);
+      
+          
+        
+          
+            
         result.setIdEvenement(idEvenement);
       
           
@@ -63,6 +69,18 @@ public class CG34ReservationEvenementRequestData implements Serializable {
       
           
         
+          
+            
+        result.setNombrePlaces(nombrePlaces);
+      
+          
+        
+          
+            
+        result.setTypePrestation(typePrestation);
+      
+          
+        
         return result;
     }
 
@@ -76,6 +94,20 @@ public class CG34ReservationEvenementRequestData implements Serializable {
         return this.id;
     }
 
+  
+    
+    private String dispositionParticuliere;
+
+    public void setDispositionParticuliere(final String dispositionParticuliere) {
+        this.dispositionParticuliere = dispositionParticuliere;
+    }
+
+ 
+    @Column(name="disposition_particuliere"  )
+      
+    public String getDispositionParticuliere() {
+        return this.dispositionParticuliere;
+    }
   
     
       @NotNull(
@@ -159,6 +191,56 @@ public class CG34ReservationEvenementRequestData implements Serializable {
       
     public String getLabelReservation() {
         return this.labelReservation;
+    }
+  
+    
+      @NotNull(
+        
+        
+        profiles = {"reservation"},
+        message = "nombrePlaces"
+      )
+    
+    private java.math.BigInteger nombrePlaces;
+
+    public void setNombrePlaces(final java.math.BigInteger nombrePlaces) {
+        this.nombrePlaces = nombrePlaces;
+    }
+
+ 
+    @Column(name="nombre_places" , columnDefinition="bytea" )
+    @Type(type="serializable") //Hack see http://capdemat.capwebct.fr/ticket/338
+      
+    public java.math.BigInteger getNombrePlaces() {
+        return this.nombrePlaces;
+    }
+  
+    
+      @NotNull(
+        
+        
+        profiles = {"reservation"},
+        message = "typePrestation"
+      )
+    
+      @NotBlank(
+        
+        
+        profiles = {"reservation"},
+        message = "typePrestation"
+      )
+    
+    private String typePrestation;
+
+    public void setTypePrestation(final String typePrestation) {
+        this.typePrestation = typePrestation;
+    }
+
+ 
+    @Column(name="type_prestation"  )
+      
+    public String getTypePrestation() {
+        return this.typePrestation;
     }
   
 }

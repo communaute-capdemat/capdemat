@@ -42,6 +42,24 @@
               </dl>
               
             
+              
+              <dl>
+                <dt class="required"><g:message code="crer.property.typePrestation.label" /> * : </dt><dd id="typePrestation" class="action-editField validate-string required-true i18n-crer.property.typePrestation" ><span>${rqt?.typePrestation}</span></dd>
+              </dl>
+              
+            
+              
+              <dl>
+                <dt class="required"><g:message code="crer.property.nombrePlaces.label" /> * : </dt><dd id="nombrePlaces" class="action-editField validate-positiveInteger required-true i18n-crer.property.nombrePlaces" ><span>${rqt?.nombrePlaces}</span></dd>
+              </dl>
+              
+            
+              
+              <dl>
+                <dt class=""><g:message code="crer.property.dispositionParticuliere.label" />  : </dt><dd id="dispositionParticuliere" class="action-editField validate-string i18n-crer.property.dispositionParticuliere" ><span>${rqt?.dispositionParticuliere}</span></dd>
+              </dl>
+              
+            
           </div>
           <!-- column end -->
           

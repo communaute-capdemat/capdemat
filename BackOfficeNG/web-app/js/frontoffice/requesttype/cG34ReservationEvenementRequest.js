@@ -24,6 +24,9 @@ zenexity.capdemat.tools.namespace("zenexity.capdemat.fong.requesttype");
         yud.addClass('labelReservation','hidden');
         yud.addClass(yud.getPreviousSibling('labelReservation'),'hidden');
         
+        yud.addClass('typePrestation','hidden');
+        yud.addClass(yud.getPreviousSibling('typePrestation'),'hidden');
+
         var input = yud.get('labelReservation');
         var newNode = document.createElement('p');
         yud.setStyle(newNode, 'font-size', '1.5em');

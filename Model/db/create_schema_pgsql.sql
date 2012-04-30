@@ -524,6 +524,8 @@
 
     drop table bulky_waste_collection_request_bulky_waste_type cascade;
 
+    drop table c_g34_reservation_evenement_request cascade;
+
     drop table category cascade;
 
     drop table category_emails cascade;
@@ -944,6 +946,17 @@
         bulky_waste_type_id int8 not null,
         bulky_waste_type_index int4 not null,
         primary key (bulky_waste_collection_request_id, bulky_waste_type_index)
+    );
+
+    create table c_g34_reservation_evenement_request (
+        id int8 not null,
+        disposition_particuliere varchar(255),
+        id_evenement varchar(255),
+        id_prestation varchar(255),
+        label_reservation varchar(255),
+        nombre_places bytea,
+        type_prestation varchar(255),
+        primary key (id)
     );
 
     create table category (
