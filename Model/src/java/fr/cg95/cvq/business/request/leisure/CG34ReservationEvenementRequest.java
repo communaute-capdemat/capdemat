@@ -105,10 +105,14 @@ public class CG34ReservationEvenementRequest extends Request implements Serializ
       
         cG34ReservationEvenementRequest.setLabelReservation(getLabelReservation());
       
-        if (getNombrePlaces() != null)
-            cG34ReservationEvenementRequest.setNombrePlaces(new BigInteger(getNombrePlaces().toString()));
-      
-        cG34ReservationEvenementRequest.setTypePrestation(getTypePrestation());
+        i = 0;
+        if (getReservations() != null) {
+            fr.cg95.cvq.xml.request.leisure.CrerReservationType[] reservationsTypeTab = new fr.cg95.cvq.xml.request.leisure.CrerReservationType[getReservations().size()];
+            for (CrerReservation object : getReservations()) {
+              reservationsTypeTab[i++] = object.modelToXml();
+            }
+            cG34ReservationEvenementRequest.setReservationsArray(reservationsTypeTab);
+        }
       
         return cG34ReservationEvenementRequestDoc;
     }
@@ -134,9 +138,11 @@ public class CG34ReservationEvenementRequest extends Request implements Serializ
       
         cG34ReservationEvenementRequest.setLabelReservation(cG34ReservationEvenementRequestXml.getLabelReservation());
       
-        cG34ReservationEvenementRequest.setNombrePlaces(cG34ReservationEvenementRequestXml.getNombrePlaces());
-      
-        cG34ReservationEvenementRequest.setTypePrestation(cG34ReservationEvenementRequestXml.getTypePrestation());
+        List<fr.cg95.cvq.business.request.leisure.CrerReservation> reservationsList = new ArrayList<fr.cg95.cvq.business.request.leisure.CrerReservation>(cG34ReservationEvenementRequestXml.sizeOfReservationsArray());
+        for (CrerReservationType object : cG34ReservationEvenementRequestXml.getReservationsArray()) {
+            reservationsList.add(fr.cg95.cvq.business.request.leisure.CrerReservation.xmlToModel(object));
+        }
+        cG34ReservationEvenementRequest.setReservations(reservationsList);
       
         return cG34ReservationEvenementRequest;
     }
@@ -200,22 +206,13 @@ public class CG34ReservationEvenementRequest extends Request implements Serializ
         return cG34ReservationEvenementRequestData.getLabelReservation();
     }
   
-    public final void setNombrePlaces(final java.math.BigInteger nombrePlaces) {
-        cG34ReservationEvenementRequestData.setNombrePlaces(nombrePlaces);
+    public final void setReservations(final List<fr.cg95.cvq.business.request.leisure.CrerReservation> reservations) {
+        cG34ReservationEvenementRequestData.setReservations(reservations);
     }
 
     
-    public final java.math.BigInteger getNombrePlaces() {
-        return cG34ReservationEvenementRequestData.getNombrePlaces();
-    }
-  
-    public final void setTypePrestation(final String typePrestation) {
-        cG34ReservationEvenementRequestData.setTypePrestation(typePrestation);
-    }
-
-    
-    public final String getTypePrestation() {
-        return cG34ReservationEvenementRequestData.getTypePrestation();
+    public final List<fr.cg95.cvq.business.request.leisure.CrerReservation> getReservations() {
+        return cG34ReservationEvenementRequestData.getReservations();
     }
   
 }

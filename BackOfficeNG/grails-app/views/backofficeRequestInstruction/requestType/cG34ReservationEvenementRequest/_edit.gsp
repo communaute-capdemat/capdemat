@@ -43,15 +43,9 @@
               
             
               
-              <dl>
-                <dt class="required"><g:message code="crer.property.typePrestation.label" /> * : </dt><dd id="typePrestation" class="action-editField validate-string required-true i18n-crer.property.typePrestation" ><span>${rqt?.typePrestation}</span></dd>
-              </dl>
-              
-            
-              
-              <dl>
-                <dt class="required"><g:message code="crer.property.nombrePlaces.label" /> * : </dt><dd id="nombrePlaces" class="action-editField validate-positiveInteger required-true i18n-crer.property.nombrePlaces" ><span>${rqt?.nombrePlaces}</span></dd>
-              </dl>
+              <div id="widget-reservations" class="required">
+                <g:render template="/backofficeRequestInstruction/requestType/cG34ReservationEvenementRequest/reservations" model="['rqt':rqt]" />
+              </div>
               
             
               

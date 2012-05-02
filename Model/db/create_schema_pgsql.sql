@@ -50,6 +50,9 @@
     alter table compostable_waste_collection_request_compostable_waste_type 
         drop constraint FK765E424B28FD5FB3;
 
+    alter table crer_reservation 
+        drop constraint FKFB931698EAB7A04;
+
     alter table dhr_not_real_asset 
         drop constraint FK2BA9F1EC6D5B4A55;
 
@@ -538,6 +541,8 @@
 
     drop table compostable_waste_collection_request_compostable_waste_type cascade;
 
+    drop table crer_reservation cascade;
+
     drop table day_care_center_registration_request cascade;
 
     drop table death_details_request cascade;
@@ -962,8 +967,6 @@
         id_evenement varchar(255),
         id_prestation varchar(255),
         label_reservation varchar(255),
-        nombre_places bytea,
-        type_prestation varchar(255),
         primary key (id)
     );
 
@@ -998,6 +1001,15 @@
         compostable_waste_type_id int8 not null,
         compostable_waste_type_index int4 not null,
         primary key (compostable_waste_collection_request_id, compostable_waste_type_index)
+    );
+
+    create table crer_reservation (
+        id int8 not null,
+        nombre_places bytea,
+        reservation_type varchar(255),
+        c_g34_reservation_evenement_request_id int8,
+        reservations_index int4,
+        primary key (id)
     );
 
     create table day_care_center_registration_request (
@@ -2956,6 +2968,11 @@
         add constraint FK765E424B28FD5FB3 
         foreign key (compostable_waste_collection_request_id) 
         references compostable_waste_collection_request;
+
+    alter table crer_reservation 
+        add constraint FKFB931698EAB7A04 
+        foreign key (c_g34_reservation_evenement_request_id) 
+        references c_g34_reservation_evenement_request;
 
     alter table dhr_not_real_asset 
         add constraint FK2BA9F1EC6D5B4A55 

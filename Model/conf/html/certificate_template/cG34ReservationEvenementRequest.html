@@ -107,13 +107,18 @@
     
   
     
-      <p class="label">${esc(i18n.translate('crer.property.typePrestation.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.typePrestation?.toString()))}</div>
+      <h3>${i18n.translate('crer.property.reservations.label')}</h3>
+      <div class="complex">
+      <% rqt.reservations.each { collectionIt -> %>
+      
+        <p class="label">${esc(i18n.translate('crer.property.reservationType.label'))}</p><div class="response">${esc(StringUtils.defaultString(collectionIt.reservationType?.toString()))}</div>
 
-    
-  
-    
-      <p class="label">${esc(i18n.translate('crer.property.nombrePlaces.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.nombrePlaces?.toString()))}</div>
+      
+        <p class="label">${esc(i18n.translate('crer.property.nombrePlaces.label'))}</p><div class="response">${esc(StringUtils.defaultString(collectionIt.nombrePlaces?.toString()))}</div>
 
+      
+      <% } %>
+      </div>    
     
   
     

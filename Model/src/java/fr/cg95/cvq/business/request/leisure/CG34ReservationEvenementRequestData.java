@@ -71,13 +71,11 @@ public class CG34ReservationEvenementRequestData implements Serializable {
         
           
             
-        result.setNombrePlaces(nombrePlaces);
-      
-          
-        
-          
-            
-        result.setTypePrestation(typePrestation);
+        List<fr.cg95.cvq.business.request.leisure.CrerReservation> reservationsList = new ArrayList<fr.cg95.cvq.business.request.leisure.CrerReservation>();
+        for (CrerReservation object : reservations) {
+            reservationsList.add(object.clone());
+        }
+        result.setReservations(reservationsList);
       
           
         
@@ -194,53 +192,35 @@ public class CG34ReservationEvenementRequestData implements Serializable {
     }
   
     
-      @NotNull(
+      @AssertValid(
         
         
         profiles = {"reservation"},
-        message = "nombrePlaces"
+        message = "reservations"
       )
     
-    private java.math.BigInteger nombrePlaces;
+      @MinSize(
+        
+          value = 1,
+        
+        
+        profiles = {"reservation"},
+        message = "reservations"
+      )
+    
+    private List<fr.cg95.cvq.business.request.leisure.CrerReservation> reservations;
 
-    public void setNombrePlaces(final java.math.BigInteger nombrePlaces) {
-        this.nombrePlaces = nombrePlaces;
+    public void setReservations(final List<fr.cg95.cvq.business.request.leisure.CrerReservation> reservations) {
+        this.reservations = reservations;
     }
 
  
-    @Column(name="nombre_places" , columnDefinition="bytea" )
-    @Type(type="serializable") //Hack see http://capdemat.capwebct.fr/ticket/338
+    @OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @OrderColumn(name="reservations_index")
+    @JoinColumn(name="c_g34_reservation_evenement_request_id")
       
-    public java.math.BigInteger getNombrePlaces() {
-        return this.nombrePlaces;
-    }
-  
-    
-      @NotNull(
-        
-        
-        profiles = {"reservation"},
-        message = "typePrestation"
-      )
-    
-      @NotBlank(
-        
-        
-        profiles = {"reservation"},
-        message = "typePrestation"
-      )
-    
-    private String typePrestation;
-
-    public void setTypePrestation(final String typePrestation) {
-        this.typePrestation = typePrestation;
-    }
-
- 
-    @Column(name="type_prestation"  )
-      
-    public String getTypePrestation() {
-        return this.typePrestation;
+    public List<fr.cg95.cvq.business.request.leisure.CrerReservation> getReservations() {
+        return this.reservations;
     }
   
 }

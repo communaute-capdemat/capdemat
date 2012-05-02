@@ -74,25 +74,17 @@
               </xs:annotation>
             </xs:element>
 
-            <xs:element name="TypePrestation" type="xs:string">
-              <xs:annotation>
-               <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">Type prestation</xs:documentation>
-               <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">Type prestation</xs:documentation>
-                <xs:appinfo>
-                  <common>
-                    <step ref="reservation" />
-                  </common>
-                  <fo/>
-                  <bo column="1" />
-                  <pdf />
-                </xs:appinfo>
-              </xs:annotation>
-            </xs:element>
 
-            <xs:element name="NombrePlaces" type="xs:positiveInteger">
+
+
+
+
+
+
+            <xs:element name="Reservations" type="crer:CrerReservationType" maxOccurs="unbounded">
               <xs:annotation>
-               <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">Nombre de places</xs:documentation>
-               <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">Nombre de places</xs:documentation>
+               <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">Réservation</xs:documentation>
+               <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">Réservation</xs:documentation>
                 <xs:appinfo>
                   <common>
                     <step ref="reservation" />
@@ -127,4 +119,52 @@
     </xs:complexType>
   </xs:element>
 
+  <xs:complexType name="CrerReservationType">
+    <xs:annotation>
+      <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">
+        Détail de la réservation
+      </xs:documentation>
+      <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
+        Réservation
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="reservationType" type="xs:string">
+        <xs:annotation>
+          <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">
+            Détail de la réservation
+          </xs:documentation>
+          <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
+            Réservation
+          </xs:documentation>
+          <xs:appinfo>
+            <common>
+              <step name="reservation" />
+            </common>
+            <fo />
+            <bo />
+            <pdf />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="nombrePlaces" type="xs:positiveInteger">
+        <xs:annotation>
+          <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">
+            Nombre de places
+          </xs:documentation>
+          <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
+            Places
+          </xs:documentation>
+          <xs:appinfo>
+            <common>
+              <step name="reservation" />
+            </common>
+            <fo />
+            <bo />
+            <pdf />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
 </xs:schema>
