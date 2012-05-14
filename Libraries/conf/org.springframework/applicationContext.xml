@@ -662,6 +662,13 @@ http://www.springframework.org/schema/task http://www.springframework.org/schema
     <property name="defaultDisplayGroup" value="civil" />
    </bean>
 
+  <bean id="demandeDeSuiviRequestService" 
+    class="fr.cg95.cvq.service.request.civil.impl.DemandeDeSuiviRequestService" 
+    parent="requestService">
+    <property name="label" value="Demande De Suivi" />
+    <property name="defaultDisplayGroup" value="civil" />
+  </bean>
+
   <bean id="electoralRollRegistrationRequestService" 
     class="fr.cg95.cvq.service.request.election.impl.ElectoralRollRegistrationRequestService" 
     parent="requestService">

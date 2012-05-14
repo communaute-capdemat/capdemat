@@ -48,10 +48,10 @@
               ${requestNote.user_name}
             </dt>
             <dd>
-              <p class="note">${requestNote.note}</p>
+              <p class="note">${requestNote.note.replaceAll("\n", "</br>")}</p>
               <p class="noteMetadata">
-                <g:message code="request.property.note" /> 
-                <strong><g:message code="request.note.type.${requestNote.type.toString().toLowerCase()}" /></strong>
+                <!--g:message code="request.property.note" /-->
+                <!--strong><g:message code="request.note.type.${requestNote.type.toString().toLowerCase()}" /></strong-->
                 n° <strong>${requestNote.id}</strong>
                 <g:if test="${requestNote.date != null}">
                   <g:message code="request.note.date" /> <g:message code="layout.on.date" /> <strong><g:formatDate formatName="format.fullDate" date="${requestNote.date}"/></strong>

@@ -209,4 +209,9 @@
     <xb:package>fr.cg95.cvq.xml.request.social</xb:package>
   </xb:namespace>
 
+  <!-- Demande De Suivi Request -->
+  <xb:namespace uri="http://www.cg95.fr/cvq/schema/ddsr">
+    <xb:package>fr.cg95.cvq.xml.request.civil</xb:package>
+  </xb:namespace>
+
 </xb:config>

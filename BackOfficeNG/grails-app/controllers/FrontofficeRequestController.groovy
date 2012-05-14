@@ -401,6 +401,13 @@ class FrontofficeRequestController {
     }
 
     def exit = {
+
+        if(params.label.equals("Demande De Suivi")){
+            def parameters = [:]
+            parameters.id = params.id
+            redirect(action:'summary', params:parameters)
+            return
+        }
         def requestId = Long.parseLong(params.id)
         requestLockService.release(requestId)
         def temporary = params.boolean("temporary")
@@ -446,12 +453,21 @@ class FrontofficeRequestController {
         def subject = rqt.subjectId != null ? userSearchService.getById(rqt.subjectId) : null
         def subjects = [:]
         subjects[rqt.subjectId] = subject instanceof Child && !subject.born ? message(code:'request.subject.childNoBorn', args:[subject.getFullName()]) : UserUtils.getDisplayName(rqt.subjectId)
+        def requestNotes
+        if(rqt.requestType.label.equals("Demande De Suivi")){
+            requestNotes = requestAdaptorService.prepareNotes(
+                requestNoteService.getNotes(Long.parseLong(params.id), null).empty ?
+                requestNoteService.getNotes(Long.parseLong(params.id), null).reverse() :
+                requestNoteService.getNotes(Long.parseLong(params.id), null).reverse().first())
+        }
+        else{
+            requestNotes = requestAdaptorService.prepareNotes(requestNoteService.getNotes(Long.parseLong(params.id), null).reverse())
+        }
         return ['rqt': rqt,
                 'requestTypeLabel':requestTypeLabel,
                 'requester':requester,
                 'subjects': subjects,
-                'requestNotes' : requestAdaptorService.prepareNotes(
-                    requestNoteService.getNotes(Long.parseLong(params.id), null)),
+                'requestNotes' : requestNotes,
                 'externalInformations' : requestExternalService.loadExternalInformations(rqt),
                 "documentsByTypes" : documentAdaptorService.getDocumentsByType(rqt),
                 "lrTypes" : requestTypeAdaptorService.getLocalReferentialTypes(rqt.requestType.label),

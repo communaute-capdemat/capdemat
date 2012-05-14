@@ -777,6 +777,8 @@
 
     drop table death_details_request cascade;
 
+    drop table demande_de_suivi_request cascade;
+
     drop table dhr_current_dwelling cascade;
 
     drop table dhr_family_referent cascade;
@@ -1502,6 +1504,13 @@
         death_postal_code varchar(255),
         format varchar(255),
         motive varchar(255),
+        primary key (id)
+    );
+
+    create table demande_de_suivi_request (
+        id int8 not null,
+        commentaire varchar(1024),
+        numero_demande varchar(255),
         primary key (id)
     );
 
