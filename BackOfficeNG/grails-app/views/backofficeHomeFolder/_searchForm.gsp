@@ -7,26 +7,25 @@
     <input type="hidden" name="currentMax" id="currentMax" value="${max}" />
     <div id="errorContainer" class="error"><!-- error container --></div>
     <div class="yui-g">
-      <div class="yui-u first">        
-        <label for="homeFolderId"><g:message code="property.homeFolderId" /> :</label>
-        <input type="text" name="homeFolderId" class="persistent" size="40" value="${state?.homeFolderId}" />
+      <div class="yui-u first">
+        <label for="lastName"><g:message code="property.individualLastName"/> :</label>
+        <input type="text" name="lastName" class="persistent" size="40" value="${state?.lastName}" autofocus/>
+        <label for="firstName"><g:message code="property.individualFirstName"/> :</label>
+        <input type="text" name="firstName" class="persistent" size="40" value="${state?.firstName}"/>
+      </div>
+      <div class="yui-u">
+        <label for="homeFolderId"><g:message code="property.homeFolderId"/> :</label>
+        <input type="text" name="homeFolderId" class="persistent" size="40" value="${state?.homeFolderId}"/>
         <label for="isHomeFolderResponsible">
-          <g:message code="homeFolder.search.isHomeFolderResponsible" /> :
+          <g:message code="homeFolder.search.isHomeFolderResponsible"/> :
         </label>
         <input type="checkbox" name="isHomeFolderResponsible" value="true"
-          class="persistent" ${state?.isHomeFolderResponsible ? ' checked="checked"': ''} />
+          class="persistent" ${state?.isHomeFolderResponsible ? ' checked="checked"': ''}/>
         <label for="isDuplicateAlert">
-          <g:message code="homeFolder.search.isDuplicateAlert" /> :
+          <g:message code="homeFolder.search.isDuplicateAlert"/> :
         </label>
         <input type="checkbox" name="isDuplicateAlert" value="true"
-          class="persistent" ${state?.isDuplicateAlert ? ' checked="checked"': ''} />
-      </div>
-
-      <div class="yui-u">
-        <label for="lastName"><g:message code="property.individualLastName" /> :</label>
-        <input type="text" name="lastName" class="persistent" size="40" value="${state?.lastName}" />
-        <label for="firstName"><g:message code="property.individualFirstName" /> :</label>
-        <input type="text" name="firstName" class="persistent" size="40" value="${state?.firstName}" />
+          class="persistent" ${state?.isDuplicateAlert ? ' checked="checked"': ''}/>
       </div>
     </div>
     <div class="form-button">

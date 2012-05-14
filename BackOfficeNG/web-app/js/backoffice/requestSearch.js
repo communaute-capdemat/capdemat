@@ -82,6 +82,10 @@
             filterSearchRequest(yue.getTarget(e).id);
           }
         );
+        // Autofocus in JS for browsers that don't support the 'autofocus' attribute.
+        if (!('autofocus' in document.createElement('input'))) {
+          yus.query('input[name=subjectLastName]', 'requestForm', true).focus()
+        }
       }
     }; 
   }();

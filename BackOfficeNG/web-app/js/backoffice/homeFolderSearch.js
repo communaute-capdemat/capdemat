@@ -64,6 +64,10 @@ zenexity.capdemat.tools.namespace('zenexity.capdemat.bong.homeFolder');
         yue.on(yus.query('.filter'),'change',zcbh.Search.doSearch);
         initControls();
         zcbh.Search.initSecurityRule(zcbh.Search.agentCanWrite);
+        // Autofocus in JS for browsers that don't support the 'autofocus' attribute.
+        if (!('autofocus' in document.createElement('input'))) {
+          yus.query('input[name=lastName]', 'search-form', true).focus()
+        }
       },
       initSecurityRule : function(canWrite) {
         if (!canWrite) {
