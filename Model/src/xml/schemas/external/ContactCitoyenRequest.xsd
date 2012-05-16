@@ -1,0 +1,36 @@
+<xs:schema targetNamespace="http://www.capwebct.fr/capdemat"
+  xmlns:capdemat="http://www.capwebct.fr/capdemat"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns:common="http://www.cg95.fr/cvq/schema/common" 
+  elementFormDefault="qualified" 
+  attributeFormDefault="unqualified">
+
+  <xs:element name="ContactCitoyenRequestRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Id" type="xs:long" />
+        <xs:element name="Note" type="xs:string"  minOccurs="0" />
+        <xs:element name="SendNotification" type="xs:boolean" default="false" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="ContactCitoyenRequestResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Code" type="capdemat:HttpCodeTypeContactCitoyen"/>
+        <xs:element name="Message" type="xs:string" minOccurs="0" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:simpleType name="HttpCodeTypeContactCitoyen">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="200" />
+      <xs:enumeration value="403" />
+      <xs:enumeration value="404" />
+      <xs:enumeration value="500" />
+    </xs:restriction>
+  </xs:simpleType>
+
+</xs:schema>

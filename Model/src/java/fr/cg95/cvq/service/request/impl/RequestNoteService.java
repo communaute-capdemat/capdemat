@@ -83,7 +83,7 @@ public class RequestNoteService implements IRequestNoteService, ApplicationConte
     }
 
     @Override
-    @Context(types = {ContextType.ECITIZEN, ContextType.AGENT}, privilege = ContextPrivilege.WRITE)
+    @Context(types = {ContextType.ECITIZEN, ContextType.AGENT, ContextType.EXTERNAL_SERVICE}, privilege = ContextPrivilege.WRITE)
     public void addNote(final Long requestId, final RequestNoteType rtn, final String note) {
 
 

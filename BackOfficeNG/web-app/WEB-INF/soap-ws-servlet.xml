@@ -24,7 +24,15 @@
     <constructor-arg ref="xmlBeanMarshaller" />
     <property name="requestExternalActionService" ref="requestExternalActionService" />  
   </bean>    
-  
+
+  <bean id="contactCitoyenRequestServiceEndpoint"
+    class="fr.cg95.cvq.external.endpoint.ContactCitoyenRequestServiceEndpoint">
+    <constructor-arg ref="xmlBeanMarshaller" />
+    <property name="requestExternalService" ref="requestExternalService" />
+    <property name="requestDAO" ref="requestDAO" />
+    <property name="requestNoteService" ref="requestNoteService" />
+  </bean>
+
   <bean id="homeFolderMappingServiceEndpoint"
     class="fr.cg95.cvq.external.endpoint.HomeFolderMappingServiceEndpoint">
     <constructor-arg ref="xmlBeanMarshaller" />
@@ -46,6 +54,7 @@
   <bean class="org.springframework.ws.server.endpoint.mapping.PayloadRootQNameEndpointMapping">
     <property name="mappings">
         <props>
+            <prop key="{http://www.capwebct.fr/capdemat}ContactCitoyenRequestRequest">contactCitoyenRequestServiceEndpoint</prop>
             <prop key="{http://www.capwebct.fr/capdemat}GetHomeFoldersRequest">homeFolderServiceEndpoint</prop>
             <prop key="{http://www.capwebct.fr/capdemat}GetRequestsRequest">requestServiceEndpoint</prop>
             <prop key="{http://www.capwebct.fr/capdemat}AckRequestsRequest">ackRequestServiceEndpoint</prop>
