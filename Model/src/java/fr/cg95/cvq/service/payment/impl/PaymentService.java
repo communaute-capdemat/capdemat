@@ -145,8 +145,11 @@ public final class PaymentService implements IPaymentService,
         if (broker == null && getAllBrokers() != null && getAllBrokers().size() == 1)
             broker = getAllBrokers().keySet().iterator().next();
 
-        if (broker == null || broker.equals(""))
+        if (broker == null || broker.equals("")){
+            String adminMail = SecurityContext.getCurrentSite().getAdminEmail();
+            mailService.send(adminMail, adminMail, null, "Erreur Paiement", "Broker absent");
             throw new CvqInvalidBrokerException("payment.missing_broker");
+        }
         if (payment.getBroker().equals(""))
             payment.setBroker(broker);
         else if (!broker.equals(payment.getBroker()))

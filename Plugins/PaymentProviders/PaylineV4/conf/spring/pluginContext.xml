@@ -11,6 +11,14 @@
     <property name="paymentDAO" ref="paymentDAO" />
   </bean>
 
+  <bean id="paylineV4PaymentProvider2"
+    class="fr.capwebct.capdemat.plugins.paymentproviders.paylinev4.service.PaylineV4Service">
+    <property name="paylineV4Client" ref="paylineV4Client" />
+    <property name="returnUrl" value="${plugins.paymentproviders.paylinev4.return_url}" />
+    <property name="cancelUrl" value="${plugins.paymentproviders.paylinev4.cancel_url}" />
+    <property name="paymentDAO" ref="paymentDAO" />
+  </bean>
+
   <bean id="paylineXmlBeanMarshaller"
     class="org.springframework.oxm.xmlbeans.XmlBeansMarshaller" />
 

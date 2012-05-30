@@ -14,7 +14,7 @@ class ServicePaylineV4Controller {
             }
         }
         SecurityContext.setCurrentContext(SecurityContext.ADMIN_CONTEXT)
-        paymentService.commitPayment(["token" : params.token])
+        paymentService.commitPayment(["token" : params.token,"broker" : params.id])
         render ""
     }
 }

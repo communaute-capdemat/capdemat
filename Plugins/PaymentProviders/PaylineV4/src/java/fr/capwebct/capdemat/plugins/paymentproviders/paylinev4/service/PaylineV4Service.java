@@ -41,6 +41,7 @@ public class PaylineV4Service implements IPaymentProviderService {
     private String returnUrl;
     private String cancelUrl;
 
+    private String contractNumber = null;
     private static final String CONTRACT_NUMBER = "contractNumber";
     private static final String MERCHANT_ID = "merchantID";
     private static final String MERCHANT_ACCESS_KEY = "merchantAccesskey";
@@ -51,6 +52,7 @@ public class PaylineV4Service implements IPaymentProviderService {
                 || paymentServiceBean.getProperty(MERCHANT_ACCESS_KEY) == null
                 || paymentServiceBean.getProperty(MERCHANT_ID) == null)
             throw new CvqConfigurationException("payment.provider.paylinev4.missingRequiredProperty");
+        contractNumber = (String) paymentServiceBean.getProperty(CONTRACT_NUMBER);
     }
 
     public URL doInitPayment(Payment payment, PaymentServiceBean paymentServiceBean)
@@ -125,13 +127,13 @@ public class PaylineV4Service implements IPaymentProviderService {
             getPaymentDetails(paymentServiceBean, token);
         String resultCode = getWebPaymentDetailsResponse.getResult().getCode();
 
-        logger.warn("doCommitPayment() result code received from Payline " + resultCode);
+        logger.warn("[Broker  "+ contractNumber + "]doCommitPayment() result code received from Payline " + resultCode);
         PaymentResultBean paymentResultBean = new PaymentResultBean();
         Payment payment = paymentDAO.findByBankReference(token);
         if (payment != null)
             paymentResultBean.setCvqReference(payment.getCvqReference());
         else
-            logger.warn("doCommitPayment() could not find payment with bank reference : " + token);
+            logger.warn("[Broker  "+ contractNumber + "]doCommitPayment() could not find payment with bank reference : " + token);
         if (resultCode.equals("00000")) {
             paymentResultBean.setStatus(PaymentResultStatus.OK);
             paymentResultBean.setBankReference(getWebPaymentDetailsResponse.getTransaction().getId());
@@ -187,7 +189,8 @@ public class PaylineV4Service implements IPaymentProviderService {
     }
 
     public boolean handleParameters(Map<String, String> parameters) {
-        if (parameters.get("token") != null)
+
+        if((parameters.get("token") != null) && (parameters.get("broker") != null) && (parameters.get("broker").equals(contractNumber)))
             return true;
         return false;
     }
