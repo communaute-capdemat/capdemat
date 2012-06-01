@@ -1,8 +1,12 @@
 package fr.cg95.cvq.util.logging.impl;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -94,11 +98,14 @@ public class Log implements ILog, ILocalAuthorityLifecycleAware {
             SecurityContext.getCurrentSite().getName();
             String paymentFile =  assetBase + SecurityContext.getCurrentSite().getName()
                     + "/log/payment-" + dateFormat.format(new Date()) + ".csv";
-            CSVWriter writer = new CSVWriter(new FileWriter(paymentFile, true));
+            Writer w = new BufferedWriter(new OutputStreamWriter(
+                    new FileOutputStream(paymentFile,true), "UTF-8"));
 
+            CSVWriter writer = new CSVWriter(w);
             File file = new File(paymentFile);
             if (!file.exists()) {
                 List<String> line = new ArrayList<String>();
+                line.add("Broker");
                 line.add("BankReference");
                 line.add("CvqReference");
                 line.add("FormatedAmount");
@@ -109,8 +116,8 @@ public class Log implements ILog, ILocalAuthorityLifecycleAware {
                 line.add("RequesterId");
                 writer.writeNext(line.toArray(new String[]{}));
             }
-
             List<String> line = new ArrayList<String>();
+            line.add(payment.getBroker());
             line.add(payment.getBankReference());
             line.add(payment.getCvqReference());
             line.add(payment.getFormatedAmount());
