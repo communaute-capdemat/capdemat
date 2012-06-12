@@ -33,7 +33,7 @@ public class RequestNoteDAO extends JpaTemplate<RequestNote, Long> implements IR
 
         if (type != null) {
             sb.append(" and type = ?");
-            objectList.add(type.toString());
+            objectList.add(type.name());
             typeList.add(Hibernate.STRING);
         }
 
