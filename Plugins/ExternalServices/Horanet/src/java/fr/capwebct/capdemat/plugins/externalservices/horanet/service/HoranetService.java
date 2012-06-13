@@ -61,6 +61,15 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
+import com.zenexity.booker.ws.WSClient;
+import com.zenexity.booker.ws.sitesproduits.ProduitType;
+import com.zenexity.booker.ws.sitesproduits.ProduitsType;
+import com.zenexity.booker.ws.sitesproduits.SegmentType;
+import com.zenexity.booker.ws.sitesproduits.SegmentsType;
+import com.zenexity.booker.ws.sitesproduits.SiteType;
+import com.zenexity.booker.ws.sitesproduits.SitesProduits;
+import com.zenexity.booker.ws.sitesproduits.SitesType;
+
 import fr.cg95.cvq.business.authority.LocalAuthorityResource.Type;
 import fr.cg95.cvq.business.payment.ExternalAccountItem;
 import fr.cg95.cvq.business.payment.ExternalDepositAccountItem;
@@ -83,6 +92,7 @@ import fr.cg95.cvq.exception.CvqConfigurationException;
 import fr.cg95.cvq.exception.CvqException;
 import fr.cg95.cvq.exception.CvqRemoteException;
 import fr.cg95.cvq.external.ExternalServiceBean;
+import fr.cg95.cvq.external.impl.ConfigurableExternalProviderServiceAdapter;
 import fr.cg95.cvq.security.SecurityContext;
 import fr.cg95.cvq.service.authority.ILocalAuthorityRegistry;
 import fr.cg95.cvq.service.payment.IPaymentService;
@@ -124,6 +134,7 @@ public class HoranetService extends ConfigurableExternalProviderServiceAdapter i
     private IRequestSearchService requestSearchService;
 
     private WSClient ws;
+
     /**
      * @fixme use it instead all those ifs and casts !
      */
@@ -243,6 +254,7 @@ public class HoranetService extends ConfigurableExternalProviderServiceAdapter i
         return null;
     }
 
+    @Override
     public final void creditHomeFolderAccounts(final Collection purchaseItems, final String cvqReference,
             final String bankReference, final Long homeFolderId, String externalHomeFolderId, String externalId, final Date validationDate)
         throws CvqException {
@@ -994,6 +1006,10 @@ public class HoranetService extends ConfigurableExternalProviderServiceAdapter i
         this.requestSearchService = requestSearchService;
     }
 
+    public void setLoggerMailService(ILoggerMailService loggerMailService) {
+        this.loggerMailService = loggerMailService;
+    }
+
     public String getLabel() {
         return label;
     }
@@ -1014,11 +1030,6 @@ public class HoranetService extends ConfigurableExternalProviderServiceAdapter i
         return new ArrayList<String>(0);
     }
 
-    public Map<String, Object> loadExternalInformations(XmlObject requestXml)
-        throws CvqException {
-        return Collections.emptyMap();
-    }
-
     @Override
     public Map<Pair<String, String>, LinkedHashMap<Pair<String, String>, Object>> loadAccountExternalInformations(Long homefolderId) throws CvqException {
       return null;
@@ -1034,8 +1045,6 @@ public class HoranetService extends ConfigurableExternalProviderServiceAdapter i
         return prop != null && !prop.isEmpty() && prop.contains(rqtLabel);
     }
 
-<<<<<<< HEAD
-=======
     public Map<String, Object> loadExternalInformations(XmlObject requestXml)
         throws CvqException {
         return Collections.emptyMap();
@@ -1058,7 +1067,8 @@ public class HoranetService extends ConfigurableExternalProviderServiceAdapter i
         }
         List<Request> msrrList = requestSearchService.find( "requestType = ? and subjectId = ?"
                                                           , msrrType
-                                                          , individual.getId());
+                                                          , individual.getId()
+                                                          , RequestState.VALIDATED);
         return (msrrList.size() > 0) ? msrrList.get(0).getId().toString() : "";
     }
 
@@ -1236,5 +1246,199 @@ public class HoranetService extends ConfigurableExternalProviderServiceAdapter i
           }
       });
     }
->>>>>>> 22e7380... [Evo][ES][Horanet] Implement IActivityRegistrationProviderService
+
+    /**
+     * Just a convenient method to retrieve products available on a specific site.
+     *
+     * @param sites a list
+     * @param id the site to look for
+     * @return products on site.
+     * @throws Exception
+     */
+    private List<ProduitType> retrieveProducts(List<SiteType> sites, String id) throws Exception {
+        Iterator<SiteType> it = sites.iterator();
+        ProduitsType produitstype = null;
+        while (it.hasNext()) {
+            SiteType site = it.next();
+            if (site.getIdSite().equals(id)) {
+                produitstype = site.getProduits();
+                break;
+            }
+        }
+        if (produitstype == null && !it.hasNext()) {
+            throw new Exception("retrieveProducts(): \"" + id + "\" doesn't match a site ID.");
+        }
+        return produitstype.getProduit();
+    }
+
+    /**
+     * Just a convenient method to retrieve segments available for a specific product.
+     *
+     * @param products a list
+     * @param id the product to look for
+     * @return segments for the product
+     * @throws Exception
+     */
+    private List<SegmentType> retrieveSegments(List<ProduitType> products, String id) throws Exception {
+        Iterator<ProduitType> it = products.iterator();
+        SegmentsType segmentstype = null;
+        while (it.hasNext()) {
+            ProduitType product = it.next();
+            if (product.getIdProduit().equals(id)) {
+                segmentstype = product.getSegments();
+                break;
+            }
+        }
+        if (segmentstype == null && !it.hasNext()) {
+            throw new Exception("retrieveSegments(): \"" + id + "\" doesn't match a product ID.");
+        }
+        return segmentstype.getSegment();
+    }
+
+    @Override
+    public Map<String, String> getSites(Individual individual) {
+        Map<String, String> map = new HashMap<String, String>();
+
+        try {
+            String postalCode = SecurityContext.getCurrentSite().getPostalCode();
+            String msrrId = getMSRRId(individual);
+            IndividualMapping mapping = externalHomeFolderService.getIndividualMapping(individual, label);
+            String externalCapDematId = (mapping != null) ? mapping.getExternalCapDematId() : "";
+
+            SitesProduits sitesproduits;
+            try {
+                logger.debug( "getSites(): call Horanet with:\n"
+                            + "- postal code \"" + postalCode + "\"\n"
+                            + "- MSRR ID \"" + msrrId + "\"\n"
+                            + "- mapping \"" + externalCapDematId + "\"");
+                sitesproduits = ws.getSitesProduits( postalCode
+                                                   , msrrId
+                                                   , externalCapDematId
+                                                   )
+                                  .get();
+            } catch (Exception e) {
+                throw new Exception("getSites(): Horanet call failed.", e);
+            }
+            SitesType sitestype;
+            try {
+                sitestype = sitesproduits.getSites();
+            } catch (NullPointerException npe) {
+                throw new Exception( "getSites(): WSClient library returned a null object; "
+                                   + "probably Horanet's fault.");
+            }
+
+            List<SiteType> sites = sitestype.getSite();
+            for (SiteType site : sites) {
+                map.put(site.getIdSite(), site.getLibelleSite());
+            }
+        } catch (Exception e) {
+            logger.error(e.getLocalizedMessage(), e);
+        }
+        logger.debug("getSites(): return " + map.size() + " sites.");
+        return map;
+    }
+
+    @Override
+    public List<Map<String, String>> getProducts(Individual individual,
+                                                 String siteId) {
+        List<Map<String, String>> list = new ArrayList<Map<String, String>>();
+
+        try {
+            String postalCode = SecurityContext.getCurrentSite().getPostalCode();
+            String msrrId = getMSRRId(individual);
+            IndividualMapping mapping = externalHomeFolderService.getIndividualMapping(individual, label);
+            String externalCapDematId = (mapping != null) ? mapping.getExternalCapDematId() : "";
+
+            SitesProduits sitesproduits;
+            try {
+                logger.debug( "getSites(): call Horanet with:\n"
+                            + "- postal code \"" + postalCode + "\"\n"
+                            + "- MSRR ID \"" + msrrId + "\"\n"
+                            + "- mapping \"" + externalCapDematId + "\"");
+                sitesproduits = ws.getSitesProduits( postalCode
+                                                   , msrrId
+                                                   , externalCapDematId
+                                                   )
+                                  .get();
+            } catch (Exception e) {
+                throw new Exception("getProducts(): Horanet call failed.", e);
+            }
+            SitesType sitestype;
+            try {
+                sitestype = sitesproduits.getSites();
+            } catch (NullPointerException npe) {
+                throw new Exception( "getProducts(): WSClient library returned a null object; "
+                                   + "probably Horanet's fault.");
+            }
+
+            List<ProduitType> produits = retrieveProducts(sitestype.getSite(), siteId);
+
+            for (ProduitType produit : produits) {
+                Map<String, String> map = new HashMap<String, String>();
+                map.put("id", produit.getIdProduit());
+                map.put("label", produit.getLibelleProduit());
+                map.put("type", produit.getTypeProduit());
+                list.add(map);
+            }
+        } catch (Exception e) {
+            logger.error(e.getLocalizedMessage(), e);
+        }
+        logger.debug("getProducts(): return " + list.size() + " products.");
+        return list;
+    }
+
+    @Override
+    public List<Map<String, String>> getSegments(Individual individual,
+                                                 String siteId,
+                                                 String productId) {
+        List<Map<String, String>> list = new ArrayList<Map<String, String>>();
+
+        try {
+            String postalCode = SecurityContext.getCurrentSite().getPostalCode();
+            String msrrId = getMSRRId(individual);
+            IndividualMapping mapping = externalHomeFolderService.getIndividualMapping(individual, label);
+            String externalCapDematId = (mapping != null) ? mapping.getExternalCapDematId() : "";
+
+            SitesProduits sitesproduits;
+            try {
+                logger.debug( "getSegments(): call Horanet with:\n"
+                            + "- postal code \"" + postalCode + "\"\n"
+                            + "- MSRR ID \"" + msrrId + "\"\n"
+                            + "- mapping \"" + externalCapDematId + "\"\n"
+                            + "- product ID \"" + productId + "\"");
+                sitesproduits = ws.getSitesProduitsAbonnements( postalCode
+                                                              , msrrId
+                                                              , externalCapDematId
+                                                              , productId
+                                                              )
+                                  .get();
+            } catch (Exception e) {
+                throw new Exception("getSegments(): Horanet call failed.", e);
+            }
+            SitesType sitestype;
+            try {
+                sitestype = sitesproduits.getSites();
+            } catch (NullPointerException npe) {
+                throw new Exception( "getSegments(): WSClient library returned a null object; "
+                                   + "probably Horanet's fault.");
+            }
+
+            List<ProduitType> products = retrieveProducts(sitestype.getSite(), siteId);
+            List<SegmentType> segments = retrieveSegments(products, productId);
+
+            for (SegmentType segment : segments) {
+                Map<String, String> map = new HashMap<String, String>();
+                map.put("id", segment.getIdSegment());
+                map.put("label", "Les " + segment.getNomJour().toLowerCase() + "s"
+                               + " de " + segment.getHeureDebut()
+                               + " à " + segment.getHeureFin());
+                list.add(map);
+            }
+        } catch (Exception e) {
+            logger.error(e.getLocalizedMessage(), e);
+        }
+        logger.debug("getSegments(): return " + list.size() + " segments.");
+        return list;
+    }
+>>>>>>> 8b2ed9d... [Evo][ES][Horanet] Implement IActivityRegistrationProviderService
 }

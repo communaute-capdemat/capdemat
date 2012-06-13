@@ -88,6 +88,8 @@
             <fileset dir="${gson.lib.dir}" />
             <fileset dir="${zenexity.lib.dir}" />
             <fileset dir="${lucene.lib.dir}" />
+            <fileset dir="${smstrend.lib.dir}" />
+            <fileset dir="${ning.lib.dir}" />
         </copy>
     </target>
 
