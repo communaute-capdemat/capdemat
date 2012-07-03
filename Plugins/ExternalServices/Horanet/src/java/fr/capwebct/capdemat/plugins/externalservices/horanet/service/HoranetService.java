@@ -450,45 +450,61 @@ public class HoranetService extends ExternalProviderServiceAdapter {
             SimpleDateFormat simpleDateFormat =
                 new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss.SSS");
 
-            // deposit accounts
-            XPath xpath = new DOMXPath("//account");
-            List accountsElements = (List) xpath.evaluate(accountsXMLDocument);
-            List<ExternalAccountItem> depositAccounts = new ArrayList<ExternalAccountItem>();
-            for (Iterator i = accountsElements.iterator(); i.hasNext();) {
-                Node node = (Node) i.next();
-                String accountId = node.getAttributes().getNamedItem("account-id").getNodeValue();
-                String accountValue = node.getAttributes().getNamedItem("account-value").getNodeValue();
-                Date accountDate = 
-                    simpleDateFormat.parse(node.getAttributes().getNamedItem("account-date").getNodeValue());
-                String label = node.getAttributes().getNamedItem("account-label").getNodeValue();
-
-                ExternalDepositAccountItem edai = 
-                    new ExternalDepositAccountItem(label, Double.parseDouble(accountValue), 
-                            getLabel(), accountId, accountDate, Double.parseDouble(accountValue),
-                            null);
-                depositAccounts.add(edai);
-            }
-            results.put(IPaymentService.EXTERNAL_DEPOSIT_ACCOUNTS, depositAccounts);
-
             //régie
-            xpath = new DOMXPath("//regie");
+            XPath xpath = new DOMXPath("//regie");
             List regieElements = (List) xpath.evaluate(accountsXMLDocument);
             List<ExternalAccountItem> bills = new ArrayList<ExternalAccountItem>();
+            List<ExternalAccountItem> depositAccounts = new ArrayList<ExternalAccountItem>();
+            List<ExternalAccountItem> ticketingAccounts = new ArrayList<ExternalAccountItem>();
+
             for (Iterator k = regieElements.iterator(); k.hasNext();) {
                 Node nodeRegieElem = (Node) k.next();
                 NodeList nodeList= nodeRegieElem.getChildNodes();
                 NamedNodeMap regieAttr = nodeRegieElem.getAttributes();
                 String regie =  regieAttr.getNamedItem("regielabel").getNodeValue();
                 List billList = new ArrayList();
+                List accountList = new ArrayList();
+                List childList = new ArrayList();
                 for(int j=0;j< nodeList.getLength();j++){
                     if(nodeList.item(j).getNodeName().equals("bills")){
                         billList.add(nodeList.item(j));
+                    }
+                    if(nodeList.item(j).getNodeName().equals("accounts")){
+                        accountList.add(nodeList.item(j));
+                    }
+                    if(nodeList.item(j).getNodeName().equals("contracts")){
+                        childList.add(nodeList.item(j));
                     }
                 }
                 NodeList billElements = null;
                 if(billList.size() >= 1){
                     billElements = (NodeList) billList.get(0);
                 }
+                NodeList accountElements = null;
+                if(accountList.size() >= 1){
+                    accountElements = (NodeList) accountList.get(0);
+                }
+                NodeList childElements = null;
+                if(childList.size() >= 1){
+                    childElements = (NodeList) childList.get(0);
+                }
+
+                // deposit accounts
+                for (int h=0; h< accountElements.getLength(); h++) {
+                    Node node = (Node) accountElements.item(h);
+                    String accountId = node.getAttributes().getNamedItem("account-id").getNodeValue();
+                    String accountValue = node.getAttributes().getNamedItem("account-value").getNodeValue();
+                    Date accountDate = 
+                        simpleDateFormat.parse(node.getAttributes().getNamedItem("account-date").getNodeValue());
+                    String label = node.getAttributes().getNamedItem("account-label").getNodeValue();
+
+                    ExternalDepositAccountItem edai = 
+                        new ExternalDepositAccountItem(label, Double.parseDouble(accountValue), 
+                                getLabel(), accountId, accountDate, Double.parseDouble(accountValue),
+                                regie);
+                    depositAccounts.add(edai);
+                }
+
                 //  bill accounts
                 for (int h=0; h< billElements.getLength(); h++) {
                     Node node = (Node) billElements.item(h);
@@ -520,63 +536,61 @@ public class HoranetService extends ExternalProviderServiceAdapter {
 
                     bills.add(eii);
                 }
-            }
-            results.put(IPaymentService.EXTERNAL_INVOICES, bills);
 
-            //  contracts accounts
-            xpath = new DOMXPath("//child");
-            List childElements = (List) xpath.evaluate(accountsXMLDocument);
-            List<ExternalAccountItem> ticketingAccounts = new ArrayList<ExternalAccountItem>();
-            for (Iterator i = childElements.iterator(); i.hasNext();) {
-                Node node = (Node) i.next();
-                NamedNodeMap nodeAttrs = node.getAttributes();
-                String card = nodeAttrs.getNamedItem("child-card").getNodeValue();
-                String childCsn = null;
-                if (nodeAttrs.getNamedItem("child-csn") != null)
-                    childCsn = nodeAttrs.getNamedItem("child-csn").getNodeValue();
-                String childId = nodeAttrs.getNamedItem("child-id").getNodeValue();
+                //  contracts accounts
+                for (int h=0; h< childElements.getLength(); h++) {
+                    Node node = (Node) childElements.item(h);
+                    NamedNodeMap nodeAttrs = node.getAttributes();
+                    String card = nodeAttrs.getNamedItem("child-card").getNodeValue();
+                    String childCsn = null;
+                    if (nodeAttrs.getNamedItem("child-csn") != null)
+                        childCsn = nodeAttrs.getNamedItem("child-csn").getNodeValue();
+                    String childId = nodeAttrs.getNamedItem("child-id").getNodeValue();
 
-                Child child = userSearchService.getChildById(new Long(childId));
-                if (child == null) {
-                    logger.error("getHomeFolderAccounts() could not find child with id : " + childId);
-                    continue;
-                }
+                    Child child = userSearchService.getChildById(new Long(childId));
+                    if (child == null) {
+                        logger.error("getHomeFolderAccounts() could not find child with id : " + childId);
+                        continue;
+                    }
 
-                NodeList contractsNodes = node.getChildNodes();
-                for (int j = 0; j < contractsNodes.getLength(); j++) {
-                    Node contractNode = contractsNodes.item(j);
-                    if (contractNode.getNodeName() != null
-                            && contractNode.getNodeName().equals("contract")) {
+                    NodeList contractsNodes = node.getChildNodes();
+                    for (int j = 0; j < contractsNodes.getLength(); j++) {
+                        Node contractNode = contractsNodes.item(j);
+                        if (contractNode.getNodeName() != null
+                                && contractNode.getNodeName().equals("contract")) {
 
-                        String contractId = 
-                            contractNode.getAttributes().getNamedItem("contract-id").getNodeValue();
-                        String contractValue = 
-                            contractNode.getAttributes().getNamedItem("contract-value").getNodeValue();
-                        String contractLabel = 
-                            contractNode.getAttributes().getNamedItem("contract-label").getNodeValue();
-                        Date contractDate = 
-                            simpleDateFormat.parse(contractNode.getAttributes().getNamedItem("contract-date").getNodeValue());
-                        int buyPrice = 
-                            Integer.parseInt(contractNode.getAttributes().getNamedItem("buy-price").getNodeValue());
-                        int minBuy = 
-                            Integer.parseInt(contractNode.getAttributes().getNamedItem("min-buy").getNodeValue());
-                        int maxBuy = 
-                            Integer.parseInt(contractNode.getAttributes().getNamedItem("max-buy").getNodeValue());
+                            String contractId = 
+                                contractNode.getAttributes().getNamedItem("contract-id").getNodeValue();
+                            String contractValue = 
+                                contractNode.getAttributes().getNamedItem("contract-value").getNodeValue();
+                            String contractLabel = 
+                                contractNode.getAttributes().getNamedItem("contract-label").getNodeValue();
+                            Date contractDate = 
+                                simpleDateFormat.parse(contractNode.getAttributes().getNamedItem("contract-date").getNodeValue());
+                            int buyPrice = 
+                                Integer.parseInt(contractNode.getAttributes().getNamedItem("buy-price").getNodeValue());
+                            int minBuy = 
+                                Integer.parseInt(contractNode.getAttributes().getNamedItem("min-buy").getNodeValue());
+                            int maxBuy = 
+                                Integer.parseInt(contractNode.getAttributes().getNamedItem("max-buy").getNodeValue());
 
-                        ExternalTicketingContractItem etci = 
-                            new ExternalTicketingContractItem(contractLabel, 
-                                    null, getLabel(), contractId, child.getId(),
-                                    Double.valueOf(buyPrice), Integer.valueOf(minBuy), 
-                                    Integer.valueOf(maxBuy), null, contractDate, 
-                                    Integer.valueOf(contractValue), null);
-                        if (childCsn != null)
-                            etci.addExternalServiceSpecificData("child-csn", childCsn);
-                        
-                        ticketingAccounts.add(etci);
+                            ExternalTicketingContractItem etci = 
+                                new ExternalTicketingContractItem(contractLabel, 
+                                        null, getLabel(), contractId, child.getId(),
+                                        Double.valueOf(buyPrice), Integer.valueOf(minBuy), 
+                                        Integer.valueOf(maxBuy), null, contractDate, 
+                                        Integer.valueOf(contractValue), regie);
+                            if (childCsn != null)
+                                etci.addExternalServiceSpecificData("child-csn", childCsn);
+                            
+                            ticketingAccounts.add(etci);
+                        }
                     }
                 }
-            }
 
+            }
+            results.put(IPaymentService.EXTERNAL_INVOICES, bills);
+            results.put(IPaymentService.EXTERNAL_DEPOSIT_ACCOUNTS, depositAccounts);
             results.put(IPaymentService.EXTERNAL_TICKETING_ACCOUNTS, ticketingAccounts);
 
         } catch (JaxenException jaxe) {
