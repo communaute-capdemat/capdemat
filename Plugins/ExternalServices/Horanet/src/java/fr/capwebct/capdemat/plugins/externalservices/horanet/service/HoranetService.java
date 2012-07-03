@@ -470,38 +470,56 @@ public class HoranetService extends ExternalProviderServiceAdapter {
             }
             results.put(IPaymentService.EXTERNAL_DEPOSIT_ACCOUNTS, depositAccounts);
 
-            //  bill accounts
-            xpath = new DOMXPath("//bill");
-            List billElements = (List) xpath.evaluate(accountsXMLDocument);
+            //régie
+            xpath = new DOMXPath("//regie");
+            List regieElements = (List) xpath.evaluate(accountsXMLDocument);
             List<ExternalAccountItem> bills = new ArrayList<ExternalAccountItem>();
-            for (Iterator i = billElements.iterator(); i.hasNext();) {
-                Node node = (Node) i.next();
-                NamedNodeMap nodeAttrs = node.getAttributes();
-                String billId = nodeAttrs.getNamedItem("bill-id").getNodeValue();
-                String billAmount = nodeAttrs.getNamedItem("bill-value").getNodeValue();
-                Date billIssueDate = 
-                    simpleDateFormat.parse(nodeAttrs.getNamedItem("bill-date").getNodeValue());
-                Date billExpirationDate = null;
-                if (nodeAttrs.getNamedItem("bill-date-expiration") != null)
-                    billExpirationDate =
-                        simpleDateFormat.parse(nodeAttrs.getNamedItem("bill-date-expiration").getNodeValue());
-                Date billPaymentDate = null;
-                if (nodeAttrs.getNamedItem("bill-date-payment") != null)
-                    billPaymentDate = 
-                        simpleDateFormat.parse(nodeAttrs.getNamedItem("bill-date-payment").getNodeValue());
-                String label = nodeAttrs.getNamedItem("bill-label").getNodeValue();
-                String billPayed = "0";
-                if (nodeAttrs.getNamedItem("bill-payed") != null)
-                    billPayed = nodeAttrs.getNamedItem("bill-payed").getNodeName();
-                Boolean isPayed = Boolean.FALSE;
-                if (billPayed.equals("1"))
-                    isPayed = true;
+            for (Iterator k = regieElements.iterator(); k.hasNext();) {
+                Node nodeRegieElem = (Node) k.next();
+                NodeList nodeList= nodeRegieElem.getChildNodes();
+                NamedNodeMap regieAttr = nodeRegieElem.getAttributes();
+                String regie =  regieAttr.getNamedItem("regielabel").getNodeValue();
+                List billList = new ArrayList();
+                for(int j=0;j< nodeList.getLength();j++){
+                    if(nodeList.item(j).getNodeName().equals("bills")){
+                        billList.add(nodeList.item(j));
+                    }
+                }
+                NodeList billElements = null;
+                if(billList.size() >= 1){
+                    billElements = (NodeList) billList.get(0);
+                }
+                //  bill accounts
+                for (int h=0; h< billElements.getLength(); h++) {
+                    Node node = (Node) billElements.item(h);
+                    NamedNodeMap nodeAttrs = node.getAttributes();
+                    String billId = nodeAttrs.getNamedItem("bill-id").getNodeValue();
+                    String billAmount = nodeAttrs.getNamedItem("bill-value").getNodeValue();
+                    Date billIssueDate =
+                        simpleDateFormat.parse(nodeAttrs.getNamedItem("bill-date").getNodeValue());
+                    Date billExpirationDate = null;
+                    if (nodeAttrs.getNamedItem("bill-date-expiration") != null)
+                        billExpirationDate =
+                            simpleDateFormat.parse(nodeAttrs.getNamedItem("bill-date-expiration").getNodeValue());
+                    Date billPaymentDate = null;
+                    if (nodeAttrs.getNamedItem("bill-date-payment") != null)
+                        billPaymentDate =
+                            simpleDateFormat.parse(nodeAttrs.getNamedItem("bill-date-payment").getNodeValue());
+                    String label = nodeAttrs.getNamedItem("bill-label").getNodeValue();
+                    String billPayed = "0";
+                    if (nodeAttrs.getNamedItem("bill-payed") != null)
+                        billPayed = nodeAttrs.getNamedItem("bill-payed").getNodeName();
+                    Boolean isPayed = Boolean.FALSE;
+                    if (billPayed.equals("1"))
+                        isPayed = true;
 
-                ExternalInvoiceItem eii = 
-                    new ExternalInvoiceItem(label, Double.valueOf(billAmount),
-                            Double.valueOf(billAmount), getLabel(), billId, billIssueDate,
-                            billExpirationDate, billPaymentDate, isPayed, null);
-                bills.add(eii);
+                    ExternalInvoiceItem eii =
+                        new ExternalInvoiceItem(label, Double.valueOf(billAmount),
+                                Double.valueOf(billAmount), getLabel(), billId, billIssueDate,
+                                billExpirationDate, billPaymentDate, isPayed, regie);
+
+                    bills.add(eii);
+                }
             }
             results.put(IPaymentService.EXTERNAL_INVOICES, bills);
 
