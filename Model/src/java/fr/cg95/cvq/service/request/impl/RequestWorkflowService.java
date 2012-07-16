@@ -63,6 +63,7 @@ import fr.cg95.cvq.business.users.UserAction;
 import fr.cg95.cvq.business.users.UserState;
 import fr.cg95.cvq.business.users.UserEvent;
 import fr.cg95.cvq.dao.hibernate.HibernateUtil;
+import fr.cg95.cvq.dao.jpa.JpaUtil;
 import fr.cg95.cvq.dao.request.IRequestDAO;
 import fr.cg95.cvq.exception.CvqException;
 import fr.cg95.cvq.exception.CvqInvalidTransitionException;
@@ -881,6 +882,9 @@ public class RequestWorkflowService implements IRequestWorkflowService, Applicat
 
         requestActionService.addWorfklowAction(request.getId(), note, date,
             RequestState.REJECTED, pdfData);
+
+        JpaUtil.getEntityManager().flush();
+        JpaUtil.closeAndReOpen(false);
 
         applicationContext.publishEvent(new RequestEvent(this, EVENT_TYPE.STATE_CHANGED, request, pdfData));
 
