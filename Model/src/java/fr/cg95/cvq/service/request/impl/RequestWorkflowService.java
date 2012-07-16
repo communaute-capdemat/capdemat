@@ -779,6 +779,9 @@ public class RequestWorkflowService implements IRequestWorkflowService, Applicat
         requestActionService.addWorfklowAction(request.getId(), note, date,
             RequestState.INPROGRESS, null);
 
+        JpaUtil.getEntityManager().flush();
+        JpaUtil.closeAndReOpen(false);
+
         applicationContext.publishEvent(new RequestEvent(this, EVENT_TYPE.STATE_CHANGED, request));
 
         postActionsProcess(wfEvent.getWorkflowPostActions());
@@ -794,6 +797,9 @@ public class RequestWorkflowService implements IRequestWorkflowService, Applicat
 
         requestActionService.addWorfklowAction(request.getId(), note, date,
             RequestState.EXTINPROGRESS, null);
+
+        JpaUtil.getEntityManager().flush();
+        JpaUtil.closeAndReOpen(false);
 
         applicationContext.publishEvent(new RequestEvent(this, EVENT_TYPE.STATE_CHANGED, request));
 
@@ -818,6 +824,9 @@ public class RequestWorkflowService implements IRequestWorkflowService, Applicat
         requestActionService.addWorfklowAction(request.getId(), note, date,
             RequestState.COMPLETE, null);
 
+        JpaUtil.getEntityManager().flush();
+        JpaUtil.closeAndReOpen(false);
+
         applicationContext.publishEvent(new RequestEvent(this, EVENT_TYPE.STATE_CHANGED, request));
 
         postActionsProcess(wfEvent.getWorkflowPostActions());
@@ -837,6 +846,9 @@ public class RequestWorkflowService implements IRequestWorkflowService, Applicat
         requestActionService.addWorfklowAction(request.getId(), note, date,
             RequestState.UNCOMPLETE, null);
 
+        JpaUtil.getEntityManager().flush();
+        JpaUtil.closeAndReOpen(false);
+
         applicationContext.publishEvent(new RequestEvent(this, EVENT_TYPE.STATE_CHANGED, request));
 
         postActionsProcess(wfEvent.getWorkflowPostActions());
@@ -852,6 +864,9 @@ public class RequestWorkflowService implements IRequestWorkflowService, Applicat
 
         requestActionService.addWorfklowAction(request.getId(), note, date,
             RequestState.RECTIFIED, null);
+
+        JpaUtil.getEntityManager().flush();
+        JpaUtil.closeAndReOpen(false);
 
         applicationContext.publishEvent(new RequestEvent(this, EVENT_TYPE.STATE_CHANGED, request));
 
@@ -931,6 +946,9 @@ public class RequestWorkflowService implements IRequestWorkflowService, Applicat
         requestActionService.addWorfklowAction(request.getId(), note, date,
             RequestState.CANCELLED, pdfData);
 
+        JpaUtil.getEntityManager().flush();
+        JpaUtil.closeAndReOpen(false);
+
         applicationContext.publishEvent(new RequestEvent(this, EVENT_TYPE.STATE_CHANGED, request, pdfData));
 
         postActionsProcess(wfEvent.getWorkflowPostActions());
@@ -975,6 +993,9 @@ public class RequestWorkflowService implements IRequestWorkflowService, Applicat
         if (homeFolder.isTemporary() && !homeFolder.getState().equals(UserState.VALID))
             userWorkflowService.changeState(individual, UserState.VALID);
 
+        JpaUtil.getEntityManager().flush();
+        JpaUtil.closeAndReOpen(false);
+
         applicationContext.publishEvent(new RequestEvent(this, EVENT_TYPE.STATE_CHANGED, request, pdfData));
 
         postActionsProcess(wfEvent.getWorkflowPostActions());
@@ -1012,6 +1033,9 @@ public class RequestWorkflowService implements IRequestWorkflowService, Applicat
 
         requestActionService.addWorfklowAction(request.getId(), note, date,
             RequestState.CLOSED, null);
+
+        JpaUtil.getEntityManager().flush();
+        JpaUtil.closeAndReOpen(false);
 
         applicationContext.publishEvent(new RequestEvent(this, EVENT_TYPE.STATE_CHANGED, request));
 
