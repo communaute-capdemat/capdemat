@@ -24,6 +24,7 @@
         <!-- Technocarte deliverable and dependency -->
         <include name="CapDemat-Plugin-ExternalServices-Technocarte-*.jar" />
         <include name="CapDemat-Plugin-ExternalServices-Angelus-*.jar" />
+        <include name="CapDemat-Plugin-ExternalServices-MailGeneric-*.jar" />
         <include name="soap.jar" />
     </fileset>
 

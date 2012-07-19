@@ -138,6 +138,18 @@
             </property>
           </bean>
         </entry>
+        <!--entry>
+          <key>
+            <ref bean="mailGenericExternalService" />
+          </key>
+          <bean class="fr.cg95.cvq.external.ExternalServiceBean">
+            <property name="requestTypes">
+              <list>
+                <value>Finistere Apprenticeship Grant</value>
+              </list>
+            </property>
+          </bean>
+        </entry-->
       </map>
     </property>
      <property name="agentNotifications">

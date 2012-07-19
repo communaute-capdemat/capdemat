@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+  <bean id="mailGenericExternalService"
+    class="fr.capwebct.capdemat.plugins.externalservices.mailgeneric.service.MailGenericService"
+     parent="externalProviderServiceAdapter">
+    <property name="label" value="MailGeneric"></property>
+    <!-- Insert services you need here -->
+    <property name="mailService" ref="mailService" />
+    <property name="requestSearchService" ref="requestSearchService"/>
+    <property name="requestPdfService" ref="requestPdfService"/>
+    <property name="localAuthorityRegistry" ref="localAuthorityRegistry"/>
+    <property name="userSearchService" ref="userSearchService"/>
+    <property name="requestExternalActionService" ref="requestExternalActionService" />
+    <property name="translationService" ref="translationService" />
+  </bean>
+</beans>
