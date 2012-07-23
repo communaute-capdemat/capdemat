@@ -25,7 +25,7 @@
   </ul>
 </g:if>
 <g:else>
-  <select name="${pathJavaName}[0].name" class="${htmlClass} validate-not-first data-localReferentialData ${rqt.stepStates[currentStep].invalidFields.contains(javaName) ? 'validation-failed' : ''}" title="${message(code: i18nPrefixCode +'.validationError')}">
+  <select id="${javaName}" name="${pathJavaName}[0].name" class="${htmlClass} validate-not-first data-localReferentialData ${rqt.stepStates[currentStep].invalidFields.contains(javaName) ? 'validation-failed' : ''}" title="${message(code: i18nPrefixCode +'.validationError')}">
     <option value="">${message(code:'message.select.defaultOption')}</option>
     <g:render template="/frontofficeRequestType/widget/localReferentialEntriesSelectTree"
               model="['lrEntries': lrEntries, 'lrDatas': currentLrDatas]"/>
