@@ -70,6 +70,7 @@ class FrontofficePaymentController {
         result.depositAccounts = this.depositAccounts
         result.ticketingContracts = this.ticketingContracts
         result.invalid = flash.invalid
+        result.paymentPopUp = params.paymentPopUp
         
         return result
     }
@@ -246,6 +247,13 @@ class FrontofficePaymentController {
         payment.addPaymentSpecificData('port',request.serverPort.toString())
 
         def paymentUrl = paymentService.initPayment(payment).toString()
+
+        if(paymentUrl.contains("&openInPopUp=true")) {
+            paymentUrl = paymentUrl.replace("&openInPopUp=true","")
+
+            redirect(action:'index', params:[paymentPopUp:"true", paymentUrl: paymentUrl ])
+            return false
+        }
 
         redirect(url:paymentUrl)
         return false

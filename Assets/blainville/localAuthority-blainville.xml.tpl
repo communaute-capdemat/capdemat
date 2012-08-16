@@ -28,7 +28,7 @@
     </property>
     <property name="paymentServices">
       <map>
-        <entry>
+         <entry>
           <key>
             <ref bean="fakePaymentProviderService" />
           </key>
@@ -38,11 +38,36 @@
             <property name="requestTypes">
               <list>
                 <value>Ticket Booking</value>
-                <value>Perischool Activity Registration</value>
               </list>
             </property>
           </bean>
         </entry>
+
+<!--        <entry>
+          <key>
+            <ref bean="tipiPaymentProvider" />
+          </key>
+          <bean class="fr.cg95.cvq.service.payment.PaymentServiceBean">
+            <property name="broker" value="Tipi"></property>
+            <property name="requestTypes">
+              <list>
+                <value>Perischool Activity Registration</value>
+              </list>
+            </property>
+            <property name="serviceProperties">
+              <map>
+                <entry>
+                  <key><value>numcli</value></key>
+                  <value>001340</value>
+                </entry>
+                <entry>
+                  <key><value>saisie</value></key>
+                  <value>T</value>
+                </entry>
+              </map>
+            </property>
+          </bean>
+        </entry> -->
       </map>
     </property>
     <property name="externalServices">

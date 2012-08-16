@@ -20,6 +20,7 @@
         <include name="CapDemat-Plugin-PaymentProviders-Spplus-*.jar" />
         <include name="CapDemat-Plugin-PaymentProviders-SystemPay-*.jar" />
         <include name="CapDemat-Plugin-PaymentProviders-PayBoxSystem-*.jar" />
+        <include name="CapDemat-Plugin-PaymentProviders-Tipi-*.jar" />
         <!-- Technocarte deliverable and dependency -->
         <include name="CapDemat-Plugin-ExternalServices-Technocarte-*.jar" />
         <include name="soap.jar" />
