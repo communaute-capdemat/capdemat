@@ -121,6 +121,7 @@ http://www.springframework.org/schema/aop http://www.springframework.org/schema/
         <value>fr/cg95/cvq/business/request/leisure/culture/LibraryRegistrationRequestData.hbm.xml</value>
         <value>fr/cg95/cvq/business/request/leisure/SmsNotificationRequestData.hbm.xml</value>
         <value>fr/cg95/cvq/business/request/leisure/music/MusicSchoolRegistrationRequestData.hbm.xml</value>
+        <value>fr/cg95/cvq/business/request/leisure/EcoleDeMusiqueRequestData.hbm.xml</value>
         <value>fr/cg95/cvq/business/request/reservation/TicketBookingRequestData.hbm.xml</value>
         <value>fr/cg95/cvq/business/request/school/PerischoolAuthorizedIndividual.hbm.xml</value>
         <value>fr/cg95/cvq/business/request/school/PerischoolContactIndividual.hbm.xml</value>

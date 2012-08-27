@@ -50,6 +50,7 @@ public class SecurityService {
                 "frontofficeHolidayCampRegistration" : /.*/,
                 "frontofficeLeisureCenterRegistration" : /.*/,
                 "frontofficeSchoolTransportRegistration" : /.*/,
+                "frontofficeEcoleDeMusique" : /.*/,
                 "frontofficeRequestDocument" : /.*/,
                 "frontofficeRequestType" : /.*/,
                 "frontofficeDocument" : [/details/,/binary/,/preview/],

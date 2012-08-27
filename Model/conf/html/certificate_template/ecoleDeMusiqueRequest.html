@@ -1,0 +1,156 @@
+
+
+<%
+
+  import org.apache.commons.lang.StringUtils
+  import fr.cg95.cvq.util.EnumTool
+  import java.text.NumberFormat
+  def esc(s) { return org.apache.commons.lang3.StringEscapeUtils.escapeXml(s) }
+  def lrEntry(names, entries, prefix) {
+      entries.each { entry ->
+          if (entry.entries) {
+              lrEntry(names, entry.entries, (prefix ? prefix + ' | ' : '') + entry.label)
+          } else if (names.contains(entry.key)) {
+              println "<li>"
+              println "<span>" + (prefix ? prefix + ' | ' : '') + entry.label + "</span>"
+              println "</li>"
+          }
+      }
+  }
+  def localReferentialWidget(wrapper, javaName, lrEntries) {
+      def names = wrapper[javaName].collect{ it.name }.findAll{ it != null }
+      println '<ul>'
+      lrEntry(names, lrEntries, null)
+      println '</ul>'
+  }
+
+%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <title>${esc(i18n.translate('edmr.label'))}</title>
+  <link href="file://${cssPath}" type="text/css" rel="stylesheet" media="print" />
+</head>
+<body>
+  <div id="hd">
+    <p>${esc(localAuthority.displayTitle)}</p>
+    <img src="file://${logoPath}" alt="mairie2424" />
+  </div>
+  <h1>${esc(i18n.translate('edmr.label'))}</h1>
+  <div class="localAuthority">
+    <h2>${i18n.translate('pdf.localAutorityReservedSection')}</h2>
+    <ul>
+      <li>${i18n.translate('property.creationDate')} : <strong>${String.format('%td/%<tm/%<tY',rqt.creationDate)}</strong></li>
+      <li>${i18n.translate('property.requester')} : <strong>${esc(rqt.requesterFirstName +' '+ rqt.requesterLastName)}</strong></li>
+      <li>${i18n.translate('pdf.requestId')} : <strong>${rqt.id}</strong></li>
+      <li>${i18n.translate('pdf.agentId')} : <strong>${rqt.lastInterveningUserId != null ? rqt.lastInterveningUserId : ''}</strong></li>
+    </ul>
+  </div>
+  <h2>${i18n.translate('request.property.requester')}</h2>
+  
+          <p class="label">
+            ${i18n.translate('homeFolder.adult.property.title')}
+            ${i18n.translate('homeFolder.individual.property.firstName')}
+            ${i18n.translate('homeFolder.individual.property.lastName')}
+          </p>
+          <div class="response">
+            <% if(requester?.title) { %>
+              ${i18n.translate('homeFolder.adult.title.' + StringUtils.lowerCase(requester?.title.toString()))}
+            <% } %>
+            ${esc(requester?.firstName)}
+            ${esc(requester?.lastName)}
+          </div>
+          <p class="label">${i18n.translate('homeFolder.individual.property.address')}</p>
+          <div class="response">
+            <% if (requester?.address) { %>
+              <p>${esc(StringUtils.defaultString(requester?.address?.additionalDeliveryInformation))}</p>
+              <p>${esc(StringUtils.defaultString(requester?.address?.additionalGeographicalInformation))}</p>
+              <p>${esc(StringUtils.defaultString(requester?.address?.streetNumber))} ${esc(StringUtils.defaultString(requester?.address?.streetName))}</p>
+              <p>${esc(StringUtils.defaultString(requester?.address?.placeNameOrService))}</p>
+              <p>${esc(StringUtils.defaultString(requester?.address?.postalCode))} ${esc(StringUtils.defaultString(requester?.address?.city))}</p>
+              <p>${esc(StringUtils.defaultString(requester?.address?.countryName))}</p>
+            <% } %>
+          </div>
+          <p class="label">${i18n.translate('homeFolder.adult.property.email')}</p>
+          <div class="response">${esc(StringUtils.defaultString(requester?.email))}</div>
+          <p class="label">${i18n.translate('homeFolder.adult.property.homePhone')}</p>
+          <div class="response">${esc(StringUtils.defaultString(requester?.homePhone))}</div>
+          <p class="label">${i18n.translate('homeFolder.adult.property.mobilePhone')}</p>
+          <div class="response">${esc(StringUtils.defaultString(requester?.mobilePhone))}</div>
+          <p class="label">${i18n.translate('homeFolder.adult.property.officePhone')}</p>
+          <div class="response">${esc(StringUtils.defaultString(requester?.officePhone))}</div>
+          
+
+
+  
+  <h2>${i18n.translate('edmr.step.enfant.label')}</h2>
+  
+    
+      
+          <p class="label">${esc(i18n.translate('edmr.property.subject.label'))}</p>
+          <div class="response">${esc(subjectIsChild && !subject?.born ? i18n.translate('request.subject.childNoBorn', subject?.fullName) : subject?.fullName)}</div>
+          
+
+    
+  
+    
+      <h3>${i18n.translate('edmr.property.site.label')}</h3>
+      <div class="complex">
+        
+          <p class="label">${esc(i18n.translate('edmr.property.idSite.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.site?.idSite?.toString()))}</div>
+
+        
+          <p class="label">${esc(i18n.translate('edmr.property.labelSite.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.site?.labelSite?.toString()))}</div>
+
+        
+      </div>
+    
+  
+    
+      <h3>${i18n.translate('edmr.property.produit.label')}</h3>
+      <div class="complex">
+        
+          <p class="label">${esc(i18n.translate('edmr.property.idProduit.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.produit?.idProduit?.toString()))}</div>
+
+        
+          <p class="label">${esc(i18n.translate('edmr.property.labelProduit.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.produit?.labelProduit?.toString()))}</div>
+
+        
+      </div>
+    
+  
+
+  
+  <h2>${i18n.translate('edmr.step.reglements.label')}</h2>
+  
+    
+      <p class="label">${esc(i18n.translate('edmr.property.edmrCertifieExactitude.label'))}</p>
+          <div class="response choice">
+            <% [true,false].each { %>
+              <span ${it == rqt.edmrCertifieExactitude ? 'class="checked"': ''}>
+                ${i18n.translate('message.' + (it ? 'yes' : 'no'))}
+              </span>
+              ${it ? ' / ' : ''}
+            <% } %>
+          </div>
+          
+
+    
+  
+
+  <h2>${i18n.translate('contact.property.meansOfContact')}</h2>
+  <div class="response choice">
+    <% if (rqt.meansOfContact) { %>
+      <% rqt.meansOfContact.type.allMeansOfContactEnums.eachWithIndex {it, i -> %>
+        <span ${it == rqt.meansOfContact.type ? 'class="checked"': ''}>
+          ${i18n.translate('meansOfContact.' + StringUtils.uncapitalize(it.legacyLabel))}
+        </span>${i + 1 < rqt.meansOfContact.type.allMeansOfContactEnums.length ? ', ' : ''}
+      <% } %>
+    <% } else { %>
+      <span class="checked">${i18n.translate('meansOfContact.none')}</span>
+    <% } %>
+  </div>
+</body>
+</html>
+

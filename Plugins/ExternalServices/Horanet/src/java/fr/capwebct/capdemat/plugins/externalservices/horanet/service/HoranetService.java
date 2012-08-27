@@ -985,10 +985,6 @@ public class HoranetService extends ConfigurableExternalProviderServiceAdapter i
         this.requestSearchService = requestSearchService;
     }
 
-    public void setLoggerMailService(ILoggerMailService loggerMailService) {
-        this.loggerMailService = loggerMailService;
-    }
-
     public String getLabel() {
         return label;
     }

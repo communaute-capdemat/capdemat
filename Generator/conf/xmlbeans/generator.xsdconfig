@@ -219,4 +219,9 @@
     <xb:package>fr.cg95.cvq.xml.request.civil</xb:package>
   </xb:namespace>
 
+ <!-- Ecole De Musique Request -->
+  <xb:namespace uri="http://www.cg95.fr/cvq/schema/edmr">
+    <xb:package>fr.cg95.cvq.xml.request.leisure</xb:package>
+  </xb:namespace>
+
 </xb:config>

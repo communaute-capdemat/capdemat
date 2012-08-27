@@ -1,0 +1,39 @@
+edmr.duration.value =
+
+edmr.property.subject.label = Sujet
+
+edmr.step.enfant.label =
+edmr.step.enfant.desc =
+
+edmr.step.reglements.label =
+edmr.step.reglements.desc =
+
+
+edmr.property.site.help =
+edmr.property.site.validationError =
+
+
+edmr.property.idSite.help =
+edmr.property.idSite.validationError =
+
+
+edmr.property.labelSite.help =
+edmr.property.labelSite.validationError =
+
+
+edmr.property.produit.help =
+edmr.property.produit.validationError =
+
+
+edmr.property.idProduit.help =
+edmr.property.idProduit.validationError =
+
+
+edmr.property.labelProduit.help =
+edmr.property.labelProduit.validationError =
+
+
+edmr.property.edmrCertifieExactitude.help =
+edmr.property.edmrCertifieExactitude.validationError =
+
+

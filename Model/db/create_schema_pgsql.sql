@@ -841,6 +841,8 @@
 
     drop table ecole_secteur cascade;
 
+    drop table ecole_de_musique_request cascade;
+
     drop table electoral_roll_registration_request cascade;
 
     drop table external_application cascade;
@@ -1792,6 +1794,14 @@
         dhr_spouse_incomes_id int8,
         dhr_spouse_status_id int8,
         dhr_taxes_amount_id int8,
+        primary key (id)
+    );
+
+    create table ecole_de_musique_request (
+        id int8 not null,
+        edmr_certifie_exactitude bool,
+        produit_id int8,
+        site_id int8,
         primary key (id)
     );
 
