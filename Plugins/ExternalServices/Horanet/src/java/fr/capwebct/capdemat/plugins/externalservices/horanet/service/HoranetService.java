@@ -1,5 +1,6 @@
 package fr.capwebct.capdemat.plugins.externalservices.horanet.service;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringWriter;
@@ -10,6 +11,7 @@ import java.rmi.RemoteException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.Collections;
@@ -20,6 +22,8 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.SortedMap;
+import java.util.TreeMap;
 
 import javax.activation.DataHandler;
 import javax.xml.namespace.QName;
@@ -57,6 +61,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
+import fr.cg95.cvq.business.authority.LocalAuthorityResource.Type;
 import fr.cg95.cvq.business.payment.ExternalAccountItem;
 import fr.cg95.cvq.business.payment.ExternalDepositAccountItem;
 import fr.cg95.cvq.business.payment.ExternalDepositAccountItemDetail;
@@ -64,25 +69,36 @@ import fr.cg95.cvq.business.payment.ExternalInvoiceItem;
 import fr.cg95.cvq.business.payment.ExternalInvoiceItemDetail;
 import fr.cg95.cvq.business.payment.ExternalTicketingContractItem;
 import fr.cg95.cvq.business.payment.PurchaseItem;
+import fr.cg95.cvq.business.request.Request;
+import fr.cg95.cvq.business.request.RequestState;
+import fr.cg95.cvq.business.request.workflow.event.IWorkflowPostAction;
+import fr.cg95.cvq.business.request.workflow.event.impl.WorkflowCompleteEvent;
+import fr.cg95.cvq.business.request.workflow.event.impl.WorkflowGenericEvent;
+import fr.cg95.cvq.business.request.workflow.event.impl.WorkflowPendingEvent;
 import fr.cg95.cvq.business.users.Child;
 import fr.cg95.cvq.business.users.HomeFolder;
+import fr.cg95.cvq.business.users.Individual;
+import fr.cg95.cvq.business.users.external.IndividualMapping;
 import fr.cg95.cvq.exception.CvqConfigurationException;
 import fr.cg95.cvq.exception.CvqException;
 import fr.cg95.cvq.exception.CvqRemoteException;
 import fr.cg95.cvq.external.ExternalServiceBean;
-import fr.cg95.cvq.external.impl.ExternalProviderServiceAdapter;
 import fr.cg95.cvq.security.SecurityContext;
+import fr.cg95.cvq.service.authority.ILocalAuthorityRegistry;
 import fr.cg95.cvq.service.payment.IPaymentService;
+import fr.cg95.cvq.service.request.IRequestSearchService;
+import fr.cg95.cvq.service.request.IRequestTypeService;
+import fr.cg95.cvq.service.request.IRequestWorkflowService;
+import fr.cg95.cvq.service.request.leisure.external.IActivityRegistrationProviderService;
 import fr.cg95.cvq.service.users.IUserSearchService;
+import fr.cg95.cvq.service.users.external.IExternalHomeFolderService;
+import fr.cg95.cvq.util.Pair;
 import fr.cg95.cvq.xml.common.RequestType;
 import fr.cg95.cvq.xml.common.SchoolType;
-
-import fr.cg95.cvq.util.Pair;
-
 /**
  * @author Benoit Orihuela (bor@zenexity.fr)
  */
-public class HoranetService extends ExternalProviderServiceAdapter {
+public class HoranetService extends ConfigurableExternalProviderServiceAdapter implements IActivityRegistrationProviderService {
 
     private static Logger logger = Logger.getLogger(HoranetService.class);
 
@@ -102,7 +118,12 @@ public class HoranetService extends ExternalProviderServiceAdapter {
     private Call call;
 
     private IUserSearchService userSearchService;
+    private IExternalHomeFolderService externalHomeFolderService;
+    private ILocalAuthorityRegistry localAuthorityRegistry;
+    private IRequestTypeService requestTypeService;
+    private IRequestSearchService requestSearchService;
 
+    private WSClient ws;
     /**
      * @fixme use it instead all those ifs and casts !
      */
@@ -953,6 +974,26 @@ public class HoranetService extends ExternalProviderServiceAdapter {
         this.userSearchService = userSearchService;
     }
 
+    public void setWs(WSClient ws) {
+        this.ws = ws;
+    }
+
+    public void setLocalAuthorityRegistry(ILocalAuthorityRegistry localAuthorityRegistry) {
+        this.localAuthorityRegistry = localAuthorityRegistry;
+    }
+
+    public void setExternalHomeFolderService(IExternalHomeFolderService externalHomeFolderService) {
+        this.externalHomeFolderService = externalHomeFolderService;
+    }
+
+    public void setRequestTypeService(IRequestTypeService requestTypeService) {
+        this.requestTypeService = requestTypeService;
+    }
+
+    public void setRequestSearchService(IRequestSearchService requestSearchService) {
+        this.requestSearchService = requestSearchService;
+    }
+
     public String getLabel() {
         return label;
     }
@@ -993,4 +1034,207 @@ public class HoranetService extends ExternalProviderServiceAdapter {
         return prop != null && !prop.isEmpty() && prop.contains(rqtLabel);
     }
 
+<<<<<<< HEAD
+=======
+    public Map<String, Object> loadExternalInformations(XmlObject requestXml)
+        throws CvqException {
+        return Collections.emptyMap();
+    }
+
+    /**
+     * If the individual has done a MSRR, return the request ID as a string.
+     * Return an empty string otherwise.
+     *
+     * @param individual
+     * @return the ID, as a string.
+     */
+    @SuppressWarnings("deprecation")
+    private String getMSRRId(Individual individual) {
+        fr.cg95.cvq.business.request.RequestType msrrType;
+        try {
+            msrrType = requestTypeService.getRequestTypeByLabel("Music School Registration");
+        } catch (CvqException ce) {
+            return "";
+        }
+        List<Request> msrrList = requestSearchService.find( "requestType = ? and subjectId = ?"
+                                                          , msrrType
+                                                          , individual.getId());
+        return (msrrList.size() > 0) ? msrrList.get(0).getId().toString() : "";
+    }
+
+    public Map<String, Map<String, String>> getSiteProduit(Long requestId, Long userId) {
+        SortedMap<String, Map<String, String>> map = new TreeMap<String, Map<String, String>>();
+        SortedMap<String, String> mapSite = new TreeMap<String, String>();
+        SortedMap<String, String> mapProduct = new TreeMap<String, String>();
+        try {
+            String postalCode = SecurityContext.getCurrentSite().getPostalCode();
+            Individual individual = userSearchService.getById(userId);
+            String msrrId = getMSRRId(individual);
+            IndividualMapping mapping = externalHomeFolderService.getIndividualMapping(individual,
+                    label);
+            String externalCapDematId = (mapping != null) ? mapping.getExternalCapDematId() : "";
+            SitesProduits sitesproduits;
+            try {
+                logger.debug("getSites(): call Horanet with:\n" + "- postal code \"" + postalCode
+                        + "\"\n" + "- request msrrId  \"" + msrrId + "\"\n"
+                        + "- mapping \"" + externalCapDematId + "\"");
+                sitesproduits = ws.getSitesProduits(postalCode, msrrId,
+                        externalCapDematId, getConfigurationProperty("endPoint3")).get();
+            } catch (Exception e) {
+                throw new Exception("getSites(): Horanet call failed.", e);
+            }
+            SitesType sitestype;
+            try {
+                sitestype = sitesproduits.getSites();
+            } catch (NullPointerException npe) {
+                throw new Exception("getSites(): WSClient library returned a null object; "
+                        + "probably Horanet's fault.");
+            }
+            List<SiteType> sites = sitestype.getSite();
+            for (SiteType site : sites) {
+                mapSite.put(site.getIdSite(), site.getLibelleSite());
+                ProduitsType produitsType = site.getProduits();
+                List<ProduitType> produits = produitsType.getProduit();
+                mapProduct = new TreeMap<String, String>();
+                for (ProduitType produit : produits) {
+                    mapProduct.put(produit.getIdProduit(), produit.getLibelleProduit());
+                }
+                map.put(site.getIdSite(), mapProduct);
+            }
+            map.put("sites", mapSite);
+        } catch (Exception e) {
+            logger.error(e.getLocalizedMessage(), e);
+        }
+        logger.debug("getSites(): return " + mapSite.size() + " sites et " + mapProduct.size()
+                + " products.");
+        return map;
+    }
+
+    public String getRedirectUrl(Request request) {
+        String postalCode = SecurityContext.getCurrentSite().getPostalCode();
+        Individual individual = userSearchService.getById(request.getSubjectId());
+        String msrrId = getMSRRId(individual);
+        IndividualMapping mapping = externalHomeFolderService.getIndividualMapping(individual,
+                label);
+        String externalCapDematId = (mapping != null) ? mapping.getExternalCapDematId() : "";
+        com.zenexity.booker.ws.urlparametres.List list;
+        String url = null;
+        try {
+            String siteId = null;
+            String productId = null;
+            Method getSiteId;
+            Method getProductId;
+            getSiteId = request.getSpecificData().getClass().getMethod("getIdSite");
+            siteId = (String) getSiteId.invoke(request.getSpecificData());
+            getProductId = request.getSpecificData().getClass().getMethod("getIdProduit");
+            productId = (String) getProductId.invoke(request.getSpecificData());
+            File css = localAuthorityRegistry.getLocalAuthorityResourceFile(Type.CSS, "cssFo",
+                    false);
+            String cssContent = localAuthorityRegistry.getFileContent(css);
+            String cssProperties = cssContent;
+            String cssMenuColor = cssProperties.substring(
+                    cssProperties.indexOf("cssMenuColor: #") + 15,
+                    cssProperties.indexOf("cssMenuColor: #") + 21);
+            String cssMenuHoverColor = cssProperties.substring(
+                    cssProperties.indexOf("cssMenuHoverColor: #") + 20,
+                    cssProperties.indexOf("cssMenuHoverColor: #") + 26);
+            String cssBodyColor = cssProperties.substring(
+                    cssProperties.indexOf("cssBodyColor: #") + 15,
+                    cssProperties.indexOf("cssBodyColor: #") + 21);
+            logger.debug("getUrlParameters(): call Horanet with:\n" + "- postal code \""
+                    + postalCode + "\"\n" + "- siteId \"" + siteId + "\"\n" + "- productId \""
+                    + productId + "\"\n" + "- request id \"" + msrrId + "  " + request.getId().toString() + "\"\n"
+                    + "- mapping \"" + externalCapDematId + "- cssMenuColor \"" + cssMenuColor
+                    + "\"\n" + "- cssMenuHoverColor \"" + cssMenuHoverColor + "\"\n"
+                    + "- cssBodyColor \"" + cssBodyColor + "\"");
+            list = ws.getUrlParametres( postalCode, siteId, productId, msrrId,
+                    request.getId().toString(), externalCapDematId, externalCapDematId,
+                    cssMenuColor, cssMenuHoverColor, cssBodyColor, getConfigurationProperty("endPoint3")).get();
+            try {
+                url = list.getWebsite().getUrl();
+            } catch (NullPointerException npe) {
+                throw new Exception("getRedirectUrl(): WSClient library returned a null object; "
+                        + "probably Horanet's fault.");
+            }
+        } catch (Exception e) {
+            logger.error(e.getLocalizedMessage(), e);
+        }
+        return url;
+    }
+
+    private boolean sendRequestOnState(WorkflowGenericEvent wfEvent) throws CvqException {
+        String requestTypeLabel = requestExternalService.getRequestPayload(
+                wfEvent.getRequest(), this).getRequestTypeLabel();
+        ExternalServiceBean esb = SecurityContext.getCurrentConfigurationBean()
+                .getExternalServiceConfigurationBean().getBeanForExternalService(getLabel());
+        String sendStates = (String) esb.getProperty(requestTypeLabel);
+        if (sendStates != null && !sendStates.trim().isEmpty()) {
+            List<String> states = Arrays.asList(sendStates.split(","));
+            if (states.contains(wfEvent.getClass().getSimpleName())) {
+                return true;
+            }else{
+                return false;
+            }
+        }else{
+            return wfEvent.getClass().getSimpleName().equals("WorkflowCompleteEvent");
+        }
+    }
+
+    @Override
+    public void visit(final WorkflowPendingEvent wfEvent) throws CvqException {
+
+        try {
+            if(sendRequestOnState(wfEvent)){
+              checkExtReferentialAndSendRequest(wfEvent.getRequest());
+            }else{
+                return;
+            }
+        } catch (Exception e) {
+            return;
+        }
+
+        wfEvent.setWorkflowPostAction(new IWorkflowPostAction() {
+
+          @Override
+          public String getExecutor() { return getLabel(); }
+
+          @Override
+          public void execute(IRequestWorkflowService requestWorkflowService) {
+              try {
+                  requestWorkflowService.updateRequestState(wfEvent.getRequest().getId(), RequestState.EXTINPROGRESS, null);
+              } catch (CvqException e) {
+                  logger.error(e.getMessage());
+              }
+          }
+      });
+    }
+
+    @Override
+    public void visit(final WorkflowCompleteEvent wfEvent) throws CvqException {
+        try {
+            if(sendRequestOnState(wfEvent)){
+              checkExtReferentialAndSendRequest(wfEvent.getRequest());
+            }else{
+                return;
+            }
+        } catch (Exception e) {
+            return;
+        }
+
+        wfEvent.setWorkflowPostAction(new IWorkflowPostAction() {
+
+          @Override
+          public String getExecutor() { return getLabel(); }
+
+          @Override
+          public void execute(IRequestWorkflowService requestWorkflowService) {
+              try {
+                  requestWorkflowService.updateRequestState(wfEvent.getRequest().getId(), RequestState.EXTINPROGRESS, null);
+              } catch (CvqException e) {
+                  logger.error(e.getMessage());
+              }
+          }
+      });
+    }
+>>>>>>> 22e7380... [Evo][ES][Horanet] Implement IActivityRegistrationProviderService
 }

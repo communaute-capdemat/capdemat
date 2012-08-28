@@ -3,7 +3,9 @@
 
 <beans>
 
-  <bean id="horanetExternalService" parent="externalProviderServiceAdapter"
+<bean id="ws" class="com.zenexity.booker.ws.WSClient" />
+
+<bean id="horanetExternalService" parent="externalProviderServiceAdapter"
     class="fr.capwebct.capdemat.plugins.externalservices.horanet.service.HoranetService">
     <property name="label" value="Horanet"></property>
     <!-- Insert services you need here -->
@@ -23,6 +25,11 @@
       <value>${plugins.externalservices.horanet.password}</value>
     </property>
     <property name="userSearchService" ref="userSearchService" />
+    <property name="externalHomeFolderService" ref="externalHomeFolderService" />
+    <property name="localAuthorityRegistry" ref="localAuthorityRegistry" />
+    <property name="requestTypeService" ref="requestTypeService" />
+    <property name="requestSearchService" ref="requestSearchService" />
+    <property name="ws" ref="ws" />
   </bean>
 
 </beans>
