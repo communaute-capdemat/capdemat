@@ -103,5 +103,8 @@
 	<classpathentry kind="lib" path="Libraries/fr.cg95/model/CapDemat-ExternalServicesSchemas-4.8.jar"/>
 	<classpathentry kind="lib" path="Libraries/fr.cg95/model/CapDemat-Model-4.8.jar"/>
 	<classpathentry kind="lib" path="Libraries/fr.cg95/model/CapDemat-RequestSchemas-4.8.jar"/>
+	<classpathentry exported="true" kind="con" path="GROOVY_DSL_SUPPORT"/>
+	<classpathentry kind="lib" path="Libraries/com.zenexity/booker-ws-1.0-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="Libraries/com.ning/async-http-client-1.7.5.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

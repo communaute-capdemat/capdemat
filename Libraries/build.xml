@@ -53,6 +53,8 @@
             <fileset dir="${mail.lib.dir}" />
             <fileset dir="${postgresql.jdbc.lib.dir}" />
             <fileset dir="${quartz.lib.dir}" />
+            <fileset dir="${ning.lib.dir}" />
+            <fileset dir="${booker.lib.dir}" />
             <fileset dir="${mime-util.lib.dir}" />
             <fileset dir="${pdfbox.lib.dir}" />
             <fileset dir="${fontbox.lib.dir}" />
