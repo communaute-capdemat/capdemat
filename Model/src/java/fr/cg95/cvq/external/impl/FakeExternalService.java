@@ -40,7 +40,9 @@ import fr.cg95.cvq.business.payment.ExternalInvoiceItemDetail;
 import fr.cg95.cvq.business.payment.ExternalTicketingContractItem;
 import fr.cg95.cvq.business.payment.PurchaseItem;
 import fr.cg95.cvq.business.request.Request;
+import fr.cg95.cvq.business.users.Adult;
 import fr.cg95.cvq.business.users.Child;
+import fr.cg95.cvq.business.users.Individual;
 import fr.cg95.cvq.exception.CvqConfigurationException;
 import fr.cg95.cvq.exception.CvqException;
 import fr.cg95.cvq.exception.CvqRemoteException;
@@ -49,8 +51,8 @@ import fr.cg95.cvq.external.ExternalServiceUtils;
 import fr.cg95.cvq.external.IExternalProviderService;
 import fr.cg95.cvq.security.SecurityContext;
 import fr.cg95.cvq.service.payment.IPaymentService;
+import fr.cg95.cvq.service.request.leisure.external.IActivityRegistrationProviderService;
 import fr.cg95.cvq.service.request.school.external.IScholarBusinessProviderService;
-
 import fr.cg95.cvq.util.Pair;
 
 /**
@@ -62,7 +64,7 @@ import fr.cg95.cvq.util.Pair;
  * 
  * @author bor@zenexity.fr
  */
-public class FakeExternalService extends ExternalProviderServiceAdapter implements IScholarBusinessProviderService{
+public class FakeExternalService extends ExternalProviderServiceAdapter implements IScholarBusinessProviderService, IActivityRegistrationProviderService {
 
     private static Logger logger = Logger.getLogger(FakeExternalService.class);
 
@@ -335,6 +337,14 @@ public class FakeExternalService extends ExternalProviderServiceAdapter implemen
     }
 
     @Override
+    public Map<String, String> getSites(Individual individual) {
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("ID0", "Espace Nautique Jean Vauchère — Colomiers");
+        map.put("ID1", "Cinéma — Colomiers");
+        return map;
+    }
+
+    @Override
     public Map<String, Map<String, String>> getSchools(Child child) {
         Map<String, Map<String, String>> result = new HashMap<String, Map<String,String>>();
         
@@ -486,8 +496,7 @@ public class FakeExternalService extends ExternalProviderServiceAdapter implemen
     }
 
     @Override
-    public List<Map<String, String>> getProducts(Individual individual,
-                                                 String siteId) {
+    public List<Map<String, String>> getProducts(Individual individual, String siteId) {
         List<Map<String, String>> list = new ArrayList<Map<String, String>>();
         if (siteId.equals("ID0")) {
             Map<String, String> map = new HashMap<String, String>();
@@ -511,6 +520,12 @@ public class FakeExternalService extends ExternalProviderServiceAdapter implemen
         return list;
     }
 
+    @Override
+    public String getRedirectUrl (Request request) {
+        return "http://FakeRedirect";
+    }
+
+    @Override
     public Boolean canGetRedirectUrl(Request request) {
         String rqtLabel = request.getRequestType().getLabel();
         ExternalServiceBean esb = SecurityContext.getCurrentConfigurationBean().getExternalServiceConfigurationBean().getBeanForExternalService(getLabel());
@@ -520,4 +535,44 @@ public class FakeExternalService extends ExternalProviderServiceAdapter implemen
         return prop != null && !prop.isEmpty() && prop.contains(rqtLabel);
     }
 
+    @Override
+    public Map<String, Map<String, String>> getSiteProduit(Long requestId, Long userId) {
+        Map <String, Map<String, String>> m = new HashMap<String,Map<String, String>>();
+        Map<String, String> sites= new HashMap<String, String>();
+        Map<String, String> act1= new HashMap<String, String>();
+        Map<String, String> act2= new HashMap<String, String>();
+        sites.put("idSite1", "labelSite1");
+        sites.put("idSite2", "labelSite2");
+        m.put("sites",sites);
+        act1.put("idact1", "labelact1");
+        act1.put("idact2", "labelact2");
+        m.put("idSite1", act1);
+        act2.put("idact3", "labelact3");
+        act2.put("idact4", "labelact4");
+        m.put("idSite2", act2);
+        return m;
+    }
+
+    @Override
+    public List<Map<String, String>> getSegments(Individual individual,
+            String siteId,
+            String productId) {
+
+        List<Map<String, String>> list = new ArrayList<Map<String, String>>();
+        if (siteId.equals("ID0")) {
+            Map<String, String> map = new HashMap<String, String>();
+            map.put("id", "ID0");
+            map.put("label", "Les lundis de 13h30 à 14h30");
+            list.add(map);
+            map = new HashMap<String, String>();
+            map.put("id", "ID1");
+            map.put("label", "Les samedis de 15h à 16h");
+            list.add(map);
+            map = new HashMap<String, String>();
+            map.put("id", "ID2");
+            map.put("label", "Les samedis de 16h45 à 17h45");
+            list.add(map);
+        }
+        return list;
+    }
 }

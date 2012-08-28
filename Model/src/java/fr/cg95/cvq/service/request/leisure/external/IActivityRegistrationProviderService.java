@@ -1,4 +1,4 @@
-package fr.cg94.cvq.service.request.leisure.external;
+package fr.cg95.cvq.service.request.leisure.external;
 
 import java.util.Map;
 import java.util.List;
