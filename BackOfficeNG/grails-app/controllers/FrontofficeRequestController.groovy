@@ -9,6 +9,7 @@ import fr.cg95.cvq.business.users.Adult
 import fr.cg95.cvq.business.users.Child
 import fr.cg95.cvq.exception.CvqException
 import fr.cg95.cvq.exception.CvqValidationException
+import fr.cg95.cvq.external.IExternalProviderService;
 import fr.cg95.cvq.security.SecurityContext
 import fr.cg95.cvq.service.authority.ILocalAuthorityRegistry
 import fr.cg95.cvq.service.request.IAutofillService
@@ -16,6 +17,7 @@ import fr.cg95.cvq.service.request.IConditionService
 import fr.cg95.cvq.service.users.IMeansOfContactService
 import fr.cg95.cvq.service.request.IRequestActionService
 import fr.cg95.cvq.service.request.external.IRequestExternalService
+import fr.cg95.cvq.service.request.leisure.external.IActivityRegistrationProviderService;
 import fr.cg95.cvq.service.request.IRequestLockService
 import fr.cg95.cvq.service.request.IRequestNoteService
 import fr.cg95.cvq.service.request.IRequestSearchService
@@ -173,7 +175,17 @@ class FrontofficeRequestController {
                         redirect(url:paymentService.initPayment(payment).toString())
                         return
                     } else {
-                        redirect(action:'exit', params:parameters)
+                        IExternalProviderService service = requestExternalService.getExternalServiceByRequestType(rqt.getRequestType().label);
+                        if (service instanceof IActivityRegistrationProviderService) {
+                            def redirectUri = ((IActivityRegistrationProviderService) service).getRedirectUrl(rqt);
+                            if(redirectUri!=null){
+                                redirect(url:redirectUri)
+                            }else{
+                            redirect(action:'exit', params:parameters)
+                            }
+                        } else {
+                            redirect(action:'exit', params:parameters)
+                        }
                     }
                     return
                 } else {
