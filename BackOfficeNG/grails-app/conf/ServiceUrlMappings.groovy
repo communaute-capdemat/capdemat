@@ -15,5 +15,6 @@ class ServiceUrlMappings {
     "/service/requestType/$requestTypeLabel/season" (controller : "serviceRequestExternal"){action = [GET : "requestTypeSeason"]}
     "/service/users/$externalId?" (controller : "serviceExternalUser"){action = [GET : "findUser"]}
     "/service/users/$action?" (controller : "serviceExternalUser")
+    "/service/horanet/setState/$requestId?" (controller : "serviceHoranet"){action = [GET : "setState"]}
   }
 }
