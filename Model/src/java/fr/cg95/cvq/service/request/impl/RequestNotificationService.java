@@ -1,10 +1,10 @@
 package fr.cg95.cvq.service.request.impl;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.StringWriter;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,21 +17,26 @@ import fr.cg95.cvq.business.authority.Agent;
 import fr.cg95.cvq.business.authority.LocalAuthorityResource.Type;
 import fr.cg95.cvq.business.request.Request;
 import fr.cg95.cvq.business.request.RequestAdminAction;
+import fr.cg95.cvq.business.request.RequestAdminAction.Data;
 import fr.cg95.cvq.business.request.RequestAdminEvent;
 import fr.cg95.cvq.business.request.RequestEvent;
+import fr.cg95.cvq.business.request.RequestEvent.COMP_DATA;
 import fr.cg95.cvq.business.request.RequestNote;
 import fr.cg95.cvq.business.request.RequestNoteType;
-import fr.cg95.cvq.business.request.RequestAdminAction.Data;
-import fr.cg95.cvq.business.request.RequestEvent.COMP_DATA;
+import fr.cg95.cvq.business.users.Address;
 import fr.cg95.cvq.business.users.Adult;
+import fr.cg95.cvq.business.users.Individual;
 import fr.cg95.cvq.dao.request.IRequestDAO;
 import fr.cg95.cvq.exception.CvqException;
 import fr.cg95.cvq.security.SecurityContext;
 import fr.cg95.cvq.service.authority.IAgentService;
 import fr.cg95.cvq.service.authority.ILocalAuthorityRegistry;
+import fr.cg95.cvq.service.request.IRequestSearchService;
 import fr.cg95.cvq.service.request.job.RequestArchivingJob;
 import fr.cg95.cvq.service.request.job.RequestArchivingJob.Result;
 import fr.cg95.cvq.service.users.IUserSearchService;
+import fr.cg95.cvq.util.DateUtils;
+import fr.cg95.cvq.util.UserUtils;
 import fr.cg95.cvq.util.mail.IMailService;
 import fr.cg95.cvq.util.translation.ITranslationService;
 import groovy.text.SimpleTemplateEngine;
@@ -50,39 +55,118 @@ public class RequestNotificationService implements ApplicationListener<CapDematE
     private ILocalAuthorityRegistry localAuthorityRegistry;
     private IAgentService agentService;
     private ITranslationService translationService;
+    private IRequestSearchService requestSearchService;
 
     private IRequestDAO requestDAO;
 
-    private String createStateChangedNotificationMailBody (Request request, String requestTypeLabelAsDir){
-        File mailTemplate = localAuthorityRegistry.getLocalAuthorityResourceFile(
-            Type.TXT, "notification/" + requestTypeLabelAsDir + "/" + request.getState().name(), false);
+    private String getTitle(Individual individual) {
+        String title = "";
+        if (individual instanceof Adult) {
+            title = translationService.translate("homeFolder.adult.title." + ((Adult)individual).getTitle().toString().toLowerCase());
+        }
+        return title;
+    }
 
-        if (!mailTemplate.exists()){
-            mailTemplate = localAuthorityRegistry.getLocalAuthorityResourceFile(
-                Type.TXT, "notification/" + request.getState().name(), false);
+    /**
+     * Return the content, with its variables evaluated.
+     * @param content
+     * @param html
+     * @param requestId
+     * @param moc means of contact
+     * @param observations
+     * @return the evaluated content
+     */
+    public String evaluate(String content,
+                           boolean html,
+                           Long requestId,
+                           String moc,
+                           String observations) {
+        // Objects used to do the template model
+        Request request = requestSearchService.getById(Long.valueOf(requestId), false);
+        Individual requester = null;
+        if (request.getRequesterId() != null) {
+            requester = userSearchService.getById(request.getRequesterId());
+        } else {
+            requester = userSearchService.getHomeFolderResponsible(request.getHomeFolderId());
+        }
+        Address address = requester.getHomeFolder().getAddress();
+        Individual subject = (request.getSubjectId() != null) ? userSearchService.getById(request.getSubjectId()) : null;
+        Agent agent = agentService.getById(request.getLastInterveningUserId());
+        String label = translationService.translateRequestTypeDescription(request.getRequestType().getLabel())
+                                         .toLowerCase();
+        if (html) {
+            try {
+                URLEncoder.encode(label, "UTF-8");
+            } catch (UnsupportedEncodingException e) {
+                // OK, let it not encoded.
+            }
         }
 
-        if(!mailTemplate.exists()){
-            return null;
+        // Template model
+        Map<String, String> model = new HashMap<String, String>();
+        model.put("DATE", DateUtils.format(new Date()));
+        model.put("LAST_AGENT_NAME", UserUtils.getDisplayName(request.getLastInterveningUserId()));
+        model.put("LAST_AGENT_EMAIL", (agent != null) ? agent.getEmail() : "");
+        model.put("MOC", (moc != null && !moc.isEmpty()) ? translationService.translate("meansOfContact." + StringUtils.uncapitalize(moc)) : "");
+        model.put("RQ_ID", request.getId().toString());
+        model.put("RQ_CAT", request.getRequestType().getCategory().getName());
+        model.put("RQ_CAT_EMAIL", request.getRequestType().getCategory().getPrimaryEmail());
+        model.put("RQ_TP_LABEL", label);
+        model.put("RQ_CDATE", DateUtils.formatDate(request.getCreationDate()));
+        model.put("RQ_DVAL", request.getValidationDate() != null ? DateUtils.formatDate(request.getValidationDate()) : "");
+        model.put("RQ_OBSERV", observations);
+        model.put("HF_ID", requester.getHomeFolder().getId().toString());
+        model.put("RR_FNAME",  requester.getFirstName());
+        model.put("RR_LNAME", requester.getLastName());
+        model.put("RR_TITLE", getTitle(requester));
+        model.put("RR_LOGIN", (requester instanceof Adult) ? ((Adult)requester).getLogin() : "");
+        model.put("RR_QUESTION", (requester instanceof Adult) ? ((Adult)requester).getQuestion() : "");
+        model.put("RR_ANSWER", (requester instanceof Adult) ? ((Adult)requester).getAnswer() : "");
+        model.put("SU_FNAME", (subject != null) ? subject.getFirstName() : "");
+        model.put("SU_LNAME", (subject != null) ? subject.getLastName() : "");
+        model.put("SU_TITLE", getTitle(subject));
+        model.put("HF_ADDRESS_ADI", address.getAdditionalDeliveryInformation());
+        model.put("HF_ADDRESS_AGI", address.getAdditionalGeographicalInformation());
+        model.put("HF_ADDRESS_SNAME", address.getStreetName());
+        model.put("HF_ADDRESS_SNUM", address.getStreetNumber());
+        model.put("HF_ADDRESS_PNS", address.getPlaceNameOrService());
+        model.put("HF_ADDRESS_ZIP", address.getPostalCode());
+        model.put("HF_ADDRESS_TOWN", address.getCity());
+        model.put("HF_ADDRESS_CN", address.getCountryName());
+
+        for (String key : model.keySet()) {
+            if (model.get(key) == null) {
+                model.put(key, "");
+            }
         }
 
-        StringWriter sw = new StringWriter();
-        SimpleTemplateEngine templateEngine = new SimpleTemplateEngine();
-        Template template;
+        SimpleTemplateEngine engine = new SimpleTemplateEngine();
+        String evaluated = content;
         try {
-            template = templateEngine.createTemplate(
-                new InputStreamReader( new FileInputStream(mailTemplate), "UTF-8") );
-            Map<String, Object> bindingMap = new HashMap<String, Object>();
-            bindingMap.put("request", request);
-            Adult requester = (Adult) userSearchService.getById(request.getRequesterId());
-            bindingMap.put("requester", requester);
-            bindingMap.put("serveurName", SecurityContext.getCurrentConfigurationBean().getDefaultServerName());
-            bindingMap.put("i18n", translationService);
-            template.make(bindingMap).writeTo(sw);
-        } catch (IOException e) {
-            e.printStackTrace();
+            Template template = engine.createTemplate(content.replace("#{", "${"));
+            evaluated = template.make(model).writeTo(new StringWriter()).toString();
+        }  catch (Exception e) {
+            logger.error("evaluate(): failed to evaluate the template.", e);
         }
-        return sw.toString();
+        return evaluated;
+    }
+
+    private String createStateChangedNotificationMailBody(Request request, String requestTypeLabelAsDir) {
+        File email = localAuthorityRegistry.getLocalAuthorityResourceFile(
+                Type.HTML,
+                "templates/mails/notification/" + requestTypeLabelAsDir + "/" + request.getState().name(),
+                false);
+        if (!email.exists()) {
+            email = localAuthorityRegistry.getLocalAuthorityResourceFile(
+                Type.HTML,
+                "templates/mails/notification/" + request.getState().name(),
+                false);
+        }
+        if (!email.exists()) return null;
+
+        String content = localAuthorityRegistry.getFileContent(email);
+
+        return evaluate(content, true, request.getId(), "", "");
     }
 
     private void notifyStateChanged(Long requestId, final byte[] pdfData)
@@ -111,13 +195,20 @@ public class RequestNotificationService implements ApplicationListener<CapDematE
         if (pdfData != null) {
             mailService.send(
                     request.getRequestType().getCategory().getPrimaryEmail(),
-                    requester.getEmail(), null,
-                    mailSubject, mailBody, pdfData, "Attestation_Demande.pdf");
+                    requester.getEmail(),
+                    null,
+                    mailSubject,
+                    mailBody,
+                    pdfData, "Attestation_Demande.pdf",
+                    true);
         } else {
             mailService.send(
                     request.getRequestType().getCategory().getPrimaryEmail(),
-                    requester.getEmail(), null,
-                    mailSubject, mailBody);
+                    requester.getEmail(),
+                    null,
+                    mailSubject,
+                    mailBody,
+                    true);
         }
     }
 
@@ -204,6 +295,10 @@ public class RequestNotificationService implements ApplicationListener<CapDematE
 
     public void setTranslationService(ITranslationService translationService) {
         this.translationService = translationService;
+    }
+
+    public void setRequestSearchService(IRequestSearchService requestSearchService) {
+        this.requestSearchService = requestSearchService;
     }
 
     private void onApplicationEvent(RequestEvent requestEvent) {

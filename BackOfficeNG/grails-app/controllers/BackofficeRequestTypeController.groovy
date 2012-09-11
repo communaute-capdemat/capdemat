@@ -5,6 +5,7 @@ import fr.cg95.cvq.business.request.RequestSeason
 import fr.cg95.cvq.business.request.RequestType
 import fr.cg95.cvq.business.request.Requirement
 import fr.cg95.cvq.business.request.RequestForm
+import fr.cg95.cvq.business.request.RequestState
 import fr.cg95.cvq.business.authority.LocalAuthorityResource.Type
 import fr.cg95.cvq.business.authority.LocalAuthorityResource.Version
 import fr.cg95.cvq.security.SecurityContext;
@@ -102,7 +103,8 @@ class BackofficeRequestTypeController {
         result["configurationItems"] = [
             "forms" : ["requestType.configuration.forms", false],
             "delays" : ["requestType.configuration.delays", false],
-            "documents" : ["requestType.configuration.documentType", false]
+            "documents" : ["requestType.configuration.documentType", false],
+            "mails" : ["requestType.configuration.mails", false]
         ]
         if (requestTypeService.getRulesAcceptanceFieldNames(requestType.id).size() > 0) {
             result["configurationItems"]["rules"] = ["requestType.configuration.rules", false]
@@ -470,6 +472,79 @@ class BackofficeRequestTypeController {
                            'status':'success', 
                            'message':message(code:'message.updateDone')]).toString())
 
+    }
+
+    /* Mail notification customization
+     * ------------------------------------------------------------------------------------------ */
+
+    def mails = {
+        def id = Long.valueOf(params.id)
+        def requestType = requestTypeService.getRequestTypeById(id)
+
+        def states = RequestState.values().inject([:], { map, state ->
+            def code = 'request.state.' + state.name().toLowerCase()
+            map[code] = message(code:code)
+            return map
+        })
+
+        render(
+            view:'configure',
+            model:['states':states].plus(getCommonModel(requestType))
+        )
+    }
+
+    def mail = {
+        def id = Long.valueOf(params.id)
+        def requestType = requestTypeService.getRequestTypeById(id)
+
+        def state = (params.state - 'request.state.').toUpperCase()
+        def dir = CapdematUtils.requestTypeLabelAsDir(requestType.label)
+        File file = localAuthorityRegistry.getLocalAuthorityResourceFile(
+            Type.HTML,
+            'templates/mails/notification/' + dir + '/' + state,
+            false)
+        def text
+        try {
+            text = file.getText('utf-8')
+        } catch(FileNotFoundException fnfe) {
+            text = ''
+        } finally {
+            render(text:text)
+        }
+    }
+
+    def saveMail = {
+        def id = Long.valueOf(params.id)
+        def requestType = requestTypeService.getRequestTypeById(id)
+
+        def state = (params.state - 'request.state.').toUpperCase()
+        if (!requestType) {
+            render(status:404, text:['message':message(code:'requestType.configuration.unknownRequestType')] as JSON)
+            return
+        }
+        def dir = CapdematUtils.requestTypeLabelAsDir(requestType.label)
+
+        def html = params.html ?: ''
+        def emptyhtml = """\
+<html>
+<head>
+  <title></title>
+</head>
+<body></body>
+</html>
+"""
+        if (html && html != emptyhtml) {
+          localAuthorityRegistry.saveLocalAuthorityResource(
+              Type.HTML,
+              'templates/mails/notification/' + dir + '/' + state,
+              html.getBytes('UTF-8'))
+          render message(code:'message.updateDone')
+        } else {
+          localAuthorityRegistry.removeLocalAuthorityResource(
+              Type.HTML,
+              'templates/mails/notification/' + dir + '/' + state)
+          render message(code:'message.updateDone')
+        }
     }
 
     def ticketBooking = {
