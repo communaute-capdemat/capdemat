@@ -1,4 +1,13 @@
 
+    alter table activity_registration_request 
+        drop constraint FK22C1B0396A76893;
+
+    alter table activity_registration_request 
+        drop constraint FK22C1B039E3618200;
+
+    alter table activity_registration_request 
+        drop constraint FK22C1B0397EDF6F81;
+
     alter table adult 
         drop constraint FK58621BA71A211CC;
 
@@ -178,6 +187,12 @@
 
     alter table domestic_help_request 
         drop constraint FK3C0081121C9BA187;
+
+    alter table ecole_de_musique_request 
+        drop constraint FK3D695C2A83E06640;
+
+    alter table ecole_de_musique_request 
+        drop constraint FK3D695C2A8BEE18F4;
 
     alter table electoral_roll_registration_request 
         drop constraint FK45625529F0159453;
@@ -721,6 +736,8 @@
 
     drop table a_levels_informations cascade;
 
+    drop table activity_registration_request cascade;
+
     drop table address cascade;
 
     drop table adult cascade;
@@ -734,6 +751,10 @@
     drop table alignment_certificate_request cascade;
 
     drop table alignment_numbering_connection_request cascade;
+
+    drop table arr_produit cascade;
+
+    drop table arr_site cascade;
 
     drop table arret cascade;
 
@@ -837,11 +858,11 @@
 
     drop table domestic_help_request cascade;
 
+    drop table ecole_de_musique_request cascade;
+
     drop table ecole_derog cascade;
 
     drop table ecole_secteur cascade;
-
-    drop table ecole_de_musique_request cascade;
 
     drop table electoral_roll_registration_request cascade;
 
@@ -1017,6 +1038,8 @@
 
     drop table pessac_animation_request cascade;
 
+    drop table produit cascade;
+
     drop table professional_situation_information cascade;
 
     drop table purchase_item cascade;
@@ -1099,6 +1122,8 @@
 
     drop table school_transport_registration_request cascade;
 
+    drop table segment cascade;
+
     drop table serrr_fieldset_est_union_europeenne cascade;
 
     drop table serrr_lieu_naissance cascade;
@@ -1108,6 +1133,8 @@
     drop table sewer_connection_request cascade;
 
     drop table sgr_current_school cascade;
+
+    drop table site cascade;
 
     drop table sms_notification_request cascade;
 
@@ -1159,6 +1186,15 @@
         id int8 not null,
         alevels varchar(255),
         alevels_date varchar(4),
+        primary key (id)
+    );
+
+    create table activity_registration_request (
+        id int8 not null,
+        reglement bool,
+        produit_id int8,
+        segment_id int8,
+        site_id int8,
         primary key (id)
     );
 
@@ -1252,6 +1288,21 @@
         transportation_route varchar(255),
         other_address_id int8,
         owner_address_id int8,
+        primary key (id)
+    );
+
+    create table arr_produit (
+        id int8 not null,
+        id_produit varchar(255),
+        label_produit varchar(255),
+        type_produit varchar(255),
+        primary key (id)
+    );
+
+    create table arr_site (
+        id int8 not null,
+        id_site varchar(255),
+        label_site varchar(255),
         primary key (id)
     );
 
@@ -2782,6 +2833,13 @@
         primary key (id)
     );
 
+    create table produit (
+        id int8 not null,
+        id_produit varchar(255),
+        label_produit varchar(255),
+        primary key (id)
+    );
+
     create table professional_situation_information (
         id int8 not null,
         child_diploma varchar(255),
@@ -3218,6 +3276,13 @@
         primary key (id)
     );
 
+    create table segment (
+        id int8 not null,
+        id_segment varchar(255),
+        label_segment varchar(255),
+        primary key (id)
+    );
+
     create table serrr_fieldset_est_union_europeenne (
         id int8 not null,
         commune_ou_localite_precedente varchar(32),
@@ -3261,6 +3326,13 @@
         id int8 not null,
         current_school_name_precision varchar(255),
         current_school_address_id int8,
+        primary key (id)
+    );
+
+    create table site (
+        id int8 not null,
+        id_site varchar(255),
+        label_site varchar(255),
         primary key (id)
     );
 
@@ -3508,6 +3580,21 @@
         profile varchar(16),
         primary key (id)
     );
+
+    alter table activity_registration_request 
+        add constraint FK22C1B0396A76893 
+        foreign key (produit_id) 
+        references arr_produit;
+
+    alter table activity_registration_request 
+        add constraint FK22C1B039E3618200 
+        foreign key (segment_id) 
+        references segment;
+
+    alter table activity_registration_request 
+        add constraint FK22C1B0397EDF6F81 
+        foreign key (site_id) 
+        references arr_site;
 
     alter table adult 
         add constraint FK58621BA71A211CC 
@@ -3808,6 +3895,16 @@
         add constraint FK3C0081121C9BA187 
         foreign key (dhr_spouse_id) 
         references dhr_spouse;
+
+    alter table ecole_de_musique_request 
+        add constraint FK3D695C2A83E06640 
+        foreign key (produit_id) 
+        references produit;
+
+    alter table ecole_de_musique_request 
+        add constraint FK3D695C2A8BEE18F4 
+        foreign key (site_id) 
+        references site;
 
     alter table electoral_roll_registration_request 
         add constraint FK45625529F0159453 

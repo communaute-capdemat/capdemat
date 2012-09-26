@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://www.cg95.fr/cvq/schema/arr"
+           xmlns:arr="http://www.cg95.fr/cvq/schema/arr"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:cvq="http://www.cg95.fr/cvq/schema/common"
+           elementFormDefault="qualified"
+           attributeFormDefault="unqualified">
+
+  <xs:import namespace="http://www.cg95.fr/cvq/schema/common"
+             schemaLocation="../common/CVQCommonElements.xsd" />
+
+  <xs:element name="ActivityRegistrationRequest">
+    <xs:annotation>
+      <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">Demande de pré-inscription à une activité</xs:documentation>
+      <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">Pré-inscription à une activité</xs:documentation>
+      <xs:appinfo>
+        <common>
+          <namespace name="leisure" />
+          <steps>
+            <step index="0" name="preinscription">
+              <widgets>
+                <subject />
+              </widgets>
+              <conditions>
+                <condition name="subscription" />
+              </conditions>
+            </step>
+            <step index="1" name="reglement" />
+            <step index="2" ref="document" />
+            <step index="3" ref="validation" />
+          </steps>
+        </common>
+        <model namespace="leisure" />
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cvq:RequestType">
+          <xs:sequence>
+
+            <xs:element name="Site" type="arr:ArrSiteType">
+              <xs:annotation>
+                <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">Lieu d'activité</xs:documentation>
+                <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">Lieu d'activité</xs:documentation>
+                <xs:appinfo>
+                  <common>
+                    <step ref="preinscription" />
+                  </common>
+                  <fo />
+                  <bo column="1" />
+                  <pdf />
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+
+            <xs:element name="Produit" type="arr:ArrProduitType">
+              <xs:annotation>
+                <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">Activité</xs:documentation>
+                <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">Activité</xs:documentation>
+                <xs:appinfo>
+                  <common>
+                    <step ref="preinscription" />
+                  </common>
+                  <fo />
+                  <bo column="1" />
+                  <pdf />
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+
+            <xs:element name="Segment" type="arr:SegmentType">
+              <xs:annotation>
+                <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">Créneau hebdomadaire</xs:documentation>
+                <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">Créneau hebdomadaire</xs:documentation>
+                <xs:appinfo>
+                  <common>
+                    <step name="preinscription" />
+                    <conditions>
+                      <condition name="subscription" type="filled" required="true" />
+                    </conditions>
+                  </common>
+                  <fo />
+                  <bo column="1" />
+                  <pdf />
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+
+            <xs:element name="Reglement" type="cvq:AcceptanceType" default="false">
+              <xs:annotation>
+                <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">J'ai pris connaissance du règlement et je l'accepte.</xs:documentation>
+                <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">J'ai pris connaissance du règlement et je l'accepte.</xs:documentation>
+                <xs:appinfo>
+                  <common>
+                    <step name="reglement" />
+                  </common>
+                  <fo>
+                    <checkbox />
+                  </fo>
+                  <bo column="1" />
+                  <pdf />
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+
+          </xs:sequence>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:complexType name="ArrSiteType">
+    <xs:sequence>
+      <xs:element name="IdSite" type="xs:string">
+        <xs:annotation>
+          <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">Identifiant</xs:documentation>
+          <xs:appinfo>
+            <common>
+              <step name="preinscription" />
+            </common>
+            <fo />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="LabelSite" type="xs:string">
+        <xs:annotation>
+          <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">Libellé</xs:documentation>
+          <xs:appinfo>
+            <common>
+              <step name="preinscription" />
+            </common>
+            <fo />
+            <bo column="1" />
+            <pdf />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ArrProduitType">
+    <xs:sequence>
+      <xs:element name="IdProduit" type="xs:string">
+        <xs:annotation>
+          <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">Identifiant</xs:documentation>
+          <xs:appinfo>
+            <common>
+              <step name="preinscription" />
+            </common>
+            <fo />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="LabelProduit" type="xs:string">
+        <xs:annotation>
+          <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">Libellé</xs:documentation>
+          <xs:appinfo>
+            <common>
+              <step name="preinscription" />
+            </common>
+            <fo />
+            <bo column="1" />
+            <pdf />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TypeProduit" type="xs:string">
+        <xs:annotation>
+          <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">Numéro du type d'activité</xs:documentation>
+          <xs:appinfo>
+            <common>
+              <step name="preinscription" />
+              <conditions>
+                <condition name="subscription" type="trigger" />
+              </conditions>
+            </common>
+            <fo />
+            <bo column="1" /><!-- Must be present as it triggers a condition. -->
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="SegmentType">
+    <xs:sequence>
+      <xs:element name="IdSegment" type="xs:string">
+        <xs:annotation>
+          <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">Identifiant</xs:documentation>
+          <xs:appinfo>
+            <common>
+              <step name="preinscription" />
+            </common>
+            <fo />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="LabelSegment" type="xs:string">
+        <xs:annotation>
+          <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">Libellé</xs:documentation>
+          <xs:appinfo>
+            <common>
+              <step name="preinscription" />
+            </common>
+            <fo />
+            <bo column="1" />
+            <pdf />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>

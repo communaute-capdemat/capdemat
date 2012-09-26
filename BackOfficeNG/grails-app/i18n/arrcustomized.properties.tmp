@@ -1,0 +1,49 @@
+arr.duration.value =
+
+arr.property.subject.label = Sujet
+
+arr.step.preinscription.label =
+arr.step.preinscription.desc =
+
+arr.step.reglement.label =
+arr.step.reglement.desc =
+
+
+arr.property.site.help =
+arr.property.site.validationError =
+
+
+arr.property.labelSite.help =
+arr.property.labelSite.validationError =
+
+
+arr.property.produit.help =
+arr.property.produit.validationError =
+
+
+arr.property.labelProduit.help =
+arr.property.labelProduit.validationError =
+
+
+arr.property.typeProduit.help =
+arr.property.typeProduit.validationError =
+
+
+arr.property.segment.help =
+arr.property.segment.validationError =
+
+
+arr.property.labelSegment.help =
+arr.property.labelSegment.validationError =
+
+
+arr.property.reglement.help =
+arr.property.reglement.validationError =
+
+
+
+arr.step.homeFolder.label = Compte famille
+arr.step.homeFolder.desc = Composition de votre compte famille
+
+arr.incitationText.desc = <span style="font-weight: bold;">Avant de continuer votre demande, merci de :</span><br /> - vérifier l''exactitude des informations de votre compte et des membres qui le compose<br /> - compléter votre compte en ajoutant tous les membres de votre famille (responsables légaux et enfants).<br /><br /><a href="{0}">Je souhaite accéder à mon compte pour le mettre à jour.</a><br /><span style="font-style: italic; font-size: 0.9em;">(Vous pourrez reprendre votre demande après avoir mis à jour votre compte.)
+arr.incitationText.desc2 = <a href="{0}">Je souhaite accéder à mon compte pour le mettre à jour.</a><br /><span style="font-style: italic; font-size: 0.9em;">(Vous pourrez reprendre votre demande après avoir mis à jour votre compte.)</span>

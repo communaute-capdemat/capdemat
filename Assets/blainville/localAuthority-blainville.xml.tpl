@@ -141,6 +141,10 @@
                 <value>Recreation Activity Registration</value>
                 <value>School Transport Registration</value>
                 <value>Global School Registration</value>
+                <value>Leisure Center Registration</value>
+                <value>Holiday Camp Registration</value>
+                <value>Ecole De Musique</value>
+                <value>Activity Registration</value>
               </list>
             </property>
             <property name="serviceProperties">

@@ -496,31 +496,6 @@ public class FakeExternalService extends ExternalProviderServiceAdapter implemen
     }
 
     @Override
-    public List<Map<String, String>> getProducts(Individual individual, String siteId) {
-        List<Map<String, String>> list = new ArrayList<Map<String, String>>();
-        if (siteId.equals("ID0")) {
-            Map<String, String> map = new HashMap<String, String>();
-            map.put("id", "ID0");
-            map.put("label", "Aquagym");
-            map.put("type", "1");
-            list.add(map);
-            map = new HashMap<String, String>();
-            map.put("id", "ID1");
-            map.put("label", "Aquabiking");
-            map.put("type", "0");
-            list.add(map);
-            if (individual instanceof Adult) {
-                map = new HashMap<String, String>();
-                map.put("id", "ID2");
-                map.put("label", "Natation synchronisée");
-                map.put("type", "0");
-                list.add(map);
-            }
-        }
-        return list;
-    }
-
-    @Override
     public String getRedirectUrl (Request request) {
         return "http://FakeRedirect";
     }
@@ -575,4 +550,31 @@ public class FakeExternalService extends ExternalProviderServiceAdapter implemen
         }
         return list;
     }
+
+    @Override
+    public List<Map<String, String>> getProducts(Individual individual,
+                                                 String siteId) {
+        List<Map<String, String>> list = new ArrayList<Map<String, String>>();
+        if (siteId.equals("ID0")) {
+            Map<String, String> map = new HashMap<String, String>();
+            map.put("id", "ID0");
+            map.put("label", "Aquagym");
+            map.put("type", "1");
+            list.add(map);
+            map = new HashMap<String, String>();
+            map.put("id", "ID1");
+            map.put("label", "Aquabiking");
+            map.put("type", "0");
+            list.add(map);
+            if (individual instanceof Adult) {
+                map = new HashMap<String, String>();
+                map.put("id", "ID2");
+                map.put("label", "Natation synchronisée");
+                map.put("type", "0");
+                list.add(map);
+            }
+        }
+        return list;
+    }
+
 }
