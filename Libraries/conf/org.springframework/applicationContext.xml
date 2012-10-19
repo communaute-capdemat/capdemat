@@ -429,6 +429,11 @@ http://www.springframework.org/schema/task http://www.springframework.org/schema
     <property name="documentTypeDAO" ref="documentTypeDAO" />
   </bean>
 
+  <bean id="externalUserService" class="fr.cg95.cvq.service.users.external.impl.ExternalUserService">
+    <property name="externalHomeFolderService" ref="externalHomeFolderService" />
+    <property name="individualDAO" ref="individualDAO" />
+  </bean>
+
   <!-- ********************** INSTANCE REQUESTS SERVICES ***********************  -->
 
   <bean id="schoolRegistrationRequestService" 

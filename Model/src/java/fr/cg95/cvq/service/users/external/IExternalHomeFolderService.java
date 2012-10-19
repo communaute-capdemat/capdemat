@@ -37,6 +37,13 @@ public interface IExternalHomeFolderService {
     void addHomeFolderMapping(final String externalServiceLabel,
         @IsUser final Long homeFolderId, final String externalId);
 
+    /**
+     * Add new mapping for user on specific External Service (mapped on HomeFolder)
+     * @param externalServiceLabel
+     * @param individual
+     */
+    public void addIndividualFolderMapping(String externalServiceLabel, Individual individual);
+
     void deleteHomeFolderMapping(final String externalServiceLabel, ExternalHomeFolder eh);
 
     /**

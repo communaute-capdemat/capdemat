@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.Map.Entry;
 
 import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
@@ -307,5 +308,59 @@ public class IndividualDAO extends JpaTemplate<Individual,Long> implements IIndi
             .setString("invalid", UserState.INVALID.name())
             .setTimestamp("limitDate", date)
             .list();
+    }
+
+    @Override
+    public Individual findByCapdematId(final String capdematId, final String externalServiceLabel) {
+        String hql =
+                "SELECT indiv FROM Individual indiv" +
+                " JOIN FETCH indiv.individualMappings mappings" +
+                " INNER JOIN mappings.homeFolderMapping hfm" +
+                " WHERE hfm.externalServiceLabel = :externalServiceLabel" +
+                "   AND mappings.externalCapDematId = :capdematId";
+
+        return (Individual)JpaUtil.getEntityManager().createQuery(hql)
+                .setParameter("externalServiceLabel", externalServiceLabel)
+                .setParameter("capdematId", capdematId)
+                .getSingleResult();
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<Individual> listIndividualWithoutMapping(final String externalServiceLabel) {
+        String selectAllUsersWithoutCamdematIdSql =
+                "SELECT indiv" +
+                " FROM Individual indiv" +
+                " WHERE indiv.id NOT IN (" +
+                "     SELECT im.individualId " +
+                "     FROM IndividualMapping im " +
+                "     INNER JOIN im.homeFolderMapping hfm" +
+                "     WHERE hfm.externalServiceLabel = :externalServiceLabel)";
+
+        return (List<Individual>)JpaUtil.getEntityManager()
+                .createQuery(selectAllUsersWithoutCamdematIdSql)
+                .setParameter("externalServiceLabel", externalServiceLabel)
+                .getResultList();
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<Individual> listByIdsWithMapping(String sqlCondition, Map<String, Object> params, String externalServiceLabel) {
+        String hql =
+                "SELECT indiv FROM Individual indiv" +
+                " JOIN FETCH indiv.individualMappings im" +
+                " INNER JOIN im.homeFolderMapping hfm" +
+                " WHERE hfm.externalServiceLabel = :externalServiceLabel " +
+                "   AND indiv.id IN (SELECT id FROM Individual WHERE " + sqlCondition + ")";
+
+        javax.persistence.Query query = JpaUtil.getEntityManager().createQuery(hql);
+        query.setParameter("externalServiceLabel", externalServiceLabel);
+        if (params != null) {
+            for (Entry<String, Object> param : params.entrySet()) {
+                query.setParameter(param.getKey(), param.getValue());
+            }
+        }
+
+        return (List<Individual>) query.getResultList();
     }
 }

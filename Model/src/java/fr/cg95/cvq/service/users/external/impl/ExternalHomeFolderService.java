@@ -9,6 +9,7 @@ import fr.cg95.cvq.business.users.Individual;
 import fr.cg95.cvq.business.users.external.HomeFolderMapping;
 import fr.cg95.cvq.business.users.external.IndividualMapping;
 import fr.cg95.cvq.dao.jpa.IGenericDAO;
+import fr.cg95.cvq.dao.jpa.JpaUtil;
 import fr.cg95.cvq.dao.hibernate.HibernateUtil;
 import fr.cg95.cvq.security.annotation.Context;
 import fr.cg95.cvq.security.annotation.ContextPrivilege;
@@ -134,6 +135,23 @@ public class ExternalHomeFolderService implements IExternalHomeFolderService {
             esim.setExternalId(externalId);
             modifyHomeFolderMapping(esim);
         }
+    }
+        @Override
+    @Context(types = { ContextType.EXTERNAL_SERVICE }, privilege = ContextPrivilege.WRITE)
+    public void addIndividualFolderMapping(String externalServiceLabel, Individual individual) {
+        Long homeFolderId = individual.getHomeFolder().getId();
+
+        // Create or retreive home folder for this external service
+        HomeFolderMapping hfm = getHomeFolderMapping(externalServiceLabel, homeFolderId);
+        if (hfm == null) {
+            addHomeFolderMapping(externalServiceLabel, homeFolderId, null);
+            hfm = getHomeFolderMapping(externalServiceLabel, homeFolderId);
+        }
+
+        // Add individual mapping
+        IndividualMapping im = new IndividualMapping(individual.getId(), null, hfm);
+        genericDAO.create(im);
+        JpaUtil.getEntityManager().flush();
     }
 
     @Override

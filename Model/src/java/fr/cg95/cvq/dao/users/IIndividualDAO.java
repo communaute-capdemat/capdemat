@@ -25,6 +25,14 @@ public interface IIndividualDAO extends IJpaTemplate<Individual,Long>{
     Individual findByFederationKey(final String federationKey);
 
     /**
+     * Look up an Individual by its capdemat ID for a specific external service
+     * @param capdematId
+     * @param externalServiceLabel
+     * @return
+     */
+    Individual findByCapdematId(final String capdematId, final String externalServiceLabel);
+
+    /**
      * Return the list of {@link Individual individuals} belonging to the given home folder.
      */
     List<Individual> listByHomeFolder(final Long homeFolderId);
@@ -47,12 +55,30 @@ public interface IIndividualDAO extends IJpaTemplate<Individual,Long>{
     /**
      * Return the list of {@link Individual individuals} who have the given roles 
      * on the given subject.
-     * 
+     *
      * @param onlyExternals whether returned inviduals are restricted to individuals not belonging
      *        to the home folder.
      */
     List<Individual> listBySubjectRoles(final Long subjectId, final RoleType[] roles, 
             boolean onlyExternals);
+
+    /**
+     * Return the list of {@link Individual individuals} which havn't an external mapping
+     * for this external service
+     *
+     * @param externalServiceLabel
+     */
+    List<Individual> listIndividualWithoutMapping(final String externalServiceLabel);
+
+    /**
+     * Return the list of {@link Individual individuals} with their mapping informations for this
+     * provider.
+     * Users are filtered by a custom sql condition.
+     * @param sqlCondition
+     * @param params
+     * @param externalServiceLabel
+     */
+    List<Individual> listByIdsWithMapping(String sqlCondition, Map<String, Object> params, String externalServiceLabel); 
     
     /**
      * Return the list of individual logins that start with the given

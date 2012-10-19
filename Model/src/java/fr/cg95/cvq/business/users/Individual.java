@@ -38,6 +38,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.text.WordUtils;
 
 import fr.cg95.cvq.business.QoS;
+import fr.cg95.cvq.business.users.external.IndividualMapping;
 import fr.cg95.cvq.xml.common.BirthPlaceType;
 import fr.cg95.cvq.xml.common.IndividualRoleType;
 import fr.cg95.cvq.xml.common.IndividualType;
@@ -163,6 +164,9 @@ public abstract class Individual implements Serializable {
     @Column(name="duplicate_data", columnDefinition="TEXT")
     private String duplicateData;
 
+    @OneToMany(mappedBy="individualId", targetEntity=IndividualMapping.class)
+    private Set<IndividualMapping> individualMappings;
+
     public Individual() {
         individualRoles = new HashSet<IndividualRole>();
     }
@@ -171,10 +175,12 @@ public abstract class Individual implements Serializable {
 
         Calendar calendar = Calendar.getInstance();
 
-        if (this.id != null)
-            individualType.setId(this.id.longValue());
         individualType.setLastName(this.lastName);
         individualType.setFirstName(this.firstName);
+
+        if (this.id != null)
+            individualType.setId(this.id.longValue());
+
         if (this.firstName2 != null)
             individualType.setFirstName2(this.firstName2);
         if (this.firstName3 != null)
@@ -207,10 +213,7 @@ public abstract class Individual implements Serializable {
 
     protected void fillCommonModelInfo(IndividualType individualType) {
 
-        if (individualType.getId() == 0)
-            setId(null);
-        else
-            setId(new Long(individualType.getId()));
+        setId(individualType.getId() == 0 ? null : individualType.getId());
         setLastName(individualType.getLastName());
         setFirstName(individualType.getFirstName());
         setFirstName2(individualType.getFirstName2());
@@ -485,5 +488,13 @@ public abstract class Individual implements Serializable {
 
     public void setDuplicateData(String duplicateData) {
         this.duplicateData = duplicateData;
+    }
+
+    public Set<IndividualMapping> getIndividualMappings() {
+        return individualMappings;
+    }
+
+    public void setIndividualMappings(Set<IndividualMapping> individualMappings) {
+        this.individualMappings = individualMappings;
     }
 }

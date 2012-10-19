@@ -12,5 +12,7 @@ class ServiceUrlMappings {
     "/service/requestType/$requestTypeLabel/localReferential" (controller : "serviceRequestExternal"){action = [POST : "localReferential"]}
     "/service/request/$requestId/state" (controller : "serviceRequestExternal"){action = [POST : "requestState"]}
     "/service/requestType/$requestTypeLabel/season" (controller : "serviceRequestExternal"){action = [GET : "requestTypeSeason"]}
+    "/service/users/$externalId?" (controller : "serviceExternalUser"){action = [GET : "findUser"]}
+    "/service/users/$action?" (controller : "serviceExternalUser")
   }
 }
