@@ -37,7 +37,7 @@
             <ul class="yes-no required ${rqt.stepStates['situation'].invalidFields.contains('familySituationInformation.statePupil') ? 'validation-failed' : ''}">
               <g:each in="${[true,false]}">
               <li>
-                <input type="radio" id="familySituationInformation.statePupil_${it ? 'yes' : 'no'}" class="required  validate-one-required boolean" title="" value="${it}" name="familySituationInformation.statePupil" ${it == rqt.familySituationInformation?.statePupil ? 'checked="checked"': ''} />
+                <input type="radio" id="familySituationInformation.statePupil_${it ? 'yes' : 'no'}" class="required  validate-one-required boolean" title="" value="${it}" name="familySituationInformation.statePupil" ${ rqt.familySituationInformation ?  (it == rqt.familySituationInformation?.statePupil ? 'checked="checked"': '') : (it == false ? 'checked="checked"': '') } />
                 <label for="familySituationInformation.statePupil_${it ? 'yes' : 'no'}"><g:message code="message.${it ? 'yes' : 'no'}" /></label>
               </li>
               </g:each>
@@ -49,7 +49,7 @@
             <ul class="yes-no required ${rqt.stepStates['situation'].invalidFields.contains('familySituationInformation.prefectPupil') ? 'validation-failed' : ''}">
               <g:each in="${[true,false]}">
               <li>
-                <input type="radio" id="familySituationInformation.prefectPupil_${it ? 'yes' : 'no'}" class="required condition-isPrefectPupil-trigger  validate-one-required boolean" title="" value="${it}" name="familySituationInformation.prefectPupil" ${it == rqt.familySituationInformation?.prefectPupil ? 'checked="checked"': ''} />
+                <input type="radio" id="familySituationInformation.prefectPupil_${it ? 'yes' : 'no'}" class="required condition-isPrefectPupil-trigger  validate-one-required boolean" title="" value="${it}" name="familySituationInformation.prefectPupil" ${ rqt.familySituationInformation ?  (it == rqt.familySituationInformation?.prefectPupil ? 'checked="checked"': '') : (it == false ? 'checked="checked"': '') } />
                 <label for="familySituationInformation.prefectPupil_${it ? 'yes' : 'no'}"><g:message code="message.${it ? 'yes' : 'no'}" /></label>
               </li>
               </g:each>

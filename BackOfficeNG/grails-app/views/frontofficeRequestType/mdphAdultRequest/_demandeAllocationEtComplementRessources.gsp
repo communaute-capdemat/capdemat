@@ -9,7 +9,7 @@
             <ul class="yes-no required ${rqt.stepStates['demandeAllocationEtComplementRessources'].invalidFields.contains('choixTypeDemandeAllocEtCompl.aah') ? 'validation-failed' : ''}">
               <g:each in="${[true,false]}">
               <li>
-                <input type="radio" id="choixTypeDemandeAllocEtCompl.aah_${it ? 'yes' : 'no'}" class="required  validate-one-required boolean" title="" value="${it}" name="choixTypeDemandeAllocEtCompl.aah" ${it == rqt.choixTypeDemandeAllocEtCompl?.aah ? 'checked="checked"': ''} />
+                <input type="radio" id="choixTypeDemandeAllocEtCompl.aah_${it ? 'yes' : 'no'}" class="required  validate-one-required boolean" title="" value="${it}" name="choixTypeDemandeAllocEtCompl.aah" ${ rqt.choixTypeDemandeAllocEtCompl ?  (it == rqt.choixTypeDemandeAllocEtCompl?.aah ? 'checked="checked"': '') : (it == false ? 'checked="checked"': '') } />
                 <label for="choixTypeDemandeAllocEtCompl.aah_${it ? 'yes' : 'no'}"><g:message code="message.${it ? 'yes' : 'no'}" /></label>
               </li>
               </g:each>
@@ -21,7 +21,7 @@
             <ul class="yes-no required ${rqt.stepStates['demandeAllocationEtComplementRessources'].invalidFields.contains('choixTypeDemandeAllocEtCompl.complementRessources') ? 'validation-failed' : ''}">
               <g:each in="${[true,false]}">
               <li>
-                <input type="radio" id="choixTypeDemandeAllocEtCompl.complementRessources_${it ? 'yes' : 'no'}" class="required  validate-one-required boolean" title="" value="${it}" name="choixTypeDemandeAllocEtCompl.complementRessources" ${it == rqt.choixTypeDemandeAllocEtCompl?.complementRessources ? 'checked="checked"': ''} />
+                <input type="radio" id="choixTypeDemandeAllocEtCompl.complementRessources_${it ? 'yes' : 'no'}" class="required  validate-one-required boolean" title="" value="${it}" name="choixTypeDemandeAllocEtCompl.complementRessources" ${ rqt.choixTypeDemandeAllocEtCompl ?  (it == rqt.choixTypeDemandeAllocEtCompl?.complementRessources ? 'checked="checked"': '') : (it == false ? 'checked="checked"': '') } />
                 <label for="choixTypeDemandeAllocEtCompl.complementRessources_${it ? 'yes' : 'no'}"><g:message code="message.${it ? 'yes' : 'no'}" /></label>
               </li>
               </g:each>

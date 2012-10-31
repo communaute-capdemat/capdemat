@@ -157,7 +157,7 @@
             <ul class="yes-no required condition-isSpouseNonEuropean-filled ${rqt.stepStates['spouse'].invalidFields.contains('dhrSpouse.dhrSpouseIsFrenchResident') ? 'validation-failed' : ''}">
               <g:each in="${[true,false]}">
               <li>
-                <input type="radio" id="dhrSpouse.dhrSpouseIsFrenchResident_${it ? 'yes' : 'no'}" class="required condition-isSpouseNonEuropean-filled  validate-one-required boolean" title="" value="${it}" name="dhrSpouse.dhrSpouseIsFrenchResident" ${it == rqt.dhrSpouse?.dhrSpouseIsFrenchResident ? 'checked="checked"': ''} />
+                <input type="radio" id="dhrSpouse.dhrSpouseIsFrenchResident_${it ? 'yes' : 'no'}" class="required condition-isSpouseNonEuropean-filled  validate-one-required boolean" title="" value="${it}" name="dhrSpouse.dhrSpouseIsFrenchResident" ${ rqt.dhrSpouse ?  (it == rqt.dhrSpouse?.dhrSpouseIsFrenchResident ? 'checked="checked"': '') : (it == false ? 'checked="checked"': '') } />
                 <label for="dhrSpouse.dhrSpouseIsFrenchResident_${it ? 'yes' : 'no'}"><g:message code="message.${it ? 'yes' : 'no'}" /></label>
               </li>
               </g:each>
@@ -176,7 +176,7 @@
             <ul class="yes-no required ${rqt.stepStates['spouse'].invalidFields.contains('dhrSpouseStatus.dhrIsSpouseRetired') ? 'validation-failed' : ''}">
               <g:each in="${[true,false]}">
               <li>
-                <input type="radio" id="dhrSpouseStatus.dhrIsSpouseRetired_${it ? 'yes' : 'no'}" class="required condition-isSpouseRetired-trigger  validate-one-required boolean" title="" value="${it}" name="dhrSpouseStatus.dhrIsSpouseRetired" ${it == rqt.dhrSpouseStatus?.dhrIsSpouseRetired ? 'checked="checked"': ''} />
+                <input type="radio" id="dhrSpouseStatus.dhrIsSpouseRetired_${it ? 'yes' : 'no'}" class="required condition-isSpouseRetired-trigger  validate-one-required boolean" title="" value="${it}" name="dhrSpouseStatus.dhrIsSpouseRetired" ${ rqt.dhrSpouseStatus ?  (it == rqt.dhrSpouseStatus?.dhrIsSpouseRetired ? 'checked="checked"': '') : (it == false ? 'checked="checked"': '') } />
                 <label for="dhrSpouseStatus.dhrIsSpouseRetired_${it ? 'yes' : 'no'}"><g:message code="message.${it ? 'yes' : 'no'}" /></label>
               </li>
               </g:each>

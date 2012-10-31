@@ -9,7 +9,7 @@
             <ul class="yes-no required ${rqt.stepStates['familyReferent'].invalidFields.contains('dhrFamilyReferent.dhrHaveFamilyReferent') ? 'validation-failed' : ''}">
               <g:each in="${[true,false]}">
               <li>
-                <input type="radio" id="dhrFamilyReferent.dhrHaveFamilyReferent_${it ? 'yes' : 'no'}" class="required condition-haveFamilyReferent-trigger  validate-one-required boolean" title="" value="${it}" name="dhrFamilyReferent.dhrHaveFamilyReferent" ${it == rqt.dhrFamilyReferent?.dhrHaveFamilyReferent ? 'checked="checked"': ''} />
+                <input type="radio" id="dhrFamilyReferent.dhrHaveFamilyReferent_${it ? 'yes' : 'no'}" class="required condition-haveFamilyReferent-trigger  validate-one-required boolean" title="" value="${it}" name="dhrFamilyReferent.dhrHaveFamilyReferent" ${ rqt.dhrFamilyReferent ?  (it == rqt.dhrFamilyReferent?.dhrHaveFamilyReferent ? 'checked="checked"': '') : (it == false ? 'checked="checked"': '') } />
                 <label for="dhrFamilyReferent.dhrHaveFamilyReferent_${it ? 'yes' : 'no'}"><g:message code="message.${it ? 'yes' : 'no'}" /></label>
               </li>
               </g:each>

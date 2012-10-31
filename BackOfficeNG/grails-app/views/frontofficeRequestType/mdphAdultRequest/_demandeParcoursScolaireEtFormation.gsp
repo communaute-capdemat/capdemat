@@ -13,7 +13,7 @@
             <ul class="yes-no  ${rqt.stepStates['demandeParcoursScolaireEtFormation'].invalidFields.contains('preferencesEtablissementOuService') ? 'validation-failed' : ''}">
               <g:each in="${[true,false]}">
               <li>
-                <input type="radio" id="preferencesEtablissementOuService_${it ? 'yes' : 'no'}" class="condition-preferencesEtablissementOuService-trigger  validate-one-required boolean" title="" value="${it}" name="preferencesEtablissementOuService" ${it == rqt.preferencesEtablissementOuService ? 'checked="checked"': ''} />
+                <input type="radio" id="preferencesEtablissementOuService_${it ? 'yes' : 'no'}" class="condition-preferencesEtablissementOuService-trigger  validate-one-required boolean" title="" value="${it}" name="preferencesEtablissementOuService" ${ rq ?  (it == rqt.preferencesEtablissementOuService ? 'checked="checked"': '') : (it == false ? 'checked="checked"': '') } />
                 <label for="preferencesEtablissementOuService_${it ? 'yes' : 'no'}"><g:message code="message.${it ? 'yes' : 'no'}" /></label>
               </li>
               </g:each>

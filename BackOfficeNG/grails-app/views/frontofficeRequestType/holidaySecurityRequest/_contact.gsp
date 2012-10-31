@@ -6,7 +6,7 @@
             <ul class="yes-no required ${rqt.stepStates['contact'].invalidFields.contains('otherContact') ? 'validation-failed' : ''}">
               <g:each in="${[true,false]}">
               <li>
-                <input type="radio" id="otherContact_${it ? 'yes' : 'no'}" class="required condition-isOtherContact-trigger  validate-one-required boolean" title="" value="${it}" name="otherContact" ${it == rqt.otherContact ? 'checked="checked"': ''} />
+                <input type="radio" id="otherContact_${it ? 'yes' : 'no'}" class="required condition-isOtherContact-trigger  validate-one-required boolean" title="" value="${it}" name="otherContact" ${ rq ?  (it == rqt.otherContact ? 'checked="checked"': '') : (it == false ? 'checked="checked"': '') } />
                 <label for="otherContact_${it ? 'yes' : 'no'}"><g:message code="message.${it ? 'yes' : 'no'}" /></label>
               </li>
               </g:each>

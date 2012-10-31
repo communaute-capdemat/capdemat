@@ -78,7 +78,7 @@
             <ul class="yes-no required ${rqt.stepStates['subject'].invalidFields.contains('subjectInformations.subjectFirstRequest') ? 'validation-failed' : ''}">
               <g:each in="${[true,false]}">
               <li>
-                <input type="radio" id="subjectInformations.subjectFirstRequest_${it ? 'yes' : 'no'}" class="required  validate-one-required boolean" title="" value="${it}" name="subjectInformations.subjectFirstRequest" ${it == rqt.subjectInformations?.subjectFirstRequest ? 'checked="checked"': ''} />
+                <input type="radio" id="subjectInformations.subjectFirstRequest_${it ? 'yes' : 'no'}" class="required  validate-one-required boolean" title="" value="${it}" name="subjectInformations.subjectFirstRequest" ${ rqt.subjectInformations ?  (it == rqt.subjectInformations?.subjectFirstRequest ? 'checked="checked"': '') : (it == true ? 'checked="checked"': '') } />
                 <label for="subjectInformations.subjectFirstRequest_${it ? 'yes' : 'no'}"><g:message code="message.${it ? 'yes' : 'no'}" /></label>
               </li>
               </g:each>

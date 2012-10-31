@@ -234,7 +234,7 @@
             <ul class="yes-no required ${rqt.stepStates['situationProfessionnelle'].invalidFields.contains('situationProfessionnelleVousStagiaire.stageRenumeration') ? 'validation-failed' : ''}">
               <g:each in="${[true,false]}">
               <li>
-                <input type="radio" id="situationProfessionnelleVousStagiaire.stageRenumeration_${it ? 'yes' : 'no'}" class="required  validate-one-required boolean" title="" value="${it}" name="situationProfessionnelleVousStagiaire.stageRenumeration" ${it == rqt.situationProfessionnelleVousStagiaire?.stageRenumeration ? 'checked="checked"': ''} />
+                <input type="radio" id="situationProfessionnelleVousStagiaire.stageRenumeration_${it ? 'yes' : 'no'}" class="required  validate-one-required boolean" title="" value="${it}" name="situationProfessionnelleVousStagiaire.stageRenumeration" ${ rqt.situationProfessionnelleVousStagiaire ?  (it == rqt.situationProfessionnelleVousStagiaire?.stageRenumeration ? 'checked="checked"': '') : (it == null ? 'checked="checked"': '') } />
                 <label for="situationProfessionnelleVousStagiaire.stageRenumeration_${it ? 'yes' : 'no'}"><g:message code="message.${it ? 'yes' : 'no'}" /></label>
               </li>
               </g:each>
@@ -423,7 +423,7 @@
             <ul class="yes-no required ${rqt.stepStates['situationProfessionnelle'].invalidFields.contains('situationProfessionnelleVousDemandeurEmploi.allocationSolidariteSpecifique') ? 'validation-failed' : ''}">
               <g:each in="${[true,false]}">
               <li>
-                <input type="radio" id="situationProfessionnelleVousDemandeurEmploi.allocationSolidariteSpecifique_${it ? 'yes' : 'no'}" class="required  validate-one-required boolean" title="" value="${it}" name="situationProfessionnelleVousDemandeurEmploi.allocationSolidariteSpecifique" ${it == rqt.situationProfessionnelleVousDemandeurEmploi?.allocationSolidariteSpecifique ? 'checked="checked"': ''} />
+                <input type="radio" id="situationProfessionnelleVousDemandeurEmploi.allocationSolidariteSpecifique_${it ? 'yes' : 'no'}" class="required  validate-one-required boolean" title="" value="${it}" name="situationProfessionnelleVousDemandeurEmploi.allocationSolidariteSpecifique" ${ rqt.situationProfessionnelleVousDemandeurEmploi ?  (it == rqt.situationProfessionnelleVousDemandeurEmploi?.allocationSolidariteSpecifique ? 'checked="checked"': '') : (it == null ? 'checked="checked"': '') } />
                 <label for="situationProfessionnelleVousDemandeurEmploi.allocationSolidariteSpecifique_${it ? 'yes' : 'no'}"><g:message code="message.${it ? 'yes' : 'no'}" /></label>
               </li>
               </g:each>
@@ -482,7 +482,7 @@
             <ul class="yes-no required ${rqt.stepStates['situationProfessionnelle'].invalidFields.contains('situationProfessionnelleVousRetraite.supplementairePersonneAgee') ? 'validation-failed' : ''}">
               <g:each in="${[true,false]}">
               <li>
-                <input type="radio" id="situationProfessionnelleVousRetraite.supplementairePersonneAgee_${it ? 'yes' : 'no'}" class="required  validate-one-required boolean" title="" value="${it}" name="situationProfessionnelleVousRetraite.supplementairePersonneAgee" ${it == rqt.situationProfessionnelleVousRetraite?.supplementairePersonneAgee ? 'checked="checked"': ''} />
+                <input type="radio" id="situationProfessionnelleVousRetraite.supplementairePersonneAgee_${it ? 'yes' : 'no'}" class="required  validate-one-required boolean" title="" value="${it}" name="situationProfessionnelleVousRetraite.supplementairePersonneAgee" ${ rqt.situationProfessionnelleVousRetraite ?  (it == rqt.situationProfessionnelleVousRetraite?.supplementairePersonneAgee ? 'checked="checked"': '') : (it == null ? 'checked="checked"': '') } />
                 <label for="situationProfessionnelleVousRetraite.supplementairePersonneAgee_${it ? 'yes' : 'no'}"><g:message code="message.${it ? 'yes' : 'no'}" /></label>
               </li>
               </g:each>
@@ -494,7 +494,7 @@
             <ul class="yes-no required ${rqt.stepStates['situationProfessionnelle'].invalidFields.contains('situationProfessionnelleVousRetraite.pensionRetraite') ? 'validation-failed' : ''}">
               <g:each in="${[true,false]}">
               <li>
-                <input type="radio" id="situationProfessionnelleVousRetraite.pensionRetraite_${it ? 'yes' : 'no'}" class="required  validate-one-required boolean" title="" value="${it}" name="situationProfessionnelleVousRetraite.pensionRetraite" ${it == rqt.situationProfessionnelleVousRetraite?.pensionRetraite ? 'checked="checked"': ''} />
+                <input type="radio" id="situationProfessionnelleVousRetraite.pensionRetraite_${it ? 'yes' : 'no'}" class="required  validate-one-required boolean" title="" value="${it}" name="situationProfessionnelleVousRetraite.pensionRetraite" ${ rqt.situationProfessionnelleVousRetraite ?  (it == rqt.situationProfessionnelleVousRetraite?.pensionRetraite ? 'checked="checked"': '') : (it == null ? 'checked="checked"': '') } />
                 <label for="situationProfessionnelleVousRetraite.pensionRetraite_${it ? 'yes' : 'no'}"><g:message code="message.${it ? 'yes' : 'no'}" /></label>
               </li>
               </g:each>
@@ -563,7 +563,7 @@
             <ul class="yes-no required ${rqt.stepStates['situationProfessionnelle'].invalidFields.contains('situationProfessionnelleVousBeneficiairePension.renteAccidentTravail') ? 'validation-failed' : ''}">
               <g:each in="${[true,false]}">
               <li>
-                <input type="radio" id="situationProfessionnelleVousBeneficiairePension.renteAccidentTravail_${it ? 'yes' : 'no'}" class="required  validate-one-required boolean" title="" value="${it}" name="situationProfessionnelleVousBeneficiairePension.renteAccidentTravail" ${it == rqt.situationProfessionnelleVousBeneficiairePension?.renteAccidentTravail ? 'checked="checked"': ''} />
+                <input type="radio" id="situationProfessionnelleVousBeneficiairePension.renteAccidentTravail_${it ? 'yes' : 'no'}" class="required  validate-one-required boolean" title="" value="${it}" name="situationProfessionnelleVousBeneficiairePension.renteAccidentTravail" ${ rqt.situationProfessionnelleVousBeneficiairePension ?  (it == rqt.situationProfessionnelleVousBeneficiairePension?.renteAccidentTravail ? 'checked="checked"': '') : (it == null ? 'checked="checked"': '') } />
                 <label for="situationProfessionnelleVousBeneficiairePension.renteAccidentTravail_${it ? 'yes' : 'no'}"><g:message code="message.${it ? 'yes' : 'no'}" /></label>
               </li>
               </g:each>
@@ -575,7 +575,7 @@
             <ul class="yes-no required ${rqt.stepStates['situationProfessionnelle'].invalidFields.contains('situationProfessionnelleVousBeneficiairePension.allocationSupplementaireInvalidite') ? 'validation-failed' : ''}">
               <g:each in="${[true,false]}">
               <li>
-                <input type="radio" id="situationProfessionnelleVousBeneficiairePension.allocationSupplementaireInvalidite_${it ? 'yes' : 'no'}" class="required  validate-one-required boolean" title="" value="${it}" name="situationProfessionnelleVousBeneficiairePension.allocationSupplementaireInvalidite" ${it == rqt.situationProfessionnelleVousBeneficiairePension?.allocationSupplementaireInvalidite ? 'checked="checked"': ''} />
+                <input type="radio" id="situationProfessionnelleVousBeneficiairePension.allocationSupplementaireInvalidite_${it ? 'yes' : 'no'}" class="required  validate-one-required boolean" title="" value="${it}" name="situationProfessionnelleVousBeneficiairePension.allocationSupplementaireInvalidite" ${ rqt.situationProfessionnelleVousBeneficiairePension ?  (it == rqt.situationProfessionnelleVousBeneficiairePension?.allocationSupplementaireInvalidite ? 'checked="checked"': '') : (it == null ? 'checked="checked"': '') } />
                 <label for="situationProfessionnelleVousBeneficiairePension.allocationSupplementaireInvalidite_${it ? 'yes' : 'no'}"><g:message code="message.${it ? 'yes' : 'no'}" /></label>
               </li>
               </g:each>
@@ -872,7 +872,7 @@
             <ul class="yes-no required ${rqt.stepStates['situationProfessionnelle'].invalidFields.contains('situationProfessionnelleConjointStagiaire.stageRenumeration') ? 'validation-failed' : ''}">
               <g:each in="${[true,false]}">
               <li>
-                <input type="radio" id="situationProfessionnelleConjointStagiaire.stageRenumeration_${it ? 'yes' : 'no'}" class="required  validate-one-required boolean" title="" value="${it}" name="situationProfessionnelleConjointStagiaire.stageRenumeration" ${it == rqt.situationProfessionnelleConjointStagiaire?.stageRenumeration ? 'checked="checked"': ''} />
+                <input type="radio" id="situationProfessionnelleConjointStagiaire.stageRenumeration_${it ? 'yes' : 'no'}" class="required  validate-one-required boolean" title="" value="${it}" name="situationProfessionnelleConjointStagiaire.stageRenumeration" ${ rqt.situationProfessionnelleConjointStagiaire ?  (it == rqt.situationProfessionnelleConjointStagiaire?.stageRenumeration ? 'checked="checked"': '') : (it == null ? 'checked="checked"': '') } />
                 <label for="situationProfessionnelleConjointStagiaire.stageRenumeration_${it ? 'yes' : 'no'}"><g:message code="message.${it ? 'yes' : 'no'}" /></label>
               </li>
               </g:each>
@@ -1061,7 +1061,7 @@
             <ul class="yes-no required ${rqt.stepStates['situationProfessionnelle'].invalidFields.contains('situationProfessionnelleConjointDemandeurEmploi.allocationSolidariteSpecifique') ? 'validation-failed' : ''}">
               <g:each in="${[true,false]}">
               <li>
-                <input type="radio" id="situationProfessionnelleConjointDemandeurEmploi.allocationSolidariteSpecifique_${it ? 'yes' : 'no'}" class="required  validate-one-required boolean" title="" value="${it}" name="situationProfessionnelleConjointDemandeurEmploi.allocationSolidariteSpecifique" ${it == rqt.situationProfessionnelleConjointDemandeurEmploi?.allocationSolidariteSpecifique ? 'checked="checked"': ''} />
+                <input type="radio" id="situationProfessionnelleConjointDemandeurEmploi.allocationSolidariteSpecifique_${it ? 'yes' : 'no'}" class="required  validate-one-required boolean" title="" value="${it}" name="situationProfessionnelleConjointDemandeurEmploi.allocationSolidariteSpecifique" ${ rqt.situationProfessionnelleConjointDemandeurEmploi ?  (it == rqt.situationProfessionnelleConjointDemandeurEmploi?.allocationSolidariteSpecifique ? 'checked="checked"': '') : (it == null ? 'checked="checked"': '') } />
                 <label for="situationProfessionnelleConjointDemandeurEmploi.allocationSolidariteSpecifique_${it ? 'yes' : 'no'}"><g:message code="message.${it ? 'yes' : 'no'}" /></label>
               </li>
               </g:each>
@@ -1120,7 +1120,7 @@
             <ul class="yes-no required ${rqt.stepStates['situationProfessionnelle'].invalidFields.contains('situationProfessionnelleConjointRetraite.supplementairePersonneAgee') ? 'validation-failed' : ''}">
               <g:each in="${[true,false]}">
               <li>
-                <input type="radio" id="situationProfessionnelleConjointRetraite.supplementairePersonneAgee_${it ? 'yes' : 'no'}" class="required  validate-one-required boolean" title="" value="${it}" name="situationProfessionnelleConjointRetraite.supplementairePersonneAgee" ${it == rqt.situationProfessionnelleConjointRetraite?.supplementairePersonneAgee ? 'checked="checked"': ''} />
+                <input type="radio" id="situationProfessionnelleConjointRetraite.supplementairePersonneAgee_${it ? 'yes' : 'no'}" class="required  validate-one-required boolean" title="" value="${it}" name="situationProfessionnelleConjointRetraite.supplementairePersonneAgee" ${ rqt.situationProfessionnelleConjointRetraite ?  (it == rqt.situationProfessionnelleConjointRetraite?.supplementairePersonneAgee ? 'checked="checked"': '') : (it == null ? 'checked="checked"': '') } />
                 <label for="situationProfessionnelleConjointRetraite.supplementairePersonneAgee_${it ? 'yes' : 'no'}"><g:message code="message.${it ? 'yes' : 'no'}" /></label>
               </li>
               </g:each>
@@ -1132,7 +1132,7 @@
             <ul class="yes-no required ${rqt.stepStates['situationProfessionnelle'].invalidFields.contains('situationProfessionnelleConjointRetraite.pensionRetraite') ? 'validation-failed' : ''}">
               <g:each in="${[true,false]}">
               <li>
-                <input type="radio" id="situationProfessionnelleConjointRetraite.pensionRetraite_${it ? 'yes' : 'no'}" class="required  validate-one-required boolean" title="" value="${it}" name="situationProfessionnelleConjointRetraite.pensionRetraite" ${it == rqt.situationProfessionnelleConjointRetraite?.pensionRetraite ? 'checked="checked"': ''} />
+                <input type="radio" id="situationProfessionnelleConjointRetraite.pensionRetraite_${it ? 'yes' : 'no'}" class="required  validate-one-required boolean" title="" value="${it}" name="situationProfessionnelleConjointRetraite.pensionRetraite" ${ rqt.situationProfessionnelleConjointRetraite ?  (it == rqt.situationProfessionnelleConjointRetraite?.pensionRetraite ? 'checked="checked"': '') : (it == null ? 'checked="checked"': '') } />
                 <label for="situationProfessionnelleConjointRetraite.pensionRetraite_${it ? 'yes' : 'no'}"><g:message code="message.${it ? 'yes' : 'no'}" /></label>
               </li>
               </g:each>
@@ -1201,7 +1201,7 @@
             <ul class="yes-no required ${rqt.stepStates['situationProfessionnelle'].invalidFields.contains('situationProfessionnelleConjointBeneficiairePension.renteAccidentTravail') ? 'validation-failed' : ''}">
               <g:each in="${[true,false]}">
               <li>
-                <input type="radio" id="situationProfessionnelleConjointBeneficiairePension.renteAccidentTravail_${it ? 'yes' : 'no'}" class="required  validate-one-required boolean" title="" value="${it}" name="situationProfessionnelleConjointBeneficiairePension.renteAccidentTravail" ${it == rqt.situationProfessionnelleConjointBeneficiairePension?.renteAccidentTravail ? 'checked="checked"': ''} />
+                <input type="radio" id="situationProfessionnelleConjointBeneficiairePension.renteAccidentTravail_${it ? 'yes' : 'no'}" class="required  validate-one-required boolean" title="" value="${it}" name="situationProfessionnelleConjointBeneficiairePension.renteAccidentTravail" ${ rqt.situationProfessionnelleConjointBeneficiairePension ?  (it == rqt.situationProfessionnelleConjointBeneficiairePension?.renteAccidentTravail ? 'checked="checked"': '') : (it == null ? 'checked="checked"': '') } />
                 <label for="situationProfessionnelleConjointBeneficiairePension.renteAccidentTravail_${it ? 'yes' : 'no'}"><g:message code="message.${it ? 'yes' : 'no'}" /></label>
               </li>
               </g:each>
@@ -1213,7 +1213,7 @@
             <ul class="yes-no required ${rqt.stepStates['situationProfessionnelle'].invalidFields.contains('situationProfessionnelleConjointBeneficiairePension.allocationSupplementaireInvalidite') ? 'validation-failed' : ''}">
               <g:each in="${[true,false]}">
               <li>
-                <input type="radio" id="situationProfessionnelleConjointBeneficiairePension.allocationSupplementaireInvalidite_${it ? 'yes' : 'no'}" class="required  validate-one-required boolean" title="" value="${it}" name="situationProfessionnelleConjointBeneficiairePension.allocationSupplementaireInvalidite" ${it == rqt.situationProfessionnelleConjointBeneficiairePension?.allocationSupplementaireInvalidite ? 'checked="checked"': ''} />
+                <input type="radio" id="situationProfessionnelleConjointBeneficiairePension.allocationSupplementaireInvalidite_${it ? 'yes' : 'no'}" class="required  validate-one-required boolean" title="" value="${it}" name="situationProfessionnelleConjointBeneficiairePension.allocationSupplementaireInvalidite" ${ rqt.situationProfessionnelleConjointBeneficiairePension ?  (it == rqt.situationProfessionnelleConjointBeneficiairePension?.allocationSupplementaireInvalidite ? 'checked="checked"': '') : (it == null ? 'checked="checked"': '') } />
                 <label for="situationProfessionnelleConjointBeneficiairePension.allocationSupplementaireInvalidite_${it ? 'yes' : 'no'}"><g:message code="message.${it ? 'yes' : 'no'}" /></label>
               </li>
               </g:each>

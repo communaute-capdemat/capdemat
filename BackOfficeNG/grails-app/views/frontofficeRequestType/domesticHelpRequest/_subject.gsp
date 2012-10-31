@@ -134,7 +134,7 @@
             <ul class="yes-no required condition-isNonEuropean-filled ${rqt.stepStates['subject'].invalidFields.contains('dhrRequester.dhrRequesterIsFrenchResident') ? 'validation-failed' : ''}">
               <g:each in="${[true,false]}">
               <li>
-                <input type="radio" id="dhrRequester.dhrRequesterIsFrenchResident_${it ? 'yes' : 'no'}" class="required condition-isNonEuropean-filled  validate-one-required boolean" title="" value="${it}" name="dhrRequester.dhrRequesterIsFrenchResident" ${it == rqt.dhrRequester?.dhrRequesterIsFrenchResident ? 'checked="checked"': ''} />
+                <input type="radio" id="dhrRequester.dhrRequesterIsFrenchResident_${it ? 'yes' : 'no'}" class="required condition-isNonEuropean-filled  validate-one-required boolean" title="" value="${it}" name="dhrRequester.dhrRequesterIsFrenchResident" ${ rqt.dhrRequester ?  (it == rqt.dhrRequester?.dhrRequesterIsFrenchResident ? 'checked="checked"': '') : (it == false ? 'checked="checked"': '') } />
                 <label for="dhrRequester.dhrRequesterIsFrenchResident_${it ? 'yes' : 'no'}"><g:message code="message.${it ? 'yes' : 'no'}" /></label>
               </li>
               </g:each>
@@ -182,7 +182,7 @@
             <ul class="yes-no required ${rqt.stepStates['subject'].invalidFields.contains('dhrRequesterGuardian.dhrRequesterHaveGuardian') ? 'validation-failed' : ''}">
               <g:each in="${[true,false]}">
               <li>
-                <input type="radio" id="dhrRequesterGuardian.dhrRequesterHaveGuardian_${it ? 'yes' : 'no'}" class="required condition-haveGuardian-trigger  validate-one-required boolean" title="" value="${it}" name="dhrRequesterGuardian.dhrRequesterHaveGuardian" ${it == rqt.dhrRequesterGuardian?.dhrRequesterHaveGuardian ? 'checked="checked"': ''} />
+                <input type="radio" id="dhrRequesterGuardian.dhrRequesterHaveGuardian_${it ? 'yes' : 'no'}" class="required condition-haveGuardian-trigger  validate-one-required boolean" title="" value="${it}" name="dhrRequesterGuardian.dhrRequesterHaveGuardian" ${ rqt.dhrRequesterGuardian ?  (it == rqt.dhrRequesterGuardian?.dhrRequesterHaveGuardian ? 'checked="checked"': '') : (it == false ? 'checked="checked"': '') } />
                 <label for="dhrRequesterGuardian.dhrRequesterHaveGuardian_${it ? 'yes' : 'no'}"><g:message code="message.${it ? 'yes' : 'no'}" /></label>
               </li>
               </g:each>

@@ -50,6 +50,8 @@ public class ElementFo extends ElementSpecific<ElementFo> {
     private ConditionListener conditionListener;
     private List<Condition> triggeredConditions;
     private Autofill autofill;
+
+    private String defaultValue;
     
     public ElementFo(String name, String requestAcronym) {
         this.name = name;
@@ -325,5 +327,13 @@ public class ElementFo extends ElementSpecific<ElementFo> {
             }
         }
         return sb.toString();
+    }
+
+    public String getDefaultValue() {
+      return this.defaultValue;
+    }
+
+    public void setDefaultValue(String defaultValue) {
+      this.defaultValue = defaultValue;
     }
 }

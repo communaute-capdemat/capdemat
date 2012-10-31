@@ -6,7 +6,7 @@
             <ul class="yes-no required ${rqt.stepStates['allocationEducationEnfantHandicape'].invalidFields.contains('enfantEnInternat') ? 'validation-failed' : ''}">
               <g:each in="${[true,false]}">
               <li>
-                <input type="radio" id="enfantEnInternat_${it ? 'yes' : 'no'}" class="required condition-enfantEnInternat-trigger  validate-one-required boolean" title="" value="${it}" name="enfantEnInternat" ${it == rqt.enfantEnInternat ? 'checked="checked"': ''} />
+                <input type="radio" id="enfantEnInternat_${it ? 'yes' : 'no'}" class="required condition-enfantEnInternat-trigger  validate-one-required boolean" title="" value="${it}" name="enfantEnInternat" ${ rq ?  (it == rqt.enfantEnInternat ? 'checked="checked"': '') : (it == false ? 'checked="checked"': '') } />
                 <label for="enfantEnInternat_${it ? 'yes' : 'no'}"><g:message code="message.${it ? 'yes' : 'no'}" /></label>
               </li>
               </g:each>
@@ -62,7 +62,7 @@
             <ul class="yes-no required condition-enfantEnInternat-filled ${rqt.stepStates['allocationEducationEnfantHandicape'].invalidFields.contains('fraisSejourPrisEnCharge') ? 'validation-failed' : ''}">
               <g:each in="${[true,false]}">
               <li>
-                <input type="radio" id="fraisSejourPrisEnCharge_${it ? 'yes' : 'no'}" class="required condition-enfantEnInternat-filled  validate-one-required boolean" title="" value="${it}" name="fraisSejourPrisEnCharge" ${it == rqt.fraisSejourPrisEnCharge ? 'checked="checked"': ''} />
+                <input type="radio" id="fraisSejourPrisEnCharge_${it ? 'yes' : 'no'}" class="required condition-enfantEnInternat-filled  validate-one-required boolean" title="" value="${it}" name="fraisSejourPrisEnCharge" ${ rq ?  (it == rqt.fraisSejourPrisEnCharge ? 'checked="checked"': '') : (it == false ? 'checked="checked"': '') } />
                 <label for="fraisSejourPrisEnCharge_${it ? 'yes' : 'no'}"><g:message code="message.${it ? 'yes' : 'no'}" /></label>
               </li>
               </g:each>
@@ -95,7 +95,7 @@
             <ul class="yes-no required ${rqt.stepStates['allocationEducationEnfantHandicape'].invalidFields.contains('presencePersonneAupresEnfant.exerciceActiviteProfessionnelle') ? 'validation-failed' : ''}">
               <g:each in="${[true,false]}">
               <li>
-                <input type="radio" id="presencePersonneAupresEnfant.exerciceActiviteProfessionnelle_${it ? 'yes' : 'no'}" class="required  validate-one-required boolean" title="" value="${it}" name="presencePersonneAupresEnfant.exerciceActiviteProfessionnelle" ${it == rqt.presencePersonneAupresEnfant?.exerciceActiviteProfessionnelle ? 'checked="checked"': ''} />
+                <input type="radio" id="presencePersonneAupresEnfant.exerciceActiviteProfessionnelle_${it ? 'yes' : 'no'}" class="required  validate-one-required boolean" title="" value="${it}" name="presencePersonneAupresEnfant.exerciceActiviteProfessionnelle" ${ rqt.presencePersonneAupresEnfant ?  (it == rqt.presencePersonneAupresEnfant?.exerciceActiviteProfessionnelle ? 'checked="checked"': '') : (it == false ? 'checked="checked"': '') } />
                 <label for="presencePersonneAupresEnfant.exerciceActiviteProfessionnelle_${it ? 'yes' : 'no'}"><g:message code="message.${it ? 'yes' : 'no'}" /></label>
               </li>
               </g:each>

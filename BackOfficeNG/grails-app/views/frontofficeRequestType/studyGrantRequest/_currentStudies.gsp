@@ -106,7 +106,7 @@
             <ul class="yes-no required ${rqt.stepStates['currentStudies'].invalidFields.contains('currentStudiesInformations.sandwichCourses') ? 'validation-failed' : ''}">
               <g:each in="${[true,false]}">
               <li>
-                <input type="radio" id="currentStudiesInformations.sandwichCourses_${it ? 'yes' : 'no'}" class="required  validate-one-required boolean" title="" value="${it}" name="currentStudiesInformations.sandwichCourses" ${it == rqt.currentStudiesInformations?.sandwichCourses ? 'checked="checked"': ''} />
+                <input type="radio" id="currentStudiesInformations.sandwichCourses_${it ? 'yes' : 'no'}" class="required  validate-one-required boolean" title="" value="${it}" name="currentStudiesInformations.sandwichCourses" ${ rqt.currentStudiesInformations ?  (it == rqt.currentStudiesInformations?.sandwichCourses ? 'checked="checked"': '') : (it == false ? 'checked="checked"': '') } />
                 <label for="currentStudiesInformations.sandwichCourses_${it ? 'yes' : 'no'}"><g:message code="message.${it ? 'yes' : 'no'}" /></label>
               </li>
               </g:each>
@@ -118,7 +118,7 @@
             <ul class="yes-no required ${rqt.stepStates['currentStudies'].invalidFields.contains('currentStudiesInformations.abroadInternship') ? 'validation-failed' : ''}">
               <g:each in="${[true,false]}">
               <li>
-                <input type="radio" id="currentStudiesInformations.abroadInternship_${it ? 'yes' : 'no'}" class="required condition-makesAbroadInternship-trigger  validate-one-required boolean" title="" value="${it}" name="currentStudiesInformations.abroadInternship" ${it == rqt.currentStudiesInformations?.abroadInternship ? 'checked="checked"': ''} />
+                <input type="radio" id="currentStudiesInformations.abroadInternship_${it ? 'yes' : 'no'}" class="required condition-makesAbroadInternship-trigger  validate-one-required boolean" title="" value="${it}" name="currentStudiesInformations.abroadInternship" ${ rqt.currentStudiesInformations ?  (it == rqt.currentStudiesInformations?.abroadInternship ? 'checked="checked"': '') : (it == false ? 'checked="checked"': '') } />
                 <label for="currentStudiesInformations.abroadInternship_${it ? 'yes' : 'no'}"><g:message code="message.${it ? 'yes' : 'no'}" /></label>
               </li>
               </g:each>

@@ -95,7 +95,7 @@
             <ul class="yes-no required ${rqt.stepStates['cadastre'].invalidFields.contains('moreThanTwoYears') ? 'validation-failed' : ''}">
               <g:each in="${[true,false]}">
               <li>
-                <input type="radio" id="moreThanTwoYears_${it ? 'yes' : 'no'}" class="required  validate-one-required boolean" title="" value="${it}" name="moreThanTwoYears" ${it == rqt.moreThanTwoYears ? 'checked="checked"': ''} />
+                <input type="radio" id="moreThanTwoYears_${it ? 'yes' : 'no'}" class="required  validate-one-required boolean" title="" value="${it}" name="moreThanTwoYears" ${ rq ?  (it == rqt.moreThanTwoYears ? 'checked="checked"': '') : (it == false ? 'checked="checked"': '') } />
                 <label for="moreThanTwoYears_${it ? 'yes' : 'no'}"><g:message code="message.${it ? 'yes' : 'no'}" /></label>
               </li>
               </g:each>

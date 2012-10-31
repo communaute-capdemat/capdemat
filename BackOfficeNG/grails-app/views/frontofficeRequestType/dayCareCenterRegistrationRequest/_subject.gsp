@@ -62,7 +62,7 @@
             <ul class="yes-no  ${rqt.stepStates['subject'].invalidFields.contains('informationMere.estHorairesReguliersMere') ? 'validation-failed' : ''}">
               <g:each in="${[true,false]}">
               <li>
-                <input type="radio" id="informationMere.estHorairesReguliersMere_${it ? 'yes' : 'no'}" class="condition-estHorairesReguliersMere-trigger  validate-one-required boolean" title="" value="${it}" name="informationMere.estHorairesReguliersMere" ${it == rqt.informationMere?.estHorairesReguliersMere ? 'checked="checked"': ''} />
+                <input type="radio" id="informationMere.estHorairesReguliersMere_${it ? 'yes' : 'no'}" class="condition-estHorairesReguliersMere-trigger  validate-one-required boolean" title="" value="${it}" name="informationMere.estHorairesReguliersMere" ${ rqt.informationMere ?  (it == rqt.informationMere?.estHorairesReguliersMere ? 'checked="checked"': '') : (it == true ? 'checked="checked"': '') } />
                 <label for="informationMere.estHorairesReguliersMere_${it ? 'yes' : 'no'}"><g:message code="message.${it ? 'yes' : 'no'}" /></label>
               </li>
               </g:each>
@@ -145,7 +145,7 @@
             <ul class="yes-no  ${rqt.stepStates['subject'].invalidFields.contains('informationPere.estHorairesReguliersPere') ? 'validation-failed' : ''}">
               <g:each in="${[true,false]}">
               <li>
-                <input type="radio" id="informationPere.estHorairesReguliersPere_${it ? 'yes' : 'no'}" class="condition-estHorairesReguliersPere-trigger  validate-one-required boolean" title="" value="${it}" name="informationPere.estHorairesReguliersPere" ${it == rqt.informationPere?.estHorairesReguliersPere ? 'checked="checked"': ''} />
+                <input type="radio" id="informationPere.estHorairesReguliersPere_${it ? 'yes' : 'no'}" class="condition-estHorairesReguliersPere-trigger  validate-one-required boolean" title="" value="${it}" name="informationPere.estHorairesReguliersPere" ${ rqt.informationPere ?  (it == rqt.informationPere?.estHorairesReguliersPere ? 'checked="checked"': '') : (it == true ? 'checked="checked"': '') } />
                 <label for="informationPere.estHorairesReguliersPere_${it ? 'yes' : 'no'}"><g:message code="message.${it ? 'yes' : 'no'}" /></label>
               </li>
               </g:each>

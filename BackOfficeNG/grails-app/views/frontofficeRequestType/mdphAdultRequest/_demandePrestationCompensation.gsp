@@ -18,7 +18,7 @@
             <ul class="yes-no required ${rqt.stepStates['demandePrestationCompensation'].invalidFields.contains('allocationPersonnaliseeAutonomie') ? 'validation-failed' : ''}">
               <g:each in="${[true,false]}">
               <li>
-                <input type="radio" id="allocationPersonnaliseeAutonomie_${it ? 'yes' : 'no'}" class="required  validate-one-required boolean" title="" value="${it}" name="allocationPersonnaliseeAutonomie" ${it == rqt.allocationPersonnaliseeAutonomie ? 'checked="checked"': ''} />
+                <input type="radio" id="allocationPersonnaliseeAutonomie_${it ? 'yes' : 'no'}" class="required  validate-one-required boolean" title="" value="${it}" name="allocationPersonnaliseeAutonomie" ${ rq ?  (it == rqt.allocationPersonnaliseeAutonomie ? 'checked="checked"': '') : (it == false ? 'checked="checked"': '') } />
                 <label for="allocationPersonnaliseeAutonomie_${it ? 'yes' : 'no'}"><g:message code="message.${it ? 'yes' : 'no'}" /></label>
               </li>
               </g:each>
@@ -35,7 +35,7 @@
             <ul class="yes-no  ${rqt.stepStates['demandePrestationCompensation'].invalidFields.contains('besoinsDemandePCH.aideHumaine') ? 'validation-failed' : ''}">
               <g:each in="${[true,false]}">
               <li>
-                <input type="radio" id="besoinsDemandePCH.aideHumaine_${it ? 'yes' : 'no'}" class="condition-aideHumaine-trigger  validate-one-required boolean" title="" value="${it}" name="besoinsDemandePCH.aideHumaine" ${it == rqt.besoinsDemandePCH?.aideHumaine ? 'checked="checked"': ''} />
+                <input type="radio" id="besoinsDemandePCH.aideHumaine_${it ? 'yes' : 'no'}" class="condition-aideHumaine-trigger  validate-one-required boolean" title="" value="${it}" name="besoinsDemandePCH.aideHumaine" ${ rqt.besoinsDemandePCH ?  (it == rqt.besoinsDemandePCH?.aideHumaine ? 'checked="checked"': '') : (it == false ? 'checked="checked"': '') } />
                 <label for="besoinsDemandePCH.aideHumaine_${it ? 'yes' : 'no'}"><g:message code="message.${it ? 'yes' : 'no'}" /></label>
               </li>
               </g:each>
@@ -53,7 +53,7 @@
             <ul class="yes-no  ${rqt.stepStates['demandePrestationCompensation'].invalidFields.contains('besoinsDemandePCH.aideTechnique') ? 'validation-failed' : ''}">
               <g:each in="${[true,false]}">
               <li>
-                <input type="radio" id="besoinsDemandePCH.aideTechnique_${it ? 'yes' : 'no'}" class="condition-aideTechnique-trigger  validate-one-required boolean" title="" value="${it}" name="besoinsDemandePCH.aideTechnique" ${it == rqt.besoinsDemandePCH?.aideTechnique ? 'checked="checked"': ''} />
+                <input type="radio" id="besoinsDemandePCH.aideTechnique_${it ? 'yes' : 'no'}" class="condition-aideTechnique-trigger  validate-one-required boolean" title="" value="${it}" name="besoinsDemandePCH.aideTechnique" ${ rqt.besoinsDemandePCH ?  (it == rqt.besoinsDemandePCH?.aideTechnique ? 'checked="checked"': '') : (it == false ? 'checked="checked"': '') } />
                 <label for="besoinsDemandePCH.aideTechnique_${it ? 'yes' : 'no'}"><g:message code="message.${it ? 'yes' : 'no'}" /></label>
               </li>
               </g:each>
@@ -71,7 +71,7 @@
             <ul class="yes-no  ${rqt.stepStates['demandePrestationCompensation'].invalidFields.contains('besoinsDemandePCH.amenagementLogementDemenagement') ? 'validation-failed' : ''}">
               <g:each in="${[true,false]}">
               <li>
-                <input type="radio" id="besoinsDemandePCH.amenagementLogementDemenagement_${it ? 'yes' : 'no'}" class="condition-amenagementLogementDemenagement-trigger  validate-one-required boolean" title="" value="${it}" name="besoinsDemandePCH.amenagementLogementDemenagement" ${it == rqt.besoinsDemandePCH?.amenagementLogementDemenagement ? 'checked="checked"': ''} />
+                <input type="radio" id="besoinsDemandePCH.amenagementLogementDemenagement_${it ? 'yes' : 'no'}" class="condition-amenagementLogementDemenagement-trigger  validate-one-required boolean" title="" value="${it}" name="besoinsDemandePCH.amenagementLogementDemenagement" ${ rqt.besoinsDemandePCH ?  (it == rqt.besoinsDemandePCH?.amenagementLogementDemenagement ? 'checked="checked"': '') : (it == false ? 'checked="checked"': '') } />
                 <label for="besoinsDemandePCH.amenagementLogementDemenagement_${it ? 'yes' : 'no'}"><g:message code="message.${it ? 'yes' : 'no'}" /></label>
               </li>
               </g:each>
@@ -89,7 +89,7 @@
             <ul class="yes-no  ${rqt.stepStates['demandePrestationCompensation'].invalidFields.contains('besoinsDemandePCH.amenagementVehicule') ? 'validation-failed' : ''}">
               <g:each in="${[true,false]}">
               <li>
-                <input type="radio" id="besoinsDemandePCH.amenagementVehicule_${it ? 'yes' : 'no'}" class="condition-amenagementVehicule-trigger  validate-one-required boolean" title="" value="${it}" name="besoinsDemandePCH.amenagementVehicule" ${it == rqt.besoinsDemandePCH?.amenagementVehicule ? 'checked="checked"': ''} />
+                <input type="radio" id="besoinsDemandePCH.amenagementVehicule_${it ? 'yes' : 'no'}" class="condition-amenagementVehicule-trigger  validate-one-required boolean" title="" value="${it}" name="besoinsDemandePCH.amenagementVehicule" ${ rqt.besoinsDemandePCH ?  (it == rqt.besoinsDemandePCH?.amenagementVehicule ? 'checked="checked"': '') : (it == false ? 'checked="checked"': '') } />
                 <label for="besoinsDemandePCH.amenagementVehicule_${it ? 'yes' : 'no'}"><g:message code="message.${it ? 'yes' : 'no'}" /></label>
               </li>
               </g:each>
@@ -107,7 +107,7 @@
             <ul class="yes-no  ${rqt.stepStates['demandePrestationCompensation'].invalidFields.contains('besoinsDemandePCH.chargesSpecifiques') ? 'validation-failed' : ''}">
               <g:each in="${[true,false]}">
               <li>
-                <input type="radio" id="besoinsDemandePCH.chargesSpecifiques_${it ? 'yes' : 'no'}" class="condition-chargesSpecifiques-trigger  validate-one-required boolean" title="" value="${it}" name="besoinsDemandePCH.chargesSpecifiques" ${it == rqt.besoinsDemandePCH?.chargesSpecifiques ? 'checked="checked"': ''} />
+                <input type="radio" id="besoinsDemandePCH.chargesSpecifiques_${it ? 'yes' : 'no'}" class="condition-chargesSpecifiques-trigger  validate-one-required boolean" title="" value="${it}" name="besoinsDemandePCH.chargesSpecifiques" ${ rqt.besoinsDemandePCH ?  (it == rqt.besoinsDemandePCH?.chargesSpecifiques ? 'checked="checked"': '') : (it == false ? 'checked="checked"': '') } />
                 <label for="besoinsDemandePCH.chargesSpecifiques_${it ? 'yes' : 'no'}"><g:message code="message.${it ? 'yes' : 'no'}" /></label>
               </li>
               </g:each>
@@ -125,7 +125,7 @@
             <ul class="yes-no  ${rqt.stepStates['demandePrestationCompensation'].invalidFields.contains('besoinsDemandePCH.aideAnimaliere') ? 'validation-failed' : ''}">
               <g:each in="${[true,false]}">
               <li>
-                <input type="radio" id="besoinsDemandePCH.aideAnimaliere_${it ? 'yes' : 'no'}" class="condition-aideAnimaliere-trigger  validate-one-required boolean" title="" value="${it}" name="besoinsDemandePCH.aideAnimaliere" ${it == rqt.besoinsDemandePCH?.aideAnimaliere ? 'checked="checked"': ''} />
+                <input type="radio" id="besoinsDemandePCH.aideAnimaliere_${it ? 'yes' : 'no'}" class="condition-aideAnimaliere-trigger  validate-one-required boolean" title="" value="${it}" name="besoinsDemandePCH.aideAnimaliere" ${ rqt.besoinsDemandePCH ?  (it == rqt.besoinsDemandePCH?.aideAnimaliere ? 'checked="checked"': '') : (it == false ? 'checked="checked"': '') } />
                 <label for="besoinsDemandePCH.aideAnimaliere_${it ? 'yes' : 'no'}"><g:message code="message.${it ? 'yes' : 'no'}" /></label>
               </li>
               </g:each>

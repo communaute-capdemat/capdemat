@@ -6,7 +6,7 @@
             <ul class="yes-no required ${rqt.stepStates['demandeProfessionnelle'].invalidFields.contains('rqth') ? 'validation-failed' : ''}">
               <g:each in="${[true,false]}">
               <li>
-                <input type="radio" id="rqth_${it ? 'yes' : 'no'}" class="required  validate-one-required boolean" title="" value="${it}" name="rqth" ${it == rqt.rqth ? 'checked="checked"': ''} />
+                <input type="radio" id="rqth_${it ? 'yes' : 'no'}" class="required  validate-one-required boolean" title="" value="${it}" name="rqth" ${ rq ?  (it == rqt.rqth ? 'checked="checked"': '') : (it == false ? 'checked="checked"': '') } />
                 <label for="rqth_${it ? 'yes' : 'no'}"><g:message code="message.${it ? 'yes' : 'no'}" /></label>
               </li>
               </g:each>
@@ -20,7 +20,7 @@
             <ul class="yes-no required ${rqt.stepStates['demandeProfessionnelle'].invalidFields.contains('primeReclassement') ? 'validation-failed' : ''}">
               <g:each in="${[true,false]}">
               <li>
-                <input type="radio" id="primeReclassement_${it ? 'yes' : 'no'}" class="required  validate-one-required boolean" title="" value="${it}" name="primeReclassement" ${it == rqt.primeReclassement ? 'checked="checked"': ''} />
+                <input type="radio" id="primeReclassement_${it ? 'yes' : 'no'}" class="required  validate-one-required boolean" title="" value="${it}" name="primeReclassement" ${ rq ?  (it == rqt.primeReclassement ? 'checked="checked"': '') : (it == false ? 'checked="checked"': '') } />
                 <label for="primeReclassement_${it ? 'yes' : 'no'}"><g:message code="message.${it ? 'yes' : 'no'}" /></label>
               </li>
               </g:each>
@@ -34,7 +34,7 @@
             <ul class="yes-no required ${rqt.stepStates['demandeProfessionnelle'].invalidFields.contains('autre') ? 'validation-failed' : ''}">
               <g:each in="${[true,false]}">
               <li>
-                <input type="radio" id="autre_${it ? 'yes' : 'no'}" class="required  validate-one-required boolean" title="" value="${it}" name="autre" ${it == rqt.autre ? 'checked="checked"': ''} />
+                <input type="radio" id="autre_${it ? 'yes' : 'no'}" class="required  validate-one-required boolean" title="" value="${it}" name="autre" ${ rq ?  (it == rqt.autre ? 'checked="checked"': '') : (it == false ? 'checked="checked"': '') } />
                 <label for="autre_${it ? 'yes' : 'no'}"><g:message code="message.${it ? 'yes' : 'no'}" /></label>
               </li>
               </g:each>
@@ -48,7 +48,7 @@
             <ul class="yes-no required ${rqt.stepStates['demandeProfessionnelle'].invalidFields.contains('orientationReclassement') ? 'validation-failed' : ''}">
               <g:each in="${[true,false]}">
               <li>
-                <input type="radio" id="orientationReclassement_${it ? 'yes' : 'no'}" class="required condition-orientationReclassement-trigger  validate-one-required boolean" title="" value="${it}" name="orientationReclassement" ${it == rqt.orientationReclassement ? 'checked="checked"': ''} />
+                <input type="radio" id="orientationReclassement_${it ? 'yes' : 'no'}" class="required condition-orientationReclassement-trigger  validate-one-required boolean" title="" value="${it}" name="orientationReclassement" ${ rq ?  (it == rqt.orientationReclassement ? 'checked="checked"': '') : (it == false ? 'checked="checked"': '') } />
                 <label for="orientationReclassement_${it ? 'yes' : 'no'}"><g:message code="message.${it ? 'yes' : 'no'}" /></label>
               </li>
               </g:each>

@@ -37,7 +37,7 @@
             <ul class="yes-no required ${rqt.stepStates['enfant'].invalidFields.contains('estDerogation') ? 'validation-failed' : ''}">
               <g:each in="${[true,false]}">
               <li>
-                <input type="radio" id="estDerogation_${it ? 'yes' : 'no'}" class="required condition-estDerogation-trigger  validate-one-required boolean" title="" value="${it}" name="estDerogation" ${it == rqt.estDerogation ? 'checked="checked"': ''} />
+                <input type="radio" id="estDerogation_${it ? 'yes' : 'no'}" class="required condition-estDerogation-trigger  validate-one-required boolean" title="" value="${it}" name="estDerogation" ${ rq ?  (it == rqt.estDerogation ? 'checked="checked"': '') : (it == false ? 'checked="checked"': '') } />
                 <label for="estDerogation_${it ? 'yes' : 'no'}"><g:message code="message.${it ? 'yes' : 'no'}" /></label>
               </li>
               </g:each>
