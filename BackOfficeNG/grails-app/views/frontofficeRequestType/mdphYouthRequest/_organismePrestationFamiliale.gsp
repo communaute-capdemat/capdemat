@@ -13,8 +13,8 @@
     <label for="organismePayeur" class="required"><g:message code="myr.property.organismePayeur.label" /> *  <span><g:message code="myr.property.organismePayeur.help" /></span></label>
             <select id="organismePayeur" name="organismePayeur" class="required  validate-not-first ${rqt.stepStates['organismePrestationFamiliale'].invalidFields.contains('organismePayeur') ? 'validation-failed' : ''}" title="<g:message code="myr.property.organismePayeur.validationError" />">
               <option value=""><g:message code="message.select.defaultOption" /></option>
-              <g:each in="${['Caf','Msa','Autre']}">
-                <option value="fr.cg95.cvq.business.request.social.MyrOrganismePayeurType_${it}" ${it == rqt.organismePayeur?.toString() ? 'selected="selected"': ''}><g:capdematEnumToText var="${it}" i18nKeyPrefix="myr.property.organismePayeur" /></option>
+              <g:each in="${['CAF','MSA','AUTRE']}">
+                <option value="${it}" ${it == rqt.organismePayeur?.toString() ? 'selected="selected"': ''}><g:capdematEnumToText var="${it}" i18nKeyPrefix="myr.property.organismePayeur" /></option>
               </g:each>
             </select>
             

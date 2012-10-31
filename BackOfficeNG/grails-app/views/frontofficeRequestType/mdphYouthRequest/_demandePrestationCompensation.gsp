@@ -5,8 +5,8 @@
     <label for="choixPrestationCompensation" class="required"><g:message code="myr.property.choixPrestationCompensation.label" /> *  <span><g:message code="myr.property.choixPrestationCompensation.help" /></span></label>
             <select id="choixPrestationCompensation" name="choixPrestationCompensation" class="required  validate-not-first ${rqt.stepStates['demandePrestationCompensation'].invalidFields.contains('choixPrestationCompensation') ? 'validation-failed' : ''}" title="<g:message code="myr.property.choixPrestationCompensation.validationError" />">
               <option value=""><g:message code="message.select.defaultOption" /></option>
-              <g:each in="${['Pch','Actp','Acfp']}">
-                <option value="fr.cg95.cvq.business.request.social.MyrChoixPrestationCompensationType_${it}" ${it == rqt.choixPrestationCompensation?.toString() ? 'selected="selected"': ''}><g:capdematEnumToText var="${it}" i18nKeyPrefix="myr.property.choixPrestationCompensation" /></option>
+              <g:each in="${['PCH','ACTP','ACFP']}">
+                <option value="${it}" ${it == rqt.choixPrestationCompensation?.toString() ? 'selected="selected"': ''}><g:capdematEnumToText var="${it}" i18nKeyPrefix="myr.property.choixPrestationCompensation" /></option>
               </g:each>
             </select>
             
@@ -28,11 +28,11 @@
   
 
   
-    <fieldset class="">
+    <fieldset class="required">
     <legend><g:message code="myr.property.besoinsDemandePCH.label" /></legend>
     
-      <label class=""><g:message code="myr.property.aideHumaine.label" />   <span><g:message code="myr.property.aideHumaine.help" /></span></label>
-            <ul class="yes-no  ${rqt.stepStates['demandePrestationCompensation'].invalidFields.contains('besoinsDemandePCH.aideHumaine') ? 'validation-failed' : ''}">
+      <label class="required"><g:message code="myr.property.aideHumaine.label" /> *  <span><g:message code="myr.property.aideHumaine.help" /></span></label>
+            <ul class="yes-no required ${rqt.stepStates['demandePrestationCompensation'].invalidFields.contains('besoinsDemandePCH.aideHumaine') ? 'validation-failed' : ''}">
               <g:each in="${[true,false]}">
               <li>
                 <input type="radio" id="besoinsDemandePCH.aideHumaine_${it ? 'yes' : 'no'}" class="condition-aideHumaine-trigger  validate-one-required boolean" title="" value="${it}" name="besoinsDemandePCH.aideHumaine" ${it == rqt.besoinsDemandePCH?.aideHumaine ? 'checked="checked"': ''} />
@@ -49,8 +49,8 @@
             
 
     
-      <label class=""><g:message code="myr.property.aideTechnique.label" />   <span><g:message code="myr.property.aideTechnique.help" /></span></label>
-            <ul class="yes-no  ${rqt.stepStates['demandePrestationCompensation'].invalidFields.contains('besoinsDemandePCH.aideTechnique') ? 'validation-failed' : ''}">
+      <label class="required"><g:message code="myr.property.aideTechnique.label" /> *  <span><g:message code="myr.property.aideTechnique.help" /></span></label>
+            <ul class="yes-no required ${rqt.stepStates['demandePrestationCompensation'].invalidFields.contains('besoinsDemandePCH.aideTechnique') ? 'validation-failed' : ''}">
               <g:each in="${[true,false]}">
               <li>
                 <input type="radio" id="besoinsDemandePCH.aideTechnique_${it ? 'yes' : 'no'}" class="condition-aideTechnique-trigger  validate-one-required boolean" title="" value="${it}" name="besoinsDemandePCH.aideTechnique" ${it == rqt.besoinsDemandePCH?.aideTechnique ? 'checked="checked"': ''} />
@@ -67,8 +67,8 @@
             
 
     
-      <label class=""><g:message code="myr.property.amenagementLogementDemenagement.label" />   <span><g:message code="myr.property.amenagementLogementDemenagement.help" /></span></label>
-            <ul class="yes-no  ${rqt.stepStates['demandePrestationCompensation'].invalidFields.contains('besoinsDemandePCH.amenagementLogementDemenagement') ? 'validation-failed' : ''}">
+      <label class="required"><g:message code="myr.property.amenagementLogementDemenagement.label" /> *  <span><g:message code="myr.property.amenagementLogementDemenagement.help" /></span></label>
+            <ul class="yes-no required ${rqt.stepStates['demandePrestationCompensation'].invalidFields.contains('besoinsDemandePCH.amenagementLogementDemenagement') ? 'validation-failed' : ''}">
               <g:each in="${[true,false]}">
               <li>
                 <input type="radio" id="besoinsDemandePCH.amenagementLogementDemenagement_${it ? 'yes' : 'no'}" class="condition-amenagementLogementDemenagement-trigger  validate-one-required boolean" title="" value="${it}" name="besoinsDemandePCH.amenagementLogementDemenagement" ${it == rqt.besoinsDemandePCH?.amenagementLogementDemenagement ? 'checked="checked"': ''} />
@@ -85,8 +85,8 @@
             
 
     
-      <label class=""><g:message code="myr.property.amenagementVehicule.label" />   <span><g:message code="myr.property.amenagementVehicule.help" /></span></label>
-            <ul class="yes-no  ${rqt.stepStates['demandePrestationCompensation'].invalidFields.contains('besoinsDemandePCH.amenagementVehicule') ? 'validation-failed' : ''}">
+      <label class="required"><g:message code="myr.property.amenagementVehicule.label" /> *  <span><g:message code="myr.property.amenagementVehicule.help" /></span></label>
+            <ul class="yes-no required ${rqt.stepStates['demandePrestationCompensation'].invalidFields.contains('besoinsDemandePCH.amenagementVehicule') ? 'validation-failed' : ''}">
               <g:each in="${[true,false]}">
               <li>
                 <input type="radio" id="besoinsDemandePCH.amenagementVehicule_${it ? 'yes' : 'no'}" class="condition-amenagementVehicule-trigger  validate-one-required boolean" title="" value="${it}" name="besoinsDemandePCH.amenagementVehicule" ${it == rqt.besoinsDemandePCH?.amenagementVehicule ? 'checked="checked"': ''} />
@@ -103,8 +103,8 @@
             
 
     
-      <label class=""><g:message code="myr.property.chargesSpecifiques.label" />   <span><g:message code="myr.property.chargesSpecifiques.help" /></span></label>
-            <ul class="yes-no  ${rqt.stepStates['demandePrestationCompensation'].invalidFields.contains('besoinsDemandePCH.chargesSpecifiques') ? 'validation-failed' : ''}">
+      <label class="required"><g:message code="myr.property.chargesSpecifiques.label" /> *  <span><g:message code="myr.property.chargesSpecifiques.help" /></span></label>
+            <ul class="yes-no required ${rqt.stepStates['demandePrestationCompensation'].invalidFields.contains('besoinsDemandePCH.chargesSpecifiques') ? 'validation-failed' : ''}">
               <g:each in="${[true,false]}">
               <li>
                 <input type="radio" id="besoinsDemandePCH.chargesSpecifiques_${it ? 'yes' : 'no'}" class="condition-chargesSpecifiques-trigger  validate-one-required boolean" title="" value="${it}" name="besoinsDemandePCH.chargesSpecifiques" ${it == rqt.besoinsDemandePCH?.chargesSpecifiques ? 'checked="checked"': ''} />
@@ -121,8 +121,8 @@
             
 
     
-      <label class=""><g:message code="myr.property.aideAnimaliere.label" />   <span><g:message code="myr.property.aideAnimaliere.help" /></span></label>
-            <ul class="yes-no  ${rqt.stepStates['demandePrestationCompensation'].invalidFields.contains('besoinsDemandePCH.aideAnimaliere') ? 'validation-failed' : ''}">
+      <label class="required"><g:message code="myr.property.aideAnimaliere.label" /> *  <span><g:message code="myr.property.aideAnimaliere.help" /></span></label>
+            <ul class="yes-no required ${rqt.stepStates['demandePrestationCompensation'].invalidFields.contains('besoinsDemandePCH.aideAnimaliere') ? 'validation-failed' : ''}">
               <g:each in="${[true,false]}">
               <li>
                 <input type="radio" id="besoinsDemandePCH.aideAnimaliere_${it ? 'yes' : 'no'}" class="condition-aideAnimaliere-trigger  validate-one-required boolean" title="" value="${it}" name="besoinsDemandePCH.aideAnimaliere" ${it == rqt.besoinsDemandePCH?.aideAnimaliere ? 'checked="checked"': ''} />

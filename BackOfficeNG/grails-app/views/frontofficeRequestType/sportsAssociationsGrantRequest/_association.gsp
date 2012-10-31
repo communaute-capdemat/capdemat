@@ -40,15 +40,15 @@
     <fieldset class="required">
     <legend><g:message code="sagr.property.numerosAssociation.label" /></legend>
     
-      <label for="numeroSiretAssociation" class="required"><g:message code="sagr.property.numeroSiretAssociation.label" /> *  <span><g:message code="sagr.property.numeroSiretAssociation.help" /></span></label>
-            <input type="text" id="numeroSiretAssociation" name="numeroSiretAssociation" value="${rqt.numeroSiretAssociation?.toString()}" 
-                    class="required  validate-regex ${rqt.stepStates['association'].invalidFields.contains('numeroSiretAssociation') ? 'validation-failed' : ''}" title="<g:message code="sagr.property.numeroSiretAssociation.validationError" />" regex="^[\w\W]{0,14}$" maxlength="14" />
+      <label for="numerosAssociation.numeroSiretAssociation" class="required"><g:message code="sagr.property.numeroSiretAssociation.label" /> *  <span><g:message code="sagr.property.numeroSiretAssociation.help" /></span></label>
+            <input type="text" id="numerosAssociation.numeroSiretAssociation" name="numerosAssociation.numeroSiretAssociation" value="${rqt.numerosAssociation?.numeroSiretAssociation?.toString()}" 
+                    class="required  validate-regex ${rqt.stepStates['association'].invalidFields.contains('numerosAssociation.numeroSiretAssociation') ? 'validation-failed' : ''}" title="<g:message code="sagr.property.numeroSiretAssociation.validationError" />" regex="^[\w\W]{0,14}$" maxlength="14" />
             
 
     
-      <label for="numeroEnregistrementPrefectureAssociation" class="required"><g:message code="sagr.property.numeroEnregistrementPrefectureAssociation.label" /> *  <span><g:message code="sagr.property.numeroEnregistrementPrefectureAssociation.help" /></span></label>
-            <input type="text" id="numeroEnregistrementPrefectureAssociation" name="numeroEnregistrementPrefectureAssociation" value="${rqt.numeroEnregistrementPrefectureAssociation?.toString()}" 
-                    class="required  validate-regex ${rqt.stepStates['association'].invalidFields.contains('numeroEnregistrementPrefectureAssociation') ? 'validation-failed' : ''}" title="<g:message code="sagr.property.numeroEnregistrementPrefectureAssociation.validationError" />" regex="^[\w\W]{0,9}$" maxlength="9" />
+      <label for="numerosAssociation.numeroEnregistrementPrefectureAssociation" class="required"><g:message code="sagr.property.numeroEnregistrementPrefectureAssociation.label" /> *  <span><g:message code="sagr.property.numeroEnregistrementPrefectureAssociation.help" /></span></label>
+            <input type="text" id="numerosAssociation.numeroEnregistrementPrefectureAssociation" name="numerosAssociation.numeroEnregistrementPrefectureAssociation" value="${rqt.numerosAssociation?.numeroEnregistrementPrefectureAssociation?.toString()}" 
+                    class="required  validate-regex ${rqt.stepStates['association'].invalidFields.contains('numerosAssociation.numeroEnregistrementPrefectureAssociation') ? 'validation-failed' : ''}" title="<g:message code="sagr.property.numeroEnregistrementPrefectureAssociation.validationError" />" regex="^[\w\W]{0,9}$" maxlength="9" />
             
 
     
@@ -60,51 +60,51 @@
     <legend><g:message code="sagr.property.contactsAssociation.label" /></legend>
     
       <label class="required"><g:message code="sagr.property.estAdresseCorrespondantPrincipal.label" /> *  <span><g:message code="sagr.property.estAdresseCorrespondantPrincipal.help" /></span></label>
-            <ul class="yes-no required ${rqt.stepStates['association'].invalidFields.contains('estAdresseCorrespondantPrincipal') ? 'validation-failed' : ''}">
+            <ul class="yes-no required ${rqt.stepStates['association'].invalidFields.contains('contactsAssociation.estAdresseCorrespondantPrincipal') ? 'validation-failed' : ''}">
               <g:each in="${[true,false]}">
               <li>
-                <input type="radio" id="estAdresseCorrespondantPrincipal_${it ? 'yes' : 'no'}" class="required condition-estAdresseCorrespondantPrincipal-trigger  validate-one-required boolean" title="" value="${it}" name="estAdresseCorrespondantPrincipal" ${it == rqt.estAdresseCorrespondantPrincipal ? 'checked="checked"': ''} />
-                <label for="estAdresseCorrespondantPrincipal_${it ? 'yes' : 'no'}"><g:message code="message.${it ? 'yes' : 'no'}" /></label>
+                <input type="radio" id="contactsAssociation.estAdresseCorrespondantPrincipal_${it ? 'yes' : 'no'}" class="required condition-estAdresseCorrespondantPrincipal-trigger  validate-one-required boolean" title="" value="${it}" name="contactsAssociation.estAdresseCorrespondantPrincipal" ${ rqt.contactsAssociation ?  (it == rqt.contactsAssociation?.estAdresseCorrespondantPrincipal ? 'checked="checked"': '') : (it == true ? 'checked="checked"': '') } />
+                <label for="contactsAssociation.estAdresseCorrespondantPrincipal_${it ? 'yes' : 'no'}"><g:message code="message.${it ? 'yes' : 'no'}" /></label>
               </li>
               </g:each>
             </ul>
             
 
     
-      <label for="nomCompletCorrespondantPrincipal" class="required condition-estAdresseCorrespondantPrincipal-filled"><g:message code="sagr.property.nomCompletCorrespondantPrincipal.label" /> *  <span><g:message code="sagr.property.nomCompletCorrespondantPrincipal.help" /></span></label>
-            <input type="text" id="nomCompletCorrespondantPrincipal" name="nomCompletCorrespondantPrincipal" value="${rqt.nomCompletCorrespondantPrincipal?.toString()}" 
-                    class="required condition-estAdresseCorrespondantPrincipal-filled  validate-string ${rqt.stepStates['association'].invalidFields.contains('nomCompletCorrespondantPrincipal') ? 'validation-failed' : ''}" title="<g:message code="sagr.property.nomCompletCorrespondantPrincipal.validationError" />"   />
+      <label for="contactsAssociation.nomCompletCorrespondantPrincipal" class="required condition-estAdresseCorrespondantPrincipal-filled"><g:message code="sagr.property.nomCompletCorrespondantPrincipal.label" /> *  <span><g:message code="sagr.property.nomCompletCorrespondantPrincipal.help" /></span></label>
+            <input type="text" id="contactsAssociation.nomCompletCorrespondantPrincipal" name="contactsAssociation.nomCompletCorrespondantPrincipal" value="${rqt.contactsAssociation?.nomCompletCorrespondantPrincipal?.toString()}" 
+                    class="required condition-estAdresseCorrespondantPrincipal-filled  validate-string ${rqt.stepStates['association'].invalidFields.contains('contactsAssociation.nomCompletCorrespondantPrincipal') ? 'validation-failed' : ''}" title="<g:message code="sagr.property.nomCompletCorrespondantPrincipal.validationError" />"   />
             
 
     
       <label class="required condition-estAdresseCorrespondantPrincipal-filled"><g:message code="sagr.property.adresseCorrespondantPrincipal.label" /> *  <span><g:message code="sagr.property.adresseCorrespondantPrincipal.help" /></span></label>
-            <div id="adresseCorrespondantPrincipal" class="address required condition-estAdresseCorrespondantPrincipal-filled  ${rqt.stepStates['association'].invalidFields.contains('adresseCorrespondantPrincipal') ? 'validation-failed' : ''}">
-            <label for="adresseCorrespondantPrincipal.additionalDeliveryInformation"><g:message code="address.property.additionalDeliveryInformation" /></label>
-            <input type="text" class="validate-addressLine38 ${rqt.stepStates['association'].invalidFields.contains('adresseCorrespondantPrincipal.additionalDeliveryInformation') ? 'validation-failed' : ''}" value="${rqt.adresseCorrespondantPrincipal?.additionalDeliveryInformation}" maxlength="38" id="adresseCorrespondantPrincipal.additionalDeliveryInformation" name="adresseCorrespondantPrincipal.additionalDeliveryInformation" />  
-            <label for="adresseCorrespondantPrincipal.additionalGeographicalInformation"><g:message code="address.property.additionalGeographicalInformation" /></label>
-            <input type="text" class="validate-addressLine38 ${rqt.stepStates['association'].invalidFields.contains('adresseCorrespondantPrincipal.additionalGeographicalInformation') ? 'validation-failed' : ''}" value="${rqt.adresseCorrespondantPrincipal?.additionalGeographicalInformation}" maxlength="38" id="adresseCorrespondantPrincipal.additionalGeographicalInformation" name="adresseCorrespondantPrincipal.additionalGeographicalInformation" />
-            <label for="adresseCorrespondantPrincipal_streetNumber"><g:message code="address.property.streetNumber" /></label> - 
-            <label for="adresseCorrespondantPrincipal_streetName" class="required"><g:message code="address.property.streetName" /> *</label><br />
-            <input type="text" class="line1 validate-streetNumber ${rqt.stepStates['association'].invalidFields.contains('adresseCorrespondantPrincipal.streetNumber') ? 'validation-failed' : ''}" value="${rqt.adresseCorrespondantPrincipal?.streetNumber}" size="5" maxlength="5" id="adresseCorrespondantPrincipal_streetNumber" name="adresseCorrespondantPrincipal.streetNumber" />
-            <input type="text" class="line2 required validate-streetName ${rqt.stepStates['association'].invalidFields.contains('adresseCorrespondantPrincipal.streetName') ? 'validation-failed' : ''}" value="${rqt.adresseCorrespondantPrincipal?.streetName}" maxlength="32" id="adresseCorrespondantPrincipal_streetName" name="adresseCorrespondantPrincipal.streetName" title="<g:message code="address.property.streetName.validationError" />" />
-            <input type="hidden" value="${rqt.adresseCorrespondantPrincipal?.streetMatriculation}" id="adresseCorrespondantPrincipal_streetMatriculation" name="adresseCorrespondantPrincipal.streetMatriculation" />
-            <input type="hidden" value="${rqt.adresseCorrespondantPrincipal?.streetRivoliCode}" id="adresseCorrespondantPrincipal_streetRivoliCode" name="adresseCorrespondantPrincipal.streetRivoliCode" />
-            <label for="adresseCorrespondantPrincipal.placeNameOrService"><g:message code="address.property.placeNameOrService" /></label>
-            <input type="text" class="validate-addressLine38 ${rqt.stepStates['association'].invalidFields.contains('adresseCorrespondantPrincipal.placeNameOrService') ? 'validation-failed' : ''}" value="${rqt.adresseCorrespondantPrincipal?.placeNameOrService}" maxlength="38" id="adresseCorrespondantPrincipal.placeNameOrService" name="adresseCorrespondantPrincipal.placeNameOrService" />
-            <label for="adresseCorrespondantPrincipal_postalCode" class="required"><g:message code="address.property.postalCode" /> * </label> - 
-            <label for="adresseCorrespondantPrincipal_city" class="required"><g:message code="address.property.city" /> *</label><br />
-            <input type="text" class="line1 required validate-postalCode ${rqt.stepStates['association'].invalidFields.contains('adresseCorrespondantPrincipal.postalCode') ? 'validation-failed' : ''}" value="${rqt.adresseCorrespondantPrincipal?.postalCode}" size="5" maxlength="5" id="adresseCorrespondantPrincipal_postalCode" name="adresseCorrespondantPrincipal.postalCode" title="<g:message code="address.property.postalCode.validationError" />" />
-            <input type="text" class="line2 required validate-city ${rqt.stepStates['association'].invalidFields.contains('adresseCorrespondantPrincipal.city') ? 'validation-failed' : ''}" value="${rqt.adresseCorrespondantPrincipal?.city}" maxlength="32" id="adresseCorrespondantPrincipal_city" name="adresseCorrespondantPrincipal.city" title="<g:message code="address.property.city.validationError" />" />
-            <input type="hidden" value="${rqt.adresseCorrespondantPrincipal?.cityInseeCode}" id="adresseCorrespondantPrincipal_cityInseeCode" name="adresseCorrespondantPrincipal.cityInseeCode" />
-            <label for="adresseCorrespondantPrincipal.countryName"><g:message code="address.property.countryName" /></label>
-            <input type="text" class="validate-addressLine38 ${rqt.stepStates['association'].invalidFields.contains('adresseCorrespondantPrincipal.countryName') ? 'validation-failed' : ''}" value="${rqt.adresseCorrespondantPrincipal?.countryName}" maxlength="38" id="adresseCorrespondantPrincipal.countryName" name="adresseCorrespondantPrincipal.countryName" />
+            <div id="contactsAssociation.adresseCorrespondantPrincipal" class="address required condition-estAdresseCorrespondantPrincipal-filled  ${rqt.stepStates['association'].invalidFields.contains('contactsAssociation.adresseCorrespondantPrincipal') ? 'validation-failed' : ''}">
+            <label for="contactsAssociation.adresseCorrespondantPrincipal.additionalDeliveryInformation"><g:message code="address.property.additionalDeliveryInformation" /></label>
+            <input type="text" class="validate-addressLine38 ${rqt.stepStates['association'].invalidFields.contains('contactsAssociation.adresseCorrespondantPrincipal.additionalDeliveryInformation') ? 'validation-failed' : ''}" value="${rqt.contactsAssociation?.adresseCorrespondantPrincipal?.additionalDeliveryInformation}" maxlength="38" id="contactsAssociation.adresseCorrespondantPrincipal.additionalDeliveryInformation" name="contactsAssociation.adresseCorrespondantPrincipal.additionalDeliveryInformation" />  
+            <label for="contactsAssociation.adresseCorrespondantPrincipal.additionalGeographicalInformation"><g:message code="address.property.additionalGeographicalInformation" /></label>
+            <input type="text" class="validate-addressLine38 ${rqt.stepStates['association'].invalidFields.contains('contactsAssociation.adresseCorrespondantPrincipal.additionalGeographicalInformation') ? 'validation-failed' : ''}" value="${rqt.contactsAssociation?.adresseCorrespondantPrincipal?.additionalGeographicalInformation}" maxlength="38" id="contactsAssociation.adresseCorrespondantPrincipal.additionalGeographicalInformation" name="contactsAssociation.adresseCorrespondantPrincipal.additionalGeographicalInformation" />
+            <label for="contactsAssociation.adresseCorrespondantPrincipal_streetNumber"><g:message code="address.property.streetNumber" /></label> - 
+            <label for="contactsAssociation.adresseCorrespondantPrincipal_streetName" class="required"><g:message code="address.property.streetName" /> *</label><br />
+            <input type="text" class="line1 validate-streetNumber ${rqt.stepStates['association'].invalidFields.contains('contactsAssociation.adresseCorrespondantPrincipal.streetNumber') ? 'validation-failed' : ''}" value="${rqt.contactsAssociation?.adresseCorrespondantPrincipal?.streetNumber}" size="5" maxlength="5" id="contactsAssociation.adresseCorrespondantPrincipal_streetNumber" name="contactsAssociation.adresseCorrespondantPrincipal.streetNumber" />
+            <input type="text" class="line2 required validate-streetName ${rqt.stepStates['association'].invalidFields.contains('contactsAssociation.adresseCorrespondantPrincipal.streetName') ? 'validation-failed' : ''}" value="${rqt.contactsAssociation?.adresseCorrespondantPrincipal?.streetName}" maxlength="32" id="contactsAssociation.adresseCorrespondantPrincipal_streetName" name="contactsAssociation.adresseCorrespondantPrincipal.streetName" title="<g:message code="address.property.streetName.validationError" />" />
+            <input type="hidden" value="${rqt.contactsAssociation?.adresseCorrespondantPrincipal?.streetMatriculation}" id="contactsAssociation.adresseCorrespondantPrincipal_streetMatriculation" name="contactsAssociation.adresseCorrespondantPrincipal.streetMatriculation" />
+            <input type="hidden" value="${rqt.contactsAssociation?.adresseCorrespondantPrincipal?.streetRivoliCode}" id="contactsAssociation.adresseCorrespondantPrincipal_streetRivoliCode" name="contactsAssociation.adresseCorrespondantPrincipal.streetRivoliCode" />
+            <label for="contactsAssociation.adresseCorrespondantPrincipal.placeNameOrService"><g:message code="address.property.placeNameOrService" /></label>
+            <input type="text" class="validate-addressLine38 ${rqt.stepStates['association'].invalidFields.contains('contactsAssociation.adresseCorrespondantPrincipal.placeNameOrService') ? 'validation-failed' : ''}" value="${rqt.contactsAssociation?.adresseCorrespondantPrincipal?.placeNameOrService}" maxlength="38" id="contactsAssociation.adresseCorrespondantPrincipal.placeNameOrService" name="contactsAssociation.adresseCorrespondantPrincipal.placeNameOrService" />
+            <label for="contactsAssociation.adresseCorrespondantPrincipal_postalCode" class="required"><g:message code="address.property.postalCode" /> * </label> - 
+            <label for="contactsAssociation.adresseCorrespondantPrincipal_city" class="required"><g:message code="address.property.city" /> *</label><br />
+            <input type="text" class="line1 required validate-postalCode ${rqt.stepStates['association'].invalidFields.contains('contactsAssociation.adresseCorrespondantPrincipal.postalCode') ? 'validation-failed' : ''}" value="${rqt.contactsAssociation?.adresseCorrespondantPrincipal?.postalCode}" size="5" maxlength="5" id="contactsAssociation.adresseCorrespondantPrincipal_postalCode" name="contactsAssociation.adresseCorrespondantPrincipal.postalCode" title="<g:message code="address.property.postalCode.validationError" />" />
+            <input type="text" class="line2 required validate-city ${rqt.stepStates['association'].invalidFields.contains('contactsAssociation.adresseCorrespondantPrincipal.city') ? 'validation-failed' : ''}" value="${rqt.contactsAssociation?.adresseCorrespondantPrincipal?.city}" maxlength="32" id="contactsAssociation.adresseCorrespondantPrincipal_city" name="contactsAssociation.adresseCorrespondantPrincipal.city" title="<g:message code="address.property.city.validationError" />" />
+            <input type="hidden" value="${rqt.contactsAssociation?.adresseCorrespondantPrincipal?.cityInseeCode}" id="contactsAssociation.adresseCorrespondantPrincipal_cityInseeCode" name="contactsAssociation.adresseCorrespondantPrincipal.cityInseeCode" />
+            <label for="contactsAssociation.adresseCorrespondantPrincipal.countryName"><g:message code="address.property.countryName" /></label>
+            <input type="text" class="validate-addressLine38 ${rqt.stepStates['association'].invalidFields.contains('contactsAssociation.adresseCorrespondantPrincipal.countryName') ? 'validation-failed' : ''}" value="${rqt.contactsAssociation?.adresseCorrespondantPrincipal?.countryName}" maxlength="38" id="contactsAssociation.adresseCorrespondantPrincipal.countryName" name="contactsAssociation.adresseCorrespondantPrincipal.countryName" />
             </div>
             
 
     
-      <label for="emailClubOuCorrespondant" class=""><g:message code="sagr.property.emailClubOuCorrespondant.label" />   <span><g:message code="sagr.property.emailClubOuCorrespondant.help" /></span></label>
-            <input type="text" id="emailClubOuCorrespondant" name="emailClubOuCorrespondant" value="${rqt.emailClubOuCorrespondant?.toString()}" 
-                    class="  validate-email ${rqt.stepStates['association'].invalidFields.contains('emailClubOuCorrespondant') ? 'validation-failed' : ''}" title="<g:message code="sagr.property.emailClubOuCorrespondant.validationError" />"   />
+      <label for="contactsAssociation.emailClubOuCorrespondant" class=""><g:message code="sagr.property.emailClubOuCorrespondant.label" />   <span><g:message code="sagr.property.emailClubOuCorrespondant.help" /></span></label>
+            <input type="text" id="contactsAssociation.emailClubOuCorrespondant" name="contactsAssociation.emailClubOuCorrespondant" value="${rqt.contactsAssociation?.emailClubOuCorrespondant?.toString()}" 
+                    class="  validate-email ${rqt.stepStates['association'].invalidFields.contains('contactsAssociation.emailClubOuCorrespondant') ? 'validation-failed' : ''}" title="<g:message code="sagr.property.emailClubOuCorrespondant.validationError" />"   />
             
 
     

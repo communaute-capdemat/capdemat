@@ -1,45 +1,43 @@
 package fr.cg95.cvq.business.request.social;
 
-import fr.cg95.cvq.dao.hibernate.PersistentStringEnum;
-
 /**
  * Generated class file, do not edit !
  */
-public final class LogementType extends PersistentStringEnum {
+public enum LogementType {
 
-    private static final long serialVersionUID = 1L;
-  
-    public static final LogementType LOCATAIRE = new LogementType("Locataire");
-  
-    public static final LogementType PROPRIETAIRE = new LogementType("Proprietaire");
-  
-    public static final LogementType HEBERGE = new LogementType("Heberge");
-  
-    public static final LogementType AUTRE = new LogementType("Autre");
-  
+    LOCATAIRE("Locataire"),
+    PROPRIETAIRE("Proprietaire"),
+    HEBERGE("Heberge"),
+    AUTRE("Autre");
+
 
     /**
-     * Prevent instantiation and subclassing with a private constructor.
+     * only for backward use LogementType.values() instead
+     * @deprecated only for backward
      */
-    private LogementType(String value) {
-        super(value);
+    @Deprecated 
+    public static LogementType[] allLogementTypes = LogementType.values();
+
+    private String legacyLabel;
+
+    private LogementType(String legacyLabel){
+        this.legacyLabel = legacyLabel;
     }
 
-    public LogementType() {}
-
-    public static LogementType[] allLogementTypes = {
-        LOCATAIRE,
-        PROPRIETAIRE,
-        HEBERGE,
-        AUTRE
-    };
+    public String getLegacyLabel() {
+        return legacyLabel;
+    }
 
     public static LogementType getDefaultLogementType() {
         return null;
     }
 
+    /**
+     * @deprecated use valueOf instead. Watchout! you must provid something of LogementType.something
+     * not the value of the name attribut.
+     */
     public static LogementType forString(final String enumAsString) {
-        for (LogementType value : allLogementTypes)
+        for (LogementType value : values())
             if (value.toString().equals(enumAsString))
                 return value;
         return getDefaultLogementType();

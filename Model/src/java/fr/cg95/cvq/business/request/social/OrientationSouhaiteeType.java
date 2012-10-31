@@ -1,48 +1,44 @@
 package fr.cg95.cvq.business.request.social;
 
-import fr.cg95.cvq.dao.hibernate.PersistentStringEnum;
-
 /**
  * Generated class file, do not edit !
  */
-public final class OrientationSouhaiteeType extends PersistentStringEnum {
+public enum OrientationSouhaiteeType {
 
-    private static final long serialVersionUID = 1L;
-  
-    public static final OrientationSouhaiteeType ACCUEILJOUR = new OrientationSouhaiteeType("Accueiljour");
-  
-    public static final OrientationSouhaiteeType HEBERGEMENTNUIT = new OrientationSouhaiteeType("Hebergementnuit");
-  
-    public static final OrientationSouhaiteeType HEBERGEMENTPERMANENT = new OrientationSouhaiteeType("Hebergementpermanent");
-  
-    public static final OrientationSouhaiteeType ACCOMPAGNEMENT = new OrientationSouhaiteeType("Accompagnement");
-  
-    public static final OrientationSouhaiteeType AUTRES = new OrientationSouhaiteeType("Autres");
-  
+    ACCUEILJOUR("Accueiljour"),
+    HEBERGEMENTNUIT("Hebergementnuit"),
+    HEBERGEMENTPERMANENT("Hebergementpermanent"),
+    ACCOMPAGNEMENT("Accompagnement"),
+    AUTRES("Autres");
+
 
     /**
-     * Prevent instantiation and subclassing with a private constructor.
+     * only for backward use OrientationSouhaiteeType.values() instead
+     * @deprecated only for backward
      */
-    private OrientationSouhaiteeType(String value) {
-        super(value);
+    @Deprecated 
+    public static OrientationSouhaiteeType[] allOrientationSouhaiteeTypes = OrientationSouhaiteeType.values();
+
+    private String legacyLabel;
+
+    private OrientationSouhaiteeType(String legacyLabel){
+        this.legacyLabel = legacyLabel;
     }
 
-    public OrientationSouhaiteeType() {}
-
-    public static OrientationSouhaiteeType[] allOrientationSouhaiteeTypes = {
-        ACCUEILJOUR,
-        HEBERGEMENTNUIT,
-        HEBERGEMENTPERMANENT,
-        ACCOMPAGNEMENT,
-        AUTRES
-    };
+    public String getLegacyLabel() {
+        return legacyLabel;
+    }
 
     public static OrientationSouhaiteeType getDefaultOrientationSouhaiteeType() {
         return null;
     }
 
+    /**
+     * @deprecated use valueOf instead. Watchout! you must provid something of OrientationSouhaiteeType.something
+     * not the value of the name attribut.
+     */
     public static OrientationSouhaiteeType forString(final String enumAsString) {
-        for (OrientationSouhaiteeType value : allOrientationSouhaiteeTypes)
+        for (OrientationSouhaiteeType value : values())
             if (value.toString().equals(enumAsString))
                 return value;
         return getDefaultOrientationSouhaiteeType();

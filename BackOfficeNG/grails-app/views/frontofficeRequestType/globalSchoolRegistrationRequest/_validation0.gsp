@@ -25,10 +25,10 @@
       <h4><g:message code="gsrr.property.ecoleDerogation.label" /></h4>
       <dl>
         
-          <dt><g:message code="gsrr.property.idEcoleDerog.label" /></dt><dd>${rqt.idEcoleDerog?.toString()}</dd>
+          <dt><g:message code="gsrr.property.idEcoleDerog.label" /></dt><dd>${rqt.ecoleDerogation?.idEcoleDerog?.toString()}</dd>
 
         
-          <dt><g:message code="gsrr.property.labelEcoleDerog.label" /></dt><dd>${rqt.labelEcoleDerog?.toString()}</dd>
+          <dt><g:message code="gsrr.property.labelEcoleDerog.label" /></dt><dd>${rqt.ecoleDerogation?.labelEcoleDerog?.toString()}</dd>
 
         
       </dl>
@@ -39,7 +39,7 @@
         <dt><g:message code="gsrr.property.motifsDerogationEcole.label" /></dt>
           <dd>
           <g:render template="/frontofficeRequestType/widget/localReferentialDataSummary" 
-                    model="['javaName':'motifsDerogationEcole', 'lrEntries': lrTypes.motifsDerogationEcole.entries, 'depth':0]" />
+                    model="['wrapper':rqt, 'javaName':'motifsDerogationEcole', 'lrEntries': lrTypes.motifsDerogationEcole.entries, 'depth':0]" />
           </dd>
           
 
@@ -57,10 +57,10 @@
       <h4><g:message code="gsrr.property.ecoleSecteur.label" /></h4>
       <dl>
         
-          <dt><g:message code="gsrr.property.idEcoleSecteur.label" /></dt><dd>${rqt.idEcoleSecteur?.toString()}</dd>
+          <dt><g:message code="gsrr.property.idEcoleSecteur.label" /></dt><dd>${rqt.ecoleSecteur?.idEcoleSecteur?.toString()}</dd>
 
         
-          <dt><g:message code="gsrr.property.labelEcoleSecteur.label" /></dt><dd>${rqt.labelEcoleSecteur?.toString()}</dd>
+          <dt><g:message code="gsrr.property.labelEcoleSecteur.label" /></dt><dd>${rqt.ecoleSecteur?.labelEcoleSecteur?.toString()}</dd>
 
         
       </dl>

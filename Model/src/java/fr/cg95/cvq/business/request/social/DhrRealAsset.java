@@ -37,7 +37,6 @@ public class DhrRealAsset implements Serializable {
 
     public static final Map<String, IConditionChecker> conditions =
         DomesticHelpRequest.conditions;
-        new HashMap<String, IConditionChecker>();
 
     public DhrRealAsset() {
         super();
@@ -143,7 +142,7 @@ public class DhrRealAsset implements Serializable {
         this.realAssetNetFloorArea = realAssetNetFloorArea;
     }
 
-
+    
     @Column(name="real_asset_net_floor_area" , columnDefinition="bytea" )
     @Type(type="serializable") //Hack see http://capdemat.capwebct.fr/ticket/338
       
@@ -172,7 +171,7 @@ public class DhrRealAsset implements Serializable {
         this.dhrRealAssetAddress = dhrRealAssetAddress;
     }
 
-
+    
     @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name="dhr_real_asset_address_id")
       
@@ -194,7 +193,7 @@ public class DhrRealAsset implements Serializable {
         this.dhrRealAssetValue = dhrRealAssetValue;
     }
 
-
+    
     @Column(name="dhr_real_asset_value" , columnDefinition="bytea" )
     @Type(type="serializable") //Hack see http://capdemat.capwebct.fr/ticket/338
       

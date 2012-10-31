@@ -273,7 +273,6 @@ public class ${className} implements Serializable {
 
     public static final Map<String, IConditionChecker> conditions =
         ${requestName}.conditions;
-        new HashMap<String, IConditionChecker>();
 
     public ${className}() {
         super();
@@ -376,11 +375,13 @@ public class ${className} implements Serializable {
             [element.elementCommon.conditionListener, element.complexContainerConditionListener].each { listener ->
               if (listener != null) {
                 def trigger = complexType.getElementModelProperties(listener.condition.trigger.name)
-                if ("LocalReferentialData".equals(trigger.modelClassName)) {
-          %>
-            "if (_this.${trigger.nameAsParam} == null || _this.${trigger.nameAsParam}.isEmpty()) return false; _this.${trigger.nameAsParam}.each { active &= <% if (RoleType.unfilled.equals(listener.role)) { %>!<% } %>_this.conditions['${StringUtils.uncapitalize(className)}.${trigger.nameAsParam}'].test(it.name) };" +
-                <% } else { %>
-            "active &= <% if (RoleType.unfilled.equals(listener.role)) { %>!<% } %>_this.conditions['${StringUtils.uncapitalize(className)}.${trigger.nameAsParam}'].test(_this.${trigger.nameAsParam}.toString());" +
+                if(trigger != null) {
+                  if ("LocalReferentialData".equals(trigger.modelClassName)) {
+            %>
+              "if (_this.${trigger.nameAsParam} == null || _this.${trigger.nameAsParam}.isEmpty()) return false; _this.${trigger.nameAsParam}.each { active &= <% if (RoleType.unfilled.equals(listener.role)) { %>!<% } %>_this.conditions['${StringUtils.uncapitalize(className)}.${trigger.nameAsParam}'].test(it.name) };" +
+                  <% } else { %>
+              "active &= <% if (RoleType.unfilled.equals(listener.role)) { %>!<% } %>_this.conditions['${StringUtils.uncapitalize(className)}.${trigger.nameAsParam}'].test(_this.${trigger.nameAsParam}.toString());" +
+                  <% } %>
                 <% } %>
               <% } %>
             <% } %>
@@ -396,16 +397,8 @@ public class ${className} implements Serializable {
         this.${element.nameAsParam} = ${element.nameAsParam};
     }
 
-    /**
-  <% displayAnnotation(element) %>
-    */
-    public final ${element.type()} get${StringUtils.capitalize(element.nameAsParam)}() {
-<% displayAnnotation(element) %>
+    <% displayAnnotation(element,className) %>
     public ${element.type()} get${StringUtils.capitalize(element.nameAsParam)}() {
-    /**
-  <% displayAnnotation(element,className) %>
-    */
-    public final ${element.type()} get${StringUtils.capitalize(element.nameAsParam)}() {
         return this.${element.nameAsParam};
     }
   <% } %>

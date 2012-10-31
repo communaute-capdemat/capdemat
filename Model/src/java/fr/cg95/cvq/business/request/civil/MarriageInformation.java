@@ -22,20 +22,21 @@ import fr.cg95.cvq.xml.common.*;
 import fr.cg95.cvq.xml.request.civil.*;
 import fr.cg95.cvq.service.request.LocalReferential;
 import fr.cg95.cvq.service.request.condition.IConditionChecker;
+import javax.persistence.*;
+import org.hibernate.annotations.Index;
+import org.hibernate.annotations.Type;
 
 /**
  * Generated class file, do not edit !
- *
- * @hibernate.class
- *  table="marriage_information"
- *  lazy="false"
  */
+@Entity
+@Table(name="marriage_information")
 public class MarriageInformation implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     public static final Map<String, IConditionChecker> conditions =
-        new HashMap<String, IConditionChecker>();
+        MarriageDetailsRequest.conditions;
 
     public MarriageInformation() {
         super();
@@ -69,7 +70,7 @@ public class MarriageInformation implements Serializable {
         marriageInformation.setMarriageCity(this.marriageCity);
       
         if (this.marriagePostalCode != null)
-            marriageInformation.setMarriagePostalCode(fr.cg95.cvq.xml.common.InseeDepartementCodeType.Enum.forString(this.marriagePostalCode.toString()));
+            marriageInformation.setMarriagePostalCode(fr.cg95.cvq.xml.common.InseeDepartementCodeType.Enum.forString(this.marriagePostalCode.getLegacyLabel()));
       
         return marriageInformation;
     }
@@ -129,11 +130,8 @@ public class MarriageInformation implements Serializable {
         this.id = id;
     }
 
-    /**
-     * @hibernate.id
-     *  column="id"
-     *  generator-class="sequence"
-     */
+    @Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE)
     public final Long getId() {
         return this.id;
     }
@@ -149,18 +147,14 @@ public class MarriageInformation implements Serializable {
     
     private java.util.Date marriageDate;
 
-    public final void setMarriageDate(final java.util.Date marriageDate) {
+    public void setMarriageDate(final java.util.Date marriageDate) {
         this.marriageDate = marriageDate;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="marriage_date"
-        
+    
+    @Column(name="marriage_date"  )
       
-    */
-    public final java.util.Date getMarriageDate() {
+    public java.util.Date getMarriageDate() {
         return this.marriageDate;
     }
   
@@ -190,18 +184,14 @@ public class MarriageInformation implements Serializable {
     
     private String marriageCity;
 
-    public final void setMarriageCity(final String marriageCity) {
+    public void setMarriageCity(final String marriageCity) {
         this.marriageCity = marriageCity;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="marriage_city"
-        *  length="32"
+    
+    @Column(name="marriage_city" , length=32 )
       
-    */
-    public final String getMarriageCity() {
+    public String getMarriageCity() {
         return this.marriageCity;
     }
   
@@ -215,18 +205,15 @@ public class MarriageInformation implements Serializable {
     
     private fr.cg95.cvq.business.users.InseeDepartementCodeType marriagePostalCode;
 
-    public final void setMarriagePostalCode(final fr.cg95.cvq.business.users.InseeDepartementCodeType marriagePostalCode) {
+    public void setMarriagePostalCode(final fr.cg95.cvq.business.users.InseeDepartementCodeType marriagePostalCode) {
         this.marriagePostalCode = marriagePostalCode;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="marriage_postal_code"
-        
+    
+    @Enumerated(EnumType.STRING)
+    @Column(name="marriage_postal_code"  )
       
-    */
-    public final fr.cg95.cvq.business.users.InseeDepartementCodeType getMarriagePostalCode() {
+    public fr.cg95.cvq.business.users.InseeDepartementCodeType getMarriagePostalCode() {
         return this.marriagePostalCode;
     }
   

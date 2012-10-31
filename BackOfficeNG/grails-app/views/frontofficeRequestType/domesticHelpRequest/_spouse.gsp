@@ -6,14 +6,8 @@
             <ul class="required ${rqt.stepStates['spouse'].invalidFields.contains('dhrRequestKind') ? 'validation-failed' : ''}">
               <g:each in="${['INDIVIDUAL','COUPLE']}">
               <li>
-                <input type="radio" id="dhrRequestKind_${it}" class="required condition-isCoupleRequest-trigger  validate-one-required" value="fr.cg95.cvq.business.request.social.DhrRequestKindType_${it}" name="dhrRequestKind" ${it == rqt.dhrRequestKind.toString() ? 'checked="checked"': ''} title="<g:message code="dhr.property.dhrRequestKind.validationError" />" />
-                <label for="dhrRequestKind_${it}"><g:capdematEnumToText var="${it}" i18nKeyPrefix="dhr.property.dhrRequestKind" /></label>
-                <input type="radio" id="dhrSpouse.dhrRequestKind_${it}" class="required condition-isCoupleRequest-trigger  validate-one-required" value="fr.cg95.cvq.business.request.social.DhrRequestKindType_${it}" name="dhrSpouse.dhrRequestKind" ${it == rqt.dhrSpouse?.dhrRequestKind.toString() ? 'checked="checked"': ''} title="<g:message code="dhr.property.dhrRequestKind.validationError" />" />
-                <label for="dhrSpouse.dhrRequestKind_${it}"><g:capdematEnumToText var="${it}" i18nKeyPrefix="dhr.property.dhrRequestKind" /></label>
                 <input type="radio" id="dhrRequestKind_${it}" class="required condition-isCoupleRequest-trigger  validate-one-required" value="${it}" name="dhrRequestKind" ${it == rqt.dhrRequestKind.toString() ? 'checked="checked"': ''} title="<g:message code="dhr.property.dhrRequestKind.validationError" />" />
                 <label for="dhrRequestKind_${it}"><g:capdematEnumToText var="${it}" i18nKeyPrefix="dhr.property.dhrRequestKind" /></label>
-                <input type="radio" id="dhrSpouse.dhrRequestKind_${it}" class="required condition-isCoupleRequest-trigger  validate-one-required" value="fr.cg95.cvq.business.request.social.DhrRequestKindType_${it}" name="dhrSpouse.dhrRequestKind" ${it == rqt.dhrSpouse?.dhrRequestKind.toString() ? 'checked="checked"': ''} title="<g:message code="dhr.property.dhrRequestKind.validationError" />" />
-                <label for="dhrSpouse.dhrRequestKind_${it}"><g:capdematEnumToText var="${it}" i18nKeyPrefix="dhr.property.dhrRequestKind" /></label>
               </li>
               </g:each>
             </ul>
@@ -28,12 +22,8 @@
       <label for="dhrSpouse.dhrSpouseTitle" class="required"><g:message code="dhr.property.dhrSpouseTitle.label" /> *  <span><g:message code="dhr.property.dhrSpouseTitle.help" /></span></label>
             <select id="dhrSpouse.dhrSpouseTitle" name="dhrSpouse.dhrSpouseTitle" class="required condition-isSpouseMadam-trigger  validate-not-first ${rqt.stepStates['spouse'].invalidFields.contains('dhrSpouse.dhrSpouseTitle') ? 'validation-failed' : ''}" title="<g:message code="dhr.property.dhrSpouseTitle.validationError" />">
               <option value=""><g:message code="message.select.defaultOption" /></option>
-              <g:each in="${['Mister','Madam','Miss','Agency','Unknown']}">
-                <option value="fr.cg95.cvq.business.users.TitleType_${it}" ${it == rqt.dhrSpouseTitle?.toString() ? 'selected="selected"': ''}><g:capdematEnumToText var="${it}" i18nKeyPrefix="dhr.property.dhrSpouseTitle" /></option>
               <g:each in="${['MISTER','MADAM','MISS','AGENCY','UNKNOWN']}">
-                <option value="${it}" ${it == rqt.dhrSpouseTitle?.toString() ? 'selected="selected"': ''}><g:capdematEnumToText var="${it}" i18nKeyPrefix="dhr.property.dhrSpouseTitle" /></option>
-              <g:each in="${['Mister','Madam','Miss','Agency','Unknown']}">
-                <option value="fr.cg95.cvq.business.users.TitleType_${it}" ${it == rqt.dhrSpouse?.dhrSpouseTitle?.toString() ? 'selected="selected"': ''}><g:capdematEnumToText var="${it}" i18nKeyPrefix="dhr.property.dhrSpouseTitle" /></option>
+                <option value="${it}" ${it == rqt.dhrSpouse?.dhrSpouseTitle?.toString() ? 'selected="selected"': ''}><g:capdematEnumToText var="${it}" i18nKeyPrefix="dhr.property.dhrSpouseTitle" /></option>
               </g:each>
             </select>
             
@@ -42,12 +32,8 @@
       <label for="dhrSpouse.dhrSpouseFamilyStatus" class="required"><g:message code="dhr.property.dhrSpouseFamilyStatus.label" /> *  <span><g:message code="dhr.property.dhrSpouseFamilyStatus.help" /></span></label>
             <select id="dhrSpouse.dhrSpouseFamilyStatus" name="dhrSpouse.dhrSpouseFamilyStatus" class="required  validate-not-first ${rqt.stepStates['spouse'].invalidFields.contains('dhrSpouse.dhrSpouseFamilyStatus') ? 'validation-failed' : ''}" title="<g:message code="dhr.property.dhrSpouseFamilyStatus.validationError" />">
               <option value=""><g:message code="message.select.defaultOption" /></option>
-              <g:each in="${['Married','Single','Divorced','Widow','CommonLawMarriage','PACS','Other']}">
-                <option value="fr.cg95.cvq.business.users.FamilyStatusType_${it}" ${it == rqt.dhrSpouseFamilyStatus?.toString() ? 'selected="selected"': ''}><g:capdematEnumToText var="${it}" i18nKeyPrefix="dhr.property.dhrSpouseFamilyStatus" /></option>
               <g:each in="${['MARRIED','SINGLE','DIVORCED','WIDOW','COMMON_LAW_MARRIAGE','SEPARATED','P_A_C_S','OTHER']}">
-                <option value="${it}" ${it == rqt.dhrSpouseFamilyStatus?.toString() ? 'selected="selected"': ''}><g:capdematEnumToText var="${it}" i18nKeyPrefix="dhr.property.dhrSpouseFamilyStatus" /></option>
-              <g:each in="${['Married','Single','Divorced','Widow','CommonLawMarriage','PACS','Other']}">
-                <option value="fr.cg95.cvq.business.users.FamilyStatusType_${it}" ${it == rqt.dhrSpouse?.dhrSpouseFamilyStatus?.toString() ? 'selected="selected"': ''}><g:capdematEnumToText var="${it}" i18nKeyPrefix="dhr.property.dhrSpouseFamilyStatus" /></option>
+                <option value="${it}" ${it == rqt.dhrSpouse?.dhrSpouseFamilyStatus?.toString() ? 'selected="selected"': ''}><g:capdematEnumToText var="${it}" i18nKeyPrefix="dhr.property.dhrSpouseFamilyStatus" /></option>
               </g:each>
             </select>
             
@@ -120,12 +106,8 @@
       <label for="dhrSpouse.dhrSpouseNationality" class="required"><g:message code="dhr.property.dhrSpouseNationality.label" /> *  <span><g:message code="dhr.property.dhrSpouseNationality.help" /></span></label>
             <select id="dhrSpouse.dhrSpouseNationality" name="dhrSpouse.dhrSpouseNationality" class="required condition-isSpouseNonEuropean-trigger  validate-not-first ${rqt.stepStates['spouse'].invalidFields.contains('dhrSpouse.dhrSpouseNationality') ? 'validation-failed' : ''}" title="<g:message code="dhr.property.dhrSpouseNationality.validationError" />">
               <option value=""><g:message code="message.select.defaultOption" /></option>
-              <g:each in="${['French','EuropeanUnion','OutsideEuropeanUnion']}">
-                <option value="fr.cg95.cvq.business.users.NationalityType_${it}" ${it == rqt.dhrSpouseNationality?.toString() ? 'selected="selected"': ''}><g:capdematEnumToText var="${it}" i18nKeyPrefix="dhr.property.dhrSpouseNationality" /></option>
               <g:each in="${['FRENCH','EUROPEAN_UNION','OUTSIDE_EUROPEAN_UNION']}">
-                <option value="${it}" ${it == rqt.dhrSpouseNationality?.toString() ? 'selected="selected"': ''}><g:capdematEnumToText var="${it}" i18nKeyPrefix="dhr.property.dhrSpouseNationality" /></option>
-              <g:each in="${['French','EuropeanUnion','OutsideEuropeanUnion']}">
-                <option value="fr.cg95.cvq.business.users.NationalityType_${it}" ${it == rqt.dhrSpouse?.dhrSpouseNationality?.toString() ? 'selected="selected"': ''}><g:capdematEnumToText var="${it}" i18nKeyPrefix="dhr.property.dhrSpouseNationality" /></option>
+                <option value="${it}" ${it == rqt.dhrSpouse?.dhrSpouseNationality?.toString() ? 'selected="selected"': ''}><g:capdematEnumToText var="${it}" i18nKeyPrefix="dhr.property.dhrSpouseNationality" /></option>
               </g:each>
             </select>
             
@@ -205,12 +187,8 @@
       <label for="dhrSpouseStatus.dhrSpousePrincipalPensionPlan" class="required condition-isSpouseRetired-filled"><g:message code="dhr.property.dhrSpousePrincipalPensionPlan.label" /> *  <span><g:message code="dhr.property.dhrSpousePrincipalPensionPlan.help" /></span></label>
             <select id="dhrSpouseStatus.dhrSpousePrincipalPensionPlan" name="dhrSpouseStatus.dhrSpousePrincipalPensionPlan" class="required condition-isSpouseRetired-filled condition-isSpouseOtherPensionPlan-trigger  validate-not-first ${rqt.stepStates['spouse'].invalidFields.contains('dhrSpouseStatus.dhrSpousePrincipalPensionPlan') ? 'validation-failed' : ''}" title="<g:message code="dhr.property.dhrSpousePrincipalPensionPlan.validationError" />">
               <option value=""><g:message code="message.select.defaultOption" /></option>
-              <g:each in="${['CNAV','MSA','CRAM','MGEN','SNCF','Other']}">
-                <option value="fr.cg95.cvq.business.request.social.DhrPrincipalPensionPlanType_${it}" ${it == rqt.dhrSpousePrincipalPensionPlan?.toString() ? 'selected="selected"': ''}><g:capdematEnumToText var="${it}" i18nKeyPrefix="dhr.property.dhrSpousePrincipalPensionPlan" /></option>
               <g:each in="${['C_N_A_V','M_S_A','C_R_A_M','M_G_E_N','S_N_C_F','OTHER']}">
-                <option value="${it}" ${it == rqt.dhrSpousePrincipalPensionPlan?.toString() ? 'selected="selected"': ''}><g:capdematEnumToText var="${it}" i18nKeyPrefix="dhr.property.dhrSpousePrincipalPensionPlan" /></option>
-              <g:each in="${['CNAV','MSA','CRAM','MGEN','SNCF','Other']}">
-                <option value="fr.cg95.cvq.business.request.social.DhrPrincipalPensionPlanType_${it}" ${it == rqt.dhrSpouseStatus?.dhrSpousePrincipalPensionPlan?.toString() ? 'selected="selected"': ''}><g:capdematEnumToText var="${it}" i18nKeyPrefix="dhr.property.dhrSpousePrincipalPensionPlan" /></option>
+                <option value="${it}" ${it == rqt.dhrSpouseStatus?.dhrSpousePrincipalPensionPlan?.toString() ? 'selected="selected"': ''}><g:capdematEnumToText var="${it}" i18nKeyPrefix="dhr.property.dhrSpousePrincipalPensionPlan" /></option>
               </g:each>
             </select>
             

@@ -1,54 +1,46 @@
 package fr.cg95.cvq.business.request.social;
 
-import fr.cg95.cvq.dao.hibernate.PersistentStringEnum;
-
 /**
  * Generated class file, do not edit !
  */
-public final class ChoixSituationProfessionnelleType extends PersistentStringEnum {
+public enum ChoixSituationProfessionnelleType {
 
-    private static final long serialVersionUID = 1L;
-  
-    public static final ChoixSituationProfessionnelleType SALARIE = new ChoixSituationProfessionnelleType("Salarie");
-  
-    public static final ChoixSituationProfessionnelleType STAGIAIRE = new ChoixSituationProfessionnelleType("Stagiaire");
-  
-    public static final ChoixSituationProfessionnelleType NONSALARIE = new ChoixSituationProfessionnelleType("Nonsalarie");
-  
-    public static final ChoixSituationProfessionnelleType DEMANDEUR = new ChoixSituationProfessionnelleType("Demandeur");
-  
-    public static final ChoixSituationProfessionnelleType RETRAITE = new ChoixSituationProfessionnelleType("Retraite");
-  
-    public static final ChoixSituationProfessionnelleType PENSION = new ChoixSituationProfessionnelleType("Pension");
-  
-    public static final ChoixSituationProfessionnelleType AUTRE = new ChoixSituationProfessionnelleType("Autre");
-  
+    SALARIE("Salarie"),
+    STAGIAIRE("Stagiaire"),
+    NONSALARIE("Nonsalarie"),
+    DEMANDEUR("Demandeur"),
+    RETRAITE("Retraite"),
+    PENSION("Pension"),
+    AUTRE("Autre");
+
 
     /**
-     * Prevent instantiation and subclassing with a private constructor.
+     * only for backward use ChoixSituationProfessionnelleType.values() instead
+     * @deprecated only for backward
      */
-    private ChoixSituationProfessionnelleType(String value) {
-        super(value);
+    @Deprecated 
+    public static ChoixSituationProfessionnelleType[] allChoixSituationProfessionnelleTypes = ChoixSituationProfessionnelleType.values();
+
+    private String legacyLabel;
+
+    private ChoixSituationProfessionnelleType(String legacyLabel){
+        this.legacyLabel = legacyLabel;
     }
 
-    public ChoixSituationProfessionnelleType() {}
-
-    public static ChoixSituationProfessionnelleType[] allChoixSituationProfessionnelleTypes = {
-        SALARIE,
-        STAGIAIRE,
-        NONSALARIE,
-        DEMANDEUR,
-        RETRAITE,
-        PENSION,
-        AUTRE
-    };
+    public String getLegacyLabel() {
+        return legacyLabel;
+    }
 
     public static ChoixSituationProfessionnelleType getDefaultChoixSituationProfessionnelleType() {
         return null;
     }
 
+    /**
+     * @deprecated use valueOf instead. Watchout! you must provid something of ChoixSituationProfessionnelleType.something
+     * not the value of the name attribut.
+     */
     public static ChoixSituationProfessionnelleType forString(final String enumAsString) {
-        for (ChoixSituationProfessionnelleType value : allChoixSituationProfessionnelleTypes)
+        for (ChoixSituationProfessionnelleType value : values())
             if (value.toString().equals(enumAsString))
                 return value;
         return getDefaultChoixSituationProfessionnelleType();

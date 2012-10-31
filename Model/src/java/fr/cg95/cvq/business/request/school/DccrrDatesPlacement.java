@@ -22,20 +22,21 @@ import fr.cg95.cvq.xml.common.*;
 import fr.cg95.cvq.xml.request.school.*;
 import fr.cg95.cvq.service.request.LocalReferential;
 import fr.cg95.cvq.service.request.condition.IConditionChecker;
+import javax.persistence.*;
+import org.hibernate.annotations.Index;
+import org.hibernate.annotations.Type;
 
 /**
  * Generated class file, do not edit !
- *
- * @hibernate.class
- *  table="dccrr_dates_placement"
- *  lazy="false"
  */
+@Entity
+@Table(name="dccrr_dates_placement")
 public class DccrrDatesPlacement implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     public static final Map<String, IConditionChecker> conditions =
-        new HashMap<String, IConditionChecker>();
+        DayCareCenterRegistrationRequest.conditions;
 
     public DccrrDatesPlacement() {
         super();
@@ -60,14 +61,8 @@ public class DccrrDatesPlacement implements Serializable {
         DccrrDatesPlacementType dccrrDatesPlacement = DccrrDatesPlacementType.Factory.newInstance();
         int i = 0;
     
-        date = this.datePlacementFin;
-        if (date != null) {
-            calendar.setTime(date);
-            dccrrDatesPlacement.setDatePlacementFin(calendar);
-        }
-      
         if (this.choixTypeDatePlacementAccueilRegulier != null)
-            dccrrDatesPlacement.setChoixTypeDatePlacementAccueilRegulier(fr.cg95.cvq.xml.request.school.ChoixDatePlacement.Enum.forString(this.choixTypeDatePlacementAccueilRegulier.toString()));
+            dccrrDatesPlacement.setChoixTypeDatePlacementAccueilRegulier(fr.cg95.cvq.xml.request.school.ChoixDatePlacement.Enum.forString(this.choixTypeDatePlacementAccueilRegulier.getLegacyLabel()));
       
         date = this.datePlacementDebut;
         if (date != null) {
@@ -84,11 +79,6 @@ public class DccrrDatesPlacement implements Serializable {
         List list = new ArrayList();
         DccrrDatesPlacement dccrrDatesPlacement = new DccrrDatesPlacement();
     
-        calendar = dccrrDatesPlacementDoc.getDatePlacementFin();
-        if (calendar != null) {
-            dccrrDatesPlacement.setDatePlacementFin(calendar.getTime());
-        }
-      
         if (dccrrDatesPlacementDoc.getChoixTypeDatePlacementAccueilRegulier() != null)
             dccrrDatesPlacement.setChoixTypeDatePlacementAccueilRegulier(fr.cg95.cvq.business.request.school.ChoixDatePlacement.forString(dccrrDatesPlacementDoc.getChoixTypeDatePlacementAccueilRegulier().toString()));
         else
@@ -105,12 +95,6 @@ public class DccrrDatesPlacement implements Serializable {
     @Override
     public DccrrDatesPlacement clone() {
         DccrrDatesPlacement result = new DccrrDatesPlacement();
-        
-          
-            
-        result.setDatePlacementFin(datePlacementFin);
-      
-          
         
           
             
@@ -136,33 +120,12 @@ public class DccrrDatesPlacement implements Serializable {
         this.id = id;
     }
 
-    /**
-     * @hibernate.id
-     *  column="id"
-     *  generator-class="sequence"
-     */
+    @Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE)
     public final Long getId() {
         return this.id;
     }
 
-  
-    
-    private java.util.Date datePlacementFin;
-
-    public final void setDatePlacementFin(final java.util.Date datePlacementFin) {
-        this.datePlacementFin = datePlacementFin;
-    }
-
-    /**
-  
-        * @hibernate.property
-        *  column="date_placement_fin"
-        
-      
-    */
-    public final java.util.Date getDatePlacementFin() {
-        return this.datePlacementFin;
-    }
   
     
       @NotNull(
@@ -174,18 +137,15 @@ public class DccrrDatesPlacement implements Serializable {
     
     private fr.cg95.cvq.business.request.school.ChoixDatePlacement choixTypeDatePlacementAccueilRegulier;
 
-    public final void setChoixTypeDatePlacementAccueilRegulier(final fr.cg95.cvq.business.request.school.ChoixDatePlacement choixTypeDatePlacementAccueilRegulier) {
+    public void setChoixTypeDatePlacementAccueilRegulier(final fr.cg95.cvq.business.request.school.ChoixDatePlacement choixTypeDatePlacementAccueilRegulier) {
         this.choixTypeDatePlacementAccueilRegulier = choixTypeDatePlacementAccueilRegulier;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="choix_type_date_placement_accueil_regulier"
-        
+    
+    @Enumerated(EnumType.STRING)
+    @Column(name="choix_type_date_placement_accueil_regulier"  )
       
-    */
-    public final fr.cg95.cvq.business.request.school.ChoixDatePlacement getChoixTypeDatePlacementAccueilRegulier() {
+    public fr.cg95.cvq.business.request.school.ChoixDatePlacement getChoixTypeDatePlacementAccueilRegulier() {
         return this.choixTypeDatePlacementAccueilRegulier;
     }
   
@@ -195,7 +155,8 @@ public class DccrrDatesPlacement implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['dccrrDatesPlacement.choixTypeDatePlacementAccueilRegulier'].test(_this.choixTypeDatePlacementAccueilRegulier.toString());" +
+              "active &= _this.conditions['dccrrDatesPlacement.choixTypeDatePlacementAccueilRegulier'].test(_this.choixTypeDatePlacementAccueilRegulier.toString());" +
+                  
                 
               
             
@@ -208,18 +169,14 @@ public class DccrrDatesPlacement implements Serializable {
     
     private java.util.Date datePlacementDebut;
 
-    public final void setDatePlacementDebut(final java.util.Date datePlacementDebut) {
+    public void setDatePlacementDebut(final java.util.Date datePlacementDebut) {
         this.datePlacementDebut = datePlacementDebut;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="date_placement_debut"
-        
+    
+    @Column(name="date_placement_debut"  )
       
-    */
-    public final java.util.Date getDatePlacementDebut() {
+    public java.util.Date getDatePlacementDebut() {
         return this.datePlacementDebut;
     }
   

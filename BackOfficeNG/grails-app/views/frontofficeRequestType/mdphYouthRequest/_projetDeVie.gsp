@@ -5,8 +5,8 @@
     <label for="choixProjetDeVie" class="required"><g:message code="myr.property.choixProjetDeVie.label" /> *  <span><g:message code="myr.property.choixProjetDeVie.help" /></span></label>
             <select id="choixProjetDeVie" name="choixProjetDeVie" class="required condition-choixProjetDeVie-trigger  validate-not-first ${rqt.stepStates['projetDeVie'].invalidFields.contains('choixProjetDeVie') ? 'validation-failed' : ''}" title="<g:message code="myr.property.choixProjetDeVie.validationError" />">
               <option value=""><g:message code="message.select.defaultOption" /></option>
-              <g:each in="${['Oui','Aide','Non']}">
-                <option value="fr.cg95.cvq.business.request.social.MyrChoixProjetDeVieType_${it}" ${it == rqt.choixProjetDeVie?.toString() ? 'selected="selected"': ''}><g:capdematEnumToText var="${it}" i18nKeyPrefix="myr.property.choixProjetDeVie" /></option>
+              <g:each in="${['OUI','AIDE','NON']}">
+                <option value="${it}" ${it == rqt.choixProjetDeVie?.toString() ? 'selected="selected"': ''}><g:capdematEnumToText var="${it}" i18nKeyPrefix="myr.property.choixProjetDeVie" /></option>
               </g:each>
             </select>
             

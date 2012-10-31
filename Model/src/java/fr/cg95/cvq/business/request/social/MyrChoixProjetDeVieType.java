@@ -1,42 +1,42 @@
 package fr.cg95.cvq.business.request.social;
 
-import fr.cg95.cvq.dao.hibernate.PersistentStringEnum;
-
 /**
  * Generated class file, do not edit !
  */
-public final class MyrChoixProjetDeVieType extends PersistentStringEnum {
+public enum MyrChoixProjetDeVieType {
 
-    private static final long serialVersionUID = 1L;
-  
-    public static final MyrChoixProjetDeVieType OUI = new MyrChoixProjetDeVieType("Oui");
-  
-    public static final MyrChoixProjetDeVieType AIDE = new MyrChoixProjetDeVieType("Aide");
-  
-    public static final MyrChoixProjetDeVieType NON = new MyrChoixProjetDeVieType("Non");
-  
+    OUI("Oui"),
+    AIDE("Aide"),
+    NON("Non");
+
 
     /**
-     * Prevent instantiation and subclassing with a private constructor.
+     * only for backward use MyrChoixProjetDeVieType.values() instead
+     * @deprecated only for backward
      */
-    private MyrChoixProjetDeVieType(String value) {
-        super(value);
+    @Deprecated 
+    public static MyrChoixProjetDeVieType[] allMyrChoixProjetDeVieTypes = MyrChoixProjetDeVieType.values();
+
+    private String legacyLabel;
+
+    private MyrChoixProjetDeVieType(String legacyLabel){
+        this.legacyLabel = legacyLabel;
     }
 
-    public MyrChoixProjetDeVieType() {}
-
-    public static MyrChoixProjetDeVieType[] allMyrChoixProjetDeVieTypes = {
-        OUI,
-        AIDE,
-        NON
-    };
+    public String getLegacyLabel() {
+        return legacyLabel;
+    }
 
     public static MyrChoixProjetDeVieType getDefaultMyrChoixProjetDeVieType() {
         return null;
     }
 
+    /**
+     * @deprecated use valueOf instead. Watchout! you must provid something of MyrChoixProjetDeVieType.something
+     * not the value of the name attribut.
+     */
     public static MyrChoixProjetDeVieType forString(final String enumAsString) {
-        for (MyrChoixProjetDeVieType value : allMyrChoixProjetDeVieTypes)
+        for (MyrChoixProjetDeVieType value : values())
             if (value.toString().equals(enumAsString))
                 return value;
         return getDefaultMyrChoixProjetDeVieType();

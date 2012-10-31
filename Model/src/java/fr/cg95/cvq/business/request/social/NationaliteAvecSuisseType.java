@@ -1,42 +1,42 @@
 package fr.cg95.cvq.business.request.social;
 
-import fr.cg95.cvq.dao.hibernate.PersistentStringEnum;
-
 /**
  * Generated class file, do not edit !
  */
-public final class NationaliteAvecSuisseType extends PersistentStringEnum {
+public enum NationaliteAvecSuisseType {
 
-    private static final long serialVersionUID = 1L;
-  
-    public static final NationaliteAvecSuisseType FRANCAISE = new NationaliteAvecSuisseType("Francaise");
-  
-    public static final NationaliteAvecSuisseType EEESUISSE = new NationaliteAvecSuisseType("Eeesuisse");
-  
-    public static final NationaliteAvecSuisseType AUTRE = new NationaliteAvecSuisseType("Autre");
-  
+    FRANCAISE("Francaise"),
+    EEESUISSE("Eeesuisse"),
+    AUTRE("Autre");
+
 
     /**
-     * Prevent instantiation and subclassing with a private constructor.
+     * only for backward use NationaliteAvecSuisseType.values() instead
+     * @deprecated only for backward
      */
-    private NationaliteAvecSuisseType(String value) {
-        super(value);
+    @Deprecated 
+    public static NationaliteAvecSuisseType[] allNationaliteAvecSuisseTypes = NationaliteAvecSuisseType.values();
+
+    private String legacyLabel;
+
+    private NationaliteAvecSuisseType(String legacyLabel){
+        this.legacyLabel = legacyLabel;
     }
 
-    public NationaliteAvecSuisseType() {}
-
-    public static NationaliteAvecSuisseType[] allNationaliteAvecSuisseTypes = {
-        FRANCAISE,
-        EEESUISSE,
-        AUTRE
-    };
+    public String getLegacyLabel() {
+        return legacyLabel;
+    }
 
     public static NationaliteAvecSuisseType getDefaultNationaliteAvecSuisseType() {
         return null;
     }
 
+    /**
+     * @deprecated use valueOf instead. Watchout! you must provid something of NationaliteAvecSuisseType.something
+     * not the value of the name attribut.
+     */
     public static NationaliteAvecSuisseType forString(final String enumAsString) {
-        for (NationaliteAvecSuisseType value : allNationaliteAvecSuisseTypes)
+        for (NationaliteAvecSuisseType value : values())
             if (value.toString().equals(enumAsString))
                 return value;
         return getDefaultNationaliteAvecSuisseType();

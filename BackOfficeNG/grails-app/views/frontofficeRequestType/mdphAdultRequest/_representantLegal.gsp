@@ -5,8 +5,8 @@
     <label for="representantLegal" class="required"><g:message code="mar.property.representantLegal.label" /> *  <span><g:message code="mar.property.representantLegal.help" /></span></label>
             <select id="representantLegal" name="representantLegal" class="required condition-representantLegal-trigger  validate-not-first ${rqt.stepStates['representantLegal'].invalidFields.contains('representantLegal') ? 'validation-failed' : ''}" title="<g:message code="mar.property.representantLegal.validationError" />">
               <option value=""><g:message code="message.select.defaultOption" /></option>
-              <g:each in="${['Tutelle','CuratelleSimple','CuratelleRenforcee','Autre']}">
-                <option value="fr.cg95.cvq.business.request.social.RepresentantLegalType_${it}" ${it == rqt.representantLegal?.toString() ? 'selected="selected"': ''}><g:capdematEnumToText var="${it}" i18nKeyPrefix="mar.property.representantLegal" /></option>
+              <g:each in="${['TUTELLE','CURATELLE_SIMPLE','CURATELLE_RENFORCEE','AUTRE']}">
+                <option value="${it}" ${it == rqt.representantLegal?.toString() ? 'selected="selected"': ''}><g:capdematEnumToText var="${it}" i18nKeyPrefix="mar.property.representantLegal" /></option>
               </g:each>
             </select>
             

@@ -58,12 +58,7 @@
           """
            <g:render template="/backofficeRequestInstruction/widget/localReferentialDataStatic" 
                      model="['javaName':'${element.javaFieldName}', 'lrEntries': lrTypes.${element.javaFieldName}?.entries, 
-<<<<<<< HEAD
-                             'rqt':rqt, 'isMultiple':lrTypes.${element.javaFieldName}?.isMultiple(), 'depth':0]" />
-=======
-                             'wrapper':${wrapper}, 'isMultiple':lrTypes.${element.javaFieldName}?.entriesSupportMultiple, 'depth':0]" />
->>>>>>> Do not explode local complex types anymore and instead generate them into their own classes
- 
+                             'wrapper':${wrapper}, 'isMultiple':lrTypes.${element.javaFieldName}?.isMultiple(), 'depth':0]" />
           """
       ,'school' :
           """<span class="value-\${${wrapper}?.${element.javaFieldName}?.id}">\${${wrapper}?.${element.javaFieldName}?.name}</span>"""
@@ -80,7 +75,6 @@
       ,'requester' :
           """<g:render template="/backofficeRequestInstruction/requestType/requester" model="['requester':requester]" />"""
     ]
-<<<<<<< HEAD
 
     def outpout
       switch (element.widget) {
@@ -89,7 +83,7 @@
           break
         case ['decimal', 'double', 'float']:
           output =
-            ["<dt class=\"${element.conditionsClass}\">\${message(code:'" + element.i18nPrefixCode + ".label')}${element.mandatory ? ' *' : ''} :</dt>"
+            ["<dt class=\"${element.conditionsClass}\">\${message(code:'" + element.i18nPrefixCode + ".label')}${element.mandatory ? ' *' : ''} :</dt>"
             ,"<dd id=\"${element.javaFieldName}\" class=\"${element.htmlClass}\" ${element.jsRegexp}>"
             ,widgets['number']
             ,"</dd>"
@@ -97,7 +91,7 @@
             break
         default:
           output =
-            ["<dt class=\"${element.conditionsClass}\">\${message(code:'" + element.i18nPrefixCode + ".label')}${element.mandatory ? ' *' : ''} :</dt>"
+            ["<dt class=\"${element.conditionsClass}\">\${message(code:'" + element.i18nPrefixCode + ".label')}${element.mandatory ? ' *' : ''} :</dt>"
             ,"<dd id=\"${element.javaFieldName}\" class=\"${element.htmlClass}\" ${element.jsRegexp}>"
             ,(widgets[element.widget] != null ? widgets[element.widget] : widgets['text'])
             ,"</dd>"
@@ -105,17 +99,6 @@
             break
       }
 
-=======
-    
-    
-    def output = ['requester','subject'].contains(element.widget) ? 
-            widgets[element.widget] : 
-          ["<dt class=\"${element.conditionsClass}\"><g:message code=\"${element.i18nPrefixCode}.label\" /> ${element.mandatory ? '*' : ''} : </dt>"
-          ,"<dd id=\"${bindingPath}\" class=\"${element.htmlClass}\" ${element.jsRegexp}>"
-          ,(widgets[element.widget] != null ? widgets[element.widget]: widgets['text'])
-          ,"</dd>"].join()
-          
->>>>>>> Do not explode local complex types anymore and instead generate them into their own classes
     print output
   } 
 %>

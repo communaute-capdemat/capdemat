@@ -22,20 +22,21 @@ import fr.cg95.cvq.xml.common.*;
 import fr.cg95.cvq.xml.request.social.*;
 import fr.cg95.cvq.service.request.LocalReferential;
 import fr.cg95.cvq.service.request.condition.IConditionChecker;
+import javax.persistence.*;
+import org.hibernate.annotations.Index;
+import org.hibernate.annotations.Type;
 
 /**
  * Generated class file, do not edit !
- *
- * @hibernate.class
- *  table="dhr_current_dwelling"
- *  lazy="false"
  */
+@Entity
+@Table(name="dhr_current_dwelling")
 public class DhrCurrentDwelling implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     public static final Map<String, IConditionChecker> conditions =
-        new HashMap<String, IConditionChecker>();
+        DomesticHelpRequest.conditions;
 
     public DhrCurrentDwelling() {
         super();
@@ -67,13 +68,13 @@ public class DhrCurrentDwelling implements Serializable {
         }
       
         if (this.dhrCurrentDwellingStatus != null)
-            dhrCurrentDwelling.setDhrCurrentDwellingStatus(fr.cg95.cvq.xml.request.social.DhrDwellingStatusType.Enum.forString(this.dhrCurrentDwellingStatus.toString()));
+            dhrCurrentDwelling.setDhrCurrentDwellingStatus(fr.cg95.cvq.xml.request.social.DhrDwellingStatusType.Enum.forString(this.dhrCurrentDwellingStatus.getLegacyLabel()));
       
         if (this.dhrCurrentDwellingAddress != null)
             dhrCurrentDwelling.setDhrCurrentDwellingAddress(this.dhrCurrentDwellingAddress.modelToXml());
       
         if (this.dhrCurrentDwellingKind != null)
-            dhrCurrentDwelling.setDhrCurrentDwellingKind(fr.cg95.cvq.xml.request.social.DhrDwellingKindType.Enum.forString(this.dhrCurrentDwellingKind.toString()));
+            dhrCurrentDwelling.setDhrCurrentDwellingKind(fr.cg95.cvq.xml.request.social.DhrDwellingKindType.Enum.forString(this.dhrCurrentDwellingKind.getLegacyLabel()));
       
         if (this.dhrCurrentDwellingNetArea != null)
             dhrCurrentDwelling.setDhrCurrentDwellingNetArea(this.dhrCurrentDwellingNetArea);
@@ -183,11 +184,8 @@ public class DhrCurrentDwelling implements Serializable {
         this.id = id;
     }
 
-    /**
-     * @hibernate.id
-     *  column="id"
-     *  generator-class="sequence"
-     */
+    @Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE)
     public final Long getId() {
         return this.id;
     }
@@ -199,7 +197,8 @@ public class DhrCurrentDwelling implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['dhrCurrentDwelling.dhrCurrentDwellingKind'].test(_this.dhrCurrentDwellingKind.toString());" +
+              "active &= _this.conditions['dhrCurrentDwelling.dhrCurrentDwellingKind'].test(_this.dhrCurrentDwellingKind.toString());" +
+                  
                 
               
             
@@ -212,18 +211,14 @@ public class DhrCurrentDwelling implements Serializable {
     
     private java.util.Date dhrCurrentDwellingArrivalDate;
 
-    public final void setDhrCurrentDwellingArrivalDate(final java.util.Date dhrCurrentDwellingArrivalDate) {
+    public void setDhrCurrentDwellingArrivalDate(final java.util.Date dhrCurrentDwellingArrivalDate) {
         this.dhrCurrentDwellingArrivalDate = dhrCurrentDwellingArrivalDate;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="dhr_current_dwelling_arrival_date"
-        
+    
+    @Column(name="dhr_current_dwelling_arrival_date"  )
       
-    */
-    public final java.util.Date getDhrCurrentDwellingArrivalDate() {
+    public java.util.Date getDhrCurrentDwellingArrivalDate() {
         return this.dhrCurrentDwellingArrivalDate;
     }
   
@@ -233,7 +228,8 @@ public class DhrCurrentDwelling implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['dhrCurrentDwelling.dhrCurrentDwellingKind'].test(_this.dhrCurrentDwellingKind.toString());" +
+              "active &= _this.conditions['dhrCurrentDwelling.dhrCurrentDwellingKind'].test(_this.dhrCurrentDwellingKind.toString());" +
+                  
                 
               
             
@@ -246,18 +242,15 @@ public class DhrCurrentDwelling implements Serializable {
     
     private fr.cg95.cvq.business.request.social.DhrDwellingStatusType dhrCurrentDwellingStatus;
 
-    public final void setDhrCurrentDwellingStatus(final fr.cg95.cvq.business.request.social.DhrDwellingStatusType dhrCurrentDwellingStatus) {
+    public void setDhrCurrentDwellingStatus(final fr.cg95.cvq.business.request.social.DhrDwellingStatusType dhrCurrentDwellingStatus) {
         this.dhrCurrentDwellingStatus = dhrCurrentDwellingStatus;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="dhr_current_dwelling_status"
-        
+    
+    @Enumerated(EnumType.STRING)
+    @Column(name="dhr_current_dwelling_status"  )
       
-    */
-    public final fr.cg95.cvq.business.request.social.DhrDwellingStatusType getDhrCurrentDwellingStatus() {
+    public fr.cg95.cvq.business.request.social.DhrDwellingStatusType getDhrCurrentDwellingStatus() {
         return this.dhrCurrentDwellingStatus;
     }
   
@@ -278,19 +271,15 @@ public class DhrCurrentDwelling implements Serializable {
     
     private fr.cg95.cvq.business.users.Address dhrCurrentDwellingAddress;
 
-    public final void setDhrCurrentDwellingAddress(final fr.cg95.cvq.business.users.Address dhrCurrentDwellingAddress) {
+    public void setDhrCurrentDwellingAddress(final fr.cg95.cvq.business.users.Address dhrCurrentDwellingAddress) {
         this.dhrCurrentDwellingAddress = dhrCurrentDwellingAddress;
     }
 
-    /**
-  
-        * @hibernate.many-to-one
-        *  cascade="all"
-        *  column="dhr_current_dwelling_address_id"
-        *  class="fr.cg95.cvq.business.users.Address"
+    
+    @ManyToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name="dhr_current_dwelling_address_id")
       
-    */
-    public final fr.cg95.cvq.business.users.Address getDhrCurrentDwellingAddress() {
+    public fr.cg95.cvq.business.users.Address getDhrCurrentDwellingAddress() {
         return this.dhrCurrentDwellingAddress;
     }
   
@@ -304,18 +293,15 @@ public class DhrCurrentDwelling implements Serializable {
     
     private fr.cg95.cvq.business.request.social.DhrDwellingKindType dhrCurrentDwellingKind;
 
-    public final void setDhrCurrentDwellingKind(final fr.cg95.cvq.business.request.social.DhrDwellingKindType dhrCurrentDwellingKind) {
+    public void setDhrCurrentDwellingKind(final fr.cg95.cvq.business.request.social.DhrDwellingKindType dhrCurrentDwellingKind) {
         this.dhrCurrentDwellingKind = dhrCurrentDwellingKind;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="dhr_current_dwelling_kind"
-        
+    
+    @Enumerated(EnumType.STRING)
+    @Column(name="dhr_current_dwelling_kind"  )
       
-    */
-    public final fr.cg95.cvq.business.request.social.DhrDwellingKindType getDhrCurrentDwellingKind() {
+    public fr.cg95.cvq.business.request.social.DhrDwellingKindType getDhrCurrentDwellingKind() {
         return this.dhrCurrentDwellingKind;
     }
   
@@ -325,7 +311,8 @@ public class DhrCurrentDwelling implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['dhrCurrentDwelling.dhrCurrentDwellingKind'].test(_this.dhrCurrentDwellingKind.toString());" +
+              "active &= _this.conditions['dhrCurrentDwelling.dhrCurrentDwellingKind'].test(_this.dhrCurrentDwellingKind.toString());" +
+                  
                 
               
             
@@ -343,7 +330,8 @@ public class DhrCurrentDwelling implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['dhrCurrentDwelling.dhrCurrentDwellingKind'].test(_this.dhrCurrentDwellingKind.toString());" +
+              "active &= _this.conditions['dhrCurrentDwelling.dhrCurrentDwellingKind'].test(_this.dhrCurrentDwellingKind.toString());" +
+                  
                 
               
             
@@ -356,18 +344,14 @@ public class DhrCurrentDwelling implements Serializable {
     
     private java.math.BigDecimal dhrCurrentDwellingNetArea;
 
-    public final void setDhrCurrentDwellingNetArea(final java.math.BigDecimal dhrCurrentDwellingNetArea) {
+    public void setDhrCurrentDwellingNetArea(final java.math.BigDecimal dhrCurrentDwellingNetArea) {
         this.dhrCurrentDwellingNetArea = dhrCurrentDwellingNetArea;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="dhr_current_dwelling_net_area"
-        
+    
+    @Column(name="dhr_current_dwelling_net_area"  )
       
-    */
-    public final java.math.BigDecimal getDhrCurrentDwellingNetArea() {
+    public java.math.BigDecimal getDhrCurrentDwellingNetArea() {
         return this.dhrCurrentDwellingNetArea;
     }
   
@@ -377,7 +361,8 @@ public class DhrCurrentDwelling implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['dhrCurrentDwelling.dhrCurrentDwellingKind'].test(_this.dhrCurrentDwellingKind.toString());" +
+              "active &= _this.conditions['dhrCurrentDwelling.dhrCurrentDwellingKind'].test(_this.dhrCurrentDwellingKind.toString());" +
+                  
                 
               
             
@@ -390,18 +375,14 @@ public class DhrCurrentDwelling implements Serializable {
     
     private java.math.BigDecimal dhrCurrentDwellingNumberOfRoom;
 
-    public final void setDhrCurrentDwellingNumberOfRoom(final java.math.BigDecimal dhrCurrentDwellingNumberOfRoom) {
+    public void setDhrCurrentDwellingNumberOfRoom(final java.math.BigDecimal dhrCurrentDwellingNumberOfRoom) {
         this.dhrCurrentDwellingNumberOfRoom = dhrCurrentDwellingNumberOfRoom;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="dhr_current_dwelling_number_of_room"
-        
+    
+    @Column(name="dhr_current_dwelling_number_of_room"  )
       
-    */
-    public final java.math.BigDecimal getDhrCurrentDwellingNumberOfRoom() {
+    public java.math.BigDecimal getDhrCurrentDwellingNumberOfRoom() {
         return this.dhrCurrentDwellingNumberOfRoom;
     }
   
@@ -417,18 +398,14 @@ public class DhrCurrentDwelling implements Serializable {
     
     private String dhrCurrentDwellingPhone;
 
-    public final void setDhrCurrentDwellingPhone(final String dhrCurrentDwellingPhone) {
+    public void setDhrCurrentDwellingPhone(final String dhrCurrentDwellingPhone) {
         this.dhrCurrentDwellingPhone = dhrCurrentDwellingPhone;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="dhr_current_dwelling_phone"
-        *  length="10"
+    
+    @Column(name="dhr_current_dwelling_phone" , length=10 )
       
-    */
-    public final String getDhrCurrentDwellingPhone() {
+    public String getDhrCurrentDwellingPhone() {
         return this.dhrCurrentDwellingPhone;
     }
   

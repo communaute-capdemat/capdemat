@@ -22,20 +22,21 @@ import fr.cg95.cvq.xml.common.*;
 import fr.cg95.cvq.xml.request.social.*;
 import fr.cg95.cvq.service.request.LocalReferential;
 import fr.cg95.cvq.service.request.condition.IConditionChecker;
+import javax.persistence.*;
+import org.hibernate.annotations.Index;
+import org.hibernate.annotations.Type;
 
 /**
  * Generated class file, do not edit !
- *
- * @hibernate.class
- *  table="dhr_spouse_status"
- *  lazy="false"
  */
+@Entity
+@Table(name="dhr_spouse_status")
 public class DhrSpouseStatus implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     public static final Map<String, IConditionChecker> conditions =
-        new HashMap<String, IConditionChecker>();
+        DomesticHelpRequest.conditions;
 
     public DhrSpouseStatus() {
         super();
@@ -63,7 +64,7 @@ public class DhrSpouseStatus implements Serializable {
         int i = 0;
     
         if (this.dhrSpousePrincipalPensionPlan != null)
-            dhrSpouseStatus.setDhrSpousePrincipalPensionPlan(fr.cg95.cvq.xml.request.social.DhrPrincipalPensionPlanType.Enum.forString(this.dhrSpousePrincipalPensionPlan.toString()));
+            dhrSpouseStatus.setDhrSpousePrincipalPensionPlan(fr.cg95.cvq.xml.request.social.DhrPrincipalPensionPlanType.Enum.forString(this.dhrSpousePrincipalPensionPlan.getLegacyLabel()));
       
         dhrSpouseStatus.setDhrSpouseProfession(this.dhrSpouseProfession);
       
@@ -168,11 +169,8 @@ public class DhrSpouseStatus implements Serializable {
         this.id = id;
     }
 
-    /**
-     * @hibernate.id
-     *  column="id"
-     *  generator-class="sequence"
-     */
+    @Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE)
     public final Long getId() {
         return this.id;
     }
@@ -184,7 +182,8 @@ public class DhrSpouseStatus implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['dhrSpouseStatus.dhrIsSpouseRetired'].test(_this.dhrIsSpouseRetired.toString());" +
+              "active &= _this.conditions['dhrSpouseStatus.dhrIsSpouseRetired'].test(_this.dhrIsSpouseRetired.toString());" +
+                  
                 
               
             
@@ -197,18 +196,15 @@ public class DhrSpouseStatus implements Serializable {
     
     private fr.cg95.cvq.business.request.social.DhrPrincipalPensionPlanType dhrSpousePrincipalPensionPlan;
 
-    public final void setDhrSpousePrincipalPensionPlan(final fr.cg95.cvq.business.request.social.DhrPrincipalPensionPlanType dhrSpousePrincipalPensionPlan) {
+    public void setDhrSpousePrincipalPensionPlan(final fr.cg95.cvq.business.request.social.DhrPrincipalPensionPlanType dhrSpousePrincipalPensionPlan) {
         this.dhrSpousePrincipalPensionPlan = dhrSpousePrincipalPensionPlan;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="dhr_spouse_principal_pension_plan"
-        
+    
+    @Enumerated(EnumType.STRING)
+    @Column(name="dhr_spouse_principal_pension_plan"  )
       
-    */
-    public final fr.cg95.cvq.business.request.social.DhrPrincipalPensionPlanType getDhrSpousePrincipalPensionPlan() {
+    public fr.cg95.cvq.business.request.social.DhrPrincipalPensionPlanType getDhrSpousePrincipalPensionPlan() {
         return this.dhrSpousePrincipalPensionPlan;
     }
   
@@ -218,7 +214,8 @@ public class DhrSpouseStatus implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= !_this.conditions['dhrSpouseStatus.dhrIsSpouseRetired'].test(_this.dhrIsSpouseRetired.toString());" +
+              "active &= !_this.conditions['dhrSpouseStatus.dhrIsSpouseRetired'].test(_this.dhrIsSpouseRetired.toString());" +
+                  
                 
               
             
@@ -234,7 +231,8 @@ public class DhrSpouseStatus implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= !_this.conditions['dhrSpouseStatus.dhrIsSpouseRetired'].test(_this.dhrIsSpouseRetired.toString());" +
+              "active &= !_this.conditions['dhrSpouseStatus.dhrIsSpouseRetired'].test(_this.dhrIsSpouseRetired.toString());" +
+                  
                 
               
             
@@ -247,18 +245,14 @@ public class DhrSpouseStatus implements Serializable {
     
     private String dhrSpouseProfession;
 
-    public final void setDhrSpouseProfession(final String dhrSpouseProfession) {
+    public void setDhrSpouseProfession(final String dhrSpouseProfession) {
         this.dhrSpouseProfession = dhrSpouseProfession;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="dhr_spouse_profession"
-        
+    
+    @Column(name="dhr_spouse_profession"  )
       
-    */
-    public final String getDhrSpouseProfession() {
+    public String getDhrSpouseProfession() {
         return this.dhrSpouseProfession;
     }
   
@@ -268,7 +262,8 @@ public class DhrSpouseStatus implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['dhrSpouseStatus.dhrSpousePrincipalPensionPlan'].test(_this.dhrSpousePrincipalPensionPlan.toString());" +
+              "active &= _this.conditions['dhrSpouseStatus.dhrSpousePrincipalPensionPlan'].test(_this.dhrSpousePrincipalPensionPlan.toString());" +
+                  
                 
               
             
@@ -284,7 +279,8 @@ public class DhrSpouseStatus implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['dhrSpouseStatus.dhrSpousePrincipalPensionPlan'].test(_this.dhrSpousePrincipalPensionPlan.toString());" +
+              "active &= _this.conditions['dhrSpouseStatus.dhrSpousePrincipalPensionPlan'].test(_this.dhrSpousePrincipalPensionPlan.toString());" +
+                  
                 
               
             
@@ -297,18 +293,14 @@ public class DhrSpouseStatus implements Serializable {
     
     private String dhrSpousePensionPlanDetail;
 
-    public final void setDhrSpousePensionPlanDetail(final String dhrSpousePensionPlanDetail) {
+    public void setDhrSpousePensionPlanDetail(final String dhrSpousePensionPlanDetail) {
         this.dhrSpousePensionPlanDetail = dhrSpousePensionPlanDetail;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="dhr_spouse_pension_plan_detail"
-        
+    
+    @Column(name="dhr_spouse_pension_plan_detail"  )
       
-    */
-    public final String getDhrSpousePensionPlanDetail() {
+    public String getDhrSpousePensionPlanDetail() {
         return this.dhrSpousePensionPlanDetail;
     }
   
@@ -322,18 +314,14 @@ public class DhrSpouseStatus implements Serializable {
     
     private Boolean dhrIsSpouseRetired;
 
-    public final void setDhrIsSpouseRetired(final Boolean dhrIsSpouseRetired) {
+    public void setDhrIsSpouseRetired(final Boolean dhrIsSpouseRetired) {
         this.dhrIsSpouseRetired = dhrIsSpouseRetired;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="dhr_is_spouse_retired"
-        
+    
+    @Column(name="dhr_is_spouse_retired"  )
       
-    */
-    public final Boolean getDhrIsSpouseRetired() {
+    public Boolean getDhrIsSpouseRetired() {
         return this.dhrIsSpouseRetired;
     }
   
@@ -343,7 +331,8 @@ public class DhrSpouseStatus implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= !_this.conditions['dhrSpouseStatus.dhrIsSpouseRetired'].test(_this.dhrIsSpouseRetired.toString());" +
+              "active &= !_this.conditions['dhrSpouseStatus.dhrIsSpouseRetired'].test(_this.dhrIsSpouseRetired.toString());" +
+                  
                 
               
             
@@ -359,7 +348,8 @@ public class DhrSpouseStatus implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= !_this.conditions['dhrSpouseStatus.dhrIsSpouseRetired'].test(_this.dhrIsSpouseRetired.toString());" +
+              "active &= !_this.conditions['dhrSpouseStatus.dhrIsSpouseRetired'].test(_this.dhrIsSpouseRetired.toString());" +
+                  
                 
               
             
@@ -372,18 +362,14 @@ public class DhrSpouseStatus implements Serializable {
     
     private String dhrSpouseEmployer;
 
-    public final void setDhrSpouseEmployer(final String dhrSpouseEmployer) {
+    public void setDhrSpouseEmployer(final String dhrSpouseEmployer) {
         this.dhrSpouseEmployer = dhrSpouseEmployer;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="dhr_spouse_employer"
-        
+    
+    @Column(name="dhr_spouse_employer"  )
       
-    */
-    public final String getDhrSpouseEmployer() {
+    public String getDhrSpouseEmployer() {
         return this.dhrSpouseEmployer;
     }
   
@@ -393,7 +379,8 @@ public class DhrSpouseStatus implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['dhrSpouseStatus.dhrIsSpouseRetired'].test(_this.dhrIsSpouseRetired.toString());" +
+              "active &= _this.conditions['dhrSpouseStatus.dhrIsSpouseRetired'].test(_this.dhrIsSpouseRetired.toString());" +
+                  
                 
               
             
@@ -409,7 +396,8 @@ public class DhrSpouseStatus implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['dhrSpouseStatus.dhrIsSpouseRetired'].test(_this.dhrIsSpouseRetired.toString());" +
+              "active &= _this.conditions['dhrSpouseStatus.dhrIsSpouseRetired'].test(_this.dhrIsSpouseRetired.toString());" +
+                  
                 
               
             
@@ -422,18 +410,14 @@ public class DhrSpouseStatus implements Serializable {
     
     private String dhrSpouseComplementaryPensionPlan;
 
-    public final void setDhrSpouseComplementaryPensionPlan(final String dhrSpouseComplementaryPensionPlan) {
+    public void setDhrSpouseComplementaryPensionPlan(final String dhrSpouseComplementaryPensionPlan) {
         this.dhrSpouseComplementaryPensionPlan = dhrSpouseComplementaryPensionPlan;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="dhr_spouse_complementary_pension_plan"
-        
+    
+    @Column(name="dhr_spouse_complementary_pension_plan"  )
       
-    */
-    public final String getDhrSpouseComplementaryPensionPlan() {
+    public String getDhrSpouseComplementaryPensionPlan() {
         return this.dhrSpouseComplementaryPensionPlan;
     }
   
@@ -443,7 +427,8 @@ public class DhrSpouseStatus implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= !_this.conditions['dhrSpouseStatus.dhrIsSpouseRetired'].test(_this.dhrIsSpouseRetired.toString());" +
+              "active &= !_this.conditions['dhrSpouseStatus.dhrIsSpouseRetired'].test(_this.dhrIsSpouseRetired.toString());" +
+                  
                 
               
             
@@ -459,7 +444,8 @@ public class DhrSpouseStatus implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= !_this.conditions['dhrSpouseStatus.dhrIsSpouseRetired'].test(_this.dhrIsSpouseRetired.toString());" +
+              "active &= !_this.conditions['dhrSpouseStatus.dhrIsSpouseRetired'].test(_this.dhrIsSpouseRetired.toString());" +
+                  
                 
               
             
@@ -472,19 +458,15 @@ public class DhrSpouseStatus implements Serializable {
     
     private fr.cg95.cvq.business.users.Address dhrSpouseAddress;
 
-    public final void setDhrSpouseAddress(final fr.cg95.cvq.business.users.Address dhrSpouseAddress) {
+    public void setDhrSpouseAddress(final fr.cg95.cvq.business.users.Address dhrSpouseAddress) {
         this.dhrSpouseAddress = dhrSpouseAddress;
     }
 
-    /**
-  
-        * @hibernate.many-to-one
-        *  cascade="all"
-        *  column="dhr_spouse_address_id"
-        *  class="fr.cg95.cvq.business.users.Address"
+    
+    @ManyToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name="dhr_spouse_address_id")
       
-    */
-    public final fr.cg95.cvq.business.users.Address getDhrSpouseAddress() {
+    public fr.cg95.cvq.business.users.Address getDhrSpouseAddress() {
         return this.dhrSpouseAddress;
     }
   

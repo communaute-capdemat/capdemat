@@ -5,8 +5,8 @@
     <label for="choixPrestationCompensation" class="required"><g:message code="mar.property.choixPrestationCompensation.label" /> *  <span><g:message code="mar.property.choixPrestationCompensation.help" /></span></label>
             <select id="choixPrestationCompensation" name="choixPrestationCompensation" class="required  validate-not-first ${rqt.stepStates['demandePrestationCompensation'].invalidFields.contains('choixPrestationCompensation') ? 'validation-failed' : ''}" title="<g:message code="mar.property.choixPrestationCompensation.validationError" />">
               <option value=""><g:message code="message.select.defaultOption" /></option>
-              <g:each in="${['Pch','Actp','Acfp']}">
-                <option value="fr.cg95.cvq.business.request.social.ChoixPrestationCompensationType_${it}" ${it == rqt.choixPrestationCompensation?.toString() ? 'selected="selected"': ''}><g:capdematEnumToText var="${it}" i18nKeyPrefix="mar.property.choixPrestationCompensation" /></option>
+              <g:each in="${['PCH','ACTP','ACFP']}">
+                <option value="${it}" ${it == rqt.choixPrestationCompensation?.toString() ? 'selected="selected"': ''}><g:capdematEnumToText var="${it}" i18nKeyPrefix="mar.property.choixPrestationCompensation" /></option>
               </g:each>
             </select>
             

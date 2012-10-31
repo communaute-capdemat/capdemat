@@ -22,20 +22,21 @@ import fr.cg95.cvq.xml.common.*;
 import fr.cg95.cvq.xml.request.social.*;
 import fr.cg95.cvq.service.request.LocalReferential;
 import fr.cg95.cvq.service.request.condition.IConditionChecker;
+import javax.persistence.*;
+import org.hibernate.annotations.Index;
+import org.hibernate.annotations.Type;
 
 /**
  * Generated class file, do not edit !
- *
- * @hibernate.class
- *  table="myr_besoins_demande_pch"
- *  lazy="false"
  */
+@Entity
+@Table(name="myr_besoins_demande_pch")
 public class MyrBesoinsDemandePch implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     public static final Map<String, IConditionChecker> conditions =
-        new HashMap<String, IConditionChecker>();
+        MdphYouthRequest.conditions;
 
     public MyrBesoinsDemandePch() {
         super();
@@ -223,67 +224,73 @@ public class MyrBesoinsDemandePch implements Serializable {
         this.id = id;
     }
 
-    /**
-     * @hibernate.id
-     *  column="id"
-     *  generator-class="sequence"
-     */
+    @Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE)
     public final Long getId() {
         return this.id;
     }
 
   
     
+      @NotNull(
+        
+        
+        profiles = {"demandePrestationCompensation"},
+        message = "aideAnimaliere"
+      )
+    
     private Boolean aideAnimaliere;
 
-    public final void setAideAnimaliere(final Boolean aideAnimaliere) {
+    public void setAideAnimaliere(final Boolean aideAnimaliere) {
         this.aideAnimaliere = aideAnimaliere;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="aide_animaliere"
-        
+    
+    @Column(name="aide_animaliere"  )
       
-    */
-    public final Boolean getAideAnimaliere() {
+    public Boolean getAideAnimaliere() {
         return this.aideAnimaliere;
     }
   
     
+      @NotNull(
+        
+        
+        profiles = {"demandePrestationCompensation"},
+        message = "chargesSpecifiques"
+      )
+    
     private Boolean chargesSpecifiques;
 
-    public final void setChargesSpecifiques(final Boolean chargesSpecifiques) {
+    public void setChargesSpecifiques(final Boolean chargesSpecifiques) {
         this.chargesSpecifiques = chargesSpecifiques;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="charges_specifiques"
-        
+    
+    @Column(name="charges_specifiques"  )
       
-    */
-    public final Boolean getChargesSpecifiques() {
+    public Boolean getChargesSpecifiques() {
         return this.chargesSpecifiques;
     }
   
     
+      @NotNull(
+        
+        
+        profiles = {"demandePrestationCompensation"},
+        message = "aideHumaine"
+      )
+    
     private Boolean aideHumaine;
 
-    public final void setAideHumaine(final Boolean aideHumaine) {
+    public void setAideHumaine(final Boolean aideHumaine) {
         this.aideHumaine = aideHumaine;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="aide_humaine"
-        
+    
+    @Column(name="aide_humaine"  )
       
-    */
-    public final Boolean getAideHumaine() {
+    public Boolean getAideHumaine() {
         return this.aideHumaine;
     }
   
@@ -293,7 +300,8 @@ public class MyrBesoinsDemandePch implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['myrBesoinsDemandePch.amenagementVehicule'].test(_this.amenagementVehicule.toString());" +
+              "active &= _this.conditions['myrBesoinsDemandePch.amenagementVehicule'].test(_this.amenagementVehicule.toString());" +
+                  
                 
               
             
@@ -309,7 +317,8 @@ public class MyrBesoinsDemandePch implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['myrBesoinsDemandePch.amenagementVehicule'].test(_this.amenagementVehicule.toString());" +
+              "active &= _this.conditions['myrBesoinsDemandePch.amenagementVehicule'].test(_this.amenagementVehicule.toString());" +
+                  
                 
               
             
@@ -322,54 +331,56 @@ public class MyrBesoinsDemandePch implements Serializable {
     
     private String precisionAmenagementVehicule;
 
-    public final void setPrecisionAmenagementVehicule(final String precisionAmenagementVehicule) {
+    public void setPrecisionAmenagementVehicule(final String precisionAmenagementVehicule) {
         this.precisionAmenagementVehicule = precisionAmenagementVehicule;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="precision_amenagement_vehicule"
-        
+    
+    @Column(name="precision_amenagement_vehicule"  )
       
-    */
-    public final String getPrecisionAmenagementVehicule() {
+    public String getPrecisionAmenagementVehicule() {
         return this.precisionAmenagementVehicule;
     }
   
     
+      @NotNull(
+        
+        
+        profiles = {"demandePrestationCompensation"},
+        message = "amenagementVehicule"
+      )
+    
     private Boolean amenagementVehicule;
 
-    public final void setAmenagementVehicule(final Boolean amenagementVehicule) {
+    public void setAmenagementVehicule(final Boolean amenagementVehicule) {
         this.amenagementVehicule = amenagementVehicule;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="amenagement_vehicule"
-        
+    
+    @Column(name="amenagement_vehicule"  )
       
-    */
-    public final Boolean getAmenagementVehicule() {
+    public Boolean getAmenagementVehicule() {
         return this.amenagementVehicule;
     }
   
     
+      @NotNull(
+        
+        
+        profiles = {"demandePrestationCompensation"},
+        message = "amenagementLogementDemenagement"
+      )
+    
     private Boolean amenagementLogementDemenagement;
 
-    public final void setAmenagementLogementDemenagement(final Boolean amenagementLogementDemenagement) {
+    public void setAmenagementLogementDemenagement(final Boolean amenagementLogementDemenagement) {
         this.amenagementLogementDemenagement = amenagementLogementDemenagement;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="amenagement_logement_demenagement"
-        
+    
+    @Column(name="amenagement_logement_demenagement"  )
       
-    */
-    public final Boolean getAmenagementLogementDemenagement() {
+    public Boolean getAmenagementLogementDemenagement() {
         return this.amenagementLogementDemenagement;
     }
   
@@ -379,7 +390,8 @@ public class MyrBesoinsDemandePch implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['myrBesoinsDemandePch.chargesSpecifiques'].test(_this.chargesSpecifiques.toString());" +
+              "active &= _this.conditions['myrBesoinsDemandePch.chargesSpecifiques'].test(_this.chargesSpecifiques.toString());" +
+                  
                 
               
             
@@ -395,7 +407,8 @@ public class MyrBesoinsDemandePch implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['myrBesoinsDemandePch.chargesSpecifiques'].test(_this.chargesSpecifiques.toString());" +
+              "active &= _this.conditions['myrBesoinsDemandePch.chargesSpecifiques'].test(_this.chargesSpecifiques.toString());" +
+                  
                 
               
             
@@ -408,18 +421,14 @@ public class MyrBesoinsDemandePch implements Serializable {
     
     private String precisionChargesSpecifiques;
 
-    public final void setPrecisionChargesSpecifiques(final String precisionChargesSpecifiques) {
+    public void setPrecisionChargesSpecifiques(final String precisionChargesSpecifiques) {
         this.precisionChargesSpecifiques = precisionChargesSpecifiques;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="precision_charges_specifiques"
-        
+    
+    @Column(name="precision_charges_specifiques"  )
       
-    */
-    public final String getPrecisionChargesSpecifiques() {
+    public String getPrecisionChargesSpecifiques() {
         return this.precisionChargesSpecifiques;
     }
   
@@ -429,7 +438,8 @@ public class MyrBesoinsDemandePch implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['myrBesoinsDemandePch.aideHumaine'].test(_this.aideHumaine.toString());" +
+              "active &= _this.conditions['myrBesoinsDemandePch.aideHumaine'].test(_this.aideHumaine.toString());" +
+                  
                 
               
             
@@ -445,7 +455,8 @@ public class MyrBesoinsDemandePch implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['myrBesoinsDemandePch.aideHumaine'].test(_this.aideHumaine.toString());" +
+              "active &= _this.conditions['myrBesoinsDemandePch.aideHumaine'].test(_this.aideHumaine.toString());" +
+                  
                 
               
             
@@ -458,18 +469,14 @@ public class MyrBesoinsDemandePch implements Serializable {
     
     private String precisionAideHumaine;
 
-    public final void setPrecisionAideHumaine(final String precisionAideHumaine) {
+    public void setPrecisionAideHumaine(final String precisionAideHumaine) {
         this.precisionAideHumaine = precisionAideHumaine;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="precision_aide_humaine"
-        
+    
+    @Column(name="precision_aide_humaine"  )
       
-    */
-    public final String getPrecisionAideHumaine() {
+    public String getPrecisionAideHumaine() {
         return this.precisionAideHumaine;
     }
   
@@ -479,7 +486,8 @@ public class MyrBesoinsDemandePch implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['myrBesoinsDemandePch.aideTechnique'].test(_this.aideTechnique.toString());" +
+              "active &= _this.conditions['myrBesoinsDemandePch.aideTechnique'].test(_this.aideTechnique.toString());" +
+                  
                 
               
             
@@ -495,7 +503,8 @@ public class MyrBesoinsDemandePch implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['myrBesoinsDemandePch.aideTechnique'].test(_this.aideTechnique.toString());" +
+              "active &= _this.conditions['myrBesoinsDemandePch.aideTechnique'].test(_this.aideTechnique.toString());" +
+                  
                 
               
             
@@ -508,18 +517,14 @@ public class MyrBesoinsDemandePch implements Serializable {
     
     private String precisionAideTechnique;
 
-    public final void setPrecisionAideTechnique(final String precisionAideTechnique) {
+    public void setPrecisionAideTechnique(final String precisionAideTechnique) {
         this.precisionAideTechnique = precisionAideTechnique;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="precision_aide_technique"
-        
+    
+    @Column(name="precision_aide_technique"  )
       
-    */
-    public final String getPrecisionAideTechnique() {
+    public String getPrecisionAideTechnique() {
         return this.precisionAideTechnique;
     }
   
@@ -529,7 +534,8 @@ public class MyrBesoinsDemandePch implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['myrBesoinsDemandePch.aideAnimaliere'].test(_this.aideAnimaliere.toString());" +
+              "active &= _this.conditions['myrBesoinsDemandePch.aideAnimaliere'].test(_this.aideAnimaliere.toString());" +
+                  
                 
               
             
@@ -545,7 +551,8 @@ public class MyrBesoinsDemandePch implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['myrBesoinsDemandePch.aideAnimaliere'].test(_this.aideAnimaliere.toString());" +
+              "active &= _this.conditions['myrBesoinsDemandePch.aideAnimaliere'].test(_this.aideAnimaliere.toString());" +
+                  
                 
               
             
@@ -558,18 +565,14 @@ public class MyrBesoinsDemandePch implements Serializable {
     
     private String precisionAideAnimaliere;
 
-    public final void setPrecisionAideAnimaliere(final String precisionAideAnimaliere) {
+    public void setPrecisionAideAnimaliere(final String precisionAideAnimaliere) {
         this.precisionAideAnimaliere = precisionAideAnimaliere;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="precision_aide_animaliere"
-        
+    
+    @Column(name="precision_aide_animaliere"  )
       
-    */
-    public final String getPrecisionAideAnimaliere() {
+    public String getPrecisionAideAnimaliere() {
         return this.precisionAideAnimaliere;
     }
   
@@ -579,7 +582,8 @@ public class MyrBesoinsDemandePch implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['myrBesoinsDemandePch.amenagementLogementDemenagement'].test(_this.amenagementLogementDemenagement.toString());" +
+              "active &= _this.conditions['myrBesoinsDemandePch.amenagementLogementDemenagement'].test(_this.amenagementLogementDemenagement.toString());" +
+                  
                 
               
             
@@ -595,7 +599,8 @@ public class MyrBesoinsDemandePch implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['myrBesoinsDemandePch.amenagementLogementDemenagement'].test(_this.amenagementLogementDemenagement.toString());" +
+              "active &= _this.conditions['myrBesoinsDemandePch.amenagementLogementDemenagement'].test(_this.amenagementLogementDemenagement.toString());" +
+                  
                 
               
             
@@ -608,36 +613,35 @@ public class MyrBesoinsDemandePch implements Serializable {
     
     private String precisionAmenagementLogementDemenagement;
 
-    public final void setPrecisionAmenagementLogementDemenagement(final String precisionAmenagementLogementDemenagement) {
+    public void setPrecisionAmenagementLogementDemenagement(final String precisionAmenagementLogementDemenagement) {
         this.precisionAmenagementLogementDemenagement = precisionAmenagementLogementDemenagement;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="precision_amenagement_logement_demenagement"
-        
+    
+    @Column(name="precision_amenagement_logement_demenagement"  )
       
-    */
-    public final String getPrecisionAmenagementLogementDemenagement() {
+    public String getPrecisionAmenagementLogementDemenagement() {
         return this.precisionAmenagementLogementDemenagement;
     }
   
     
+      @NotNull(
+        
+        
+        profiles = {"demandePrestationCompensation"},
+        message = "aideTechnique"
+      )
+    
     private Boolean aideTechnique;
 
-    public final void setAideTechnique(final Boolean aideTechnique) {
+    public void setAideTechnique(final Boolean aideTechnique) {
         this.aideTechnique = aideTechnique;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="aide_technique"
-        
+    
+    @Column(name="aide_technique"  )
       
-    */
-    public final Boolean getAideTechnique() {
+    public Boolean getAideTechnique() {
         return this.aideTechnique;
     }
   

@@ -22,20 +22,21 @@ import fr.cg95.cvq.xml.common.*;
 import fr.cg95.cvq.xml.request.school.*;
 import fr.cg95.cvq.service.request.LocalReferential;
 import fr.cg95.cvq.service.request.condition.IConditionChecker;
+import javax.persistence.*;
+import org.hibernate.annotations.Index;
+import org.hibernate.annotations.Type;
 
 /**
  * Generated class file, do not edit !
- *
- * @hibernate.class
- *  table="a_levels_informations"
- *  lazy="false"
  */
+@Entity
+@Table(name="a_levels_informations")
 public class ALevelsInformations implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     public static final Map<String, IConditionChecker> conditions =
-        new HashMap<String, IConditionChecker>();
+        StudyGrantRequest.conditions;
 
     public ALevelsInformations() {
         super();
@@ -61,7 +62,7 @@ public class ALevelsInformations implements Serializable {
         int i = 0;
     
         if (this.alevels != null)
-            aLevelsInformations.setAlevels(fr.cg95.cvq.xml.request.school.ALevelsType.Enum.forString(this.alevels.toString()));
+            aLevelsInformations.setAlevels(fr.cg95.cvq.xml.request.school.ALevelsType.Enum.forString(this.alevels.getLegacyLabel()));
       
         aLevelsInformations.setAlevelsDate(this.alevelsDate);
       
@@ -112,11 +113,8 @@ public class ALevelsInformations implements Serializable {
         this.id = id;
     }
 
-    /**
-     * @hibernate.id
-     *  column="id"
-     *  generator-class="sequence"
-     */
+    @Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE)
     public final Long getId() {
         return this.id;
     }
@@ -132,18 +130,15 @@ public class ALevelsInformations implements Serializable {
     
     private fr.cg95.cvq.business.request.school.ALevelsType alevels;
 
-    public final void setAlevels(final fr.cg95.cvq.business.request.school.ALevelsType alevels) {
+    public void setAlevels(final fr.cg95.cvq.business.request.school.ALevelsType alevels) {
         this.alevels = alevels;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="alevels"
-        
+    
+    @Enumerated(EnumType.STRING)
+    @Column(name="alevels"  )
       
-    */
-    public final fr.cg95.cvq.business.request.school.ALevelsType getAlevels() {
+    public fr.cg95.cvq.business.request.school.ALevelsType getAlevels() {
         return this.alevels;
     }
   
@@ -182,18 +177,14 @@ public class ALevelsInformations implements Serializable {
     
     private String alevelsDate;
 
-    public final void setAlevelsDate(final String alevelsDate) {
+    public void setAlevelsDate(final String alevelsDate) {
         this.alevelsDate = alevelsDate;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="alevels_date"
-        *  length="4"
+    
+    @Column(name="alevels_date" , length=4 )
       
-    */
-    public final String getAlevelsDate() {
+    public String getAlevelsDate() {
         return this.alevelsDate;
     }
   

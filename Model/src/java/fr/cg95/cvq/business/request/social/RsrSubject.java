@@ -22,20 +22,21 @@ import fr.cg95.cvq.xml.common.*;
 import fr.cg95.cvq.xml.request.social.*;
 import fr.cg95.cvq.service.request.LocalReferential;
 import fr.cg95.cvq.service.request.condition.IConditionChecker;
+import javax.persistence.*;
+import org.hibernate.annotations.Index;
+import org.hibernate.annotations.Type;
 
 /**
  * Generated class file, do not edit !
- *
- * @hibernate.class
- *  table="rsr_subject"
- *  lazy="false"
  */
+@Entity
+@Table(name="rsr_subject")
 public class RsrSubject implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     public static final Map<String, IConditionChecker> conditions =
-        new HashMap<String, IConditionChecker>();
+        RemoteSupportRequest.conditions;
 
     public RsrSubject() {
         super();
@@ -69,7 +70,7 @@ public class RsrSubject implements Serializable {
         int i = 0;
     
         if (this.subjectResideWith != null)
-            rsrSubject.setSubjectResideWith(fr.cg95.cvq.xml.request.social.RsrSubjectResideWithType.Enum.forString(this.subjectResideWith.toString()));
+            rsrSubject.setSubjectResideWith(fr.cg95.cvq.xml.request.social.RsrSubjectResideWithType.Enum.forString(this.subjectResideWith.getLegacyLabel()));
       
         if (this.subjectIsTaxable != null)
             rsrSubject.setSubjectIsTaxable(this.subjectIsTaxable.booleanValue());
@@ -87,7 +88,7 @@ public class RsrSubject implements Serializable {
             rsrSubject.setSubjectIsAPABeneficiary(this.subjectIsAPABeneficiary.booleanValue());
       
         if (this.subjectTitle != null)
-            rsrSubject.setSubjectTitle(fr.cg95.cvq.xml.common.TitleType.Enum.forString(this.subjectTitle.toString()));
+            rsrSubject.setSubjectTitle(fr.cg95.cvq.xml.common.TitleType.Enum.forString(this.subjectTitle.getLegacyLabel()));
       
         return rsrSubject;
     }
@@ -177,11 +178,8 @@ public class RsrSubject implements Serializable {
         this.id = id;
     }
 
-    /**
-     * @hibernate.id
-     *  column="id"
-     *  generator-class="sequence"
-     */
+    @Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE)
     public final Long getId() {
         return this.id;
     }
@@ -197,18 +195,15 @@ public class RsrSubject implements Serializable {
     
     private fr.cg95.cvq.business.request.social.RsrSubjectResideWithType subjectResideWith;
 
-    public final void setSubjectResideWith(final fr.cg95.cvq.business.request.social.RsrSubjectResideWithType subjectResideWith) {
+    public void setSubjectResideWith(final fr.cg95.cvq.business.request.social.RsrSubjectResideWithType subjectResideWith) {
         this.subjectResideWith = subjectResideWith;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="subject_reside_with"
-        
+    
+    @Enumerated(EnumType.STRING)
+    @Column(name="subject_reside_with"  )
       
-    */
-    public final fr.cg95.cvq.business.request.social.RsrSubjectResideWithType getSubjectResideWith() {
+    public fr.cg95.cvq.business.request.social.RsrSubjectResideWithType getSubjectResideWith() {
         return this.subjectResideWith;
     }
   
@@ -222,18 +217,14 @@ public class RsrSubject implements Serializable {
     
     private Boolean subjectIsTaxable;
 
-    public final void setSubjectIsTaxable(final Boolean subjectIsTaxable) {
+    public void setSubjectIsTaxable(final Boolean subjectIsTaxable) {
         this.subjectIsTaxable = subjectIsTaxable;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="subject_is_taxable"
-        
+    
+    @Column(name="subject_is_taxable"  )
       
-    */
-    public final Boolean getSubjectIsTaxable() {
+    public Boolean getSubjectIsTaxable() {
         return this.subjectIsTaxable;
     }
   
@@ -247,18 +238,14 @@ public class RsrSubject implements Serializable {
     
     private Boolean subjectIsDisabledPerson;
 
-    public final void setSubjectIsDisabledPerson(final Boolean subjectIsDisabledPerson) {
+    public void setSubjectIsDisabledPerson(final Boolean subjectIsDisabledPerson) {
         this.subjectIsDisabledPerson = subjectIsDisabledPerson;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="subject_is_disabled_person"
-        
+    
+    @Column(name="subject_is_disabled_person"  )
       
-    */
-    public final Boolean getSubjectIsDisabledPerson() {
+    public Boolean getSubjectIsDisabledPerson() {
         return this.subjectIsDisabledPerson;
     }
   
@@ -272,18 +259,14 @@ public class RsrSubject implements Serializable {
     
     private java.util.Date subjectBirthDate;
 
-    public final void setSubjectBirthDate(final java.util.Date subjectBirthDate) {
+    public void setSubjectBirthDate(final java.util.Date subjectBirthDate) {
         this.subjectBirthDate = subjectBirthDate;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="subject_birth_date"
-        
+    
+    @Column(name="subject_birth_date"  )
       
-    */
-    public final java.util.Date getSubjectBirthDate() {
+    public java.util.Date getSubjectBirthDate() {
         return this.subjectBirthDate;
     }
   
@@ -297,18 +280,14 @@ public class RsrSubject implements Serializable {
     
     private Boolean subjectIsAPABeneficiary;
 
-    public final void setSubjectIsAPABeneficiary(final Boolean subjectIsAPABeneficiary) {
+    public void setSubjectIsAPABeneficiary(final Boolean subjectIsAPABeneficiary) {
         this.subjectIsAPABeneficiary = subjectIsAPABeneficiary;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="subject_is_a_p_a_beneficiary"
-        
+    
+    @Column(name="subject_is_a_p_a_beneficiary"  )
       
-    */
-    public final Boolean getSubjectIsAPABeneficiary() {
+    public Boolean getSubjectIsAPABeneficiary() {
         return this.subjectIsAPABeneficiary;
     }
   
@@ -322,18 +301,15 @@ public class RsrSubject implements Serializable {
     
     private fr.cg95.cvq.business.users.TitleType subjectTitle;
 
-    public final void setSubjectTitle(final fr.cg95.cvq.business.users.TitleType subjectTitle) {
+    public void setSubjectTitle(final fr.cg95.cvq.business.users.TitleType subjectTitle) {
         this.subjectTitle = subjectTitle;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="subject_title"
-        
+    
+    @Enumerated(EnumType.STRING)
+    @Column(name="subject_title"  )
       
-    */
-    public final fr.cg95.cvq.business.users.TitleType getSubjectTitle() {
+    public fr.cg95.cvq.business.users.TitleType getSubjectTitle() {
         return this.subjectTitle;
     }
   

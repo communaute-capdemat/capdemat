@@ -22,20 +22,21 @@ import fr.cg95.cvq.xml.common.*;
 import fr.cg95.cvq.xml.request.social.*;
 import fr.cg95.cvq.service.request.LocalReferential;
 import fr.cg95.cvq.service.request.condition.IConditionChecker;
+import javax.persistence.*;
+import org.hibernate.annotations.Index;
+import org.hibernate.annotations.Type;
 
 /**
  * Generated class file, do not edit !
- *
- * @hibernate.class
- *  table="rsr_trustee"
- *  lazy="false"
  */
+@Entity
+@Table(name="rsr_trustee")
 public class RsrTrustee implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     public static final Map<String, IConditionChecker> conditions =
-        new HashMap<String, IConditionChecker>();
+        RemoteSupportRequest.conditions;
 
     public RsrTrustee() {
         super();
@@ -115,11 +116,8 @@ public class RsrTrustee implements Serializable {
         this.id = id;
     }
 
-    /**
-     * @hibernate.id
-     *  column="id"
-     *  generator-class="sequence"
-     */
+    @Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE)
     public final Long getId() {
         return this.id;
     }
@@ -137,18 +135,14 @@ public class RsrTrustee implements Serializable {
     
     private String trusteeFirstName;
 
-    public final void setTrusteeFirstName(final String trusteeFirstName) {
+    public void setTrusteeFirstName(final String trusteeFirstName) {
         this.trusteeFirstName = trusteeFirstName;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="trustee_first_name"
-        *  length="38"
+    
+    @Column(name="trustee_first_name" , length=38 )
       
-    */
-    public final String getTrusteeFirstName() {
+    public String getTrusteeFirstName() {
         return this.trusteeFirstName;
     }
   
@@ -164,18 +158,14 @@ public class RsrTrustee implements Serializable {
     
     private String trusteeLastName;
 
-    public final void setTrusteeLastName(final String trusteeLastName) {
+    public void setTrusteeLastName(final String trusteeLastName) {
         this.trusteeLastName = trusteeLastName;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="trustee_last_name"
-        *  length="38"
+    
+    @Column(name="trustee_last_name" , length=38 )
       
-    */
-    public final String getTrusteeLastName() {
+    public String getTrusteeLastName() {
         return this.trusteeLastName;
     }
   
@@ -191,18 +181,14 @@ public class RsrTrustee implements Serializable {
     
     private String trusteePhone;
 
-    public final void setTrusteePhone(final String trusteePhone) {
+    public void setTrusteePhone(final String trusteePhone) {
         this.trusteePhone = trusteePhone;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="trustee_phone"
-        *  length="10"
+    
+    @Column(name="trustee_phone" , length=10 )
       
-    */
-    public final String getTrusteePhone() {
+    public String getTrusteePhone() {
         return this.trusteePhone;
     }
   

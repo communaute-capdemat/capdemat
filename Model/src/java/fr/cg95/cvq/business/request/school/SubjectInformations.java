@@ -22,20 +22,21 @@ import fr.cg95.cvq.xml.common.*;
 import fr.cg95.cvq.xml.request.school.*;
 import fr.cg95.cvq.service.request.LocalReferential;
 import fr.cg95.cvq.service.request.condition.IConditionChecker;
+import javax.persistence.*;
+import org.hibernate.annotations.Index;
+import org.hibernate.annotations.Type;
 
 /**
  * Generated class file, do not edit !
- *
- * @hibernate.class
- *  table="subject_informations"
- *  lazy="false"
  */
+@Entity
+@Table(name="subject_informations")
 public class SubjectInformations implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     public static final Map<String, IConditionChecker> conditions =
-        new HashMap<String, IConditionChecker>();
+        StudyGrantRequest.conditions;
 
     public SubjectInformations() {
         super();
@@ -115,11 +116,8 @@ public class SubjectInformations implements Serializable {
         this.id = id;
     }
 
-    /**
-     * @hibernate.id
-     *  column="id"
-     *  generator-class="sequence"
-     */
+    @Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE)
     public final Long getId() {
         return this.id;
     }
@@ -135,18 +133,14 @@ public class SubjectInformations implements Serializable {
     
     private java.util.Date subjectBirthDate;
 
-    public final void setSubjectBirthDate(final java.util.Date subjectBirthDate) {
+    public void setSubjectBirthDate(final java.util.Date subjectBirthDate) {
         this.subjectBirthDate = subjectBirthDate;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="subject_birth_date"
-        
+    
+    @Column(name="subject_birth_date"  )
       
-    */
-    public final java.util.Date getSubjectBirthDate() {
+    public java.util.Date getSubjectBirthDate() {
         return this.subjectBirthDate;
     }
   
@@ -160,18 +154,14 @@ public class SubjectInformations implements Serializable {
     
     private Boolean subjectFirstRequest;
 
-    public final void setSubjectFirstRequest(final Boolean subjectFirstRequest) {
+    public void setSubjectFirstRequest(final Boolean subjectFirstRequest) {
         this.subjectFirstRequest = subjectFirstRequest;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="subject_first_request"
-        
+    
+    @Column(name="subject_first_request"  )
       
-    */
-    public final Boolean getSubjectFirstRequest() {
+    public Boolean getSubjectFirstRequest() {
         return this.subjectFirstRequest;
     }
   

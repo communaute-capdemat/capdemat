@@ -22,20 +22,21 @@ import fr.cg95.cvq.xml.common.*;
 import fr.cg95.cvq.xml.request.military.*;
 import fr.cg95.cvq.service.request.LocalReferential;
 import fr.cg95.cvq.service.request.condition.IConditionChecker;
+import javax.persistence.*;
+import org.hibernate.annotations.Index;
+import org.hibernate.annotations.Type;
 
 /**
  * Generated class file, do not edit !
- *
- * @hibernate.class
- *  table="military_father_information"
- *  lazy="false"
  */
+@Entity
+@Table(name="military_father_information")
 public class MilitaryFatherInformation implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     public static final Map<String, IConditionChecker> conditions =
-        new HashMap<String, IConditionChecker>();
+        MilitaryCensusRequest.conditions;
 
     public MilitaryFatherInformation() {
         super();
@@ -69,17 +70,17 @@ public class MilitaryFatherInformation implements Serializable {
         }
       
         if (this.fatherBirthDepartment != null)
-            militaryFatherInformation.setFatherBirthDepartment(fr.cg95.cvq.xml.common.InseeDepartementCodeType.Enum.forString(this.fatherBirthDepartment.toString()));
+            militaryFatherInformation.setFatherBirthDepartment(fr.cg95.cvq.xml.common.InseeDepartementCodeType.Enum.forString(this.fatherBirthDepartment.getLegacyLabel()));
       
         militaryFatherInformation.setFatherFirstName(this.fatherFirstName);
       
         militaryFatherInformation.setFatherLastName(this.fatherLastName);
       
         if (this.fatherBirthCountry != null)
-            militaryFatherInformation.setFatherBirthCountry(fr.cg95.cvq.xml.common.CountryType.Enum.forString(this.fatherBirthCountry.toString()));
+            militaryFatherInformation.setFatherBirthCountry(fr.cg95.cvq.xml.common.CountryType.Enum.forString(this.fatherBirthCountry.getLegacyLabel()));
       
         if (this.fatherNationality != null)
-            militaryFatherInformation.setFatherNationality(fr.cg95.cvq.xml.common.FullNationalityType.Enum.forString(this.fatherNationality.toString()));
+            militaryFatherInformation.setFatherNationality(fr.cg95.cvq.xml.common.FullNationalityType.Enum.forString(this.fatherNationality.getLegacyLabel()));
       
         return militaryFatherInformation;
     }
@@ -183,11 +184,8 @@ public class MilitaryFatherInformation implements Serializable {
         this.id = id;
     }
 
-    /**
-     * @hibernate.id
-     *  column="id"
-     *  generator-class="sequence"
-     */
+    @Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE)
     public final Long getId() {
         return this.id;
     }
@@ -196,54 +194,43 @@ public class MilitaryFatherInformation implements Serializable {
     
     private String fatherBirthCity;
 
-    public final void setFatherBirthCity(final String fatherBirthCity) {
+    public void setFatherBirthCity(final String fatherBirthCity) {
         this.fatherBirthCity = fatherBirthCity;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="father_birth_city"
-        
+    
+    @Column(name="father_birth_city"  )
       
-    */
-    public final String getFatherBirthCity() {
+    public String getFatherBirthCity() {
         return this.fatherBirthCity;
     }
   
     
     private java.util.Date fatherBirthDate;
 
-    public final void setFatherBirthDate(final java.util.Date fatherBirthDate) {
+    public void setFatherBirthDate(final java.util.Date fatherBirthDate) {
         this.fatherBirthDate = fatherBirthDate;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="father_birth_date"
-        
+    
+    @Column(name="father_birth_date"  )
       
-    */
-    public final java.util.Date getFatherBirthDate() {
+    public java.util.Date getFatherBirthDate() {
         return this.fatherBirthDate;
     }
   
     
     private fr.cg95.cvq.business.users.InseeDepartementCodeType fatherBirthDepartment;
 
-    public final void setFatherBirthDepartment(final fr.cg95.cvq.business.users.InseeDepartementCodeType fatherBirthDepartment) {
+    public void setFatherBirthDepartment(final fr.cg95.cvq.business.users.InseeDepartementCodeType fatherBirthDepartment) {
         this.fatherBirthDepartment = fatherBirthDepartment;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="father_birth_department"
-        
+    
+    @Enumerated(EnumType.STRING)
+    @Column(name="father_birth_department"  )
       
-    */
-    public final fr.cg95.cvq.business.users.InseeDepartementCodeType getFatherBirthDepartment() {
+    public fr.cg95.cvq.business.users.InseeDepartementCodeType getFatherBirthDepartment() {
         return this.fatherBirthDepartment;
     }
   
@@ -259,18 +246,14 @@ public class MilitaryFatherInformation implements Serializable {
     
     private String fatherFirstName;
 
-    public final void setFatherFirstName(final String fatherFirstName) {
+    public void setFatherFirstName(final String fatherFirstName) {
         this.fatherFirstName = fatherFirstName;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="father_first_name"
-        *  length="38"
+    
+    @Column(name="father_first_name" , length=38 )
       
-    */
-    public final String getFatherFirstName() {
+    public String getFatherFirstName() {
         return this.fatherFirstName;
     }
   
@@ -286,54 +269,44 @@ public class MilitaryFatherInformation implements Serializable {
     
     private String fatherLastName;
 
-    public final void setFatherLastName(final String fatherLastName) {
+    public void setFatherLastName(final String fatherLastName) {
         this.fatherLastName = fatherLastName;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="father_last_name"
-        *  length="38"
+    
+    @Column(name="father_last_name" , length=38 )
       
-    */
-    public final String getFatherLastName() {
+    public String getFatherLastName() {
         return this.fatherLastName;
     }
   
     
     private fr.cg95.cvq.business.users.CountryType fatherBirthCountry;
 
-    public final void setFatherBirthCountry(final fr.cg95.cvq.business.users.CountryType fatherBirthCountry) {
+    public void setFatherBirthCountry(final fr.cg95.cvq.business.users.CountryType fatherBirthCountry) {
         this.fatherBirthCountry = fatherBirthCountry;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="father_birth_country"
-        
+    
+    @Enumerated(EnumType.STRING)
+    @Column(name="father_birth_country"  )
       
-    */
-    public final fr.cg95.cvq.business.users.CountryType getFatherBirthCountry() {
+    public fr.cg95.cvq.business.users.CountryType getFatherBirthCountry() {
         return this.fatherBirthCountry;
     }
   
     
     private fr.cg95.cvq.business.users.FullNationalityType fatherNationality;
 
-    public final void setFatherNationality(final fr.cg95.cvq.business.users.FullNationalityType fatherNationality) {
+    public void setFatherNationality(final fr.cg95.cvq.business.users.FullNationalityType fatherNationality) {
         this.fatherNationality = fatherNationality;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="father_nationality"
-        
+    
+    @Enumerated(EnumType.STRING)
+    @Column(name="father_nationality"  )
       
-    */
-    public final fr.cg95.cvq.business.users.FullNationalityType getFatherNationality() {
+    public fr.cg95.cvq.business.users.FullNationalityType getFatherNationality() {
         return this.fatherNationality;
     }
   

@@ -254,12 +254,12 @@ public class StudyGrantRequestService extends RequestService implements ILocalAu
             oldUser = (String)lastCheck.get(0).getComplementaryData().get("userAddress");
         }
         String currentSchool = null;
-        if (request.getCurrentSchoolName().size() > 0
+        if (request.getCurrentSchool().getCurrentSchoolName().size() > 0
             && !StudyGrantRequest.conditions.get("currentSchoolName").test(
-                request.getCurrentSchoolName().get(0).getName())) {
-            currentSchool = schoolAddresses.get(request.getCurrentSchoolName().get(0).getName());
-        } else if (request.getCurrentSchoolAddress() != null) {
-            currentSchool = request.getCurrentSchoolAddress().format();
+                request.getCurrentSchool().getCurrentSchoolName().get(0).getName())) {
+            currentSchool = schoolAddresses.get(request.getCurrentSchool().getCurrentSchoolName().get(0).getName());
+        } else if (request.getCurrentSchool().getCurrentSchoolAddress() != null) {
+            currentSchool = request.getCurrentSchool().getCurrentSchoolAddress().format();
         }
         String currentUser = null;
         Individual subject = userSearchService.getById(request.getSubjectId());
@@ -270,7 +270,7 @@ public class StudyGrantRequestService extends RequestService implements ILocalAu
                     + request.getId() + " is null");
         }
         DistanceType distance = request.getDistance();
-        if (request.getAbroadInternship()) {
+        if (request.getCurrentStudiesInformations().getAbroadInternship()) {
             distance = DistanceType.MORE_THAN250KMS_AND_ABROAD;
             requestExternalActionService.addTrace(new RequestExternalAction(new Date(),
                 request.getId(), "capdemat", "Stage à l'étranger",
@@ -303,8 +303,8 @@ public class StudyGrantRequestService extends RequestService implements ILocalAu
             }
         }
         request.setDistance(distance);
-        if (request.getCurrentSchoolAddress() != null)
-            genericDAO.saveOrUpdate(request.getCurrentSchoolAddress());
+        if (request.getCurrentSchool().getCurrentSchoolAddress() != null)
+            genericDAO.saveOrUpdate(request.getCurrentSchool().getCurrentSchoolAddress());
         requestDAO.saveOrUpdate(request);
     }
 

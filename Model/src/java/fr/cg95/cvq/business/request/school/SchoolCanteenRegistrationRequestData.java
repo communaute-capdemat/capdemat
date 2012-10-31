@@ -390,6 +390,7 @@ public class SchoolCanteenRegistrationRequestData implements Serializable {
             "active &= _this.conditions['foodAllergy'].test(_this.foodAllergy.toString());" +
                 
               
+              
             
             
             "return active",
@@ -405,6 +406,7 @@ public class SchoolCanteenRegistrationRequestData implements Serializable {
           
             "active &= _this.conditions['foodAllergy'].test(_this.foodAllergy.toString());" +
                 
+              
               
             
             

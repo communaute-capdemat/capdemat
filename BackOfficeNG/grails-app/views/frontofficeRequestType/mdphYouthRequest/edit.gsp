@@ -4,6 +4,7 @@
      <title>${message(code:'myr.description')}</title>
     <meta name="layout" content="fo_main" />
     <link rel="stylesheet" type="text/css" href="${resource(dir:'css/frontoffice', file:'request.css')}" />
+    <link rel="stylesheet" type="text/css" href="${resource(dir:'css/frontoffice', file:'document.css')}" />
     <g:if test="${flash.addressesReferentialEnabled}">
         <link rel="stylesheet" type="text/css" href="${resource(dir:'css/common', file:'autocomplete.css')}" />
     </g:if>
@@ -51,7 +52,7 @@
       </div>
     </g:if>
     
-    <div id="request" class="main-box">
+    <div id="request" class="main-box ${rqt.requestType.category.name}">
       <h2>
         <g:if test="${temporary}">
           <a href="${createLink(controller : 'frontofficeHome', action : 'logout')}" class="button">

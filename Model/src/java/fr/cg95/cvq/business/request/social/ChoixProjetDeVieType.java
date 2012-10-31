@@ -1,42 +1,42 @@
 package fr.cg95.cvq.business.request.social;
 
-import fr.cg95.cvq.dao.hibernate.PersistentStringEnum;
-
 /**
  * Generated class file, do not edit !
  */
-public final class ChoixProjetDeVieType extends PersistentStringEnum {
+public enum ChoixProjetDeVieType {
 
-    private static final long serialVersionUID = 1L;
-  
-    public static final ChoixProjetDeVieType OUI = new ChoixProjetDeVieType("Oui");
-  
-    public static final ChoixProjetDeVieType AIDE = new ChoixProjetDeVieType("Aide");
-  
-    public static final ChoixProjetDeVieType NON = new ChoixProjetDeVieType("Non");
-  
+    OUI("Oui"),
+    AIDE("Aide"),
+    NON("Non");
+
 
     /**
-     * Prevent instantiation and subclassing with a private constructor.
+     * only for backward use ChoixProjetDeVieType.values() instead
+     * @deprecated only for backward
      */
-    private ChoixProjetDeVieType(String value) {
-        super(value);
+    @Deprecated 
+    public static ChoixProjetDeVieType[] allChoixProjetDeVieTypes = ChoixProjetDeVieType.values();
+
+    private String legacyLabel;
+
+    private ChoixProjetDeVieType(String legacyLabel){
+        this.legacyLabel = legacyLabel;
     }
 
-    public ChoixProjetDeVieType() {}
-
-    public static ChoixProjetDeVieType[] allChoixProjetDeVieTypes = {
-        OUI,
-        AIDE,
-        NON
-    };
+    public String getLegacyLabel() {
+        return legacyLabel;
+    }
 
     public static ChoixProjetDeVieType getDefaultChoixProjetDeVieType() {
         return null;
     }
 
+    /**
+     * @deprecated use valueOf instead. Watchout! you must provid something of ChoixProjetDeVieType.something
+     * not the value of the name attribut.
+     */
     public static ChoixProjetDeVieType forString(final String enumAsString) {
-        for (ChoixProjetDeVieType value : allChoixProjetDeVieTypes)
+        for (ChoixProjetDeVieType value : values())
             if (value.toString().equals(enumAsString))
                 return value;
         return getDefaultChoixProjetDeVieType();

@@ -126,7 +126,7 @@ public class BirthDetailsRequest extends Request implements Serializable {
         birthDetailsRequest.setBirthMarriageName(getBirthMarriageName());
       
         if (getBirthPostalCode() != null)
-            birthDetailsRequest.setBirthPostalCode(fr.cg95.cvq.xml.common.InseeDepartementCodeType.Enum.forString(getBirthPostalCode().toString()));
+            birthDetailsRequest.setBirthPostalCode(fr.cg95.cvq.xml.common.InseeDepartementCodeType.Enum.forString(getBirthPostalCode().getLegacyLabel()));
       
         birthDetailsRequest.setComment(getComment());
       
@@ -137,13 +137,7 @@ public class BirthDetailsRequest extends Request implements Serializable {
             birthDetailsRequest.setFatherInformation(getFatherInformation().modelToXml());
       
         if (getFormat() != null)
-            birthDetailsRequest.setFormat(fr.cg95.cvq.xml.request.civil.BirthCertificateFormatType.Enum.forString(getFormat().toString()));
-        MotherInformationType motherInformationTypeMotherInformation = birthDetailsRequest.addNewMotherInformation();
-        motherInformationTypeMotherInformation.setMotherFirstNames(getMotherFirstNames());
             birthDetailsRequest.setFormat(fr.cg95.cvq.xml.request.civil.BirthCertificateFormatType.Enum.forString(getFormat().getLegacyLabel()));
-        MotherInformationType motherInformationTypeMotherInformation = birthDetailsRequest.addNewMotherInformation();
-        motherInformationTypeMotherInformation.setMotherFirstNames(getMotherFirstNames());
-            birthDetailsRequest.setFormat(fr.cg95.cvq.xml.request.civil.BirthCertificateFormatType.Enum.forString(getFormat().toString()));
       
         if (getMotherInformation() != null)
             birthDetailsRequest.setMotherInformation(getMotherInformation().modelToXml());

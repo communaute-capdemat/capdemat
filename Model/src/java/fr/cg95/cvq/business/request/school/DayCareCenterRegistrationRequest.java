@@ -121,15 +121,7 @@ public class DayCareCenterRegistrationRequest extends Request implements Seriali
         dayCareCenterRegistrationRequest.setAccueilAnterieur(getAccueilAnterieur());
       
         if (getChoixHorairesAccueil() != null)
-            dayCareCenterRegistrationRequest.setChoixHorairesAccueil(fr.cg95.cvq.xml.request.school.ChoixHorairesAccueilType.Enum.forString(getChoixHorairesAccueil().toString()));
-        DccrrDatesPlacementType dccrrDatesPlacementTypeDatePlacementAccueilRegulier = dayCareCenterRegistrationRequest.addNewDatePlacementAccueilRegulier();
-        if (getChoixTypeDatePlacementAccueilRegulier() != null)
-            dccrrDatesPlacementTypeDatePlacementAccueilRegulier.setChoixTypeDatePlacementAccueilRegulier(fr.cg95.cvq.xml.request.school.ChoixDatePlacement.Enum.forString(getChoixTypeDatePlacementAccueilRegulier().toString()));
             dayCareCenterRegistrationRequest.setChoixHorairesAccueil(fr.cg95.cvq.xml.request.school.ChoixHorairesAccueilType.Enum.forString(getChoixHorairesAccueil().getLegacyLabel()));
-        DccrrDatesPlacementType dccrrDatesPlacementTypeDatePlacementAccueilRegulier = dayCareCenterRegistrationRequest.addNewDatePlacementAccueilRegulier();
-        if (getChoixTypeDatePlacementAccueilRegulier() != null)
-            dccrrDatesPlacementTypeDatePlacementAccueilRegulier.setChoixTypeDatePlacementAccueilRegulier(fr.cg95.cvq.xml.request.school.ChoixDatePlacement.Enum.forString(getChoixTypeDatePlacementAccueilRegulier().getLegacyLabel()));
-            dayCareCenterRegistrationRequest.setChoixHorairesAccueil(fr.cg95.cvq.xml.request.school.ChoixHorairesAccueilType.Enum.forString(getChoixHorairesAccueil().toString()));
       
         if (getChoixTypeRendezVous() != null)
             dayCareCenterRegistrationRequest.setChoixTypeRendezVous(fr.cg95.cvq.xml.request.school.RendezVousType.Enum.forString(getChoixTypeRendezVous().getLegacyLabel()));
@@ -180,32 +172,6 @@ public class DayCareCenterRegistrationRequest extends Request implements Seriali
       
         dayCareCenterRegistrationRequest.setTelephoneContact(getTelephoneContact());
       
-        dccrrPereTypeInformationPere.setPrecisionAutreSituationActuellePere(getPrecisionAutreSituationActuellePere());
-      
-        dccrrMereTypeInformationMere.setProfessionMere(getProfessionMere());
-      
-        dccrrPereTypeInformationPere.setProfessionPere(getProfessionPere());
-      
-        if (getSituationActuelleMere() != null)
-            dccrrMereTypeInformationMere.setSituationActuelleMere(fr.cg95.cvq.xml.request.school.ChoixSituationActuelle.Enum.forString(getSituationActuelleMere().toString()));
-      
-        if (getSituationActuellePere() != null)
-            dccrrPereTypeInformationPere.setSituationActuellePere(fr.cg95.cvq.xml.request.school.ChoixSituationActuelle.Enum.forString(getSituationActuellePere().toString()));
-      
-        dayCareCenterRegistrationRequest.setTelephoneContact(getTelephoneContact());
-        dccrrPereTypeInformationPere.setPrecisionAutreSituationActuellePere(getPrecisionAutreSituationActuellePere());
-      
-        dccrrMereTypeInformationMere.setProfessionMere(getProfessionMere());
-      
-        dccrrPereTypeInformationPere.setProfessionPere(getProfessionPere());
-      
-        if (getSituationActuelleMere() != null)
-            dccrrMereTypeInformationMere.setSituationActuelleMere(fr.cg95.cvq.xml.request.school.ChoixSituationActuelle.Enum.forString(getSituationActuelleMere().getLegacyLabel()));
-      
-        if (getSituationActuellePere() != null)
-            dccrrPereTypeInformationPere.setSituationActuellePere(fr.cg95.cvq.xml.request.school.ChoixSituationActuelle.Enum.forString(getSituationActuellePere().getLegacyLabel()));
-      
-        dayCareCenterRegistrationRequest.setTelephoneContact(getTelephoneContact());
         if (getVendredi() != null)
             dayCareCenterRegistrationRequest.setVendredi(getVendredi().modelToXml());
       
@@ -241,21 +207,6 @@ public class DayCareCenterRegistrationRequest extends Request implements Seriali
       
         if (dayCareCenterRegistrationRequestXml.getDatePlacementAccueilRegulier() != null)
             dayCareCenterRegistrationRequest.setDatePlacementAccueilRegulier(DccrrDatesPlacement.xmlToModel(dayCareCenterRegistrationRequestXml.getDatePlacementAccueilRegulier()));
-      
-        calendar = dayCareCenterRegistrationRequestXml.getDatePlacementAccueilRegulier().getDatePlacementDebut();
-        if (calendar != null) {
-            dayCareCenterRegistrationRequest.setDatePlacementDebut(calendar.getTime());
-        }
-      
-        calendar = dayCareCenterRegistrationRequestXml.getDatePlacementAccueilRegulier().getDatePlacementFin();
-        if (calendar != null) {
-            dayCareCenterRegistrationRequest.setDatePlacementFin(calendar.getTime());
-        }
-      
-        calendar = dayCareCenterRegistrationRequestXml.getDatePlacementAccueilRegulier().getDatePlacementDebut();
-        if (calendar != null) {
-            dayCareCenterRegistrationRequest.setDatePlacementDebut(calendar.getTime());
-        }
       
         calendar = dayCareCenterRegistrationRequestXml.getDixHuitMoisEnfant();
         if (calendar != null) {

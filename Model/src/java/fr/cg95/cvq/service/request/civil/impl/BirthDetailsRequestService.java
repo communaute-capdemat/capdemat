@@ -11,7 +11,7 @@ import fr.cg95.cvq.security.SecurityContext;
 import fr.cg95.cvq.service.request.condition.EqualityChecker;
 import fr.cg95.cvq.service.request.condition.EqualityListChecker;
 import fr.cg95.cvq.service.request.impl.RequestService;
-
+import fr.cg95.cvq.business.request.civil.BirthRequesterQualityType;
 /**
  * Implementation of the {@link IBirthDetailsRequestService birth details request service}.
  * 

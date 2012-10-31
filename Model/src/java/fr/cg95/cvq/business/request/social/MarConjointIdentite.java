@@ -22,20 +22,21 @@ import fr.cg95.cvq.xml.common.*;
 import fr.cg95.cvq.xml.request.social.*;
 import fr.cg95.cvq.service.request.LocalReferential;
 import fr.cg95.cvq.service.request.condition.IConditionChecker;
+import javax.persistence.*;
+import org.hibernate.annotations.Index;
+import org.hibernate.annotations.Type;
 
 /**
  * Generated class file, do not edit !
- *
- * @hibernate.class
- *  table="mar_conjoint_identite"
- *  lazy="false"
  */
+@Entity
+@Table(name="mar_conjoint_identite")
 public class MarConjointIdentite implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     public static final Map<String, IConditionChecker> conditions =
-        new HashMap<String, IConditionChecker>();
+        MdphAdultRequest.conditions;
 
     public MarConjointIdentite() {
         super();
@@ -122,11 +123,8 @@ public class MarConjointIdentite implements Serializable {
         this.id = id;
     }
 
-    /**
-     * @hibernate.id
-     *  column="id"
-     *  generator-class="sequence"
-     */
+    @Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE)
     public final Long getId() {
         return this.id;
     }
@@ -158,18 +156,14 @@ public class MarConjointIdentite implements Serializable {
     
     private String nomNaissanceConjoint;
 
-    public final void setNomNaissanceConjoint(final String nomNaissanceConjoint) {
+    public void setNomNaissanceConjoint(final String nomNaissanceConjoint) {
         this.nomNaissanceConjoint = nomNaissanceConjoint;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="nom_naissance_conjoint"
-        *  length="38"
+    
+    @Column(name="nom_naissance_conjoint" , length=38 )
       
-    */
-    public final String getNomNaissanceConjoint() {
+    public String getNomNaissanceConjoint() {
         return this.nomNaissanceConjoint;
     }
   
@@ -199,18 +193,14 @@ public class MarConjointIdentite implements Serializable {
     
     private String prenomConjoint;
 
-    public final void setPrenomConjoint(final String prenomConjoint) {
+    public void setPrenomConjoint(final String prenomConjoint) {
         this.prenomConjoint = prenomConjoint;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="prenom_conjoint"
-        *  length="38"
+    
+    @Column(name="prenom_conjoint" , length=38 )
       
-    */
-    public final String getPrenomConjoint() {
+    public String getPrenomConjoint() {
         return this.prenomConjoint;
     }
   
@@ -224,18 +214,14 @@ public class MarConjointIdentite implements Serializable {
     
     private java.util.Date dateNaissanceConjoint;
 
-    public final void setDateNaissanceConjoint(final java.util.Date dateNaissanceConjoint) {
+    public void setDateNaissanceConjoint(final java.util.Date dateNaissanceConjoint) {
         this.dateNaissanceConjoint = dateNaissanceConjoint;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="date_naissance_conjoint"
-        
+    
+    @Column(name="date_naissance_conjoint"  )
       
-    */
-    public final java.util.Date getDateNaissanceConjoint() {
+    public java.util.Date getDateNaissanceConjoint() {
         return this.dateNaissanceConjoint;
     }
   

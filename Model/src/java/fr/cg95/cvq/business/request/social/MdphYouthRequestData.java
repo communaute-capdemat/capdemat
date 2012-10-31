@@ -1,4 +1,5 @@
 
+
 package fr.cg95.cvq.business.request.social;
 
 import java.io.Serializable;
@@ -18,13 +19,15 @@ import fr.cg95.cvq.business.users.*;
 import fr.cg95.cvq.service.request.LocalReferential;
 import fr.cg95.cvq.service.request.condition.IConditionChecker;
 
+import javax.persistence.*;
+import org.hibernate.annotations.Index;
+import org.hibernate.annotations.Type;
+
 /**
  * Generated class file, do not edit !
- *
- * @hibernate.class
- *  table="mdph_youth_request"
- *  lazy="false"
  */
+@Entity
+@Table(name="mdph_youth_request")
 public class MdphYouthRequestData implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -506,11 +509,8 @@ public class MdphYouthRequestData implements Serializable {
         this.id = id;
     }
 
-    /**
-     * @hibernate.id
-     *  column="id"
-     *  generator-class="sequence"
-     */
+    @Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE)
     public final Long getId() {
         return this.id;
     }
@@ -526,18 +526,14 @@ public class MdphYouthRequestData implements Serializable {
     
     private Boolean allocationPersonnaliseeAutonomie;
 
-    public final void setAllocationPersonnaliseeAutonomie(final Boolean allocationPersonnaliseeAutonomie) {
+    public void setAllocationPersonnaliseeAutonomie(final Boolean allocationPersonnaliseeAutonomie) {
         this.allocationPersonnaliseeAutonomie = allocationPersonnaliseeAutonomie;
     }
 
-    /**
  
-        * @hibernate.property
-        *  column="allocation_personnalisee_autonomie"
-        
+    @Column(name="allocation_personnalisee_autonomie"  )
       
-    */
-    public final Boolean getAllocationPersonnaliseeAutonomie() {
+    public Boolean getAllocationPersonnaliseeAutonomie() {
         return this.allocationPersonnaliseeAutonomie;
     }
   
@@ -551,19 +547,15 @@ public class MdphYouthRequestData implements Serializable {
     
     private fr.cg95.cvq.business.request.social.MyrAutoriteParentale autoriteParentaleMere;
 
-    public final void setAutoriteParentaleMere(final fr.cg95.cvq.business.request.social.MyrAutoriteParentale autoriteParentaleMere) {
+    public void setAutoriteParentaleMere(final fr.cg95.cvq.business.request.social.MyrAutoriteParentale autoriteParentaleMere) {
         this.autoriteParentaleMere = autoriteParentaleMere;
     }
 
-    /**
  
-        * @hibernate.many-to-one
-        *  cascade="all"
-        *  column="autorite_parentale_mere_id"
-        *  class="fr.cg95.cvq.business.request.social.MyrAutoriteParentale"
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name="autorite_parentale_mere_id")
       
-    */
-    public final fr.cg95.cvq.business.request.social.MyrAutoriteParentale getAutoriteParentaleMere() {
+    public fr.cg95.cvq.business.request.social.MyrAutoriteParentale getAutoriteParentaleMere() {
         return this.autoriteParentaleMere;
     }
   
@@ -577,22 +569,25 @@ public class MdphYouthRequestData implements Serializable {
     
     private fr.cg95.cvq.business.request.social.MyrAutoriteParentale autoriteParentalePere;
 
-    public final void setAutoriteParentalePere(final fr.cg95.cvq.business.request.social.MyrAutoriteParentale autoriteParentalePere) {
+    public void setAutoriteParentalePere(final fr.cg95.cvq.business.request.social.MyrAutoriteParentale autoriteParentalePere) {
         this.autoriteParentalePere = autoriteParentalePere;
     }
 
-    /**
  
-        * @hibernate.many-to-one
-        *  cascade="all"
-        *  column="autorite_parentale_pere_id"
-        *  class="fr.cg95.cvq.business.request.social.MyrAutoriteParentale"
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name="autorite_parentale_pere_id")
       
-    */
-    public final fr.cg95.cvq.business.request.social.MyrAutoriteParentale getAutoriteParentalePere() {
+    public fr.cg95.cvq.business.request.social.MyrAutoriteParentale getAutoriteParentalePere() {
         return this.autoriteParentalePere;
     }
   
+    
+      @NotNull(
+        
+        
+        profiles = {"demandePrestationCompensation"},
+        message = "besoinsDemandePCH"
+      )
     
       @AssertValid(
         
@@ -603,19 +598,15 @@ public class MdphYouthRequestData implements Serializable {
     
     private fr.cg95.cvq.business.request.social.MyrBesoinsDemandePch besoinsDemandePCH;
 
-    public final void setBesoinsDemandePCH(final fr.cg95.cvq.business.request.social.MyrBesoinsDemandePch besoinsDemandePCH) {
+    public void setBesoinsDemandePCH(final fr.cg95.cvq.business.request.social.MyrBesoinsDemandePch besoinsDemandePCH) {
         this.besoinsDemandePCH = besoinsDemandePCH;
     }
 
-    /**
  
-        * @hibernate.many-to-one
-        *  cascade="all"
-        *  column="besoins_demande_p_c_h_id"
-        *  class="fr.cg95.cvq.business.request.social.MyrBesoinsDemandePch"
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name="besoins_demande_p_c_h_id")
       
-    */
-    public final fr.cg95.cvq.business.request.social.MyrBesoinsDemandePch getBesoinsDemandePCH() {
+    public fr.cg95.cvq.business.request.social.MyrBesoinsDemandePch getBesoinsDemandePCH() {
         return this.besoinsDemandePCH;
     }
   
@@ -629,18 +620,14 @@ public class MdphYouthRequestData implements Serializable {
     
     private Boolean carteAccompagnement;
 
-    public final void setCarteAccompagnement(final Boolean carteAccompagnement) {
+    public void setCarteAccompagnement(final Boolean carteAccompagnement) {
         this.carteAccompagnement = carteAccompagnement;
     }
 
-    /**
  
-        * @hibernate.property
-        *  column="carte_accompagnement"
-        
+    @Column(name="carte_accompagnement"  )
       
-    */
-    public final Boolean getCarteAccompagnement() {
+    public Boolean getCarteAccompagnement() {
         return this.carteAccompagnement;
     }
   
@@ -654,18 +641,14 @@ public class MdphYouthRequestData implements Serializable {
     
     private Boolean carteInvalidite;
 
-    public final void setCarteInvalidite(final Boolean carteInvalidite) {
+    public void setCarteInvalidite(final Boolean carteInvalidite) {
         this.carteInvalidite = carteInvalidite;
     }
 
-    /**
  
-        * @hibernate.property
-        *  column="carte_invalidite"
-        
+    @Column(name="carte_invalidite"  )
       
-    */
-    public final Boolean getCarteInvalidite() {
+    public Boolean getCarteInvalidite() {
         return this.carteInvalidite;
     }
   
@@ -679,18 +662,14 @@ public class MdphYouthRequestData implements Serializable {
     
     private Boolean carteStationnement;
 
-    public final void setCarteStationnement(final Boolean carteStationnement) {
+    public void setCarteStationnement(final Boolean carteStationnement) {
         this.carteStationnement = carteStationnement;
     }
 
-    /**
  
-        * @hibernate.property
-        *  column="carte_stationnement"
-        
+    @Column(name="carte_stationnement"  )
       
-    */
-    public final Boolean getCarteStationnement() {
+    public Boolean getCarteStationnement() {
         return this.carteStationnement;
     }
   
@@ -704,18 +683,15 @@ public class MdphYouthRequestData implements Serializable {
     
     private fr.cg95.cvq.business.request.social.MyrChoixPrestationCompensationType choixPrestationCompensation;
 
-    public final void setChoixPrestationCompensation(final fr.cg95.cvq.business.request.social.MyrChoixPrestationCompensationType choixPrestationCompensation) {
+    public void setChoixPrestationCompensation(final fr.cg95.cvq.business.request.social.MyrChoixPrestationCompensationType choixPrestationCompensation) {
         this.choixPrestationCompensation = choixPrestationCompensation;
     }
 
-    /**
  
-        * @hibernate.property
-        *  column="choix_prestation_compensation"
-        
+    @Enumerated(EnumType.STRING)
+    @Column(name="choix_prestation_compensation"  )
       
-    */
-    public final fr.cg95.cvq.business.request.social.MyrChoixPrestationCompensationType getChoixPrestationCompensation() {
+    public fr.cg95.cvq.business.request.social.MyrChoixPrestationCompensationType getChoixPrestationCompensation() {
         return this.choixPrestationCompensation;
     }
   
@@ -729,54 +705,43 @@ public class MdphYouthRequestData implements Serializable {
     
     private fr.cg95.cvq.business.request.social.MyrChoixProjetDeVieType choixProjetDeVie;
 
-    public final void setChoixProjetDeVie(final fr.cg95.cvq.business.request.social.MyrChoixProjetDeVieType choixProjetDeVie) {
+    public void setChoixProjetDeVie(final fr.cg95.cvq.business.request.social.MyrChoixProjetDeVieType choixProjetDeVie) {
         this.choixProjetDeVie = choixProjetDeVie;
     }
 
-    /**
  
-        * @hibernate.property
-        *  column="choix_projet_de_vie"
-        
+    @Enumerated(EnumType.STRING)
+    @Column(name="choix_projet_de_vie"  )
       
-    */
-    public final fr.cg95.cvq.business.request.social.MyrChoixProjetDeVieType getChoixProjetDeVie() {
+    public fr.cg95.cvq.business.request.social.MyrChoixProjetDeVieType getChoixProjetDeVie() {
         return this.choixProjetDeVie;
     }
   
     
     private String conseilleProjetDeVie;
 
-    public final void setConseilleProjetDeVie(final String conseilleProjetDeVie) {
+    public void setConseilleProjetDeVie(final String conseilleProjetDeVie) {
         this.conseilleProjetDeVie = conseilleProjetDeVie;
     }
 
-    /**
  
-        * @hibernate.property
-        *  column="conseille_projet_de_vie"
-        
+    @Column(name="conseille_projet_de_vie"  )
       
-    */
-    public final String getConseilleProjetDeVie() {
+    public String getConseilleProjetDeVie() {
         return this.conseilleProjetDeVie;
     }
   
     
     private java.util.Date dateArriveeFrance;
 
-    public final void setDateArriveeFrance(final java.util.Date dateArriveeFrance) {
+    public void setDateArriveeFrance(final java.util.Date dateArriveeFrance) {
         this.dateArriveeFrance = dateArriveeFrance;
     }
 
-    /**
  
-        * @hibernate.property
-        *  column="date_arrivee_france"
-        
+    @Column(name="date_arrivee_france"  )
       
-    */
-    public final java.util.Date getDateArriveeFrance() {
+    public java.util.Date getDateArriveeFrance() {
         return this.dateArriveeFrance;
     }
   
@@ -790,18 +755,14 @@ public class MdphYouthRequestData implements Serializable {
     
     private java.util.Date dateNaissanceSujet;
 
-    public final void setDateNaissanceSujet(final java.util.Date dateNaissanceSujet) {
+    public void setDateNaissanceSujet(final java.util.Date dateNaissanceSujet) {
         this.dateNaissanceSujet = dateNaissanceSujet;
     }
 
-    /**
  
-        * @hibernate.property
-        *  column="date_naissance_sujet"
-        
+    @Column(name="date_naissance_sujet"  )
       
-    */
-    public final java.util.Date getDateNaissanceSujet() {
+    public java.util.Date getDateNaissanceSujet() {
         return this.dateNaissanceSujet;
     }
   
@@ -815,18 +776,14 @@ public class MdphYouthRequestData implements Serializable {
     
     private java.util.Date dateSituationFamiliale;
 
-    public final void setDateSituationFamiliale(final java.util.Date dateSituationFamiliale) {
+    public void setDateSituationFamiliale(final java.util.Date dateSituationFamiliale) {
         this.dateSituationFamiliale = dateSituationFamiliale;
     }
 
-    /**
  
-        * @hibernate.property
-        *  column="date_situation_familiale"
-        
+    @Column(name="date_situation_familiale"  )
       
-    */
-    public final java.util.Date getDateSituationFamiliale() {
+    public java.util.Date getDateSituationFamiliale() {
         return this.dateSituationFamiliale;
     }
   
@@ -865,18 +822,14 @@ public class MdphYouthRequestData implements Serializable {
     
     private String demandeLibreScolaire;
 
-    public final void setDemandeLibreScolaire(final String demandeLibreScolaire) {
+    public void setDemandeLibreScolaire(final String demandeLibreScolaire) {
         this.demandeLibreScolaire = demandeLibreScolaire;
     }
 
-    /**
  
-        * @hibernate.property
-        *  column="demande_libre_scolaire"
-        *  length="2048"
+    @Column(name="demande_libre_scolaire" , length=2048 )
       
-    */
-    public final String getDemandeLibreScolaire() {
+    public String getDemandeLibreScolaire() {
         return this.demandeLibreScolaire;
     }
   
@@ -890,18 +843,15 @@ public class MdphYouthRequestData implements Serializable {
     
     private fr.cg95.cvq.business.request.social.DeteneurAutoriteParentaleType deteneurAutoriteParentale;
 
-    public final void setDeteneurAutoriteParentale(final fr.cg95.cvq.business.request.social.DeteneurAutoriteParentaleType deteneurAutoriteParentale) {
+    public void setDeteneurAutoriteParentale(final fr.cg95.cvq.business.request.social.DeteneurAutoriteParentaleType deteneurAutoriteParentale) {
         this.deteneurAutoriteParentale = deteneurAutoriteParentale;
     }
 
-    /**
  
-        * @hibernate.property
-        *  column="deteneur_autorite_parentale"
-        
+    @Enumerated(EnumType.STRING)
+    @Column(name="deteneur_autorite_parentale"  )
       
-    */
-    public final fr.cg95.cvq.business.request.social.DeteneurAutoriteParentaleType getDeteneurAutoriteParentale() {
+    public fr.cg95.cvq.business.request.social.DeteneurAutoriteParentaleType getDeteneurAutoriteParentale() {
         return this.deteneurAutoriteParentale;
     }
   
@@ -911,7 +861,7 @@ public class MdphYouthRequestData implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['situationParticuliere'].test(_this.situationParticuliere.toString());" +
+            "active &= _this.conditions['situationParticuliere'].test('estUnCas='+_this.situationParticuliere.toString());" +
                 
               
               
@@ -928,7 +878,7 @@ public class MdphYouthRequestData implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['situationParticuliere'].test(_this.situationParticuliere.toString());" +
+            "active &= _this.conditions['situationParticuliere'].test('estUnCas='+_this.situationParticuliere.toString());" +
                 
               
               
@@ -942,19 +892,15 @@ public class MdphYouthRequestData implements Serializable {
     
     private fr.cg95.cvq.business.users.Address domiciliationEtablissement;
 
-    public final void setDomiciliationEtablissement(final fr.cg95.cvq.business.users.Address domiciliationEtablissement) {
+    public void setDomiciliationEtablissement(final fr.cg95.cvq.business.users.Address domiciliationEtablissement) {
         this.domiciliationEtablissement = domiciliationEtablissement;
     }
 
-    /**
  
-        * @hibernate.many-to-one
-        *  cascade="all"
-        *  column="domiciliation_etablissement_id"
-        *  class="fr.cg95.cvq.business.users.Address"
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name="domiciliation_etablissement_id")
       
-    */
-    public final fr.cg95.cvq.business.users.Address getDomiciliationEtablissement() {
+    public fr.cg95.cvq.business.users.Address getDomiciliationEtablissement() {
         return this.domiciliationEtablissement;
     }
   
@@ -968,19 +914,15 @@ public class MdphYouthRequestData implements Serializable {
     
     private fr.cg95.cvq.business.users.Address domiciliationOrganismePayeur;
 
-    public final void setDomiciliationOrganismePayeur(final fr.cg95.cvq.business.users.Address domiciliationOrganismePayeur) {
+    public void setDomiciliationOrganismePayeur(final fr.cg95.cvq.business.users.Address domiciliationOrganismePayeur) {
         this.domiciliationOrganismePayeur = domiciliationOrganismePayeur;
     }
 
-    /**
  
-        * @hibernate.many-to-one
-        *  cascade="all"
-        *  column="domiciliation_organisme_payeur_id"
-        *  class="fr.cg95.cvq.business.users.Address"
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name="domiciliation_organisme_payeur_id")
       
-    */
-    public final fr.cg95.cvq.business.users.Address getDomiciliationOrganismePayeur() {
+    public fr.cg95.cvq.business.users.Address getDomiciliationOrganismePayeur() {
         return this.domiciliationOrganismePayeur;
     }
   
@@ -1004,18 +946,14 @@ public class MdphYouthRequestData implements Serializable {
     
     private java.util.Date enInternatDepuisLe;
 
-    public final void setEnInternatDepuisLe(final java.util.Date enInternatDepuisLe) {
+    public void setEnInternatDepuisLe(final java.util.Date enInternatDepuisLe) {
         this.enInternatDepuisLe = enInternatDepuisLe;
     }
 
-    /**
  
-        * @hibernate.property
-        *  column="en_internat_depuis_le"
-        
+    @Column(name="en_internat_depuis_le"  )
       
-    */
-    public final java.util.Date getEnInternatDepuisLe() {
+    public java.util.Date getEnInternatDepuisLe() {
         return this.enInternatDepuisLe;
     }
   
@@ -1029,18 +967,14 @@ public class MdphYouthRequestData implements Serializable {
     
     private Boolean enfantEnInternat;
 
-    public final void setEnfantEnInternat(final Boolean enfantEnInternat) {
+    public void setEnfantEnInternat(final Boolean enfantEnInternat) {
         this.enfantEnInternat = enfantEnInternat;
     }
 
-    /**
  
-        * @hibernate.property
-        *  column="enfant_en_internat"
-        
+    @Column(name="enfant_en_internat"  )
       
-    */
-    public final Boolean getEnfantEnInternat() {
+    public Boolean getEnfantEnInternat() {
         return this.enfantEnInternat;
     }
   
@@ -1119,18 +1053,14 @@ public class MdphYouthRequestData implements Serializable {
     
     private String expressionProjetDeVie;
 
-    public final void setExpressionProjetDeVie(final String expressionProjetDeVie) {
+    public void setExpressionProjetDeVie(final String expressionProjetDeVie) {
         this.expressionProjetDeVie = expressionProjetDeVie;
     }
 
-    /**
  
-        * @hibernate.property
-        *  column="expression_projet_de_vie"
-        *  length="5096"
+    @Column(name="expression_projet_de_vie" , length=5096 )
       
-    */
-    public final String getExpressionProjetDeVie() {
+    public String getExpressionProjetDeVie() {
         return this.expressionProjetDeVie;
     }
   
@@ -1146,18 +1076,14 @@ public class MdphYouthRequestData implements Serializable {
     
     private String faxSujet;
 
-    public final void setFaxSujet(final String faxSujet) {
+    public void setFaxSujet(final String faxSujet) {
         this.faxSujet = faxSujet;
     }
 
-    /**
  
-        * @hibernate.property
-        *  column="fax_sujet"
-        *  length="10"
+    @Column(name="fax_sujet" , length=10 )
       
-    */
-    public final String getFaxSujet() {
+    public String getFaxSujet() {
         return this.faxSujet;
     }
   
@@ -1181,18 +1107,14 @@ public class MdphYouthRequestData implements Serializable {
     
     private Boolean fraisSejourPrisEnCharge;
 
-    public final void setFraisSejourPrisEnCharge(final Boolean fraisSejourPrisEnCharge) {
+    public void setFraisSejourPrisEnCharge(final Boolean fraisSejourPrisEnCharge) {
         this.fraisSejourPrisEnCharge = fraisSejourPrisEnCharge;
     }
 
-    /**
  
-        * @hibernate.property
-        *  column="frais_sejour_pris_en_charge"
-        
+    @Column(name="frais_sejour_pris_en_charge"  )
       
-    */
-    public final Boolean getFraisSejourPrisEnCharge() {
+    public Boolean getFraisSejourPrisEnCharge() {
         return this.fraisSejourPrisEnCharge;
     }
   
@@ -1206,25 +1128,16 @@ public class MdphYouthRequestData implements Serializable {
     
     private List<fr.cg95.cvq.business.request.social.MyrFraisSuppLiesHandicap> fraisSuppLiesHandicap;
 
-    public final void setFraisSuppLiesHandicap(final List<fr.cg95.cvq.business.request.social.MyrFraisSuppLiesHandicap> fraisSuppLiesHandicap) {
+    public void setFraisSuppLiesHandicap(final List<fr.cg95.cvq.business.request.social.MyrFraisSuppLiesHandicap> fraisSuppLiesHandicap) {
         this.fraisSuppLiesHandicap = fraisSuppLiesHandicap;
     }
 
-    /**
  
-        * @hibernate.list
-        *  inverse="false"
-        *  lazy="false"
-        *  cascade="all"
-        * @hibernate.key
-        *  column="mdph_youth_request_id"
-        * @hibernate.list-index
-        *  column="frais_supp_lies_handicap_index"
-        * @hibernate.one-to-many
-        *  class="fr.cg95.cvq.business.request.social.MyrFraisSuppLiesHandicap"
+    @OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @OrderColumn(name="frais_supp_lies_handicap_index")
+    @JoinColumn(name="mdph_youth_request_id")
       
-    */
-    public final List<fr.cg95.cvq.business.request.social.MyrFraisSuppLiesHandicap> getFraisSuppLiesHandicap() {
+    public List<fr.cg95.cvq.business.request.social.MyrFraisSuppLiesHandicap> getFraisSuppLiesHandicap() {
         return this.fraisSuppLiesHandicap;
     }
   
@@ -1265,19 +1178,15 @@ public class MdphYouthRequestData implements Serializable {
     
     private fr.cg95.cvq.business.request.social.MyrConjointIdentite identiteConjoint;
 
-    public final void setIdentiteConjoint(final fr.cg95.cvq.business.request.social.MyrConjointIdentite identiteConjoint) {
+    public void setIdentiteConjoint(final fr.cg95.cvq.business.request.social.MyrConjointIdentite identiteConjoint) {
         this.identiteConjoint = identiteConjoint;
     }
 
-    /**
  
-        * @hibernate.many-to-one
-        *  cascade="all"
-        *  column="identite_conjoint_id"
-        *  class="fr.cg95.cvq.business.request.social.MyrConjointIdentite"
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name="identite_conjoint_id")
       
-    */
-    public final fr.cg95.cvq.business.request.social.MyrConjointIdentite getIdentiteConjoint() {
+    public fr.cg95.cvq.business.request.social.MyrConjointIdentite getIdentiteConjoint() {
         return this.identiteConjoint;
     }
   
@@ -1318,19 +1227,15 @@ public class MdphYouthRequestData implements Serializable {
     
     private fr.cg95.cvq.business.request.social.MyrAutoriteParentaleAutre informationAutreDeteneurAutoriteParentale;
 
-    public final void setInformationAutreDeteneurAutoriteParentale(final fr.cg95.cvq.business.request.social.MyrAutoriteParentaleAutre informationAutreDeteneurAutoriteParentale) {
+    public void setInformationAutreDeteneurAutoriteParentale(final fr.cg95.cvq.business.request.social.MyrAutoriteParentaleAutre informationAutreDeteneurAutoriteParentale) {
         this.informationAutreDeteneurAutoriteParentale = informationAutreDeteneurAutoriteParentale;
     }
 
-    /**
  
-        * @hibernate.many-to-one
-        *  cascade="all"
-        *  column="information_autre_deteneur_autorite_parentale_id"
-        *  class="fr.cg95.cvq.business.request.social.MyrAutoriteParentaleAutre"
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name="information_autre_deteneur_autorite_parentale_id")
       
-    */
-    public final fr.cg95.cvq.business.request.social.MyrAutoriteParentaleAutre getInformationAutreDeteneurAutoriteParentale() {
+    public fr.cg95.cvq.business.request.social.MyrAutoriteParentaleAutre getInformationAutreDeteneurAutoriteParentale() {
         return this.informationAutreDeteneurAutoriteParentale;
     }
   
@@ -1351,19 +1256,15 @@ public class MdphYouthRequestData implements Serializable {
     
     private fr.cg95.cvq.business.request.social.MyrBirthPlace lieuNaissanceSujet;
 
-    public final void setLieuNaissanceSujet(final fr.cg95.cvq.business.request.social.MyrBirthPlace lieuNaissanceSujet) {
+    public void setLieuNaissanceSujet(final fr.cg95.cvq.business.request.social.MyrBirthPlace lieuNaissanceSujet) {
         this.lieuNaissanceSujet = lieuNaissanceSujet;
     }
 
-    /**
  
-        * @hibernate.many-to-one
-        *  cascade="all"
-        *  column="lieu_naissance_sujet_id"
-        *  class="fr.cg95.cvq.business.request.social.MyrBirthPlace"
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name="lieu_naissance_sujet_id")
       
-    */
-    public final fr.cg95.cvq.business.request.social.MyrBirthPlace getLieuNaissanceSujet() {
+    public fr.cg95.cvq.business.request.social.MyrBirthPlace getLieuNaissanceSujet() {
         return this.lieuNaissanceSujet;
     }
   
@@ -1377,18 +1278,15 @@ public class MdphYouthRequestData implements Serializable {
     
     private fr.cg95.cvq.business.request.social.MyrNationaliteAvecSuisseType nationalite;
 
-    public final void setNationalite(final fr.cg95.cvq.business.request.social.MyrNationaliteAvecSuisseType nationalite) {
+    public void setNationalite(final fr.cg95.cvq.business.request.social.MyrNationaliteAvecSuisseType nationalite) {
         this.nationalite = nationalite;
     }
 
-    /**
  
-        * @hibernate.property
-        *  column="nationalite"
-        
+    @Enumerated(EnumType.STRING)
+    @Column(name="nationalite"  )
       
-    */
-    public final fr.cg95.cvq.business.request.social.MyrNationaliteAvecSuisseType getNationalite() {
+    public fr.cg95.cvq.business.request.social.MyrNationaliteAvecSuisseType getNationalite() {
         return this.nationalite;
     }
   
@@ -1418,18 +1316,14 @@ public class MdphYouthRequestData implements Serializable {
     
     private String nomAllocataire;
 
-    public final void setNomAllocataire(final String nomAllocataire) {
+    public void setNomAllocataire(final String nomAllocataire) {
         this.nomAllocataire = nomAllocataire;
     }
 
-    /**
  
-        * @hibernate.property
-        *  column="nom_allocataire"
-        *  length="38"
+    @Column(name="nom_allocataire" , length=38 )
       
-    */
-    public final String getNomAllocataire() {
+    public String getNomAllocataire() {
         return this.nomAllocataire;
     }
   
@@ -1439,7 +1333,7 @@ public class MdphYouthRequestData implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['situationParticuliere'].test(_this.situationParticuliere.toString());" +
+            "active &= _this.conditions['situationParticuliere'].test('estUnCas='+_this.situationParticuliere.toString());" +
                 
               
               
@@ -1456,7 +1350,7 @@ public class MdphYouthRequestData implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['situationParticuliere'].test(_this.situationParticuliere.toString());" +
+            "active &= _this.conditions['situationParticuliere'].test('estUnCas='+_this.situationParticuliere.toString());" +
                 
               
               
@@ -1470,36 +1364,28 @@ public class MdphYouthRequestData implements Serializable {
     
     private String nomEtablissement;
 
-    public final void setNomEtablissement(final String nomEtablissement) {
+    public void setNomEtablissement(final String nomEtablissement) {
         this.nomEtablissement = nomEtablissement;
     }
 
-    /**
  
-        * @hibernate.property
-        *  column="nom_etablissement"
-        
+    @Column(name="nom_etablissement"  )
       
-    */
-    public final String getNomEtablissement() {
+    public String getNomEtablissement() {
         return this.nomEtablissement;
     }
   
     
     private String nomOrganismePayeur;
 
-    public final void setNomOrganismePayeur(final String nomOrganismePayeur) {
+    public void setNomOrganismePayeur(final String nomOrganismePayeur) {
         this.nomOrganismePayeur = nomOrganismePayeur;
     }
 
-    /**
  
-        * @hibernate.property
-        *  column="nom_organisme_payeur"
-        
+    @Column(name="nom_organisme_payeur"  )
       
-    */
-    public final String getNomOrganismePayeur() {
+    public String getNomOrganismePayeur() {
         return this.nomOrganismePayeur;
     }
   
@@ -1538,18 +1424,14 @@ public class MdphYouthRequestData implements Serializable {
     
     private String nomOrganismeSecuriteSociale;
 
-    public final void setNomOrganismeSecuriteSociale(final String nomOrganismeSecuriteSociale) {
+    public void setNomOrganismeSecuriteSociale(final String nomOrganismeSecuriteSociale) {
         this.nomOrganismeSecuriteSociale = nomOrganismeSecuriteSociale;
     }
 
-    /**
  
-        * @hibernate.property
-        *  column="nom_organisme_securite_sociale"
-        *  length="50"
+    @Column(name="nom_organisme_securite_sociale" , length=50 )
       
-    */
-    public final String getNomOrganismeSecuriteSociale() {
+    public String getNomOrganismeSecuriteSociale() {
         return this.nomOrganismeSecuriteSociale;
     }
   
@@ -1588,18 +1470,14 @@ public class MdphYouthRequestData implements Serializable {
     
     private String nombreEnfantsACharge;
 
-    public final void setNombreEnfantsACharge(final String nombreEnfantsACharge) {
+    public void setNombreEnfantsACharge(final String nombreEnfantsACharge) {
         this.nombreEnfantsACharge = nombreEnfantsACharge;
     }
 
-    /**
  
-        * @hibernate.property
-        *  column="nombre_enfants_a_charge"
-        *  length="2"
+    @Column(name="nombre_enfants_a_charge" , length=2 )
       
-    */
-    public final String getNombreEnfantsACharge() {
+    public String getNombreEnfantsACharge() {
         return this.nombreEnfantsACharge;
     }
   
@@ -1629,18 +1507,14 @@ public class MdphYouthRequestData implements Serializable {
     
     private String numeroAllocataire;
 
-    public final void setNumeroAllocataire(final String numeroAllocataire) {
+    public void setNumeroAllocataire(final String numeroAllocataire) {
         this.numeroAllocataire = numeroAllocataire;
     }
 
-    /**
  
-        * @hibernate.property
-        *  column="numero_allocataire"
-        *  length="50"
+    @Column(name="numero_allocataire" , length=50 )
       
-    */
-    public final String getNumeroAllocataire() {
+    public String getNumeroAllocataire() {
         return this.numeroAllocataire;
     }
   
@@ -1679,18 +1553,14 @@ public class MdphYouthRequestData implements Serializable {
     
     private String numeroSecuriteSocialeSujet;
 
-    public final void setNumeroSecuriteSocialeSujet(final String numeroSecuriteSocialeSujet) {
+    public void setNumeroSecuriteSocialeSujet(final String numeroSecuriteSocialeSujet) {
         this.numeroSecuriteSocialeSujet = numeroSecuriteSocialeSujet;
     }
 
-    /**
  
-        * @hibernate.property
-        *  column="numero_securite_sociale_sujet"
-        *  length="13"
+    @Column(name="numero_securite_sociale_sujet" , length=13 )
       
-    */
-    public final String getNumeroSecuriteSocialeSujet() {
+    public String getNumeroSecuriteSocialeSujet() {
         return this.numeroSecuriteSocialeSujet;
     }
   
@@ -1704,18 +1574,15 @@ public class MdphYouthRequestData implements Serializable {
     
     private fr.cg95.cvq.business.request.social.MyrOrganismePayeurType organismePayeur;
 
-    public final void setOrganismePayeur(final fr.cg95.cvq.business.request.social.MyrOrganismePayeurType organismePayeur) {
+    public void setOrganismePayeur(final fr.cg95.cvq.business.request.social.MyrOrganismePayeurType organismePayeur) {
         this.organismePayeur = organismePayeur;
     }
 
-    /**
  
-        * @hibernate.property
-        *  column="organisme_payeur"
-        
+    @Enumerated(EnumType.STRING)
+    @Column(name="organisme_payeur"  )
       
-    */
-    public final fr.cg95.cvq.business.request.social.MyrOrganismePayeurType getOrganismePayeur() {
+    public fr.cg95.cvq.business.request.social.MyrOrganismePayeurType getOrganismePayeur() {
         return this.organismePayeur;
     }
   
@@ -1729,19 +1596,15 @@ public class MdphYouthRequestData implements Serializable {
     
     private fr.cg95.cvq.business.request.social.MyrPrecedentDossierMdph precedentDossierMdph;
 
-    public final void setPrecedentDossierMdph(final fr.cg95.cvq.business.request.social.MyrPrecedentDossierMdph precedentDossierMdph) {
+    public void setPrecedentDossierMdph(final fr.cg95.cvq.business.request.social.MyrPrecedentDossierMdph precedentDossierMdph) {
         this.precedentDossierMdph = precedentDossierMdph;
     }
 
-    /**
  
-        * @hibernate.many-to-one
-        *  cascade="all"
-        *  column="precedent_dossier_mdph_id"
-        *  class="fr.cg95.cvq.business.request.social.MyrPrecedentDossierMdph"
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name="precedent_dossier_mdph_id")
       
-    */
-    public final fr.cg95.cvq.business.request.social.MyrPrecedentDossierMdph getPrecedentDossierMdph() {
+    public fr.cg95.cvq.business.request.social.MyrPrecedentDossierMdph getPrecedentDossierMdph() {
         return this.precedentDossierMdph;
     }
   
@@ -1751,7 +1614,7 @@ public class MdphYouthRequestData implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['situationParticuliere'].test(_this.situationParticuliere.toString());" +
+            "active &= _this.conditions['situationParticuliere'].test('estAutreCas='+_this.situationParticuliere.toString());" +
                 
               
               
@@ -1768,7 +1631,7 @@ public class MdphYouthRequestData implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['situationParticuliere'].test(_this.situationParticuliere.toString());" +
+            "active &= _this.conditions['situationParticuliere'].test('estAutreCas='+_this.situationParticuliere.toString());" +
                 
               
               
@@ -1782,18 +1645,14 @@ public class MdphYouthRequestData implements Serializable {
     
     private String precisionAutre;
 
-    public final void setPrecisionAutre(final String precisionAutre) {
+    public void setPrecisionAutre(final String precisionAutre) {
         this.precisionAutre = precisionAutre;
     }
 
-    /**
  
-        * @hibernate.property
-        *  column="precision_autre"
-        
+    @Column(name="precision_autre"  )
       
-    */
-    public final String getPrecisionAutre() {
+    public String getPrecisionAutre() {
         return this.precisionAutre;
     }
   
@@ -1834,18 +1693,14 @@ public class MdphYouthRequestData implements Serializable {
     
     private String precisionLogementAutre;
 
-    public final void setPrecisionLogementAutre(final String precisionLogementAutre) {
+    public void setPrecisionLogementAutre(final String precisionLogementAutre) {
         this.precisionLogementAutre = precisionLogementAutre;
     }
 
-    /**
  
-        * @hibernate.property
-        *  column="precision_logement_autre"
-        
+    @Column(name="precision_logement_autre"  )
       
-    */
-    public final String getPrecisionLogementAutre() {
+    public String getPrecisionLogementAutre() {
         return this.precisionLogementAutre;
     }
   
@@ -1886,55 +1741,43 @@ public class MdphYouthRequestData implements Serializable {
     
     private fr.cg95.cvq.business.request.social.MyrPreferenceEtablissementOuServiceScolaire precisionPreferencesEtablissementOuService;
 
-    public final void setPrecisionPreferencesEtablissementOuService(final fr.cg95.cvq.business.request.social.MyrPreferenceEtablissementOuServiceScolaire precisionPreferencesEtablissementOuService) {
+    public void setPrecisionPreferencesEtablissementOuService(final fr.cg95.cvq.business.request.social.MyrPreferenceEtablissementOuServiceScolaire precisionPreferencesEtablissementOuService) {
         this.precisionPreferencesEtablissementOuService = precisionPreferencesEtablissementOuService;
     }
 
-    /**
  
-        * @hibernate.many-to-one
-        *  cascade="all"
-        *  column="precision_preferences_etablissement_ou_service_id"
-        *  class="fr.cg95.cvq.business.request.social.MyrPreferenceEtablissementOuServiceScolaire"
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name="precision_preferences_etablissement_ou_service_id")
       
-    */
-    public final fr.cg95.cvq.business.request.social.MyrPreferenceEtablissementOuServiceScolaire getPrecisionPreferencesEtablissementOuService() {
+    public fr.cg95.cvq.business.request.social.MyrPreferenceEtablissementOuServiceScolaire getPrecisionPreferencesEtablissementOuService() {
         return this.precisionPreferencesEtablissementOuService;
     }
   
     
     private String precisionSiDomicileAupresOrganisme;
 
-    public final void setPrecisionSiDomicileAupresOrganisme(final String precisionSiDomicileAupresOrganisme) {
+    public void setPrecisionSiDomicileAupresOrganisme(final String precisionSiDomicileAupresOrganisme) {
         this.precisionSiDomicileAupresOrganisme = precisionSiDomicileAupresOrganisme;
     }
 
-    /**
  
-        * @hibernate.property
-        *  column="precision_si_domicile_aupres_organisme"
-        
+    @Column(name="precision_si_domicile_aupres_organisme"  )
       
-    */
-    public final String getPrecisionSiDomicileAupresOrganisme() {
+    public String getPrecisionSiDomicileAupresOrganisme() {
         return this.precisionSiDomicileAupresOrganisme;
     }
   
     
     private Boolean preferencesEtablissementOuService;
 
-    public final void setPreferencesEtablissementOuService(final Boolean preferencesEtablissementOuService) {
+    public void setPreferencesEtablissementOuService(final Boolean preferencesEtablissementOuService) {
         this.preferencesEtablissementOuService = preferencesEtablissementOuService;
     }
 
-    /**
  
-        * @hibernate.property
-        *  column="preferences_etablissement_ou_service"
-        
+    @Column(name="preferences_etablissement_ou_service"  )
       
-    */
-    public final Boolean getPreferencesEtablissementOuService() {
+    public Boolean getPreferencesEtablissementOuService() {
         return this.preferencesEtablissementOuService;
     }
   
@@ -1964,18 +1807,14 @@ public class MdphYouthRequestData implements Serializable {
     
     private String prenomAllocataire;
 
-    public final void setPrenomAllocataire(final String prenomAllocataire) {
+    public void setPrenomAllocataire(final String prenomAllocataire) {
         this.prenomAllocataire = prenomAllocataire;
     }
 
-    /**
  
-        * @hibernate.property
-        *  column="prenom_allocataire"
-        *  length="38"
+    @Column(name="prenom_allocataire" , length=38 )
       
-    */
-    public final String getPrenomAllocataire() {
+    public String getPrenomAllocataire() {
         return this.prenomAllocataire;
     }
   
@@ -1989,19 +1828,15 @@ public class MdphYouthRequestData implements Serializable {
     
     private fr.cg95.cvq.business.request.social.MyrPresencePersonneAupresEnfant presencePersonneAupresEnfant;
 
-    public final void setPresencePersonneAupresEnfant(final fr.cg95.cvq.business.request.social.MyrPresencePersonneAupresEnfant presencePersonneAupresEnfant) {
+    public void setPresencePersonneAupresEnfant(final fr.cg95.cvq.business.request.social.MyrPresencePersonneAupresEnfant presencePersonneAupresEnfant) {
         this.presencePersonneAupresEnfant = presencePersonneAupresEnfant;
     }
 
-    /**
  
-        * @hibernate.many-to-one
-        *  cascade="all"
-        *  column="presence_personne_aupres_enfant_id"
-        *  class="fr.cg95.cvq.business.request.social.MyrPresencePersonneAupresEnfant"
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name="presence_personne_aupres_enfant_id")
       
-    */
-    public final fr.cg95.cvq.business.request.social.MyrPresencePersonneAupresEnfant getPresencePersonneAupresEnfant() {
+    public fr.cg95.cvq.business.request.social.MyrPresencePersonneAupresEnfant getPresencePersonneAupresEnfant() {
         return this.presencePersonneAupresEnfant;
     }
   
@@ -2015,54 +1850,45 @@ public class MdphYouthRequestData implements Serializable {
     
     private fr.cg95.cvq.business.request.social.MyrSituationFamilialeType situationMaritale;
 
-    public final void setSituationMaritale(final fr.cg95.cvq.business.request.social.MyrSituationFamilialeType situationMaritale) {
+    public void setSituationMaritale(final fr.cg95.cvq.business.request.social.MyrSituationFamilialeType situationMaritale) {
         this.situationMaritale = situationMaritale;
     }
 
-    /**
  
-        * @hibernate.property
-        *  column="situation_maritale"
-        
+    @Enumerated(EnumType.STRING)
+    @Column(name="situation_maritale"  )
       
-    */
-    public final fr.cg95.cvq.business.request.social.MyrSituationFamilialeType getSituationMaritale() {
+    public fr.cg95.cvq.business.request.social.MyrSituationFamilialeType getSituationMaritale() {
         return this.situationMaritale;
     }
   
     
     private fr.cg95.cvq.business.request.social.MyrSituationAutreType situationParticuliere;
 
-    public final void setSituationParticuliere(final fr.cg95.cvq.business.request.social.MyrSituationAutreType situationParticuliere) {
+    public void setSituationParticuliere(final fr.cg95.cvq.business.request.social.MyrSituationAutreType situationParticuliere) {
         this.situationParticuliere = situationParticuliere;
     }
 
-    /**
  
-        * @hibernate.property
-        *  column="situation_particuliere"
-        
+    @Enumerated(EnumType.STRING)
+    @Column(name="situation_particuliere"  )
       
-    */
-    public final fr.cg95.cvq.business.request.social.MyrSituationAutreType getSituationParticuliere() {
+    public fr.cg95.cvq.business.request.social.MyrSituationAutreType getSituationParticuliere() {
         return this.situationParticuliere;
     }
   
     
     private fr.cg95.cvq.business.request.social.MyrChoixSituationProfessionnelleType situationProfessionnelleConjoint;
 
-    public final void setSituationProfessionnelleConjoint(final fr.cg95.cvq.business.request.social.MyrChoixSituationProfessionnelleType situationProfessionnelleConjoint) {
+    public void setSituationProfessionnelleConjoint(final fr.cg95.cvq.business.request.social.MyrChoixSituationProfessionnelleType situationProfessionnelleConjoint) {
         this.situationProfessionnelleConjoint = situationProfessionnelleConjoint;
     }
 
-    /**
  
-        * @hibernate.property
-        *  column="situation_professionnelle_conjoint"
-        
+    @Enumerated(EnumType.STRING)
+    @Column(name="situation_professionnelle_conjoint"  )
       
-    */
-    public final fr.cg95.cvq.business.request.social.MyrChoixSituationProfessionnelleType getSituationProfessionnelleConjoint() {
+    public fr.cg95.cvq.business.request.social.MyrChoixSituationProfessionnelleType getSituationProfessionnelleConjoint() {
         return this.situationProfessionnelleConjoint;
     }
   
@@ -2072,7 +1898,7 @@ public class MdphYouthRequestData implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['situationProfessionnelleConjoint'].test(_this.situationProfessionnelleConjoint.toString());" +
+            "active &= _this.conditions['situationProfessionnelleConjoint'].test('estAutreConjoint='+_this.situationProfessionnelleConjoint.toString());" +
                 
               
               
@@ -2089,7 +1915,7 @@ public class MdphYouthRequestData implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['situationProfessionnelleConjoint'].test(_this.situationProfessionnelleConjoint.toString());" +
+            "active &= _this.conditions['situationProfessionnelleConjoint'].test('estAutreConjoint='+_this.situationProfessionnelleConjoint.toString());" +
                 
               
               
@@ -2103,19 +1929,15 @@ public class MdphYouthRequestData implements Serializable {
     
     private fr.cg95.cvq.business.request.social.MyrSituationProfessionnelleAutre situationProfessionnelleConjointAutre;
 
-    public final void setSituationProfessionnelleConjointAutre(final fr.cg95.cvq.business.request.social.MyrSituationProfessionnelleAutre situationProfessionnelleConjointAutre) {
+    public void setSituationProfessionnelleConjointAutre(final fr.cg95.cvq.business.request.social.MyrSituationProfessionnelleAutre situationProfessionnelleConjointAutre) {
         this.situationProfessionnelleConjointAutre = situationProfessionnelleConjointAutre;
     }
 
-    /**
  
-        * @hibernate.many-to-one
-        *  cascade="all"
-        *  column="situation_professionnelle_conjoint_autre_id"
-        *  class="fr.cg95.cvq.business.request.social.MyrSituationProfessionnelleAutre"
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name="situation_professionnelle_conjoint_autre_id")
       
-    */
-    public final fr.cg95.cvq.business.request.social.MyrSituationProfessionnelleAutre getSituationProfessionnelleConjointAutre() {
+    public fr.cg95.cvq.business.request.social.MyrSituationProfessionnelleAutre getSituationProfessionnelleConjointAutre() {
         return this.situationProfessionnelleConjointAutre;
     }
   
@@ -2125,7 +1947,7 @@ public class MdphYouthRequestData implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['situationProfessionnelleConjoint'].test(_this.situationProfessionnelleConjoint.toString());" +
+            "active &= _this.conditions['situationProfessionnelleConjoint'].test('estBeneficiairePensionConjoint='+_this.situationProfessionnelleConjoint.toString());" +
                 
               
               
@@ -2142,7 +1964,7 @@ public class MdphYouthRequestData implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['situationProfessionnelleConjoint'].test(_this.situationProfessionnelleConjoint.toString());" +
+            "active &= _this.conditions['situationProfessionnelleConjoint'].test('estBeneficiairePensionConjoint='+_this.situationProfessionnelleConjoint.toString());" +
                 
               
               
@@ -2156,19 +1978,15 @@ public class MdphYouthRequestData implements Serializable {
     
     private fr.cg95.cvq.business.request.social.MyrSituationProfessionnelleBeneficiairePension situationProfessionnelleConjointBeneficiairePension;
 
-    public final void setSituationProfessionnelleConjointBeneficiairePension(final fr.cg95.cvq.business.request.social.MyrSituationProfessionnelleBeneficiairePension situationProfessionnelleConjointBeneficiairePension) {
+    public void setSituationProfessionnelleConjointBeneficiairePension(final fr.cg95.cvq.business.request.social.MyrSituationProfessionnelleBeneficiairePension situationProfessionnelleConjointBeneficiairePension) {
         this.situationProfessionnelleConjointBeneficiairePension = situationProfessionnelleConjointBeneficiairePension;
     }
 
-    /**
  
-        * @hibernate.many-to-one
-        *  cascade="all"
-        *  column="situation_professionnelle_conjoint_beneficiaire_pension_id"
-        *  class="fr.cg95.cvq.business.request.social.MyrSituationProfessionnelleBeneficiairePension"
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name="situation_professionnelle_conjoint_beneficiaire_pension_id")
       
-    */
-    public final fr.cg95.cvq.business.request.social.MyrSituationProfessionnelleBeneficiairePension getSituationProfessionnelleConjointBeneficiairePension() {
+    public fr.cg95.cvq.business.request.social.MyrSituationProfessionnelleBeneficiairePension getSituationProfessionnelleConjointBeneficiairePension() {
         return this.situationProfessionnelleConjointBeneficiairePension;
     }
   
@@ -2178,7 +1996,7 @@ public class MdphYouthRequestData implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['situationProfessionnelleConjoint'].test(_this.situationProfessionnelleConjoint.toString());" +
+            "active &= _this.conditions['situationProfessionnelleConjoint'].test('estDemandeurEmploiConjoint='+_this.situationProfessionnelleConjoint.toString());" +
                 
               
               
@@ -2195,7 +2013,7 @@ public class MdphYouthRequestData implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['situationProfessionnelleConjoint'].test(_this.situationProfessionnelleConjoint.toString());" +
+            "active &= _this.conditions['situationProfessionnelleConjoint'].test('estDemandeurEmploiConjoint='+_this.situationProfessionnelleConjoint.toString());" +
                 
               
               
@@ -2209,19 +2027,15 @@ public class MdphYouthRequestData implements Serializable {
     
     private fr.cg95.cvq.business.request.social.MyrSituationProfessionnelleDemandeurEmploi situationProfessionnelleConjointDemandeurEmploi;
 
-    public final void setSituationProfessionnelleConjointDemandeurEmploi(final fr.cg95.cvq.business.request.social.MyrSituationProfessionnelleDemandeurEmploi situationProfessionnelleConjointDemandeurEmploi) {
+    public void setSituationProfessionnelleConjointDemandeurEmploi(final fr.cg95.cvq.business.request.social.MyrSituationProfessionnelleDemandeurEmploi situationProfessionnelleConjointDemandeurEmploi) {
         this.situationProfessionnelleConjointDemandeurEmploi = situationProfessionnelleConjointDemandeurEmploi;
     }
 
-    /**
  
-        * @hibernate.many-to-one
-        *  cascade="all"
-        *  column="situation_professionnelle_conjoint_demandeur_emploi_id"
-        *  class="fr.cg95.cvq.business.request.social.MyrSituationProfessionnelleDemandeurEmploi"
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name="situation_professionnelle_conjoint_demandeur_emploi_id")
       
-    */
-    public final fr.cg95.cvq.business.request.social.MyrSituationProfessionnelleDemandeurEmploi getSituationProfessionnelleConjointDemandeurEmploi() {
+    public fr.cg95.cvq.business.request.social.MyrSituationProfessionnelleDemandeurEmploi getSituationProfessionnelleConjointDemandeurEmploi() {
         return this.situationProfessionnelleConjointDemandeurEmploi;
     }
   
@@ -2231,7 +2045,7 @@ public class MdphYouthRequestData implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['situationProfessionnelleConjoint'].test(_this.situationProfessionnelleConjoint.toString());" +
+            "active &= _this.conditions['situationProfessionnelleConjoint'].test('estNonSalarieConjoint='+_this.situationProfessionnelleConjoint.toString());" +
                 
               
               
@@ -2248,7 +2062,7 @@ public class MdphYouthRequestData implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['situationProfessionnelleConjoint'].test(_this.situationProfessionnelleConjoint.toString());" +
+            "active &= _this.conditions['situationProfessionnelleConjoint'].test('estNonSalarieConjoint='+_this.situationProfessionnelleConjoint.toString());" +
                 
               
               
@@ -2262,19 +2076,15 @@ public class MdphYouthRequestData implements Serializable {
     
     private fr.cg95.cvq.business.request.social.MyrSituationProfessionnelleNonSalarie situationProfessionnelleConjointNonSalarie;
 
-    public final void setSituationProfessionnelleConjointNonSalarie(final fr.cg95.cvq.business.request.social.MyrSituationProfessionnelleNonSalarie situationProfessionnelleConjointNonSalarie) {
+    public void setSituationProfessionnelleConjointNonSalarie(final fr.cg95.cvq.business.request.social.MyrSituationProfessionnelleNonSalarie situationProfessionnelleConjointNonSalarie) {
         this.situationProfessionnelleConjointNonSalarie = situationProfessionnelleConjointNonSalarie;
     }
 
-    /**
  
-        * @hibernate.many-to-one
-        *  cascade="all"
-        *  column="situation_professionnelle_conjoint_non_salarie_id"
-        *  class="fr.cg95.cvq.business.request.social.MyrSituationProfessionnelleNonSalarie"
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name="situation_professionnelle_conjoint_non_salarie_id")
       
-    */
-    public final fr.cg95.cvq.business.request.social.MyrSituationProfessionnelleNonSalarie getSituationProfessionnelleConjointNonSalarie() {
+    public fr.cg95.cvq.business.request.social.MyrSituationProfessionnelleNonSalarie getSituationProfessionnelleConjointNonSalarie() {
         return this.situationProfessionnelleConjointNonSalarie;
     }
   
@@ -2284,7 +2094,7 @@ public class MdphYouthRequestData implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['situationProfessionnelleConjoint'].test(_this.situationProfessionnelleConjoint.toString());" +
+            "active &= _this.conditions['situationProfessionnelleConjoint'].test('estRetraiteConjoint='+_this.situationProfessionnelleConjoint.toString());" +
                 
               
               
@@ -2301,7 +2111,7 @@ public class MdphYouthRequestData implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['situationProfessionnelleConjoint'].test(_this.situationProfessionnelleConjoint.toString());" +
+            "active &= _this.conditions['situationProfessionnelleConjoint'].test('estRetraiteConjoint='+_this.situationProfessionnelleConjoint.toString());" +
                 
               
               
@@ -2315,19 +2125,15 @@ public class MdphYouthRequestData implements Serializable {
     
     private fr.cg95.cvq.business.request.social.MyrSituationProfessionnelleRetraite situationProfessionnelleConjointRetraite;
 
-    public final void setSituationProfessionnelleConjointRetraite(final fr.cg95.cvq.business.request.social.MyrSituationProfessionnelleRetraite situationProfessionnelleConjointRetraite) {
+    public void setSituationProfessionnelleConjointRetraite(final fr.cg95.cvq.business.request.social.MyrSituationProfessionnelleRetraite situationProfessionnelleConjointRetraite) {
         this.situationProfessionnelleConjointRetraite = situationProfessionnelleConjointRetraite;
     }
 
-    /**
  
-        * @hibernate.many-to-one
-        *  cascade="all"
-        *  column="situation_professionnelle_conjoint_retraite_id"
-        *  class="fr.cg95.cvq.business.request.social.MyrSituationProfessionnelleRetraite"
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name="situation_professionnelle_conjoint_retraite_id")
       
-    */
-    public final fr.cg95.cvq.business.request.social.MyrSituationProfessionnelleRetraite getSituationProfessionnelleConjointRetraite() {
+    public fr.cg95.cvq.business.request.social.MyrSituationProfessionnelleRetraite getSituationProfessionnelleConjointRetraite() {
         return this.situationProfessionnelleConjointRetraite;
     }
   
@@ -2337,7 +2143,7 @@ public class MdphYouthRequestData implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['situationProfessionnelleConjoint'].test(_this.situationProfessionnelleConjoint.toString());" +
+            "active &= _this.conditions['situationProfessionnelleConjoint'].test('estSalarieConjoint='+_this.situationProfessionnelleConjoint.toString());" +
                 
               
               
@@ -2354,7 +2160,7 @@ public class MdphYouthRequestData implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['situationProfessionnelleConjoint'].test(_this.situationProfessionnelleConjoint.toString());" +
+            "active &= _this.conditions['situationProfessionnelleConjoint'].test('estSalarieConjoint='+_this.situationProfessionnelleConjoint.toString());" +
                 
               
               
@@ -2368,19 +2174,15 @@ public class MdphYouthRequestData implements Serializable {
     
     private fr.cg95.cvq.business.request.social.MyrSituationProfessionnelleSalarie situationProfessionnelleConjointSalarie;
 
-    public final void setSituationProfessionnelleConjointSalarie(final fr.cg95.cvq.business.request.social.MyrSituationProfessionnelleSalarie situationProfessionnelleConjointSalarie) {
+    public void setSituationProfessionnelleConjointSalarie(final fr.cg95.cvq.business.request.social.MyrSituationProfessionnelleSalarie situationProfessionnelleConjointSalarie) {
         this.situationProfessionnelleConjointSalarie = situationProfessionnelleConjointSalarie;
     }
 
-    /**
  
-        * @hibernate.many-to-one
-        *  cascade="all"
-        *  column="situation_professionnelle_conjoint_salarie_id"
-        *  class="fr.cg95.cvq.business.request.social.MyrSituationProfessionnelleSalarie"
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name="situation_professionnelle_conjoint_salarie_id")
       
-    */
-    public final fr.cg95.cvq.business.request.social.MyrSituationProfessionnelleSalarie getSituationProfessionnelleConjointSalarie() {
+    public fr.cg95.cvq.business.request.social.MyrSituationProfessionnelleSalarie getSituationProfessionnelleConjointSalarie() {
         return this.situationProfessionnelleConjointSalarie;
     }
   
@@ -2390,7 +2192,7 @@ public class MdphYouthRequestData implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['situationProfessionnelleConjoint'].test(_this.situationProfessionnelleConjoint.toString());" +
+            "active &= _this.conditions['situationProfessionnelleConjoint'].test('estStagiaireConjoint='+_this.situationProfessionnelleConjoint.toString());" +
                 
               
               
@@ -2407,7 +2209,7 @@ public class MdphYouthRequestData implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['situationProfessionnelleConjoint'].test(_this.situationProfessionnelleConjoint.toString());" +
+            "active &= _this.conditions['situationProfessionnelleConjoint'].test('estStagiaireConjoint='+_this.situationProfessionnelleConjoint.toString());" +
                 
               
               
@@ -2421,19 +2223,15 @@ public class MdphYouthRequestData implements Serializable {
     
     private fr.cg95.cvq.business.request.social.MyrSituationProfessionnelleStagiaire situationProfessionnelleConjointStagiaire;
 
-    public final void setSituationProfessionnelleConjointStagiaire(final fr.cg95.cvq.business.request.social.MyrSituationProfessionnelleStagiaire situationProfessionnelleConjointStagiaire) {
+    public void setSituationProfessionnelleConjointStagiaire(final fr.cg95.cvq.business.request.social.MyrSituationProfessionnelleStagiaire situationProfessionnelleConjointStagiaire) {
         this.situationProfessionnelleConjointStagiaire = situationProfessionnelleConjointStagiaire;
     }
 
-    /**
  
-        * @hibernate.many-to-one
-        *  cascade="all"
-        *  column="situation_professionnelle_conjoint_stagiaire_id"
-        *  class="fr.cg95.cvq.business.request.social.MyrSituationProfessionnelleStagiaire"
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name="situation_professionnelle_conjoint_stagiaire_id")
       
-    */
-    public final fr.cg95.cvq.business.request.social.MyrSituationProfessionnelleStagiaire getSituationProfessionnelleConjointStagiaire() {
+    public fr.cg95.cvq.business.request.social.MyrSituationProfessionnelleStagiaire getSituationProfessionnelleConjointStagiaire() {
         return this.situationProfessionnelleConjointStagiaire;
     }
   
@@ -2447,18 +2245,15 @@ public class MdphYouthRequestData implements Serializable {
     
     private fr.cg95.cvq.business.request.social.MyrChoixSituationProfessionnelleType situationProfessionnelleVous;
 
-    public final void setSituationProfessionnelleVous(final fr.cg95.cvq.business.request.social.MyrChoixSituationProfessionnelleType situationProfessionnelleVous) {
+    public void setSituationProfessionnelleVous(final fr.cg95.cvq.business.request.social.MyrChoixSituationProfessionnelleType situationProfessionnelleVous) {
         this.situationProfessionnelleVous = situationProfessionnelleVous;
     }
 
-    /**
  
-        * @hibernate.property
-        *  column="situation_professionnelle_vous"
-        
+    @Enumerated(EnumType.STRING)
+    @Column(name="situation_professionnelle_vous"  )
       
-    */
-    public final fr.cg95.cvq.business.request.social.MyrChoixSituationProfessionnelleType getSituationProfessionnelleVous() {
+    public fr.cg95.cvq.business.request.social.MyrChoixSituationProfessionnelleType getSituationProfessionnelleVous() {
         return this.situationProfessionnelleVous;
     }
   
@@ -2468,7 +2263,7 @@ public class MdphYouthRequestData implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['situationProfessionnelleVous'].test(_this.situationProfessionnelleVous.toString());" +
+            "active &= _this.conditions['situationProfessionnelleVous'].test('estAutreVous='+_this.situationProfessionnelleVous.toString());" +
                 
               
               
@@ -2485,7 +2280,7 @@ public class MdphYouthRequestData implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['situationProfessionnelleVous'].test(_this.situationProfessionnelleVous.toString());" +
+            "active &= _this.conditions['situationProfessionnelleVous'].test('estAutreVous='+_this.situationProfessionnelleVous.toString());" +
                 
               
               
@@ -2499,19 +2294,15 @@ public class MdphYouthRequestData implements Serializable {
     
     private fr.cg95.cvq.business.request.social.MyrSituationProfessionnelleAutre situationProfessionnelleVousAutre;
 
-    public final void setSituationProfessionnelleVousAutre(final fr.cg95.cvq.business.request.social.MyrSituationProfessionnelleAutre situationProfessionnelleVousAutre) {
+    public void setSituationProfessionnelleVousAutre(final fr.cg95.cvq.business.request.social.MyrSituationProfessionnelleAutre situationProfessionnelleVousAutre) {
         this.situationProfessionnelleVousAutre = situationProfessionnelleVousAutre;
     }
 
-    /**
  
-        * @hibernate.many-to-one
-        *  cascade="all"
-        *  column="situation_professionnelle_vous_autre_id"
-        *  class="fr.cg95.cvq.business.request.social.MyrSituationProfessionnelleAutre"
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name="situation_professionnelle_vous_autre_id")
       
-    */
-    public final fr.cg95.cvq.business.request.social.MyrSituationProfessionnelleAutre getSituationProfessionnelleVousAutre() {
+    public fr.cg95.cvq.business.request.social.MyrSituationProfessionnelleAutre getSituationProfessionnelleVousAutre() {
         return this.situationProfessionnelleVousAutre;
     }
   
@@ -2521,7 +2312,7 @@ public class MdphYouthRequestData implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['situationProfessionnelleVous'].test(_this.situationProfessionnelleVous.toString());" +
+            "active &= _this.conditions['situationProfessionnelleVous'].test('estBeneficiairePensionVous='+_this.situationProfessionnelleVous.toString());" +
                 
               
               
@@ -2538,7 +2329,7 @@ public class MdphYouthRequestData implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['situationProfessionnelleVous'].test(_this.situationProfessionnelleVous.toString());" +
+            "active &= _this.conditions['situationProfessionnelleVous'].test('estBeneficiairePensionVous='+_this.situationProfessionnelleVous.toString());" +
                 
               
               
@@ -2552,19 +2343,15 @@ public class MdphYouthRequestData implements Serializable {
     
     private fr.cg95.cvq.business.request.social.MyrSituationProfessionnelleBeneficiairePension situationProfessionnelleVousBeneficiairePension;
 
-    public final void setSituationProfessionnelleVousBeneficiairePension(final fr.cg95.cvq.business.request.social.MyrSituationProfessionnelleBeneficiairePension situationProfessionnelleVousBeneficiairePension) {
+    public void setSituationProfessionnelleVousBeneficiairePension(final fr.cg95.cvq.business.request.social.MyrSituationProfessionnelleBeneficiairePension situationProfessionnelleVousBeneficiairePension) {
         this.situationProfessionnelleVousBeneficiairePension = situationProfessionnelleVousBeneficiairePension;
     }
 
-    /**
  
-        * @hibernate.many-to-one
-        *  cascade="all"
-        *  column="situation_professionnelle_vous_beneficiaire_pension_id"
-        *  class="fr.cg95.cvq.business.request.social.MyrSituationProfessionnelleBeneficiairePension"
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name="situation_professionnelle_vous_beneficiaire_pension_id")
       
-    */
-    public final fr.cg95.cvq.business.request.social.MyrSituationProfessionnelleBeneficiairePension getSituationProfessionnelleVousBeneficiairePension() {
+    public fr.cg95.cvq.business.request.social.MyrSituationProfessionnelleBeneficiairePension getSituationProfessionnelleVousBeneficiairePension() {
         return this.situationProfessionnelleVousBeneficiairePension;
     }
   
@@ -2574,7 +2361,7 @@ public class MdphYouthRequestData implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['situationProfessionnelleVous'].test(_this.situationProfessionnelleVous.toString());" +
+            "active &= _this.conditions['situationProfessionnelleVous'].test('estDemandeurEmploiVous='+_this.situationProfessionnelleVous.toString());" +
                 
               
               
@@ -2591,7 +2378,7 @@ public class MdphYouthRequestData implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['situationProfessionnelleVous'].test(_this.situationProfessionnelleVous.toString());" +
+            "active &= _this.conditions['situationProfessionnelleVous'].test('estDemandeurEmploiVous='+_this.situationProfessionnelleVous.toString());" +
                 
               
               
@@ -2605,19 +2392,15 @@ public class MdphYouthRequestData implements Serializable {
     
     private fr.cg95.cvq.business.request.social.MyrSituationProfessionnelleDemandeurEmploi situationProfessionnelleVousDemandeurEmploi;
 
-    public final void setSituationProfessionnelleVousDemandeurEmploi(final fr.cg95.cvq.business.request.social.MyrSituationProfessionnelleDemandeurEmploi situationProfessionnelleVousDemandeurEmploi) {
+    public void setSituationProfessionnelleVousDemandeurEmploi(final fr.cg95.cvq.business.request.social.MyrSituationProfessionnelleDemandeurEmploi situationProfessionnelleVousDemandeurEmploi) {
         this.situationProfessionnelleVousDemandeurEmploi = situationProfessionnelleVousDemandeurEmploi;
     }
 
-    /**
  
-        * @hibernate.many-to-one
-        *  cascade="all"
-        *  column="situation_professionnelle_vous_demandeur_emploi_id"
-        *  class="fr.cg95.cvq.business.request.social.MyrSituationProfessionnelleDemandeurEmploi"
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name="situation_professionnelle_vous_demandeur_emploi_id")
       
-    */
-    public final fr.cg95.cvq.business.request.social.MyrSituationProfessionnelleDemandeurEmploi getSituationProfessionnelleVousDemandeurEmploi() {
+    public fr.cg95.cvq.business.request.social.MyrSituationProfessionnelleDemandeurEmploi getSituationProfessionnelleVousDemandeurEmploi() {
         return this.situationProfessionnelleVousDemandeurEmploi;
     }
   
@@ -2627,7 +2410,7 @@ public class MdphYouthRequestData implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['situationProfessionnelleVous'].test(_this.situationProfessionnelleVous.toString());" +
+            "active &= _this.conditions['situationProfessionnelleVous'].test('estNonSalarieVous='+_this.situationProfessionnelleVous.toString());" +
                 
               
               
@@ -2644,7 +2427,7 @@ public class MdphYouthRequestData implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['situationProfessionnelleVous'].test(_this.situationProfessionnelleVous.toString());" +
+            "active &= _this.conditions['situationProfessionnelleVous'].test('estNonSalarieVous='+_this.situationProfessionnelleVous.toString());" +
                 
               
               
@@ -2658,19 +2441,15 @@ public class MdphYouthRequestData implements Serializable {
     
     private fr.cg95.cvq.business.request.social.MyrSituationProfessionnelleNonSalarie situationProfessionnelleVousNonSalarie;
 
-    public final void setSituationProfessionnelleVousNonSalarie(final fr.cg95.cvq.business.request.social.MyrSituationProfessionnelleNonSalarie situationProfessionnelleVousNonSalarie) {
+    public void setSituationProfessionnelleVousNonSalarie(final fr.cg95.cvq.business.request.social.MyrSituationProfessionnelleNonSalarie situationProfessionnelleVousNonSalarie) {
         this.situationProfessionnelleVousNonSalarie = situationProfessionnelleVousNonSalarie;
     }
 
-    /**
  
-        * @hibernate.many-to-one
-        *  cascade="all"
-        *  column="situation_professionnelle_vous_non_salarie_id"
-        *  class="fr.cg95.cvq.business.request.social.MyrSituationProfessionnelleNonSalarie"
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name="situation_professionnelle_vous_non_salarie_id")
       
-    */
-    public final fr.cg95.cvq.business.request.social.MyrSituationProfessionnelleNonSalarie getSituationProfessionnelleVousNonSalarie() {
+    public fr.cg95.cvq.business.request.social.MyrSituationProfessionnelleNonSalarie getSituationProfessionnelleVousNonSalarie() {
         return this.situationProfessionnelleVousNonSalarie;
     }
   
@@ -2680,7 +2459,7 @@ public class MdphYouthRequestData implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['situationProfessionnelleVous'].test(_this.situationProfessionnelleVous.toString());" +
+            "active &= _this.conditions['situationProfessionnelleVous'].test('estRetraiteVous='+_this.situationProfessionnelleVous.toString());" +
                 
               
               
@@ -2697,7 +2476,7 @@ public class MdphYouthRequestData implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['situationProfessionnelleVous'].test(_this.situationProfessionnelleVous.toString());" +
+            "active &= _this.conditions['situationProfessionnelleVous'].test('estRetraiteVous='+_this.situationProfessionnelleVous.toString());" +
                 
               
               
@@ -2711,19 +2490,15 @@ public class MdphYouthRequestData implements Serializable {
     
     private fr.cg95.cvq.business.request.social.MyrSituationProfessionnelleRetraite situationProfessionnelleVousRetraite;
 
-    public final void setSituationProfessionnelleVousRetraite(final fr.cg95.cvq.business.request.social.MyrSituationProfessionnelleRetraite situationProfessionnelleVousRetraite) {
+    public void setSituationProfessionnelleVousRetraite(final fr.cg95.cvq.business.request.social.MyrSituationProfessionnelleRetraite situationProfessionnelleVousRetraite) {
         this.situationProfessionnelleVousRetraite = situationProfessionnelleVousRetraite;
     }
 
-    /**
  
-        * @hibernate.many-to-one
-        *  cascade="all"
-        *  column="situation_professionnelle_vous_retraite_id"
-        *  class="fr.cg95.cvq.business.request.social.MyrSituationProfessionnelleRetraite"
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name="situation_professionnelle_vous_retraite_id")
       
-    */
-    public final fr.cg95.cvq.business.request.social.MyrSituationProfessionnelleRetraite getSituationProfessionnelleVousRetraite() {
+    public fr.cg95.cvq.business.request.social.MyrSituationProfessionnelleRetraite getSituationProfessionnelleVousRetraite() {
         return this.situationProfessionnelleVousRetraite;
     }
   
@@ -2733,7 +2508,7 @@ public class MdphYouthRequestData implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['situationProfessionnelleVous'].test(_this.situationProfessionnelleVous.toString());" +
+            "active &= _this.conditions['situationProfessionnelleVous'].test('estSalarieVous='+_this.situationProfessionnelleVous.toString());" +
                 
               
               
@@ -2750,7 +2525,7 @@ public class MdphYouthRequestData implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['situationProfessionnelleVous'].test(_this.situationProfessionnelleVous.toString());" +
+            "active &= _this.conditions['situationProfessionnelleVous'].test('estSalarieVous='+_this.situationProfessionnelleVous.toString());" +
                 
               
               
@@ -2764,19 +2539,15 @@ public class MdphYouthRequestData implements Serializable {
     
     private fr.cg95.cvq.business.request.social.MyrSituationProfessionnelleSalarie situationProfessionnelleVousSalarie;
 
-    public final void setSituationProfessionnelleVousSalarie(final fr.cg95.cvq.business.request.social.MyrSituationProfessionnelleSalarie situationProfessionnelleVousSalarie) {
+    public void setSituationProfessionnelleVousSalarie(final fr.cg95.cvq.business.request.social.MyrSituationProfessionnelleSalarie situationProfessionnelleVousSalarie) {
         this.situationProfessionnelleVousSalarie = situationProfessionnelleVousSalarie;
     }
 
-    /**
  
-        * @hibernate.many-to-one
-        *  cascade="all"
-        *  column="situation_professionnelle_vous_salarie_id"
-        *  class="fr.cg95.cvq.business.request.social.MyrSituationProfessionnelleSalarie"
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name="situation_professionnelle_vous_salarie_id")
       
-    */
-    public final fr.cg95.cvq.business.request.social.MyrSituationProfessionnelleSalarie getSituationProfessionnelleVousSalarie() {
+    public fr.cg95.cvq.business.request.social.MyrSituationProfessionnelleSalarie getSituationProfessionnelleVousSalarie() {
         return this.situationProfessionnelleVousSalarie;
     }
   
@@ -2786,7 +2557,7 @@ public class MdphYouthRequestData implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['situationProfessionnelleVous'].test(_this.situationProfessionnelleVous.toString());" +
+            "active &= _this.conditions['situationProfessionnelleVous'].test('estStagiaireVous='+_this.situationProfessionnelleVous.toString());" +
                 
               
               
@@ -2803,7 +2574,7 @@ public class MdphYouthRequestData implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['situationProfessionnelleVous'].test(_this.situationProfessionnelleVous.toString());" +
+            "active &= _this.conditions['situationProfessionnelleVous'].test('estStagiaireVous='+_this.situationProfessionnelleVous.toString());" +
                 
               
               
@@ -2817,19 +2588,15 @@ public class MdphYouthRequestData implements Serializable {
     
     private fr.cg95.cvq.business.request.social.MyrSituationProfessionnelleStagiaire situationProfessionnelleVousStagiaire;
 
-    public final void setSituationProfessionnelleVousStagiaire(final fr.cg95.cvq.business.request.social.MyrSituationProfessionnelleStagiaire situationProfessionnelleVousStagiaire) {
+    public void setSituationProfessionnelleVousStagiaire(final fr.cg95.cvq.business.request.social.MyrSituationProfessionnelleStagiaire situationProfessionnelleVousStagiaire) {
         this.situationProfessionnelleVousStagiaire = situationProfessionnelleVousStagiaire;
     }
 
-    /**
  
-        * @hibernate.many-to-one
-        *  cascade="all"
-        *  column="situation_professionnelle_vous_stagiaire_id"
-        *  class="fr.cg95.cvq.business.request.social.MyrSituationProfessionnelleStagiaire"
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name="situation_professionnelle_vous_stagiaire_id")
       
-    */
-    public final fr.cg95.cvq.business.request.social.MyrSituationProfessionnelleStagiaire getSituationProfessionnelleVousStagiaire() {
+    public fr.cg95.cvq.business.request.social.MyrSituationProfessionnelleStagiaire getSituationProfessionnelleVousStagiaire() {
         return this.situationProfessionnelleVousStagiaire;
     }
   
@@ -2868,18 +2635,14 @@ public class MdphYouthRequestData implements Serializable {
     
     private String typeAccueil;
 
-    public final void setTypeAccueil(final String typeAccueil) {
+    public void setTypeAccueil(final String typeAccueil) {
         this.typeAccueil = typeAccueil;
     }
 
-    /**
  
-        * @hibernate.property
-        *  column="type_accueil"
-        *  length="1024"
+    @Column(name="type_accueil" , length=1024 )
       
-    */
-    public final String getTypeAccueil() {
+    public String getTypeAccueil() {
         return this.typeAccueil;
     }
   
@@ -2893,18 +2656,15 @@ public class MdphYouthRequestData implements Serializable {
     
     private fr.cg95.cvq.business.request.social.MyrLogementType typeLogement;
 
-    public final void setTypeLogement(final fr.cg95.cvq.business.request.social.MyrLogementType typeLogement) {
+    public void setTypeLogement(final fr.cg95.cvq.business.request.social.MyrLogementType typeLogement) {
         this.typeLogement = typeLogement;
     }
 
-    /**
  
-        * @hibernate.property
-        *  column="type_logement"
-        
+    @Enumerated(EnumType.STRING)
+    @Column(name="type_logement"  )
       
-    */
-    public final fr.cg95.cvq.business.request.social.MyrLogementType getTypeLogement() {
+    public fr.cg95.cvq.business.request.social.MyrLogementType getTypeLogement() {
         return this.typeLogement;
     }
   
@@ -2943,18 +2703,14 @@ public class MdphYouthRequestData implements Serializable {
     
     private String typeScolarisation;
 
-    public final void setTypeScolarisation(final String typeScolarisation) {
+    public void setTypeScolarisation(final String typeScolarisation) {
         this.typeScolarisation = typeScolarisation;
     }
 
-    /**
  
-        * @hibernate.property
-        *  column="type_scolarisation"
-        *  length="1024"
+    @Column(name="type_scolarisation" , length=1024 )
       
-    */
-    public final String getTypeScolarisation() {
+    public String getTypeScolarisation() {
         return this.typeScolarisation;
     }
   

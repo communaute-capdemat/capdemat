@@ -22,20 +22,21 @@ import fr.cg95.cvq.xml.common.*;
 import fr.cg95.cvq.xml.request.localpolice.*;
 import fr.cg95.cvq.service.request.LocalReferential;
 import fr.cg95.cvq.service.request.condition.IConditionChecker;
+import javax.persistence.*;
+import org.hibernate.annotations.Index;
+import org.hibernate.annotations.Type;
 
 /**
  * Generated class file, do not edit !
- *
- * @hibernate.class
- *  table="hsr_other_contact"
- *  lazy="false"
  */
+@Entity
+@Table(name="hsr_other_contact")
 public class HsrOtherContact implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     public static final Map<String, IConditionChecker> conditions =
-        new HashMap<String, IConditionChecker>();
+        HolidaySecurityRequest.conditions;
 
     public HsrOtherContact() {
         super();
@@ -128,11 +129,8 @@ public class HsrOtherContact implements Serializable {
         this.id = id;
     }
 
-    /**
-     * @hibernate.id
-     *  column="id"
-     *  generator-class="sequence"
-     */
+    @Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE)
     public final Long getId() {
         return this.id;
     }
@@ -155,19 +153,15 @@ public class HsrOtherContact implements Serializable {
     
     private fr.cg95.cvq.business.users.Address otherContactAddress;
 
-    public final void setOtherContactAddress(final fr.cg95.cvq.business.users.Address otherContactAddress) {
+    public void setOtherContactAddress(final fr.cg95.cvq.business.users.Address otherContactAddress) {
         this.otherContactAddress = otherContactAddress;
     }
 
-    /**
-  
-        * @hibernate.many-to-one
-        *  cascade="all"
-        *  column="other_contact_address_id"
-        *  class="fr.cg95.cvq.business.users.Address"
+    
+    @ManyToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name="other_contact_address_id")
       
-    */
-    public final fr.cg95.cvq.business.users.Address getOtherContactAddress() {
+    public fr.cg95.cvq.business.users.Address getOtherContactAddress() {
         return this.otherContactAddress;
     }
   
@@ -197,18 +191,14 @@ public class HsrOtherContact implements Serializable {
     
     private String otherContactFirstName;
 
-    public final void setOtherContactFirstName(final String otherContactFirstName) {
+    public void setOtherContactFirstName(final String otherContactFirstName) {
         this.otherContactFirstName = otherContactFirstName;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="other_contact_first_name"
-        *  length="38"
+    
+    @Column(name="other_contact_first_name" , length=38 )
       
-    */
-    public final String getOtherContactFirstName() {
+    public String getOtherContactFirstName() {
         return this.otherContactFirstName;
     }
   
@@ -238,18 +228,14 @@ public class HsrOtherContact implements Serializable {
     
     private String otherContactPhone;
 
-    public final void setOtherContactPhone(final String otherContactPhone) {
+    public void setOtherContactPhone(final String otherContactPhone) {
         this.otherContactPhone = otherContactPhone;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="other_contact_phone"
-        *  length="10"
+    
+    @Column(name="other_contact_phone" , length=10 )
       
-    */
-    public final String getOtherContactPhone() {
+    public String getOtherContactPhone() {
         return this.otherContactPhone;
     }
   
@@ -279,18 +265,14 @@ public class HsrOtherContact implements Serializable {
     
     private String otherContactLastName;
 
-    public final void setOtherContactLastName(final String otherContactLastName) {
+    public void setOtherContactLastName(final String otherContactLastName) {
         this.otherContactLastName = otherContactLastName;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="other_contact_last_name"
-        *  length="38"
+    
+    @Column(name="other_contact_last_name" , length=38 )
       
-    */
-    public final String getOtherContactLastName() {
+    public String getOtherContactLastName() {
         return this.otherContactLastName;
     }
   

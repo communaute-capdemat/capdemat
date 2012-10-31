@@ -142,78 +142,6 @@ public class DomesticHelpRequest extends Request implements Serializable {
         if (getDhrCurrentDwelling() != null)
             domesticHelpRequest.setDhrCurrentDwelling(getDhrCurrentDwelling().modelToXml());
       
-        date = getDhrCurrentDwellingArrivalDate();
-        if (date != null) {
-            calendar.setTime(date);
-            dhrCurrentDwellingTypeDhrCurrentDwelling.setDhrCurrentDwellingArrivalDate(calendar);
-        }
-      
-        if (getDhrCurrentDwellingKind() != null)
-            dhrCurrentDwellingTypeDhrCurrentDwelling.setDhrCurrentDwellingKind(fr.cg95.cvq.xml.request.social.DhrDwellingKindType.Enum.forString(getDhrCurrentDwellingKind().toString()));
-      
-        if (getDhrCurrentDwellingNetArea() != null)
-            dhrCurrentDwellingTypeDhrCurrentDwelling.setDhrCurrentDwellingNetArea(getDhrCurrentDwellingNetArea());
-      
-        if (getDhrCurrentDwellingNumberOfRoom() != null)
-            dhrCurrentDwellingTypeDhrCurrentDwelling.setDhrCurrentDwellingNumberOfRoom(getDhrCurrentDwellingNumberOfRoom());
-      
-        dhrCurrentDwellingTypeDhrCurrentDwelling.setDhrCurrentDwellingPhone(getDhrCurrentDwellingPhone());
-      
-        if (getDhrCurrentDwellingStatus() != null)
-            dhrCurrentDwellingTypeDhrCurrentDwelling.setDhrCurrentDwellingStatus(fr.cg95.cvq.xml.request.social.DhrDwellingStatusType.Enum.forString(getDhrCurrentDwellingStatus().toString()));
-      
-        if (getDhrFurnitureInvestmentIncome() != null)
-            dhrIncomesTypeDhrRequesterIncomes.setDhrFurnitureInvestmentIncome(new BigInteger(getDhrFurnitureInvestmentIncome().toString()));
-        DhrRequesterGuardianType dhrRequesterGuardianTypeDhrRequesterGuardian = domesticHelpRequest.addNewDhrRequesterGuardian();
-        if (getDhrGuardianAddress() != null)
-            dhrRequesterGuardianTypeDhrRequesterGuardian.setDhrGuardianAddress(Address.modelToXml(getDhrGuardianAddress()));
-      
-        if (getDhrGuardianMeasure() != null)
-            dhrRequesterGuardianTypeDhrRequesterGuardian.setDhrGuardianMeasure(fr.cg95.cvq.xml.request.social.DhrGuardianMeasureType.Enum.forString(getDhrGuardianMeasure().toString()));
-      
-        dhrRequesterGuardianTypeDhrRequesterGuardian.setDhrGuardianName(getDhrGuardianName());
-        DhrFamilyReferentType dhrFamilyReferentTypeDhrFamilyReferent = domesticHelpRequest.addNewDhrFamilyReferent();
-        if (getDhrHaveFamilyReferent() != null)
-            dhrFamilyReferentTypeDhrFamilyReferent.setDhrHaveFamilyReferent(getDhrHaveFamilyReferent().booleanValue());
-        DhrTaxesAmountType dhrTaxesAmountTypeDhrTaxesAmount = domesticHelpRequest.addNewDhrTaxesAmount();
-        if (getDhrIncomeTax() != null)
-            dhrTaxesAmountTypeDhrTaxesAmount.setDhrIncomeTax(new BigInteger(getDhrIncomeTax().toString()));
-        date = getDhrCurrentDwellingArrivalDate();
-        if (date != null) {
-            calendar.setTime(date);
-            dhrCurrentDwellingTypeDhrCurrentDwelling.setDhrCurrentDwellingArrivalDate(calendar);
-        }
-      
-        if (getDhrCurrentDwellingKind() != null)
-            dhrCurrentDwellingTypeDhrCurrentDwelling.setDhrCurrentDwellingKind(fr.cg95.cvq.xml.request.social.DhrDwellingKindType.Enum.forString(getDhrCurrentDwellingKind().getLegacyLabel()));
-      
-        if (getDhrCurrentDwellingNetArea() != null)
-            dhrCurrentDwellingTypeDhrCurrentDwelling.setDhrCurrentDwellingNetArea(getDhrCurrentDwellingNetArea());
-      
-        if (getDhrCurrentDwellingNumberOfRoom() != null)
-            dhrCurrentDwellingTypeDhrCurrentDwelling.setDhrCurrentDwellingNumberOfRoom(getDhrCurrentDwellingNumberOfRoom());
-      
-        dhrCurrentDwellingTypeDhrCurrentDwelling.setDhrCurrentDwellingPhone(getDhrCurrentDwellingPhone());
-      
-        if (getDhrCurrentDwellingStatus() != null)
-            dhrCurrentDwellingTypeDhrCurrentDwelling.setDhrCurrentDwellingStatus(fr.cg95.cvq.xml.request.social.DhrDwellingStatusType.Enum.forString(getDhrCurrentDwellingStatus().getLegacyLabel()));
-      
-        if (getDhrFurnitureInvestmentIncome() != null)
-            dhrIncomesTypeDhrRequesterIncomes.setDhrFurnitureInvestmentIncome(new BigInteger(getDhrFurnitureInvestmentIncome().toString()));
-        DhrRequesterGuardianType dhrRequesterGuardianTypeDhrRequesterGuardian = domesticHelpRequest.addNewDhrRequesterGuardian();
-        if (getDhrGuardianAddress() != null)
-            dhrRequesterGuardianTypeDhrRequesterGuardian.setDhrGuardianAddress(Address.modelToXml(getDhrGuardianAddress()));
-      
-        if (getDhrGuardianMeasure() != null)
-            dhrRequesterGuardianTypeDhrRequesterGuardian.setDhrGuardianMeasure(fr.cg95.cvq.xml.request.social.DhrGuardianMeasureType.Enum.forString(getDhrGuardianMeasure().getLegacyLabel()));
-      
-        dhrRequesterGuardianTypeDhrRequesterGuardian.setDhrGuardianName(getDhrGuardianName());
-        DhrFamilyReferentType dhrFamilyReferentTypeDhrFamilyReferent = domesticHelpRequest.addNewDhrFamilyReferent();
-        if (getDhrHaveFamilyReferent() != null)
-            dhrFamilyReferentTypeDhrFamilyReferent.setDhrHaveFamilyReferent(getDhrHaveFamilyReferent().booleanValue());
-        DhrTaxesAmountType dhrTaxesAmountTypeDhrTaxesAmount = domesticHelpRequest.addNewDhrTaxesAmount();
-        if (getDhrIncomeTax() != null)
-            dhrTaxesAmountTypeDhrTaxesAmount.setDhrIncomeTax(new BigInteger(getDhrIncomeTax().toString()));
         if (getDhrFamilyReferent() != null)
             domesticHelpRequest.setDhrFamilyReferent(getDhrFamilyReferent().modelToXml());
       
@@ -235,12 +163,6 @@ public class DomesticHelpRequest extends Request implements Serializable {
             domesticHelpRequest.setDhrPreviousDwellingArray(dhrPreviousDwellingTypeTab);
         }
       
-        if (getDhrPrincipalPensionPlan() != null)
-            dhrRequesterPensionPlanTypeDhrRequesterPensionPlan.setDhrPrincipalPensionPlan(fr.cg95.cvq.xml.request.social.DhrPrincipalPensionPlanType.Enum.forString(getDhrPrincipalPensionPlan().toString()));
-      
-        if (getDhrPrincipalPensionPlan() != null)
-            dhrRequesterPensionPlanTypeDhrRequesterPensionPlan.setDhrPrincipalPensionPlan(fr.cg95.cvq.xml.request.social.DhrPrincipalPensionPlanType.Enum.forString(getDhrPrincipalPensionPlan().getLegacyLabel()));
-      
         i = 0;
         if (getDhrRealAsset() != null) {
             fr.cg95.cvq.xml.request.social.DhrRealAssetType[] dhrRealAssetTypeTab = new fr.cg95.cvq.xml.request.social.DhrRealAssetType[getDhrRealAsset().size()];
@@ -251,7 +173,7 @@ public class DomesticHelpRequest extends Request implements Serializable {
         }
       
         if (getDhrRequestKind() != null)
-            domesticHelpRequest.setDhrRequestKind(fr.cg95.cvq.xml.request.social.DhrRequestKindType.Enum.forString(getDhrRequestKind().toString()));
+            domesticHelpRequest.setDhrRequestKind(fr.cg95.cvq.xml.request.social.DhrRequestKindType.Enum.forString(getDhrRequestKind().getLegacyLabel()));
       
         if (getDhrRequester() != null)
             domesticHelpRequest.setDhrRequester(getDhrRequester().modelToXml());
@@ -262,26 +184,6 @@ public class DomesticHelpRequest extends Request implements Serializable {
         if (getDhrRequesterIncomes() != null)
             domesticHelpRequest.setDhrRequesterIncomes(getDhrRequesterIncomes().modelToXml());
       
-        dhrFamilyReferentTypeDhrFamilyReferent.setDhrReferentName(getDhrReferentName());
-        DhrSpouseType dhrSpouseTypeDhrSpouse = domesticHelpRequest.addNewDhrSpouse();
-        if (getDhrRequestKind() != null)
-            dhrSpouseTypeDhrSpouse.setDhrRequestKind(fr.cg95.cvq.xml.request.social.DhrRequestKindType.Enum.forString(getDhrRequestKind().toString()));
-        DhrRequesterType dhrRequesterTypeDhrRequester = domesticHelpRequest.addNewDhrRequester();
-        date = getDhrRequesterBirthDate();
-        if (date != null) {
-            calendar.setTime(date);
-            dhrRequesterTypeDhrRequester.setDhrRequesterBirthDate(calendar);
-        }
-        dhrFamilyReferentTypeDhrFamilyReferent.setDhrReferentName(getDhrReferentName());
-        DhrSpouseType dhrSpouseTypeDhrSpouse = domesticHelpRequest.addNewDhrSpouse();
-        if (getDhrRequestKind() != null)
-            dhrSpouseTypeDhrSpouse.setDhrRequestKind(fr.cg95.cvq.xml.request.social.DhrRequestKindType.Enum.forString(getDhrRequestKind().getLegacyLabel()));
-        DhrRequesterType dhrRequesterTypeDhrRequester = domesticHelpRequest.addNewDhrRequester();
-        date = getDhrRequesterBirthDate();
-        if (date != null) {
-            calendar.setTime(date);
-            dhrRequesterTypeDhrRequester.setDhrRequesterBirthDate(calendar);
-        }
         if (getDhrRequesterPensionPlan() != null)
             domesticHelpRequest.setDhrRequesterPensionPlan(getDhrRequesterPensionPlan().modelToXml());
       
@@ -296,128 +198,6 @@ public class DomesticHelpRequest extends Request implements Serializable {
       
         if (getDhrTaxesAmount() != null)
             domesticHelpRequest.setDhrTaxesAmount(getDhrTaxesAmount().modelToXml());
-      
-        if (getDhrRequesterNationality() != null)
-            dhrRequesterTypeDhrRequester.setDhrRequesterNationality(fr.cg95.cvq.xml.common.NationalityType.Enum.forString(getDhrRequesterNationality().toString()));
-      
-        if (getDhrSpouseAddress() != null)
-            dhrSpouseStatusTypeDhrSpouseStatus.setDhrSpouseAddress(Address.modelToXml(getDhrSpouseAddress()));
-      
-        date = getDhrSpouseBirthDate();
-        if (date != null) {
-            calendar.setTime(date);
-            dhrSpouseTypeDhrSpouse.setDhrSpouseBirthDate(calendar);
-        }
-      
-        dhrSpouseTypeDhrSpouse.setDhrSpouseBirthPlace(getDhrSpouseBirthPlace());
-      
-        dhrSpouseStatusTypeDhrSpouseStatus.setDhrSpouseComplementaryPensionPlan(getDhrSpouseComplementaryPensionPlan());
-      
-        dhrSpouseStatusTypeDhrSpouseStatus.setDhrSpouseEmployer(getDhrSpouseEmployer());
-      
-        if (getDhrSpouseFamilyStatus() != null)
-            dhrSpouseTypeDhrSpouse.setDhrSpouseFamilyStatus(fr.cg95.cvq.xml.common.FamilyStatusType.Enum.forString(getDhrSpouseFamilyStatus().toString()));
-      
-        dhrSpouseTypeDhrSpouse.setDhrSpouseFirstName(getDhrSpouseFirstName());
-      
-        date = getDhrSpouseFranceArrivalDate();
-        if (date != null) {
-            calendar.setTime(date);
-            dhrSpouseTypeDhrSpouse.setDhrSpouseFranceArrivalDate(calendar);
-        }
-      
-        if (getDhrSpouseIsFrenchResident() != null)
-            dhrSpouseTypeDhrSpouse.setDhrSpouseIsFrenchResident(getDhrSpouseIsFrenchResident().booleanValue());
-      
-        dhrSpouseTypeDhrSpouse.setDhrSpouseMaidenName(getDhrSpouseMaidenName());
-      
-        dhrSpouseTypeDhrSpouse.setDhrSpouseName(getDhrSpouseName());
-      
-        if (getDhrSpouseNationality() != null)
-            dhrSpouseTypeDhrSpouse.setDhrSpouseNationality(fr.cg95.cvq.xml.common.NationalityType.Enum.forString(getDhrSpouseNationality().toString()));
-      
-        dhrSpouseStatusTypeDhrSpouseStatus.setDhrSpousePensionPlanDetail(getDhrSpousePensionPlanDetail());
-      
-        if (getDhrSpousePrincipalPensionPlan() != null)
-            dhrSpouseStatusTypeDhrSpouseStatus.setDhrSpousePrincipalPensionPlan(fr.cg95.cvq.xml.request.social.DhrPrincipalPensionPlanType.Enum.forString(getDhrSpousePrincipalPensionPlan().toString()));
-      
-        dhrSpouseStatusTypeDhrSpouseStatus.setDhrSpouseProfession(getDhrSpouseProfession());
-      
-        if (getDhrSpouseTitle() != null)
-            dhrSpouseTypeDhrSpouse.setDhrSpouseTitle(fr.cg95.cvq.xml.common.TitleType.Enum.forString(getDhrSpouseTitle().toString()));
-      
-        if (getLocalRate() != null)
-            dhrTaxesAmountTypeDhrTaxesAmount.setLocalRate(new BigInteger(getLocalRate().toString()));
-      
-        if (getPensions() != null)
-            dhrIncomesTypeDhrRequesterIncomes.setPensions(new BigInteger(getPensions().toString()));
-      
-        if (getProfessionalTaxes() != null)
-            dhrTaxesAmountTypeDhrTaxesAmount.setProfessionalTaxes(new BigInteger(getProfessionalTaxes().toString()));
-      
-        if (getPropertyTaxes() != null)
-            dhrTaxesAmountTypeDhrTaxesAmount.setPropertyTaxes(new BigInteger(getPropertyTaxes().toString()));
-      
-        if (getDhrRequesterNationality() != null)
-            dhrRequesterTypeDhrRequester.setDhrRequesterNationality(fr.cg95.cvq.xml.common.NationalityType.Enum.forString(getDhrRequesterNationality().getLegacyLabel()));
-      
-        if (getDhrSpouseAddress() != null)
-            dhrSpouseStatusTypeDhrSpouseStatus.setDhrSpouseAddress(Address.modelToXml(getDhrSpouseAddress()));
-      
-        date = getDhrSpouseBirthDate();
-        if (date != null) {
-            calendar.setTime(date);
-            dhrSpouseTypeDhrSpouse.setDhrSpouseBirthDate(calendar);
-        }
-      
-        dhrSpouseTypeDhrSpouse.setDhrSpouseBirthPlace(getDhrSpouseBirthPlace());
-      
-        dhrSpouseStatusTypeDhrSpouseStatus.setDhrSpouseComplementaryPensionPlan(getDhrSpouseComplementaryPensionPlan());
-      
-        dhrSpouseStatusTypeDhrSpouseStatus.setDhrSpouseEmployer(getDhrSpouseEmployer());
-      
-        if (getDhrSpouseFamilyStatus() != null)
-            dhrSpouseTypeDhrSpouse.setDhrSpouseFamilyStatus(fr.cg95.cvq.xml.common.FamilyStatusType.Enum.forString(getDhrSpouseFamilyStatus().getLegacyLabel()));
-      
-        dhrSpouseTypeDhrSpouse.setDhrSpouseFirstName(getDhrSpouseFirstName());
-      
-        date = getDhrSpouseFranceArrivalDate();
-        if (date != null) {
-            calendar.setTime(date);
-            dhrSpouseTypeDhrSpouse.setDhrSpouseFranceArrivalDate(calendar);
-        }
-      
-        if (getDhrSpouseIsFrenchResident() != null)
-            dhrSpouseTypeDhrSpouse.setDhrSpouseIsFrenchResident(getDhrSpouseIsFrenchResident().booleanValue());
-      
-        dhrSpouseTypeDhrSpouse.setDhrSpouseMaidenName(getDhrSpouseMaidenName());
-      
-        dhrSpouseTypeDhrSpouse.setDhrSpouseName(getDhrSpouseName());
-      
-        if (getDhrSpouseNationality() != null)
-            dhrSpouseTypeDhrSpouse.setDhrSpouseNationality(fr.cg95.cvq.xml.common.NationalityType.Enum.forString(getDhrSpouseNationality().getLegacyLabel()));
-      
-        dhrSpouseStatusTypeDhrSpouseStatus.setDhrSpousePensionPlanDetail(getDhrSpousePensionPlanDetail());
-      
-        if (getDhrSpousePrincipalPensionPlan() != null)
-            dhrSpouseStatusTypeDhrSpouseStatus.setDhrSpousePrincipalPensionPlan(fr.cg95.cvq.xml.request.social.DhrPrincipalPensionPlanType.Enum.forString(getDhrSpousePrincipalPensionPlan().getLegacyLabel()));
-      
-        dhrSpouseStatusTypeDhrSpouseStatus.setDhrSpouseProfession(getDhrSpouseProfession());
-      
-        if (getDhrSpouseTitle() != null)
-            dhrSpouseTypeDhrSpouse.setDhrSpouseTitle(fr.cg95.cvq.xml.common.TitleType.Enum.forString(getDhrSpouseTitle().getLegacyLabel()));
-      
-        if (getLocalRate() != null)
-            dhrTaxesAmountTypeDhrTaxesAmount.setLocalRate(new BigInteger(getLocalRate().toString()));
-      
-        if (getPensions() != null)
-            dhrIncomesTypeDhrRequesterIncomes.setPensions(new BigInteger(getPensions().toString()));
-      
-        if (getProfessionalTaxes() != null)
-            dhrTaxesAmountTypeDhrTaxesAmount.setProfessionalTaxes(new BigInteger(getProfessionalTaxes().toString()));
-      
-        if (getPropertyTaxes() != null)
-            dhrTaxesAmountTypeDhrTaxesAmount.setPropertyTaxes(new BigInteger(getPropertyTaxes().toString()));
       
         return domesticHelpRequestDoc;
     }

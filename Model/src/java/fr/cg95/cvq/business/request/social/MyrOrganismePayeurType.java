@@ -1,42 +1,42 @@
 package fr.cg95.cvq.business.request.social;
 
-import fr.cg95.cvq.dao.hibernate.PersistentStringEnum;
-
 /**
  * Generated class file, do not edit !
  */
-public final class MyrOrganismePayeurType extends PersistentStringEnum {
+public enum MyrOrganismePayeurType {
 
-    private static final long serialVersionUID = 1L;
-  
-    public static final MyrOrganismePayeurType CAF = new MyrOrganismePayeurType("Caf");
-  
-    public static final MyrOrganismePayeurType MSA = new MyrOrganismePayeurType("Msa");
-  
-    public static final MyrOrganismePayeurType AUTRE = new MyrOrganismePayeurType("Autre");
-  
+    CAF("Caf"),
+    MSA("Msa"),
+    AUTRE("Autre");
+
 
     /**
-     * Prevent instantiation and subclassing with a private constructor.
+     * only for backward use MyrOrganismePayeurType.values() instead
+     * @deprecated only for backward
      */
-    private MyrOrganismePayeurType(String value) {
-        super(value);
+    @Deprecated 
+    public static MyrOrganismePayeurType[] allMyrOrganismePayeurTypes = MyrOrganismePayeurType.values();
+
+    private String legacyLabel;
+
+    private MyrOrganismePayeurType(String legacyLabel){
+        this.legacyLabel = legacyLabel;
     }
 
-    public MyrOrganismePayeurType() {}
-
-    public static MyrOrganismePayeurType[] allMyrOrganismePayeurTypes = {
-        CAF,
-        MSA,
-        AUTRE
-    };
+    public String getLegacyLabel() {
+        return legacyLabel;
+    }
 
     public static MyrOrganismePayeurType getDefaultMyrOrganismePayeurType() {
         return null;
     }
 
+    /**
+     * @deprecated use valueOf instead. Watchout! you must provid something of MyrOrganismePayeurType.something
+     * not the value of the name attribut.
+     */
     public static MyrOrganismePayeurType forString(final String enumAsString) {
-        for (MyrOrganismePayeurType value : allMyrOrganismePayeurTypes)
+        for (MyrOrganismePayeurType value : values())
             if (value.toString().equals(enumAsString))
                 return value;
         return getDefaultMyrOrganismePayeurType();

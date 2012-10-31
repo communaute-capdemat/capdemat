@@ -134,15 +134,7 @@ public class MilitaryCensusRequest extends Request implements Serializable {
         militaryCensusRequest.setChildConvention(getChildConvention());
       
         if (getChildCountry() != null)
-            militaryCensusRequest.setChildCountry(fr.cg95.cvq.xml.common.FullNationalityType.Enum.forString(getChildCountry().toString()));
-        ProfessionalSituationInformationType professionalSituationInformationTypeProfessionalSituationInformation = militaryCensusRequest.addNewProfessionalSituationInformation();
-        if (getChildDiploma() != null)
-            professionalSituationInformationTypeProfessionalSituationInformation.setChildDiploma(fr.cg95.cvq.xml.request.military.ChildDiplomaType.Enum.forString(getChildDiploma().toString()));
             militaryCensusRequest.setChildCountry(fr.cg95.cvq.xml.common.FullNationalityType.Enum.forString(getChildCountry().getLegacyLabel()));
-        ProfessionalSituationInformationType professionalSituationInformationTypeProfessionalSituationInformation = militaryCensusRequest.addNewProfessionalSituationInformation();
-        if (getChildDiploma() != null)
-            professionalSituationInformationTypeProfessionalSituationInformation.setChildDiploma(fr.cg95.cvq.xml.request.military.ChildDiplomaType.Enum.forString(getChildDiploma().getLegacyLabel()));
-            militaryCensusRequest.setChildCountry(fr.cg95.cvq.xml.common.FullNationalityType.Enum.forString(getChildCountry().toString()));
       
         militaryCensusRequest.setChildMail(getChildMail());
       
@@ -154,66 +146,14 @@ public class MilitaryCensusRequest extends Request implements Serializable {
         if (getChildResidenceCountry() != null)
             militaryCensusRequest.setChildResidenceCountry(fr.cg95.cvq.xml.common.CountryType.Enum.forString(getChildResidenceCountry().getLegacyLabel()));
       
-        if (getChildSituation() != null)
-            professionalSituationInformationTypeProfessionalSituationInformation.setChildSituation(fr.cg95.cvq.xml.request.military.ChildSituationType.Enum.forString(getChildSituation().toString()));
-      
-        professionalSituationInformationTypeProfessionalSituationInformation.setChildSpeciality(getChildSpeciality());
-      
-        if (getChildStatus() != null)
-            familySituationInformationTypeFamilySituationInformation.setChildStatus(fr.cg95.cvq.xml.common.FamilyStatusType.Enum.forString(getChildStatus().toString()));
-      
-        if (getChildSituation() != null)
-            professionalSituationInformationTypeProfessionalSituationInformation.setChildSituation(fr.cg95.cvq.xml.request.military.ChildSituationType.Enum.forString(getChildSituation().getLegacyLabel()));
-      
-        professionalSituationInformationTypeProfessionalSituationInformation.setChildSpeciality(getChildSpeciality());
-      
-        if (getChildStatus() != null)
-            familySituationInformationTypeFamilySituationInformation.setChildStatus(fr.cg95.cvq.xml.common.FamilyStatusType.Enum.forString(getChildStatus().getLegacyLabel()));
-      
         if (getChildTitle() != null)
             militaryCensusRequest.setChildTitle(fr.cg95.cvq.xml.common.TitleType.Enum.forString(getChildTitle().getLegacyLabel()));
       
         if (getFamilySituationInformation() != null)
             militaryCensusRequest.setFamilySituationInformation(getFamilySituationInformation().modelToXml());
       
-        if (getFatherBirthCountry() != null)
-            militaryFatherInformationTypeFatherInformation.setFatherBirthCountry(fr.cg95.cvq.xml.common.CountryType.Enum.forString(getFatherBirthCountry().toString()));
-      
-        date = getFatherBirthDate();
-        if (date != null) {
-            calendar.setTime(date);
-            militaryFatherInformationTypeFatherInformation.setFatherBirthDate(calendar);
-        }
-      
-        if (getFatherBirthDepartment() != null)
-            militaryFatherInformationTypeFatherInformation.setFatherBirthDepartment(fr.cg95.cvq.xml.common.InseeDepartementCodeType.Enum.forString(getFatherBirthDepartment().toString()));
-      
-        militaryFatherInformationTypeFatherInformation.setFatherFirstName(getFatherFirstName());
-        if (getFatherBirthCountry() != null)
-            militaryFatherInformationTypeFatherInformation.setFatherBirthCountry(fr.cg95.cvq.xml.common.CountryType.Enum.forString(getFatherBirthCountry().getLegacyLabel()));
-      
-        date = getFatherBirthDate();
-        if (date != null) {
-            calendar.setTime(date);
-            militaryFatherInformationTypeFatherInformation.setFatherBirthDate(calendar);
-        }
-      
-        if (getFatherBirthDepartment() != null)
-            militaryFatherInformationTypeFatherInformation.setFatherBirthDepartment(fr.cg95.cvq.xml.common.InseeDepartementCodeType.Enum.forString(getFatherBirthDepartment().getLegacyLabel()));
-      
-        militaryFatherInformationTypeFatherInformation.setFatherFirstName(getFatherFirstName());
         if (getFatherInformation() != null)
             militaryCensusRequest.setFatherInformation(getFatherInformation().modelToXml());
-      
-        militaryFatherInformationTypeFatherInformation.setFatherLastName(getFatherLastName());
-      
-        if (getFatherNationality() != null)
-            militaryFatherInformationTypeFatherInformation.setFatherNationality(fr.cg95.cvq.xml.common.FullNationalityType.Enum.forString(getFatherNationality().toString()));
-      
-        militaryFatherInformationTypeFatherInformation.setFatherLastName(getFatherLastName());
-      
-        if (getFatherNationality() != null)
-            militaryFatherInformationTypeFatherInformation.setFatherNationality(fr.cg95.cvq.xml.common.FullNationalityType.Enum.forString(getFatherNationality().getLegacyLabel()));
       
         if (getHighlyInfirm() != null)
             militaryCensusRequest.setHighlyInfirm(getHighlyInfirm().booleanValue());
@@ -223,59 +163,9 @@ public class MilitaryCensusRequest extends Request implements Serializable {
       
         militaryCensusRequest.setMaidenName(getMaidenName());
       
-        if (getMotherBirthCountry() != null)
-            militaryMotherInformationTypeMotherInformation.setMotherBirthCountry(fr.cg95.cvq.xml.common.CountryType.Enum.forString(getMotherBirthCountry().toString()));
-        if (getMotherBirthCountry() != null)
-            militaryMotherInformationTypeMotherInformation.setMotherBirthCountry(fr.cg95.cvq.xml.common.CountryType.Enum.forString(getMotherBirthCountry().getLegacyLabel()));
         if (getMotherInformation() != null)
             militaryCensusRequest.setMotherInformation(getMotherInformation().modelToXml());
       
-        date = getMotherBirthDate();
-        if (date != null) {
-            calendar.setTime(date);
-            militaryMotherInformationTypeMotherInformation.setMotherBirthDate(calendar);
-        }
-      
-        if (getMotherBirthDepartment() != null)
-            militaryMotherInformationTypeMotherInformation.setMotherBirthDepartment(fr.cg95.cvq.xml.common.InseeDepartementCodeType.Enum.forString(getMotherBirthDepartment().toString()));
-      
-        militaryMotherInformationTypeMotherInformation.setMotherFirstName(getMotherFirstName());
-      
-        militaryMotherInformationTypeMotherInformation.setMotherLastName(getMotherLastName());
-      
-        if (getMotherNationality() != null)
-            militaryMotherInformationTypeMotherInformation.setMotherNationality(fr.cg95.cvq.xml.common.FullNationalityType.Enum.forString(getMotherNationality().toString()));
-      
-        familySituationInformationTypeFamilySituationInformation.setOtherSituation(getOtherSituation());
-      
-        if (getPrefectPupil() != null)
-            familySituationInformationTypeFamilySituationInformation.setPrefectPupil(getPrefectPupil().booleanValue());
-      
-        if (getPrefectPupilDepartment() != null)
-            familySituationInformationTypeFamilySituationInformation.setPrefectPupilDepartment(fr.cg95.cvq.xml.common.InseeDepartementCodeType.Enum.forString(getPrefectPupilDepartment().toString()));
-        date = getMotherBirthDate();
-        if (date != null) {
-            calendar.setTime(date);
-            militaryMotherInformationTypeMotherInformation.setMotherBirthDate(calendar);
-        }
-      
-        if (getMotherBirthDepartment() != null)
-            militaryMotherInformationTypeMotherInformation.setMotherBirthDepartment(fr.cg95.cvq.xml.common.InseeDepartementCodeType.Enum.forString(getMotherBirthDepartment().getLegacyLabel()));
-      
-        militaryMotherInformationTypeMotherInformation.setMotherFirstName(getMotherFirstName());
-      
-        militaryMotherInformationTypeMotherInformation.setMotherLastName(getMotherLastName());
-      
-        if (getMotherNationality() != null)
-            militaryMotherInformationTypeMotherInformation.setMotherNationality(fr.cg95.cvq.xml.common.FullNationalityType.Enum.forString(getMotherNationality().getLegacyLabel()));
-      
-        familySituationInformationTypeFamilySituationInformation.setOtherSituation(getOtherSituation());
-      
-        if (getPrefectPupil() != null)
-            familySituationInformationTypeFamilySituationInformation.setPrefectPupil(getPrefectPupil().booleanValue());
-      
-        if (getPrefectPupilDepartment() != null)
-            familySituationInformationTypeFamilySituationInformation.setPrefectPupilDepartment(fr.cg95.cvq.xml.common.InseeDepartementCodeType.Enum.forString(getPrefectPupilDepartment().getLegacyLabel()));
         if (getProfessionalSituationInformation() != null)
             militaryCensusRequest.setProfessionalSituationInformation(getProfessionalSituationInformation().modelToXml());
       

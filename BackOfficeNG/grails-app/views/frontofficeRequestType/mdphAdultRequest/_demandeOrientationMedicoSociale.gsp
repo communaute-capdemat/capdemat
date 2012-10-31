@@ -5,8 +5,8 @@
     <label for="situationActuelle" class="required"><g:message code="mar.property.situationActuelle.label" /> *  <span><g:message code="mar.property.situationActuelle.help" /></span></label>
             <select id="situationActuelle" name="situationActuelle" class="required  validate-not-first ${rqt.stepStates['demandeOrientationMedicoSociale'].invalidFields.contains('situationActuelle') ? 'validation-failed' : ''}" title="<g:message code="mar.property.situationActuelle.validationError" />">
               <option value=""><g:message code="message.select.defaultOption" /></option>
-              <g:each in="${['Accueiljour','Hebergementnuit','Hebergementpermanent','Accompagnement','Autres']}">
-                <option value="fr.cg95.cvq.business.request.social.SituationActuelleType_${it}" ${it == rqt.situationActuelle?.toString() ? 'selected="selected"': ''}><g:capdematEnumToText var="${it}" i18nKeyPrefix="mar.property.situationActuelle" /></option>
+              <g:each in="${['ACCUEILJOUR','HEBERGEMENTNUIT','HEBERGEMENTPERMANENT','ACCOMPAGNEMENT','AUTRES']}">
+                <option value="${it}" ${it == rqt.situationActuelle?.toString() ? 'selected="selected"': ''}><g:capdematEnumToText var="${it}" i18nKeyPrefix="mar.property.situationActuelle" /></option>
               </g:each>
             </select>
             
@@ -25,8 +25,8 @@
     <label for="orientationSouhaitee" class="required"><g:message code="mar.property.orientationSouhaitee.label" /> *  <span><g:message code="mar.property.orientationSouhaitee.help" /></span></label>
             <select id="orientationSouhaitee" name="orientationSouhaitee" class="required  validate-not-first ${rqt.stepStates['demandeOrientationMedicoSociale'].invalidFields.contains('orientationSouhaitee') ? 'validation-failed' : ''}" title="<g:message code="mar.property.orientationSouhaitee.validationError" />">
               <option value=""><g:message code="message.select.defaultOption" /></option>
-              <g:each in="${['Accueiljour','Hebergementnuit','Hebergementpermanent','Accompagnement','Autres']}">
-                <option value="fr.cg95.cvq.business.request.social.OrientationSouhaiteeType_${it}" ${it == rqt.orientationSouhaitee?.toString() ? 'selected="selected"': ''}><g:capdematEnumToText var="${it}" i18nKeyPrefix="mar.property.orientationSouhaitee" /></option>
+              <g:each in="${['ACCUEILJOUR','HEBERGEMENTNUIT','HEBERGEMENTPERMANENT','ACCOMPAGNEMENT','AUTRES']}">
+                <option value="${it}" ${it == rqt.orientationSouhaitee?.toString() ? 'selected="selected"': ''}><g:capdematEnumToText var="${it}" i18nKeyPrefix="mar.property.orientationSouhaitee" /></option>
               </g:each>
             </select>
             

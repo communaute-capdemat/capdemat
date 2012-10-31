@@ -1,54 +1,46 @@
 package fr.cg95.cvq.business.request.social;
 
-import fr.cg95.cvq.dao.hibernate.PersistentStringEnum;
-
 /**
  * Generated class file, do not edit !
  */
-public final class MyrChoixSituationProfessionnelleType extends PersistentStringEnum {
+public enum MyrChoixSituationProfessionnelleType {
 
-    private static final long serialVersionUID = 1L;
-  
-    public static final MyrChoixSituationProfessionnelleType SALARIE = new MyrChoixSituationProfessionnelleType("Salarie");
-  
-    public static final MyrChoixSituationProfessionnelleType STAGIAIRE = new MyrChoixSituationProfessionnelleType("Stagiaire");
-  
-    public static final MyrChoixSituationProfessionnelleType NONSALARIE = new MyrChoixSituationProfessionnelleType("Nonsalarie");
-  
-    public static final MyrChoixSituationProfessionnelleType DEMANDEUR = new MyrChoixSituationProfessionnelleType("Demandeur");
-  
-    public static final MyrChoixSituationProfessionnelleType RETRAITE = new MyrChoixSituationProfessionnelleType("Retraite");
-  
-    public static final MyrChoixSituationProfessionnelleType PENSION = new MyrChoixSituationProfessionnelleType("Pension");
-  
-    public static final MyrChoixSituationProfessionnelleType AUTRE = new MyrChoixSituationProfessionnelleType("Autre");
-  
+    SALARIE("Salarie"),
+    STAGIAIRE("Stagiaire"),
+    NONSALARIE("Nonsalarie"),
+    DEMANDEUR("Demandeur"),
+    RETRAITE("Retraite"),
+    PENSION("Pension"),
+    AUTRE("Autre");
+
 
     /**
-     * Prevent instantiation and subclassing with a private constructor.
+     * only for backward use MyrChoixSituationProfessionnelleType.values() instead
+     * @deprecated only for backward
      */
-    private MyrChoixSituationProfessionnelleType(String value) {
-        super(value);
+    @Deprecated 
+    public static MyrChoixSituationProfessionnelleType[] allMyrChoixSituationProfessionnelleTypes = MyrChoixSituationProfessionnelleType.values();
+
+    private String legacyLabel;
+
+    private MyrChoixSituationProfessionnelleType(String legacyLabel){
+        this.legacyLabel = legacyLabel;
     }
 
-    public MyrChoixSituationProfessionnelleType() {}
-
-    public static MyrChoixSituationProfessionnelleType[] allMyrChoixSituationProfessionnelleTypes = {
-        SALARIE,
-        STAGIAIRE,
-        NONSALARIE,
-        DEMANDEUR,
-        RETRAITE,
-        PENSION,
-        AUTRE
-    };
+    public String getLegacyLabel() {
+        return legacyLabel;
+    }
 
     public static MyrChoixSituationProfessionnelleType getDefaultMyrChoixSituationProfessionnelleType() {
         return null;
     }
 
+    /**
+     * @deprecated use valueOf instead. Watchout! you must provid something of MyrChoixSituationProfessionnelleType.something
+     * not the value of the name attribut.
+     */
     public static MyrChoixSituationProfessionnelleType forString(final String enumAsString) {
-        for (MyrChoixSituationProfessionnelleType value : allMyrChoixSituationProfessionnelleTypes)
+        for (MyrChoixSituationProfessionnelleType value : values())
             if (value.toString().equals(enumAsString))
                 return value;
         return getDefaultMyrChoixSituationProfessionnelleType();

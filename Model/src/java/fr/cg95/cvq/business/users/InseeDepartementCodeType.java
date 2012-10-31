@@ -2,8 +2,6 @@ package fr.cg95.cvq.business.users;
 
 import org.apache.commons.lang.ArrayUtils;
 
-import fr.cg95.cvq.dao.hibernate.PersistentStringEnum;
-
 /**
  * Enumeration of all French departments.
  * 
@@ -11,9 +9,110 @@ import fr.cg95.cvq.dao.hibernate.PersistentStringEnum;
  */
 public enum InseeDepartementCodeType { 
 
-    private static final long serialVersionUID = 1L;
-    
-    public static InseeDepartementCodeType[] allInseeDepartementCodeTypes = null;
+    NONE("None"),
+    D_E_P01("DEP01"),
+    D_E_P02("DEP02"),
+    D_E_P03("DEP03"),
+    D_E_P04("DEP04"),
+    D_E_P05("DEP05"),
+    D_E_P06("DEP06"),
+    D_E_P07("DEP07"),
+    D_E_P08("DEP08"),
+    D_E_P09("DEP09"),
+    D_E_P10("DEP10"),
+    D_E_P11("DEP11"),
+    D_E_P12("DEP12"),
+    D_E_P13("DEP13"),
+    D_E_P14("DEP14"),
+    D_E_P15("DEP15"),
+    D_E_P16("DEP16"),
+    D_E_P17("DEP17"),
+    D_E_P18("DEP18"),
+    D_E_P19("DEP19"),
+    D_E_P2_A("DEP2A"),
+    D_E_P2_B("DEP2B"),
+    D_E_P21("DEP21"),
+    D_E_P22("DEP22"),
+    D_E_P23("DEP23"),
+    D_E_P24("DEP24"),
+    D_E_P25("DEP25"),
+    D_E_P26("DEP26"),
+    D_E_P27("DEP27"),
+    D_E_P28("DEP28"),
+    D_E_P29("DEP29"),
+    D_E_P30("DEP30"),
+    D_E_P31("DEP31"),
+    D_E_P32("DEP32"),
+    D_E_P33("DEP33"),
+    D_E_P34("DEP34"),
+    D_E_P35("DEP35"),
+    D_E_P36("DEP36"),
+    D_E_P37("DEP37"),
+    D_E_P38("DEP38"),
+    D_E_P39("DEP39"),
+    D_E_P40("DEP40"),
+    D_E_P41("DEP41"),
+    D_E_P42("DEP42"),
+    D_E_P43("DEP43"),
+    D_E_P44("DEP44"),
+    D_E_P45("DEP45"),
+    D_E_P46("DEP46"),
+    D_E_P47("DEP47"),
+    D_E_P48("DEP48"),
+    D_E_P49("DEP49"),
+    D_E_P50("DEP50"),
+    D_E_P51("DEP51"),
+    D_E_P52("DEP52"),
+    D_E_P53("DEP53"),
+    D_E_P54("DEP54"),
+    D_E_P55("DEP55"),
+    D_E_P56("DEP56"),
+    D_E_P57("DEP57"),
+    D_E_P58("DEP58"),
+    D_E_P59("DEP59"),
+    D_E_P60("DEP60"),
+    D_E_P61("DEP61"),
+    D_E_P62("DEP62"),
+    D_E_P63("DEP63"),
+    D_E_P64("DEP64"),
+    D_E_P65("DEP65"),
+    D_E_P66("DEP66"),
+    D_E_P67("DEP67"),
+    D_E_P68("DEP68"),
+    D_E_P69("DEP69"),
+    D_E_P70("DEP70"),
+    D_E_P71("DEP71"),
+    D_E_P72("DEP72"),
+    D_E_P73("DEP73"),
+    D_E_P74("DEP74"),
+    D_E_P75("DEP75"),
+    D_E_P76("DEP76"),
+    D_E_P77("DEP77"),
+    D_E_P78("DEP78"),
+    D_E_P79("DEP79"),
+    D_E_P80("DEP80"),
+    D_E_P81("DEP81"),
+    D_E_P82("DEP82"),
+    D_E_P83("DEP83"),
+    D_E_P84("DEP84"),
+    D_E_P85("DEP85"),
+    D_E_P86("DEP86"),
+    D_E_P87("DEP87"),
+    D_E_P88("DEP88"),
+    D_E_P89("DEP89"),
+    D_E_P90("DEP90"),
+    D_E_P91("DEP91"),
+    D_E_P92("DEP92"),
+    D_E_P93("DEP93"),
+    D_E_P94("DEP94"),
+    D_E_P95("DEP95"),
+    D_E_P971("DEP971"),
+    D_E_P972("DEP972"),
+    D_E_P973("DEP973"),
+    D_E_P974("DEP974");
+
+    //private static final long serialVersionUID = 1L;
+    //public static InseeDepartementCodeType[] allInseeDepartementCodeTypes = null;
 
     private String legacyLabel;
 
@@ -24,15 +123,31 @@ public enum InseeDepartementCodeType {
     /**
      * Prevent instantiation and subclassing with a private constructor.
      */
-    private InseeDepartementCodeType(String value) {
-       super(value);
-       allInseeDepartementCodeTypes = (InseeDepartementCodeType[])ArrayUtils.add(allInseeDepartementCodeTypes, this);
+    private InseeDepartementCodeType(String legacyLabel) {
+        this.legacyLabel = legacyLabel;
+        //allInseeDepartementCodeTypes = (InseeDepartementCodeType[])ArrayUtils.add(allInseeDepartementCodeTypes, this);
     }
 
     public static InseeDepartementCodeType getDefaultInseeDepartementCodeType() {
         return NONE;
     }
-
+    
+    public static InseeDepartementCodeType getDepartementCodeByPostalCode(String postalCode) {
+        String departementCode = "";
+        if (postalCode.substring(0, 2).equals("97")) {
+            departementCode = postalCode.substring(0,3);
+        } else if (postalCode.substring(0, 2).equals("20")) {
+            departementCode = postalCode.substring(0,3);
+            if (departementCode.equals("200") || departementCode.equals("201"))
+                departementCode = "2A";
+            else
+                departementCode = "2B";
+        } else {
+            departementCode = postalCode.substring(0,2);
+        }
+        
+        return forString("DEP_" + departementCode);
+    }
 
     public static InseeDepartementCodeType forString(final String enumAsString) {
         if (enumAsString == null || enumAsString.equals(""))
@@ -242,22 +357,5 @@ public enum InseeDepartementCodeType {
             return D_E_P974;
 
         return getDefaultInseeDepartementCodeType();
-    }
-    
-    public static InseeDepartementCodeType getDepartementCodeByPostalCode(String postalCode) {
-        String departementCode = "";
-        if (postalCode.substring(0, 2).equals("97")) {
-            departementCode = postalCode.substring(0,3);
-        } else if (postalCode.substring(0, 2).equals("20")) {
-            departementCode = postalCode.substring(0,3);
-            if (departementCode.equals("200") || departementCode.equals("201"))
-                departementCode = "2A";
-            else
-                departementCode = "2B";
-        } else {
-            departementCode = postalCode.substring(0,2);
-        }
-        
-        return forString("DEP_" + departementCode);
     }
 }

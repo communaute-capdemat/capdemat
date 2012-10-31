@@ -215,64 +215,6 @@ public class MarriageDetailsRequestData implements Serializable {
               
               
             
-            "return active",
-        
-        profiles = {"type"},
-        message = "fatherFirstNames"
-      )
-    
-    private String fatherFirstNames;
-
-    public final void setFatherFirstNames(final String fatherFirstNames) {
-        this.fatherFirstNames = fatherFirstNames;
-    }
-
-    /**
- 
-        * @hibernate.property
-        *  column="father_first_names"
-        
-      
-    */
-    public final String getFatherFirstNames() {
-        return this.fatherFirstNames;
-    }
-  
-    
-      @MaxLength(
-        
-          value = 38,
-        
-        
-          when = "groovy:def active = true;" +
-          
-            "return active",
-        
-        profiles = {"type"},
-        message = "fatherFirstNames"
-      )
-    
-    private String fatherFirstNames;
-
-    public void setFatherFirstNames(final String fatherFirstNames) {
-        this.fatherFirstNames = fatherFirstNames;
-    }
-
- 
-    @Column(name="father_first_names"  )
-      
-    public String getFatherFirstNames() {
-        return this.fatherFirstNames;
-    }
-  
-    
-      @MaxLength(
-        
-          value = 38,
-        
-        
-          when = "groovy:def active = true;" +
-          
             
             "return active",
         
@@ -282,31 +224,15 @@ public class MarriageDetailsRequestData implements Serializable {
     
     private fr.cg95.cvq.business.request.civil.MarriageFatherInformation fatherInformation;
 
-    public final void setFatherLastName(final String fatherLastName) {
-        this.fatherLastName = fatherLastName;
-    public void setFatherLastName(final String fatherLastName) {
-        this.fatherLastName = fatherLastName;
-    public final void setFatherInformation(final fr.cg95.cvq.business.request.civil.MarriageFatherInformation fatherInformation) {
+    public void setFatherInformation(final fr.cg95.cvq.business.request.civil.MarriageFatherInformation fatherInformation) {
         this.fatherInformation = fatherInformation;
     }
 
  
-        * @hibernate.property
-        *  column="father_last_name"
-        *  length="38"
-    @Column(name="father_last_name" , length=38 )
-        * @hibernate.many-to-one
-        *  cascade="all"
-        *  column="father_information_id"
-        *  class="fr.cg95.cvq.business.request.civil.MarriageFatherInformation"
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name="father_information_id")
       
-    */
-    public final String getFatherLastName() {
-        return this.fatherLastName;
-    public String getFatherLastName() {
-        return this.fatherLastName;
-    */
-    public final fr.cg95.cvq.business.request.civil.MarriageFatherInformation getFatherInformation() {
+    public fr.cg95.cvq.business.request.civil.MarriageFatherInformation getFatherInformation() {
         return this.fatherInformation;
     }
   
@@ -349,31 +275,15 @@ public class MarriageDetailsRequestData implements Serializable {
     
     private fr.cg95.cvq.business.request.civil.MarriageInformation marriage;
 
-    public final void setMarriageCity(final String marriageCity) {
-        this.marriageCity = marriageCity;
-    public void setMarriageCity(final String marriageCity) {
-        this.marriageCity = marriageCity;
-    public final void setMarriage(final fr.cg95.cvq.business.request.civil.MarriageInformation marriage) {
+    public void setMarriage(final fr.cg95.cvq.business.request.civil.MarriageInformation marriage) {
         this.marriage = marriage;
     }
 
  
-        * @hibernate.property
-        *  column="marriage_city"
-        *  length="32"
-    @Column(name="marriage_city" , length=32 )
-        * @hibernate.many-to-one
-        *  cascade="all"
-        *  column="marriage_id"
-        *  class="fr.cg95.cvq.business.request.civil.MarriageInformation"
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name="marriage_id")
       
-    */
-    public final String getMarriageCity() {
-        return this.marriageCity;
-    public String getMarriageCity() {
-        return this.marriageCity;
-    */
-    public final fr.cg95.cvq.business.request.civil.MarriageInformation getMarriage() {
+    public fr.cg95.cvq.business.request.civil.MarriageInformation getMarriage() {
         return this.marriage;
     }
   
@@ -385,40 +295,6 @@ public class MarriageDetailsRequestData implements Serializable {
         message = "marriageHusband"
       )
     
-    private java.util.Date marriageDate;
-
-    public final void setMarriageDate(final java.util.Date marriageDate) {
-        this.marriageDate = marriageDate;
-    }
-
-    /**
- 
-        * @hibernate.property
-        *  column="marriage_date"
-        
-      
-    */
-    public final java.util.Date getMarriageDate() {
-        return this.marriageDate;
-    }
-  
-    
-      @NotNull(
-    private java.util.Date marriageDate;
-
-    public void setMarriageDate(final java.util.Date marriageDate) {
-        this.marriageDate = marriageDate;
-    }
-
- 
-    @Column(name="marriage_date"  )
-      
-    public java.util.Date getMarriageDate() {
-        return this.marriageDate;
-    }
-  
-    
-      @NotNull(
       @AssertValid(
         
         
@@ -428,105 +304,16 @@ public class MarriageDetailsRequestData implements Serializable {
     
     private fr.cg95.cvq.business.request.civil.MarriageHusbandInformation marriageHusband;
 
-    public final void setMarriageHusbandFirstNames(final String marriageHusbandFirstNames) {
-        this.marriageHusbandFirstNames = marriageHusbandFirstNames;
-    public void setMarriageHusbandFirstNames(final String marriageHusbandFirstNames) {
-        this.marriageHusbandFirstNames = marriageHusbandFirstNames;
-    public final void setMarriageHusband(final fr.cg95.cvq.business.request.civil.MarriageHusbandInformation marriageHusband) {
+    public void setMarriageHusband(final fr.cg95.cvq.business.request.civil.MarriageHusbandInformation marriageHusband) {
         this.marriageHusband = marriageHusband;
     }
 
  
-        * @hibernate.property
-        *  column="marriage_husband_first_names"
-        
-    @Column(name="marriage_husband_first_names"  )
-        * @hibernate.many-to-one
-        *  cascade="all"
-        *  column="marriage_husband_id"
-        *  class="fr.cg95.cvq.business.request.civil.MarriageHusbandInformation"
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name="marriage_husband_id")
       
-    */
-    public final String getMarriageHusbandFirstNames() {
-        return this.marriageHusbandFirstNames;
-    }
-  
-    
-      @MaxLength(
-        
-          value = 38,
-        
-        
-        profiles = {"nature"},
-        message = "marriageHusbandLastName"
-      )
-    
-      @NotNull(
-        
-        
-        profiles = {"nature"},
-        message = "marriageHusbandLastName"
-      )
-    
-      @NotBlank(
-        
-        
-        profiles = {"nature"},
-        message = "marriageHusbandLastName"
-      )
-    
-    private String marriageHusbandLastName;
-
-    public final void setMarriageHusbandLastName(final String marriageHusbandLastName) {
-        this.marriageHusbandLastName = marriageHusbandLastName;
-    public String getMarriageHusbandFirstNames() {
-        return this.marriageHusbandFirstNames;
-    }
-  
-    
-      @MaxLength(
-        
-          value = 38,
-        
-        
-        profiles = {"nature"},
-        message = "marriageHusbandLastName"
-      )
-    
-      @NotNull(
-        
-        
-        profiles = {"nature"},
-        message = "marriageHusbandLastName"
-      )
-    
-      @NotBlank(
-        
-        
-        profiles = {"nature"},
-        message = "marriageHusbandLastName"
-      )
-    
-    private String marriageHusbandLastName;
-
-    public void setMarriageHusbandLastName(final String marriageHusbandLastName) {
-        this.marriageHusbandLastName = marriageHusbandLastName;
-    */
-    public final fr.cg95.cvq.business.request.civil.MarriageHusbandInformation getMarriageHusband() {
+    public fr.cg95.cvq.business.request.civil.MarriageHusbandInformation getMarriageHusband() {
         return this.marriageHusband;
-    }
-        * @hibernate.property
-        *  column="marriage_husband_last_name"
-        *  length="38"
-      
-    */
-    public final String getMarriageHusbandLastName() {
-        return this.marriageHusbandLastName;
-    }
-    @Column(name="marriage_husband_last_name" , length=38 )
-      
-    public String getMarriageHusbandLastName() {
-        return this.marriageHusbandLastName;
     }
   
     
@@ -546,31 +333,15 @@ public class MarriageDetailsRequestData implements Serializable {
     
     private fr.cg95.cvq.business.request.civil.MarriageWifeInformation marriageWife;
 
-    public final void setMarriagePostalCode(final String marriagePostalCode) {
-        this.marriagePostalCode = marriagePostalCode;
-    public void setMarriagePostalCode(final String marriagePostalCode) {
-        this.marriagePostalCode = marriagePostalCode;
-    public final void setMarriageWife(final fr.cg95.cvq.business.request.civil.MarriageWifeInformation marriageWife) {
+    public void setMarriageWife(final fr.cg95.cvq.business.request.civil.MarriageWifeInformation marriageWife) {
         this.marriageWife = marriageWife;
     }
 
  
-        * @hibernate.property
-        *  column="marriage_postal_code"
-        *  length="2"
-    @Column(name="marriage_postal_code" , length=2 )
-        * @hibernate.many-to-one
-        *  cascade="all"
-        *  column="marriage_wife_id"
-        *  class="fr.cg95.cvq.business.request.civil.MarriageWifeInformation"
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name="marriage_wife_id")
       
-    */
-    public final String getMarriagePostalCode() {
-        return this.marriagePostalCode;
-    public String getMarriagePostalCode() {
-        return this.marriagePostalCode;
-    */
-    public final fr.cg95.cvq.business.request.civil.MarriageWifeInformation getMarriageWife() {
+    public fr.cg95.cvq.business.request.civil.MarriageWifeInformation getMarriageWife() {
         return this.marriageWife;
     }
   
@@ -578,130 +349,6 @@ public class MarriageDetailsRequestData implements Serializable {
       @AssertValid(
         
         
-        profiles = {"nature"},
-        message = "marriageWifeFirstNames"
-      )
-    
-    private String marriageWifeFirstNames;
-
-    public final void setMarriageWifeFirstNames(final String marriageWifeFirstNames) {
-        this.marriageWifeFirstNames = marriageWifeFirstNames;
-    }
-
-    /**
- 
-        * @hibernate.property
-        *  column="marriage_wife_first_names"
-        
-      
-    */
-    public final String getMarriageWifeFirstNames() {
-        return this.marriageWifeFirstNames;
-    }
-  
-    
-      @MaxLength(
-        
-          value = 38,
-        
-        
-        profiles = {"nature"},
-        message = "marriageWifeLastName"
-      )
-    
-      @NotNull(
-        
-        
-        profiles = {"nature"},
-        message = "marriageWifeLastName"
-      )
-    
-      @NotBlank(
-        
-        
-        profiles = {"nature"},
-        message = "marriageWifeLastName"
-      )
-    
-    private String marriageWifeLastName;
-
-    public final void setMarriageWifeLastName(final String marriageWifeLastName) {
-        this.marriageWifeLastName = marriageWifeLastName;
-    }
-
-    /**
- 
-        * @hibernate.property
-        *  column="marriage_wife_last_name"
-        *  length="38"
-      
-    */
-    public final String getMarriageWifeLastName() {
-        return this.marriageWifeLastName;
-    }
-  
-    
-      @NotNull(
-        
-        
-        profiles = {"nature"},
-        message = "marriageWifeFirstNames"
-      )
-    
-    private String marriageWifeFirstNames;
-
-    public void setMarriageWifeFirstNames(final String marriageWifeFirstNames) {
-        this.marriageWifeFirstNames = marriageWifeFirstNames;
-    }
-
- 
-    @Column(name="marriage_wife_first_names"  )
-      
-    public String getMarriageWifeFirstNames() {
-        return this.marriageWifeFirstNames;
-    }
-  
-    
-      @MaxLength(
-        
-          value = 38,
-        
-        
-        profiles = {"nature"},
-        message = "marriageWifeLastName"
-      )
-    
-      @NotNull(
-        
-        
-        profiles = {"nature"},
-        message = "marriageWifeLastName"
-      )
-    
-      @NotBlank(
-        
-        
-        profiles = {"nature"},
-        message = "marriageWifeLastName"
-      )
-    
-    private String marriageWifeLastName;
-
-    public void setMarriageWifeLastName(final String marriageWifeLastName) {
-        this.marriageWifeLastName = marriageWifeLastName;
-    }
-
- 
-    @Column(name="marriage_wife_last_name" , length=38 )
-      
-    public String getMarriageWifeLastName() {
-        return this.marriageWifeLastName;
-    }
-  
-    
-      @NotNull(
-        
-        
           when = "groovy:def active = true;" +
           
             "active &= _this.conditions['format'].test(_this.format.toString());" +
@@ -709,72 +356,6 @@ public class MarriageDetailsRequestData implements Serializable {
               
               
             
-            "return active",
-        
-        profiles = {"type"},
-        message = "motherFirstNames"
-      )
-    
-    private String motherFirstNames;
-
-    public final void setMotherFirstNames(final String motherFirstNames) {
-        this.motherFirstNames = motherFirstNames;
-    }
-
-    /**
- 
-        * @hibernate.property
-        *  column="mother_first_names"
-        
-      
-    */
-    public final String getMotherFirstNames() {
-        return this.motherFirstNames;
-    }
-  
-    
-      @MaxLength(
-        
-          value = 38,
-        
-        
-          when = "groovy:def active = true;" +
-          
-            
-            "active &= _this.conditions['format'].test(_this.format.toString());" +
-                
-              
-            "return active",
-        
-        profiles = {"type"},
-        message = "motherFirstNames"
-      )
-    
-    private String motherFirstNames;
-
-    public void setMotherFirstNames(final String motherFirstNames) {
-        this.motherFirstNames = motherFirstNames;
-    }
-
- 
-    @Column(name="mother_first_names"  )
-      
-    public String getMotherFirstNames() {
-        return this.motherFirstNames;
-    }
-  
-    
-      @MaxLength(
-        
-          value = 38,
-        
-        
-          when = "groovy:def active = true;" +
-          
-            
-            "active &= _this.conditions['format'].test(_this.format.toString());" +
-                
-              
             
             "return active",
         
@@ -784,31 +365,15 @@ public class MarriageDetailsRequestData implements Serializable {
     
     private fr.cg95.cvq.business.request.civil.MarriageMotherInformation motherInformation;
 
-    public final void setMotherMaidenName(final String motherMaidenName) {
-        this.motherMaidenName = motherMaidenName;
-    public void setMotherMaidenName(final String motherMaidenName) {
-        this.motherMaidenName = motherMaidenName;
-    public final void setMotherInformation(final fr.cg95.cvq.business.request.civil.MarriageMotherInformation motherInformation) {
+    public void setMotherInformation(final fr.cg95.cvq.business.request.civil.MarriageMotherInformation motherInformation) {
         this.motherInformation = motherInformation;
     }
 
  
-        * @hibernate.property
-        *  column="mother_maiden_name"
-        *  length="38"
-    @Column(name="mother_maiden_name" , length=38 )
-        * @hibernate.many-to-one
-        *  cascade="all"
-        *  column="mother_information_id"
-        *  class="fr.cg95.cvq.business.request.civil.MarriageMotherInformation"
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name="mother_information_id")
       
-    */
-    public final String getMotherMaidenName() {
-        return this.motherMaidenName;
-    public String getMotherMaidenName() {
-        return this.motherMaidenName;
-    */
-    public final fr.cg95.cvq.business.request.civil.MarriageMotherInformation getMotherInformation() {
+    public fr.cg95.cvq.business.request.civil.MarriageMotherInformation getMotherInformation() {
         return this.motherInformation;
     }
   

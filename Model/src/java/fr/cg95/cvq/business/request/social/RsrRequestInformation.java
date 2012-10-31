@@ -22,20 +22,21 @@ import fr.cg95.cvq.xml.common.*;
 import fr.cg95.cvq.xml.request.social.*;
 import fr.cg95.cvq.service.request.LocalReferential;
 import fr.cg95.cvq.service.request.condition.IConditionChecker;
+import javax.persistence.*;
+import org.hibernate.annotations.Index;
+import org.hibernate.annotations.Type;
 
 /**
  * Generated class file, do not edit !
- *
- * @hibernate.class
- *  table="rsr_request_information"
- *  lazy="false"
  */
+@Entity
+@Table(name="rsr_request_information")
 public class RsrRequestInformation implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     public static final Map<String, IConditionChecker> conditions =
-        new HashMap<String, IConditionChecker>();
+        RemoteSupportRequest.conditions;
 
     public RsrRequestInformation() {
         super();
@@ -108,11 +109,8 @@ public class RsrRequestInformation implements Serializable {
         this.id = id;
     }
 
-    /**
-     * @hibernate.id
-     *  column="id"
-     *  generator-class="sequence"
-     */
+    @Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE)
     public final Long getId() {
         return this.id;
     }
@@ -128,18 +126,14 @@ public class RsrRequestInformation implements Serializable {
     
     private Boolean requestInformationEmergency;
 
-    public final void setRequestInformationEmergency(final Boolean requestInformationEmergency) {
+    public void setRequestInformationEmergency(final Boolean requestInformationEmergency) {
         this.requestInformationEmergency = requestInformationEmergency;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="request_information_emergency"
-        
+    
+    @Column(name="request_information_emergency"  )
       
-    */
-    public final Boolean getRequestInformationEmergency() {
+    public Boolean getRequestInformationEmergency() {
         return this.requestInformationEmergency;
     }
   
@@ -151,7 +145,8 @@ public class RsrRequestInformation implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['rsrRequestInformation.requestInformationEmergency'].test(_this.requestInformationEmergency.toString());" +
+              "active &= _this.conditions['rsrRequestInformation.requestInformationEmergency'].test(_this.requestInformationEmergency.toString());" +
+                  
                 
               
             
@@ -167,7 +162,8 @@ public class RsrRequestInformation implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['rsrRequestInformation.requestInformationEmergency'].test(_this.requestInformationEmergency.toString());" +
+              "active &= _this.conditions['rsrRequestInformation.requestInformationEmergency'].test(_this.requestInformationEmergency.toString());" +
+                  
                 
               
             
@@ -183,7 +179,8 @@ public class RsrRequestInformation implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['rsrRequestInformation.requestInformationEmergency'].test(_this.requestInformationEmergency.toString());" +
+              "active &= _this.conditions['rsrRequestInformation.requestInformationEmergency'].test(_this.requestInformationEmergency.toString());" +
+                  
                 
               
             
@@ -196,18 +193,14 @@ public class RsrRequestInformation implements Serializable {
     
     private String requestInformationEmergencyMotive;
 
-    public final void setRequestInformationEmergencyMotive(final String requestInformationEmergencyMotive) {
+    public void setRequestInformationEmergencyMotive(final String requestInformationEmergencyMotive) {
         this.requestInformationEmergencyMotive = requestInformationEmergencyMotive;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="request_information_emergency_motive"
-        *  length="180"
+    
+    @Column(name="request_information_emergency_motive" , length=180 )
       
-    */
-    public final String getRequestInformationEmergencyMotive() {
+    public String getRequestInformationEmergencyMotive() {
         return this.requestInformationEmergencyMotive;
     }
   

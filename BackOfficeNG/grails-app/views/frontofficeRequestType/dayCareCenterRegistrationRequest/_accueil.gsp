@@ -54,12 +54,8 @@
       <label for="datePlacementAccueilRegulier.choixTypeDatePlacementAccueilRegulier" class="required"><g:message code="dccrr.property.choixTypeDatePlacementAccueilRegulier.label" /> *  <span><g:message code="dccrr.property.choixTypeDatePlacementAccueilRegulier.help" /></span></label>
             <select id="datePlacementAccueilRegulier.choixTypeDatePlacementAccueilRegulier" name="datePlacementAccueilRegulier.choixTypeDatePlacementAccueilRegulier" class="required condition-dateConnue-trigger  validate-not-first ${rqt.stepStates['accueil'].invalidFields.contains('datePlacementAccueilRegulier.choixTypeDatePlacementAccueilRegulier') ? 'validation-failed' : ''}" title="<g:message code="dccrr.property.choixTypeDatePlacementAccueilRegulier.validationError" />">
               <option value=""><g:message code="message.select.defaultOption" /></option>
-              <g:each in="${['Connue','Possible']}">
-                <option value="fr.cg95.cvq.business.request.school.ChoixDatePlacement_${it}" ${it == rqt.choixTypeDatePlacementAccueilRegulier?.toString() ? 'selected="selected"': ''}><g:capdematEnumToText var="${it}" i18nKeyPrefix="dccrr.property.choixTypeDatePlacementAccueilRegulier" /></option>
               <g:each in="${['CONNUE','POSSIBLE']}">
-                <option value="${it}" ${it == rqt.choixTypeDatePlacementAccueilRegulier?.toString() ? 'selected="selected"': ''}><g:capdematEnumToText var="${it}" i18nKeyPrefix="dccrr.property.choixTypeDatePlacementAccueilRegulier" /></option>
-              <g:each in="${['Connue','Possible']}">
-                <option value="fr.cg95.cvq.business.request.school.ChoixDatePlacement_${it}" ${it == rqt.datePlacementAccueilRegulier?.choixTypeDatePlacementAccueilRegulier?.toString() ? 'selected="selected"': ''}><g:capdematEnumToText var="${it}" i18nKeyPrefix="dccrr.property.choixTypeDatePlacementAccueilRegulier" /></option>
+                <option value="${it}" ${it == rqt.datePlacementAccueilRegulier?.choixTypeDatePlacementAccueilRegulier?.toString() ? 'selected="selected"': ''}><g:capdematEnumToText var="${it}" i18nKeyPrefix="dccrr.property.choixTypeDatePlacementAccueilRegulier" /></option>
               </g:each>
             </select>
             
@@ -101,86 +97,6 @@
                 name="datePlacementAccueilRegulier.datePlacementDebut_year"
                 value="${rqt.datePlacementAccueilRegulier?.datePlacementDebut ? rqt.datePlacementAccueilRegulier?.datePlacementDebut.year + 1900 : params['datePlacementAccueilRegulier.datePlacementDebut_year']}"
                 title="<g:message code="dccrr.property.datePlacementDebut.validationError" />" />
-            </div>
-            
-
-    
-      <label class="condition-dateConnue-filled"><g:message code="dccrr.property.datePlacementFin.label" />   <span><g:message code="dccrr.property.datePlacementFin.help" /></span></label>
-            <div class="date condition-dateConnue-filled  validate-date condition-dateConnue-filled ">
-              <select class="day ${rqt.stepStates['accueil'].invalidFields.contains('datePlacementFin') ? 'validation-failed' : ''}"
-                id="datePlacementFin_day"
-                name="datePlacementFin_day">
-                <option value=""><g:message code="message.select.defaultOption" /></option>
-                <g:each in="${1..31}">
-                  <option value="${it}"
-                    <g:if test="${rqt.datePlacementFin?.date == it
-                      || (rqt.datePlacementFin == null && params['datePlacementFin_day'] == it.toString())}">
-                      selected="selected"
-                    </g:if>>
-                    ${it}
-                  </option>
-                </g:each>
-              </select>
-              <select class="month ${rqt.stepStates['accueil'].invalidFields.contains('datePlacementFin') ? 'validation-failed' : ''}"
-                id="datePlacementFin_month"
-                name="datePlacementFin_month">
-                <option value=""><g:message code="message.select.defaultOption" /></option>
-                <g:each in="${1..12}">
-                  <option value="${it}"
-                    <g:if test="${rqt.datePlacementFin?.month == (it - 1)
-                      || (rqt.datePlacementFin == null && params['datePlacementFin_month'] == it.toString())}">
-                      selected="selected"
-                    </g:if>>
-                    <g:message code="month.${it}" />
-                  </option>
-                </g:each>
-              </select>
-              <input type="text" maxlength="4" size="3"
-                class="year ${rqt.stepStates['accueil'].invalidFields.contains('datePlacementFin') ? 'validation-failed' : ''}"
-                id="datePlacementFin_year"
-                name="datePlacementFin_year"
-                value="${rqt.datePlacementFin ? rqt.datePlacementFin.year + 1900 : params['datePlacementFin_year']}"
-                title="<g:message code="dccrr.property.datePlacementFin.validationError" />" />
-            </div>
-            
-
-    
-      <label class="condition-dateConnue-filled"><g:message code="dccrr.property.datePlacementFin.label" />   <span><g:message code="dccrr.property.datePlacementFin.help" /></span></label>
-            <div class="date condition-dateConnue-filled  validate-date condition-dateConnue-filled ">
-              <select class="day ${rqt.stepStates['accueil'].invalidFields.contains('datePlacementAccueilRegulier.datePlacementFin') ? 'validation-failed' : ''}"
-                id="datePlacementAccueilRegulier.datePlacementFin_day"
-                name="datePlacementAccueilRegulier.datePlacementFin_day">
-                <option value=""><g:message code="message.select.defaultOption" /></option>
-                <g:each in="${1..31}">
-                  <option value="${it}"
-                    <g:if test="${rqt.datePlacementAccueilRegulier?.datePlacementFin?.date == it
-                      || (rqt.datePlacementAccueilRegulier?.datePlacementFin == null && params['datePlacementAccueilRegulier.datePlacementFin_day'] == it.toString())}">
-                      selected="selected"
-                    </g:if>>
-                    ${it}
-                  </option>
-                </g:each>
-              </select>
-              <select class="month ${rqt.stepStates['accueil'].invalidFields.contains('datePlacementAccueilRegulier.datePlacementFin') ? 'validation-failed' : ''}"
-                id="datePlacementAccueilRegulier.datePlacementFin_month"
-                name="datePlacementAccueilRegulier.datePlacementFin_month">
-                <option value=""><g:message code="message.select.defaultOption" /></option>
-                <g:each in="${1..12}">
-                  <option value="${it}"
-                    <g:if test="${rqt.datePlacementAccueilRegulier?.datePlacementFin?.month == (it - 1)
-                      || (rqt.datePlacementAccueilRegulier?.datePlacementFin == null && params['datePlacementAccueilRegulier.datePlacementFin_month'] == it.toString())}">
-                      selected="selected"
-                    </g:if>>
-                    <g:message code="month.${it}" />
-                  </option>
-                </g:each>
-              </select>
-              <input type="text" maxlength="4" size="3"
-                class="year ${rqt.stepStates['accueil'].invalidFields.contains('datePlacementAccueilRegulier.datePlacementFin') ? 'validation-failed' : ''}"
-                id="datePlacementAccueilRegulier.datePlacementFin_year"
-                name="datePlacementAccueilRegulier.datePlacementFin_year"
-                value="${rqt.datePlacementAccueilRegulier?.datePlacementFin ? rqt.datePlacementAccueilRegulier?.datePlacementFin.year + 1900 : params['datePlacementAccueilRegulier.datePlacementFin_year']}"
-                title="<g:message code="dccrr.property.datePlacementFin.validationError" />" />
             </div>
             
 

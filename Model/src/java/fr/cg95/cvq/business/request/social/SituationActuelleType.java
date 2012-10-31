@@ -1,48 +1,44 @@
 package fr.cg95.cvq.business.request.social;
 
-import fr.cg95.cvq.dao.hibernate.PersistentStringEnum;
-
 /**
  * Generated class file, do not edit !
  */
-public final class SituationActuelleType extends PersistentStringEnum {
+public enum SituationActuelleType {
 
-    private static final long serialVersionUID = 1L;
-  
-    public static final SituationActuelleType ACCUEILJOUR = new SituationActuelleType("Accueiljour");
-  
-    public static final SituationActuelleType HEBERGEMENTNUIT = new SituationActuelleType("Hebergementnuit");
-  
-    public static final SituationActuelleType HEBERGEMENTPERMANENT = new SituationActuelleType("Hebergementpermanent");
-  
-    public static final SituationActuelleType ACCOMPAGNEMENT = new SituationActuelleType("Accompagnement");
-  
-    public static final SituationActuelleType AUTRES = new SituationActuelleType("Autres");
-  
+    ACCUEILJOUR("Accueiljour"),
+    HEBERGEMENTNUIT("Hebergementnuit"),
+    HEBERGEMENTPERMANENT("Hebergementpermanent"),
+    ACCOMPAGNEMENT("Accompagnement"),
+    AUTRES("Autres");
+
 
     /**
-     * Prevent instantiation and subclassing with a private constructor.
+     * only for backward use SituationActuelleType.values() instead
+     * @deprecated only for backward
      */
-    private SituationActuelleType(String value) {
-        super(value);
+    @Deprecated 
+    public static SituationActuelleType[] allSituationActuelleTypes = SituationActuelleType.values();
+
+    private String legacyLabel;
+
+    private SituationActuelleType(String legacyLabel){
+        this.legacyLabel = legacyLabel;
     }
 
-    public SituationActuelleType() {}
-
-    public static SituationActuelleType[] allSituationActuelleTypes = {
-        ACCUEILJOUR,
-        HEBERGEMENTNUIT,
-        HEBERGEMENTPERMANENT,
-        ACCOMPAGNEMENT,
-        AUTRES
-    };
+    public String getLegacyLabel() {
+        return legacyLabel;
+    }
 
     public static SituationActuelleType getDefaultSituationActuelleType() {
         return null;
     }
 
+    /**
+     * @deprecated use valueOf instead. Watchout! you must provid something of SituationActuelleType.something
+     * not the value of the name attribut.
+     */
     public static SituationActuelleType forString(final String enumAsString) {
-        for (SituationActuelleType value : allSituationActuelleTypes)
+        for (SituationActuelleType value : values())
             if (value.toString().equals(enumAsString))
                 return value;
         return getDefaultSituationActuelleType();

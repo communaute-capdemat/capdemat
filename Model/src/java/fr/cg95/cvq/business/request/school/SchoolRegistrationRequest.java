@@ -117,20 +117,6 @@ public class SchoolRegistrationRequest extends Request implements Serializable {
         SchoolRegistrationRequestDocument.SchoolRegistrationRequest schoolRegistrationRequest = schoolRegistrationRequestDoc.addNewSchoolRegistrationRequest();
         super.fillCommonXmlInfo(schoolRegistrationRequest);
         int i = 0;
-          CurrentSchoolType currentSchoolTypeCurrentSchool = schoolRegistrationRequest.addNewCurrentSchool();
-        currentSchoolTypeCurrentSchool.setCurrentSchoolAddress(getCurrentSchoolAddress());
-      
-        currentSchoolTypeCurrentSchool.setCurrentSchoolName(getCurrentSchoolName());
-      
-        if (getCurrentSection() != null)
-            currentSchoolTypeCurrentSchool.setCurrentSection(fr.cg95.cvq.xml.common.SectionType.Enum.forString(getCurrentSection().toString()));
-          CurrentSchoolType currentSchoolTypeCurrentSchool = schoolRegistrationRequest.addNewCurrentSchool();
-        currentSchoolTypeCurrentSchool.setCurrentSchoolAddress(getCurrentSchoolAddress());
-      
-        currentSchoolTypeCurrentSchool.setCurrentSchoolName(getCurrentSchoolName());
-      
-        if (getCurrentSection() != null)
-            currentSchoolTypeCurrentSchool.setCurrentSection(fr.cg95.cvq.xml.common.SectionType.Enum.forString(getCurrentSection().getLegacyLabel()));
         
         if (getCurrentSchool() != null)
             schoolRegistrationRequest.setCurrentSchool(getCurrentSchool().modelToXml());

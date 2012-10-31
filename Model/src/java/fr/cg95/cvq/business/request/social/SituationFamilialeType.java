@@ -1,45 +1,43 @@
 package fr.cg95.cvq.business.request.social;
 
-import fr.cg95.cvq.dao.hibernate.PersistentStringEnum;
-
 /**
  * Generated class file, do not edit !
  */
-public final class SituationFamilialeType extends PersistentStringEnum {
+public enum SituationFamilialeType {
 
-    private static final long serialVersionUID = 1L;
-  
-    public static final SituationFamilialeType CELIBATAIRE = new SituationFamilialeType("Celibataire");
-  
-    public static final SituationFamilialeType MARIE = new SituationFamilialeType("Marie");
-  
-    public static final SituationFamilialeType CONCUBINAGE = new SituationFamilialeType("Concubinage");
-  
-    public static final SituationFamilialeType AUTRE = new SituationFamilialeType("Autre");
-  
+    CELIBATAIRE("Celibataire"),
+    MARIE("Marie"),
+    CONCUBINAGE("Concubinage"),
+    AUTRE("Autre");
+
 
     /**
-     * Prevent instantiation and subclassing with a private constructor.
+     * only for backward use SituationFamilialeType.values() instead
+     * @deprecated only for backward
      */
-    private SituationFamilialeType(String value) {
-        super(value);
+    @Deprecated 
+    public static SituationFamilialeType[] allSituationFamilialeTypes = SituationFamilialeType.values();
+
+    private String legacyLabel;
+
+    private SituationFamilialeType(String legacyLabel){
+        this.legacyLabel = legacyLabel;
     }
 
-    public SituationFamilialeType() {}
-
-    public static SituationFamilialeType[] allSituationFamilialeTypes = {
-        CELIBATAIRE,
-        MARIE,
-        CONCUBINAGE,
-        AUTRE
-    };
+    public String getLegacyLabel() {
+        return legacyLabel;
+    }
 
     public static SituationFamilialeType getDefaultSituationFamilialeType() {
         return null;
     }
 
+    /**
+     * @deprecated use valueOf instead. Watchout! you must provid something of SituationFamilialeType.something
+     * not the value of the name attribut.
+     */
     public static SituationFamilialeType forString(final String enumAsString) {
-        for (SituationFamilialeType value : allSituationFamilialeTypes)
+        for (SituationFamilialeType value : values())
             if (value.toString().equals(enumAsString))
                 return value;
         return getDefaultSituationFamilialeType();

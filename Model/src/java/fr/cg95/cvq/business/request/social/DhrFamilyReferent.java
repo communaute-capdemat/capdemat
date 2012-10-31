@@ -22,20 +22,21 @@ import fr.cg95.cvq.xml.common.*;
 import fr.cg95.cvq.xml.request.social.*;
 import fr.cg95.cvq.service.request.LocalReferential;
 import fr.cg95.cvq.service.request.condition.IConditionChecker;
+import javax.persistence.*;
+import org.hibernate.annotations.Index;
+import org.hibernate.annotations.Type;
 
 /**
  * Generated class file, do not edit !
- *
- * @hibernate.class
- *  table="dhr_family_referent"
- *  lazy="false"
  */
+@Entity
+@Table(name="dhr_family_referent")
 public class DhrFamilyReferent implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     public static final Map<String, IConditionChecker> conditions =
-        new HashMap<String, IConditionChecker>();
+        DomesticHelpRequest.conditions;
 
     public DhrFamilyReferent() {
         super();
@@ -131,11 +132,8 @@ public class DhrFamilyReferent implements Serializable {
         this.id = id;
     }
 
-    /**
-     * @hibernate.id
-     *  column="id"
-     *  generator-class="sequence"
-     */
+    @Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE)
     public final Long getId() {
         return this.id;
     }
@@ -149,7 +147,8 @@ public class DhrFamilyReferent implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['dhrFamilyReferent.dhrHaveFamilyReferent'].test(_this.dhrHaveFamilyReferent.toString());" +
+              "active &= _this.conditions['dhrFamilyReferent.dhrHaveFamilyReferent'].test(_this.dhrHaveFamilyReferent.toString());" +
+                  
                 
               
             
@@ -165,7 +164,8 @@ public class DhrFamilyReferent implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['dhrFamilyReferent.dhrHaveFamilyReferent'].test(_this.dhrHaveFamilyReferent.toString());" +
+              "active &= _this.conditions['dhrFamilyReferent.dhrHaveFamilyReferent'].test(_this.dhrHaveFamilyReferent.toString());" +
+                  
                 
               
             
@@ -181,7 +181,8 @@ public class DhrFamilyReferent implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['dhrFamilyReferent.dhrHaveFamilyReferent'].test(_this.dhrHaveFamilyReferent.toString());" +
+              "active &= _this.conditions['dhrFamilyReferent.dhrHaveFamilyReferent'].test(_this.dhrHaveFamilyReferent.toString());" +
+                  
                 
               
             
@@ -194,18 +195,14 @@ public class DhrFamilyReferent implements Serializable {
     
     private String dhrReferentFirstName;
 
-    public final void setDhrReferentFirstName(final String dhrReferentFirstName) {
+    public void setDhrReferentFirstName(final String dhrReferentFirstName) {
         this.dhrReferentFirstName = dhrReferentFirstName;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="dhr_referent_first_name"
-        *  length="38"
+    
+    @Column(name="dhr_referent_first_name" , length=38 )
       
-    */
-    public final String getDhrReferentFirstName() {
+    public String getDhrReferentFirstName() {
         return this.dhrReferentFirstName;
     }
   
@@ -217,7 +214,8 @@ public class DhrFamilyReferent implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['dhrFamilyReferent.dhrHaveFamilyReferent'].test(_this.dhrHaveFamilyReferent.toString());" +
+              "active &= _this.conditions['dhrFamilyReferent.dhrHaveFamilyReferent'].test(_this.dhrHaveFamilyReferent.toString());" +
+                  
                 
               
             
@@ -233,7 +231,8 @@ public class DhrFamilyReferent implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['dhrFamilyReferent.dhrHaveFamilyReferent'].test(_this.dhrHaveFamilyReferent.toString());" +
+              "active &= _this.conditions['dhrFamilyReferent.dhrHaveFamilyReferent'].test(_this.dhrHaveFamilyReferent.toString());" +
+                  
                 
               
             
@@ -249,7 +248,8 @@ public class DhrFamilyReferent implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['dhrFamilyReferent.dhrHaveFamilyReferent'].test(_this.dhrHaveFamilyReferent.toString());" +
+              "active &= _this.conditions['dhrFamilyReferent.dhrHaveFamilyReferent'].test(_this.dhrHaveFamilyReferent.toString());" +
+                  
                 
               
             
@@ -262,18 +262,14 @@ public class DhrFamilyReferent implements Serializable {
     
     private String dhrReferentName;
 
-    public final void setDhrReferentName(final String dhrReferentName) {
+    public void setDhrReferentName(final String dhrReferentName) {
         this.dhrReferentName = dhrReferentName;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="dhr_referent_name"
-        *  length="38"
+    
+    @Column(name="dhr_referent_name" , length=38 )
       
-    */
-    public final String getDhrReferentName() {
+    public String getDhrReferentName() {
         return this.dhrReferentName;
     }
   
@@ -287,18 +283,14 @@ public class DhrFamilyReferent implements Serializable {
     
     private Boolean dhrHaveFamilyReferent;
 
-    public final void setDhrHaveFamilyReferent(final Boolean dhrHaveFamilyReferent) {
+    public void setDhrHaveFamilyReferent(final Boolean dhrHaveFamilyReferent) {
         this.dhrHaveFamilyReferent = dhrHaveFamilyReferent;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="dhr_have_family_referent"
-        
+    
+    @Column(name="dhr_have_family_referent"  )
       
-    */
-    public final Boolean getDhrHaveFamilyReferent() {
+    public Boolean getDhrHaveFamilyReferent() {
         return this.dhrHaveFamilyReferent;
     }
   
@@ -308,7 +300,8 @@ public class DhrFamilyReferent implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['dhrFamilyReferent.dhrHaveFamilyReferent'].test(_this.dhrHaveFamilyReferent.toString());" +
+              "active &= _this.conditions['dhrFamilyReferent.dhrHaveFamilyReferent'].test(_this.dhrHaveFamilyReferent.toString());" +
+                  
                 
               
             
@@ -324,7 +317,8 @@ public class DhrFamilyReferent implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['dhrFamilyReferent.dhrHaveFamilyReferent'].test(_this.dhrHaveFamilyReferent.toString());" +
+              "active &= _this.conditions['dhrFamilyReferent.dhrHaveFamilyReferent'].test(_this.dhrHaveFamilyReferent.toString());" +
+                  
                 
               
             
@@ -337,19 +331,15 @@ public class DhrFamilyReferent implements Serializable {
     
     private fr.cg95.cvq.business.users.Address dhrReferentAddress;
 
-    public final void setDhrReferentAddress(final fr.cg95.cvq.business.users.Address dhrReferentAddress) {
+    public void setDhrReferentAddress(final fr.cg95.cvq.business.users.Address dhrReferentAddress) {
         this.dhrReferentAddress = dhrReferentAddress;
     }
 
-    /**
-  
-        * @hibernate.many-to-one
-        *  cascade="all"
-        *  column="dhr_referent_address_id"
-        *  class="fr.cg95.cvq.business.users.Address"
+    
+    @ManyToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name="dhr_referent_address_id")
       
-    */
-    public final fr.cg95.cvq.business.users.Address getDhrReferentAddress() {
+    public fr.cg95.cvq.business.users.Address getDhrReferentAddress() {
         return this.dhrReferentAddress;
     }
   

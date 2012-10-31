@@ -37,7 +37,6 @@ public class DhrPreviousDwelling implements Serializable {
 
     public static final Map<String, IConditionChecker> conditions =
         DomesticHelpRequest.conditions;
-        new HashMap<String, IConditionChecker>();
 
     public DhrPreviousDwelling() {
         super();
@@ -191,7 +190,8 @@ public class DhrPreviousDwelling implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['dhrPreviousDwelling.dhrPreviousDwellingKind'].test(_this.dhrPreviousDwellingKind.toString());" +
+              "active &= _this.conditions['dhrPreviousDwelling.dhrPreviousDwellingKind'].test(_this.dhrPreviousDwellingKind.toString());" +
+                  
                 
               
             
@@ -208,7 +208,7 @@ public class DhrPreviousDwelling implements Serializable {
         this.dhrPreviousDwellingStatus = dhrPreviousDwellingStatus;
     }
 
-
+    
     @Enumerated(EnumType.STRING)
     @Column(name="dhr_previous_dwelling_status"  )
       
@@ -230,7 +230,7 @@ public class DhrPreviousDwelling implements Serializable {
         this.dhrPreviousDwellingKind = dhrPreviousDwellingKind;
     }
 
-
+    
     @Enumerated(EnumType.STRING)
     @Column(name="dhr_previous_dwelling_kind"  )
       
@@ -259,7 +259,7 @@ public class DhrPreviousDwelling implements Serializable {
         this.dhrPreviousDwellingComment = dhrPreviousDwellingComment;
     }
 
-
+    
     @Column(name="dhr_previous_dwelling_comment"  )
       
     public String getDhrPreviousDwellingComment() {
@@ -280,7 +280,7 @@ public class DhrPreviousDwelling implements Serializable {
         this.dhrPreviousDwellingDepartureDate = dhrPreviousDwellingDepartureDate;
     }
 
-
+    
     @Column(name="dhr_previous_dwelling_departure_date"  )
       
     public java.util.Date getDhrPreviousDwellingDepartureDate() {
@@ -308,7 +308,7 @@ public class DhrPreviousDwelling implements Serializable {
         this.dhrPreviousDwellingAddress = dhrPreviousDwellingAddress;
     }
 
-
+    
     @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name="dhr_previous_dwelling_address_id")
       
@@ -330,7 +330,7 @@ public class DhrPreviousDwelling implements Serializable {
         this.dhrPreviousDwellingArrivalDate = dhrPreviousDwellingArrivalDate;
     }
 
-
+    
     @Column(name="dhr_previous_dwelling_arrival_date"  )
       
     public java.util.Date getDhrPreviousDwellingArrivalDate() {

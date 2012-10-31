@@ -1,45 +1,43 @@
 package fr.cg95.cvq.business.request.social;
 
-import fr.cg95.cvq.dao.hibernate.PersistentStringEnum;
-
 /**
  * Generated class file, do not edit !
  */
-public final class MyrLogementType extends PersistentStringEnum {
+public enum MyrLogementType {
 
-    private static final long serialVersionUID = 1L;
-  
-    public static final MyrLogementType LOCATAIRE = new MyrLogementType("Locataire");
-  
-    public static final MyrLogementType PROPRIETAIRE = new MyrLogementType("Proprietaire");
-  
-    public static final MyrLogementType HEBERGE = new MyrLogementType("Heberge");
-  
-    public static final MyrLogementType AUTRE = new MyrLogementType("Autre");
-  
+    LOCATAIRE("Locataire"),
+    PROPRIETAIRE("Proprietaire"),
+    HEBERGE("Heberge"),
+    AUTRE("Autre");
+
 
     /**
-     * Prevent instantiation and subclassing with a private constructor.
+     * only for backward use MyrLogementType.values() instead
+     * @deprecated only for backward
      */
-    private MyrLogementType(String value) {
-        super(value);
+    @Deprecated 
+    public static MyrLogementType[] allMyrLogementTypes = MyrLogementType.values();
+
+    private String legacyLabel;
+
+    private MyrLogementType(String legacyLabel){
+        this.legacyLabel = legacyLabel;
     }
 
-    public MyrLogementType() {}
-
-    public static MyrLogementType[] allMyrLogementTypes = {
-        LOCATAIRE,
-        PROPRIETAIRE,
-        HEBERGE,
-        AUTRE
-    };
+    public String getLegacyLabel() {
+        return legacyLabel;
+    }
 
     public static MyrLogementType getDefaultMyrLogementType() {
         return null;
     }
 
+    /**
+     * @deprecated use valueOf instead. Watchout! you must provid something of MyrLogementType.something
+     * not the value of the name attribut.
+     */
     public static MyrLogementType forString(final String enumAsString) {
-        for (MyrLogementType value : allMyrLogementTypes)
+        for (MyrLogementType value : values())
             if (value.toString().equals(enumAsString))
                 return value;
         return getDefaultMyrLogementType();

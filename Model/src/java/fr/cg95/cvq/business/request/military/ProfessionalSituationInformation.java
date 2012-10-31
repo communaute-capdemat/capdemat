@@ -22,20 +22,21 @@ import fr.cg95.cvq.xml.common.*;
 import fr.cg95.cvq.xml.request.military.*;
 import fr.cg95.cvq.service.request.LocalReferential;
 import fr.cg95.cvq.service.request.condition.IConditionChecker;
+import javax.persistence.*;
+import org.hibernate.annotations.Index;
+import org.hibernate.annotations.Type;
 
 /**
  * Generated class file, do not edit !
- *
- * @hibernate.class
- *  table="professional_situation_information"
- *  lazy="false"
  */
+@Entity
+@Table(name="professional_situation_information")
 public class ProfessionalSituationInformation implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     public static final Map<String, IConditionChecker> conditions =
-        new HashMap<String, IConditionChecker>();
+        MilitaryCensusRequest.conditions;
 
     public ProfessionalSituationInformation() {
         super();
@@ -61,14 +62,14 @@ public class ProfessionalSituationInformation implements Serializable {
         int i = 0;
     
         if (this.childDiploma != null)
-            professionalSituationInformation.setChildDiploma(fr.cg95.cvq.xml.request.military.ChildDiplomaType.Enum.forString(this.childDiploma.toString()));
+            professionalSituationInformation.setChildDiploma(fr.cg95.cvq.xml.request.military.ChildDiplomaType.Enum.forString(this.childDiploma.getLegacyLabel()));
       
         professionalSituationInformation.setChildProfession(this.childProfession);
       
         professionalSituationInformation.setChildSpeciality(this.childSpeciality);
       
         if (this.childSituation != null)
-            professionalSituationInformation.setChildSituation(fr.cg95.cvq.xml.request.military.ChildSituationType.Enum.forString(this.childSituation.toString()));
+            professionalSituationInformation.setChildSituation(fr.cg95.cvq.xml.request.military.ChildSituationType.Enum.forString(this.childSituation.getLegacyLabel()));
       
         return professionalSituationInformation;
     }
@@ -139,11 +140,8 @@ public class ProfessionalSituationInformation implements Serializable {
         this.id = id;
     }
 
-    /**
-     * @hibernate.id
-     *  column="id"
-     *  generator-class="sequence"
-     */
+    @Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE)
     public final Long getId() {
         return this.id;
     }
@@ -159,54 +157,43 @@ public class ProfessionalSituationInformation implements Serializable {
     
     private fr.cg95.cvq.business.request.military.ChildDiplomaType childDiploma;
 
-    public final void setChildDiploma(final fr.cg95.cvq.business.request.military.ChildDiplomaType childDiploma) {
+    public void setChildDiploma(final fr.cg95.cvq.business.request.military.ChildDiplomaType childDiploma) {
         this.childDiploma = childDiploma;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="child_diploma"
-        
+    
+    @Enumerated(EnumType.STRING)
+    @Column(name="child_diploma"  )
       
-    */
-    public final fr.cg95.cvq.business.request.military.ChildDiplomaType getChildDiploma() {
+    public fr.cg95.cvq.business.request.military.ChildDiplomaType getChildDiploma() {
         return this.childDiploma;
     }
   
     
     private String childProfession;
 
-    public final void setChildProfession(final String childProfession) {
+    public void setChildProfession(final String childProfession) {
         this.childProfession = childProfession;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="child_profession"
-        
+    
+    @Column(name="child_profession"  )
       
-    */
-    public final String getChildProfession() {
+    public String getChildProfession() {
         return this.childProfession;
     }
   
     
     private String childSpeciality;
 
-    public final void setChildSpeciality(final String childSpeciality) {
+    public void setChildSpeciality(final String childSpeciality) {
         this.childSpeciality = childSpeciality;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="child_speciality"
-        
+    
+    @Column(name="child_speciality"  )
       
-    */
-    public final String getChildSpeciality() {
+    public String getChildSpeciality() {
         return this.childSpeciality;
     }
   
@@ -220,18 +207,15 @@ public class ProfessionalSituationInformation implements Serializable {
     
     private fr.cg95.cvq.business.request.military.ChildSituationType childSituation;
 
-    public final void setChildSituation(final fr.cg95.cvq.business.request.military.ChildSituationType childSituation) {
+    public void setChildSituation(final fr.cg95.cvq.business.request.military.ChildSituationType childSituation) {
         this.childSituation = childSituation;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="child_situation"
-        
+    
+    @Enumerated(EnumType.STRING)
+    @Column(name="child_situation"  )
       
-    */
-    public final fr.cg95.cvq.business.request.military.ChildSituationType getChildSituation() {
+    public fr.cg95.cvq.business.request.military.ChildSituationType getChildSituation() {
         return this.childSituation;
     }
   

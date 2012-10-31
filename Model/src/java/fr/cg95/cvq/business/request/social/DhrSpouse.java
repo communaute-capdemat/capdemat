@@ -22,20 +22,21 @@ import fr.cg95.cvq.xml.common.*;
 import fr.cg95.cvq.xml.request.social.*;
 import fr.cg95.cvq.service.request.LocalReferential;
 import fr.cg95.cvq.service.request.condition.IConditionChecker;
+import javax.persistence.*;
+import org.hibernate.annotations.Index;
+import org.hibernate.annotations.Type;
 
 /**
  * Generated class file, do not edit !
- *
- * @hibernate.class
- *  table="dhr_spouse"
- *  lazy="false"
  */
+@Entity
+@Table(name="dhr_spouse")
 public class DhrSpouse implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     public static final Map<String, IConditionChecker> conditions =
-        new HashMap<String, IConditionChecker>();
+        DomesticHelpRequest.conditions;
 
     public DhrSpouse() {
         super();
@@ -63,7 +64,7 @@ public class DhrSpouse implements Serializable {
         int i = 0;
     
         if (this.dhrSpouseNationality != null)
-            dhrSpouse.setDhrSpouseNationality(fr.cg95.cvq.xml.common.NationalityType.Enum.forString(this.dhrSpouseNationality.toString()));
+            dhrSpouse.setDhrSpouseNationality(fr.cg95.cvq.xml.common.NationalityType.Enum.forString(this.dhrSpouseNationality.getLegacyLabel()));
       
         dhrSpouse.setDhrSpouseMaidenName(this.dhrSpouseMaidenName);
       
@@ -76,7 +77,7 @@ public class DhrSpouse implements Serializable {
         dhrSpouse.setDhrSpouseFirstName(this.dhrSpouseFirstName);
       
         if (this.dhrSpouseFamilyStatus != null)
-            dhrSpouse.setDhrSpouseFamilyStatus(fr.cg95.cvq.xml.common.FamilyStatusType.Enum.forString(this.dhrSpouseFamilyStatus.toString()));
+            dhrSpouse.setDhrSpouseFamilyStatus(fr.cg95.cvq.xml.common.FamilyStatusType.Enum.forString(this.dhrSpouseFamilyStatus.getLegacyLabel()));
       
         dhrSpouse.setDhrSpouseName(this.dhrSpouseName);
       
@@ -89,7 +90,7 @@ public class DhrSpouse implements Serializable {
         }
       
         if (this.dhrSpouseTitle != null)
-            dhrSpouse.setDhrSpouseTitle(fr.cg95.cvq.xml.common.TitleType.Enum.forString(this.dhrSpouseTitle.toString()));
+            dhrSpouse.setDhrSpouseTitle(fr.cg95.cvq.xml.common.TitleType.Enum.forString(this.dhrSpouseTitle.getLegacyLabel()));
       
         if (this.dhrSpouseIsFrenchResident != null)
             dhrSpouse.setDhrSpouseIsFrenchResident(this.dhrSpouseIsFrenchResident.booleanValue());
@@ -223,11 +224,8 @@ public class DhrSpouse implements Serializable {
         this.id = id;
     }
 
-    /**
-     * @hibernate.id
-     *  column="id"
-     *  generator-class="sequence"
-     */
+    @Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE)
     public final Long getId() {
         return this.id;
     }
@@ -243,18 +241,15 @@ public class DhrSpouse implements Serializable {
     
     private fr.cg95.cvq.business.users.NationalityType dhrSpouseNationality;
 
-    public final void setDhrSpouseNationality(final fr.cg95.cvq.business.users.NationalityType dhrSpouseNationality) {
+    public void setDhrSpouseNationality(final fr.cg95.cvq.business.users.NationalityType dhrSpouseNationality) {
         this.dhrSpouseNationality = dhrSpouseNationality;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="dhr_spouse_nationality"
-        *  length="32"
+    
+    @Enumerated(EnumType.STRING)
+    @Column(name="dhr_spouse_nationality" , length=32 )
       
-    */
-    public final fr.cg95.cvq.business.users.NationalityType getDhrSpouseNationality() {
+    public fr.cg95.cvq.business.users.NationalityType getDhrSpouseNationality() {
         return this.dhrSpouseNationality;
     }
   
@@ -266,7 +261,8 @@ public class DhrSpouse implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['dhrSpouse.dhrSpouseTitle'].test(_this.dhrSpouseTitle.toString());" +
+              "active &= _this.conditions['dhrSpouse.dhrSpouseTitle'].test(_this.dhrSpouseTitle.toString());" +
+                  
                 
               
             
@@ -282,7 +278,8 @@ public class DhrSpouse implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['dhrSpouse.dhrSpouseTitle'].test(_this.dhrSpouseTitle.toString());" +
+              "active &= _this.conditions['dhrSpouse.dhrSpouseTitle'].test(_this.dhrSpouseTitle.toString());" +
+                  
                 
               
             
@@ -298,7 +295,8 @@ public class DhrSpouse implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['dhrSpouse.dhrSpouseTitle'].test(_this.dhrSpouseTitle.toString());" +
+              "active &= _this.conditions['dhrSpouse.dhrSpouseTitle'].test(_this.dhrSpouseTitle.toString());" +
+                  
                 
               
             
@@ -311,18 +309,14 @@ public class DhrSpouse implements Serializable {
     
     private String dhrSpouseMaidenName;
 
-    public final void setDhrSpouseMaidenName(final String dhrSpouseMaidenName) {
+    public void setDhrSpouseMaidenName(final String dhrSpouseMaidenName) {
         this.dhrSpouseMaidenName = dhrSpouseMaidenName;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="dhr_spouse_maiden_name"
-        *  length="38"
+    
+    @Column(name="dhr_spouse_maiden_name" , length=38 )
       
-    */
-    public final String getDhrSpouseMaidenName() {
+    public String getDhrSpouseMaidenName() {
         return this.dhrSpouseMaidenName;
     }
   
@@ -332,7 +326,8 @@ public class DhrSpouse implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['dhrSpouse.dhrSpouseNationality'].test(_this.dhrSpouseNationality.toString());" +
+              "active &= _this.conditions['dhrSpouse.dhrSpouseNationality'].test(_this.dhrSpouseNationality.toString());" +
+                  
                 
               
             
@@ -345,18 +340,14 @@ public class DhrSpouse implements Serializable {
     
     private java.util.Date dhrSpouseFranceArrivalDate;
 
-    public final void setDhrSpouseFranceArrivalDate(final java.util.Date dhrSpouseFranceArrivalDate) {
+    public void setDhrSpouseFranceArrivalDate(final java.util.Date dhrSpouseFranceArrivalDate) {
         this.dhrSpouseFranceArrivalDate = dhrSpouseFranceArrivalDate;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="dhr_spouse_france_arrival_date"
-        
+    
+    @Column(name="dhr_spouse_france_arrival_date"  )
       
-    */
-    public final java.util.Date getDhrSpouseFranceArrivalDate() {
+    public java.util.Date getDhrSpouseFranceArrivalDate() {
         return this.dhrSpouseFranceArrivalDate;
     }
   
@@ -386,18 +377,14 @@ public class DhrSpouse implements Serializable {
     
     private String dhrSpouseFirstName;
 
-    public final void setDhrSpouseFirstName(final String dhrSpouseFirstName) {
+    public void setDhrSpouseFirstName(final String dhrSpouseFirstName) {
         this.dhrSpouseFirstName = dhrSpouseFirstName;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="dhr_spouse_first_name"
-        *  length="38"
+    
+    @Column(name="dhr_spouse_first_name" , length=38 )
       
-    */
-    public final String getDhrSpouseFirstName() {
+    public String getDhrSpouseFirstName() {
         return this.dhrSpouseFirstName;
     }
   
@@ -411,18 +398,15 @@ public class DhrSpouse implements Serializable {
     
     private fr.cg95.cvq.business.users.FamilyStatusType dhrSpouseFamilyStatus;
 
-    public final void setDhrSpouseFamilyStatus(final fr.cg95.cvq.business.users.FamilyStatusType dhrSpouseFamilyStatus) {
+    public void setDhrSpouseFamilyStatus(final fr.cg95.cvq.business.users.FamilyStatusType dhrSpouseFamilyStatus) {
         this.dhrSpouseFamilyStatus = dhrSpouseFamilyStatus;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="dhr_spouse_family_status"
-        
+    
+    @Enumerated(EnumType.STRING)
+    @Column(name="dhr_spouse_family_status"  )
       
-    */
-    public final fr.cg95.cvq.business.users.FamilyStatusType getDhrSpouseFamilyStatus() {
+    public fr.cg95.cvq.business.users.FamilyStatusType getDhrSpouseFamilyStatus() {
         return this.dhrSpouseFamilyStatus;
     }
   
@@ -452,18 +436,14 @@ public class DhrSpouse implements Serializable {
     
     private String dhrSpouseName;
 
-    public final void setDhrSpouseName(final String dhrSpouseName) {
+    public void setDhrSpouseName(final String dhrSpouseName) {
         this.dhrSpouseName = dhrSpouseName;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="dhr_spouse_name"
-        *  length="38"
+    
+    @Column(name="dhr_spouse_name" , length=38 )
       
-    */
-    public final String getDhrSpouseName() {
+    public String getDhrSpouseName() {
         return this.dhrSpouseName;
     }
   
@@ -484,18 +464,14 @@ public class DhrSpouse implements Serializable {
     
     private String dhrSpouseBirthPlace;
 
-    public final void setDhrSpouseBirthPlace(final String dhrSpouseBirthPlace) {
+    public void setDhrSpouseBirthPlace(final String dhrSpouseBirthPlace) {
         this.dhrSpouseBirthPlace = dhrSpouseBirthPlace;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="dhr_spouse_birth_place"
-        
+    
+    @Column(name="dhr_spouse_birth_place"  )
       
-    */
-    public final String getDhrSpouseBirthPlace() {
+    public String getDhrSpouseBirthPlace() {
         return this.dhrSpouseBirthPlace;
     }
   
@@ -509,18 +485,14 @@ public class DhrSpouse implements Serializable {
     
     private java.util.Date dhrSpouseBirthDate;
 
-    public final void setDhrSpouseBirthDate(final java.util.Date dhrSpouseBirthDate) {
+    public void setDhrSpouseBirthDate(final java.util.Date dhrSpouseBirthDate) {
         this.dhrSpouseBirthDate = dhrSpouseBirthDate;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="dhr_spouse_birth_date"
-        
+    
+    @Column(name="dhr_spouse_birth_date"  )
       
-    */
-    public final java.util.Date getDhrSpouseBirthDate() {
+    public java.util.Date getDhrSpouseBirthDate() {
         return this.dhrSpouseBirthDate;
     }
   
@@ -534,18 +506,15 @@ public class DhrSpouse implements Serializable {
     
     private fr.cg95.cvq.business.users.TitleType dhrSpouseTitle;
 
-    public final void setDhrSpouseTitle(final fr.cg95.cvq.business.users.TitleType dhrSpouseTitle) {
+    public void setDhrSpouseTitle(final fr.cg95.cvq.business.users.TitleType dhrSpouseTitle) {
         this.dhrSpouseTitle = dhrSpouseTitle;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="dhr_spouse_title"
-        
+    
+    @Enumerated(EnumType.STRING)
+    @Column(name="dhr_spouse_title"  )
       
-    */
-    public final fr.cg95.cvq.business.users.TitleType getDhrSpouseTitle() {
+    public fr.cg95.cvq.business.users.TitleType getDhrSpouseTitle() {
         return this.dhrSpouseTitle;
     }
   
@@ -555,7 +524,8 @@ public class DhrSpouse implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['dhrSpouse.dhrSpouseNationality'].test(_this.dhrSpouseNationality.toString());" +
+              "active &= _this.conditions['dhrSpouse.dhrSpouseNationality'].test(_this.dhrSpouseNationality.toString());" +
+                  
                 
               
             
@@ -568,18 +538,14 @@ public class DhrSpouse implements Serializable {
     
     private Boolean dhrSpouseIsFrenchResident;
 
-    public final void setDhrSpouseIsFrenchResident(final Boolean dhrSpouseIsFrenchResident) {
+    public void setDhrSpouseIsFrenchResident(final Boolean dhrSpouseIsFrenchResident) {
         this.dhrSpouseIsFrenchResident = dhrSpouseIsFrenchResident;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="dhr_spouse_is_french_resident"
-        
+    
+    @Column(name="dhr_spouse_is_french_resident"  )
       
-    */
-    public final Boolean getDhrSpouseIsFrenchResident() {
+    public Boolean getDhrSpouseIsFrenchResident() {
         return this.dhrSpouseIsFrenchResident;
     }
   

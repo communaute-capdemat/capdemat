@@ -3,8 +3,17 @@ package fr.cg95.cvq.service.request.social.impl;
 import java.util.Arrays;
 
 import fr.cg95.cvq.business.request.Request;
+import fr.cg95.cvq.business.request.social.ChoixProjetDeVieType;
+import fr.cg95.cvq.business.request.social.ChoixSituationProfessionnelleType;
+import fr.cg95.cvq.business.request.social.LogementType;
 import fr.cg95.cvq.business.request.social.MarBesoinsDemandePch;
+import fr.cg95.cvq.business.request.social.MarSituationProfessionnelleAutre;
 import fr.cg95.cvq.business.request.social.MdphAdultRequest;
+import fr.cg95.cvq.business.request.social.PrecedentsRevenusRecusType;
+import fr.cg95.cvq.business.request.social.RepresentantLegalType;
+import fr.cg95.cvq.business.request.social.SituationActuelleType;
+import fr.cg95.cvq.business.request.social.SituationAutreType;
+import fr.cg95.cvq.business.request.social.SituationFamilialeType;
 import fr.cg95.cvq.exception.CvqException;
 import fr.cg95.cvq.service.request.condition.EqualityChecker;
 import fr.cg95.cvq.service.request.condition.EqualityListChecker;
@@ -17,21 +26,41 @@ public final class MdphAdultRequestService extends RequestService {
 
         super.init();
         
-        MdphAdultRequest.conditions.put("representantLegal", new EqualityListChecker(Arrays.asList("Tutelle", "CuratelleSimple", "CuratelleRenforcee", "Autre")));
-        MdphAdultRequest.conditions.put("situationMaritale", new EqualityListChecker(Arrays.asList("Marie", "Concubinage")));
-        MdphAdultRequest.conditions.put("situationParticuliere", new EqualityChecker("Autre"));
-        MdphAdultRequest.conditions.put("situationParticuliere", 
-                new EqualityListChecker(Arrays.asList("estAutreCas-Autre", "estUnCas-EtablissementMedicoSocial", "estUnCas-Autre", "estUnCas-Hospitalise")));
-        MdphAdultRequest.conditions.put("situationProfessionnelleVous", 
-                new EqualityListChecker(Arrays.asList("estSalarieVous-Salarie", "estStagiaireVous-Stagiaire", "estNonSalarieVous-Nonsalarie", "estDemandeurEmploiVous-Demandeur", "estRetraiteVous-Retraite", "estBeneficiairePensionVous-Pension", "estAutreVous-Autre")));
-        MdphAdultRequest.conditions.put("situationProfessionnelleConjoint", 
-                new EqualityListChecker(Arrays.asList("estSalarieConjoint-Salarie", "estStagiaireConjoint-Stagiaire", "estNonSalarieConjoint-Nonsalarie", "estDemandeurEmploiConjoint-Demandeur", "estRetraiteConjoint-Retraite", "estBeneficiairePensionConjoint-Pension", "estAutreConjoint-Autre")));
-        MdphAdultRequest.conditions.put("typeLogement", new EqualityChecker("Autre"));
-        MdphAdultRequest.conditions.put("choixProjetDeVie", new EqualityChecker("Oui"));
+        MdphAdultRequest.conditions.put("representantLegal",new EqualityListChecker(Arrays.asList(
+                        RepresentantLegalType.TUTELLE.name(), RepresentantLegalType.CURATELLE_SIMPLE.name(),
+                        RepresentantLegalType.CURATELLE_RENFORCEE.name(), RepresentantLegalType.AUTRE.name())));
+        MdphAdultRequest.conditions.put("situationMaritale", new EqualityListChecker(Arrays.asList(
+                SituationFamilialeType.MARIE.name(), SituationFamilialeType.CONCUBINAGE.name())));
+        MdphAdultRequest.conditions.put("situationParticuliere", new EqualityChecker(SituationAutreType.AUTRE.name()));
+        MdphAdultRequest.conditions.put("situationParticuliere", new EqualityListChecker(Arrays.asList(
+                "estAutreCas="+SituationAutreType.AUTRE.name(), "estUnCas="+SituationAutreType.ETABLISSEMENT_MEDICO_SOCIAL.name(),
+                "estUnCas="+SituationAutreType.AUTRE.name(), "estUnCas="+SituationAutreType.HOSPITALISE.name())));
+        MdphAdultRequest.conditions.put("situationProfessionnelleVous", new EqualityListChecker(Arrays.asList(
+            "estSalarieVous="+ChoixSituationProfessionnelleType.SALARIE.name(),
+            "estStagiaireVous="+ChoixSituationProfessionnelleType.STAGIAIRE.name(),
+            "estNonSalarieVous="+ChoixSituationProfessionnelleType.NONSALARIE.name(),
+            "estDemandeurEmploiVous="+ChoixSituationProfessionnelleType.DEMANDEUR.name(),
+            "estRetraiteVous="+ChoixSituationProfessionnelleType.RETRAITE.name(),
+            "estBeneficiairePensionVous="+ChoixSituationProfessionnelleType.PENSION.name(),
+            "estAutreVous="+ChoixSituationProfessionnelleType.AUTRE.name())));
+
+        MdphAdultRequest.conditions.put("situationProfessionnelleConjoint", new EqualityListChecker(Arrays.asList(
+                "estSalarieConjoint="+ChoixSituationProfessionnelleType.SALARIE.name(),
+                "estStagiaireConjoint="+ChoixSituationProfessionnelleType.STAGIAIRE.name(),
+                "estNonSalarieConjoint="+ChoixSituationProfessionnelleType.NONSALARIE.name(),
+                "estDemandeurEmploiConjoint="+ChoixSituationProfessionnelleType.DEMANDEUR.name(),
+                "estRetraiteConjoint="+ChoixSituationProfessionnelleType.RETRAITE.name(),
+                "estBeneficiairePensionConjoint="+ChoixSituationProfessionnelleType.PENSION.name(),
+                "estAutreConjoint="+ChoixSituationProfessionnelleType.AUTRE.name())));
+        MdphAdultRequest.conditions.put("typeLogement", new EqualityChecker(LogementType.AUTRE.name()));
+        MdphAdultRequest.conditions.put("choixProjetDeVie", new EqualityChecker(ChoixProjetDeVieType.OUI.name()));
         MdphAdultRequest.conditions.put("preferencesEtablissementOuService", new EqualityChecker("true"));
         MdphAdultRequest.conditions.put("orientationReclassement", new EqualityChecker("true"));
         MdphAdultRequest.conditions.put("preferenceEtablissementOuService", new EqualityChecker("true"));
-        MdphAdultRequest.conditions.put("precedentsRevenusRecus", new EqualityListChecker(Arrays.asList("Activite", "Esat", "Indemnites")));
+        MdphAdultRequest.conditions.put("precedentsRevenusRecus", new EqualityListChecker(Arrays.asList(
+                PrecedentsRevenusRecusType.ACTIVITE.name(),
+                PrecedentsRevenusRecusType.ESAT.name(),
+                PrecedentsRevenusRecusType.INDEMNITES.name())));
 
         // kept them for client side JS validation script
         MdphAdultRequest.conditions.put("besoinsDemandePCH.aideHumaine", new EqualityChecker("true"));

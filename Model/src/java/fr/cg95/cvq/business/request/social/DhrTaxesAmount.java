@@ -22,20 +22,21 @@ import fr.cg95.cvq.xml.common.*;
 import fr.cg95.cvq.xml.request.social.*;
 import fr.cg95.cvq.service.request.LocalReferential;
 import fr.cg95.cvq.service.request.condition.IConditionChecker;
+import javax.persistence.*;
+import org.hibernate.annotations.Index;
+import org.hibernate.annotations.Type;
 
 /**
  * Generated class file, do not edit !
- *
- * @hibernate.class
- *  table="dhr_taxes_amount"
- *  lazy="false"
  */
+@Entity
+@Table(name="dhr_taxes_amount")
 public class DhrTaxesAmount implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     public static final Map<String, IConditionChecker> conditions =
-        new HashMap<String, IConditionChecker>();
+        DomesticHelpRequest.conditions;
 
     public DhrTaxesAmount() {
         super();
@@ -129,11 +130,8 @@ public class DhrTaxesAmount implements Serializable {
         this.id = id;
     }
 
-    /**
-     * @hibernate.id
-     *  column="id"
-     *  generator-class="sequence"
-     */
+    @Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE)
     public final Long getId() {
         return this.id;
     }
@@ -142,76 +140,60 @@ public class DhrTaxesAmount implements Serializable {
     
     private java.math.BigInteger propertyTaxes;
 
-    public final void setPropertyTaxes(final java.math.BigInteger propertyTaxes) {
+    public void setPropertyTaxes(final java.math.BigInteger propertyTaxes) {
         this.propertyTaxes = propertyTaxes;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="property_taxes"
-        *  type="serializable"
-        
+    
+    @Column(name="property_taxes" , columnDefinition="bytea" )
+    @Type(type="serializable") //Hack see http://capdemat.capwebct.fr/ticket/338
       
-    */
-    public final java.math.BigInteger getPropertyTaxes() {
+    public java.math.BigInteger getPropertyTaxes() {
         return this.propertyTaxes;
     }
   
     
     private java.math.BigInteger professionalTaxes;
 
-    public final void setProfessionalTaxes(final java.math.BigInteger professionalTaxes) {
+    public void setProfessionalTaxes(final java.math.BigInteger professionalTaxes) {
         this.professionalTaxes = professionalTaxes;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="professional_taxes"
-        *  type="serializable"
-        
+    
+    @Column(name="professional_taxes" , columnDefinition="bytea" )
+    @Type(type="serializable") //Hack see http://capdemat.capwebct.fr/ticket/338
       
-    */
-    public final java.math.BigInteger getProfessionalTaxes() {
+    public java.math.BigInteger getProfessionalTaxes() {
         return this.professionalTaxes;
     }
   
     
     private java.math.BigInteger localRate;
 
-    public final void setLocalRate(final java.math.BigInteger localRate) {
+    public void setLocalRate(final java.math.BigInteger localRate) {
         this.localRate = localRate;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="local_rate"
-        *  type="serializable"
-        
+    
+    @Column(name="local_rate" , columnDefinition="bytea" )
+    @Type(type="serializable") //Hack see http://capdemat.capwebct.fr/ticket/338
       
-    */
-    public final java.math.BigInteger getLocalRate() {
+    public java.math.BigInteger getLocalRate() {
         return this.localRate;
     }
   
     
     private java.math.BigInteger dhrIncomeTax;
 
-    public final void setDhrIncomeTax(final java.math.BigInteger dhrIncomeTax) {
+    public void setDhrIncomeTax(final java.math.BigInteger dhrIncomeTax) {
         this.dhrIncomeTax = dhrIncomeTax;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="dhr_income_tax"
-        *  type="serializable"
-        
+    
+    @Column(name="dhr_income_tax" , columnDefinition="bytea" )
+    @Type(type="serializable") //Hack see http://capdemat.capwebct.fr/ticket/338
       
-    */
-    public final java.math.BigInteger getDhrIncomeTax() {
+    public java.math.BigInteger getDhrIncomeTax() {
         return this.dhrIncomeTax;
     }
   

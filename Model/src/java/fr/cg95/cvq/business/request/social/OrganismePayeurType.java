@@ -1,42 +1,42 @@
 package fr.cg95.cvq.business.request.social;
 
-import fr.cg95.cvq.dao.hibernate.PersistentStringEnum;
-
 /**
  * Generated class file, do not edit !
  */
-public final class OrganismePayeurType extends PersistentStringEnum {
+public enum OrganismePayeurType {
 
-    private static final long serialVersionUID = 1L;
-  
-    public static final OrganismePayeurType CAF = new OrganismePayeurType("Caf");
-  
-    public static final OrganismePayeurType MSA = new OrganismePayeurType("Msa");
-  
-    public static final OrganismePayeurType AUTRE = new OrganismePayeurType("Autre");
-  
+    CAF("Caf"),
+    MSA("Msa"),
+    AUTRE("Autre");
+
 
     /**
-     * Prevent instantiation and subclassing with a private constructor.
+     * only for backward use OrganismePayeurType.values() instead
+     * @deprecated only for backward
      */
-    private OrganismePayeurType(String value) {
-        super(value);
+    @Deprecated 
+    public static OrganismePayeurType[] allOrganismePayeurTypes = OrganismePayeurType.values();
+
+    private String legacyLabel;
+
+    private OrganismePayeurType(String legacyLabel){
+        this.legacyLabel = legacyLabel;
     }
 
-    public OrganismePayeurType() {}
-
-    public static OrganismePayeurType[] allOrganismePayeurTypes = {
-        CAF,
-        MSA,
-        AUTRE
-    };
+    public String getLegacyLabel() {
+        return legacyLabel;
+    }
 
     public static OrganismePayeurType getDefaultOrganismePayeurType() {
         return null;
     }
 
+    /**
+     * @deprecated use valueOf instead. Watchout! you must provid something of OrganismePayeurType.something
+     * not the value of the name attribut.
+     */
     public static OrganismePayeurType forString(final String enumAsString) {
-        for (OrganismePayeurType value : allOrganismePayeurTypes)
+        for (OrganismePayeurType value : values())
             if (value.toString().equals(enumAsString))
                 return value;
         return getDefaultOrganismePayeurType();

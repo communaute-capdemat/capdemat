@@ -5,8 +5,8 @@
     <label for="situationParticuliere" class=""><g:message code="mar.property.situationParticuliere.label" />   <span><g:message code="mar.property.situationParticuliere.help" /></span></label>
             <select id="situationParticuliere" name="situationParticuliere" class="condition-estAutreCas-trigger condition-estUnCas-trigger  validate-select ${rqt.stepStates['autreSituation'].invalidFields.contains('situationParticuliere') ? 'validation-failed' : ''}" title="<g:message code="mar.property.situationParticuliere.validationError" />">
               <option value=""><g:message code="message.select.defaultOption" /></option>
-              <g:each in="${['EtablissementMedicoSocial','Hospitalise','Autre']}">
-                <option value="fr.cg95.cvq.business.request.social.SituationAutreType_${it}" ${it == rqt.situationParticuliere?.toString() ? 'selected="selected"': ''}><g:capdematEnumToText var="${it}" i18nKeyPrefix="mar.property.situationParticuliere" /></option>
+              <g:each in="${['ETABLISSEMENT_MEDICO_SOCIAL','HOSPITALISE','AUTRE']}">
+                <option value="${it}" ${it == rqt.situationParticuliere?.toString() ? 'selected="selected"': ''}><g:capdematEnumToText var="${it}" i18nKeyPrefix="mar.property.situationParticuliere" /></option>
               </g:each>
             </select>
             
@@ -60,8 +60,8 @@
     <label for="typeLogement" class="required"><g:message code="mar.property.typeLogement.label" /> *  <span><g:message code="mar.property.typeLogement.help" /></span></label>
             <select id="typeLogement" name="typeLogement" class="required condition-typeLogement-trigger  validate-not-first ${rqt.stepStates['autreSituation'].invalidFields.contains('typeLogement') ? 'validation-failed' : ''}" title="<g:message code="mar.property.typeLogement.validationError" />">
               <option value=""><g:message code="message.select.defaultOption" /></option>
-              <g:each in="${['Locataire','Proprietaire','Heberge','Autre']}">
-                <option value="fr.cg95.cvq.business.request.social.LogementType_${it}" ${it == rqt.typeLogement?.toString() ? 'selected="selected"': ''}><g:capdematEnumToText var="${it}" i18nKeyPrefix="mar.property.typeLogement" /></option>
+              <g:each in="${['LOCATAIRE','PROPRIETAIRE','HEBERGE','AUTRE']}">
+                <option value="${it}" ${it == rqt.typeLogement?.toString() ? 'selected="selected"': ''}><g:capdematEnumToText var="${it}" i18nKeyPrefix="mar.property.typeLogement" /></option>
               </g:each>
             </select>
             

@@ -3,29 +3,30 @@
 <%
 
   import org.apache.commons.lang.StringUtils
+  import fr.cg95.cvq.util.EnumTool
+  import java.text.NumberFormat
   def esc(s) { return org.apache.commons.lang3.StringEscapeUtils.escapeXml(s) }
   def localReferentialWidget(wrapper, javaName, lrEntries, depth) {
     def lrHtml = ''
     def currentLrDatas = wrapper != null ? wrapper[javaName].collect{it.name} : null
-    if (lrTypes[javaName].entriesSupportMultiple) { 
+    if (lrTypes[javaName].isMultiple()) { 
       lrHtml += "<ul ${depth==0 ? 'class="dataTree"' : ''}>"
       lrEntries.eachWithIndex { entry, i -> 
       if (entry.entries) { 
         lrHtml += "<li>"
-        lrHtml += "<em>${esc(entry.labelsMap.fr)} :</em>"
+        lrHtml += "<em>${esc(entry.label)} :</em>"
         lrHtml += localReferentialWidget(wrapper, javaName, entry.entries,++depth)
         lrHtml += "</li>"
       } else {
-         lrHtml += "<li><span ${currentLrDatas?.contains(entry.key) ? 'class="checked"' : ''}>${esc(entry.labelsMap.fr)}</span>${i + 1 < lrEntries.size() ? ',' : ''}</li>"
+         lrHtml += "<li><span ${currentLrDatas?.contains(entry.key) ? 'class="checked"' : ''}>${esc(entry.label)}</span>${i + 1 < lrEntries.size() ? ',' : ''}</li>"
       } 
     } 
     lrHtml += "</ul>"
     } else { 
       lrEntries.each { entry -> 
-        lrHtml += "${currentLrDatas?.contains(entry.key) ? esc(entry.labelsMap.fr): ''}"
+        lrHtml += "${currentLrDatas?.contains(entry.key) ? esc(entry.label): ''}"
       } 
     }
-    println lrHtml
   }
 
 %>
@@ -60,7 +61,7 @@
           </p>
           <div class="response">
             <% if(requester?.title) { %>
-              ${i18n.translate('homeFolder.adult.title.' + StringUtils.uncapitalize(requester?.title.toString()))}
+              ${i18n.translate('homeFolder.adult.title.' + StringUtils.lowerCase(requester?.title.toString()))}
             <% } %>
             ${esc(requester?.firstName)}
             ${esc(requester?.lastName)}
@@ -77,9 +78,13 @@
             <% } %>
           </div>
           <p class="label">${i18n.translate('homeFolder.adult.property.email')}</p>
-          <div class="response">${esc(requester?.email)}</div>
+          <div class="response">${esc(StringUtils.defaultString(requester?.email))}</div>
           <p class="label">${i18n.translate('homeFolder.adult.property.homePhone')}</p>
-          <div class="response">${esc(requester?.homePhone)}</div>
+          <div class="response">${esc(StringUtils.defaultString(requester?.homePhone))}</div>
+          <p class="label">${i18n.translate('homeFolder.adult.property.mobilePhone')}</p>
+          <div class="response">${esc(StringUtils.defaultString(requester?.mobilePhone))}</div>
+          <p class="label">${i18n.translate('homeFolder.adult.property.officePhone')}</p>
+          <div class="response">${esc(StringUtils.defaultString(requester?.officePhone))}</div>
           
 
 
@@ -87,7 +92,8 @@
   <h2>${i18n.translate('myr.step.subject.label')}</h2>
   
     
-      <p class="label">${esc(i18n.translate('request.property.subject.label'))}</p>
+      
+          <p class="label">${esc(i18n.translate('myr.property.subject.label'))}</p>
           <div class="response">${esc(subjectIsChild && !subject?.born ? i18n.translate('request.subject.childNoBorn', subject?.fullName) : subject?.fullName)}</div>
           
 
@@ -102,7 +108,7 @@
       <p class="label">${esc(i18n.translate('myr.property.nationalite.label'))}</p>
           <div class="response">
             <% if(rqt.nationalite) { %>
-              ${esc(i18n.translate('myr.property.nationalite.' + StringUtils.uncapitalize(rqt.nationalite.toString())))}
+              ${esc(i18n.translate('myr.property.nationalite.' + EnumTool.toLowerCamelCase(rqt.nationalite.toString())))}
             <% } %>
           </div>
           
@@ -129,7 +135,7 @@
           <p class="label">${esc(i18n.translate('myr.property.country.label'))}</p>
           <div class="response">
             <% if(rqt.lieuNaissanceSujet?.country) { %>
-              ${esc(i18n.translate('myr.property.country.' + StringUtils.uncapitalize(rqt.lieuNaissanceSujet?.country.toString())))}
+              ${esc(i18n.translate('myr.property.country.' + EnumTool.toLowerCamelCase(rqt.lieuNaissanceSujet?.country.toString())))}
             <% } %>
           </div>
           
@@ -165,7 +171,7 @@
           <p class="label">${esc(i18n.translate('myr.property.departementMdph.label'))}</p>
           <div class="response">
             <% if(rqt.precedentDossierMdph?.departementMdph) { %>
-              ${esc(i18n.translate('myr.property.departementMdph.' + StringUtils.uncapitalize(rqt.precedentDossierMdph?.departementMdph.toString())))}
+              ${esc(i18n.translate('myr.property.departementMdph.' + EnumTool.toLowerCamelCase(rqt.precedentDossierMdph?.departementMdph.toString())))}
             <% } %>
           </div>
           
@@ -259,7 +265,7 @@
       <p class="label">${esc(i18n.translate('myr.property.deteneurAutoriteParentale.label'))}</p>
           <div class="response">
             <% if(rqt.deteneurAutoriteParentale) { %>
-              ${esc(i18n.translate('myr.property.deteneurAutoriteParentale.' + StringUtils.uncapitalize(rqt.deteneurAutoriteParentale.toString())))}
+              ${esc(i18n.translate('myr.property.deteneurAutoriteParentale.' + EnumTool.toLowerCamelCase(rqt.deteneurAutoriteParentale.toString())))}
             <% } %>
           </div>
           
@@ -312,7 +318,7 @@
       <p class="label">${esc(i18n.translate('myr.property.organismePayeur.label'))}</p>
           <div class="response">
             <% if(rqt.organismePayeur) { %>
-              ${esc(i18n.translate('myr.property.organismePayeur.' + StringUtils.uncapitalize(rqt.organismePayeur.toString())))}
+              ${esc(i18n.translate('myr.property.organismePayeur.' + EnumTool.toLowerCamelCase(rqt.organismePayeur.toString())))}
             <% } %>
           </div>
           
@@ -358,7 +364,7 @@
       <p class="label">${esc(i18n.translate('myr.property.situationMaritale.label'))}</p>
           <div class="response">
             <% if(rqt.situationMaritale) { %>
-              ${esc(i18n.translate('myr.property.situationMaritale.' + StringUtils.uncapitalize(rqt.situationMaritale.toString())))}
+              ${esc(i18n.translate('myr.property.situationMaritale.' + EnumTool.toLowerCamelCase(rqt.situationMaritale.toString())))}
             <% } %>
           </div>
           
@@ -403,7 +409,7 @@
       <p class="label">${esc(i18n.translate('myr.property.situationProfessionnelleVous.label'))}</p>
           <div class="response">
             <% if(rqt.situationProfessionnelleVous) { %>
-              ${esc(i18n.translate('myr.property.situationProfessionnelleVous.' + StringUtils.uncapitalize(rqt.situationProfessionnelleVous.toString())))}
+              ${esc(i18n.translate('myr.property.situationProfessionnelleVous.' + EnumTool.toLowerCamelCase(rqt.situationProfessionnelleVous.toString())))}
             <% } %>
           </div>
           
@@ -576,7 +582,7 @@
           <p class="label">${esc(i18n.translate('myr.property.categoriePensionInvalidite.label'))}</p>
           <div class="response">
             <% if(rqt.situationProfessionnelleVousBeneficiairePension?.categoriePensionInvalidite) { %>
-              ${esc(i18n.translate('myr.property.categoriePensionInvalidite.' + StringUtils.uncapitalize(rqt.situationProfessionnelleVousBeneficiairePension?.categoriePensionInvalidite.toString())))}
+              ${esc(i18n.translate('myr.property.categoriePensionInvalidite.' + EnumTool.toLowerCamelCase(rqt.situationProfessionnelleVousBeneficiairePension?.categoriePensionInvalidite.toString())))}
             <% } %>
           </div>
           
@@ -628,7 +634,7 @@
       <p class="label">${esc(i18n.translate('myr.property.situationProfessionnelleConjoint.label'))}</p>
           <div class="response">
             <% if(rqt.situationProfessionnelleConjoint) { %>
-              ${esc(i18n.translate('myr.property.situationProfessionnelleConjoint.' + StringUtils.uncapitalize(rqt.situationProfessionnelleConjoint.toString())))}
+              ${esc(i18n.translate('myr.property.situationProfessionnelleConjoint.' + EnumTool.toLowerCamelCase(rqt.situationProfessionnelleConjoint.toString())))}
             <% } %>
           </div>
           
@@ -801,7 +807,7 @@
           <p class="label">${esc(i18n.translate('myr.property.categoriePensionInvalidite.label'))}</p>
           <div class="response">
             <% if(rqt.situationProfessionnelleConjointBeneficiairePension?.categoriePensionInvalidite) { %>
-              ${esc(i18n.translate('myr.property.categoriePensionInvalidite.' + StringUtils.uncapitalize(rqt.situationProfessionnelleConjointBeneficiairePension?.categoriePensionInvalidite.toString())))}
+              ${esc(i18n.translate('myr.property.categoriePensionInvalidite.' + EnumTool.toLowerCamelCase(rqt.situationProfessionnelleConjointBeneficiairePension?.categoriePensionInvalidite.toString())))}
             <% } %>
           </div>
           
@@ -857,7 +863,7 @@
       <p class="label">${esc(i18n.translate('myr.property.situationParticuliere.label'))}</p>
           <div class="response">
             <% if(rqt.situationParticuliere) { %>
-              ${esc(i18n.translate('myr.property.situationParticuliere.' + StringUtils.uncapitalize(rqt.situationParticuliere.toString())))}
+              ${esc(i18n.translate('myr.property.situationParticuliere.' + EnumTool.toLowerCamelCase(rqt.situationParticuliere.toString())))}
             <% } %>
           </div>
           
@@ -894,7 +900,7 @@
       <p class="label">${esc(i18n.translate('myr.property.typeLogement.label'))}</p>
           <div class="response">
             <% if(rqt.typeLogement) { %>
-              ${esc(i18n.translate('myr.property.typeLogement.' + StringUtils.uncapitalize(rqt.typeLogement.toString())))}
+              ${esc(i18n.translate('myr.property.typeLogement.' + EnumTool.toLowerCamelCase(rqt.typeLogement.toString())))}
             <% } %>
           </div>
           
@@ -914,7 +920,7 @@
       <p class="label">${esc(i18n.translate('myr.property.choixProjetDeVie.label'))}</p>
           <div class="response">
             <% if(rqt.choixProjetDeVie) { %>
-              ${esc(i18n.translate('myr.property.choixProjetDeVie.' + StringUtils.uncapitalize(rqt.choixProjetDeVie.toString())))}
+              ${esc(i18n.translate('myr.property.choixProjetDeVie.' + EnumTool.toLowerCamelCase(rqt.choixProjetDeVie.toString())))}
             <% } %>
           </div>
           
@@ -1025,7 +1031,7 @@
         <p class="label">${esc(i18n.translate('myr.property.periodicite.label'))}</p>
           <div class="response">
             <% if(collectionIt.periodicite) { %>
-              ${esc(i18n.translate('myr.property.periodicite.' + StringUtils.uncapitalize(collectionIt.periodicite.toString())))}
+              ${esc(i18n.translate('myr.property.periodicite.' + EnumTool.toLowerCamelCase(collectionIt.periodicite.toString())))}
             <% } %>
           </div>
           
@@ -1128,7 +1134,7 @@
       <p class="label">${esc(i18n.translate('myr.property.choixPrestationCompensation.label'))}</p>
           <div class="response">
             <% if(rqt.choixPrestationCompensation) { %>
-              ${esc(i18n.translate('myr.property.choixPrestationCompensation.' + StringUtils.uncapitalize(rqt.choixPrestationCompensation.toString())))}
+              ${esc(i18n.translate('myr.property.choixPrestationCompensation.' + EnumTool.toLowerCamelCase(rqt.choixPrestationCompensation.toString())))}
             <% } %>
           </div>
           
@@ -1252,7 +1258,7 @@
     <% if (rqt.meansOfContact) { %>
       <% rqt.meansOfContact.type.allMeansOfContactEnums.eachWithIndex {it, i -> %>
         <span ${it == rqt.meansOfContact.type ? 'class="checked"': ''}>
-          ${i18n.translate('meansOfContact.' + StringUtils.uncapitalize(it.toString()))}
+          ${i18n.translate('meansOfContact.' + StringUtils.uncapitalize(it.legacyLabel))}
         </span>${i + 1 < rqt.meansOfContact.type.allMeansOfContactEnums.length ? ', ' : ''}
       <% } %>
     <% } else { %>

@@ -22,25 +22,24 @@ import fr.cg95.cvq.xml.common.*;
 import fr.cg95.cvq.xml.request.school.*;
 import fr.cg95.cvq.service.request.LocalReferential;
 import fr.cg95.cvq.service.request.condition.IConditionChecker;
+import javax.persistence.*;
+import org.hibernate.annotations.Index;
+import org.hibernate.annotations.Type;
 
 /**
  * Generated class file, do not edit !
- *
- * @hibernate.class
- *  table="sgr_current_school"
- *  lazy="false"
  */
+@Entity
+@Table(name="sgr_current_school")
 public class SgrCurrentSchool implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     public static final Map<String, IConditionChecker> conditions =
-        new HashMap<String, IConditionChecker>();
+        StudyGrantRequest.conditions;
 
     public SgrCurrentSchool() {
         super();
-      
-        currentSchoolCountry = fr.cg95.cvq.business.users.CountryType.FR;
       
     }
 
@@ -62,14 +61,10 @@ public class SgrCurrentSchool implements Serializable {
         SgrCurrentSchoolType sgrCurrentSchool = SgrCurrentSchoolType.Factory.newInstance();
         int i = 0;
     
-        sgrCurrentSchool.setCurrentSchoolPostalCode(this.currentSchoolPostalCode);
+        if (this.currentSchoolAddress != null)
+            sgrCurrentSchool.setCurrentSchoolAddress(this.currentSchoolAddress.modelToXml());
       
         sgrCurrentSchool.setCurrentSchoolNamePrecision(this.currentSchoolNamePrecision);
-      
-        if (this.currentSchoolCountry != null)
-            sgrCurrentSchool.setCurrentSchoolCountry(fr.cg95.cvq.xml.common.CountryType.Enum.forString(this.currentSchoolCountry.toString()));
-      
-        sgrCurrentSchool.setCurrentSchoolCity(this.currentSchoolCity);
       
         i = 0;
         if (this.currentSchoolName != null) {
@@ -89,16 +84,10 @@ public class SgrCurrentSchool implements Serializable {
         List list = new ArrayList();
         SgrCurrentSchool sgrCurrentSchool = new SgrCurrentSchool();
     
-        sgrCurrentSchool.setCurrentSchoolPostalCode(sgrCurrentSchoolDoc.getCurrentSchoolPostalCode());
+        if (sgrCurrentSchoolDoc.getCurrentSchoolAddress() != null)
+            sgrCurrentSchool.setCurrentSchoolAddress(Address.xmlToModel(sgrCurrentSchoolDoc.getCurrentSchoolAddress()));
       
         sgrCurrentSchool.setCurrentSchoolNamePrecision(sgrCurrentSchoolDoc.getCurrentSchoolNamePrecision());
-      
-        if (sgrCurrentSchoolDoc.getCurrentSchoolCountry() != null)
-            sgrCurrentSchool.setCurrentSchoolCountry(fr.cg95.cvq.business.users.CountryType.forString(sgrCurrentSchoolDoc.getCurrentSchoolCountry().toString()));
-        else
-            sgrCurrentSchool.setCurrentSchoolCountry(fr.cg95.cvq.business.users.CountryType.getDefaultCountryType());
-      
-        sgrCurrentSchool.setCurrentSchoolCity(sgrCurrentSchoolDoc.getCurrentSchoolCity());
       
         List<fr.cg95.cvq.business.request.LocalReferentialData> currentSchoolNameList = new ArrayList<fr.cg95.cvq.business.request.LocalReferentialData>(sgrCurrentSchoolDoc.sizeOfCurrentSchoolNameArray());
         for (LocalReferentialDataType object : sgrCurrentSchoolDoc.getCurrentSchoolNameArray()) {
@@ -115,28 +104,14 @@ public class SgrCurrentSchool implements Serializable {
         
           
             
-        result.setCurrentSchoolPostalCode(currentSchoolPostalCode);
+        if (currentSchoolAddress != null)
+            result.setCurrentSchoolAddress(currentSchoolAddress.clone());
       
           
         
           
             
         result.setCurrentSchoolNamePrecision(currentSchoolNamePrecision);
-      
-          
-        
-          
-            
-        if (currentSchoolCountry != null)
-            result.setCurrentSchoolCountry(currentSchoolCountry);
-        else
-            result.setCurrentSchoolCountry(fr.cg95.cvq.business.users.CountryType.getDefaultCountryType());
-      
-          
-        
-          
-            
-        result.setCurrentSchoolCity(currentSchoolCity);
       
           
         
@@ -159,55 +134,60 @@ public class SgrCurrentSchool implements Serializable {
         this.id = id;
     }
 
-    /**
-     * @hibernate.id
-     *  column="id"
-     *  generator-class="sequence"
-     */
+    @Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE)
     public final Long getId() {
         return this.id;
     }
 
   
     
-      @MaxLength(
-        
-          value = 5,
-        
-        
-        profiles = {"currentStudies"},
-        message = "currentSchoolPostalCode"
-      )
-    
       @NotNull(
         
         
+          when = "groovy:def active = true;" +
+          
+              "if (_this.currentSchoolName == null || _this.currentSchoolName.isEmpty()) return false; _this.currentSchoolName.each { active &= _this.conditions['sgrCurrentSchool.currentSchoolName'].test(it.name) };" +
+                  
+                
+              
+            
+            
+            "return active",
+        
         profiles = {"currentStudies"},
-        message = "currentSchoolPostalCode"
+        message = "currentSchoolAddress"
       )
     
-      @NotBlank(
+      @AssertValid(
         
+        
+          when = "groovy:def active = true;" +
+          
+              "if (_this.currentSchoolName == null || _this.currentSchoolName.isEmpty()) return false; _this.currentSchoolName.each { active &= _this.conditions['sgrCurrentSchool.currentSchoolName'].test(it.name) };" +
+                  
+                
+              
+            
+            
+            "return active",
         
         profiles = {"currentStudies"},
-        message = "currentSchoolPostalCode"
+        message = "currentSchoolAddress"
       )
     
-    private String currentSchoolPostalCode;
+    private fr.cg95.cvq.business.users.Address currentSchoolAddress;
 
-    public final void setCurrentSchoolPostalCode(final String currentSchoolPostalCode) {
-        this.currentSchoolPostalCode = currentSchoolPostalCode;
+    public void setCurrentSchoolAddress(final fr.cg95.cvq.business.users.Address currentSchoolAddress) {
+        this.currentSchoolAddress = currentSchoolAddress;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="current_school_postal_code"
-        *  length="5"
+    
+    @ManyToOne
+    @JoinColumn(name="current_school_address_id")
       
-    */
-    public final String getCurrentSchoolPostalCode() {
-        return this.currentSchoolPostalCode;
+    public fr.cg95.cvq.business.users.Address getCurrentSchoolAddress() {
+        return this.currentSchoolAddress;
     }
   
     
@@ -216,7 +196,8 @@ public class SgrCurrentSchool implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "if (_this.currentSchoolName == null || _this.currentSchoolName.isEmpty()) return false; _this.currentSchoolName.each { active &= _this.conditions['sgrCurrentSchool.currentSchoolName'].test(it.name) };" +
+              "if (_this.currentSchoolName == null || _this.currentSchoolName.isEmpty()) return false; _this.currentSchoolName.each { active &= _this.conditions['sgrCurrentSchool.currentSchoolName'].test(it.name) };" +
+                  
                 
               
             
@@ -232,7 +213,8 @@ public class SgrCurrentSchool implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "if (_this.currentSchoolName == null || _this.currentSchoolName.isEmpty()) return false; _this.currentSchoolName.each { active &= _this.conditions['sgrCurrentSchool.currentSchoolName'].test(it.name) };" +
+              "if (_this.currentSchoolName == null || _this.currentSchoolName.isEmpty()) return false; _this.currentSchoolName.each { active &= _this.conditions['sgrCurrentSchool.currentSchoolName'].test(it.name) };" +
+                  
                 
               
             
@@ -245,85 +227,15 @@ public class SgrCurrentSchool implements Serializable {
     
     private String currentSchoolNamePrecision;
 
-    public final void setCurrentSchoolNamePrecision(final String currentSchoolNamePrecision) {
+    public void setCurrentSchoolNamePrecision(final String currentSchoolNamePrecision) {
         this.currentSchoolNamePrecision = currentSchoolNamePrecision;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="current_school_name_precision"
-        
+    
+    @Column(name="current_school_name_precision"  )
       
-    */
-    public final String getCurrentSchoolNamePrecision() {
+    public String getCurrentSchoolNamePrecision() {
         return this.currentSchoolNamePrecision;
-    }
-  
-    
-      @NotNull(
-        
-        
-        profiles = {"currentStudies"},
-        message = "currentSchoolCountry"
-      )
-    
-    private fr.cg95.cvq.business.users.CountryType currentSchoolCountry;
-
-    public final void setCurrentSchoolCountry(final fr.cg95.cvq.business.users.CountryType currentSchoolCountry) {
-        this.currentSchoolCountry = currentSchoolCountry;
-    }
-
-    /**
-  
-        * @hibernate.property
-        *  column="current_school_country"
-        
-      
-    */
-    public final fr.cg95.cvq.business.users.CountryType getCurrentSchoolCountry() {
-        return this.currentSchoolCountry;
-    }
-  
-    
-      @MaxLength(
-        
-          value = 32,
-        
-        
-        profiles = {"currentStudies"},
-        message = "currentSchoolCity"
-      )
-    
-      @NotNull(
-        
-        
-        profiles = {"currentStudies"},
-        message = "currentSchoolCity"
-      )
-    
-      @NotBlank(
-        
-        
-        profiles = {"currentStudies"},
-        message = "currentSchoolCity"
-      )
-    
-    private String currentSchoolCity;
-
-    public final void setCurrentSchoolCity(final String currentSchoolCity) {
-        this.currentSchoolCity = currentSchoolCity;
-    }
-
-    /**
-  
-        * @hibernate.property
-        *  column="current_school_city"
-        *  length="32"
-      
-    */
-    public final String getCurrentSchoolCity() {
-        return this.currentSchoolCity;
     }
   
     
@@ -345,27 +257,17 @@ public class SgrCurrentSchool implements Serializable {
     
     private List<fr.cg95.cvq.business.request.LocalReferentialData> currentSchoolName;
 
-    public final void setCurrentSchoolName(final List<fr.cg95.cvq.business.request.LocalReferentialData> currentSchoolName) {
+    public void setCurrentSchoolName(final List<fr.cg95.cvq.business.request.LocalReferentialData> currentSchoolName) {
         this.currentSchoolName = currentSchoolName;
     }
 
-    /**
-  
-        * @hibernate.list
-        *  inverse="false"
-        *  lazy="false"
-        *  cascade="all"
-        *  table="current_school_name"
-        * @hibernate.key
-        *  column="sgr_current_school_id"
-        * @hibernate.list-index
-        *  column="current_school_name_index"
-        * @hibernate.many-to-many
-        *  column="current_school_name_id"
-        *  class="fr.cg95.cvq.business.request.LocalReferentialData"
+    
+    @ManyToMany(cascade=CascadeType.ALL)
+    @JoinTable(name="current_school_name")
+    @JoinColumn(name="current_school_name_id")
+    @OrderColumn(name="current_school_name_index")
       
-    */
-    public final List<fr.cg95.cvq.business.request.LocalReferentialData> getCurrentSchoolName() {
+    public List<fr.cg95.cvq.business.request.LocalReferentialData> getCurrentSchoolName() {
         return this.currentSchoolName;
     }
   

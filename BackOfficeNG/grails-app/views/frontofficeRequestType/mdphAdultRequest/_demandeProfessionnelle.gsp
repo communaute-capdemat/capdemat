@@ -61,8 +61,8 @@
     <label for="choixOrientationReclassement" class="required condition-orientationReclassement-filled"><g:message code="mar.property.choixOrientationReclassement.label" /> *  <span><g:message code="mar.property.choixOrientationReclassement.help" /></span></label>
             <select id="choixOrientationReclassement" name="choixOrientationReclassement" class="required condition-orientationReclassement-filled  validate-not-first ${rqt.stepStates['demandeProfessionnelle'].invalidFields.contains('choixOrientationReclassement') ? 'validation-failed' : ''}" title="<g:message code="mar.property.choixOrientationReclassement.validationError" />">
               <option value=""><g:message code="message.select.defaultOption" /></option>
-              <g:each in="${['Formation','Ordinaire','Protege']}">
-                <option value="fr.cg95.cvq.business.request.social.ChoixOrientationReclassementType_${it}" ${it == rqt.choixOrientationReclassement?.toString() ? 'selected="selected"': ''}><g:capdematEnumToText var="${it}" i18nKeyPrefix="mar.property.choixOrientationReclassement" /></option>
+              <g:each in="${['FORMATION','ORDINAIRE','PROTEGE']}">
+                <option value="${it}" ${it == rqt.choixOrientationReclassement?.toString() ? 'selected="selected"': ''}><g:capdematEnumToText var="${it}" i18nKeyPrefix="mar.property.choixOrientationReclassement" /></option>
               </g:each>
             </select>
             

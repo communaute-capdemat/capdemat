@@ -96,106 +96,31 @@ public class SchoolRegistrationRequestData implements Serializable {
 
   
     
-    private String currentSchoolAddress;
-
-    public final void setCurrentSchoolAddress(final String currentSchoolAddress) {
-        this.currentSchoolAddress = currentSchoolAddress;
-    }
-
-    /**
- 
-        * @hibernate.property
-        *  column="current_school_address"
-        
-    private String currentSchoolAddress;
-
-    public void setCurrentSchoolAddress(final String currentSchoolAddress) {
-        this.currentSchoolAddress = currentSchoolAddress;
-    }
-
- 
-    @Column(name="current_school_address"  )
       @NotNull(
         
         
-      
-    */
-    public final String getCurrentSchoolAddress() {
-        return this.currentSchoolAddress;
-    }
-  
-      
-    public String getCurrentSchoolAddress() {
-        return this.currentSchoolAddress;
-    }
-  
         profiles = {"registration"},
         message = "currentSchool"
       )
     
-    private String currentSchoolName;
-
-    public final void setCurrentSchoolName(final String currentSchoolName) {
-        this.currentSchoolName = currentSchoolName;
-    }
-
-    /**
- 
-        * @hibernate.property
-        *  column="current_school_name"
-        
-    private String currentSchoolName;
-
-    public void setCurrentSchoolName(final String currentSchoolName) {
-        this.currentSchoolName = currentSchoolName;
-    }
-
- 
-    @Column(name="current_school_name"  )
       @AssertValid(
         
         
         profiles = {"registration"},
         message = "currentSchool"
       )
-    */
-    public final String getCurrentSchoolName() {
-        return this.currentSchoolName;
-    }
-  
-    public String getCurrentSchoolName() {
-        return this.currentSchoolName;
-    }
-  
     
     private fr.cg95.cvq.business.request.school.CurrentSchool currentSchool;
 
-    public final void setCurrentSection(final fr.cg95.cvq.business.users.SectionType currentSection) {
-        this.currentSection = currentSection;
-    public void setCurrentSection(final fr.cg95.cvq.business.users.SectionType currentSection) {
-        this.currentSection = currentSection;
-    public final void setCurrentSchool(final fr.cg95.cvq.business.request.school.CurrentSchool currentSchool) {
+    public void setCurrentSchool(final fr.cg95.cvq.business.request.school.CurrentSchool currentSchool) {
         this.currentSchool = currentSchool;
     }
 
  
-        * @hibernate.property
-        *  column="current_section"
-        *  length="32"
-    @Enumerated(EnumType.STRING)
-    @Column(name="current_section" , length=32 )
-        * @hibernate.many-to-one
-        *  cascade="all"
-        *  column="current_school_id"
-        *  class="fr.cg95.cvq.business.request.school.CurrentSchool"
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name="current_school_id")
       
-    */
-    public final fr.cg95.cvq.business.users.SectionType getCurrentSection() {
-        return this.currentSection;
-    public fr.cg95.cvq.business.users.SectionType getCurrentSection() {
-        return this.currentSection;
-    */
-    public final fr.cg95.cvq.business.request.school.CurrentSchool getCurrentSchool() {
+    public fr.cg95.cvq.business.request.school.CurrentSchool getCurrentSchool() {
         return this.currentSchool;
     }
   

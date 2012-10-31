@@ -22,20 +22,21 @@ import fr.cg95.cvq.xml.common.*;
 import fr.cg95.cvq.xml.request.military.*;
 import fr.cg95.cvq.service.request.LocalReferential;
 import fr.cg95.cvq.service.request.condition.IConditionChecker;
+import javax.persistence.*;
+import org.hibernate.annotations.Index;
+import org.hibernate.annotations.Type;
 
 /**
  * Generated class file, do not edit !
- *
- * @hibernate.class
- *  table="military_mother_information"
- *  lazy="false"
  */
+@Entity
+@Table(name="military_mother_information")
 public class MilitaryMotherInformation implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     public static final Map<String, IConditionChecker> conditions =
-        new HashMap<String, IConditionChecker>();
+        MilitaryCensusRequest.conditions;
 
     public MilitaryMotherInformation() {
         super();
@@ -71,17 +72,17 @@ public class MilitaryMotherInformation implements Serializable {
         militaryMotherInformation.setMotherFirstName(this.motherFirstName);
       
         if (this.motherBirthCountry != null)
-            militaryMotherInformation.setMotherBirthCountry(fr.cg95.cvq.xml.common.CountryType.Enum.forString(this.motherBirthCountry.toString()));
+            militaryMotherInformation.setMotherBirthCountry(fr.cg95.cvq.xml.common.CountryType.Enum.forString(this.motherBirthCountry.getLegacyLabel()));
       
         if (this.motherNationality != null)
-            militaryMotherInformation.setMotherNationality(fr.cg95.cvq.xml.common.FullNationalityType.Enum.forString(this.motherNationality.toString()));
+            militaryMotherInformation.setMotherNationality(fr.cg95.cvq.xml.common.FullNationalityType.Enum.forString(this.motherNationality.getLegacyLabel()));
       
         militaryMotherInformation.setMotherBirthCity(this.motherBirthCity);
       
         militaryMotherInformation.setMotherLastName(this.motherLastName);
       
         if (this.motherBirthDepartment != null)
-            militaryMotherInformation.setMotherBirthDepartment(fr.cg95.cvq.xml.common.InseeDepartementCodeType.Enum.forString(this.motherBirthDepartment.toString()));
+            militaryMotherInformation.setMotherBirthDepartment(fr.cg95.cvq.xml.common.InseeDepartementCodeType.Enum.forString(this.motherBirthDepartment.getLegacyLabel()));
       
         return militaryMotherInformation;
     }
@@ -185,11 +186,8 @@ public class MilitaryMotherInformation implements Serializable {
         this.id = id;
     }
 
-    /**
-     * @hibernate.id
-     *  column="id"
-     *  generator-class="sequence"
-     */
+    @Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE)
     public final Long getId() {
         return this.id;
     }
@@ -205,18 +203,14 @@ public class MilitaryMotherInformation implements Serializable {
     
     private java.util.Date motherBirthDate;
 
-    public final void setMotherBirthDate(final java.util.Date motherBirthDate) {
+    public void setMotherBirthDate(final java.util.Date motherBirthDate) {
         this.motherBirthDate = motherBirthDate;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="mother_birth_date"
-        
+    
+    @Column(name="mother_birth_date"  )
       
-    */
-    public final java.util.Date getMotherBirthDate() {
+    public java.util.Date getMotherBirthDate() {
         return this.motherBirthDate;
     }
   
@@ -246,36 +240,29 @@ public class MilitaryMotherInformation implements Serializable {
     
     private String motherFirstName;
 
-    public final void setMotherFirstName(final String motherFirstName) {
+    public void setMotherFirstName(final String motherFirstName) {
         this.motherFirstName = motherFirstName;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="mother_first_name"
-        *  length="38"
+    
+    @Column(name="mother_first_name" , length=38 )
       
-    */
-    public final String getMotherFirstName() {
+    public String getMotherFirstName() {
         return this.motherFirstName;
     }
   
     
     private fr.cg95.cvq.business.users.CountryType motherBirthCountry;
 
-    public final void setMotherBirthCountry(final fr.cg95.cvq.business.users.CountryType motherBirthCountry) {
+    public void setMotherBirthCountry(final fr.cg95.cvq.business.users.CountryType motherBirthCountry) {
         this.motherBirthCountry = motherBirthCountry;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="mother_birth_country"
-        
+    
+    @Enumerated(EnumType.STRING)
+    @Column(name="mother_birth_country"  )
       
-    */
-    public final fr.cg95.cvq.business.users.CountryType getMotherBirthCountry() {
+    public fr.cg95.cvq.business.users.CountryType getMotherBirthCountry() {
         return this.motherBirthCountry;
     }
   
@@ -289,18 +276,15 @@ public class MilitaryMotherInformation implements Serializable {
     
     private fr.cg95.cvq.business.users.FullNationalityType motherNationality;
 
-    public final void setMotherNationality(final fr.cg95.cvq.business.users.FullNationalityType motherNationality) {
+    public void setMotherNationality(final fr.cg95.cvq.business.users.FullNationalityType motherNationality) {
         this.motherNationality = motherNationality;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="mother_nationality"
-        
+    
+    @Enumerated(EnumType.STRING)
+    @Column(name="mother_nationality"  )
       
-    */
-    public final fr.cg95.cvq.business.users.FullNationalityType getMotherNationality() {
+    public fr.cg95.cvq.business.users.FullNationalityType getMotherNationality() {
         return this.motherNationality;
     }
   
@@ -321,18 +305,14 @@ public class MilitaryMotherInformation implements Serializable {
     
     private String motherBirthCity;
 
-    public final void setMotherBirthCity(final String motherBirthCity) {
+    public void setMotherBirthCity(final String motherBirthCity) {
         this.motherBirthCity = motherBirthCity;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="mother_birth_city"
-        
+    
+    @Column(name="mother_birth_city"  )
       
-    */
-    public final String getMotherBirthCity() {
+    public String getMotherBirthCity() {
         return this.motherBirthCity;
     }
   
@@ -362,36 +342,29 @@ public class MilitaryMotherInformation implements Serializable {
     
     private String motherLastName;
 
-    public final void setMotherLastName(final String motherLastName) {
+    public void setMotherLastName(final String motherLastName) {
         this.motherLastName = motherLastName;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="mother_last_name"
-        *  length="38"
+    
+    @Column(name="mother_last_name" , length=38 )
       
-    */
-    public final String getMotherLastName() {
+    public String getMotherLastName() {
         return this.motherLastName;
     }
   
     
     private fr.cg95.cvq.business.users.InseeDepartementCodeType motherBirthDepartment;
 
-    public final void setMotherBirthDepartment(final fr.cg95.cvq.business.users.InseeDepartementCodeType motherBirthDepartment) {
+    public void setMotherBirthDepartment(final fr.cg95.cvq.business.users.InseeDepartementCodeType motherBirthDepartment) {
         this.motherBirthDepartment = motherBirthDepartment;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="mother_birth_department"
-        
+    
+    @Enumerated(EnumType.STRING)
+    @Column(name="mother_birth_department"  )
       
-    */
-    public final fr.cg95.cvq.business.users.InseeDepartementCodeType getMotherBirthDepartment() {
+    public fr.cg95.cvq.business.users.InseeDepartementCodeType getMotherBirthDepartment() {
         return this.motherBirthDepartment;
     }
   

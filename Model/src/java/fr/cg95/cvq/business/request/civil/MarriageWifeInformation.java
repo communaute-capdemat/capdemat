@@ -22,20 +22,21 @@ import fr.cg95.cvq.xml.common.*;
 import fr.cg95.cvq.xml.request.civil.*;
 import fr.cg95.cvq.service.request.LocalReferential;
 import fr.cg95.cvq.service.request.condition.IConditionChecker;
+import javax.persistence.*;
+import org.hibernate.annotations.Index;
+import org.hibernate.annotations.Type;
 
 /**
  * Generated class file, do not edit !
- *
- * @hibernate.class
- *  table="marriage_wife_information"
- *  lazy="false"
  */
+@Entity
+@Table(name="marriage_wife_information")
 public class MarriageWifeInformation implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     public static final Map<String, IConditionChecker> conditions =
-        new HashMap<String, IConditionChecker>();
+        MarriageDetailsRequest.conditions;
 
     public MarriageWifeInformation() {
         super();
@@ -105,11 +106,8 @@ public class MarriageWifeInformation implements Serializable {
         this.id = id;
     }
 
-    /**
-     * @hibernate.id
-     *  column="id"
-     *  generator-class="sequence"
-     */
+    @Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE)
     public final Long getId() {
         return this.id;
     }
@@ -132,18 +130,14 @@ public class MarriageWifeInformation implements Serializable {
     
     private String marriageWifeFirstNames;
 
-    public final void setMarriageWifeFirstNames(final String marriageWifeFirstNames) {
+    public void setMarriageWifeFirstNames(final String marriageWifeFirstNames) {
         this.marriageWifeFirstNames = marriageWifeFirstNames;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="marriage_wife_first_names"
-        
+    
+    @Column(name="marriage_wife_first_names"  )
       
-    */
-    public final String getMarriageWifeFirstNames() {
+    public String getMarriageWifeFirstNames() {
         return this.marriageWifeFirstNames;
     }
   
@@ -173,18 +167,14 @@ public class MarriageWifeInformation implements Serializable {
     
     private String marriageWifeLastName;
 
-    public final void setMarriageWifeLastName(final String marriageWifeLastName) {
+    public void setMarriageWifeLastName(final String marriageWifeLastName) {
         this.marriageWifeLastName = marriageWifeLastName;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="marriage_wife_last_name"
-        *  length="38"
+    
+    @Column(name="marriage_wife_last_name" , length=38 )
       
-    */
-    public final String getMarriageWifeLastName() {
+    public String getMarriageWifeLastName() {
         return this.marriageWifeLastName;
     }
   

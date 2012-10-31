@@ -22,20 +22,21 @@ import fr.cg95.cvq.xml.common.*;
 import fr.cg95.cvq.xml.request.social.*;
 import fr.cg95.cvq.service.request.LocalReferential;
 import fr.cg95.cvq.service.request.condition.IConditionChecker;
+import javax.persistence.*;
+import org.hibernate.annotations.Index;
+import org.hibernate.annotations.Type;
 
 /**
  * Generated class file, do not edit !
- *
- * @hibernate.class
- *  table="myr_situation_professionnelle_retraite"
- *  lazy="false"
  */
+@Entity
+@Table(name="myr_situation_professionnelle_retraite")
 public class MyrSituationProfessionnelleRetraite implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     public static final Map<String, IConditionChecker> conditions =
-        new HashMap<String, IConditionChecker>();
+        MdphYouthRequest.conditions;
 
     public MyrSituationProfessionnelleRetraite() {
         super();
@@ -124,11 +125,8 @@ public class MyrSituationProfessionnelleRetraite implements Serializable {
         this.id = id;
     }
 
-    /**
-     * @hibernate.id
-     *  column="id"
-     *  generator-class="sequence"
-     */
+    @Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE)
     public final Long getId() {
         return this.id;
     }
@@ -144,18 +142,14 @@ public class MyrSituationProfessionnelleRetraite implements Serializable {
     
     private java.util.Date retraiteDepuisLe;
 
-    public final void setRetraiteDepuisLe(final java.util.Date retraiteDepuisLe) {
+    public void setRetraiteDepuisLe(final java.util.Date retraiteDepuisLe) {
         this.retraiteDepuisLe = retraiteDepuisLe;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="retraite_depuis_le"
-        
+    
+    @Column(name="retraite_depuis_le"  )
       
-    */
-    public final java.util.Date getRetraiteDepuisLe() {
+    public java.util.Date getRetraiteDepuisLe() {
         return this.retraiteDepuisLe;
     }
   
@@ -169,18 +163,14 @@ public class MyrSituationProfessionnelleRetraite implements Serializable {
     
     private Boolean pensionRetraite;
 
-    public final void setPensionRetraite(final Boolean pensionRetraite) {
+    public void setPensionRetraite(final Boolean pensionRetraite) {
         this.pensionRetraite = pensionRetraite;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="pension_retraite"
-        
+    
+    @Column(name="pension_retraite"  )
       
-    */
-    public final Boolean getPensionRetraite() {
+    public Boolean getPensionRetraite() {
         return this.pensionRetraite;
     }
   
@@ -194,18 +184,14 @@ public class MyrSituationProfessionnelleRetraite implements Serializable {
     
     private Boolean supplementairePersonneAgee;
 
-    public final void setSupplementairePersonneAgee(final Boolean supplementairePersonneAgee) {
+    public void setSupplementairePersonneAgee(final Boolean supplementairePersonneAgee) {
         this.supplementairePersonneAgee = supplementairePersonneAgee;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="supplementaire_personne_agee"
-        
+    
+    @Column(name="supplementaire_personne_agee"  )
       
-    */
-    public final Boolean getSupplementairePersonneAgee() {
+    public Boolean getSupplementairePersonneAgee() {
         return this.supplementairePersonneAgee;
     }
   

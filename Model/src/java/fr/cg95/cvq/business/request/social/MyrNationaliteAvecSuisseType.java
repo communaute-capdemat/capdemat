@@ -1,42 +1,42 @@
 package fr.cg95.cvq.business.request.social;
 
-import fr.cg95.cvq.dao.hibernate.PersistentStringEnum;
-
 /**
  * Generated class file, do not edit !
  */
-public final class MyrNationaliteAvecSuisseType extends PersistentStringEnum {
+public enum MyrNationaliteAvecSuisseType {
 
-    private static final long serialVersionUID = 1L;
-  
-    public static final MyrNationaliteAvecSuisseType FRANCAISE = new MyrNationaliteAvecSuisseType("Francaise");
-  
-    public static final MyrNationaliteAvecSuisseType EEESUISSE = new MyrNationaliteAvecSuisseType("Eeesuisse");
-  
-    public static final MyrNationaliteAvecSuisseType AUTRE = new MyrNationaliteAvecSuisseType("Autre");
-  
+    FRANCAISE("Francaise"),
+    EEESUISSE("Eeesuisse"),
+    AUTRE("Autre");
+
 
     /**
-     * Prevent instantiation and subclassing with a private constructor.
+     * only for backward use MyrNationaliteAvecSuisseType.values() instead
+     * @deprecated only for backward
      */
-    private MyrNationaliteAvecSuisseType(String value) {
-        super(value);
+    @Deprecated 
+    public static MyrNationaliteAvecSuisseType[] allMyrNationaliteAvecSuisseTypes = MyrNationaliteAvecSuisseType.values();
+
+    private String legacyLabel;
+
+    private MyrNationaliteAvecSuisseType(String legacyLabel){
+        this.legacyLabel = legacyLabel;
     }
 
-    public MyrNationaliteAvecSuisseType() {}
-
-    public static MyrNationaliteAvecSuisseType[] allMyrNationaliteAvecSuisseTypes = {
-        FRANCAISE,
-        EEESUISSE,
-        AUTRE
-    };
+    public String getLegacyLabel() {
+        return legacyLabel;
+    }
 
     public static MyrNationaliteAvecSuisseType getDefaultMyrNationaliteAvecSuisseType() {
         return null;
     }
 
+    /**
+     * @deprecated use valueOf instead. Watchout! you must provid something of MyrNationaliteAvecSuisseType.something
+     * not the value of the name attribut.
+     */
     public static MyrNationaliteAvecSuisseType forString(final String enumAsString) {
-        for (MyrNationaliteAvecSuisseType value : allMyrNationaliteAvecSuisseTypes)
+        for (MyrNationaliteAvecSuisseType value : values())
             if (value.toString().equals(enumAsString))
                 return value;
         return getDefaultMyrNationaliteAvecSuisseType();

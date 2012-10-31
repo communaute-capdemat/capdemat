@@ -9,6 +9,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.HashMap;
 import org.joda.time.LocalTime;
 
 import net.sf.oval.constraint.*;
@@ -179,7 +180,7 @@ public class SagrMembreBureau implements Serializable {
         this.prenomMembre = prenomMembre;
     }
 
-
+    
     @Column(name="prenom_membre" , length=38 )
       
     public String getPrenomMembre() {
@@ -216,7 +217,7 @@ public class SagrMembreBureau implements Serializable {
         this.nomMembre = nomMembre;
     }
 
-
+    
     @Column(name="nom_membre" , length=38 )
       
     public String getNomMembre() {
@@ -230,7 +231,7 @@ public class SagrMembreBureau implements Serializable {
         this.emailMembre = emailMembre;
     }
 
-
+    
     @Column(name="email_membre"  )
       
     public String getEmailMembre() {
@@ -251,7 +252,7 @@ public class SagrMembreBureau implements Serializable {
         this.roleMembre = roleMembre;
     }
 
-
+    
     @Enumerated(EnumType.STRING)
     @Column(name="role_membre"  )
       
@@ -275,7 +276,7 @@ public class SagrMembreBureau implements Serializable {
         this.telephoneMembre = telephoneMembre;
     }
 
-
+    
     @Column(name="telephone_membre" , length=10 )
       
     public String getTelephoneMembre() {

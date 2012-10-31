@@ -1,45 +1,43 @@
 package fr.cg95.cvq.business.request.social;
 
-import fr.cg95.cvq.dao.hibernate.PersistentStringEnum;
-
 /**
  * Generated class file, do not edit !
  */
-public final class RepresentantLegalType extends PersistentStringEnum {
+public enum RepresentantLegalType {
 
-    private static final long serialVersionUID = 1L;
-  
-    public static final RepresentantLegalType TUTELLE = new RepresentantLegalType("Tutelle");
-  
-    public static final RepresentantLegalType CURATELLE_SIMPLE = new RepresentantLegalType("CuratelleSimple");
-  
-    public static final RepresentantLegalType CURATELLE_RENFORCEE = new RepresentantLegalType("CuratelleRenforcee");
-  
-    public static final RepresentantLegalType AUTRE = new RepresentantLegalType("Autre");
-  
+    TUTELLE("Tutelle"),
+    CURATELLE_SIMPLE("CuratelleSimple"),
+    CURATELLE_RENFORCEE("CuratelleRenforcee"),
+    AUTRE("Autre");
+
 
     /**
-     * Prevent instantiation and subclassing with a private constructor.
+     * only for backward use RepresentantLegalType.values() instead
+     * @deprecated only for backward
      */
-    private RepresentantLegalType(String value) {
-        super(value);
+    @Deprecated 
+    public static RepresentantLegalType[] allRepresentantLegalTypes = RepresentantLegalType.values();
+
+    private String legacyLabel;
+
+    private RepresentantLegalType(String legacyLabel){
+        this.legacyLabel = legacyLabel;
     }
 
-    public RepresentantLegalType() {}
-
-    public static RepresentantLegalType[] allRepresentantLegalTypes = {
-        TUTELLE,
-        CURATELLE_SIMPLE,
-        CURATELLE_RENFORCEE,
-        AUTRE
-    };
+    public String getLegacyLabel() {
+        return legacyLabel;
+    }
 
     public static RepresentantLegalType getDefaultRepresentantLegalType() {
         return null;
     }
 
+    /**
+     * @deprecated use valueOf instead. Watchout! you must provid something of RepresentantLegalType.something
+     * not the value of the name attribut.
+     */
     public static RepresentantLegalType forString(final String enumAsString) {
-        for (RepresentantLegalType value : allRepresentantLegalTypes)
+        for (RepresentantLegalType value : values())
             if (value.toString().equals(enumAsString))
                 return value;
         return getDefaultRepresentantLegalType();

@@ -22,20 +22,21 @@ import fr.cg95.cvq.xml.common.*;
 import fr.cg95.cvq.xml.request.school.*;
 import fr.cg95.cvq.service.request.LocalReferential;
 import fr.cg95.cvq.service.request.condition.IConditionChecker;
+import javax.persistence.*;
+import org.hibernate.annotations.Index;
+import org.hibernate.annotations.Type;
 
 /**
  * Generated class file, do not edit !
- *
- * @hibernate.class
- *  table="dccrr_mere"
- *  lazy="false"
  */
+@Entity
+@Table(name="dccrr_mere")
 public class DccrrMere implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     public static final Map<String, IConditionChecker> conditions =
-        new HashMap<String, IConditionChecker>();
+        DayCareCenterRegistrationRequest.conditions;
 
     public DccrrMere() {
         super();
@@ -76,7 +77,7 @@ public class DccrrMere implements Serializable {
         dccrrMere.setProfessionMere(this.professionMere);
       
         if (this.situationActuelleMere != null)
-            dccrrMere.setSituationActuelleMere(fr.cg95.cvq.xml.request.school.ChoixSituationActuelle.Enum.forString(this.situationActuelleMere.toString()));
+            dccrrMere.setSituationActuelleMere(fr.cg95.cvq.xml.request.school.ChoixSituationActuelle.Enum.forString(this.situationActuelleMere.getLegacyLabel()));
       
         dccrrMere.setHorairesTravailMercrediMere(this.horairesTravailMercrediMere);
       
@@ -205,11 +206,8 @@ public class DccrrMere implements Serializable {
         this.id = id;
     }
 
-    /**
-     * @hibernate.id
-     *  column="id"
-     *  generator-class="sequence"
-     */
+    @Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE)
     public final Long getId() {
         return this.id;
     }
@@ -218,162 +216,127 @@ public class DccrrMere implements Serializable {
     
     private String horairesReguliersMere;
 
-    public final void setHorairesReguliersMere(final String horairesReguliersMere) {
+    public void setHorairesReguliersMere(final String horairesReguliersMere) {
         this.horairesReguliersMere = horairesReguliersMere;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="horaires_reguliers_mere"
-        
+    
+    @Column(name="horaires_reguliers_mere"  )
       
-    */
-    public final String getHorairesReguliersMere() {
+    public String getHorairesReguliersMere() {
         return this.horairesReguliersMere;
     }
   
     
     private String horairesTravailJeudiMere;
 
-    public final void setHorairesTravailJeudiMere(final String horairesTravailJeudiMere) {
+    public void setHorairesTravailJeudiMere(final String horairesTravailJeudiMere) {
         this.horairesTravailJeudiMere = horairesTravailJeudiMere;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="horaires_travail_jeudi_mere"
-        
+    
+    @Column(name="horaires_travail_jeudi_mere"  )
       
-    */
-    public final String getHorairesTravailJeudiMere() {
+    public String getHorairesTravailJeudiMere() {
         return this.horairesTravailJeudiMere;
     }
   
     
     private Boolean estHorairesReguliersMere;
 
-    public final void setEstHorairesReguliersMere(final Boolean estHorairesReguliersMere) {
+    public void setEstHorairesReguliersMere(final Boolean estHorairesReguliersMere) {
         this.estHorairesReguliersMere = estHorairesReguliersMere;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="est_horaires_reguliers_mere"
-        
+    
+    @Column(name="est_horaires_reguliers_mere"  )
       
-    */
-    public final Boolean getEstHorairesReguliersMere() {
+    public Boolean getEstHorairesReguliersMere() {
         return this.estHorairesReguliersMere;
     }
   
     
     private String horairesTravailMardiMere;
 
-    public final void setHorairesTravailMardiMere(final String horairesTravailMardiMere) {
+    public void setHorairesTravailMardiMere(final String horairesTravailMardiMere) {
         this.horairesTravailMardiMere = horairesTravailMardiMere;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="horaires_travail_mardi_mere"
-        
+    
+    @Column(name="horaires_travail_mardi_mere"  )
       
-    */
-    public final String getHorairesTravailMardiMere() {
+    public String getHorairesTravailMardiMere() {
         return this.horairesTravailMardiMere;
     }
   
     
     private String horairesTravailVendrediMere;
 
-    public final void setHorairesTravailVendrediMere(final String horairesTravailVendrediMere) {
+    public void setHorairesTravailVendrediMere(final String horairesTravailVendrediMere) {
         this.horairesTravailVendrediMere = horairesTravailVendrediMere;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="horaires_travail_vendredi_mere"
-        
+    
+    @Column(name="horaires_travail_vendredi_mere"  )
       
-    */
-    public final String getHorairesTravailVendrediMere() {
+    public String getHorairesTravailVendrediMere() {
         return this.horairesTravailVendrediMere;
     }
   
     
     private String professionMere;
 
-    public final void setProfessionMere(final String professionMere) {
+    public void setProfessionMere(final String professionMere) {
         this.professionMere = professionMere;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="profession_mere"
-        
+    
+    @Column(name="profession_mere"  )
       
-    */
-    public final String getProfessionMere() {
+    public String getProfessionMere() {
         return this.professionMere;
     }
   
     
     private fr.cg95.cvq.business.request.school.ChoixSituationActuelle situationActuelleMere;
 
-    public final void setSituationActuelleMere(final fr.cg95.cvq.business.request.school.ChoixSituationActuelle situationActuelleMere) {
+    public void setSituationActuelleMere(final fr.cg95.cvq.business.request.school.ChoixSituationActuelle situationActuelleMere) {
         this.situationActuelleMere = situationActuelleMere;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="situation_actuelle_mere"
-        
+    
+    @Enumerated(EnumType.STRING)
+    @Column(name="situation_actuelle_mere"  )
       
-    */
-    public final fr.cg95.cvq.business.request.school.ChoixSituationActuelle getSituationActuelleMere() {
+    public fr.cg95.cvq.business.request.school.ChoixSituationActuelle getSituationActuelleMere() {
         return this.situationActuelleMere;
     }
   
     
     private String horairesTravailMercrediMere;
 
-    public final void setHorairesTravailMercrediMere(final String horairesTravailMercrediMere) {
+    public void setHorairesTravailMercrediMere(final String horairesTravailMercrediMere) {
         this.horairesTravailMercrediMere = horairesTravailMercrediMere;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="horaires_travail_mercredi_mere"
-        
+    
+    @Column(name="horaires_travail_mercredi_mere"  )
       
-    */
-    public final String getHorairesTravailMercrediMere() {
+    public String getHorairesTravailMercrediMere() {
         return this.horairesTravailMercrediMere;
     }
   
     
     private String communeLieuTravailMere;
 
-    public final void setCommuneLieuTravailMere(final String communeLieuTravailMere) {
+    public void setCommuneLieuTravailMere(final String communeLieuTravailMere) {
         this.communeLieuTravailMere = communeLieuTravailMere;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="commune_lieu_travail_mere"
-        
+    
+    @Column(name="commune_lieu_travail_mere"  )
       
-    */
-    public final String getCommuneLieuTravailMere() {
+    public String getCommuneLieuTravailMere() {
         return this.communeLieuTravailMere;
     }
   
@@ -383,7 +346,8 @@ public class DccrrMere implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['dccrrMere.situationActuelleMere'].test(_this.situationActuelleMere.toString());" +
+              "active &= _this.conditions['dccrrMere.situationActuelleMere'].test(_this.situationActuelleMere.toString());" +
+                  
                 
               
             
@@ -399,7 +363,8 @@ public class DccrrMere implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['dccrrMere.situationActuelleMere'].test(_this.situationActuelleMere.toString());" +
+              "active &= _this.conditions['dccrrMere.situationActuelleMere'].test(_this.situationActuelleMere.toString());" +
+                  
                 
               
             
@@ -412,36 +377,28 @@ public class DccrrMere implements Serializable {
     
     private String precisionAutreSituationActuelleMere;
 
-    public final void setPrecisionAutreSituationActuelleMere(final String precisionAutreSituationActuelleMere) {
+    public void setPrecisionAutreSituationActuelleMere(final String precisionAutreSituationActuelleMere) {
         this.precisionAutreSituationActuelleMere = precisionAutreSituationActuelleMere;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="precision_autre_situation_actuelle_mere"
-        
+    
+    @Column(name="precision_autre_situation_actuelle_mere"  )
       
-    */
-    public final String getPrecisionAutreSituationActuelleMere() {
+    public String getPrecisionAutreSituationActuelleMere() {
         return this.precisionAutreSituationActuelleMere;
     }
   
     
     private String horairesTravailLundiMere;
 
-    public final void setHorairesTravailLundiMere(final String horairesTravailLundiMere) {
+    public void setHorairesTravailLundiMere(final String horairesTravailLundiMere) {
         this.horairesTravailLundiMere = horairesTravailLundiMere;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="horaires_travail_lundi_mere"
-        
+    
+    @Column(name="horaires_travail_lundi_mere"  )
       
-    */
-    public final String getHorairesTravailLundiMere() {
+    public String getHorairesTravailLundiMere() {
         return this.horairesTravailLundiMere;
     }
   

@@ -37,7 +37,6 @@ public class DhrNotRealAsset implements Serializable {
 
     public static final Map<String, IConditionChecker> conditions =
         DomesticHelpRequest.conditions;
-        new HashMap<String, IConditionChecker>();
 
     public DhrNotRealAsset() {
         super();
@@ -239,7 +238,7 @@ public class DhrNotRealAsset implements Serializable {
         this.dhrNotRealAssetValue = dhrNotRealAssetValue;
     }
 
-
+    
     @Column(name="dhr_not_real_asset_value" , columnDefinition="bytea" )
     @Type(type="serializable") //Hack see http://capdemat.capwebct.fr/ticket/338
       
@@ -253,7 +252,8 @@ public class DhrNotRealAsset implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['dhrNotRealAsset.dhrNotRealAssetKind'].test(_this.dhrNotRealAssetKind.toString());" +
+              "active &= _this.conditions['dhrNotRealAsset.dhrNotRealAssetKind'].test(_this.dhrNotRealAssetKind.toString());" +
+                  
                 
               
             
@@ -269,7 +269,8 @@ public class DhrNotRealAsset implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['dhrNotRealAsset.dhrNotRealAssetKind'].test(_this.dhrNotRealAssetKind.toString());" +
+              "active &= _this.conditions['dhrNotRealAsset.dhrNotRealAssetKind'].test(_this.dhrNotRealAssetKind.toString());" +
+                  
                 
               
             
@@ -286,7 +287,7 @@ public class DhrNotRealAsset implements Serializable {
         this.dhrNotRealAssetAddress = dhrNotRealAssetAddress;
     }
 
-
+    
     @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name="dhr_not_real_asset_address_id")
       
@@ -308,7 +309,7 @@ public class DhrNotRealAsset implements Serializable {
         this.dhrNotRealAssetDate = dhrNotRealAssetDate;
     }
 
-
+    
     @Column(name="dhr_not_real_asset_date"  )
       
     public java.util.Date getDhrNotRealAssetDate() {
@@ -345,7 +346,7 @@ public class DhrNotRealAsset implements Serializable {
         this.dhrNotRealAssetNotaryName = dhrNotRealAssetNotaryName;
     }
 
-
+    
     @Column(name="dhr_not_real_asset_notary_name" , length=38 )
       
     public String getDhrNotRealAssetNotaryName() {
@@ -382,7 +383,7 @@ public class DhrNotRealAsset implements Serializable {
         this.dhrNotRealAssetBeneficiaryName = dhrNotRealAssetBeneficiaryName;
     }
 
-
+    
     @Column(name="dhr_not_real_asset_beneficiary_name" , length=38 )
       
     public String getDhrNotRealAssetBeneficiaryName() {
@@ -419,7 +420,7 @@ public class DhrNotRealAsset implements Serializable {
         this.dhrNotRealAssetBeneficiaryFirstName = dhrNotRealAssetBeneficiaryFirstName;
     }
 
-
+    
     @Column(name="dhr_not_real_asset_beneficiary_first_name" , length=38 )
       
     public String getDhrNotRealAssetBeneficiaryFirstName() {
@@ -440,7 +441,7 @@ public class DhrNotRealAsset implements Serializable {
         this.dhrNotRealAssetType = dhrNotRealAssetType;
     }
 
-
+    
     @Enumerated(EnumType.STRING)
     @Column(name="dhr_not_real_asset_type"  )
       
@@ -469,7 +470,7 @@ public class DhrNotRealAsset implements Serializable {
         this.dhrNotRealAssetBeneficiaryAddress = dhrNotRealAssetBeneficiaryAddress;
     }
 
-
+    
     @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name="dhr_not_real_asset_beneficiary_address_id")
       
@@ -498,7 +499,7 @@ public class DhrNotRealAsset implements Serializable {
         this.dhrNotRealAssetNotaryAddress = dhrNotRealAssetNotaryAddress;
     }
 
-
+    
     @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name="dhr_not_real_asset_notary_address_id")
       
@@ -520,7 +521,7 @@ public class DhrNotRealAsset implements Serializable {
         this.dhrNotRealAssetKind = dhrNotRealAssetKind;
     }
 
-
+    
     @Enumerated(EnumType.STRING)
     @Column(name="dhr_not_real_asset_kind"  )
       

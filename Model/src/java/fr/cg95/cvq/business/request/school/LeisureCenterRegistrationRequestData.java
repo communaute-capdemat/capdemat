@@ -59,6 +59,13 @@ public class LeisureCenterRegistrationRequestData implements Serializable {
         
           
             
+        if (centresLoisirs != null)
+            result.setCentresLoisirs(centresLoisirs.clone());
+      
+          
+        
+          
+            
         result.setEstDerogation(estDerogation);
       
           
@@ -71,47 +78,18 @@ public class LeisureCenterRegistrationRequestData implements Serializable {
         
           
             
-        result.setIdArret(idArret);
-      
-          
-        
-          
-            
-        result.setIdCentreLoisirs(idCentreLoisirs);
-      
-          
-        
-          
-            
-        result.setIdLigne(idLigne);
-      
-          
-        
-          
-            
-        result.setLabelArret(labelArret);
-      
-          
-        
-          
-            
-        result.setLabelCentreLoisirs(labelCentreLoisirs);
-      
-          
-        
-          
-            
-        result.setLabelLigne(labelLigne);
-      
-          
-        
-          
-            
         List<fr.cg95.cvq.business.request.LocalReferentialData> motifsDerogationCentreLoisirsList = new ArrayList<fr.cg95.cvq.business.request.LocalReferentialData>();
         for (LocalReferentialData object : motifsDerogationCentreLoisirs) {
             motifsDerogationCentreLoisirsList.add(object.clone());
         }
         result.setMotifsDerogationCentreLoisirs(motifsDerogationCentreLoisirsList);
+      
+          
+        
+          
+            
+        if (transports != null)
+            result.setTransports(transports.clone());
       
           
         
@@ -141,6 +119,35 @@ public class LeisureCenterRegistrationRequestData implements Serializable {
       
     public Boolean getAcceptationReglementInterieur() {
         return this.acceptationReglementInterieur;
+    }
+  
+    
+      @NotNull(
+        
+        
+        profiles = {"enfant"},
+        message = "centresLoisirs"
+      )
+    
+      @AssertValid(
+        
+        
+        profiles = {"enfant"},
+        message = "centresLoisirs"
+      )
+    
+    private fr.cg95.cvq.business.request.school.CentreLoisirs centresLoisirs;
+
+    public void setCentresLoisirs(final fr.cg95.cvq.business.request.school.CentreLoisirs centresLoisirs) {
+        this.centresLoisirs = centresLoisirs;
+    }
+
+ 
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name="centres_loisirs_id")
+      
+    public fr.cg95.cvq.business.request.school.CentreLoisirs getCentresLoisirs() {
+        return this.centresLoisirs;
     }
   
     
@@ -186,246 +193,6 @@ public class LeisureCenterRegistrationRequestData implements Serializable {
     }
   
     
-      @NotNull(
-        
-        
-          when = "groovy:def active = true;" +
-          
-            
-            "active &= _this.conditions['estTransport'].test(_this.estTransport.toString());" +
-                
-              
-            
-            "return active",
-        
-        profiles = {"enfant"},
-        message = "idArret"
-      )
-    
-      @NotBlank(
-        
-        
-          when = "groovy:def active = true;" +
-          
-            
-            "active &= _this.conditions['estTransport'].test(_this.estTransport.toString());" +
-                
-              
-            
-            "return active",
-        
-        profiles = {"enfant"},
-        message = "idArret"
-      )
-    
-    private String idArret;
-
-    public void setIdArret(final String idArret) {
-        this.idArret = idArret;
-    }
-
- 
-    @Column(name="id_arret"  )
-      
-    public String getIdArret() {
-        return this.idArret;
-    }
-  
-    
-      @NotNull(
-        
-        
-        profiles = {"enfant"},
-        message = "idCentreLoisirs"
-      )
-    
-      @NotBlank(
-        
-        
-        profiles = {"enfant"},
-        message = "idCentreLoisirs"
-      )
-    
-    private String idCentreLoisirs;
-
-    public void setIdCentreLoisirs(final String idCentreLoisirs) {
-        this.idCentreLoisirs = idCentreLoisirs;
-    }
-
- 
-    @Column(name="id_centre_loisirs"  )
-      
-    public String getIdCentreLoisirs() {
-        return this.idCentreLoisirs;
-    }
-  
-    
-      @NotNull(
-        
-        
-          when = "groovy:def active = true;" +
-          
-            
-            "active &= _this.conditions['estTransport'].test(_this.estTransport.toString());" +
-                
-              
-            
-            "return active",
-        
-        profiles = {"enfant"},
-        message = "idLigne"
-      )
-    
-      @NotBlank(
-        
-        
-          when = "groovy:def active = true;" +
-          
-            
-            "active &= _this.conditions['estTransport'].test(_this.estTransport.toString());" +
-                
-              
-            
-            "return active",
-        
-        profiles = {"enfant"},
-        message = "idLigne"
-      )
-    
-    private String idLigne;
-
-    public void setIdLigne(final String idLigne) {
-        this.idLigne = idLigne;
-    }
-
- 
-    @Column(name="id_ligne"  )
-      
-    public String getIdLigne() {
-        return this.idLigne;
-    }
-  
-    
-      @NotNull(
-        
-        
-          when = "groovy:def active = true;" +
-          
-            
-            "active &= _this.conditions['estTransport'].test(_this.estTransport.toString());" +
-                
-              
-            
-            "return active",
-        
-        profiles = {"enfant"},
-        message = "labelArret"
-      )
-    
-      @NotBlank(
-        
-        
-          when = "groovy:def active = true;" +
-          
-            
-            "active &= _this.conditions['estTransport'].test(_this.estTransport.toString());" +
-                
-              
-            
-            "return active",
-        
-        profiles = {"enfant"},
-        message = "labelArret"
-      )
-    
-    private String labelArret;
-
-    public void setLabelArret(final String labelArret) {
-        this.labelArret = labelArret;
-    }
-
- 
-    @Column(name="label_arret"  )
-      
-    public String getLabelArret() {
-        return this.labelArret;
-    }
-  
-    
-      @NotNull(
-        
-        
-        profiles = {"enfant"},
-        message = "labelCentreLoisirs"
-      )
-    
-      @NotBlank(
-        
-        
-        profiles = {"enfant"},
-        message = "labelCentreLoisirs"
-      )
-    
-    private String labelCentreLoisirs;
-
-    public void setLabelCentreLoisirs(final String labelCentreLoisirs) {
-        this.labelCentreLoisirs = labelCentreLoisirs;
-    }
-
- 
-    @Column(name="label_centre_loisirs"  )
-      
-    public String getLabelCentreLoisirs() {
-        return this.labelCentreLoisirs;
-    }
-  
-    
-      @NotNull(
-        
-        
-          when = "groovy:def active = true;" +
-          
-            
-            "active &= _this.conditions['estTransport'].test(_this.estTransport.toString());" +
-                
-              
-            
-            "return active",
-        
-        profiles = {"enfant"},
-        message = "labelLigne"
-      )
-    
-      @NotBlank(
-        
-        
-          when = "groovy:def active = true;" +
-          
-            
-            "active &= _this.conditions['estTransport'].test(_this.estTransport.toString());" +
-                
-              
-            
-            "return active",
-        
-        profiles = {"enfant"},
-        message = "labelLigne"
-      )
-    
-    private String labelLigne;
-
-    public void setLabelLigne(final String labelLigne) {
-        this.labelLigne = labelLigne;
-    }
-
- 
-    @Column(name="label_ligne"  )
-      
-    public String getLabelLigne() {
-        return this.labelLigne;
-    }
-  
-    
       @LocalReferential(
         
         
@@ -433,6 +200,7 @@ public class LeisureCenterRegistrationRequestData implements Serializable {
           
             "active &= _this.conditions['estDerogation'].test(_this.estDerogation.toString());" +
                 
+              
               
             
             
@@ -451,6 +219,7 @@ public class LeisureCenterRegistrationRequestData implements Serializable {
           
             "active &= _this.conditions['estDerogation'].test(_this.estDerogation.toString());" +
                 
+              
               
             
             
@@ -477,6 +246,55 @@ public class LeisureCenterRegistrationRequestData implements Serializable {
       
     public List<fr.cg95.cvq.business.request.LocalReferentialData> getMotifsDerogationCentreLoisirs() {
         return this.motifsDerogationCentreLoisirs;
+    }
+  
+    
+      @NotNull(
+        
+        
+          when = "groovy:def active = true;" +
+          
+            "active &= _this.conditions['estTransport'].test(_this.estTransport.toString());" +
+                
+              
+              
+            
+            
+            "return active",
+        
+        profiles = {"enfant"},
+        message = "transports"
+      )
+    
+      @AssertValid(
+        
+        
+          when = "groovy:def active = true;" +
+          
+            "active &= _this.conditions['estTransport'].test(_this.estTransport.toString());" +
+                
+              
+              
+            
+            
+            "return active",
+        
+        profiles = {"enfant"},
+        message = "transports"
+      )
+    
+    private fr.cg95.cvq.business.request.school.Transports transports;
+
+    public void setTransports(final fr.cg95.cvq.business.request.school.Transports transports) {
+        this.transports = transports;
+    }
+
+ 
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name="transports_id")
+      
+    public fr.cg95.cvq.business.request.school.Transports getTransports() {
+        return this.transports;
     }
   
 }

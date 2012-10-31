@@ -22,20 +22,21 @@ import fr.cg95.cvq.xml.common.*;
 import fr.cg95.cvq.xml.request.social.*;
 import fr.cg95.cvq.service.request.LocalReferential;
 import fr.cg95.cvq.service.request.condition.IConditionChecker;
+import javax.persistence.*;
+import org.hibernate.annotations.Index;
+import org.hibernate.annotations.Type;
 
 /**
  * Generated class file, do not edit !
- *
- * @hibernate.class
- *  table="mar_situation_professionnelle_demandeur_emploi"
- *  lazy="false"
  */
+@Entity
+@Table(name="mar_situation_professionnelle_demandeur_emploi")
 public class MarSituationProfessionnelleDemandeurEmploi implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     public static final Map<String, IConditionChecker> conditions =
-        new HashMap<String, IConditionChecker>();
+        MdphAdultRequest.conditions;
 
     public MarSituationProfessionnelleDemandeurEmploi() {
         super();
@@ -130,11 +131,8 @@ public class MarSituationProfessionnelleDemandeurEmploi implements Serializable 
         this.id = id;
     }
 
-    /**
-     * @hibernate.id
-     *  column="id"
-     *  generator-class="sequence"
-     */
+    @Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE)
     public final Long getId() {
         return this.id;
     }
@@ -150,18 +148,14 @@ public class MarSituationProfessionnelleDemandeurEmploi implements Serializable 
     
     private Boolean allocationSolidariteSpecifique;
 
-    public final void setAllocationSolidariteSpecifique(final Boolean allocationSolidariteSpecifique) {
+    public void setAllocationSolidariteSpecifique(final Boolean allocationSolidariteSpecifique) {
         this.allocationSolidariteSpecifique = allocationSolidariteSpecifique;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="allocation_solidarite_specifique"
-        
+    
+    @Column(name="allocation_solidarite_specifique"  )
       
-    */
-    public final Boolean getAllocationSolidariteSpecifique() {
+    public Boolean getAllocationSolidariteSpecifique() {
         return this.allocationSolidariteSpecifique;
     }
   
@@ -175,18 +169,14 @@ public class MarSituationProfessionnelleDemandeurEmploi implements Serializable 
     
     private java.util.Date demandeurEmploiDepuisLe;
 
-    public final void setDemandeurEmploiDepuisLe(final java.util.Date demandeurEmploiDepuisLe) {
+    public void setDemandeurEmploiDepuisLe(final java.util.Date demandeurEmploiDepuisLe) {
         this.demandeurEmploiDepuisLe = demandeurEmploiDepuisLe;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="demandeur_emploi_depuis_le"
-        
+    
+    @Column(name="demandeur_emploi_depuis_le"  )
       
-    */
-    public final java.util.Date getDemandeurEmploiDepuisLe() {
+    public java.util.Date getDemandeurEmploiDepuisLe() {
         return this.demandeurEmploiDepuisLe;
     }
   
@@ -200,18 +190,14 @@ public class MarSituationProfessionnelleDemandeurEmploi implements Serializable 
     
     private java.util.Date indemnisationDepuisLe;
 
-    public final void setIndemnisationDepuisLe(final java.util.Date indemnisationDepuisLe) {
+    public void setIndemnisationDepuisLe(final java.util.Date indemnisationDepuisLe) {
         this.indemnisationDepuisLe = indemnisationDepuisLe;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="indemnisation_depuis_le"
-        
+    
+    @Column(name="indemnisation_depuis_le"  )
       
-    */
-    public final java.util.Date getIndemnisationDepuisLe() {
+    public java.util.Date getIndemnisationDepuisLe() {
         return this.indemnisationDepuisLe;
     }
   

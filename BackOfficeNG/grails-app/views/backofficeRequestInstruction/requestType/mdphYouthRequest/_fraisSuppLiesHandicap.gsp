@@ -22,12 +22,12 @@
       </dd>
     
       <dt class="required"><g:message code="myr.property.montantsObtenus.label" /> * : </dt>
-      <dd id="fraisSuppLiesHandicap[${listSize - 1 - index}].montantsObtenus" class="action-editField validate-regex required-true i18n-myr.property.montantsObtenus maxLength-10" regex="[0-9]{0,7},[0-9]{2}$">
+      <dd id="fraisSuppLiesHandicap[${listSize - 1 - index}].montantsObtenus" class="action-editField validate-regex required-true i18n-myr.property.montantsObtenus maxLength-10" regex="[0-9]{0,7}([,.][0-9]{0,2})?$">
         <span>${it?.montantsObtenus}</span>
       </dd>
     
       <dt class="required"><g:message code="myr.property.resteAVotreCharge.label" /> * : </dt>
-      <dd id="fraisSuppLiesHandicap[${listSize - 1 - index}].resteAVotreCharge" class="action-editField validate-regex required-true i18n-myr.property.resteAVotreCharge maxLength-10" regex="[0-9]{0,7},[0-9]{2}$">
+      <dd id="fraisSuppLiesHandicap[${listSize - 1 - index}].resteAVotreCharge" class="action-editField validate-regex required-true i18n-myr.property.resteAVotreCharge maxLength-10" regex="[0-9]{0,7}([,.][0-9]{0,2})?$">
         <span>${it?.resteAVotreCharge}</span>
       </dd>
     

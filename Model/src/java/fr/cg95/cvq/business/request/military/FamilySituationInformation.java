@@ -22,20 +22,21 @@ import fr.cg95.cvq.xml.common.*;
 import fr.cg95.cvq.xml.request.military.*;
 import fr.cg95.cvq.service.request.LocalReferential;
 import fr.cg95.cvq.service.request.condition.IConditionChecker;
+import javax.persistence.*;
+import org.hibernate.annotations.Index;
+import org.hibernate.annotations.Type;
 
 /**
  * Generated class file, do not edit !
- *
- * @hibernate.class
- *  table="family_situation_information"
- *  lazy="false"
  */
+@Entity
+@Table(name="family_situation_information")
 public class FamilySituationInformation implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     public static final Map<String, IConditionChecker> conditions =
-        new HashMap<String, IConditionChecker>();
+        MilitaryCensusRequest.conditions;
 
     public FamilySituationInformation() {
         super();
@@ -67,7 +68,7 @@ public class FamilySituationInformation implements Serializable {
         int i = 0;
     
         if (this.childStatus != null)
-            familySituationInformation.setChildStatus(fr.cg95.cvq.xml.common.FamilyStatusType.Enum.forString(this.childStatus.toString()));
+            familySituationInformation.setChildStatus(fr.cg95.cvq.xml.common.FamilyStatusType.Enum.forString(this.childStatus.getLegacyLabel()));
       
         if (this.statePupil != null)
             familySituationInformation.setStatePupil(this.statePupil.booleanValue());
@@ -84,7 +85,7 @@ public class FamilySituationInformation implements Serializable {
         familySituationInformation.setOtherSituation(this.otherSituation);
       
         if (this.prefectPupilDepartment != null)
-            familySituationInformation.setPrefectPupilDepartment(fr.cg95.cvq.xml.common.InseeDepartementCodeType.Enum.forString(this.prefectPupilDepartment.toString()));
+            familySituationInformation.setPrefectPupilDepartment(fr.cg95.cvq.xml.common.InseeDepartementCodeType.Enum.forString(this.prefectPupilDepartment.getLegacyLabel()));
       
         return familySituationInformation;
     }
@@ -179,11 +180,8 @@ public class FamilySituationInformation implements Serializable {
         this.id = id;
     }
 
-    /**
-     * @hibernate.id
-     *  column="id"
-     *  generator-class="sequence"
-     */
+    @Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE)
     public final Long getId() {
         return this.id;
     }
@@ -199,18 +197,15 @@ public class FamilySituationInformation implements Serializable {
     
     private fr.cg95.cvq.business.users.FamilyStatusType childStatus;
 
-    public final void setChildStatus(final fr.cg95.cvq.business.users.FamilyStatusType childStatus) {
+    public void setChildStatus(final fr.cg95.cvq.business.users.FamilyStatusType childStatus) {
         this.childStatus = childStatus;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="child_status"
-        
+    
+    @Enumerated(EnumType.STRING)
+    @Column(name="child_status"  )
       
-    */
-    public final fr.cg95.cvq.business.users.FamilyStatusType getChildStatus() {
+    public fr.cg95.cvq.business.users.FamilyStatusType getChildStatus() {
         return this.childStatus;
     }
   
@@ -224,18 +219,14 @@ public class FamilySituationInformation implements Serializable {
     
     private Boolean statePupil;
 
-    public final void setStatePupil(final Boolean statePupil) {
+    public void setStatePupil(final Boolean statePupil) {
         this.statePupil = statePupil;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="state_pupil"
-        
+    
+    @Column(name="state_pupil"  )
       
-    */
-    public final Boolean getStatePupil() {
+    public Boolean getStatePupil() {
         return this.statePupil;
     }
   
@@ -249,19 +240,15 @@ public class FamilySituationInformation implements Serializable {
     
     private java.math.BigInteger aliveChildren;
 
-    public final void setAliveChildren(final java.math.BigInteger aliveChildren) {
+    public void setAliveChildren(final java.math.BigInteger aliveChildren) {
         this.aliveChildren = aliveChildren;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="alive_children"
-        *  type="serializable"
-        
+    
+    @Column(name="alive_children" , columnDefinition="bytea" )
+    @Type(type="serializable") //Hack see http://capdemat.capwebct.fr/ticket/338
       
-    */
-    public final java.math.BigInteger getAliveChildren() {
+    public java.math.BigInteger getAliveChildren() {
         return this.aliveChildren;
     }
   
@@ -275,18 +262,14 @@ public class FamilySituationInformation implements Serializable {
     
     private Boolean prefectPupil;
 
-    public final void setPrefectPupil(final Boolean prefectPupil) {
+    public void setPrefectPupil(final Boolean prefectPupil) {
         this.prefectPupil = prefectPupil;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="prefect_pupil"
-        
+    
+    @Column(name="prefect_pupil"  )
       
-    */
-    public final Boolean getPrefectPupil() {
+    public Boolean getPrefectPupil() {
         return this.prefectPupil;
     }
   
@@ -300,37 +283,29 @@ public class FamilySituationInformation implements Serializable {
     
     private java.math.BigInteger childrenInCharge;
 
-    public final void setChildrenInCharge(final java.math.BigInteger childrenInCharge) {
+    public void setChildrenInCharge(final java.math.BigInteger childrenInCharge) {
         this.childrenInCharge = childrenInCharge;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="children_in_charge"
-        *  type="serializable"
-        
+    
+    @Column(name="children_in_charge" , columnDefinition="bytea" )
+    @Type(type="serializable") //Hack see http://capdemat.capwebct.fr/ticket/338
       
-    */
-    public final java.math.BigInteger getChildrenInCharge() {
+    public java.math.BigInteger getChildrenInCharge() {
         return this.childrenInCharge;
     }
   
     
     private String otherSituation;
 
-    public final void setOtherSituation(final String otherSituation) {
+    public void setOtherSituation(final String otherSituation) {
         this.otherSituation = otherSituation;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="other_situation"
-        
+    
+    @Column(name="other_situation"  )
       
-    */
-    public final String getOtherSituation() {
+    public String getOtherSituation() {
         return this.otherSituation;
     }
   
@@ -340,7 +315,8 @@ public class FamilySituationInformation implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['familySituationInformation.prefectPupil'].test(_this.prefectPupil.toString());" +
+              "active &= _this.conditions['familySituationInformation.prefectPupil'].test(_this.prefectPupil.toString());" +
+                  
                 
               
             
@@ -353,18 +329,15 @@ public class FamilySituationInformation implements Serializable {
     
     private fr.cg95.cvq.business.users.InseeDepartementCodeType prefectPupilDepartment;
 
-    public final void setPrefectPupilDepartment(final fr.cg95.cvq.business.users.InseeDepartementCodeType prefectPupilDepartment) {
+    public void setPrefectPupilDepartment(final fr.cg95.cvq.business.users.InseeDepartementCodeType prefectPupilDepartment) {
         this.prefectPupilDepartment = prefectPupilDepartment;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="prefect_pupil_department"
-        
+    
+    @Enumerated(EnumType.STRING)
+    @Column(name="prefect_pupil_department"  )
       
-    */
-    public final fr.cg95.cvq.business.users.InseeDepartementCodeType getPrefectPupilDepartment() {
+    public fr.cg95.cvq.business.users.InseeDepartementCodeType getPrefectPupilDepartment() {
         return this.prefectPupilDepartment;
     }
   

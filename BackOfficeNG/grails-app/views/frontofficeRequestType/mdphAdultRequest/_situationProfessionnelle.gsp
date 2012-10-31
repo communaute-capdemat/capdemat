@@ -5,8 +5,8 @@
     <label for="situationProfessionnelleVous" class="required"><g:message code="mar.property.situationProfessionnelleVous.label" /> *  <span><g:message code="mar.property.situationProfessionnelleVous.help" /></span></label>
             <select id="situationProfessionnelleVous" name="situationProfessionnelleVous" class="required condition-estSalarieVous-trigger condition-estStagiaireVous-trigger condition-estNonSalarieVous-trigger condition-estDemandeurEmploiVous-trigger condition-estRetraiteVous-trigger condition-estBeneficiairePensionVous-trigger condition-estAutreVous-trigger  validate-not-first ${rqt.stepStates['situationProfessionnelle'].invalidFields.contains('situationProfessionnelleVous') ? 'validation-failed' : ''}" title="<g:message code="mar.property.situationProfessionnelleVous.validationError" />">
               <option value=""><g:message code="message.select.defaultOption" /></option>
-              <g:each in="${['Salarie','Stagiaire','Nonsalarie','Demandeur','Retraite','Pension','Autre']}">
-                <option value="fr.cg95.cvq.business.request.social.ChoixSituationProfessionnelleType_${it}" ${it == rqt.situationProfessionnelleVous?.toString() ? 'selected="selected"': ''}><g:capdematEnumToText var="${it}" i18nKeyPrefix="mar.property.situationProfessionnelleVous" /></option>
+              <g:each in="${['SALARIE','STAGIAIRE','NONSALARIE','DEMANDEUR','RETRAITE','PENSION','AUTRE']}">
+                <option value="${it}" ${it == rqt.situationProfessionnelleVous?.toString() ? 'selected="selected"': ''}><g:capdematEnumToText var="${it}" i18nKeyPrefix="mar.property.situationProfessionnelleVous" /></option>
               </g:each>
             </select>
             
@@ -552,8 +552,8 @@
       <label for="situationProfessionnelleVousBeneficiairePension.categoriePensionInvalidite" class="required"><g:message code="mar.property.categoriePensionInvalidite.label" /> *  <span><g:message code="mar.property.categoriePensionInvalidite.help" /></span></label>
             <select id="situationProfessionnelleVousBeneficiairePension.categoriePensionInvalidite" name="situationProfessionnelleVousBeneficiairePension.categoriePensionInvalidite" class="required  validate-not-first ${rqt.stepStates['situationProfessionnelle'].invalidFields.contains('situationProfessionnelleVousBeneficiairePension.categoriePensionInvalidite') ? 'validation-failed' : ''}" title="<g:message code="mar.property.categoriePensionInvalidite.validationError" />">
               <option value=""><g:message code="message.select.defaultOption" /></option>
-              <g:each in="${['Un','Deux','Trois']}">
-                <option value="fr.cg95.cvq.business.request.social.CategoriePensionInvaliditeType_${it}" ${it == rqt.situationProfessionnelleVousBeneficiairePension?.categoriePensionInvalidite?.toString() ? 'selected="selected"': ''}><g:capdematEnumToText var="${it}" i18nKeyPrefix="mar.property.categoriePensionInvalidite" /></option>
+              <g:each in="${['UN','DEUX','TROIS']}">
+                <option value="${it}" ${it == rqt.situationProfessionnelleVousBeneficiairePension?.categoriePensionInvalidite?.toString() ? 'selected="selected"': ''}><g:capdematEnumToText var="${it}" i18nKeyPrefix="mar.property.categoriePensionInvalidite" /></option>
               </g:each>
             </select>
             
@@ -643,8 +643,8 @@
     <label for="situationProfessionnelleConjoint" class=""><g:message code="mar.property.situationProfessionnelleConjoint.label" />   <span><g:message code="mar.property.situationProfessionnelleConjoint.help" /></span></label>
             <select id="situationProfessionnelleConjoint" name="situationProfessionnelleConjoint" class="condition-estSalarieConjoint-trigger condition-estStagiaireConjoint-trigger condition-estNonSalarieConjoint-trigger condition-estDemandeurEmploiConjoint-trigger condition-estRetraiteConjoint-trigger condition-estBeneficiairePensionConjoint-trigger condition-estAutreConjoint-trigger  validate-select ${rqt.stepStates['situationProfessionnelle'].invalidFields.contains('situationProfessionnelleConjoint') ? 'validation-failed' : ''}" title="<g:message code="mar.property.situationProfessionnelleConjoint.validationError" />">
               <option value=""><g:message code="message.select.defaultOption" /></option>
-              <g:each in="${['Salarie','Stagiaire','Nonsalarie','Demandeur','Retraite','Pension','Autre']}">
-                <option value="fr.cg95.cvq.business.request.social.ChoixSituationProfessionnelleType_${it}" ${it == rqt.situationProfessionnelleConjoint?.toString() ? 'selected="selected"': ''}><g:capdematEnumToText var="${it}" i18nKeyPrefix="mar.property.situationProfessionnelleConjoint" /></option>
+              <g:each in="${['SALARIE','STAGIAIRE','NONSALARIE','DEMANDEUR','RETRAITE','PENSION','AUTRE']}">
+                <option value="${it}" ${it == rqt.situationProfessionnelleConjoint?.toString() ? 'selected="selected"': ''}><g:capdematEnumToText var="${it}" i18nKeyPrefix="mar.property.situationProfessionnelleConjoint" /></option>
               </g:each>
             </select>
             
@@ -1190,8 +1190,8 @@
       <label for="situationProfessionnelleConjointBeneficiairePension.categoriePensionInvalidite" class="required"><g:message code="mar.property.categoriePensionInvalidite.label" /> *  <span><g:message code="mar.property.categoriePensionInvalidite.help" /></span></label>
             <select id="situationProfessionnelleConjointBeneficiairePension.categoriePensionInvalidite" name="situationProfessionnelleConjointBeneficiairePension.categoriePensionInvalidite" class="required  validate-not-first ${rqt.stepStates['situationProfessionnelle'].invalidFields.contains('situationProfessionnelleConjointBeneficiairePension.categoriePensionInvalidite') ? 'validation-failed' : ''}" title="<g:message code="mar.property.categoriePensionInvalidite.validationError" />">
               <option value=""><g:message code="message.select.defaultOption" /></option>
-              <g:each in="${['Un','Deux','Trois']}">
-                <option value="fr.cg95.cvq.business.request.social.CategoriePensionInvaliditeType_${it}" ${it == rqt.situationProfessionnelleConjointBeneficiairePension?.categoriePensionInvalidite?.toString() ? 'selected="selected"': ''}><g:capdematEnumToText var="${it}" i18nKeyPrefix="mar.property.categoriePensionInvalidite" /></option>
+              <g:each in="${['UN','DEUX','TROIS']}">
+                <option value="${it}" ${it == rqt.situationProfessionnelleConjointBeneficiairePension?.categoriePensionInvalidite?.toString() ? 'selected="selected"': ''}><g:capdematEnumToText var="${it}" i18nKeyPrefix="mar.property.categoriePensionInvalidite" /></option>
               </g:each>
             </select>
             

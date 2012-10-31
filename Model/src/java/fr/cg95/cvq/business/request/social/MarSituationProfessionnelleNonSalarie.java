@@ -22,20 +22,21 @@ import fr.cg95.cvq.xml.common.*;
 import fr.cg95.cvq.xml.request.social.*;
 import fr.cg95.cvq.service.request.LocalReferential;
 import fr.cg95.cvq.service.request.condition.IConditionChecker;
+import javax.persistence.*;
+import org.hibernate.annotations.Index;
+import org.hibernate.annotations.Type;
 
 /**
  * Generated class file, do not edit !
- *
- * @hibernate.class
- *  table="mar_situation_professionnelle_non_salarie"
- *  lazy="false"
  */
+@Entity
+@Table(name="mar_situation_professionnelle_non_salarie")
 public class MarSituationProfessionnelleNonSalarie implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     public static final Map<String, IConditionChecker> conditions =
-        new HashMap<String, IConditionChecker>();
+        MdphAdultRequest.conditions;
 
     public MarSituationProfessionnelleNonSalarie() {
         super();
@@ -112,11 +113,8 @@ public class MarSituationProfessionnelleNonSalarie implements Serializable {
         this.id = id;
     }
 
-    /**
-     * @hibernate.id
-     *  column="id"
-     *  generator-class="sequence"
-     */
+    @Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE)
     public final Long getId() {
         return this.id;
     }
@@ -139,18 +137,14 @@ public class MarSituationProfessionnelleNonSalarie implements Serializable {
     
     private String regimeCotisations;
 
-    public final void setRegimeCotisations(final String regimeCotisations) {
+    public void setRegimeCotisations(final String regimeCotisations) {
         this.regimeCotisations = regimeCotisations;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="regime_cotisations"
-        
+    
+    @Column(name="regime_cotisations"  )
       
-    */
-    public final String getRegimeCotisations() {
+    public String getRegimeCotisations() {
         return this.regimeCotisations;
     }
   
@@ -164,18 +158,14 @@ public class MarSituationProfessionnelleNonSalarie implements Serializable {
     
     private java.util.Date nonSalarieDepuisLe;
 
-    public final void setNonSalarieDepuisLe(final java.util.Date nonSalarieDepuisLe) {
+    public void setNonSalarieDepuisLe(final java.util.Date nonSalarieDepuisLe) {
         this.nonSalarieDepuisLe = nonSalarieDepuisLe;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="non_salarie_depuis_le"
-        
+    
+    @Column(name="non_salarie_depuis_le"  )
       
-    */
-    public final java.util.Date getNonSalarieDepuisLe() {
+    public java.util.Date getNonSalarieDepuisLe() {
         return this.nonSalarieDepuisLe;
     }
   

@@ -37,7 +37,6 @@ public class PerischoolAuthorizedIndividual implements Serializable {
 
     public static final Map<String, IConditionChecker> conditions =
         PerischoolActivityRegistrationRequest.conditions;
-        new HashMap<String, IConditionChecker>();
 
     public PerischoolAuthorizedIndividual() {
         super();
@@ -163,7 +162,7 @@ public class PerischoolAuthorizedIndividual implements Serializable {
         this.officePhone = officePhone;
     }
 
-
+    
     @Column(name="office_phone" , length=10 )
       
     public String getOfficePhone() {
@@ -191,7 +190,7 @@ public class PerischoolAuthorizedIndividual implements Serializable {
         this.address = address;
     }
 
-
+    
     @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name="address_id")
       
@@ -229,7 +228,7 @@ public class PerischoolAuthorizedIndividual implements Serializable {
         this.firstName = firstName;
     }
 
-
+    
     @Column(name="first_name" , length=38 )
       
     public String getFirstName() {
@@ -266,7 +265,7 @@ public class PerischoolAuthorizedIndividual implements Serializable {
         this.lastName = lastName;
     }
 
-
+    
     @Column(name="last_name" , length=38 )
       
     public String getLastName() {
@@ -289,7 +288,7 @@ public class PerischoolAuthorizedIndividual implements Serializable {
         this.homePhone = homePhone;
     }
 
-
+    
     @Column(name="home_phone" , length=10 )
       
     public String getHomePhone() {

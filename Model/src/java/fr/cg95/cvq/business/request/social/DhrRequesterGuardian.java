@@ -22,20 +22,21 @@ import fr.cg95.cvq.xml.common.*;
 import fr.cg95.cvq.xml.request.social.*;
 import fr.cg95.cvq.service.request.LocalReferential;
 import fr.cg95.cvq.service.request.condition.IConditionChecker;
+import javax.persistence.*;
+import org.hibernate.annotations.Index;
+import org.hibernate.annotations.Type;
 
 /**
  * Generated class file, do not edit !
- *
- * @hibernate.class
- *  table="dhr_requester_guardian"
- *  lazy="false"
  */
+@Entity
+@Table(name="dhr_requester_guardian")
 public class DhrRequesterGuardian implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     public static final Map<String, IConditionChecker> conditions =
-        new HashMap<String, IConditionChecker>();
+        DomesticHelpRequest.conditions;
 
     public DhrRequesterGuardian() {
         super();
@@ -71,7 +72,7 @@ public class DhrRequesterGuardian implements Serializable {
             dhrRequesterGuardian.setDhrRequesterHaveGuardian(this.dhrRequesterHaveGuardian.booleanValue());
       
         if (this.dhrGuardianMeasure != null)
-            dhrRequesterGuardian.setDhrGuardianMeasure(fr.cg95.cvq.xml.request.social.DhrGuardianMeasureType.Enum.forString(this.dhrGuardianMeasure.toString()));
+            dhrRequesterGuardian.setDhrGuardianMeasure(fr.cg95.cvq.xml.request.social.DhrGuardianMeasureType.Enum.forString(this.dhrGuardianMeasure.getLegacyLabel()));
       
         return dhrRequesterGuardian;
     }
@@ -138,11 +139,8 @@ public class DhrRequesterGuardian implements Serializable {
         this.id = id;
     }
 
-    /**
-     * @hibernate.id
-     *  column="id"
-     *  generator-class="sequence"
-     */
+    @Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE)
     public final Long getId() {
         return this.id;
     }
@@ -156,7 +154,8 @@ public class DhrRequesterGuardian implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['dhrRequesterGuardian.dhrRequesterHaveGuardian'].test(_this.dhrRequesterHaveGuardian.toString());" +
+              "active &= _this.conditions['dhrRequesterGuardian.dhrRequesterHaveGuardian'].test(_this.dhrRequesterHaveGuardian.toString());" +
+                  
                 
               
             
@@ -172,7 +171,8 @@ public class DhrRequesterGuardian implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['dhrRequesterGuardian.dhrRequesterHaveGuardian'].test(_this.dhrRequesterHaveGuardian.toString());" +
+              "active &= _this.conditions['dhrRequesterGuardian.dhrRequesterHaveGuardian'].test(_this.dhrRequesterHaveGuardian.toString());" +
+                  
                 
               
             
@@ -188,7 +188,8 @@ public class DhrRequesterGuardian implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['dhrRequesterGuardian.dhrRequesterHaveGuardian'].test(_this.dhrRequesterHaveGuardian.toString());" +
+              "active &= _this.conditions['dhrRequesterGuardian.dhrRequesterHaveGuardian'].test(_this.dhrRequesterHaveGuardian.toString());" +
+                  
                 
               
             
@@ -201,18 +202,14 @@ public class DhrRequesterGuardian implements Serializable {
     
     private String dhrGuardianName;
 
-    public final void setDhrGuardianName(final String dhrGuardianName) {
+    public void setDhrGuardianName(final String dhrGuardianName) {
         this.dhrGuardianName = dhrGuardianName;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="dhr_guardian_name"
-        *  length="38"
+    
+    @Column(name="dhr_guardian_name" , length=38 )
       
-    */
-    public final String getDhrGuardianName() {
+    public String getDhrGuardianName() {
         return this.dhrGuardianName;
     }
   
@@ -222,7 +219,8 @@ public class DhrRequesterGuardian implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['dhrRequesterGuardian.dhrRequesterHaveGuardian'].test(_this.dhrRequesterHaveGuardian.toString());" +
+              "active &= _this.conditions['dhrRequesterGuardian.dhrRequesterHaveGuardian'].test(_this.dhrRequesterHaveGuardian.toString());" +
+                  
                 
               
             
@@ -238,7 +236,8 @@ public class DhrRequesterGuardian implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['dhrRequesterGuardian.dhrRequesterHaveGuardian'].test(_this.dhrRequesterHaveGuardian.toString());" +
+              "active &= _this.conditions['dhrRequesterGuardian.dhrRequesterHaveGuardian'].test(_this.dhrRequesterHaveGuardian.toString());" +
+                  
                 
               
             
@@ -251,19 +250,15 @@ public class DhrRequesterGuardian implements Serializable {
     
     private fr.cg95.cvq.business.users.Address dhrGuardianAddress;
 
-    public final void setDhrGuardianAddress(final fr.cg95.cvq.business.users.Address dhrGuardianAddress) {
+    public void setDhrGuardianAddress(final fr.cg95.cvq.business.users.Address dhrGuardianAddress) {
         this.dhrGuardianAddress = dhrGuardianAddress;
     }
 
-    /**
-  
-        * @hibernate.many-to-one
-        *  cascade="all"
-        *  column="dhr_guardian_address_id"
-        *  class="fr.cg95.cvq.business.users.Address"
+    
+    @ManyToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name="dhr_guardian_address_id")
       
-    */
-    public final fr.cg95.cvq.business.users.Address getDhrGuardianAddress() {
+    public fr.cg95.cvq.business.users.Address getDhrGuardianAddress() {
         return this.dhrGuardianAddress;
     }
   
@@ -277,18 +272,14 @@ public class DhrRequesterGuardian implements Serializable {
     
     private Boolean dhrRequesterHaveGuardian;
 
-    public final void setDhrRequesterHaveGuardian(final Boolean dhrRequesterHaveGuardian) {
+    public void setDhrRequesterHaveGuardian(final Boolean dhrRequesterHaveGuardian) {
         this.dhrRequesterHaveGuardian = dhrRequesterHaveGuardian;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="dhr_requester_have_guardian"
-        
+    
+    @Column(name="dhr_requester_have_guardian"  )
       
-    */
-    public final Boolean getDhrRequesterHaveGuardian() {
+    public Boolean getDhrRequesterHaveGuardian() {
         return this.dhrRequesterHaveGuardian;
     }
   
@@ -298,7 +289,8 @@ public class DhrRequesterGuardian implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['dhrRequesterGuardian.dhrRequesterHaveGuardian'].test(_this.dhrRequesterHaveGuardian.toString());" +
+              "active &= _this.conditions['dhrRequesterGuardian.dhrRequesterHaveGuardian'].test(_this.dhrRequesterHaveGuardian.toString());" +
+                  
                 
               
             
@@ -311,18 +303,15 @@ public class DhrRequesterGuardian implements Serializable {
     
     private fr.cg95.cvq.business.request.social.DhrGuardianMeasureType dhrGuardianMeasure;
 
-    public final void setDhrGuardianMeasure(final fr.cg95.cvq.business.request.social.DhrGuardianMeasureType dhrGuardianMeasure) {
+    public void setDhrGuardianMeasure(final fr.cg95.cvq.business.request.social.DhrGuardianMeasureType dhrGuardianMeasure) {
         this.dhrGuardianMeasure = dhrGuardianMeasure;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="dhr_guardian_measure"
-        
+    
+    @Enumerated(EnumType.STRING)
+    @Column(name="dhr_guardian_measure"  )
       
-    */
-    public final fr.cg95.cvq.business.request.social.DhrGuardianMeasureType getDhrGuardianMeasure() {
+    public fr.cg95.cvq.business.request.social.DhrGuardianMeasureType getDhrGuardianMeasure() {
         return this.dhrGuardianMeasure;
     }
   

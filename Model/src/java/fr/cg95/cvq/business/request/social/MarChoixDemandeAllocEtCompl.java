@@ -22,20 +22,21 @@ import fr.cg95.cvq.xml.common.*;
 import fr.cg95.cvq.xml.request.social.*;
 import fr.cg95.cvq.service.request.LocalReferential;
 import fr.cg95.cvq.service.request.condition.IConditionChecker;
+import javax.persistence.*;
+import org.hibernate.annotations.Index;
+import org.hibernate.annotations.Type;
 
 /**
  * Generated class file, do not edit !
- *
- * @hibernate.class
- *  table="mar_choix_demande_alloc_et_compl"
- *  lazy="false"
  */
+@Entity
+@Table(name="mar_choix_demande_alloc_et_compl")
 public class MarChoixDemandeAllocEtCompl implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     public static final Map<String, IConditionChecker> conditions =
-        new HashMap<String, IConditionChecker>();
+        MdphAdultRequest.conditions;
 
     public MarChoixDemandeAllocEtCompl() {
         super();
@@ -111,11 +112,8 @@ public class MarChoixDemandeAllocEtCompl implements Serializable {
         this.id = id;
     }
 
-    /**
-     * @hibernate.id
-     *  column="id"
-     *  generator-class="sequence"
-     */
+    @Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE)
     public final Long getId() {
         return this.id;
     }
@@ -131,18 +129,14 @@ public class MarChoixDemandeAllocEtCompl implements Serializable {
     
     private Boolean complementRessources;
 
-    public final void setComplementRessources(final Boolean complementRessources) {
+    public void setComplementRessources(final Boolean complementRessources) {
         this.complementRessources = complementRessources;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="complement_ressources"
-        
+    
+    @Column(name="complement_ressources"  )
       
-    */
-    public final Boolean getComplementRessources() {
+    public Boolean getComplementRessources() {
         return this.complementRessources;
     }
   
@@ -156,18 +150,14 @@ public class MarChoixDemandeAllocEtCompl implements Serializable {
     
     private Boolean aah;
 
-    public final void setAah(final Boolean aah) {
+    public void setAah(final Boolean aah) {
         this.aah = aah;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="aah"
-        
+    
+    @Column(name="aah"  )
       
-    */
-    public final Boolean getAah() {
+    public Boolean getAah() {
         return this.aah;
     }
   

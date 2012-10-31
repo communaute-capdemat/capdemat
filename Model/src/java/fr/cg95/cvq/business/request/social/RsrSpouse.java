@@ -22,20 +22,21 @@ import fr.cg95.cvq.xml.common.*;
 import fr.cg95.cvq.xml.request.social.*;
 import fr.cg95.cvq.service.request.LocalReferential;
 import fr.cg95.cvq.service.request.condition.IConditionChecker;
+import javax.persistence.*;
+import org.hibernate.annotations.Index;
+import org.hibernate.annotations.Type;
 
 /**
  * Generated class file, do not edit !
- *
- * @hibernate.class
- *  table="rsr_spouse"
- *  lazy="false"
  */
+@Entity
+@Table(name="rsr_spouse")
 public class RsrSpouse implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     public static final Map<String, IConditionChecker> conditions =
-        new HashMap<String, IConditionChecker>();
+        RemoteSupportRequest.conditions;
 
     public RsrSpouse() {
         super();
@@ -76,7 +77,7 @@ public class RsrSpouse implements Serializable {
         }
       
         if (this.spouseTitle != null)
-            rsrSpouse.setSpouseTitle(fr.cg95.cvq.xml.common.TitleType.Enum.forString(this.spouseTitle.toString()));
+            rsrSpouse.setSpouseTitle(fr.cg95.cvq.xml.common.TitleType.Enum.forString(this.spouseTitle.getLegacyLabel()));
       
         return rsrSpouse;
     }
@@ -152,11 +153,8 @@ public class RsrSpouse implements Serializable {
         this.id = id;
     }
 
-    /**
-     * @hibernate.id
-     *  column="id"
-     *  generator-class="sequence"
-     */
+    @Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE)
     public final Long getId() {
         return this.id;
     }
@@ -172,18 +170,14 @@ public class RsrSpouse implements Serializable {
     
     private Boolean spouseIsDisabledPerson;
 
-    public final void setSpouseIsDisabledPerson(final Boolean spouseIsDisabledPerson) {
+    public void setSpouseIsDisabledPerson(final Boolean spouseIsDisabledPerson) {
         this.spouseIsDisabledPerson = spouseIsDisabledPerson;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="spouse_is_disabled_person"
-        
+    
+    @Column(name="spouse_is_disabled_person"  )
       
-    */
-    public final Boolean getSpouseIsDisabledPerson() {
+    public Boolean getSpouseIsDisabledPerson() {
         return this.spouseIsDisabledPerson;
     }
   
@@ -213,18 +207,14 @@ public class RsrSpouse implements Serializable {
     
     private String spouseLastName;
 
-    public final void setSpouseLastName(final String spouseLastName) {
+    public void setSpouseLastName(final String spouseLastName) {
         this.spouseLastName = spouseLastName;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="spouse_last_name"
-        *  length="38"
+    
+    @Column(name="spouse_last_name" , length=38 )
       
-    */
-    public final String getSpouseLastName() {
+    public String getSpouseLastName() {
         return this.spouseLastName;
     }
   
@@ -254,18 +244,14 @@ public class RsrSpouse implements Serializable {
     
     private String spouseFirstName;
 
-    public final void setSpouseFirstName(final String spouseFirstName) {
+    public void setSpouseFirstName(final String spouseFirstName) {
         this.spouseFirstName = spouseFirstName;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="spouse_first_name"
-        *  length="38"
+    
+    @Column(name="spouse_first_name" , length=38 )
       
-    */
-    public final String getSpouseFirstName() {
+    public String getSpouseFirstName() {
         return this.spouseFirstName;
     }
   
@@ -279,18 +265,14 @@ public class RsrSpouse implements Serializable {
     
     private java.util.Date spouseBirthDate;
 
-    public final void setSpouseBirthDate(final java.util.Date spouseBirthDate) {
+    public void setSpouseBirthDate(final java.util.Date spouseBirthDate) {
         this.spouseBirthDate = spouseBirthDate;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="spouse_birth_date"
-        
+    
+    @Column(name="spouse_birth_date"  )
       
-    */
-    public final java.util.Date getSpouseBirthDate() {
+    public java.util.Date getSpouseBirthDate() {
         return this.spouseBirthDate;
     }
   
@@ -304,18 +286,15 @@ public class RsrSpouse implements Serializable {
     
     private fr.cg95.cvq.business.users.TitleType spouseTitle;
 
-    public final void setSpouseTitle(final fr.cg95.cvq.business.users.TitleType spouseTitle) {
+    public void setSpouseTitle(final fr.cg95.cvq.business.users.TitleType spouseTitle) {
         this.spouseTitle = spouseTitle;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="spouse_title"
-        
+    
+    @Enumerated(EnumType.STRING)
+    @Column(name="spouse_title"  )
       
-    */
-    public final fr.cg95.cvq.business.users.TitleType getSpouseTitle() {
+    public fr.cg95.cvq.business.users.TitleType getSpouseTitle() {
         return this.spouseTitle;
     }
   

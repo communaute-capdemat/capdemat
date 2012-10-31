@@ -55,13 +55,8 @@ public class HolidayCampRegistrationRequestData implements Serializable {
         
           
             
-        result.setIdCentreSejours(idCentreSejours);
-      
-          
-        
-          
-            
-        result.setLabelCentreSejours(labelCentreSejours);
+        if (centreSejours != null)
+            result.setCentreSejours(centreSejours.clone());
       
           
         
@@ -98,55 +93,28 @@ public class HolidayCampRegistrationRequestData implements Serializable {
         
         
         profiles = {"enfant"},
-        message = "idCentreSejours"
+        message = "centreSejours"
       )
     
-      @NotBlank(
+      @AssertValid(
         
         
         profiles = {"enfant"},
-        message = "idCentreSejours"
+        message = "centreSejours"
       )
     
-    private String idCentreSejours;
+    private fr.cg95.cvq.business.request.school.CentreSejours centreSejours;
 
-    public void setIdCentreSejours(final String idCentreSejours) {
-        this.idCentreSejours = idCentreSejours;
+    public void setCentreSejours(final fr.cg95.cvq.business.request.school.CentreSejours centreSejours) {
+        this.centreSejours = centreSejours;
     }
 
  
-    @Column(name="id_centre_sejours"  )
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name="centre_sejours_id")
       
-    public String getIdCentreSejours() {
-        return this.idCentreSejours;
-    }
-  
-    
-      @NotNull(
-        
-        
-        profiles = {"enfant"},
-        message = "labelCentreSejours"
-      )
-    
-      @NotBlank(
-        
-        
-        profiles = {"enfant"},
-        message = "labelCentreSejours"
-      )
-    
-    private String labelCentreSejours;
-
-    public void setLabelCentreSejours(final String labelCentreSejours) {
-        this.labelCentreSejours = labelCentreSejours;
-    }
-
- 
-    @Column(name="label_centre_sejours"  )
-      
-    public String getLabelCentreSejours() {
-        return this.labelCentreSejours;
+    public fr.cg95.cvq.business.request.school.CentreSejours getCentreSejours() {
+        return this.centreSejours;
     }
   
 }

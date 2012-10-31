@@ -121,115 +121,19 @@ public class RemoteSupportRequest extends Request implements Serializable {
             remoteSupportRequest.setRequestInformation(getRequestInformation().modelToXml());
       
         if (getRequestInformationRequestKind() != null)
-            remoteSupportRequest.setRequestInformationRequestKind(fr.cg95.cvq.xml.request.social.RsrRequestInformationRequestKindType.Enum.forString(getRequestInformationRequestKind().toString()));
+            remoteSupportRequest.setRequestInformationRequestKind(fr.cg95.cvq.xml.request.social.RsrRequestInformationRequestKindType.Enum.forString(getRequestInformationRequestKind().getLegacyLabel()));
       
         if (getRsrSubject() != null)
             remoteSupportRequest.setRsrSubject(getRsrSubject().modelToXml());
       
-        if (getRequestInformationRequestKind() != null)
-            rsrRequestInformationTypeRequestInformation.setRequestInformationRequestKind(fr.cg95.cvq.xml.request.social.RsrRequestInformationRequestKindType.Enum.forString(getRequestInformationRequestKind().toString()));
-        RsrSecondContactType rsrSecondContactTypeSecondContact = remoteSupportRequest.addNewSecondContact();
-        rsrSecondContactTypeSecondContact.setSecondContactFirstName(getSecondContactFirstName());
-        if (getRequestInformationRequestKind() != null)
-            rsrRequestInformationTypeRequestInformation.setRequestInformationRequestKind(fr.cg95.cvq.xml.request.social.RsrRequestInformationRequestKindType.Enum.forString(getRequestInformationRequestKind().getLegacyLabel()));
-        RsrSecondContactType rsrSecondContactTypeSecondContact = remoteSupportRequest.addNewSecondContact();
-        rsrSecondContactTypeSecondContact.setSecondContactFirstName(getSecondContactFirstName());
         if (getSecondContact() != null)
             remoteSupportRequest.setSecondContact(getSecondContact().modelToXml());
       
         if (getSpouse() != null)
             remoteSupportRequest.setSpouse(getSpouse().modelToXml());
       
-        rsrSecondContactTypeSecondContact.setSecondContactPhone(getSecondContactPhone());
-        RsrSpouseType rsrSpouseTypeSpouse = remoteSupportRequest.addNewSpouse();
-        date = getSpouseBirthDate();
-        if (date != null) {
-            calendar.setTime(date);
-            rsrSpouseTypeSpouse.setSpouseBirthDate(calendar);
-        }
-      
-        rsrSpouseTypeSpouse.setSpouseFirstName(getSpouseFirstName());
-      
-        if (getSpouseIsDisabledPerson() != null)
-            rsrSpouseTypeSpouse.setSpouseIsDisabledPerson(getSpouseIsDisabledPerson().booleanValue());
-      
-        rsrSpouseTypeSpouse.setSpouseLastName(getSpouseLastName());
-      
-        if (getSpouseTitle() != null)
-            rsrSpouseTypeSpouse.setSpouseTitle(fr.cg95.cvq.xml.common.TitleType.Enum.forString(getSpouseTitle().toString()));
-        RsrSubjectType rsrSubjectTypeRsrSubject = remoteSupportRequest.addNewRsrSubject();
-        date = getSubjectBirthDate();
-        if (date != null) {
-            calendar.setTime(date);
-            rsrSubjectTypeRsrSubject.setSubjectBirthDate(calendar);
-        }
-      
-        if (getSubjectIsAPABeneficiary() != null)
-            rsrSubjectTypeRsrSubject.setSubjectIsAPABeneficiary(getSubjectIsAPABeneficiary().booleanValue());
-      
-        if (getSubjectIsDisabledPerson() != null)
-            rsrSubjectTypeRsrSubject.setSubjectIsDisabledPerson(getSubjectIsDisabledPerson().booleanValue());
-      
-        if (getSubjectIsTaxable() != null)
-            rsrSubjectTypeRsrSubject.setSubjectIsTaxable(getSubjectIsTaxable().booleanValue());
-        rsrSecondContactTypeSecondContact.setSecondContactPhone(getSecondContactPhone());
-        RsrSpouseType rsrSpouseTypeSpouse = remoteSupportRequest.addNewSpouse();
-        date = getSpouseBirthDate();
-        if (date != null) {
-            calendar.setTime(date);
-            rsrSpouseTypeSpouse.setSpouseBirthDate(calendar);
-        }
-      
-        rsrSpouseTypeSpouse.setSpouseFirstName(getSpouseFirstName());
-      
-        if (getSpouseIsDisabledPerson() != null)
-            rsrSpouseTypeSpouse.setSpouseIsDisabledPerson(getSpouseIsDisabledPerson().booleanValue());
-      
-        rsrSpouseTypeSpouse.setSpouseLastName(getSpouseLastName());
-      
-        if (getSpouseTitle() != null)
-            rsrSpouseTypeSpouse.setSpouseTitle(fr.cg95.cvq.xml.common.TitleType.Enum.forString(getSpouseTitle().getLegacyLabel()));
-        RsrSubjectType rsrSubjectTypeRsrSubject = remoteSupportRequest.addNewRsrSubject();
-        date = getSubjectBirthDate();
-        if (date != null) {
-            calendar.setTime(date);
-            rsrSubjectTypeRsrSubject.setSubjectBirthDate(calendar);
-        }
-      
-        if (getSubjectIsAPABeneficiary() != null)
-            rsrSubjectTypeRsrSubject.setSubjectIsAPABeneficiary(getSubjectIsAPABeneficiary().booleanValue());
-      
-        if (getSubjectIsDisabledPerson() != null)
-            rsrSubjectTypeRsrSubject.setSubjectIsDisabledPerson(getSubjectIsDisabledPerson().booleanValue());
-      
-        if (getSubjectIsTaxable() != null)
-            rsrSubjectTypeRsrSubject.setSubjectIsTaxable(getSubjectIsTaxable().booleanValue());
         if (getTrustee() != null)
             remoteSupportRequest.setTrustee(getTrustee().modelToXml());
-      
-        if (getSubjectResideWith() != null)
-            rsrSubjectTypeRsrSubject.setSubjectResideWith(fr.cg95.cvq.xml.request.social.RsrSubjectResideWithType.Enum.forString(getSubjectResideWith().toString()));
-      
-        if (getSubjectTitle() != null)
-            rsrSubjectTypeRsrSubject.setSubjectTitle(fr.cg95.cvq.xml.common.TitleType.Enum.forString(getSubjectTitle().toString()));
-        RsrTrusteeType rsrTrusteeTypeTrustee = remoteSupportRequest.addNewTrustee();
-        rsrTrusteeTypeTrustee.setTrusteeFirstName(getTrusteeFirstName());
-      
-        rsrTrusteeTypeTrustee.setTrusteeLastName(getTrusteeLastName());
-      
-        rsrTrusteeTypeTrustee.setTrusteePhone(getTrusteePhone());
-      
-        if (getSubjectResideWith() != null)
-            rsrSubjectTypeRsrSubject.setSubjectResideWith(fr.cg95.cvq.xml.request.social.RsrSubjectResideWithType.Enum.forString(getSubjectResideWith().getLegacyLabel()));
-      
-        if (getSubjectTitle() != null)
-            rsrSubjectTypeRsrSubject.setSubjectTitle(fr.cg95.cvq.xml.common.TitleType.Enum.forString(getSubjectTitle().getLegacyLabel()));
-        RsrTrusteeType rsrTrusteeTypeTrustee = remoteSupportRequest.addNewTrustee();
-        rsrTrusteeTypeTrustee.setTrusteeFirstName(getTrusteeFirstName());
-      
-        rsrTrusteeTypeTrustee.setTrusteeLastName(getTrusteeLastName());
-      
-        rsrTrusteeTypeTrustee.setTrusteePhone(getTrusteePhone());
       
         return remoteSupportRequestDoc;
     }

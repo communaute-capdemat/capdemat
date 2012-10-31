@@ -22,20 +22,21 @@ import fr.cg95.cvq.xml.common.*;
 import fr.cg95.cvq.xml.request.social.*;
 import fr.cg95.cvq.service.request.LocalReferential;
 import fr.cg95.cvq.service.request.condition.IConditionChecker;
+import javax.persistence.*;
+import org.hibernate.annotations.Index;
+import org.hibernate.annotations.Type;
 
 /**
  * Generated class file, do not edit !
- *
- * @hibernate.class
- *  table="mar_precedent_dossier_mdph"
- *  lazy="false"
  */
+@Entity
+@Table(name="mar_precedent_dossier_mdph")
 public class MarPrecedentDossierMdph implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     public static final Map<String, IConditionChecker> conditions =
-        new HashMap<String, IConditionChecker>();
+        MdphAdultRequest.conditions;
 
     public MarPrecedentDossierMdph() {
         super();
@@ -61,7 +62,7 @@ public class MarPrecedentDossierMdph implements Serializable {
         int i = 0;
     
         if (this.departementMdph != null)
-            marPrecedentDossierMdph.setDepartementMdph(fr.cg95.cvq.xml.common.InseeDepartementCodeType.Enum.forString(this.departementMdph.toString()));
+            marPrecedentDossierMdph.setDepartementMdph(fr.cg95.cvq.xml.common.InseeDepartementCodeType.Enum.forString(this.departementMdph.getLegacyLabel()));
       
         marPrecedentDossierMdph.setNumeroMdph(this.numeroMdph);
       
@@ -112,11 +113,8 @@ public class MarPrecedentDossierMdph implements Serializable {
         this.id = id;
     }
 
-    /**
-     * @hibernate.id
-     *  column="id"
-     *  generator-class="sequence"
-     */
+    @Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE)
     public final Long getId() {
         return this.id;
     }
@@ -125,18 +123,15 @@ public class MarPrecedentDossierMdph implements Serializable {
     
     private fr.cg95.cvq.business.users.InseeDepartementCodeType departementMdph;
 
-    public final void setDepartementMdph(final fr.cg95.cvq.business.users.InseeDepartementCodeType departementMdph) {
+    public void setDepartementMdph(final fr.cg95.cvq.business.users.InseeDepartementCodeType departementMdph) {
         this.departementMdph = departementMdph;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="departement_mdph"
-        
+    
+    @Enumerated(EnumType.STRING)
+    @Column(name="departement_mdph"  )
       
-    */
-    public final fr.cg95.cvq.business.users.InseeDepartementCodeType getDepartementMdph() {
+    public fr.cg95.cvq.business.users.InseeDepartementCodeType getDepartementMdph() {
         return this.departementMdph;
     }
   
@@ -161,18 +156,14 @@ public class MarPrecedentDossierMdph implements Serializable {
     
     private String numeroMdph;
 
-    public final void setNumeroMdph(final String numeroMdph) {
+    public void setNumeroMdph(final String numeroMdph) {
         this.numeroMdph = numeroMdph;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="numero_mdph"
-        *  length="13"
+    
+    @Column(name="numero_mdph" , length=13 )
       
-    */
-    public final String getNumeroMdph() {
+    public String getNumeroMdph() {
         return this.numeroMdph;
     }
   

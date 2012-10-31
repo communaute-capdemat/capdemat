@@ -22,20 +22,21 @@ import fr.cg95.cvq.xml.common.*;
 import fr.cg95.cvq.xml.request.social.*;
 import fr.cg95.cvq.service.request.LocalReferential;
 import fr.cg95.cvq.service.request.condition.IConditionChecker;
+import javax.persistence.*;
+import org.hibernate.annotations.Index;
+import org.hibernate.annotations.Type;
 
 /**
  * Generated class file, do not edit !
- *
- * @hibernate.class
- *  table="myr_autorite_parentale"
- *  lazy="false"
  */
+@Entity
+@Table(name="myr_autorite_parentale")
 public class MyrAutoriteParentale implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     public static final Map<String, IConditionChecker> conditions =
-        new HashMap<String, IConditionChecker>();
+        MdphYouthRequest.conditions;
 
     public MyrAutoriteParentale() {
         super();
@@ -148,11 +149,8 @@ public class MyrAutoriteParentale implements Serializable {
         this.id = id;
     }
 
-    /**
-     * @hibernate.id
-     *  column="id"
-     *  generator-class="sequence"
-     */
+    @Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE)
     public final Long getId() {
         return this.id;
     }
@@ -170,36 +168,28 @@ public class MyrAutoriteParentale implements Serializable {
     
     private String nom;
 
-    public final void setNom(final String nom) {
+    public void setNom(final String nom) {
         this.nom = nom;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="nom"
-        *  length="38"
+    
+    @Column(name="nom" , length=38 )
       
-    */
-    public final String getNom() {
+    public String getNom() {
         return this.nom;
     }
   
     
     private String email;
 
-    public final void setEmail(final String email) {
+    public void setEmail(final String email) {
         this.email = email;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="email"
-        
+    
+    @Column(name="email"  )
       
-    */
-    public final String getEmail() {
+    public String getEmail() {
         return this.email;
     }
   
@@ -215,18 +205,14 @@ public class MyrAutoriteParentale implements Serializable {
     
     private String telephone;
 
-    public final void setTelephone(final String telephone) {
+    public void setTelephone(final String telephone) {
         this.telephone = telephone;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="telephone"
-        *  length="10"
+    
+    @Column(name="telephone" , length=10 )
       
-    */
-    public final String getTelephone() {
+    public String getTelephone() {
         return this.telephone;
     }
   
@@ -242,18 +228,14 @@ public class MyrAutoriteParentale implements Serializable {
     
     private String fax;
 
-    public final void setFax(final String fax) {
+    public void setFax(final String fax) {
         this.fax = fax;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="fax"
-        *  length="10"
+    
+    @Column(name="fax" , length=10 )
       
-    */
-    public final String getFax() {
+    public String getFax() {
         return this.fax;
     }
   
@@ -269,18 +251,14 @@ public class MyrAutoriteParentale implements Serializable {
     
     private String prenom;
 
-    public final void setPrenom(final String prenom) {
+    public void setPrenom(final String prenom) {
         this.prenom = prenom;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="prenom"
-        *  length="38"
+    
+    @Column(name="prenom" , length=38 )
       
-    */
-    public final String getPrenom() {
+    public String getPrenom() {
         return this.prenom;
     }
   
@@ -294,19 +272,15 @@ public class MyrAutoriteParentale implements Serializable {
     
     private fr.cg95.cvq.business.users.Address domiciliation;
 
-    public final void setDomiciliation(final fr.cg95.cvq.business.users.Address domiciliation) {
+    public void setDomiciliation(final fr.cg95.cvq.business.users.Address domiciliation) {
         this.domiciliation = domiciliation;
     }
 
-    /**
-  
-        * @hibernate.many-to-one
-        *  cascade="all"
-        *  column="domiciliation_id"
-        *  class="fr.cg95.cvq.business.users.Address"
+    
+    @ManyToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name="domiciliation_id")
       
-    */
-    public final fr.cg95.cvq.business.users.Address getDomiciliation() {
+    public fr.cg95.cvq.business.users.Address getDomiciliation() {
         return this.domiciliation;
     }
   

@@ -22,20 +22,21 @@ import fr.cg95.cvq.xml.common.*;
 import fr.cg95.cvq.xml.request.social.*;
 import fr.cg95.cvq.service.request.LocalReferential;
 import fr.cg95.cvq.service.request.condition.IConditionChecker;
+import javax.persistence.*;
+import org.hibernate.annotations.Index;
+import org.hibernate.annotations.Type;
 
 /**
  * Generated class file, do not edit !
- *
- * @hibernate.class
- *  table="mar_precision_preference_etablissement_ou_service"
- *  lazy="false"
  */
+@Entity
+@Table(name="mar_precision_preference_etablissement_ou_service")
 public class MarPrecisionPreferenceEtablissementOuService implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     public static final Map<String, IConditionChecker> conditions =
-        new HashMap<String, IConditionChecker>();
+        MdphAdultRequest.conditions;
 
     public MarPrecisionPreferenceEtablissementOuService() {
         super();
@@ -125,11 +126,8 @@ public class MarPrecisionPreferenceEtablissementOuService implements Serializabl
         this.id = id;
     }
 
-    /**
-     * @hibernate.id
-     *  column="id"
-     *  generator-class="sequence"
-     */
+    @Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE)
     public final Long getId() {
         return this.id;
     }
@@ -161,18 +159,14 @@ public class MarPrecisionPreferenceEtablissementOuService implements Serializabl
     
     private String communeEtablissementPreference;
 
-    public final void setCommuneEtablissementPreference(final String communeEtablissementPreference) {
+    public void setCommuneEtablissementPreference(final String communeEtablissementPreference) {
         this.communeEtablissementPreference = communeEtablissementPreference;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="commune_etablissement_preference"
-        *  length="32"
+    
+    @Column(name="commune_etablissement_preference" , length=32 )
       
-    */
-    public final String getCommuneEtablissementPreference() {
+    public String getCommuneEtablissementPreference() {
         return this.communeEtablissementPreference;
     }
   
@@ -193,18 +187,14 @@ public class MarPrecisionPreferenceEtablissementOuService implements Serializabl
     
     private String nomEtablissementPreference;
 
-    public final void setNomEtablissementPreference(final String nomEtablissementPreference) {
+    public void setNomEtablissementPreference(final String nomEtablissementPreference) {
         this.nomEtablissementPreference = nomEtablissementPreference;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="nom_etablissement_preference"
-        
+    
+    @Column(name="nom_etablissement_preference"  )
       
-    */
-    public final String getNomEtablissementPreference() {
+    public String getNomEtablissementPreference() {
         return this.nomEtablissementPreference;
     }
   
@@ -234,18 +224,14 @@ public class MarPrecisionPreferenceEtablissementOuService implements Serializabl
     
     private String telephoneEtablissementPreference;
 
-    public final void setTelephoneEtablissementPreference(final String telephoneEtablissementPreference) {
+    public void setTelephoneEtablissementPreference(final String telephoneEtablissementPreference) {
         this.telephoneEtablissementPreference = telephoneEtablissementPreference;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="telephone_etablissement_preference"
-        *  length="10"
+    
+    @Column(name="telephone_etablissement_preference" , length=10 )
       
-    */
-    public final String getTelephoneEtablissementPreference() {
+    public String getTelephoneEtablissementPreference() {
         return this.telephoneEtablissementPreference;
     }
   
@@ -275,18 +261,14 @@ public class MarPrecisionPreferenceEtablissementOuService implements Serializabl
     
     private String codePostalEtablissementPreference;
 
-    public final void setCodePostalEtablissementPreference(final String codePostalEtablissementPreference) {
+    public void setCodePostalEtablissementPreference(final String codePostalEtablissementPreference) {
         this.codePostalEtablissementPreference = codePostalEtablissementPreference;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="code_postal_etablissement_preference"
-        *  length="5"
+    
+    @Column(name="code_postal_etablissement_preference" , length=5 )
       
-    */
-    public final String getCodePostalEtablissementPreference() {
+    public String getCodePostalEtablissementPreference() {
         return this.codePostalEtablissementPreference;
     }
   

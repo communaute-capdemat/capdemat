@@ -22,20 +22,21 @@ import fr.cg95.cvq.xml.common.*;
 import fr.cg95.cvq.xml.request.social.*;
 import fr.cg95.cvq.service.request.LocalReferential;
 import fr.cg95.cvq.service.request.condition.IConditionChecker;
+import javax.persistence.*;
+import org.hibernate.annotations.Index;
+import org.hibernate.annotations.Type;
 
 /**
  * Generated class file, do not edit !
- *
- * @hibernate.class
- *  table="dhr_requester_pension_plan"
- *  lazy="false"
  */
+@Entity
+@Table(name="dhr_requester_pension_plan")
 public class DhrRequesterPensionPlan implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     public static final Map<String, IConditionChecker> conditions =
-        new HashMap<String, IConditionChecker>();
+        DomesticHelpRequest.conditions;
 
     public DhrRequesterPensionPlan() {
         super();
@@ -63,7 +64,7 @@ public class DhrRequesterPensionPlan implements Serializable {
         dhrRequesterPensionPlan.setDhrPensionPlanDetail(this.dhrPensionPlanDetail);
       
         if (this.dhrPrincipalPensionPlan != null)
-            dhrRequesterPensionPlan.setDhrPrincipalPensionPlan(fr.cg95.cvq.xml.request.social.DhrPrincipalPensionPlanType.Enum.forString(this.dhrPrincipalPensionPlan.toString()));
+            dhrRequesterPensionPlan.setDhrPrincipalPensionPlan(fr.cg95.cvq.xml.request.social.DhrPrincipalPensionPlanType.Enum.forString(this.dhrPrincipalPensionPlan.getLegacyLabel()));
       
         dhrRequesterPensionPlan.setDhrComplementaryPensionPlan(this.dhrComplementaryPensionPlan);
       
@@ -122,11 +123,8 @@ public class DhrRequesterPensionPlan implements Serializable {
         this.id = id;
     }
 
-    /**
-     * @hibernate.id
-     *  column="id"
-     *  generator-class="sequence"
-     */
+    @Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE)
     public final Long getId() {
         return this.id;
     }
@@ -138,7 +136,8 @@ public class DhrRequesterPensionPlan implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['dhrRequesterPensionPlan.dhrPrincipalPensionPlan'].test(_this.dhrPrincipalPensionPlan.toString());" +
+              "active &= _this.conditions['dhrRequesterPensionPlan.dhrPrincipalPensionPlan'].test(_this.dhrPrincipalPensionPlan.toString());" +
+                  
                 
               
             
@@ -154,7 +153,8 @@ public class DhrRequesterPensionPlan implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['dhrRequesterPensionPlan.dhrPrincipalPensionPlan'].test(_this.dhrPrincipalPensionPlan.toString());" +
+              "active &= _this.conditions['dhrRequesterPensionPlan.dhrPrincipalPensionPlan'].test(_this.dhrPrincipalPensionPlan.toString());" +
+                  
                 
               
             
@@ -167,18 +167,14 @@ public class DhrRequesterPensionPlan implements Serializable {
     
     private String dhrPensionPlanDetail;
 
-    public final void setDhrPensionPlanDetail(final String dhrPensionPlanDetail) {
+    public void setDhrPensionPlanDetail(final String dhrPensionPlanDetail) {
         this.dhrPensionPlanDetail = dhrPensionPlanDetail;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="dhr_pension_plan_detail"
-        
+    
+    @Column(name="dhr_pension_plan_detail"  )
       
-    */
-    public final String getDhrPensionPlanDetail() {
+    public String getDhrPensionPlanDetail() {
         return this.dhrPensionPlanDetail;
     }
   
@@ -192,18 +188,15 @@ public class DhrRequesterPensionPlan implements Serializable {
     
     private fr.cg95.cvq.business.request.social.DhrPrincipalPensionPlanType dhrPrincipalPensionPlan;
 
-    public final void setDhrPrincipalPensionPlan(final fr.cg95.cvq.business.request.social.DhrPrincipalPensionPlanType dhrPrincipalPensionPlan) {
+    public void setDhrPrincipalPensionPlan(final fr.cg95.cvq.business.request.social.DhrPrincipalPensionPlanType dhrPrincipalPensionPlan) {
         this.dhrPrincipalPensionPlan = dhrPrincipalPensionPlan;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="dhr_principal_pension_plan"
-        
+    
+    @Enumerated(EnumType.STRING)
+    @Column(name="dhr_principal_pension_plan"  )
       
-    */
-    public final fr.cg95.cvq.business.request.social.DhrPrincipalPensionPlanType getDhrPrincipalPensionPlan() {
+    public fr.cg95.cvq.business.request.social.DhrPrincipalPensionPlanType getDhrPrincipalPensionPlan() {
         return this.dhrPrincipalPensionPlan;
     }
   
@@ -224,18 +217,14 @@ public class DhrRequesterPensionPlan implements Serializable {
     
     private String dhrComplementaryPensionPlan;
 
-    public final void setDhrComplementaryPensionPlan(final String dhrComplementaryPensionPlan) {
+    public void setDhrComplementaryPensionPlan(final String dhrComplementaryPensionPlan) {
         this.dhrComplementaryPensionPlan = dhrComplementaryPensionPlan;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="dhr_complementary_pension_plan"
-        
+    
+    @Column(name="dhr_complementary_pension_plan"  )
       
-    */
-    public final String getDhrComplementaryPensionPlan() {
+    public String getDhrComplementaryPensionPlan() {
         return this.dhrComplementaryPensionPlan;
     }
   

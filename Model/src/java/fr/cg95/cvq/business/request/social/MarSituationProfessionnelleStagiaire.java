@@ -22,20 +22,21 @@ import fr.cg95.cvq.xml.common.*;
 import fr.cg95.cvq.xml.request.social.*;
 import fr.cg95.cvq.service.request.LocalReferential;
 import fr.cg95.cvq.service.request.condition.IConditionChecker;
+import javax.persistence.*;
+import org.hibernate.annotations.Index;
+import org.hibernate.annotations.Type;
 
 /**
  * Generated class file, do not edit !
- *
- * @hibernate.class
- *  table="mar_situation_professionnelle_stagiaire"
- *  lazy="false"
  */
+@Entity
+@Table(name="mar_situation_professionnelle_stagiaire")
 public class MarSituationProfessionnelleStagiaire implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     public static final Map<String, IConditionChecker> conditions =
-        new HashMap<String, IConditionChecker>();
+        MdphAdultRequest.conditions;
 
     public MarSituationProfessionnelleStagiaire() {
         super();
@@ -146,11 +147,8 @@ public class MarSituationProfessionnelleStagiaire implements Serializable {
         this.id = id;
     }
 
-    /**
-     * @hibernate.id
-     *  column="id"
-     *  generator-class="sequence"
-     */
+    @Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE)
     public final Long getId() {
         return this.id;
     }
@@ -166,18 +164,14 @@ public class MarSituationProfessionnelleStagiaire implements Serializable {
     
     private Boolean stageRenumeration;
 
-    public final void setStageRenumeration(final Boolean stageRenumeration) {
+    public void setStageRenumeration(final Boolean stageRenumeration) {
         this.stageRenumeration = stageRenumeration;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="stage_renumeration"
-        
+    
+    @Column(name="stage_renumeration"  )
       
-    */
-    public final Boolean getStageRenumeration() {
+    public Boolean getStageRenumeration() {
         return this.stageRenumeration;
     }
   
@@ -207,18 +201,14 @@ public class MarSituationProfessionnelleStagiaire implements Serializable {
     
     private String nomEmployeurStage;
 
-    public final void setNomEmployeurStage(final String nomEmployeurStage) {
+    public void setNomEmployeurStage(final String nomEmployeurStage) {
         this.nomEmployeurStage = nomEmployeurStage;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="nom_employeur_stage"
-        *  length="38"
+    
+    @Column(name="nom_employeur_stage" , length=38 )
       
-    */
-    public final String getNomEmployeurStage() {
+    public String getNomEmployeurStage() {
         return this.nomEmployeurStage;
     }
   
@@ -248,18 +238,14 @@ public class MarSituationProfessionnelleStagiaire implements Serializable {
     
     private String telephoneEmployeurStage;
 
-    public final void setTelephoneEmployeurStage(final String telephoneEmployeurStage) {
+    public void setTelephoneEmployeurStage(final String telephoneEmployeurStage) {
         this.telephoneEmployeurStage = telephoneEmployeurStage;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="telephone_employeur_stage"
-        *  length="10"
+    
+    @Column(name="telephone_employeur_stage" , length=10 )
       
-    */
-    public final String getTelephoneEmployeurStage() {
+    public String getTelephoneEmployeurStage() {
         return this.telephoneEmployeurStage;
     }
   
@@ -280,19 +266,15 @@ public class MarSituationProfessionnelleStagiaire implements Serializable {
     
     private fr.cg95.cvq.business.users.Address adresseEmployeurStage;
 
-    public final void setAdresseEmployeurStage(final fr.cg95.cvq.business.users.Address adresseEmployeurStage) {
+    public void setAdresseEmployeurStage(final fr.cg95.cvq.business.users.Address adresseEmployeurStage) {
         this.adresseEmployeurStage = adresseEmployeurStage;
     }
 
-    /**
-  
-        * @hibernate.many-to-one
-        *  cascade="all"
-        *  column="adresse_employeur_stage_id"
-        *  class="fr.cg95.cvq.business.users.Address"
+    
+    @ManyToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name="adresse_employeur_stage_id")
       
-    */
-    public final fr.cg95.cvq.business.users.Address getAdresseEmployeurStage() {
+    public fr.cg95.cvq.business.users.Address getAdresseEmployeurStage() {
         return this.adresseEmployeurStage;
     }
   
@@ -306,18 +288,14 @@ public class MarSituationProfessionnelleStagiaire implements Serializable {
     
     private java.util.Date stagiaireDepuisLe;
 
-    public final void setStagiaireDepuisLe(final java.util.Date stagiaireDepuisLe) {
+    public void setStagiaireDepuisLe(final java.util.Date stagiaireDepuisLe) {
         this.stagiaireDepuisLe = stagiaireDepuisLe;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="stagiaire_depuis_le"
-        
+    
+    @Column(name="stagiaire_depuis_le"  )
       
-    */
-    public final java.util.Date getStagiaireDepuisLe() {
+    public java.util.Date getStagiaireDepuisLe() {
         return this.stagiaireDepuisLe;
     }
   

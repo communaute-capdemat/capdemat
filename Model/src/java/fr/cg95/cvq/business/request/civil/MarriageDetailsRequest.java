@@ -120,13 +120,7 @@ public class MarriageDetailsRequest extends Request implements Serializable {
             marriageDetailsRequest.setFatherInformation(getFatherInformation().modelToXml());
       
         if (getFormat() != null)
-            marriageDetailsRequest.setFormat(fr.cg95.cvq.xml.request.civil.MarriageCertificateFormatType.Enum.forString(getFormat().toString()));
-        MarriageInformationType marriageInformationTypeMarriage = marriageDetailsRequest.addNewMarriage();
-        marriageInformationTypeMarriage.setMarriageCity(getMarriageCity());
             marriageDetailsRequest.setFormat(fr.cg95.cvq.xml.request.civil.MarriageCertificateFormatType.Enum.forString(getFormat().getLegacyLabel()));
-        MarriageInformationType marriageInformationTypeMarriage = marriageDetailsRequest.addNewMarriage();
-        marriageInformationTypeMarriage.setMarriageCity(getMarriageCity());
-            marriageDetailsRequest.setFormat(fr.cg95.cvq.xml.request.civil.MarriageCertificateFormatType.Enum.forString(getFormat().toString()));
       
         if (getMarriage() != null)
             marriageDetailsRequest.setMarriage(getMarriage().modelToXml());

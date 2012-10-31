@@ -1,42 +1,42 @@
 package fr.cg95.cvq.business.request.social;
 
-import fr.cg95.cvq.dao.hibernate.PersistentStringEnum;
-
 /**
  * Generated class file, do not edit !
  */
-public final class MyrCategoriePensionInvaliditeType extends PersistentStringEnum {
+public enum MyrCategoriePensionInvaliditeType {
 
-    private static final long serialVersionUID = 1L;
-  
-    public static final MyrCategoriePensionInvaliditeType UN = new MyrCategoriePensionInvaliditeType("Un");
-  
-    public static final MyrCategoriePensionInvaliditeType DEUX = new MyrCategoriePensionInvaliditeType("Deux");
-  
-    public static final MyrCategoriePensionInvaliditeType TROIS = new MyrCategoriePensionInvaliditeType("Trois");
-  
+    UN("Un"),
+    DEUX("Deux"),
+    TROIS("Trois");
+
 
     /**
-     * Prevent instantiation and subclassing with a private constructor.
+     * only for backward use MyrCategoriePensionInvaliditeType.values() instead
+     * @deprecated only for backward
      */
-    private MyrCategoriePensionInvaliditeType(String value) {
-        super(value);
+    @Deprecated 
+    public static MyrCategoriePensionInvaliditeType[] allMyrCategoriePensionInvaliditeTypes = MyrCategoriePensionInvaliditeType.values();
+
+    private String legacyLabel;
+
+    private MyrCategoriePensionInvaliditeType(String legacyLabel){
+        this.legacyLabel = legacyLabel;
     }
 
-    public MyrCategoriePensionInvaliditeType() {}
-
-    public static MyrCategoriePensionInvaliditeType[] allMyrCategoriePensionInvaliditeTypes = {
-        UN,
-        DEUX,
-        TROIS
-    };
+    public String getLegacyLabel() {
+        return legacyLabel;
+    }
 
     public static MyrCategoriePensionInvaliditeType getDefaultMyrCategoriePensionInvaliditeType() {
         return null;
     }
 
+    /**
+     * @deprecated use valueOf instead. Watchout! you must provid something of MyrCategoriePensionInvaliditeType.something
+     * not the value of the name attribut.
+     */
     public static MyrCategoriePensionInvaliditeType forString(final String enumAsString) {
-        for (MyrCategoriePensionInvaliditeType value : allMyrCategoriePensionInvaliditeTypes)
+        for (MyrCategoriePensionInvaliditeType value : values())
             if (value.toString().equals(enumAsString))
                 return value;
         return getDefaultMyrCategoriePensionInvaliditeType();

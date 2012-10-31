@@ -39,12 +39,8 @@
       <label for="informationMere.situationActuelleMere" class=""><g:message code="dccrr.property.situationActuelleMere.label" />   <span><g:message code="dccrr.property.situationActuelleMere.help" /></span></label>
             <select id="informationMere.situationActuelleMere" name="informationMere.situationActuelleMere" class="condition-estAutreSituationActuelleMere-trigger  validate-select ${rqt.stepStates['subject'].invalidFields.contains('informationMere.situationActuelleMere') ? 'validation-failed' : ''}" title="<g:message code="dccrr.property.situationActuelleMere.validationError" />">
               <option value=""><g:message code="message.select.defaultOption" /></option>
-              <g:each in="${['Plein','Partiel','Interim','Etudiant','Stage','Recherche','Parent','Libre','Conge','Retraite','Autre']}">
-                <option value="fr.cg95.cvq.business.request.school.ChoixSituationActuelle_${it}" ${it == rqt.situationActuelleMere?.toString() ? 'selected="selected"': ''}><g:capdematEnumToText var="${it}" i18nKeyPrefix="dccrr.property.situationActuelleMere" /></option>
               <g:each in="${['PLEIN','PARTIEL','INTERIM','ETUDIANT','STAGE','RECHERCHE','PARENT','LIBRE','CONGE','RETRAITE','AUTRE']}">
-                <option value="${it}" ${it == rqt.situationActuelleMere?.toString() ? 'selected="selected"': ''}><g:capdematEnumToText var="${it}" i18nKeyPrefix="dccrr.property.situationActuelleMere" /></option>
-              <g:each in="${['Plein','Partiel','Interim','Etudiant','Stage','Recherche','Parent','Libre','Conge','Retraite','Autre']}">
-                <option value="fr.cg95.cvq.business.request.school.ChoixSituationActuelle_${it}" ${it == rqt.informationMere?.situationActuelleMere?.toString() ? 'selected="selected"': ''}><g:capdematEnumToText var="${it}" i18nKeyPrefix="dccrr.property.situationActuelleMere" /></option>
+                <option value="${it}" ${it == rqt.informationMere?.situationActuelleMere?.toString() ? 'selected="selected"': ''}><g:capdematEnumToText var="${it}" i18nKeyPrefix="dccrr.property.situationActuelleMere" /></option>
               </g:each>
             </select>
             
@@ -126,12 +122,8 @@
       <label for="informationPere.situationActuellePere" class=""><g:message code="dccrr.property.situationActuellePere.label" />   <span><g:message code="dccrr.property.situationActuellePere.help" /></span></label>
             <select id="informationPere.situationActuellePere" name="informationPere.situationActuellePere" class="condition-estAutreSituationActuellePere-trigger  validate-select ${rqt.stepStates['subject'].invalidFields.contains('informationPere.situationActuellePere') ? 'validation-failed' : ''}" title="<g:message code="dccrr.property.situationActuellePere.validationError" />">
               <option value=""><g:message code="message.select.defaultOption" /></option>
-              <g:each in="${['Plein','Partiel','Interim','Etudiant','Stage','Recherche','Parent','Libre','Conge','Retraite','Autre']}">
-                <option value="fr.cg95.cvq.business.request.school.ChoixSituationActuelle_${it}" ${it == rqt.situationActuellePere?.toString() ? 'selected="selected"': ''}><g:capdematEnumToText var="${it}" i18nKeyPrefix="dccrr.property.situationActuellePere" /></option>
               <g:each in="${['PLEIN','PARTIEL','INTERIM','ETUDIANT','STAGE','RECHERCHE','PARENT','LIBRE','CONGE','RETRAITE','AUTRE']}">
-                <option value="${it}" ${it == rqt.situationActuellePere?.toString() ? 'selected="selected"': ''}><g:capdematEnumToText var="${it}" i18nKeyPrefix="dccrr.property.situationActuellePere" /></option>
-              <g:each in="${['Plein','Partiel','Interim','Etudiant','Stage','Recherche','Parent','Libre','Conge','Retraite','Autre']}">
-                <option value="fr.cg95.cvq.business.request.school.ChoixSituationActuelle_${it}" ${it == rqt.informationPere?.situationActuellePere?.toString() ? 'selected="selected"': ''}><g:capdematEnumToText var="${it}" i18nKeyPrefix="dccrr.property.situationActuellePere" /></option>
+                <option value="${it}" ${it == rqt.informationPere?.situationActuellePere?.toString() ? 'selected="selected"': ''}><g:capdematEnumToText var="${it}" i18nKeyPrefix="dccrr.property.situationActuellePere" /></option>
               </g:each>
             </select>
             

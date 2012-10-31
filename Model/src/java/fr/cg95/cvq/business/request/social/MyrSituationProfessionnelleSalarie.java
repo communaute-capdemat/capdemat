@@ -22,20 +22,21 @@ import fr.cg95.cvq.xml.common.*;
 import fr.cg95.cvq.xml.request.social.*;
 import fr.cg95.cvq.service.request.LocalReferential;
 import fr.cg95.cvq.service.request.condition.IConditionChecker;
+import javax.persistence.*;
+import org.hibernate.annotations.Index;
+import org.hibernate.annotations.Type;
 
 /**
  * Generated class file, do not edit !
- *
- * @hibernate.class
- *  table="myr_situation_professionnelle_salarie"
- *  lazy="false"
  */
+@Entity
+@Table(name="myr_situation_professionnelle_salarie")
 public class MyrSituationProfessionnelleSalarie implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     public static final Map<String, IConditionChecker> conditions =
-        new HashMap<String, IConditionChecker>();
+        MdphYouthRequest.conditions;
 
     public MyrSituationProfessionnelleSalarie() {
         super();
@@ -163,11 +164,8 @@ public class MyrSituationProfessionnelleSalarie implements Serializable {
         this.id = id;
     }
 
-    /**
-     * @hibernate.id
-     *  column="id"
-     *  generator-class="sequence"
-     */
+    @Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE)
     public final Long getId() {
         return this.id;
     }
@@ -190,18 +188,14 @@ public class MyrSituationProfessionnelleSalarie implements Serializable {
     
     private String typeContrat;
 
-    public final void setTypeContrat(final String typeContrat) {
+    public void setTypeContrat(final String typeContrat) {
         this.typeContrat = typeContrat;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="type_contrat"
-        
+    
+    @Column(name="type_contrat"  )
       
-    */
-    public final String getTypeContrat() {
+    public String getTypeContrat() {
         return this.typeContrat;
     }
   
@@ -215,54 +209,42 @@ public class MyrSituationProfessionnelleSalarie implements Serializable {
     
     private java.util.Date salarieDateDebutContrat;
 
-    public final void setSalarieDateDebutContrat(final java.util.Date salarieDateDebutContrat) {
+    public void setSalarieDateDebutContrat(final java.util.Date salarieDateDebutContrat) {
         this.salarieDateDebutContrat = salarieDateDebutContrat;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="salarie_date_debut_contrat"
-        
+    
+    @Column(name="salarie_date_debut_contrat"  )
       
-    */
-    public final java.util.Date getSalarieDateDebutContrat() {
+    public java.util.Date getSalarieDateDebutContrat() {
         return this.salarieDateDebutContrat;
     }
   
     
     private java.util.Date esatDepuisLe;
 
-    public final void setEsatDepuisLe(final java.util.Date esatDepuisLe) {
+    public void setEsatDepuisLe(final java.util.Date esatDepuisLe) {
         this.esatDepuisLe = esatDepuisLe;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="esat_depuis_le"
-        
+    
+    @Column(name="esat_depuis_le"  )
       
-    */
-    public final java.util.Date getEsatDepuisLe() {
+    public java.util.Date getEsatDepuisLe() {
         return this.esatDepuisLe;
     }
   
     
     private java.util.Date salarieDateFinContrat;
 
-    public final void setSalarieDateFinContrat(final java.util.Date salarieDateFinContrat) {
+    public void setSalarieDateFinContrat(final java.util.Date salarieDateFinContrat) {
         this.salarieDateFinContrat = salarieDateFinContrat;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="salarie_date_fin_contrat"
-        
+    
+    @Column(name="salarie_date_fin_contrat"  )
       
-    */
-    public final java.util.Date getSalarieDateFinContrat() {
+    public java.util.Date getSalarieDateFinContrat() {
         return this.salarieDateFinContrat;
     }
   
@@ -276,18 +258,14 @@ public class MyrSituationProfessionnelleSalarie implements Serializable {
     
     private java.util.Date salarieDepuisLe;
 
-    public final void setSalarieDepuisLe(final java.util.Date salarieDepuisLe) {
+    public void setSalarieDepuisLe(final java.util.Date salarieDepuisLe) {
         this.salarieDepuisLe = salarieDepuisLe;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="salarie_depuis_le"
-        
+    
+    @Column(name="salarie_depuis_le"  )
       
-    */
-    public final java.util.Date getSalarieDepuisLe() {
+    public java.util.Date getSalarieDepuisLe() {
         return this.salarieDepuisLe;
     }
   

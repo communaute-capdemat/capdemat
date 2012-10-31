@@ -22,20 +22,21 @@ import fr.cg95.cvq.xml.common.*;
 import fr.cg95.cvq.xml.request.social.*;
 import fr.cg95.cvq.service.request.LocalReferential;
 import fr.cg95.cvq.service.request.condition.IConditionChecker;
+import javax.persistence.*;
+import org.hibernate.annotations.Index;
+import org.hibernate.annotations.Type;
 
 /**
  * Generated class file, do not edit !
- *
- * @hibernate.class
- *  table="myr_situation_professionnelle_autre"
- *  lazy="false"
  */
+@Entity
+@Table(name="myr_situation_professionnelle_autre")
 public class MyrSituationProfessionnelleAutre implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     public static final Map<String, IConditionChecker> conditions =
-        new HashMap<String, IConditionChecker>();
+        MdphYouthRequest.conditions;
 
     public MyrSituationProfessionnelleAutre() {
         super();
@@ -112,11 +113,8 @@ public class MyrSituationProfessionnelleAutre implements Serializable {
         this.id = id;
     }
 
-    /**
-     * @hibernate.id
-     *  column="id"
-     *  generator-class="sequence"
-     */
+    @Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE)
     public final Long getId() {
         return this.id;
     }
@@ -139,18 +137,14 @@ public class MyrSituationProfessionnelleAutre implements Serializable {
     
     private String precisionAutreSituationProfessionnelle;
 
-    public final void setPrecisionAutreSituationProfessionnelle(final String precisionAutreSituationProfessionnelle) {
+    public void setPrecisionAutreSituationProfessionnelle(final String precisionAutreSituationProfessionnelle) {
         this.precisionAutreSituationProfessionnelle = precisionAutreSituationProfessionnelle;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="precision_autre_situation_professionnelle"
-        
+    
+    @Column(name="precision_autre_situation_professionnelle"  )
       
-    */
-    public final String getPrecisionAutreSituationProfessionnelle() {
+    public String getPrecisionAutreSituationProfessionnelle() {
         return this.precisionAutreSituationProfessionnelle;
     }
   
@@ -164,18 +158,14 @@ public class MyrSituationProfessionnelleAutre implements Serializable {
     
     private java.util.Date autreDepuisLe;
 
-    public final void setAutreDepuisLe(final java.util.Date autreDepuisLe) {
+    public void setAutreDepuisLe(final java.util.Date autreDepuisLe) {
         this.autreDepuisLe = autreDepuisLe;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="autre_depuis_le"
-        
+    
+    @Column(name="autre_depuis_le"  )
       
-    */
-    public final java.util.Date getAutreDepuisLe() {
+    public java.util.Date getAutreDepuisLe() {
         return this.autreDepuisLe;
     }
   

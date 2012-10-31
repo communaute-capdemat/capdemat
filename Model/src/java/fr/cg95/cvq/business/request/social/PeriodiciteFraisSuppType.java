@@ -1,45 +1,43 @@
 package fr.cg95.cvq.business.request.social;
 
-import fr.cg95.cvq.dao.hibernate.PersistentStringEnum;
-
 /**
  * Generated class file, do not edit !
  */
-public final class PeriodiciteFraisSuppType extends PersistentStringEnum {
+public enum PeriodiciteFraisSuppType {
 
-    private static final long serialVersionUID = 1L;
-  
-    public static final PeriodiciteFraisSuppType SEMAINE = new PeriodiciteFraisSuppType("Semaine");
-  
-    public static final PeriodiciteFraisSuppType MOIS = new PeriodiciteFraisSuppType("Mois");
-  
-    public static final PeriodiciteFraisSuppType ANNEE = new PeriodiciteFraisSuppType("Annee");
-  
-    public static final PeriodiciteFraisSuppType OCCASIONNELLE = new PeriodiciteFraisSuppType("Occasionnelle");
-  
+    SEMAINE("Semaine"),
+    MOIS("Mois"),
+    ANNEE("Annee"),
+    OCCASIONNELLE("Occasionnelle");
+
 
     /**
-     * Prevent instantiation and subclassing with a private constructor.
+     * only for backward use PeriodiciteFraisSuppType.values() instead
+     * @deprecated only for backward
      */
-    private PeriodiciteFraisSuppType(String value) {
-        super(value);
+    @Deprecated 
+    public static PeriodiciteFraisSuppType[] allPeriodiciteFraisSuppTypes = PeriodiciteFraisSuppType.values();
+
+    private String legacyLabel;
+
+    private PeriodiciteFraisSuppType(String legacyLabel){
+        this.legacyLabel = legacyLabel;
     }
 
-    public PeriodiciteFraisSuppType() {}
-
-    public static PeriodiciteFraisSuppType[] allPeriodiciteFraisSuppTypes = {
-        SEMAINE,
-        MOIS,
-        ANNEE,
-        OCCASIONNELLE
-    };
+    public String getLegacyLabel() {
+        return legacyLabel;
+    }
 
     public static PeriodiciteFraisSuppType getDefaultPeriodiciteFraisSuppType() {
         return null;
     }
 
+    /**
+     * @deprecated use valueOf instead. Watchout! you must provid something of PeriodiciteFraisSuppType.something
+     * not the value of the name attribut.
+     */
     public static PeriodiciteFraisSuppType forString(final String enumAsString) {
-        for (PeriodiciteFraisSuppType value : allPeriodiciteFraisSuppTypes)
+        for (PeriodiciteFraisSuppType value : values())
             if (value.toString().equals(enumAsString))
                 return value;
         return getDefaultPeriodiciteFraisSuppType();

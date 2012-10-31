@@ -38,13 +38,10 @@
             
               
               <dl>
-                <dt class="required">${message(code:'msrr.property.activity.label')}¬†*¬†:</dt><dd id="activity" class="action-editField validate-localReferentialData required-true i18n-msrr.property.activity data-localReferentialData" >
+                <dt class="required">${message(code:'msrr.property.activity.label')} * :</dt><dd id="activity" class="action-editField validate-localReferentialData required-true i18n-msrr.property.activity data-localReferentialData" >
            <g:render template="/backofficeRequestInstruction/widget/localReferentialDataStatic" 
                      model="['javaName':'activity', 'lrEntries': lrTypes.activity?.entries, 
-                             'rqt':rqt, 'isMultiple':lrTypes.activity?.entriesSupportMultiple, 'depth':0]" />
-                             'rqt':rqt, 'isMultiple':lrTypes.activity?.isMultiple(), 'depth':0]" />
-                             'wrapper':rqt, 'isMultiple':lrTypes.activity?.entriesSupportMultiple, 'depth':0]" />
- 
+                             'wrapper':rqt, 'isMultiple':lrTypes.activity?.isMultiple(), 'depth':0]" />
           </dd>
               </dl>
               
@@ -76,7 +73,7 @@
             
               
               <dl>
-                <dt class="">${message(code:'msrr.property.rulesAndRegulationsAcceptance.label')}¬†:</dt><dd id="rulesAndRegulationsAcceptance" class="action-editField validate-acceptance i18n-msrr.property.rulesAndRegulationsAcceptance" ><span class="value-${rqt?.rulesAndRegulationsAcceptance}"><g:message code="message.${rqt?.rulesAndRegulationsAcceptance ? 'yes' : 'no'}" /></span></dd>
+                <dt class="">${message(code:'msrr.property.rulesAndRegulationsAcceptance.label')} :</dt><dd id="rulesAndRegulationsAcceptance" class="action-editField validate-acceptance i18n-msrr.property.rulesAndRegulationsAcceptance" ><span class="value-${rqt?.rulesAndRegulationsAcceptance}"><g:message code="message.${rqt?.rulesAndRegulationsAcceptance ? 'yes' : 'no'}" /></span></dd>
               </dl>
               
             

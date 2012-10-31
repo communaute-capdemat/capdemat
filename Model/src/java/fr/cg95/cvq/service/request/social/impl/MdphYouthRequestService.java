@@ -3,8 +3,15 @@ package fr.cg95.cvq.service.request.social.impl;
 import java.util.Arrays;
 
 import fr.cg95.cvq.business.request.Request;
+import fr.cg95.cvq.business.request.social.DeteneurAutoriteParentaleType;
 import fr.cg95.cvq.business.request.social.MdphYouthRequest;
 import fr.cg95.cvq.business.request.social.MyrBesoinsDemandePch;
+import fr.cg95.cvq.business.request.social.MyrChoixProjetDeVieType;
+import fr.cg95.cvq.business.request.social.MyrChoixSituationProfessionnelleType;
+import fr.cg95.cvq.business.request.social.MyrLogementType;
+import fr.cg95.cvq.business.request.social.MyrSituationAutreType;
+import fr.cg95.cvq.business.request.social.MyrSituationFamilialeType;
+import fr.cg95.cvq.business.request.social.SituationFamilialeType;
 import fr.cg95.cvq.service.request.condition.EqualityChecker;
 import fr.cg95.cvq.service.request.condition.EqualityListChecker;
 import fr.cg95.cvq.service.request.impl.RequestService;
@@ -16,18 +23,34 @@ public final class MdphYouthRequestService extends RequestService {
 
         super.init();
         
-        MdphYouthRequest.conditions.put("deteneurAutoriteParentale", new EqualityChecker("Autre"));
+        MdphYouthRequest.conditions.put("deteneurAutoriteParentale", new EqualityChecker(DeteneurAutoriteParentaleType.AUTRE.name()));
         MdphYouthRequest.conditions.put("preferencesEtablissementOuService", new EqualityChecker("true"));
-        MdphYouthRequest.conditions.put("situationMaritale", new EqualityListChecker(Arrays.asList("Marie", "Concubinage")));
-        MdphYouthRequest.conditions.put("situationParticuliere", new EqualityChecker("Autre"));
-        MdphYouthRequest.conditions.put("situationParticuliere", 
-                new EqualityListChecker(Arrays.asList("estAutreCas-Autre", "estUnCas-EtablissementMedicoSocial", "estUnCas-Autre", "estUnCas-Hospitalise")));
-        MdphYouthRequest.conditions.put("situationProfessionnelleVous", 
-                new EqualityListChecker(Arrays.asList("estSalarieVous-Salarie", "estStagiaireVous-Stagiaire", "estNonSalarieVous-Nonsalarie", "estDemandeurEmploiVous-Demandeur", "estRetraiteVous-Retraite", "estBeneficiairePensionVous-Pension", "estAutreVous-Autre")));
-        MdphYouthRequest.conditions.put("situationProfessionnelleConjoint", 
-                new EqualityListChecker(Arrays.asList("estSalarieConjoint-Salarie", "estStagiaireConjoint-Stagiaire", "estNonSalarieConjoint-Nonsalarie", "estDemandeurEmploiConjoint-Demandeur", "estRetraiteConjoint-Retraite", "estBeneficiairePensionConjoint-Pension", "estAutreConjoint-Autre")));
-        MdphYouthRequest.conditions.put("typeLogement", new EqualityChecker("Autre"));
-        MdphYouthRequest.conditions.put("choixProjetDeVie", new EqualityChecker("Oui"));
+        MdphYouthRequest.conditions.put("situationMaritale", new EqualityListChecker(Arrays.asList(
+                MyrSituationFamilialeType.MARIE.name(), MyrSituationFamilialeType.CONCUBINAGE.name())));
+        MdphYouthRequest.conditions.put("situationParticuliere", new EqualityChecker(MyrSituationAutreType.AUTRE.name()));
+        MdphYouthRequest.conditions.put("situationParticuliere", new EqualityListChecker(Arrays.asList(
+                "estAutreCas="+MyrSituationAutreType.AUTRE.name(),
+                "estUnCas="+MyrSituationAutreType.ETABLISSEMENT_MEDICO_SOCIAL.name(),
+                "estUnCas="+MyrSituationAutreType.AUTRE.name(),
+                "estUnCas="+MyrSituationAutreType.HOSPITALISE.name())));
+        MdphYouthRequest.conditions.put("situationProfessionnelleVous", new EqualityListChecker(Arrays.asList(
+                "estSalarieVous="+MyrChoixSituationProfessionnelleType.SALARIE.name(),
+                "estStagiaireVous="+MyrChoixSituationProfessionnelleType.STAGIAIRE.name(),
+                "estNonSalarieVous="+MyrChoixSituationProfessionnelleType.NONSALARIE.name(),
+                "estDemandeurEmploiVous="+MyrChoixSituationProfessionnelleType.DEMANDEUR.name(),
+                "estRetraiteVous="+MyrChoixSituationProfessionnelleType.RETRAITE.name(),
+                "estBeneficiairePensionVous="+MyrChoixSituationProfessionnelleType.PENSION.name(),
+                "estAutreVous="+MyrChoixSituationProfessionnelleType.AUTRE.name())));
+        MdphYouthRequest.conditions.put("situationProfessionnelleConjoint", new EqualityListChecker(Arrays.asList(
+                "estSalarieConjoint="+MyrChoixSituationProfessionnelleType.SALARIE.name(),
+                "estStagiaireConjoint="+MyrChoixSituationProfessionnelleType.STAGIAIRE.name(),
+                "estNonSalarieConjoint="+MyrChoixSituationProfessionnelleType.NONSALARIE.name(),
+                "estDemandeurEmploiConjoint="+MyrChoixSituationProfessionnelleType.DEMANDEUR.name(),
+                "estRetraiteConjoint="+MyrChoixSituationProfessionnelleType.RETRAITE.name(),
+                "estBeneficiairePensionConjoint="+MyrChoixSituationProfessionnelleType.PENSION.name(),
+                "estAutreConjoint="+MyrChoixSituationProfessionnelleType.AUTRE.name())));
+        MdphYouthRequest.conditions.put("typeLogement", new EqualityChecker(MyrLogementType.AUTRE.name()));
+        MdphYouthRequest.conditions.put("choixProjetDeVie", new EqualityChecker(MyrChoixProjetDeVieType.OUI.name()));
         MdphYouthRequest.conditions.put("enfantEnInternat", new EqualityChecker("true"));
         
         // kept them for client side JS validation script

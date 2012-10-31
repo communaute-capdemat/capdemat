@@ -1,42 +1,42 @@
 package fr.cg95.cvq.business.request.social;
 
-import fr.cg95.cvq.dao.hibernate.PersistentStringEnum;
-
 /**
  * Generated class file, do not edit !
  */
-public final class ChoixPrestationCompensationType extends PersistentStringEnum {
+public enum ChoixPrestationCompensationType {
 
-    private static final long serialVersionUID = 1L;
-  
-    public static final ChoixPrestationCompensationType PCH = new ChoixPrestationCompensationType("Pch");
-  
-    public static final ChoixPrestationCompensationType ACTP = new ChoixPrestationCompensationType("Actp");
-  
-    public static final ChoixPrestationCompensationType ACFP = new ChoixPrestationCompensationType("Acfp");
-  
+    PCH("Pch"),
+    ACTP("Actp"),
+    ACFP("Acfp");
+
 
     /**
-     * Prevent instantiation and subclassing with a private constructor.
+     * only for backward use ChoixPrestationCompensationType.values() instead
+     * @deprecated only for backward
      */
-    private ChoixPrestationCompensationType(String value) {
-        super(value);
+    @Deprecated 
+    public static ChoixPrestationCompensationType[] allChoixPrestationCompensationTypes = ChoixPrestationCompensationType.values();
+
+    private String legacyLabel;
+
+    private ChoixPrestationCompensationType(String legacyLabel){
+        this.legacyLabel = legacyLabel;
     }
 
-    public ChoixPrestationCompensationType() {}
-
-    public static ChoixPrestationCompensationType[] allChoixPrestationCompensationTypes = {
-        PCH,
-        ACTP,
-        ACFP
-    };
+    public String getLegacyLabel() {
+        return legacyLabel;
+    }
 
     public static ChoixPrestationCompensationType getDefaultChoixPrestationCompensationType() {
         return null;
     }
 
+    /**
+     * @deprecated use valueOf instead. Watchout! you must provid something of ChoixPrestationCompensationType.something
+     * not the value of the name attribut.
+     */
     public static ChoixPrestationCompensationType forString(final String enumAsString) {
-        for (ChoixPrestationCompensationType value : allChoixPrestationCompensationTypes)
+        for (ChoixPrestationCompensationType value : values())
             if (value.toString().equals(enumAsString))
                 return value;
         return getDefaultChoixPrestationCompensationType();

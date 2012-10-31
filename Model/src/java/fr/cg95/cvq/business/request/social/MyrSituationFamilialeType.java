@@ -1,45 +1,43 @@
 package fr.cg95.cvq.business.request.social;
 
-import fr.cg95.cvq.dao.hibernate.PersistentStringEnum;
-
 /**
  * Generated class file, do not edit !
  */
-public final class MyrSituationFamilialeType extends PersistentStringEnum {
+public enum MyrSituationFamilialeType {
 
-    private static final long serialVersionUID = 1L;
-  
-    public static final MyrSituationFamilialeType CELIBATAIRE = new MyrSituationFamilialeType("Celibataire");
-  
-    public static final MyrSituationFamilialeType MARIE = new MyrSituationFamilialeType("Marie");
-  
-    public static final MyrSituationFamilialeType CONCUBINAGE = new MyrSituationFamilialeType("Concubinage");
-  
-    public static final MyrSituationFamilialeType AUTRE = new MyrSituationFamilialeType("Autre");
-  
+    CELIBATAIRE("Celibataire"),
+    MARIE("Marie"),
+    CONCUBINAGE("Concubinage"),
+    AUTRE("Autre");
+
 
     /**
-     * Prevent instantiation and subclassing with a private constructor.
+     * only for backward use MyrSituationFamilialeType.values() instead
+     * @deprecated only for backward
      */
-    private MyrSituationFamilialeType(String value) {
-        super(value);
+    @Deprecated 
+    public static MyrSituationFamilialeType[] allMyrSituationFamilialeTypes = MyrSituationFamilialeType.values();
+
+    private String legacyLabel;
+
+    private MyrSituationFamilialeType(String legacyLabel){
+        this.legacyLabel = legacyLabel;
     }
 
-    public MyrSituationFamilialeType() {}
-
-    public static MyrSituationFamilialeType[] allMyrSituationFamilialeTypes = {
-        CELIBATAIRE,
-        MARIE,
-        CONCUBINAGE,
-        AUTRE
-    };
+    public String getLegacyLabel() {
+        return legacyLabel;
+    }
 
     public static MyrSituationFamilialeType getDefaultMyrSituationFamilialeType() {
         return null;
     }
 
+    /**
+     * @deprecated use valueOf instead. Watchout! you must provid something of MyrSituationFamilialeType.something
+     * not the value of the name attribut.
+     */
     public static MyrSituationFamilialeType forString(final String enumAsString) {
-        for (MyrSituationFamilialeType value : allMyrSituationFamilialeTypes)
+        for (MyrSituationFamilialeType value : values())
             if (value.toString().equals(enumAsString))
                 return value;
         return getDefaultMyrSituationFamilialeType();

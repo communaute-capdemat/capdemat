@@ -5,8 +5,8 @@
     <label for="situationMaritale" class="required"><g:message code="myr.property.situationMaritale.label" /> *  <span><g:message code="myr.property.situationMaritale.help" /></span></label>
             <select id="situationMaritale" name="situationMaritale" class="required condition-situationMaritale-trigger  validate-not-first ${rqt.stepStates['situationFamiliale'].invalidFields.contains('situationMaritale') ? 'validation-failed' : ''}" title="<g:message code="myr.property.situationMaritale.validationError" />">
               <option value=""><g:message code="message.select.defaultOption" /></option>
-              <g:each in="${['Celibataire','Marie','Concubinage','Autre']}">
-                <option value="fr.cg95.cvq.business.request.social.MyrSituationFamilialeType_${it}" ${it == rqt.situationMaritale?.toString() ? 'selected="selected"': ''}><g:capdematEnumToText var="${it}" i18nKeyPrefix="myr.property.situationMaritale" /></option>
+              <g:each in="${['CELIBATAIRE','MARIE','CONCUBINAGE','AUTRE']}">
+                <option value="${it}" ${it == rqt.situationMaritale?.toString() ? 'selected="selected"': ''}><g:capdematEnumToText var="${it}" i18nKeyPrefix="myr.property.situationMaritale" /></option>
               </g:each>
             </select>
             

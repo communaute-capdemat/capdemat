@@ -170,12 +170,6 @@ class BackofficeRequestInstructionController {
         return result
     }
     
-    // FIXME - Modify lazy initialization policy in JavaBean ?
-    def lazyInit(rqt, listName) {
-        if (rqt[listName] == null || rqt[listName].size() == 0) return false
-        rqt[listName].get(0)
-    }
-    
     def getLocalReferentialType(lrService, rtLabel, lrtName) {
         def lrt = null
         if (rtLabel != 'Ticket Booking') {

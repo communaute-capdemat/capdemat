@@ -22,20 +22,21 @@ import fr.cg95.cvq.xml.common.*;
 import fr.cg95.cvq.xml.request.social.*;
 import fr.cg95.cvq.service.request.LocalReferential;
 import fr.cg95.cvq.service.request.condition.IConditionChecker;
+import javax.persistence.*;
+import org.hibernate.annotations.Index;
+import org.hibernate.annotations.Type;
 
 /**
  * Generated class file, do not edit !
- *
- * @hibernate.class
- *  table="dhr_requester"
- *  lazy="false"
  */
+@Entity
+@Table(name="dhr_requester")
 public class DhrRequester implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     public static final Map<String, IConditionChecker> conditions =
-        new HashMap<String, IConditionChecker>();
+        DomesticHelpRequest.conditions;
 
     public DhrRequester() {
         super();
@@ -80,7 +81,7 @@ public class DhrRequester implements Serializable {
             dhrRequester.setDhrRequesterIsFrenchResident(this.dhrRequesterIsFrenchResident.booleanValue());
       
         if (this.dhrRequesterNationality != null)
-            dhrRequester.setDhrRequesterNationality(fr.cg95.cvq.xml.common.NationalityType.Enum.forString(this.dhrRequesterNationality.toString()));
+            dhrRequester.setDhrRequesterNationality(fr.cg95.cvq.xml.common.NationalityType.Enum.forString(this.dhrRequesterNationality.getLegacyLabel()));
       
         return dhrRequester;
     }
@@ -159,11 +160,8 @@ public class DhrRequester implements Serializable {
         this.id = id;
     }
 
-    /**
-     * @hibernate.id
-     *  column="id"
-     *  generator-class="sequence"
-     */
+    @Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE)
     public final Long getId() {
         return this.id;
     }
@@ -186,18 +184,14 @@ public class DhrRequester implements Serializable {
     
     private String dhrRequesterBirthPlace;
 
-    public final void setDhrRequesterBirthPlace(final String dhrRequesterBirthPlace) {
+    public void setDhrRequesterBirthPlace(final String dhrRequesterBirthPlace) {
         this.dhrRequesterBirthPlace = dhrRequesterBirthPlace;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="dhr_requester_birth_place"
-        
+    
+    @Column(name="dhr_requester_birth_place"  )
       
-    */
-    public final String getDhrRequesterBirthPlace() {
+    public String getDhrRequesterBirthPlace() {
         return this.dhrRequesterBirthPlace;
     }
   
@@ -211,18 +205,14 @@ public class DhrRequester implements Serializable {
     
     private java.util.Date dhrRequesterBirthDate;
 
-    public final void setDhrRequesterBirthDate(final java.util.Date dhrRequesterBirthDate) {
+    public void setDhrRequesterBirthDate(final java.util.Date dhrRequesterBirthDate) {
         this.dhrRequesterBirthDate = dhrRequesterBirthDate;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="dhr_requester_birth_date"
-        
+    
+    @Column(name="dhr_requester_birth_date"  )
       
-    */
-    public final java.util.Date getDhrRequesterBirthDate() {
+    public java.util.Date getDhrRequesterBirthDate() {
         return this.dhrRequesterBirthDate;
     }
   
@@ -232,7 +222,8 @@ public class DhrRequester implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['dhrRequester.dhrRequesterNationality'].test(_this.dhrRequesterNationality.toString());" +
+              "active &= _this.conditions['dhrRequester.dhrRequesterNationality'].test(_this.dhrRequesterNationality.toString());" +
+                  
                 
               
             
@@ -245,18 +236,14 @@ public class DhrRequester implements Serializable {
     
     private java.util.Date dhrRequesterFranceArrivalDate;
 
-    public final void setDhrRequesterFranceArrivalDate(final java.util.Date dhrRequesterFranceArrivalDate) {
+    public void setDhrRequesterFranceArrivalDate(final java.util.Date dhrRequesterFranceArrivalDate) {
         this.dhrRequesterFranceArrivalDate = dhrRequesterFranceArrivalDate;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="dhr_requester_france_arrival_date"
-        
+    
+    @Column(name="dhr_requester_france_arrival_date"  )
       
-    */
-    public final java.util.Date getDhrRequesterFranceArrivalDate() {
+    public java.util.Date getDhrRequesterFranceArrivalDate() {
         return this.dhrRequesterFranceArrivalDate;
     }
   
@@ -266,7 +253,8 @@ public class DhrRequester implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['dhrRequester.dhrRequesterNationality'].test(_this.dhrRequesterNationality.toString());" +
+              "active &= _this.conditions['dhrRequester.dhrRequesterNationality'].test(_this.dhrRequesterNationality.toString());" +
+                  
                 
               
             
@@ -279,18 +267,14 @@ public class DhrRequester implements Serializable {
     
     private Boolean dhrRequesterIsFrenchResident;
 
-    public final void setDhrRequesterIsFrenchResident(final Boolean dhrRequesterIsFrenchResident) {
+    public void setDhrRequesterIsFrenchResident(final Boolean dhrRequesterIsFrenchResident) {
         this.dhrRequesterIsFrenchResident = dhrRequesterIsFrenchResident;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="dhr_requester_is_french_resident"
-        
+    
+    @Column(name="dhr_requester_is_french_resident"  )
       
-    */
-    public final Boolean getDhrRequesterIsFrenchResident() {
+    public Boolean getDhrRequesterIsFrenchResident() {
         return this.dhrRequesterIsFrenchResident;
     }
   
@@ -304,18 +288,15 @@ public class DhrRequester implements Serializable {
     
     private fr.cg95.cvq.business.users.NationalityType dhrRequesterNationality;
 
-    public final void setDhrRequesterNationality(final fr.cg95.cvq.business.users.NationalityType dhrRequesterNationality) {
+    public void setDhrRequesterNationality(final fr.cg95.cvq.business.users.NationalityType dhrRequesterNationality) {
         this.dhrRequesterNationality = dhrRequesterNationality;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="dhr_requester_nationality"
-        *  length="32"
+    
+    @Enumerated(EnumType.STRING)
+    @Column(name="dhr_requester_nationality" , length=32 )
       
-    */
-    public final fr.cg95.cvq.business.users.NationalityType getDhrRequesterNationality() {
+    public fr.cg95.cvq.business.users.NationalityType getDhrRequesterNationality() {
         return this.dhrRequesterNationality;
     }
   

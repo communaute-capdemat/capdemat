@@ -22,20 +22,21 @@ import fr.cg95.cvq.xml.common.*;
 import fr.cg95.cvq.xml.request.social.*;
 import fr.cg95.cvq.service.request.LocalReferential;
 import fr.cg95.cvq.service.request.condition.IConditionChecker;
+import javax.persistence.*;
+import org.hibernate.annotations.Index;
+import org.hibernate.annotations.Type;
 
 /**
  * Generated class file, do not edit !
- *
- * @hibernate.class
- *  table="mar_birth_place"
- *  lazy="false"
  */
+@Entity
+@Table(name="mar_birth_place")
 public class MarBirthPlace implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     public static final Map<String, IConditionChecker> conditions =
-        new HashMap<String, IConditionChecker>();
+        MdphAdultRequest.conditions;
 
     public MarBirthPlace() {
         super();
@@ -63,7 +64,7 @@ public class MarBirthPlace implements Serializable {
         marBirthPlace.setPostalCode(this.postalCode);
       
         if (this.country != null)
-            marBirthPlace.setCountry(fr.cg95.cvq.xml.common.CountryType.Enum.forString(this.country.toString()));
+            marBirthPlace.setCountry(fr.cg95.cvq.xml.common.CountryType.Enum.forString(this.country.getLegacyLabel()));
       
         marBirthPlace.setCity(this.city);
       
@@ -122,11 +123,8 @@ public class MarBirthPlace implements Serializable {
         this.id = id;
     }
 
-    /**
-     * @hibernate.id
-     *  column="id"
-     *  generator-class="sequence"
-     */
+    @Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE)
     public final Long getId() {
         return this.id;
     }
@@ -158,18 +156,14 @@ public class MarBirthPlace implements Serializable {
     
     private String postalCode;
 
-    public final void setPostalCode(final String postalCode) {
+    public void setPostalCode(final String postalCode) {
         this.postalCode = postalCode;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="postal_code"
-        *  length="5"
+    
+    @Column(name="postal_code" , length=5 )
       
-    */
-    public final String getPostalCode() {
+    public String getPostalCode() {
         return this.postalCode;
     }
   
@@ -183,18 +177,15 @@ public class MarBirthPlace implements Serializable {
     
     private fr.cg95.cvq.business.users.CountryType country;
 
-    public final void setCountry(final fr.cg95.cvq.business.users.CountryType country) {
+    public void setCountry(final fr.cg95.cvq.business.users.CountryType country) {
         this.country = country;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="country"
-        
+    
+    @Enumerated(EnumType.STRING)
+    @Column(name="country"  )
       
-    */
-    public final fr.cg95.cvq.business.users.CountryType getCountry() {
+    public fr.cg95.cvq.business.users.CountryType getCountry() {
         return this.country;
     }
   
@@ -224,18 +215,14 @@ public class MarBirthPlace implements Serializable {
     
     private String city;
 
-    public final void setCity(final String city) {
+    public void setCity(final String city) {
         this.city = city;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="city"
-        *  length="32"
+    
+    @Column(name="city" , length=32 )
       
-    */
-    public final String getCity() {
+    public String getCity() {
         return this.city;
     }
   

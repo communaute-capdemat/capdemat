@@ -1,42 +1,42 @@
 package fr.cg95.cvq.business.request.social;
 
-import fr.cg95.cvq.dao.hibernate.PersistentStringEnum;
-
 /**
  * Generated class file, do not edit !
  */
-public final class SituationAutreType extends PersistentStringEnum {
+public enum SituationAutreType {
 
-    private static final long serialVersionUID = 1L;
-  
-    public static final SituationAutreType ETABLISSEMENT_MEDICO_SOCIAL = new SituationAutreType("EtablissementMedicoSocial");
-  
-    public static final SituationAutreType HOSPITALISE = new SituationAutreType("Hospitalise");
-  
-    public static final SituationAutreType AUTRE = new SituationAutreType("Autre");
-  
+    ETABLISSEMENT_MEDICO_SOCIAL("EtablissementMedicoSocial"),
+    HOSPITALISE("Hospitalise"),
+    AUTRE("Autre");
+
 
     /**
-     * Prevent instantiation and subclassing with a private constructor.
+     * only for backward use SituationAutreType.values() instead
+     * @deprecated only for backward
      */
-    private SituationAutreType(String value) {
-        super(value);
+    @Deprecated 
+    public static SituationAutreType[] allSituationAutreTypes = SituationAutreType.values();
+
+    private String legacyLabel;
+
+    private SituationAutreType(String legacyLabel){
+        this.legacyLabel = legacyLabel;
     }
 
-    public SituationAutreType() {}
-
-    public static SituationAutreType[] allSituationAutreTypes = {
-        ETABLISSEMENT_MEDICO_SOCIAL,
-        HOSPITALISE,
-        AUTRE
-    };
+    public String getLegacyLabel() {
+        return legacyLabel;
+    }
 
     public static SituationAutreType getDefaultSituationAutreType() {
         return null;
     }
 
+    /**
+     * @deprecated use valueOf instead. Watchout! you must provid something of SituationAutreType.something
+     * not the value of the name attribut.
+     */
     public static SituationAutreType forString(final String enumAsString) {
-        for (SituationAutreType value : allSituationAutreTypes)
+        for (SituationAutreType value : values())
             if (value.toString().equals(enumAsString))
                 return value;
         return getDefaultSituationAutreType();

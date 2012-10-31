@@ -22,20 +22,21 @@ import fr.cg95.cvq.xml.common.*;
 import fr.cg95.cvq.xml.request.social.*;
 import fr.cg95.cvq.service.request.LocalReferential;
 import fr.cg95.cvq.service.request.condition.IConditionChecker;
+import javax.persistence.*;
+import org.hibernate.annotations.Index;
+import org.hibernate.annotations.Type;
 
 /**
  * Generated class file, do not edit !
- *
- * @hibernate.class
- *  table="myr_frais_supp_lies_handicap"
- *  lazy="false"
  */
+@Entity
+@Table(name="myr_frais_supp_lies_handicap")
 public class MyrFraisSuppLiesHandicap implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     public static final Map<String, IConditionChecker> conditions =
-        new HashMap<String, IConditionChecker>();
+        MdphYouthRequest.conditions;
 
     public MyrFraisSuppLiesHandicap() {
         super();
@@ -67,7 +68,7 @@ public class MyrFraisSuppLiesHandicap implements Serializable {
         myrFraisSuppLiesHandicap.setMontantsObtenus(this.montantsObtenus);
       
         if (this.periodicite != null)
-            myrFraisSuppLiesHandicap.setPeriodicite(fr.cg95.cvq.xml.request.social.PeriodiciteFraisSuppType.Enum.forString(this.periodicite.toString()));
+            myrFraisSuppLiesHandicap.setPeriodicite(fr.cg95.cvq.xml.request.social.PeriodiciteFraisSuppType.Enum.forString(this.periodicite.getLegacyLabel()));
       
         myrFraisSuppLiesHandicap.setFinanceursSollicites(this.financeursSollicites);
       
@@ -142,11 +143,8 @@ public class MyrFraisSuppLiesHandicap implements Serializable {
         this.id = id;
     }
 
-    /**
-     * @hibernate.id
-     *  column="id"
-     *  generator-class="sequence"
-     */
+    @Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE)
     public final Long getId() {
         return this.id;
     }
@@ -169,18 +167,14 @@ public class MyrFraisSuppLiesHandicap implements Serializable {
     
     private String natureFrais;
 
-    public final void setNatureFrais(final String natureFrais) {
+    public void setNatureFrais(final String natureFrais) {
         this.natureFrais = natureFrais;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="nature_frais"
-        
+    
+    @Column(name="nature_frais"  )
       
-    */
-    public final String getNatureFrais() {
+    public String getNatureFrais() {
         return this.natureFrais;
     }
   
@@ -203,7 +197,7 @@ public class MyrFraisSuppLiesHandicap implements Serializable {
     
       @MatchPattern(
         
-          pattern = "[0-9]{0,7},[0-9]{2}$",
+          pattern = "[0-9]{0,7}([,.][0-9]{0,2})?$",
         
         
         profiles = {"allocationEducationEnfantHandicape"},
@@ -219,18 +213,14 @@ public class MyrFraisSuppLiesHandicap implements Serializable {
     
     private String resteAVotreCharge;
 
-    public final void setResteAVotreCharge(final String resteAVotreCharge) {
+    public void setResteAVotreCharge(final String resteAVotreCharge) {
         this.resteAVotreCharge = resteAVotreCharge;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="reste_a_votre_charge"
-        *  length="10"
+    
+    @Column(name="reste_a_votre_charge" , length=10 )
       
-    */
-    public final String getResteAVotreCharge() {
+    public String getResteAVotreCharge() {
         return this.resteAVotreCharge;
     }
   
@@ -253,7 +243,7 @@ public class MyrFraisSuppLiesHandicap implements Serializable {
     
       @MatchPattern(
         
-          pattern = "[0-9]{0,7},[0-9]{2}$",
+          pattern = "[0-9]{0,7}([,.][0-9]{0,2})?$",
         
         
         profiles = {"allocationEducationEnfantHandicape"},
@@ -269,18 +259,14 @@ public class MyrFraisSuppLiesHandicap implements Serializable {
     
     private String montantsObtenus;
 
-    public final void setMontantsObtenus(final String montantsObtenus) {
+    public void setMontantsObtenus(final String montantsObtenus) {
         this.montantsObtenus = montantsObtenus;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="montants_obtenus"
-        *  length="10"
+    
+    @Column(name="montants_obtenus" , length=10 )
       
-    */
-    public final String getMontantsObtenus() {
+    public String getMontantsObtenus() {
         return this.montantsObtenus;
     }
   
@@ -294,18 +280,15 @@ public class MyrFraisSuppLiesHandicap implements Serializable {
     
     private fr.cg95.cvq.business.request.social.PeriodiciteFraisSuppType periodicite;
 
-    public final void setPeriodicite(final fr.cg95.cvq.business.request.social.PeriodiciteFraisSuppType periodicite) {
+    public void setPeriodicite(final fr.cg95.cvq.business.request.social.PeriodiciteFraisSuppType periodicite) {
         this.periodicite = periodicite;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="periodicite"
-        
+    
+    @Enumerated(EnumType.STRING)
+    @Column(name="periodicite"  )
       
-    */
-    public final fr.cg95.cvq.business.request.social.PeriodiciteFraisSuppType getPeriodicite() {
+    public fr.cg95.cvq.business.request.social.PeriodiciteFraisSuppType getPeriodicite() {
         return this.periodicite;
     }
   
@@ -326,18 +309,14 @@ public class MyrFraisSuppLiesHandicap implements Serializable {
     
     private String financeursSollicites;
 
-    public final void setFinanceursSollicites(final String financeursSollicites) {
+    public void setFinanceursSollicites(final String financeursSollicites) {
         this.financeursSollicites = financeursSollicites;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="financeurs_sollicites"
-        
+    
+    @Column(name="financeurs_sollicites"  )
       
-    */
-    public final String getFinanceursSollicites() {
+    public String getFinanceursSollicites() {
         return this.financeursSollicites;
     }
   

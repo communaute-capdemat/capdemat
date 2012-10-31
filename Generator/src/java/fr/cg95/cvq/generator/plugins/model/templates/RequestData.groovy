@@ -44,10 +44,8 @@
     @JoinColumn(name="${sqlName}_id")
       """,
       "many-to-one-local" : """
-        * @hibernate.many-to-one
-        *  cascade="all"
-        *  column="${sqlName}_id"
-        *  class="${element.javaPackageName}${element.modelClassName}"
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name="${sqlName}_id")
       """,
       "many-to-many" : """
     @ManyToMany(fetch=FetchType.EAGER${element.tiedToRequest ? ', cascade=CascadeType.ALL)' : ")"}

@@ -22,20 +22,21 @@ import fr.cg95.cvq.xml.common.*;
 import fr.cg95.cvq.xml.request.social.*;
 import fr.cg95.cvq.service.request.LocalReferential;
 import fr.cg95.cvq.service.request.condition.IConditionChecker;
+import javax.persistence.*;
+import org.hibernate.annotations.Index;
+import org.hibernate.annotations.Type;
 
 /**
  * Generated class file, do not edit !
- *
- * @hibernate.class
- *  table="mar_situation_professionnelle_beneficiaire_pension"
- *  lazy="false"
  */
+@Entity
+@Table(name="mar_situation_professionnelle_beneficiaire_pension")
 public class MarSituationProfessionnelleBeneficiairePension implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     public static final Map<String, IConditionChecker> conditions =
-        new HashMap<String, IConditionChecker>();
+        MdphAdultRequest.conditions;
 
     public MarSituationProfessionnelleBeneficiairePension() {
         super();
@@ -67,7 +68,7 @@ public class MarSituationProfessionnelleBeneficiairePension implements Serializa
             marSituationProfessionnelleBeneficiairePension.setRenteAccidentTravail(this.renteAccidentTravail.booleanValue());
       
         if (this.categoriePensionInvalidite != null)
-            marSituationProfessionnelleBeneficiairePension.setCategoriePensionInvalidite(fr.cg95.cvq.xml.request.social.CategoriePensionInvaliditeType.Enum.forString(this.categoriePensionInvalidite.toString()));
+            marSituationProfessionnelleBeneficiairePension.setCategoriePensionInvalidite(fr.cg95.cvq.xml.request.social.CategoriePensionInvaliditeType.Enum.forString(this.categoriePensionInvalidite.getLegacyLabel()));
       
         date = this.beneficiairePensionDepuisLe;
         if (date != null) {
@@ -141,11 +142,8 @@ public class MarSituationProfessionnelleBeneficiairePension implements Serializa
         this.id = id;
     }
 
-    /**
-     * @hibernate.id
-     *  column="id"
-     *  generator-class="sequence"
-     */
+    @Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE)
     public final Long getId() {
         return this.id;
     }
@@ -161,18 +159,14 @@ public class MarSituationProfessionnelleBeneficiairePension implements Serializa
     
     private Boolean allocationSupplementaireInvalidite;
 
-    public final void setAllocationSupplementaireInvalidite(final Boolean allocationSupplementaireInvalidite) {
+    public void setAllocationSupplementaireInvalidite(final Boolean allocationSupplementaireInvalidite) {
         this.allocationSupplementaireInvalidite = allocationSupplementaireInvalidite;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="allocation_supplementaire_invalidite"
-        
+    
+    @Column(name="allocation_supplementaire_invalidite"  )
       
-    */
-    public final Boolean getAllocationSupplementaireInvalidite() {
+    public Boolean getAllocationSupplementaireInvalidite() {
         return this.allocationSupplementaireInvalidite;
     }
   
@@ -186,18 +180,14 @@ public class MarSituationProfessionnelleBeneficiairePension implements Serializa
     
     private Boolean renteAccidentTravail;
 
-    public final void setRenteAccidentTravail(final Boolean renteAccidentTravail) {
+    public void setRenteAccidentTravail(final Boolean renteAccidentTravail) {
         this.renteAccidentTravail = renteAccidentTravail;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="rente_accident_travail"
-        
+    
+    @Column(name="rente_accident_travail"  )
       
-    */
-    public final Boolean getRenteAccidentTravail() {
+    public Boolean getRenteAccidentTravail() {
         return this.renteAccidentTravail;
     }
   
@@ -211,18 +201,15 @@ public class MarSituationProfessionnelleBeneficiairePension implements Serializa
     
     private fr.cg95.cvq.business.request.social.CategoriePensionInvaliditeType categoriePensionInvalidite;
 
-    public final void setCategoriePensionInvalidite(final fr.cg95.cvq.business.request.social.CategoriePensionInvaliditeType categoriePensionInvalidite) {
+    public void setCategoriePensionInvalidite(final fr.cg95.cvq.business.request.social.CategoriePensionInvaliditeType categoriePensionInvalidite) {
         this.categoriePensionInvalidite = categoriePensionInvalidite;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="categorie_pension_invalidite"
-        
+    
+    @Enumerated(EnumType.STRING)
+    @Column(name="categorie_pension_invalidite"  )
       
-    */
-    public final fr.cg95.cvq.business.request.social.CategoriePensionInvaliditeType getCategoriePensionInvalidite() {
+    public fr.cg95.cvq.business.request.social.CategoriePensionInvaliditeType getCategoriePensionInvalidite() {
         return this.categoriePensionInvalidite;
     }
   
@@ -236,18 +223,14 @@ public class MarSituationProfessionnelleBeneficiairePension implements Serializa
     
     private java.util.Date beneficiairePensionDepuisLe;
 
-    public final void setBeneficiairePensionDepuisLe(final java.util.Date beneficiairePensionDepuisLe) {
+    public void setBeneficiairePensionDepuisLe(final java.util.Date beneficiairePensionDepuisLe) {
         this.beneficiairePensionDepuisLe = beneficiairePensionDepuisLe;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="beneficiaire_pension_depuis_le"
-        
+    
+    @Column(name="beneficiaire_pension_depuis_le"  )
       
-    */
-    public final java.util.Date getBeneficiairePensionDepuisLe() {
+    public java.util.Date getBeneficiairePensionDepuisLe() {
         return this.beneficiairePensionDepuisLe;
     }
   

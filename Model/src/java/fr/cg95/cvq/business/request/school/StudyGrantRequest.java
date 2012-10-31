@@ -138,48 +138,6 @@ public class StudyGrantRequest extends Request implements Serializable {
         StudyGrantRequestDocument.StudyGrantRequest studyGrantRequest = studyGrantRequestDoc.addNewStudyGrantRequest();
         super.fillCommonXmlInfo(studyGrantRequest);
         int i = 0;
-          CurrentStudiesInformationsType currentStudiesInformationsTypeCurrentStudiesInformations = studyGrantRequest.addNewCurrentStudiesInformations();
-        if (getAbroadInternship() != null)
-            currentStudiesInformationsTypeCurrentStudiesInformations.setAbroadInternship(getAbroadInternship().booleanValue());
-      
-        date = getAbroadInternshipEndDate();
-        if (date != null) {
-            calendar.setTime(date);
-            currentStudiesInformationsTypeCurrentStudiesInformations.setAbroadInternshipEndDate(calendar);
-        }
-      
-        if (getAbroadInternshipSchoolCountry() != null)
-            currentStudiesInformationsTypeCurrentStudiesInformations.setAbroadInternshipSchoolCountry(fr.cg95.cvq.xml.common.CountryType.Enum.forString(getAbroadInternshipSchoolCountry().toString()));
-      
-        currentStudiesInformationsTypeCurrentStudiesInformations.setAbroadInternshipSchoolName(getAbroadInternshipSchoolName());
-      
-        date = getAbroadInternshipStartDate();
-        if (date != null) {
-            calendar.setTime(date);
-            currentStudiesInformationsTypeCurrentStudiesInformations.setAbroadInternshipStartDate(calendar);
-        }
-      
-          CurrentStudiesInformationsType currentStudiesInformationsTypeCurrentStudiesInformations = studyGrantRequest.addNewCurrentStudiesInformations();
-        if (getAbroadInternship() != null)
-            currentStudiesInformationsTypeCurrentStudiesInformations.setAbroadInternship(getAbroadInternship().booleanValue());
-      
-        date = getAbroadInternshipEndDate();
-        if (date != null) {
-            calendar.setTime(date);
-            currentStudiesInformationsTypeCurrentStudiesInformations.setAbroadInternshipEndDate(calendar);
-        }
-      
-        if (getAbroadInternshipSchoolCountry() != null)
-            currentStudiesInformationsTypeCurrentStudiesInformations.setAbroadInternshipSchoolCountry(fr.cg95.cvq.xml.common.CountryType.Enum.forString(getAbroadInternshipSchoolCountry().getLegacyLabel()));
-      
-        currentStudiesInformationsTypeCurrentStudiesInformations.setAbroadInternshipSchoolName(getAbroadInternshipSchoolName());
-      
-        date = getAbroadInternshipStartDate();
-        if (date != null) {
-            calendar.setTime(date);
-            currentStudiesInformationsTypeCurrentStudiesInformations.setAbroadInternshipStartDate(calendar);
-        }
-      
         
         date = getAccountHolderBirthDate();
         if (date != null) {
@@ -194,66 +152,16 @@ public class StudyGrantRequest extends Request implements Serializable {
         studyGrantRequest.setAccountHolderLastName(getAccountHolderLastName());
       
         if (getAccountHolderTitle() != null)
-            studyGrantRequest.setAccountHolderTitle(fr.cg95.cvq.xml.common.TitleType.Enum.forString(getAccountHolderTitle().toString()));
-        ALevelsInformationsType aLevelsInformationsTypeALevelsInformations = studyGrantRequest.addNewALevelsInformations();
-        if (getAlevels() != null)
-            aLevelsInformationsTypeALevelsInformations.setAlevels(fr.cg95.cvq.xml.request.school.ALevelsType.Enum.forString(getAlevels().toString()));
             studyGrantRequest.setAccountHolderTitle(fr.cg95.cvq.xml.common.TitleType.Enum.forString(getAccountHolderTitle().getLegacyLabel()));
-        ALevelsInformationsType aLevelsInformationsTypeALevelsInformations = studyGrantRequest.addNewALevelsInformations();
-        if (getAlevels() != null)
-            aLevelsInformationsTypeALevelsInformations.setAlevels(fr.cg95.cvq.xml.request.school.ALevelsType.Enum.forString(getAlevels().getLegacyLabel()));
-            studyGrantRequest.setAccountHolderTitle(fr.cg95.cvq.xml.common.TitleType.Enum.forString(getAccountHolderTitle().toString()));
       
         if (getAlevelsInformations() != null)
             studyGrantRequest.setAlevelsInformations(getAlevelsInformations().modelToXml());
       
         if (getBankAccount() != null)
-            studyGrantRequest.setBankAccount(BankAccount.modelToXml(getBankAccount()));
-        sgrCurrentSchoolTypeCurrentSchool.setCurrentSchoolCity(getCurrentSchoolCity());
-      
-        if (getCurrentSchoolCountry() != null)
-            sgrCurrentSchoolTypeCurrentSchool.setCurrentSchoolCountry(fr.cg95.cvq.xml.common.CountryType.Enum.forString(getCurrentSchoolCountry().toString()));
-        if (getCurrentSchoolAddress() != null)
-            sgrCurrentSchoolTypeCurrentSchool.setCurrentSchoolAddress(Address.modelToXml(getCurrentSchoolAddress()));
+            studyGrantRequest.setBankAccount(getBankAccount().modelToXml());
       
         if (getCurrentSchool() != null)
             studyGrantRequest.setCurrentSchool(getCurrentSchool().modelToXml());
-      
-        i = 0;
-        if (getCurrentSchoolName() != null) {
-            fr.cg95.cvq.xml.common.LocalReferentialDataType[] currentSchoolNameTypeTab = new fr.cg95.cvq.xml.common.LocalReferentialDataType[getCurrentSchoolName().size()];
-            for (LocalReferentialData object : getCurrentSchoolName()) {
-              currentSchoolNameTypeTab[i++] = LocalReferentialData.modelToXml(object);
-            }
-            sgrCurrentSchoolTypeCurrentSchool.setCurrentSchoolNameArray(currentSchoolNameTypeTab);
-        }
-      
-        sgrCurrentSchoolTypeCurrentSchool.setCurrentSchoolNamePrecision(getCurrentSchoolNamePrecision());
-      
-        sgrCurrentSchoolTypeCurrentSchool.setCurrentSchoolPostalCode(getCurrentSchoolPostalCode());
-      
-        if (getCurrentStudiesDiploma() != null)
-            currentStudiesInformationsTypeCurrentStudiesInformations.setCurrentStudiesDiploma(fr.cg95.cvq.xml.request.school.CurrentStudiesType.Enum.forString(getCurrentStudiesDiploma().toString()));
-      
-        if (getCurrentStudiesLevel() != null)
-            currentStudiesInformationsTypeCurrentStudiesInformations.setCurrentStudiesLevel(fr.cg95.cvq.xml.request.school.CurrentStudiesLevelType.Enum.forString(getCurrentStudiesLevel().toString()));
-      
-        i = 0;
-        if (getCurrentSchoolName() != null) {
-            fr.cg95.cvq.xml.common.LocalReferentialDataType[] currentSchoolNameTypeTab = new fr.cg95.cvq.xml.common.LocalReferentialDataType[getCurrentSchoolName().size()];
-            for (LocalReferentialData object : getCurrentSchoolName()) {
-              currentSchoolNameTypeTab[i++] = LocalReferentialData.modelToXml(object);
-            }
-            sgrCurrentSchoolTypeCurrentSchool.setCurrentSchoolNameArray(currentSchoolNameTypeTab);
-        }
-      
-        sgrCurrentSchoolTypeCurrentSchool.setCurrentSchoolNamePrecision(getCurrentSchoolNamePrecision());
-      
-        if (getCurrentStudiesDiploma() != null)
-            currentStudiesInformationsTypeCurrentStudiesInformations.setCurrentStudiesDiploma(fr.cg95.cvq.xml.request.school.CurrentStudiesType.Enum.forString(getCurrentStudiesDiploma().getLegacyLabel()));
-      
-        if (getCurrentStudiesLevel() != null)
-            currentStudiesInformationsTypeCurrentStudiesInformations.setCurrentStudiesLevel(fr.cg95.cvq.xml.request.school.CurrentStudiesLevelType.Enum.forString(getCurrentStudiesLevel().getLegacyLabel()));
       
         if (getCurrentStudiesInformations() != null)
             studyGrantRequest.setCurrentStudiesInformations(getCurrentStudiesInformations().modelToXml());
@@ -262,12 +170,6 @@ public class StudyGrantRequest extends Request implements Serializable {
             studyGrantRequest.setDistance(fr.cg95.cvq.xml.request.school.DistanceType.Enum.forString(getDistance().getLegacyLabel()));
       
         studyGrantRequest.setEdemandeId(getEdemandeId());
-      
-        if (getFrenchRIB() != null)
-            studyGrantRequest.setFrenchRIB(FrenchRIB.modelToXml(getFrenchRIB()));
-      
-        if (getFrenchRIB() != null)
-            studyGrantRequest.setFrenchRIB(getFrenchRIB().modelToXml());
       
         if (getHasCROUSHelp() != null)
             studyGrantRequest.setHasCROUSHelp(getHasCROUSHelp().booleanValue());
@@ -340,37 +242,11 @@ public class StudyGrantRequest extends Request implements Serializable {
         if (studyGrantRequestXml.getAlevelsInformations() != null)
             studyGrantRequest.setAlevelsInformations(ALevelsInformations.xmlToModel(studyGrantRequestXml.getAlevelsInformations()));
       
-        if (studyGrantRequestXml.getCurrentSchool() != null)
-            studyGrantRequest.setCurrentSchool(SgrCurrentSchool.xmlToModel(studyGrantRequestXml.getCurrentSchool()));
-      
-        studyGrantRequest.setCurrentSchoolCity(studyGrantRequestXml.getCurrentSchool().getCurrentSchoolCity());
-      
-        if (studyGrantRequestXml.getCurrentSchool().getCurrentSchoolCountry() != null)
-            studyGrantRequest.setCurrentSchoolCountry(fr.cg95.cvq.business.users.CountryType.forString(studyGrantRequestXml.getCurrentSchool().getCurrentSchoolCountry().toString()));
-        else
-            studyGrantRequest.setCurrentSchoolCountry(fr.cg95.cvq.business.users.CountryType.getDefaultCountryType());
-      
-        List<fr.cg95.cvq.business.request.LocalReferentialData> currentSchoolNameList = new ArrayList<fr.cg95.cvq.business.request.LocalReferentialData>(studyGrantRequestXml.getCurrentSchool().sizeOfCurrentSchoolNameArray());
-        for (LocalReferentialDataType object : studyGrantRequestXml.getCurrentSchool().getCurrentSchoolNameArray()) {
-            currentSchoolNameList.add(fr.cg95.cvq.business.request.LocalReferentialData.xmlToModel(object));
-        }
-        studyGrantRequest.setCurrentSchoolName(currentSchoolNameList);
-      
-        studyGrantRequest.setCurrentSchoolNamePrecision(studyGrantRequestXml.getCurrentSchool().getCurrentSchoolNamePrecision());
-      
         if (studyGrantRequestXml.getBankAccount() != null)
             studyGrantRequest.setBankAccount(BankAccount.xmlToModel(studyGrantRequestXml.getBankAccount()));
       
-        if (studyGrantRequestXml.getCurrentSchool().getCurrentSchoolAddress() != null)
-            studyGrantRequest.setCurrentSchoolAddress(Address.xmlToModel(studyGrantRequestXml.getCurrentSchool().getCurrentSchoolAddress()));
-      
-        List<fr.cg95.cvq.business.request.LocalReferentialData> currentSchoolNameList = new ArrayList<fr.cg95.cvq.business.request.LocalReferentialData>(studyGrantRequestXml.getCurrentSchool().sizeOfCurrentSchoolNameArray());
-        for (LocalReferentialDataType object : studyGrantRequestXml.getCurrentSchool().getCurrentSchoolNameArray()) {
-            currentSchoolNameList.add(fr.cg95.cvq.business.request.LocalReferentialData.xmlToModel(object));
-        }
-        studyGrantRequest.setCurrentSchoolName(currentSchoolNameList);
-      
-        studyGrantRequest.setCurrentSchoolNamePrecision(studyGrantRequestXml.getCurrentSchool().getCurrentSchoolNamePrecision());
+        if (studyGrantRequestXml.getCurrentSchool() != null)
+            studyGrantRequest.setCurrentSchool(SgrCurrentSchool.xmlToModel(studyGrantRequestXml.getCurrentSchool()));
       
         if (studyGrantRequestXml.getCurrentStudiesInformations() != null)
             studyGrantRequest.setCurrentStudiesInformations(CurrentStudiesInformations.xmlToModel(studyGrantRequestXml.getCurrentStudiesInformations()));
@@ -531,6 +407,15 @@ public class StudyGrantRequest extends Request implements Serializable {
         return studyGrantRequestData.getAlevelsInformations();
     }
   
+    public final void setBankAccount(final fr.cg95.cvq.business.users.BankAccount bankAccount) {
+        studyGrantRequestData.setBankAccount(bankAccount);
+    }
+
+    
+    public final fr.cg95.cvq.business.users.BankAccount getBankAccount() {
+        return studyGrantRequestData.getBankAccount();
+    }
+  
     public final void setCurrentSchool(final fr.cg95.cvq.business.request.school.SgrCurrentSchool currentSchool) {
         studyGrantRequestData.setCurrentSchool(currentSchool);
     }
@@ -540,77 +425,11 @@ public class StudyGrantRequest extends Request implements Serializable {
         return studyGrantRequestData.getCurrentSchool();
     }
   
-    public final void setCurrentSchoolCity(final String currentSchoolCity) {
-        studyGrantRequestData.setCurrentSchoolCity(currentSchoolCity);
-    public final void setBankAccount(final fr.cg95.cvq.business.users.BankAccount bankAccount) {
-        studyGrantRequestData.setBankAccount(bankAccount);
     public final void setCurrentStudiesInformations(final fr.cg95.cvq.business.request.school.CurrentStudiesInformations currentStudiesInformations) {
         studyGrantRequestData.setCurrentStudiesInformations(currentStudiesInformations);
     }
 
     
-    public final String getCurrentSchoolCity() {
-        return studyGrantRequestData.getCurrentSchoolCity();
-    }
-  
-    public final void setCurrentSchoolCountry(final fr.cg95.cvq.business.users.CountryType currentSchoolCountry) {
-        studyGrantRequestData.setCurrentSchoolCountry(currentSchoolCountry);
-    }
-
-    
-    public final fr.cg95.cvq.business.users.CountryType getCurrentSchoolCountry() {
-        return studyGrantRequestData.getCurrentSchoolCountry();
-    }
-  
-    public final void setCurrentSchoolName(final List<fr.cg95.cvq.business.request.LocalReferentialData> currentSchoolName) {
-        studyGrantRequestData.setCurrentSchoolName(currentSchoolName);
-    }
-
-    
-    public final List<fr.cg95.cvq.business.request.LocalReferentialData> getCurrentSchoolName() {
-        return studyGrantRequestData.getCurrentSchoolName();
-    }
-  
-    public final void setCurrentSchoolNamePrecision(final String currentSchoolNamePrecision) {
-        studyGrantRequestData.setCurrentSchoolNamePrecision(currentSchoolNamePrecision);
-    }
-
-    
-    public final String getCurrentSchoolNamePrecision() {
-        return studyGrantRequestData.getCurrentSchoolNamePrecision();
-    }
-  
-    public final fr.cg95.cvq.business.users.BankAccount getBankAccount() {
-        return studyGrantRequestData.getBankAccount();
-    }
-  
-    public final void setCurrentSchoolAddress(final fr.cg95.cvq.business.users.Address currentSchoolAddress) {
-        studyGrantRequestData.setCurrentSchoolAddress(currentSchoolAddress);
-    }
-
-    
-    public final fr.cg95.cvq.business.users.Address getCurrentSchoolAddress() {
-        return studyGrantRequestData.getCurrentSchoolAddress();
-    }
-  
-    public final void setCurrentSchoolName(final List<fr.cg95.cvq.business.request.LocalReferentialData> currentSchoolName) {
-        studyGrantRequestData.setCurrentSchoolName(currentSchoolName);
-    }
-
-    
-    public final List<fr.cg95.cvq.business.request.LocalReferentialData> getCurrentSchoolName() {
-        return studyGrantRequestData.getCurrentSchoolName();
-    }
-  
-    public final void setCurrentSchoolNamePrecision(final String currentSchoolNamePrecision) {
-        studyGrantRequestData.setCurrentSchoolNamePrecision(currentSchoolNamePrecision);
-    }
-
-    
-    public final String getCurrentSchoolNamePrecision() {
-        return studyGrantRequestData.getCurrentSchoolNamePrecision();
-    }
-  
     public final fr.cg95.cvq.business.request.school.CurrentStudiesInformations getCurrentStudiesInformations() {
         return studyGrantRequestData.getCurrentStudiesInformations();
     }

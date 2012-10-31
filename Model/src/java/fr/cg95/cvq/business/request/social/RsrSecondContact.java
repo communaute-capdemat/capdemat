@@ -22,20 +22,21 @@ import fr.cg95.cvq.xml.common.*;
 import fr.cg95.cvq.xml.request.social.*;
 import fr.cg95.cvq.service.request.LocalReferential;
 import fr.cg95.cvq.service.request.condition.IConditionChecker;
+import javax.persistence.*;
+import org.hibernate.annotations.Index;
+import org.hibernate.annotations.Type;
 
 /**
  * Generated class file, do not edit !
- *
- * @hibernate.class
- *  table="rsr_second_contact"
- *  lazy="false"
  */
+@Entity
+@Table(name="rsr_second_contact")
 public class RsrSecondContact implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     public static final Map<String, IConditionChecker> conditions =
-        new HashMap<String, IConditionChecker>();
+        RemoteSupportRequest.conditions;
 
     public RsrSecondContact() {
         super();
@@ -115,11 +116,8 @@ public class RsrSecondContact implements Serializable {
         this.id = id;
     }
 
-    /**
-     * @hibernate.id
-     *  column="id"
-     *  generator-class="sequence"
-     */
+    @Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE)
     public final Long getId() {
         return this.id;
     }
@@ -137,18 +135,14 @@ public class RsrSecondContact implements Serializable {
     
     private String secondContactPhone;
 
-    public final void setSecondContactPhone(final String secondContactPhone) {
+    public void setSecondContactPhone(final String secondContactPhone) {
         this.secondContactPhone = secondContactPhone;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="second_contact_phone"
-        *  length="10"
+    
+    @Column(name="second_contact_phone" , length=10 )
       
-    */
-    public final String getSecondContactPhone() {
+    public String getSecondContactPhone() {
         return this.secondContactPhone;
     }
   
@@ -164,18 +158,14 @@ public class RsrSecondContact implements Serializable {
     
     private String secondContactLastName;
 
-    public final void setSecondContactLastName(final String secondContactLastName) {
+    public void setSecondContactLastName(final String secondContactLastName) {
         this.secondContactLastName = secondContactLastName;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="second_contact_last_name"
-        *  length="38"
+    
+    @Column(name="second_contact_last_name" , length=38 )
       
-    */
-    public final String getSecondContactLastName() {
+    public String getSecondContactLastName() {
         return this.secondContactLastName;
     }
   
@@ -191,18 +181,14 @@ public class RsrSecondContact implements Serializable {
     
     private String secondContactFirstName;
 
-    public final void setSecondContactFirstName(final String secondContactFirstName) {
+    public void setSecondContactFirstName(final String secondContactFirstName) {
         this.secondContactFirstName = secondContactFirstName;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="second_contact_first_name"
-        *  length="38"
+    
+    @Column(name="second_contact_first_name" , length=38 )
       
-    */
-    public final String getSecondContactFirstName() {
+    public String getSecondContactFirstName() {
         return this.secondContactFirstName;
     }
   

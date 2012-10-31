@@ -1,42 +1,42 @@
 package fr.cg95.cvq.business.request.social;
 
-import fr.cg95.cvq.dao.hibernate.PersistentStringEnum;
-
 /**
  * Generated class file, do not edit !
  */
-public final class MyrSituationAutreType extends PersistentStringEnum {
+public enum MyrSituationAutreType {
 
-    private static final long serialVersionUID = 1L;
-  
-    public static final MyrSituationAutreType ETABLISSEMENT_MEDICO_SOCIAL = new MyrSituationAutreType("EtablissementMedicoSocial");
-  
-    public static final MyrSituationAutreType HOSPITALISE = new MyrSituationAutreType("Hospitalise");
-  
-    public static final MyrSituationAutreType AUTRE = new MyrSituationAutreType("Autre");
-  
+    ETABLISSEMENT_MEDICO_SOCIAL("EtablissementMedicoSocial"),
+    HOSPITALISE("Hospitalise"),
+    AUTRE("Autre");
+
 
     /**
-     * Prevent instantiation and subclassing with a private constructor.
+     * only for backward use MyrSituationAutreType.values() instead
+     * @deprecated only for backward
      */
-    private MyrSituationAutreType(String value) {
-        super(value);
+    @Deprecated 
+    public static MyrSituationAutreType[] allMyrSituationAutreTypes = MyrSituationAutreType.values();
+
+    private String legacyLabel;
+
+    private MyrSituationAutreType(String legacyLabel){
+        this.legacyLabel = legacyLabel;
     }
 
-    public MyrSituationAutreType() {}
-
-    public static MyrSituationAutreType[] allMyrSituationAutreTypes = {
-        ETABLISSEMENT_MEDICO_SOCIAL,
-        HOSPITALISE,
-        AUTRE
-    };
+    public String getLegacyLabel() {
+        return legacyLabel;
+    }
 
     public static MyrSituationAutreType getDefaultMyrSituationAutreType() {
         return null;
     }
 
+    /**
+     * @deprecated use valueOf instead. Watchout! you must provid something of MyrSituationAutreType.something
+     * not the value of the name attribut.
+     */
     public static MyrSituationAutreType forString(final String enumAsString) {
-        for (MyrSituationAutreType value : allMyrSituationAutreTypes)
+        for (MyrSituationAutreType value : values())
             if (value.toString().equals(enumAsString))
                 return value;
         return getDefaultMyrSituationAutreType();

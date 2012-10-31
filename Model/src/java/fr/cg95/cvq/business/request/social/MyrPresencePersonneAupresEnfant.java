@@ -22,20 +22,21 @@ import fr.cg95.cvq.xml.common.*;
 import fr.cg95.cvq.xml.request.social.*;
 import fr.cg95.cvq.service.request.LocalReferential;
 import fr.cg95.cvq.service.request.condition.IConditionChecker;
+import javax.persistence.*;
+import org.hibernate.annotations.Index;
+import org.hibernate.annotations.Type;
 
 /**
  * Generated class file, do not edit !
- *
- * @hibernate.class
- *  table="myr_presence_personne_aupres_enfant"
- *  lazy="false"
  */
+@Entity
+@Table(name="myr_presence_personne_aupres_enfant")
 public class MyrPresencePersonneAupresEnfant implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     public static final Map<String, IConditionChecker> conditions =
-        new HashMap<String, IConditionChecker>();
+        MdphYouthRequest.conditions;
 
     public MyrPresencePersonneAupresEnfant() {
         super();
@@ -118,11 +119,8 @@ public class MyrPresencePersonneAupresEnfant implements Serializable {
         this.id = id;
     }
 
-    /**
-     * @hibernate.id
-     *  column="id"
-     *  generator-class="sequence"
-     */
+    @Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE)
     public final Long getId() {
         return this.id;
     }
@@ -138,18 +136,14 @@ public class MyrPresencePersonneAupresEnfant implements Serializable {
     
     private Boolean exerciceActiviteProfessionnelle;
 
-    public final void setExerciceActiviteProfessionnelle(final Boolean exerciceActiviteProfessionnelle) {
+    public void setExerciceActiviteProfessionnelle(final Boolean exerciceActiviteProfessionnelle) {
         this.exerciceActiviteProfessionnelle = exerciceActiviteProfessionnelle;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="exercice_activite_professionnelle"
-        
+    
+    @Column(name="exercice_activite_professionnelle"  )
       
-    */
-    public final Boolean getExerciceActiviteProfessionnelle() {
+    public Boolean getExerciceActiviteProfessionnelle() {
         return this.exerciceActiviteProfessionnelle;
     }
   
@@ -174,18 +168,14 @@ public class MyrPresencePersonneAupresEnfant implements Serializable {
     
     private String recoursEmploiRemunereTiercePersonne;
 
-    public final void setRecoursEmploiRemunereTiercePersonne(final String recoursEmploiRemunereTiercePersonne) {
+    public void setRecoursEmploiRemunereTiercePersonne(final String recoursEmploiRemunereTiercePersonne) {
         this.recoursEmploiRemunereTiercePersonne = recoursEmploiRemunereTiercePersonne;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="recours_emploi_remunere_tierce_personne"
-        *  length="3"
+    
+    @Column(name="recours_emploi_remunere_tierce_personne" , length=3 )
       
-    */
-    public final String getRecoursEmploiRemunereTiercePersonne() {
+    public String getRecoursEmploiRemunereTiercePersonne() {
         return this.recoursEmploiRemunereTiercePersonne;
     }
   
@@ -210,18 +200,14 @@ public class MyrPresencePersonneAupresEnfant implements Serializable {
     
     private String nbHeureParAnEmploiNonRegulier;
 
-    public final void setNbHeureParAnEmploiNonRegulier(final String nbHeureParAnEmploiNonRegulier) {
+    public void setNbHeureParAnEmploiNonRegulier(final String nbHeureParAnEmploiNonRegulier) {
         this.nbHeureParAnEmploiNonRegulier = nbHeureParAnEmploiNonRegulier;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="nb_heure_par_an_emploi_non_regulier"
-        *  length="3"
+    
+    @Column(name="nb_heure_par_an_emploi_non_regulier" , length=3 )
       
-    */
-    public final String getNbHeureParAnEmploiNonRegulier() {
+    public String getNbHeureParAnEmploiNonRegulier() {
         return this.nbHeureParAnEmploiNonRegulier;
     }
   

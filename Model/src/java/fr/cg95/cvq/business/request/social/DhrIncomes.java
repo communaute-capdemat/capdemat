@@ -22,20 +22,21 @@ import fr.cg95.cvq.xml.common.*;
 import fr.cg95.cvq.xml.request.social.*;
 import fr.cg95.cvq.service.request.LocalReferential;
 import fr.cg95.cvq.service.request.condition.IConditionChecker;
+import javax.persistence.*;
+import org.hibernate.annotations.Index;
+import org.hibernate.annotations.Type;
 
 /**
  * Generated class file, do not edit !
- *
- * @hibernate.class
- *  table="dhr_incomes"
- *  lazy="false"
  */
+@Entity
+@Table(name="dhr_incomes")
 public class DhrIncomes implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     public static final Map<String, IConditionChecker> conditions =
-        new HashMap<String, IConditionChecker>();
+        DomesticHelpRequest.conditions;
 
     public DhrIncomes() {
         super();
@@ -151,11 +152,8 @@ public class DhrIncomes implements Serializable {
         this.id = id;
     }
 
-    /**
-     * @hibernate.id
-     *  column="id"
-     *  generator-class="sequence"
-     */
+    @Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE)
     public final Long getId() {
         return this.id;
     }
@@ -164,19 +162,15 @@ public class DhrIncomes implements Serializable {
     
     private java.math.BigInteger dhrAllowances;
 
-    public final void setDhrAllowances(final java.math.BigInteger dhrAllowances) {
+    public void setDhrAllowances(final java.math.BigInteger dhrAllowances) {
         this.dhrAllowances = dhrAllowances;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="dhr_allowances"
-        *  type="serializable"
-        
+    
+    @Column(name="dhr_allowances" , columnDefinition="bytea" )
+    @Type(type="serializable") //Hack see http://capdemat.capwebct.fr/ticket/338
       
-    */
-    public final java.math.BigInteger getDhrAllowances() {
+    public java.math.BigInteger getDhrAllowances() {
         return this.dhrAllowances;
     }
   
@@ -190,95 +184,75 @@ public class DhrIncomes implements Serializable {
     
     private java.math.BigInteger dhrIncomesAnnualTotal;
 
-    public final void setDhrIncomesAnnualTotal(final java.math.BigInteger dhrIncomesAnnualTotal) {
+    public void setDhrIncomesAnnualTotal(final java.math.BigInteger dhrIncomesAnnualTotal) {
         this.dhrIncomesAnnualTotal = dhrIncomesAnnualTotal;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="dhr_incomes_annual_total"
-        *  type="serializable"
-        
+    
+    @Column(name="dhr_incomes_annual_total" , columnDefinition="bytea" )
+    @Type(type="serializable") //Hack see http://capdemat.capwebct.fr/ticket/338
       
-    */
-    public final java.math.BigInteger getDhrIncomesAnnualTotal() {
+    public java.math.BigInteger getDhrIncomesAnnualTotal() {
         return this.dhrIncomesAnnualTotal;
     }
   
     
     private java.math.BigInteger pensions;
 
-    public final void setPensions(final java.math.BigInteger pensions) {
+    public void setPensions(final java.math.BigInteger pensions) {
         this.pensions = pensions;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="pensions"
-        *  type="serializable"
-        
+    
+    @Column(name="pensions" , columnDefinition="bytea" )
+    @Type(type="serializable") //Hack see http://capdemat.capwebct.fr/ticket/338
       
-    */
-    public final java.math.BigInteger getPensions() {
+    public java.math.BigInteger getPensions() {
         return this.pensions;
     }
   
     
     private java.math.BigInteger dhrNetIncome;
 
-    public final void setDhrNetIncome(final java.math.BigInteger dhrNetIncome) {
+    public void setDhrNetIncome(final java.math.BigInteger dhrNetIncome) {
         this.dhrNetIncome = dhrNetIncome;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="dhr_net_income"
-        *  type="serializable"
-        
+    
+    @Column(name="dhr_net_income" , columnDefinition="bytea" )
+    @Type(type="serializable") //Hack see http://capdemat.capwebct.fr/ticket/338
       
-    */
-    public final java.math.BigInteger getDhrNetIncome() {
+    public java.math.BigInteger getDhrNetIncome() {
         return this.dhrNetIncome;
     }
   
     
     private java.math.BigInteger dhrFurnitureInvestmentIncome;
 
-    public final void setDhrFurnitureInvestmentIncome(final java.math.BigInteger dhrFurnitureInvestmentIncome) {
+    public void setDhrFurnitureInvestmentIncome(final java.math.BigInteger dhrFurnitureInvestmentIncome) {
         this.dhrFurnitureInvestmentIncome = dhrFurnitureInvestmentIncome;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="dhr_furniture_investment_income"
-        *  type="serializable"
-        
+    
+    @Column(name="dhr_furniture_investment_income" , columnDefinition="bytea" )
+    @Type(type="serializable") //Hack see http://capdemat.capwebct.fr/ticket/338
       
-    */
-    public final java.math.BigInteger getDhrFurnitureInvestmentIncome() {
+    public java.math.BigInteger getDhrFurnitureInvestmentIncome() {
         return this.dhrFurnitureInvestmentIncome;
     }
   
     
     private java.math.BigInteger dhrRealEstateInvestmentIncome;
 
-    public final void setDhrRealEstateInvestmentIncome(final java.math.BigInteger dhrRealEstateInvestmentIncome) {
+    public void setDhrRealEstateInvestmentIncome(final java.math.BigInteger dhrRealEstateInvestmentIncome) {
         this.dhrRealEstateInvestmentIncome = dhrRealEstateInvestmentIncome;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="dhr_real_estate_investment_income"
-        *  type="serializable"
-        
+    
+    @Column(name="dhr_real_estate_investment_income" , columnDefinition="bytea" )
+    @Type(type="serializable") //Hack see http://capdemat.capwebct.fr/ticket/338
       
-    */
-    public final java.math.BigInteger getDhrRealEstateInvestmentIncome() {
+    public java.math.BigInteger getDhrRealEstateInvestmentIncome() {
         return this.dhrRealEstateInvestmentIncome;
     }
   

@@ -6,64 +6,25 @@
   import fr.cg95.cvq.util.EnumTool
   import java.text.NumberFormat
   def esc(s) { return org.apache.commons.lang3.StringEscapeUtils.escapeXml(s) }
-  def localReferentialWidget(rqt, javaName, lrEntries, depth) {
-    def lrHtml = ''
-  def localReferentialWidget(rqt, javaName, lrEntries, depth) {
   def localReferentialWidget(wrapper, javaName, lrEntries, depth) {
     def lrHtml = ''
     def currentLrDatas = wrapper != null ? wrapper[javaName].collect{it.name} : null
-    if (lrTypes[javaName].entriesSupportMultiple) { 
+    if (lrTypes[javaName].isMultiple()) { 
       lrHtml += "<ul ${depth==0 ? 'class="dataTree"' : ''}>"
       lrEntries.eachWithIndex { entry, i -> 
       if (entry.entries) { 
         lrHtml += "<li>"
-        lrHtml += "<em>${esc(entry.labelsMap.fr)} :</em>"
-        lrHtml += localReferentialWidget(rqt, javaName, entry.entries,++depth)
-        lrHtml += "</li>"
-      } else {
-         lrHtml += "<li><span ${currentLrDatas?.contains(entry.key) ? 'class="checked"' : ''}>${esc(entry.labelsMap.fr)}</span>${i + 1 < lrEntries.size() ? ',' : ''}</li>"
-      } 
-    } 
-    lrHtml += "</ul>"
-    } else { 
-      lrEntries.each { entry -> 
-        lrHtml += "${currentLrDatas?.contains(entry.key) ? esc(entry.labelsMap.fr): ''}"
-      } 
-    if (lrEntries.any{it.entries}) {
-      println "<ul ${depth==0 ? 'class="dataTree"' : ''}>"
-      
-      lrEntries.each { entry ->
-        println "<li>"
-        if (entry.entries) {
-          println "<em ${currentLrDatas?.contains(entry.key) ? 'class="checked"' : ''}>${entry.label} :</em>"
-          localReferentialWidget(rqt, javaName, entry.entries, depth + 1)
-        } else {
-          println "<span ${currentLrDatas?.contains(entry.key) ? 'class="checked"' : ''}>${entry.label}</span>"
-        }
-        println "</li>"
-      }
-
-      println "</ul>"
-    } else {
-      lrEntries.eachWithIndex { entry, i ->
-        println "<span ${currentLrDatas?.contains(entry.key) ? 'class="checked"' : ''}>${entry.label}</span>${i + 1 < lrEntries.size() ? ', ' : ''}"
-      }
-    if (lrTypes[javaName].entriesSupportMultiple) { 
-      lrHtml += "<ul ${depth==0 ? 'class="dataTree"' : ''}>"
-      lrEntries.eachWithIndex { entry, i -> 
-      if (entry.entries) { 
-        lrHtml += "<li>"
-        lrHtml += "<em>${esc(entry.labelsMap.fr)} :</em>"
+        lrHtml += "<em>${esc(entry.label)} :</em>"
         lrHtml += localReferentialWidget(wrapper, javaName, entry.entries,++depth)
         lrHtml += "</li>"
       } else {
-         lrHtml += "<li><span ${currentLrDatas?.contains(entry.key) ? 'class="checked"' : ''}>${esc(entry.labelsMap.fr)}</span>${i + 1 < lrEntries.size() ? ',' : ''}</li>"
+         lrHtml += "<li><span ${currentLrDatas?.contains(entry.key) ? 'class="checked"' : ''}>${esc(entry.label)}</span>${i + 1 < lrEntries.size() ? ',' : ''}</li>"
       } 
     } 
     lrHtml += "</ul>"
     } else { 
       lrEntries.each { entry -> 
-        lrHtml += "${currentLrDatas?.contains(entry.key) ? esc(entry.labelsMap.fr): ''}"
+        lrHtml += "${currentLrDatas?.contains(entry.key) ? esc(entry.label): ''}"
       } 
     }
   }
@@ -142,12 +103,8 @@
         
           <p class="label">${esc(i18n.translate('rsr.property.subjectTitle.label'))}</p>
           <div class="response">
-            <% if(rqt.subjectTitle) { %>
-              ${esc(i18n.translate('rsr.property.subjectTitle.' + StringUtils.uncapitalize(rqt.subjectTitle.toString())))}
-            <% if(rqt.subjectTitle) { %>
-              ${esc(i18n.translate('rsr.property.subjectTitle.' + EnumTool.toLowerCamelCase(rqt.subjectTitle.toString())))}
             <% if(rqt.rsrSubject?.subjectTitle) { %>
-              ${esc(i18n.translate('rsr.property.subjectTitle.' + StringUtils.uncapitalize(rqt.rsrSubject?.subjectTitle.toString())))}
+              ${esc(i18n.translate('rsr.property.subjectTitle.' + EnumTool.toLowerCamelCase(rqt.rsrSubject?.subjectTitle.toString())))}
             <% } %>
           </div>
           
@@ -160,12 +117,8 @@
         
           <p class="label">${esc(i18n.translate('rsr.property.subjectResideWith.label'))}</p>
           <div class="response">
-            <% if(rqt.subjectResideWith) { %>
-              ${esc(i18n.translate('rsr.property.subjectResideWith.' + StringUtils.uncapitalize(rqt.subjectResideWith.toString())))}
-            <% if(rqt.subjectResideWith) { %>
-              ${esc(i18n.translate('rsr.property.subjectResideWith.' + EnumTool.toLowerCamelCase(rqt.subjectResideWith.toString())))}
             <% if(rqt.rsrSubject?.subjectResideWith) { %>
-              ${esc(i18n.translate('rsr.property.subjectResideWith.' + StringUtils.uncapitalize(rqt.rsrSubject?.subjectResideWith.toString())))}
+              ${esc(i18n.translate('rsr.property.subjectResideWith.' + EnumTool.toLowerCamelCase(rqt.rsrSubject?.subjectResideWith.toString())))}
             <% } %>
           </div>
           
@@ -214,28 +167,6 @@
       <h3>${i18n.translate('rsr.property.requestInformation.label')}</h3>
       <div class="complex">
         
-          <p class="label">${esc(i18n.translate('rsr.property.requestInformationRequestKind.label'))}</p>
-          <div class="response">
-            <% if(rqt.requestInformation?.requestInformationRequestKind) { %>
-              ${esc(i18n.translate('rsr.property.requestInformationRequestKind.' + StringUtils.uncapitalize(rqt.requestInformation?.requestInformationRequestKind.toString())))}
-            <% } %>
-          </div>
-          
-
-        
-          <p class="label">${esc(i18n.translate('rsr.property.requestInformationRequestKind.label'))}</p>
-          <div class="response">
-            <% if(rqt.requestInformationRequestKind) { %>
-              ${esc(i18n.translate('rsr.property.requestInformationRequestKind.' + StringUtils.uncapitalize(rqt.requestInformationRequestKind.toString())))}
-            <% if(rqt.requestInformationRequestKind) { %>
-              ${esc(i18n.translate('rsr.property.requestInformationRequestKind.' + EnumTool.toLowerCamelCase(rqt.requestInformationRequestKind.toString())))}
-            <% if(rqt.requestInformation?.requestInformationRequestKind) { %>
-              ${esc(i18n.translate('rsr.property.requestInformationRequestKind.' + StringUtils.uncapitalize(rqt.requestInformation?.requestInformationRequestKind.toString())))}
-            <% } %>
-          </div>
-          
-
-        
           <p class="label">${esc(i18n.translate('rsr.property.requestInformationEmergency.label'))}</p>
           <div class="response choice">
             <% [true,false].each { %>
@@ -258,7 +189,7 @@
       <p class="label">${esc(i18n.translate('rsr.property.requestInformationRequestKind.label'))}</p>
           <div class="response">
             <% if(rqt.requestInformationRequestKind) { %>
-              ${esc(i18n.translate('rsr.property.requestInformationRequestKind.' + StringUtils.uncapitalize(rqt.requestInformationRequestKind.toString())))}
+              ${esc(i18n.translate('rsr.property.requestInformationRequestKind.' + EnumTool.toLowerCamelCase(rqt.requestInformationRequestKind.toString())))}
             <% } %>
           </div>
           
@@ -277,12 +208,8 @@
         
           <p class="label">${esc(i18n.translate('rsr.property.spouseTitle.label'))}</p>
           <div class="response">
-            <% if(rqt.spouseTitle) { %>
-              ${esc(i18n.translate('rsr.property.spouseTitle.' + StringUtils.uncapitalize(rqt.spouseTitle.toString())))}
-            <% if(rqt.spouseTitle) { %>
-              ${esc(i18n.translate('rsr.property.spouseTitle.' + EnumTool.toLowerCamelCase(rqt.spouseTitle.toString())))}
             <% if(rqt.spouse?.spouseTitle) { %>
-              ${esc(i18n.translate('rsr.property.spouseTitle.' + StringUtils.uncapitalize(rqt.spouse?.spouseTitle.toString())))}
+              ${esc(i18n.translate('rsr.property.spouseTitle.' + EnumTool.toLowerCamelCase(rqt.spouse?.spouseTitle.toString())))}
             <% } %>
           </div>
           

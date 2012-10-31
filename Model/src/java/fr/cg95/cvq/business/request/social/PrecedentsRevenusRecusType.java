@@ -1,42 +1,42 @@
 package fr.cg95.cvq.business.request.social;
 
-import fr.cg95.cvq.dao.hibernate.PersistentStringEnum;
-
 /**
  * Generated class file, do not edit !
  */
-public final class PrecedentsRevenusRecusType extends PersistentStringEnum {
+public enum PrecedentsRevenusRecusType {
 
-    private static final long serialVersionUID = 1L;
-  
-    public static final PrecedentsRevenusRecusType ACTIVITE = new PrecedentsRevenusRecusType("Activite");
-  
-    public static final PrecedentsRevenusRecusType ESAT = new PrecedentsRevenusRecusType("Esat");
-  
-    public static final PrecedentsRevenusRecusType INDEMNITES = new PrecedentsRevenusRecusType("Indemnites");
-  
+    ACTIVITE("Activite"),
+    ESAT("Esat"),
+    INDEMNITES("Indemnites");
+
 
     /**
-     * Prevent instantiation and subclassing with a private constructor.
+     * only for backward use PrecedentsRevenusRecusType.values() instead
+     * @deprecated only for backward
      */
-    private PrecedentsRevenusRecusType(String value) {
-        super(value);
+    @Deprecated 
+    public static PrecedentsRevenusRecusType[] allPrecedentsRevenusRecusTypes = PrecedentsRevenusRecusType.values();
+
+    private String legacyLabel;
+
+    private PrecedentsRevenusRecusType(String legacyLabel){
+        this.legacyLabel = legacyLabel;
     }
 
-    public PrecedentsRevenusRecusType() {}
-
-    public static PrecedentsRevenusRecusType[] allPrecedentsRevenusRecusTypes = {
-        ACTIVITE,
-        ESAT,
-        INDEMNITES
-    };
+    public String getLegacyLabel() {
+        return legacyLabel;
+    }
 
     public static PrecedentsRevenusRecusType getDefaultPrecedentsRevenusRecusType() {
         return null;
     }
 
+    /**
+     * @deprecated use valueOf instead. Watchout! you must provid something of PrecedentsRevenusRecusType.something
+     * not the value of the name attribut.
+     */
     public static PrecedentsRevenusRecusType forString(final String enumAsString) {
-        for (PrecedentsRevenusRecusType value : allPrecedentsRevenusRecusTypes)
+        for (PrecedentsRevenusRecusType value : values())
             if (value.toString().equals(enumAsString))
                 return value;
         return getDefaultPrecedentsRevenusRecusType();

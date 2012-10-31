@@ -32,6 +32,14 @@ public class BankAccount implements Cloneable, Serializable {
         return bankAccountType;
     }
 
+    public BankAccountType modelToXml() {
+        if (this == null) return null;
+        BankAccountType bankAccountType = BankAccountType.Factory.newInstance();
+        bankAccountType.setBIC(getBIC());
+        bankAccountType.setIBAN(getIBAN());
+        return bankAccountType;
+    }
+
     public static BankAccount xmlToModel(BankAccountType bankAccountType) {
         if (bankAccountType == null) return null;
         BankAccount bankAccount= new BankAccount();

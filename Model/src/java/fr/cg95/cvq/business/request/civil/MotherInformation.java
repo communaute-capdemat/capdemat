@@ -22,20 +22,21 @@ import fr.cg95.cvq.xml.common.*;
 import fr.cg95.cvq.xml.request.civil.*;
 import fr.cg95.cvq.service.request.LocalReferential;
 import fr.cg95.cvq.service.request.condition.IConditionChecker;
+import javax.persistence.*;
+import org.hibernate.annotations.Index;
+import org.hibernate.annotations.Type;
 
 /**
  * Generated class file, do not edit !
- *
- * @hibernate.class
- *  table="mother_information"
- *  lazy="false"
  */
+@Entity
+@Table(name="mother_information")
 public class MotherInformation implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     public static final Map<String, IConditionChecker> conditions =
-        new HashMap<String, IConditionChecker>();
+        BirthDetailsRequest.conditions;
 
     public MotherInformation() {
         super();
@@ -105,11 +106,8 @@ public class MotherInformation implements Serializable {
         this.id = id;
     }
 
-    /**
-     * @hibernate.id
-     *  column="id"
-     *  generator-class="sequence"
-     */
+    @Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE)
     public final Long getId() {
         return this.id;
     }
@@ -132,18 +130,14 @@ public class MotherInformation implements Serializable {
     
     private String motherFirstNames;
 
-    public final void setMotherFirstNames(final String motherFirstNames) {
+    public void setMotherFirstNames(final String motherFirstNames) {
         this.motherFirstNames = motherFirstNames;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="mother_first_names"
-        
+    
+    @Column(name="mother_first_names"  )
       
-    */
-    public final String getMotherFirstNames() {
+    public String getMotherFirstNames() {
         return this.motherFirstNames;
     }
   
@@ -173,18 +167,14 @@ public class MotherInformation implements Serializable {
     
     private String motherMaidenName;
 
-    public final void setMotherMaidenName(final String motherMaidenName) {
+    public void setMotherMaidenName(final String motherMaidenName) {
         this.motherMaidenName = motherMaidenName;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="mother_maiden_name"
-        *  length="38"
+    
+    @Column(name="mother_maiden_name" , length=38 )
       
-    */
-    public final String getMotherMaidenName() {
+    public String getMotherMaidenName() {
         return this.motherMaidenName;
     }
   

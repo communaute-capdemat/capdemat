@@ -315,26 +315,15 @@ public class BirthDetailsRequestData implements Serializable {
     
     private fr.cg95.cvq.business.users.InseeDepartementCodeType birthPostalCode;
 
-    public final void setBirthPostalCode(final String birthPostalCode) {
-    public void setBirthPostalCode(final String birthPostalCode) {
-    public final void setBirthPostalCode(final fr.cg95.cvq.business.users.InseeDepartementCodeType birthPostalCode) {
+    public void setBirthPostalCode(final fr.cg95.cvq.business.users.InseeDepartementCodeType birthPostalCode) {
         this.birthPostalCode = birthPostalCode;
     }
 
  
-        * @hibernate.property
-        *  column="birth_postal_code"
-        *  length="2"
-    @Column(name="birth_postal_code" , length=2 )
-        * @hibernate.property
-        *  column="birth_postal_code"
-        
+    @Enumerated(EnumType.STRING)
+    @Column(name="birth_postal_code"  )
       
-    */
-    public final String getBirthPostalCode() {
-    public String getBirthPostalCode() {
-    */
-    public final fr.cg95.cvq.business.users.InseeDepartementCodeType getBirthPostalCode() {
+    public fr.cg95.cvq.business.users.InseeDepartementCodeType getBirthPostalCode() {
         return this.birthPostalCode;
     }
   
@@ -403,72 +392,6 @@ public class BirthDetailsRequestData implements Serializable {
               
               
             
-            "return active",
-        
-        profiles = {"type"},
-        message = "fatherFirstNames"
-      )
-    
-    private String fatherFirstNames;
-
-    public final void setFatherFirstNames(final String fatherFirstNames) {
-        this.fatherFirstNames = fatherFirstNames;
-    }
-
-    /**
- 
-        * @hibernate.property
-        *  column="father_first_names"
-        
-      
-    */
-    public final String getFatherFirstNames() {
-        return this.fatherFirstNames;
-    }
-  
-    
-      @MaxLength(
-        
-          value = 38,
-        
-        
-          when = "groovy:def active = true;" +
-          
-            
-            "active &= _this.conditions['format'].test(_this.format.toString());" +
-                
-              
-            "return active",
-        
-        profiles = {"type"},
-        message = "fatherFirstNames"
-      )
-    
-    private String fatherFirstNames;
-
-    public void setFatherFirstNames(final String fatherFirstNames) {
-        this.fatherFirstNames = fatherFirstNames;
-    }
-
- 
-    @Column(name="father_first_names"  )
-      
-    public String getFatherFirstNames() {
-        return this.fatherFirstNames;
-    }
-  
-    
-      @MaxLength(
-        
-          value = 38,
-        
-        
-          when = "groovy:def active = true;" +
-          
-            
-            "active &= _this.conditions['format'].test(_this.format.toString());" +
-                
-              
             
             "return active",
         
@@ -478,31 +401,15 @@ public class BirthDetailsRequestData implements Serializable {
     
     private fr.cg95.cvq.business.request.civil.FatherInformation fatherInformation;
 
-    public final void setFatherLastName(final String fatherLastName) {
-        this.fatherLastName = fatherLastName;
-    public void setFatherLastName(final String fatherLastName) {
-        this.fatherLastName = fatherLastName;
-    public final void setFatherInformation(final fr.cg95.cvq.business.request.civil.FatherInformation fatherInformation) {
+    public void setFatherInformation(final fr.cg95.cvq.business.request.civil.FatherInformation fatherInformation) {
         this.fatherInformation = fatherInformation;
     }
 
  
-        * @hibernate.property
-        *  column="father_last_name"
-        *  length="38"
-    @Column(name="father_last_name" , length=38 )
-        * @hibernate.many-to-one
-        *  cascade="all"
-        *  column="father_information_id"
-        *  class="fr.cg95.cvq.business.request.civil.FatherInformation"
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name="father_information_id")
       
-    */
-    public final String getFatherLastName() {
-        return this.fatherLastName;
-    public String getFatherLastName() {
-        return this.fatherLastName;
-    */
-    public final fr.cg95.cvq.business.request.civil.FatherInformation getFatherInformation() {
+    public fr.cg95.cvq.business.request.civil.FatherInformation getFatherInformation() {
         return this.fatherInformation;
     }
   
@@ -539,64 +446,6 @@ public class BirthDetailsRequestData implements Serializable {
               
               
             
-            "return active",
-        
-        profiles = {"type"},
-        message = "motherFirstNames"
-      )
-    
-    private String motherFirstNames;
-
-    public final void setMotherFirstNames(final String motherFirstNames) {
-        this.motherFirstNames = motherFirstNames;
-    }
-
-    /**
- 
-        * @hibernate.property
-        *  column="mother_first_names"
-        
-      
-    */
-    public final String getMotherFirstNames() {
-        return this.motherFirstNames;
-    }
-  
-    
-      @MaxLength(
-        
-          value = 38,
-        
-        
-          when = "groovy:def active = true;" +
-          
-            "return active",
-        
-        profiles = {"type"},
-        message = "motherFirstNames"
-      )
-    
-    private String motherFirstNames;
-
-    public void setMotherFirstNames(final String motherFirstNames) {
-        this.motherFirstNames = motherFirstNames;
-    }
-
- 
-    @Column(name="mother_first_names"  )
-      
-    public String getMotherFirstNames() {
-        return this.motherFirstNames;
-    }
-  
-    
-      @MaxLength(
-        
-          value = 38,
-        
-        
-          when = "groovy:def active = true;" +
-          
             
             "return active",
         
@@ -606,31 +455,15 @@ public class BirthDetailsRequestData implements Serializable {
     
     private fr.cg95.cvq.business.request.civil.MotherInformation motherInformation;
 
-    public final void setMotherMaidenName(final String motherMaidenName) {
-        this.motherMaidenName = motherMaidenName;
-    public void setMotherMaidenName(final String motherMaidenName) {
-        this.motherMaidenName = motherMaidenName;
-    public final void setMotherInformation(final fr.cg95.cvq.business.request.civil.MotherInformation motherInformation) {
+    public void setMotherInformation(final fr.cg95.cvq.business.request.civil.MotherInformation motherInformation) {
         this.motherInformation = motherInformation;
     }
 
  
-        * @hibernate.property
-        *  column="mother_maiden_name"
-        *  length="38"
-    @Column(name="mother_maiden_name" , length=38 )
-        * @hibernate.many-to-one
-        *  cascade="all"
-        *  column="mother_information_id"
-        *  class="fr.cg95.cvq.business.request.civil.MotherInformation"
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name="mother_information_id")
       
-    */
-    public final String getMotherMaidenName() {
-        return this.motherMaidenName;
-    public String getMotherMaidenName() {
-        return this.motherMaidenName;
-    */
-    public final fr.cg95.cvq.business.request.civil.MotherInformation getMotherInformation() {
+    public fr.cg95.cvq.business.request.civil.MotherInformation getMotherInformation() {
         return this.motherInformation;
     }
   

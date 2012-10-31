@@ -129,8 +129,8 @@
     <label for="deteneurAutoriteParentale" class="required"><g:message code="myr.property.deteneurAutoriteParentale.label" /> *  <span><g:message code="myr.property.deteneurAutoriteParentale.help" /></span></label>
             <select id="deteneurAutoriteParentale" name="deteneurAutoriteParentale" class="required condition-deteneurAutoriteParentale-trigger  validate-not-first ${rqt.stepStates['autoriteParentale'].invalidFields.contains('deteneurAutoriteParentale') ? 'validation-failed' : ''}" title="<g:message code="myr.property.deteneurAutoriteParentale.validationError" />">
               <option value=""><g:message code="message.select.defaultOption" /></option>
-              <g:each in="${['Mere','Pere','LesDeux','Autre']}">
-                <option value="fr.cg95.cvq.business.request.social.DeteneurAutoriteParentaleType_${it}" ${it == rqt.deteneurAutoriteParentale?.toString() ? 'selected="selected"': ''}><g:capdematEnumToText var="${it}" i18nKeyPrefix="myr.property.deteneurAutoriteParentale" /></option>
+              <g:each in="${['MERE','PERE','LES_DEUX','AUTRE']}">
+                <option value="${it}" ${it == rqt.deteneurAutoriteParentale?.toString() ? 'selected="selected"': ''}><g:capdematEnumToText var="${it}" i18nKeyPrefix="myr.property.deteneurAutoriteParentale" /></option>
               </g:each>
             </select>
             

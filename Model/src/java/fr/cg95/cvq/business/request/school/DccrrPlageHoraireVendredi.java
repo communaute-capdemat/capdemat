@@ -22,20 +22,21 @@ import fr.cg95.cvq.xml.common.*;
 import fr.cg95.cvq.xml.request.school.*;
 import fr.cg95.cvq.service.request.LocalReferential;
 import fr.cg95.cvq.service.request.condition.IConditionChecker;
+import javax.persistence.*;
+import org.hibernate.annotations.Index;
+import org.hibernate.annotations.Type;
 
 /**
  * Generated class file, do not edit !
- *
- * @hibernate.class
- *  table="dccrr_plage_horaire_vendredi"
- *  lazy="false"
  */
+@Entity
+@Table(name="dccrr_plage_horaire_vendredi")
 public class DccrrPlageHoraireVendredi implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     public static final Map<String, IConditionChecker> conditions =
-        new HashMap<String, IConditionChecker>();
+        DayCareCenterRegistrationRequest.conditions;
 
     public DccrrPlageHoraireVendredi() {
         super();
@@ -161,11 +162,8 @@ public class DccrrPlageHoraireVendredi implements Serializable {
         this.id = id;
     }
 
-    /**
-     * @hibernate.id
-     *  column="id"
-     *  generator-class="sequence"
-     */
+    @Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE)
     public final Long getId() {
         return this.id;
     }
@@ -174,76 +172,56 @@ public class DccrrPlageHoraireVendredi implements Serializable {
     
     private org.joda.time.LocalTime horairePlacementApresMidiFinVendredi;
 
-    public final void setHorairePlacementApresMidiFinVendredi(final org.joda.time.LocalTime horairePlacementApresMidiFinVendredi) {
+    public void setHorairePlacementApresMidiFinVendredi(final org.joda.time.LocalTime horairePlacementApresMidiFinVendredi) {
         this.horairePlacementApresMidiFinVendredi = horairePlacementApresMidiFinVendredi;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="horaire_placement_apres_midi_fin_vendredi"
-        *  type="serializable"
-        
+    
+    @Column(name="horaire_placement_apres_midi_fin_vendredi"  )
       
-    */
-    public final org.joda.time.LocalTime getHorairePlacementApresMidiFinVendredi() {
+    public org.joda.time.LocalTime getHorairePlacementApresMidiFinVendredi() {
         return this.horairePlacementApresMidiFinVendredi;
     }
   
     
     private org.joda.time.LocalTime horairePlacementMatinFinVendredi;
 
-    public final void setHorairePlacementMatinFinVendredi(final org.joda.time.LocalTime horairePlacementMatinFinVendredi) {
+    public void setHorairePlacementMatinFinVendredi(final org.joda.time.LocalTime horairePlacementMatinFinVendredi) {
         this.horairePlacementMatinFinVendredi = horairePlacementMatinFinVendredi;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="horaire_placement_matin_fin_vendredi"
-        *  type="serializable"
-        
+    
+    @Column(name="horaire_placement_matin_fin_vendredi"  )
       
-    */
-    public final org.joda.time.LocalTime getHorairePlacementMatinFinVendredi() {
+    public org.joda.time.LocalTime getHorairePlacementMatinFinVendredi() {
         return this.horairePlacementMatinFinVendredi;
     }
   
     
     private org.joda.time.LocalTime horairePlacementApresMidiDebutVendredi;
 
-    public final void setHorairePlacementApresMidiDebutVendredi(final org.joda.time.LocalTime horairePlacementApresMidiDebutVendredi) {
+    public void setHorairePlacementApresMidiDebutVendredi(final org.joda.time.LocalTime horairePlacementApresMidiDebutVendredi) {
         this.horairePlacementApresMidiDebutVendredi = horairePlacementApresMidiDebutVendredi;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="horaire_placement_apres_midi_debut_vendredi"
-        *  type="serializable"
-        
+    
+    @Column(name="horaire_placement_apres_midi_debut_vendredi"  )
       
-    */
-    public final org.joda.time.LocalTime getHorairePlacementApresMidiDebutVendredi() {
+    public org.joda.time.LocalTime getHorairePlacementApresMidiDebutVendredi() {
         return this.horairePlacementApresMidiDebutVendredi;
     }
   
     
     private org.joda.time.LocalTime horairePlacementMatinDebutVendredi;
 
-    public final void setHorairePlacementMatinDebutVendredi(final org.joda.time.LocalTime horairePlacementMatinDebutVendredi) {
+    public void setHorairePlacementMatinDebutVendredi(final org.joda.time.LocalTime horairePlacementMatinDebutVendredi) {
         this.horairePlacementMatinDebutVendredi = horairePlacementMatinDebutVendredi;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="horaire_placement_matin_debut_vendredi"
-        *  type="serializable"
-        
+    
+    @Column(name="horaire_placement_matin_debut_vendredi"  )
       
-    */
-    public final org.joda.time.LocalTime getHorairePlacementMatinDebutVendredi() {
+    public org.joda.time.LocalTime getHorairePlacementMatinDebutVendredi() {
         return this.horairePlacementMatinDebutVendredi;
     }
   

@@ -22,20 +22,21 @@ import fr.cg95.cvq.xml.common.*;
 import fr.cg95.cvq.xml.request.school.*;
 import fr.cg95.cvq.service.request.LocalReferential;
 import fr.cg95.cvq.service.request.condition.IConditionChecker;
+import javax.persistence.*;
+import org.hibernate.annotations.Index;
+import org.hibernate.annotations.Type;
 
 /**
  * Generated class file, do not edit !
- *
- * @hibernate.class
- *  table="current_school"
- *  lazy="false"
  */
+@Entity
+@Table(name="current_school")
 public class CurrentSchool implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     public static final Map<String, IConditionChecker> conditions =
-        new HashMap<String, IConditionChecker>();
+        SchoolRegistrationRequest.conditions;
 
     public CurrentSchool() {
         super();
@@ -65,7 +66,7 @@ public class CurrentSchool implements Serializable {
         currentSchool.setCurrentSchoolAddress(this.currentSchoolAddress);
       
         if (this.currentSection != null)
-            currentSchool.setCurrentSection(fr.cg95.cvq.xml.common.SectionType.Enum.forString(this.currentSection.toString()));
+            currentSchool.setCurrentSection(fr.cg95.cvq.xml.common.SectionType.Enum.forString(this.currentSection.getLegacyLabel()));
       
         currentSchool.setCurrentSchoolName(this.currentSchoolName);
       
@@ -124,11 +125,8 @@ public class CurrentSchool implements Serializable {
         this.id = id;
     }
 
-    /**
-     * @hibernate.id
-     *  column="id"
-     *  generator-class="sequence"
-     */
+    @Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE)
     public final Long getId() {
         return this.id;
     }
@@ -137,54 +135,43 @@ public class CurrentSchool implements Serializable {
     
     private String currentSchoolAddress;
 
-    public final void setCurrentSchoolAddress(final String currentSchoolAddress) {
+    public void setCurrentSchoolAddress(final String currentSchoolAddress) {
         this.currentSchoolAddress = currentSchoolAddress;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="current_school_address"
-        
+    
+    @Column(name="current_school_address"  )
       
-    */
-    public final String getCurrentSchoolAddress() {
+    public String getCurrentSchoolAddress() {
         return this.currentSchoolAddress;
     }
   
     
     private fr.cg95.cvq.business.users.SectionType currentSection;
 
-    public final void setCurrentSection(final fr.cg95.cvq.business.users.SectionType currentSection) {
+    public void setCurrentSection(final fr.cg95.cvq.business.users.SectionType currentSection) {
         this.currentSection = currentSection;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="current_section"
-        *  length="32"
+    
+    @Enumerated(EnumType.STRING)
+    @Column(name="current_section" , length=32 )
       
-    */
-    public final fr.cg95.cvq.business.users.SectionType getCurrentSection() {
+    public fr.cg95.cvq.business.users.SectionType getCurrentSection() {
         return this.currentSection;
     }
   
     
     private String currentSchoolName;
 
-    public final void setCurrentSchoolName(final String currentSchoolName) {
+    public void setCurrentSchoolName(final String currentSchoolName) {
         this.currentSchoolName = currentSchoolName;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="current_school_name"
-        
+    
+    @Column(name="current_school_name"  )
       
-    */
-    public final String getCurrentSchoolName() {
+    public String getCurrentSchoolName() {
         return this.currentSchoolName;
     }
   

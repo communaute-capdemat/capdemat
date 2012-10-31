@@ -141,15 +141,9 @@ public class BafaGrantRequest extends Request implements Serializable {
             bafaGrantRequest.setAccountHolderTitle(fr.cg95.cvq.xml.common.TitleType.Enum.forString(getAccountHolderTitle().getLegacyLabel()));
       
         if (getBankAccount() != null)
-            bafaGrantRequest.setBankAccount(BankAccount.modelToXml(getBankAccount()));
+            bafaGrantRequest.setBankAccount(getBankAccount().modelToXml());
       
         bafaGrantRequest.setEdemandeId(getEdemandeId());
-      
-        if (getFrenchRIB() != null)
-            bafaGrantRequest.setFrenchRIB(FrenchRIB.modelToXml(getFrenchRIB()));
-      
-        if (getFrenchRIB() != null)
-            bafaGrantRequest.setFrenchRIB(getFrenchRIB().modelToXml());
       
         date = getInternshipEndDate();
         if (date != null) {

@@ -1,42 +1,42 @@
 package fr.cg95.cvq.business.request.social;
 
-import fr.cg95.cvq.dao.hibernate.PersistentStringEnum;
-
 /**
  * Generated class file, do not edit !
  */
-public final class MyrChoixPrestationCompensationType extends PersistentStringEnum {
+public enum MyrChoixPrestationCompensationType {
 
-    private static final long serialVersionUID = 1L;
-  
-    public static final MyrChoixPrestationCompensationType PCH = new MyrChoixPrestationCompensationType("Pch");
-  
-    public static final MyrChoixPrestationCompensationType ACTP = new MyrChoixPrestationCompensationType("Actp");
-  
-    public static final MyrChoixPrestationCompensationType ACFP = new MyrChoixPrestationCompensationType("Acfp");
-  
+    PCH("Pch"),
+    ACTP("Actp"),
+    ACFP("Acfp");
+
 
     /**
-     * Prevent instantiation and subclassing with a private constructor.
+     * only for backward use MyrChoixPrestationCompensationType.values() instead
+     * @deprecated only for backward
      */
-    private MyrChoixPrestationCompensationType(String value) {
-        super(value);
+    @Deprecated 
+    public static MyrChoixPrestationCompensationType[] allMyrChoixPrestationCompensationTypes = MyrChoixPrestationCompensationType.values();
+
+    private String legacyLabel;
+
+    private MyrChoixPrestationCompensationType(String legacyLabel){
+        this.legacyLabel = legacyLabel;
     }
 
-    public MyrChoixPrestationCompensationType() {}
-
-    public static MyrChoixPrestationCompensationType[] allMyrChoixPrestationCompensationTypes = {
-        PCH,
-        ACTP,
-        ACFP
-    };
+    public String getLegacyLabel() {
+        return legacyLabel;
+    }
 
     public static MyrChoixPrestationCompensationType getDefaultMyrChoixPrestationCompensationType() {
         return null;
     }
 
+    /**
+     * @deprecated use valueOf instead. Watchout! you must provid something of MyrChoixPrestationCompensationType.something
+     * not the value of the name attribut.
+     */
     public static MyrChoixPrestationCompensationType forString(final String enumAsString) {
-        for (MyrChoixPrestationCompensationType value : allMyrChoixPrestationCompensationTypes)
+        for (MyrChoixPrestationCompensationType value : values())
             if (value.toString().equals(enumAsString))
                 return value;
         return getDefaultMyrChoixPrestationCompensationType();

@@ -83,12 +83,8 @@
       <label for="dhrRequester.dhrRequesterNationality" class="required"><g:message code="dhr.property.dhrRequesterNationality.label" /> *  <span><g:message code="dhr.property.dhrRequesterNationality.help" /></span></label>
             <select id="dhrRequester.dhrRequesterNationality" name="dhrRequester.dhrRequesterNationality" class="required condition-isNonEuropean-trigger  validate-not-first ${rqt.stepStates['subject'].invalidFields.contains('dhrRequester.dhrRequesterNationality') ? 'validation-failed' : ''}" title="<g:message code="dhr.property.dhrRequesterNationality.validationError" />">
               <option value=""><g:message code="message.select.defaultOption" /></option>
-              <g:each in="${['French','EuropeanUnion','OutsideEuropeanUnion']}">
-                <option value="fr.cg95.cvq.business.users.NationalityType_${it}" ${it == rqt.dhrRequesterNationality?.toString() ? 'selected="selected"': ''}><g:capdematEnumToText var="${it}" i18nKeyPrefix="dhr.property.dhrRequesterNationality" /></option>
               <g:each in="${['FRENCH','EUROPEAN_UNION','OUTSIDE_EUROPEAN_UNION']}">
-                <option value="${it}" ${it == rqt.dhrRequesterNationality?.toString() ? 'selected="selected"': ''}><g:capdematEnumToText var="${it}" i18nKeyPrefix="dhr.property.dhrRequesterNationality" /></option>
-              <g:each in="${['French','EuropeanUnion','OutsideEuropeanUnion']}">
-                <option value="fr.cg95.cvq.business.users.NationalityType_${it}" ${it == rqt.dhrRequester?.dhrRequesterNationality?.toString() ? 'selected="selected"': ''}><g:capdematEnumToText var="${it}" i18nKeyPrefix="dhr.property.dhrRequesterNationality" /></option>
+                <option value="${it}" ${it == rqt.dhrRequester?.dhrRequesterNationality?.toString() ? 'selected="selected"': ''}><g:capdematEnumToText var="${it}" i18nKeyPrefix="dhr.property.dhrRequesterNationality" /></option>
               </g:each>
             </select>
             
@@ -156,12 +152,8 @@
       <label for="dhrRequesterPensionPlan.dhrPrincipalPensionPlan" class="required"><g:message code="dhr.property.dhrPrincipalPensionPlan.label" /> *  <span><g:message code="dhr.property.dhrPrincipalPensionPlan.help" /></span></label>
             <select id="dhrRequesterPensionPlan.dhrPrincipalPensionPlan" name="dhrRequesterPensionPlan.dhrPrincipalPensionPlan" class="required condition-isOtherPensionPlan-trigger  validate-not-first ${rqt.stepStates['subject'].invalidFields.contains('dhrRequesterPensionPlan.dhrPrincipalPensionPlan') ? 'validation-failed' : ''}" title="<g:message code="dhr.property.dhrPrincipalPensionPlan.validationError" />">
               <option value=""><g:message code="message.select.defaultOption" /></option>
-              <g:each in="${['CNAV','MSA','CRAM','MGEN','SNCF','Other']}">
-                <option value="fr.cg95.cvq.business.request.social.DhrPrincipalPensionPlanType_${it}" ${it == rqt.dhrPrincipalPensionPlan?.toString() ? 'selected="selected"': ''}><g:capdematEnumToText var="${it}" i18nKeyPrefix="dhr.property.dhrPrincipalPensionPlan" /></option>
               <g:each in="${['C_N_A_V','M_S_A','C_R_A_M','M_G_E_N','S_N_C_F','OTHER']}">
-                <option value="${it}" ${it == rqt.dhrPrincipalPensionPlan?.toString() ? 'selected="selected"': ''}><g:capdematEnumToText var="${it}" i18nKeyPrefix="dhr.property.dhrPrincipalPensionPlan" /></option>
-              <g:each in="${['CNAV','MSA','CRAM','MGEN','SNCF','Other']}">
-                <option value="fr.cg95.cvq.business.request.social.DhrPrincipalPensionPlanType_${it}" ${it == rqt.dhrRequesterPensionPlan?.dhrPrincipalPensionPlan?.toString() ? 'selected="selected"': ''}><g:capdematEnumToText var="${it}" i18nKeyPrefix="dhr.property.dhrPrincipalPensionPlan" /></option>
+                <option value="${it}" ${it == rqt.dhrRequesterPensionPlan?.dhrPrincipalPensionPlan?.toString() ? 'selected="selected"': ''}><g:capdematEnumToText var="${it}" i18nKeyPrefix="dhr.property.dhrPrincipalPensionPlan" /></option>
               </g:each>
             </select>
             
@@ -201,12 +193,8 @@
       <label for="dhrRequesterGuardian.dhrGuardianMeasure" class="required condition-haveGuardian-filled"><g:message code="dhr.property.dhrGuardianMeasure.label" /> *  <span><g:message code="dhr.property.dhrGuardianMeasure.help" /></span></label>
             <select id="dhrRequesterGuardian.dhrGuardianMeasure" name="dhrRequesterGuardian.dhrGuardianMeasure" class="required condition-haveGuardian-filled  validate-not-first ${rqt.stepStates['subject'].invalidFields.contains('dhrRequesterGuardian.dhrGuardianMeasure') ? 'validation-failed' : ''}" title="<g:message code="dhr.property.dhrGuardianMeasure.validationError" />">
               <option value=""><g:message code="message.select.defaultOption" /></option>
-              <g:each in="${['safeguardingJustice','guardianship','curatorship']}">
-                <option value="fr.cg95.cvq.business.request.social.DhrGuardianMeasureType_${it}" ${it == rqt.dhrGuardianMeasure?.toString() ? 'selected="selected"': ''}><g:capdematEnumToText var="${it}" i18nKeyPrefix="dhr.property.dhrGuardianMeasure" /></option>
               <g:each in="${['SAFEGUARDING_JUSTICE','GUARDIANSHIP','CURATORSHIP']}">
-                <option value="${it}" ${it == rqt.dhrGuardianMeasure?.toString() ? 'selected="selected"': ''}><g:capdematEnumToText var="${it}" i18nKeyPrefix="dhr.property.dhrGuardianMeasure" /></option>
-              <g:each in="${['safeguardingJustice','guardianship','curatorship']}">
-                <option value="fr.cg95.cvq.business.request.social.DhrGuardianMeasureType_${it}" ${it == rqt.dhrRequesterGuardian?.dhrGuardianMeasure?.toString() ? 'selected="selected"': ''}><g:capdematEnumToText var="${it}" i18nKeyPrefix="dhr.property.dhrGuardianMeasure" /></option>
+                <option value="${it}" ${it == rqt.dhrRequesterGuardian?.dhrGuardianMeasure?.toString() ? 'selected="selected"': ''}><g:capdematEnumToText var="${it}" i18nKeyPrefix="dhr.property.dhrGuardianMeasure" /></option>
               </g:each>
             </select>
             

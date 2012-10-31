@@ -22,20 +22,21 @@ import fr.cg95.cvq.xml.common.*;
 import fr.cg95.cvq.xml.request.social.*;
 import fr.cg95.cvq.service.request.LocalReferential;
 import fr.cg95.cvq.service.request.condition.IConditionChecker;
+import javax.persistence.*;
+import org.hibernate.annotations.Index;
+import org.hibernate.annotations.Type;
 
 /**
  * Generated class file, do not edit !
- *
- * @hibernate.class
- *  table="myr_preference_etablissement_ou_service_scolaire"
- *  lazy="false"
  */
+@Entity
+@Table(name="myr_preference_etablissement_ou_service_scolaire")
 public class MyrPreferenceEtablissementOuServiceScolaire implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     public static final Map<String, IConditionChecker> conditions =
-        new HashMap<String, IConditionChecker>();
+        MdphYouthRequest.conditions;
 
     public MyrPreferenceEtablissementOuServiceScolaire() {
         super();
@@ -115,11 +116,8 @@ public class MyrPreferenceEtablissementOuServiceScolaire implements Serializable
         this.id = id;
     }
 
-    /**
-     * @hibernate.id
-     *  column="id"
-     *  generator-class="sequence"
-     */
+    @Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE)
     public final Long getId() {
         return this.id;
     }
@@ -151,18 +149,14 @@ public class MyrPreferenceEtablissementOuServiceScolaire implements Serializable
     
     private String codePostalPreferenceEtablissementOuService;
 
-    public final void setCodePostalPreferenceEtablissementOuService(final String codePostalPreferenceEtablissementOuService) {
+    public void setCodePostalPreferenceEtablissementOuService(final String codePostalPreferenceEtablissementOuService) {
         this.codePostalPreferenceEtablissementOuService = codePostalPreferenceEtablissementOuService;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="code_postal_preference_etablissement_ou_service"
-        *  length="5"
+    
+    @Column(name="code_postal_preference_etablissement_ou_service" , length=5 )
       
-    */
-    public final String getCodePostalPreferenceEtablissementOuService() {
+    public String getCodePostalPreferenceEtablissementOuService() {
         return this.codePostalPreferenceEtablissementOuService;
     }
   
@@ -183,18 +177,14 @@ public class MyrPreferenceEtablissementOuServiceScolaire implements Serializable
     
     private String nomPreferenceEtablissementOuService;
 
-    public final void setNomPreferenceEtablissementOuService(final String nomPreferenceEtablissementOuService) {
+    public void setNomPreferenceEtablissementOuService(final String nomPreferenceEtablissementOuService) {
         this.nomPreferenceEtablissementOuService = nomPreferenceEtablissementOuService;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="nom_preference_etablissement_ou_service"
-        
+    
+    @Column(name="nom_preference_etablissement_ou_service"  )
       
-    */
-    public final String getNomPreferenceEtablissementOuService() {
+    public String getNomPreferenceEtablissementOuService() {
         return this.nomPreferenceEtablissementOuService;
     }
   
@@ -224,18 +214,14 @@ public class MyrPreferenceEtablissementOuServiceScolaire implements Serializable
     
     private String communePreferenceEtablissementOuService;
 
-    public final void setCommunePreferenceEtablissementOuService(final String communePreferenceEtablissementOuService) {
+    public void setCommunePreferenceEtablissementOuService(final String communePreferenceEtablissementOuService) {
         this.communePreferenceEtablissementOuService = communePreferenceEtablissementOuService;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="commune_preference_etablissement_ou_service"
-        *  length="32"
+    
+    @Column(name="commune_preference_etablissement_ou_service" , length=32 )
       
-    */
-    public final String getCommunePreferenceEtablissementOuService() {
+    public String getCommunePreferenceEtablissementOuService() {
         return this.communePreferenceEtablissementOuService;
     }
   

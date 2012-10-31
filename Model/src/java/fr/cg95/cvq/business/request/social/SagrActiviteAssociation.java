@@ -9,6 +9,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.HashMap;
 import org.joda.time.LocalTime;
 
 import net.sf.oval.constraint.*;
@@ -240,7 +241,7 @@ public class SagrActiviteAssociation implements Serializable {
         this.sportPratique = sportPratique;
     }
 
-
+    
     @Enumerated(EnumType.STRING)
     @Column(name="sport_pratique"  )
       
@@ -269,7 +270,7 @@ public class SagrActiviteAssociation implements Serializable {
         this.numeroAffiliationActivite = numeroAffiliationActivite;
     }
 
-
+    
     @Column(name="numero_affiliation_activite"  )
       
     public String getNumeroAffiliationActivite() {
@@ -290,7 +291,7 @@ public class SagrActiviteAssociation implements Serializable {
         this.nombreLicencieMajeurActivite = nombreLicencieMajeurActivite;
     }
 
-
+    
     @Column(name="nombre_licencie_majeur_activite"  )
       
     public Long getNombreLicencieMajeurActivite() {
@@ -311,7 +312,7 @@ public class SagrActiviteAssociation implements Serializable {
         this.sommeSolliciteeActivite = sommeSolliciteeActivite;
     }
 
-
+    
     @Column(name="somme_sollicitee_activite"  )
       
     public java.math.BigDecimal getSommeSolliciteeActivite() {
@@ -325,7 +326,7 @@ public class SagrActiviteAssociation implements Serializable {
         this.totalLicencieActivite = totalLicencieActivite;
     }
 
-
+    
     @Column(name="total_licencie_activite"  )
       
     public Long getTotalLicencieActivite() {
@@ -339,7 +340,7 @@ public class SagrActiviteAssociation implements Serializable {
         this.identifiantEDemandeActivite = identifiantEDemandeActivite;
     }
 
-
+    
     @Column(name="identifiant_e_demande_activite"  )
       
     public String getIdentifiantEDemandeActivite() {
@@ -353,7 +354,7 @@ public class SagrActiviteAssociation implements Serializable {
         this.sommeAlloueeActivite = sommeAlloueeActivite;
     }
 
-
+    
     @Column(name="somme_allouee_activite"  )
       
     public java.math.BigDecimal getSommeAlloueeActivite() {
@@ -366,7 +367,8 @@ public class SagrActiviteAssociation implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['sagrActiviteAssociation.federationSportive'].test(_this.federationSportive.toString());" +
+              "active &= _this.conditions['sagrActiviteAssociation.federationSportive'].test(_this.federationSportive.toString());" +
+                  
                 
               
             
@@ -382,7 +384,8 @@ public class SagrActiviteAssociation implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['sagrActiviteAssociation.federationSportive'].test(_this.federationSportive.toString());" +
+              "active &= _this.conditions['sagrActiviteAssociation.federationSportive'].test(_this.federationSportive.toString());" +
+                  
                 
               
             
@@ -399,7 +402,7 @@ public class SagrActiviteAssociation implements Serializable {
         this.federationSportivePrecision = federationSportivePrecision;
     }
 
-
+    
     @Column(name="federation_sportive_precision"  )
       
     public String getFederationSportivePrecision() {
@@ -420,7 +423,7 @@ public class SagrActiviteAssociation implements Serializable {
         this.federationSportive = federationSportive;
     }
 
-
+    
     @Enumerated(EnumType.STRING)
     @Column(name="federation_sportive"  )
       
@@ -442,7 +445,7 @@ public class SagrActiviteAssociation implements Serializable {
         this.nombreLicencieMineurActivite = nombreLicencieMineurActivite;
     }
 
-
+    
     @Column(name="nombre_licencie_mineur_activite"  )
       
     public Long getNombreLicencieMineurActivite() {
@@ -455,7 +458,8 @@ public class SagrActiviteAssociation implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['sagrActiviteAssociation.sportPratique'].test(_this.sportPratique.toString());" +
+              "active &= _this.conditions['sagrActiviteAssociation.sportPratique'].test(_this.sportPratique.toString());" +
+                  
                 
               
             
@@ -471,7 +475,8 @@ public class SagrActiviteAssociation implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['sagrActiviteAssociation.sportPratique'].test(_this.sportPratique.toString());" +
+              "active &= _this.conditions['sagrActiviteAssociation.sportPratique'].test(_this.sportPratique.toString());" +
+                  
                 
               
             
@@ -488,7 +493,7 @@ public class SagrActiviteAssociation implements Serializable {
         this.sportPratiquePrecision = sportPratiquePrecision;
     }
 
-
+    
     @Column(name="sport_pratique_precision"  )
       
     public String getSportPratiquePrecision() {

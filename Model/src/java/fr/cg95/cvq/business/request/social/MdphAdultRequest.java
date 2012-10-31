@@ -217,13 +217,13 @@ public class MdphAdultRequest extends Request implements Serializable {
             mdphAdultRequest.setCarteStationnement(getCarteStationnement().booleanValue());
       
         if (getChoixOrientationReclassement() != null)
-            mdphAdultRequest.setChoixOrientationReclassement(fr.cg95.cvq.xml.request.social.ChoixOrientationReclassementType.Enum.forString(getChoixOrientationReclassement().toString()));
+            mdphAdultRequest.setChoixOrientationReclassement(fr.cg95.cvq.xml.request.social.ChoixOrientationReclassementType.Enum.forString(getChoixOrientationReclassement().getLegacyLabel()));
       
         if (getChoixPrestationCompensation() != null)
-            mdphAdultRequest.setChoixPrestationCompensation(fr.cg95.cvq.xml.request.social.ChoixPrestationCompensationType.Enum.forString(getChoixPrestationCompensation().toString()));
+            mdphAdultRequest.setChoixPrestationCompensation(fr.cg95.cvq.xml.request.social.ChoixPrestationCompensationType.Enum.forString(getChoixPrestationCompensation().getLegacyLabel()));
       
         if (getChoixProjetDeVie() != null)
-            mdphAdultRequest.setChoixProjetDeVie(fr.cg95.cvq.xml.request.social.ChoixProjetDeVieType.Enum.forString(getChoixProjetDeVie().toString()));
+            mdphAdultRequest.setChoixProjetDeVie(fr.cg95.cvq.xml.request.social.ChoixProjetDeVieType.Enum.forString(getChoixProjetDeVie().getLegacyLabel()));
       
         if (getChoixTypeDemandeAllocEtCompl() != null)
             mdphAdultRequest.setChoixTypeDemandeAllocEtCompl(getChoixTypeDemandeAllocEtCompl().modelToXml());
@@ -300,7 +300,7 @@ public class MdphAdultRequest extends Request implements Serializable {
             mdphAdultRequest.setLieuNaissanceSujet(getLieuNaissanceSujet().modelToXml());
       
         if (getNationalite() != null)
-            mdphAdultRequest.setNationalite(fr.cg95.cvq.xml.request.social.NationaliteAvecSuisseType.Enum.forString(getNationalite().toString()));
+            mdphAdultRequest.setNationalite(fr.cg95.cvq.xml.request.social.NationaliteAvecSuisseType.Enum.forString(getNationalite().getLegacyLabel()));
       
         mdphAdultRequest.setNomAidant(getNomAidant());
       
@@ -321,19 +321,19 @@ public class MdphAdultRequest extends Request implements Serializable {
         mdphAdultRequest.setNumeroSecuriteSocialeSujet(getNumeroSecuriteSocialeSujet());
       
         if (getOrganismePayeur() != null)
-            mdphAdultRequest.setOrganismePayeur(fr.cg95.cvq.xml.request.social.OrganismePayeurType.Enum.forString(getOrganismePayeur().toString()));
+            mdphAdultRequest.setOrganismePayeur(fr.cg95.cvq.xml.request.social.OrganismePayeurType.Enum.forString(getOrganismePayeur().getLegacyLabel()));
       
         if (getOrientationReclassement() != null)
             mdphAdultRequest.setOrientationReclassement(getOrientationReclassement().booleanValue());
       
         if (getOrientationSouhaitee() != null)
-            mdphAdultRequest.setOrientationSouhaitee(fr.cg95.cvq.xml.request.social.OrientationSouhaiteeType.Enum.forString(getOrientationSouhaitee().toString()));
+            mdphAdultRequest.setOrientationSouhaitee(fr.cg95.cvq.xml.request.social.OrientationSouhaiteeType.Enum.forString(getOrientationSouhaitee().getLegacyLabel()));
       
         if (getPrecedentDossierMdph() != null)
             mdphAdultRequest.setPrecedentDossierMdph(getPrecedentDossierMdph().modelToXml());
       
         if (getPrecedentsRevenusRecus() != null)
-            mdphAdultRequest.setPrecedentsRevenusRecus(fr.cg95.cvq.xml.request.social.PrecedentsRevenusRecusType.Enum.forString(getPrecedentsRevenusRecus().toString()));
+            mdphAdultRequest.setPrecedentsRevenusRecus(fr.cg95.cvq.xml.request.social.PrecedentsRevenusRecusType.Enum.forString(getPrecedentsRevenusRecus().getLegacyLabel()));
       
         mdphAdultRequest.setPrecisionAutre(getPrecisionAutre());
       
@@ -361,24 +361,24 @@ public class MdphAdultRequest extends Request implements Serializable {
             mdphAdultRequest.setPrimeReclassement(getPrimeReclassement().booleanValue());
       
         if (getRepresentantLegal() != null)
-            mdphAdultRequest.setRepresentantLegal(fr.cg95.cvq.xml.request.social.RepresentantLegalType.Enum.forString(getRepresentantLegal().toString()));
+            mdphAdultRequest.setRepresentantLegal(fr.cg95.cvq.xml.request.social.RepresentantLegalType.Enum.forString(getRepresentantLegal().getLegacyLabel()));
       
         if (getRqth() != null)
             mdphAdultRequest.setRqth(getRqth().booleanValue());
       
         if (getSituationActuelle() != null)
-            mdphAdultRequest.setSituationActuelle(fr.cg95.cvq.xml.request.social.SituationActuelleType.Enum.forString(getSituationActuelle().toString()));
+            mdphAdultRequest.setSituationActuelle(fr.cg95.cvq.xml.request.social.SituationActuelleType.Enum.forString(getSituationActuelle().getLegacyLabel()));
       
         mdphAdultRequest.setSituationActuellePrecision(getSituationActuellePrecision());
       
         if (getSituationMaritale() != null)
-            mdphAdultRequest.setSituationMaritale(fr.cg95.cvq.xml.request.social.SituationFamilialeType.Enum.forString(getSituationMaritale().toString()));
+            mdphAdultRequest.setSituationMaritale(fr.cg95.cvq.xml.request.social.SituationFamilialeType.Enum.forString(getSituationMaritale().getLegacyLabel()));
       
         if (getSituationParticuliere() != null)
-            mdphAdultRequest.setSituationParticuliere(fr.cg95.cvq.xml.request.social.SituationAutreType.Enum.forString(getSituationParticuliere().toString()));
+            mdphAdultRequest.setSituationParticuliere(fr.cg95.cvq.xml.request.social.SituationAutreType.Enum.forString(getSituationParticuliere().getLegacyLabel()));
       
         if (getSituationProfessionnelleConjoint() != null)
-            mdphAdultRequest.setSituationProfessionnelleConjoint(fr.cg95.cvq.xml.request.social.ChoixSituationProfessionnelleType.Enum.forString(getSituationProfessionnelleConjoint().toString()));
+            mdphAdultRequest.setSituationProfessionnelleConjoint(fr.cg95.cvq.xml.request.social.ChoixSituationProfessionnelleType.Enum.forString(getSituationProfessionnelleConjoint().getLegacyLabel()));
       
         if (getSituationProfessionnelleConjointAutre() != null)
             mdphAdultRequest.setSituationProfessionnelleConjointAutre(getSituationProfessionnelleConjointAutre().modelToXml());
@@ -402,7 +402,7 @@ public class MdphAdultRequest extends Request implements Serializable {
             mdphAdultRequest.setSituationProfessionnelleConjointStagiaire(getSituationProfessionnelleConjointStagiaire().modelToXml());
       
         if (getSituationProfessionnelleVous() != null)
-            mdphAdultRequest.setSituationProfessionnelleVous(fr.cg95.cvq.xml.request.social.ChoixSituationProfessionnelleType.Enum.forString(getSituationProfessionnelleVous().toString()));
+            mdphAdultRequest.setSituationProfessionnelleVous(fr.cg95.cvq.xml.request.social.ChoixSituationProfessionnelleType.Enum.forString(getSituationProfessionnelleVous().getLegacyLabel()));
       
         if (getSituationProfessionnelleVousAutre() != null)
             mdphAdultRequest.setSituationProfessionnelleVousAutre(getSituationProfessionnelleVousAutre().modelToXml());
@@ -428,7 +428,7 @@ public class MdphAdultRequest extends Request implements Serializable {
         mdphAdultRequest.setTelResponsableLegal(getTelResponsableLegal());
       
         if (getTypeLogement() != null)
-            mdphAdultRequest.setTypeLogement(fr.cg95.cvq.xml.request.social.LogementType.Enum.forString(getTypeLogement().toString()));
+            mdphAdultRequest.setTypeLogement(fr.cg95.cvq.xml.request.social.LogementType.Enum.forString(getTypeLogement().getLegacyLabel()));
       
         return mdphAdultRequestDoc;
     }

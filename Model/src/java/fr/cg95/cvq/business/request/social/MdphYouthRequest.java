@@ -196,10 +196,10 @@ public class MdphYouthRequest extends Request implements Serializable {
             mdphYouthRequest.setCarteStationnement(getCarteStationnement().booleanValue());
       
         if (getChoixPrestationCompensation() != null)
-            mdphYouthRequest.setChoixPrestationCompensation(fr.cg95.cvq.xml.request.social.MyrChoixPrestationCompensationType.Enum.forString(getChoixPrestationCompensation().toString()));
+            mdphYouthRequest.setChoixPrestationCompensation(fr.cg95.cvq.xml.request.social.MyrChoixPrestationCompensationType.Enum.forString(getChoixPrestationCompensation().getLegacyLabel()));
       
         if (getChoixProjetDeVie() != null)
-            mdphYouthRequest.setChoixProjetDeVie(fr.cg95.cvq.xml.request.social.MyrChoixProjetDeVieType.Enum.forString(getChoixProjetDeVie().toString()));
+            mdphYouthRequest.setChoixProjetDeVie(fr.cg95.cvq.xml.request.social.MyrChoixProjetDeVieType.Enum.forString(getChoixProjetDeVie().getLegacyLabel()));
       
         mdphYouthRequest.setConseilleProjetDeVie(getConseilleProjetDeVie());
       
@@ -224,7 +224,7 @@ public class MdphYouthRequest extends Request implements Serializable {
         mdphYouthRequest.setDemandeLibreScolaire(getDemandeLibreScolaire());
       
         if (getDeteneurAutoriteParentale() != null)
-            mdphYouthRequest.setDeteneurAutoriteParentale(fr.cg95.cvq.xml.request.social.DeteneurAutoriteParentaleType.Enum.forString(getDeteneurAutoriteParentale().toString()));
+            mdphYouthRequest.setDeteneurAutoriteParentale(fr.cg95.cvq.xml.request.social.DeteneurAutoriteParentaleType.Enum.forString(getDeteneurAutoriteParentale().getLegacyLabel()));
       
         if (getDomiciliationEtablissement() != null)
             mdphYouthRequest.setDomiciliationEtablissement(getDomiciliationEtablissement().modelToXml());
@@ -267,7 +267,7 @@ public class MdphYouthRequest extends Request implements Serializable {
             mdphYouthRequest.setLieuNaissanceSujet(getLieuNaissanceSujet().modelToXml());
       
         if (getNationalite() != null)
-            mdphYouthRequest.setNationalite(fr.cg95.cvq.xml.request.social.MyrNationaliteAvecSuisseType.Enum.forString(getNationalite().toString()));
+            mdphYouthRequest.setNationalite(fr.cg95.cvq.xml.request.social.MyrNationaliteAvecSuisseType.Enum.forString(getNationalite().getLegacyLabel()));
       
         mdphYouthRequest.setNomAllocataire(getNomAllocataire());
       
@@ -284,7 +284,7 @@ public class MdphYouthRequest extends Request implements Serializable {
         mdphYouthRequest.setNumeroSecuriteSocialeSujet(getNumeroSecuriteSocialeSujet());
       
         if (getOrganismePayeur() != null)
-            mdphYouthRequest.setOrganismePayeur(fr.cg95.cvq.xml.request.social.MyrOrganismePayeurType.Enum.forString(getOrganismePayeur().toString()));
+            mdphYouthRequest.setOrganismePayeur(fr.cg95.cvq.xml.request.social.MyrOrganismePayeurType.Enum.forString(getOrganismePayeur().getLegacyLabel()));
       
         if (getPrecedentDossierMdph() != null)
             mdphYouthRequest.setPrecedentDossierMdph(getPrecedentDossierMdph().modelToXml());
@@ -307,13 +307,13 @@ public class MdphYouthRequest extends Request implements Serializable {
             mdphYouthRequest.setPresencePersonneAupresEnfant(getPresencePersonneAupresEnfant().modelToXml());
       
         if (getSituationMaritale() != null)
-            mdphYouthRequest.setSituationMaritale(fr.cg95.cvq.xml.request.social.MyrSituationFamilialeType.Enum.forString(getSituationMaritale().toString()));
+            mdphYouthRequest.setSituationMaritale(fr.cg95.cvq.xml.request.social.MyrSituationFamilialeType.Enum.forString(getSituationMaritale().getLegacyLabel()));
       
         if (getSituationParticuliere() != null)
-            mdphYouthRequest.setSituationParticuliere(fr.cg95.cvq.xml.request.social.MyrSituationAutreType.Enum.forString(getSituationParticuliere().toString()));
+            mdphYouthRequest.setSituationParticuliere(fr.cg95.cvq.xml.request.social.MyrSituationAutreType.Enum.forString(getSituationParticuliere().getLegacyLabel()));
       
         if (getSituationProfessionnelleConjoint() != null)
-            mdphYouthRequest.setSituationProfessionnelleConjoint(fr.cg95.cvq.xml.request.social.MyrChoixSituationProfessionnelleType.Enum.forString(getSituationProfessionnelleConjoint().toString()));
+            mdphYouthRequest.setSituationProfessionnelleConjoint(fr.cg95.cvq.xml.request.social.MyrChoixSituationProfessionnelleType.Enum.forString(getSituationProfessionnelleConjoint().getLegacyLabel()));
       
         if (getSituationProfessionnelleConjointAutre() != null)
             mdphYouthRequest.setSituationProfessionnelleConjointAutre(getSituationProfessionnelleConjointAutre().modelToXml());
@@ -337,7 +337,7 @@ public class MdphYouthRequest extends Request implements Serializable {
             mdphYouthRequest.setSituationProfessionnelleConjointStagiaire(getSituationProfessionnelleConjointStagiaire().modelToXml());
       
         if (getSituationProfessionnelleVous() != null)
-            mdphYouthRequest.setSituationProfessionnelleVous(fr.cg95.cvq.xml.request.social.MyrChoixSituationProfessionnelleType.Enum.forString(getSituationProfessionnelleVous().toString()));
+            mdphYouthRequest.setSituationProfessionnelleVous(fr.cg95.cvq.xml.request.social.MyrChoixSituationProfessionnelleType.Enum.forString(getSituationProfessionnelleVous().getLegacyLabel()));
       
         if (getSituationProfessionnelleVousAutre() != null)
             mdphYouthRequest.setSituationProfessionnelleVousAutre(getSituationProfessionnelleVousAutre().modelToXml());
@@ -363,7 +363,7 @@ public class MdphYouthRequest extends Request implements Serializable {
         mdphYouthRequest.setTypeAccueil(getTypeAccueil());
       
         if (getTypeLogement() != null)
-            mdphYouthRequest.setTypeLogement(fr.cg95.cvq.xml.request.social.MyrLogementType.Enum.forString(getTypeLogement().toString()));
+            mdphYouthRequest.setTypeLogement(fr.cg95.cvq.xml.request.social.MyrLogementType.Enum.forString(getTypeLogement().getLegacyLabel()));
       
         mdphYouthRequest.setTypeScolarisation(getTypeScolarisation());
       

@@ -131,36 +131,16 @@
           <dt><g:message code="sgr.property.currentSchoolNamePrecision.label" /></dt><dd>${rqt.currentSchool?.currentSchoolNamePrecision?.toString()}</dd>
 
         
-          <dt><g:message code="sgr.property.currentSchoolPostalCode.label" /></dt><dd>${rqt.currentSchoolPostalCode?.toString()}</dd>
-
-        
-          <dt><g:message code="sgr.property.currentSchoolCity.label" /></dt><dd>${rqt.currentSchoolCity?.toString()}</dd>
-
-        
-          <dt><g:message code="sgr.property.currentSchoolCountry.label" /></dt>
           <dt><g:message code="sgr.property.currentSchoolAddress.label" /></dt>
-          <dt><g:message code="sgr.property.currentSchoolPostalCode.label" /></dt><dd>${rqt.currentSchool?.currentSchoolPostalCode?.toString()}</dd>
-
-        
-          <dt><g:message code="sgr.property.currentSchoolCity.label" /></dt><dd>${rqt.currentSchool?.currentSchoolCity?.toString()}</dd>
-
-        
-          <dt><g:message code="sgr.property.currentSchoolCountry.label" /></dt>
           <dd>
-            <g:if test="${rqt.currentSchoolCountry}">
-              <g:capdematEnumToField var="${rqt.currentSchoolCountry}" i18nKeyPrefix="sgr.property.currentSchoolCountry" />
-            </g:if>
-          <g:if test="${rqt.currentSchoolAddress}">
-              <p>${rqt.currentSchoolAddress?.additionalDeliveryInformation}</p>
-              <p>${rqt.currentSchoolAddress?.additionalGeographicalInformation}</p>
-              <p>${rqt.currentSchoolAddress?.streetNumber} ${rqt.currentSchoolAddress?.streetName}</p>
-              <p>${rqt.currentSchoolAddress?.placeNameOrService}</p>
-              <p>${rqt.currentSchoolAddress?.postalCode} ${rqt.currentSchoolAddress?.city}</p>
-              <p>${rqt.currentSchoolAddress?.countryName}</p>
+          <g:if test="${rqt.currentSchool?.currentSchoolAddress}">
+              <p>${rqt.currentSchool?.currentSchoolAddress?.additionalDeliveryInformation}</p>
+              <p>${rqt.currentSchool?.currentSchoolAddress?.additionalGeographicalInformation}</p>
+              <p>${rqt.currentSchool?.currentSchoolAddress?.streetNumber} ${rqt.currentSchool?.currentSchoolAddress?.streetName}</p>
+              <p>${rqt.currentSchool?.currentSchoolAddress?.placeNameOrService}</p>
+              <p>${rqt.currentSchool?.currentSchoolAddress?.postalCode} ${rqt.currentSchool?.currentSchoolAddress?.city}</p>
+              <p>${rqt.currentSchool?.currentSchoolAddress?.countryName}</p>
           </g:if>
-            <g:if test="${rqt.currentSchool?.currentSchoolCountry}">
-              <g:capdematEnumToField var="${rqt.currentSchool?.currentSchoolCountry}" i18nKeyPrefix="sgr.property.currentSchoolCountry" />
-            </g:if>
           </dd>
           
 

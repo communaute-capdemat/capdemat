@@ -1492,7 +1492,7 @@
               </xs:annotation>               
             </xs:element>
             
-            <xs:element name="BesoinsDemandePCH" type="myr:MyrBesoinsDemandePchType" minOccurs="0">
+            <xs:element name="BesoinsDemandePCH" type="myr:MyrBesoinsDemandePchType">
             <xs:annotation>
                 <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">
                   Pour votre demande de PCH, pouvez-vous préciser vos besoins, s'il sagit de :
@@ -2728,7 +2728,7 @@
   
    <xs:complexType name="MyrBesoinsDemandePchType">
       <xs:sequence>
-            <xs:element name="AideHumaine" type="xs:boolean" default="false" minOccurs="0">
+            <xs:element name="AideHumaine" type="xs:boolean" default="false">
             <xs:annotation>
                 <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">
                   Aide Humaine
@@ -2772,7 +2772,7 @@
               </xs:annotation>               
             </xs:element> 
             
-            <xs:element name="AideTechnique" type="xs:boolean" default="false" minOccurs="0">
+            <xs:element name="AideTechnique" type="xs:boolean" default="false">
             <xs:annotation>
                 <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">
                   Aide technique, matériel, ou équipement
@@ -2816,7 +2816,7 @@
               </xs:annotation>               
             </xs:element> 
             
-            <xs:element name="AmenagementLogementDemenagement" type="xs:boolean" default="false" minOccurs="0">
+            <xs:element name="AmenagementLogementDemenagement" type="xs:boolean" default="false">
             <xs:annotation>
                 <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">
                   Aménagement du logement / Déménagement
@@ -2860,7 +2860,7 @@
               </xs:annotation>               
             </xs:element>
          
-            <xs:element name="AmenagementVehicule" type="xs:boolean" default="false" minOccurs="0">
+            <xs:element name="AmenagementVehicule" type="xs:boolean" default="false">
             <xs:annotation>
                 <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">
                   Aménagement du véhicule / surcoût du transport
@@ -2904,7 +2904,7 @@
               </xs:annotation>               
             </xs:element> 
         
-            <xs:element name="ChargesSpecifiques" type="xs:boolean" default="false" minOccurs="0">
+            <xs:element name="ChargesSpecifiques" type="xs:boolean" default="false" >
             <xs:annotation>
                 <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">
                   Charges spécifiques / exceptionnelles
@@ -2948,7 +2948,7 @@
               </xs:annotation>               
             </xs:element> 
             
-            <xs:element name="AideAnimaliere" type="xs:boolean" default="false" minOccurs="0">
+            <xs:element name="AideAnimaliere" type="xs:boolean" default="false" >
             <xs:annotation>
                 <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">
                   Aide animalière
@@ -3120,7 +3120,7 @@
                 <xs:appinfo>
                   <common>
                     <step name="allocationEducationEnfantHandicape" />
-                    <validation jsregexp="[0-9]{0,7},[0-9]{2}$" />
+                    <validation jsregexp="[0-9]{0,7}([,.][0-9]{0,2})?$" />
                   </common>
                   <fo />
                   <bo column="1" />
@@ -3146,7 +3146,7 @@
                 <xs:appinfo>
                   <common>
                     <step name="allocationEducationEnfantHandicape" />
-                    <validation jsregexp="[0-9]{0,7},[0-9]{2}$" />
+                    <validation jsregexp="[0-9]{0,7}([,.][0-9]{0,2})?$" />
                   </common>
                   <fo />
                   <bo column="1" />

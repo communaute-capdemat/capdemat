@@ -36,8 +36,8 @@
     <label for="precedentsRevenusRecus" class=""><g:message code="mar.property.precedentsRevenusRecus.label" />   <span><g:message code="mar.property.precedentsRevenusRecus.help" /></span></label>
             <select id="precedentsRevenusRecus" name="precedentsRevenusRecus" class="condition-precedentsRevenusRecus-trigger  validate-select ${rqt.stepStates['demandeAllocationEtComplementRessources'].invalidFields.contains('precedentsRevenusRecus') ? 'validation-failed' : ''}" title="<g:message code="mar.property.precedentsRevenusRecus.validationError" />">
               <option value=""><g:message code="message.select.defaultOption" /></option>
-              <g:each in="${['Activite','Esat','Indemnites']}">
-                <option value="fr.cg95.cvq.business.request.social.PrecedentsRevenusRecusType_${it}" ${it == rqt.precedentsRevenusRecus?.toString() ? 'selected="selected"': ''}><g:capdematEnumToText var="${it}" i18nKeyPrefix="mar.property.precedentsRevenusRecus" /></option>
+              <g:each in="${['ACTIVITE','ESAT','INDEMNITES']}">
+                <option value="${it}" ${it == rqt.precedentsRevenusRecus?.toString() ? 'selected="selected"': ''}><g:capdematEnumToText var="${it}" i18nKeyPrefix="mar.property.precedentsRevenusRecus" /></option>
               </g:each>
             </select>
             

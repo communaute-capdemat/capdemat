@@ -22,20 +22,21 @@ import fr.cg95.cvq.xml.common.*;
 import fr.cg95.cvq.xml.request.school.*;
 import fr.cg95.cvq.service.request.LocalReferential;
 import fr.cg95.cvq.service.request.condition.IConditionChecker;
+import javax.persistence.*;
+import org.hibernate.annotations.Index;
+import org.hibernate.annotations.Type;
 
 /**
  * Generated class file, do not edit !
- *
- * @hibernate.class
- *  table="current_studies_informations"
- *  lazy="false"
  */
+@Entity
+@Table(name="current_studies_informations")
 public class CurrentStudiesInformations implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     public static final Map<String, IConditionChecker> conditions =
-        new HashMap<String, IConditionChecker>();
+        StudyGrantRequest.conditions;
 
     public CurrentStudiesInformations() {
         super();
@@ -67,7 +68,7 @@ public class CurrentStudiesInformations implements Serializable {
         currentStudiesInformations.setAbroadInternshipSchoolName(this.abroadInternshipSchoolName);
       
         if (this.abroadInternshipSchoolCountry != null)
-            currentStudiesInformations.setAbroadInternshipSchoolCountry(fr.cg95.cvq.xml.common.CountryType.Enum.forString(this.abroadInternshipSchoolCountry.toString()));
+            currentStudiesInformations.setAbroadInternshipSchoolCountry(fr.cg95.cvq.xml.common.CountryType.Enum.forString(this.abroadInternshipSchoolCountry.getLegacyLabel()));
       
         date = this.abroadInternshipEndDate;
         if (date != null) {
@@ -78,13 +79,13 @@ public class CurrentStudiesInformations implements Serializable {
         currentStudiesInformations.setOtherStudiesLabel(this.otherStudiesLabel);
       
         if (this.currentStudiesDiploma != null)
-            currentStudiesInformations.setCurrentStudiesDiploma(fr.cg95.cvq.xml.request.school.CurrentStudiesType.Enum.forString(this.currentStudiesDiploma.toString()));
+            currentStudiesInformations.setCurrentStudiesDiploma(fr.cg95.cvq.xml.request.school.CurrentStudiesType.Enum.forString(this.currentStudiesDiploma.getLegacyLabel()));
       
         if (this.abroadInternship != null)
             currentStudiesInformations.setAbroadInternship(this.abroadInternship.booleanValue());
       
         if (this.currentStudiesLevel != null)
-            currentStudiesInformations.setCurrentStudiesLevel(fr.cg95.cvq.xml.request.school.CurrentStudiesLevelType.Enum.forString(this.currentStudiesLevel.toString()));
+            currentStudiesInformations.setCurrentStudiesLevel(fr.cg95.cvq.xml.request.school.CurrentStudiesLevelType.Enum.forString(this.currentStudiesLevel.getLegacyLabel()));
       
         date = this.abroadInternshipStartDate;
         if (date != null) {
@@ -216,11 +217,8 @@ public class CurrentStudiesInformations implements Serializable {
         this.id = id;
     }
 
-    /**
-     * @hibernate.id
-     *  column="id"
-     *  generator-class="sequence"
-     */
+    @Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE)
     public final Long getId() {
         return this.id;
     }
@@ -232,7 +230,8 @@ public class CurrentStudiesInformations implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['currentStudiesInformations.abroadInternship'].test(_this.abroadInternship.toString());" +
+              "active &= _this.conditions['currentStudiesInformations.abroadInternship'].test(_this.abroadInternship.toString());" +
+                  
                 
               
             
@@ -248,7 +247,8 @@ public class CurrentStudiesInformations implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['currentStudiesInformations.abroadInternship'].test(_this.abroadInternship.toString());" +
+              "active &= _this.conditions['currentStudiesInformations.abroadInternship'].test(_this.abroadInternship.toString());" +
+                  
                 
               
             
@@ -261,18 +261,14 @@ public class CurrentStudiesInformations implements Serializable {
     
     private String abroadInternshipSchoolName;
 
-    public final void setAbroadInternshipSchoolName(final String abroadInternshipSchoolName) {
+    public void setAbroadInternshipSchoolName(final String abroadInternshipSchoolName) {
         this.abroadInternshipSchoolName = abroadInternshipSchoolName;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="abroad_internship_school_name"
-        
+    
+    @Column(name="abroad_internship_school_name"  )
       
-    */
-    public final String getAbroadInternshipSchoolName() {
+    public String getAbroadInternshipSchoolName() {
         return this.abroadInternshipSchoolName;
     }
   
@@ -282,7 +278,8 @@ public class CurrentStudiesInformations implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['currentStudiesInformations.abroadInternship'].test(_this.abroadInternship.toString());" +
+              "active &= _this.conditions['currentStudiesInformations.abroadInternship'].test(_this.abroadInternship.toString());" +
+                  
                 
               
             
@@ -295,18 +292,15 @@ public class CurrentStudiesInformations implements Serializable {
     
     private fr.cg95.cvq.business.users.CountryType abroadInternshipSchoolCountry;
 
-    public final void setAbroadInternshipSchoolCountry(final fr.cg95.cvq.business.users.CountryType abroadInternshipSchoolCountry) {
+    public void setAbroadInternshipSchoolCountry(final fr.cg95.cvq.business.users.CountryType abroadInternshipSchoolCountry) {
         this.abroadInternshipSchoolCountry = abroadInternshipSchoolCountry;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="abroad_internship_school_country"
-        
+    
+    @Enumerated(EnumType.STRING)
+    @Column(name="abroad_internship_school_country"  )
       
-    */
-    public final fr.cg95.cvq.business.users.CountryType getAbroadInternshipSchoolCountry() {
+    public fr.cg95.cvq.business.users.CountryType getAbroadInternshipSchoolCountry() {
         return this.abroadInternshipSchoolCountry;
     }
   
@@ -316,7 +310,8 @@ public class CurrentStudiesInformations implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['currentStudiesInformations.abroadInternship'].test(_this.abroadInternship.toString());" +
+              "active &= _this.conditions['currentStudiesInformations.abroadInternship'].test(_this.abroadInternship.toString());" +
+                  
                 
               
             
@@ -329,18 +324,14 @@ public class CurrentStudiesInformations implements Serializable {
     
     private java.util.Date abroadInternshipEndDate;
 
-    public final void setAbroadInternshipEndDate(final java.util.Date abroadInternshipEndDate) {
+    public void setAbroadInternshipEndDate(final java.util.Date abroadInternshipEndDate) {
         this.abroadInternshipEndDate = abroadInternshipEndDate;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="abroad_internship_end_date"
-        
+    
+    @Column(name="abroad_internship_end_date"  )
       
-    */
-    public final java.util.Date getAbroadInternshipEndDate() {
+    public java.util.Date getAbroadInternshipEndDate() {
         return this.abroadInternshipEndDate;
     }
   
@@ -350,7 +341,8 @@ public class CurrentStudiesInformations implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['currentStudiesInformations.currentStudiesDiploma'].test(_this.currentStudiesDiploma.toString());" +
+              "active &= _this.conditions['currentStudiesInformations.currentStudiesDiploma'].test(_this.currentStudiesDiploma.toString());" +
+                  
                 
               
             
@@ -366,7 +358,8 @@ public class CurrentStudiesInformations implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['currentStudiesInformations.currentStudiesDiploma'].test(_this.currentStudiesDiploma.toString());" +
+              "active &= _this.conditions['currentStudiesInformations.currentStudiesDiploma'].test(_this.currentStudiesDiploma.toString());" +
+                  
                 
               
             
@@ -379,18 +372,14 @@ public class CurrentStudiesInformations implements Serializable {
     
     private String otherStudiesLabel;
 
-    public final void setOtherStudiesLabel(final String otherStudiesLabel) {
+    public void setOtherStudiesLabel(final String otherStudiesLabel) {
         this.otherStudiesLabel = otherStudiesLabel;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="other_studies_label"
-        
+    
+    @Column(name="other_studies_label"  )
       
-    */
-    public final String getOtherStudiesLabel() {
+    public String getOtherStudiesLabel() {
         return this.otherStudiesLabel;
     }
   
@@ -404,18 +393,15 @@ public class CurrentStudiesInformations implements Serializable {
     
     private fr.cg95.cvq.business.request.school.CurrentStudiesType currentStudiesDiploma;
 
-    public final void setCurrentStudiesDiploma(final fr.cg95.cvq.business.request.school.CurrentStudiesType currentStudiesDiploma) {
+    public void setCurrentStudiesDiploma(final fr.cg95.cvq.business.request.school.CurrentStudiesType currentStudiesDiploma) {
         this.currentStudiesDiploma = currentStudiesDiploma;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="current_studies_diploma"
-        
+    
+    @Enumerated(EnumType.STRING)
+    @Column(name="current_studies_diploma"  )
       
-    */
-    public final fr.cg95.cvq.business.request.school.CurrentStudiesType getCurrentStudiesDiploma() {
+    public fr.cg95.cvq.business.request.school.CurrentStudiesType getCurrentStudiesDiploma() {
         return this.currentStudiesDiploma;
     }
   
@@ -429,18 +415,14 @@ public class CurrentStudiesInformations implements Serializable {
     
     private Boolean abroadInternship;
 
-    public final void setAbroadInternship(final Boolean abroadInternship) {
+    public void setAbroadInternship(final Boolean abroadInternship) {
         this.abroadInternship = abroadInternship;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="abroad_internship"
-        
+    
+    @Column(name="abroad_internship"  )
       
-    */
-    public final Boolean getAbroadInternship() {
+    public Boolean getAbroadInternship() {
         return this.abroadInternship;
     }
   
@@ -454,18 +436,15 @@ public class CurrentStudiesInformations implements Serializable {
     
     private fr.cg95.cvq.business.request.school.CurrentStudiesLevelType currentStudiesLevel;
 
-    public final void setCurrentStudiesLevel(final fr.cg95.cvq.business.request.school.CurrentStudiesLevelType currentStudiesLevel) {
+    public void setCurrentStudiesLevel(final fr.cg95.cvq.business.request.school.CurrentStudiesLevelType currentStudiesLevel) {
         this.currentStudiesLevel = currentStudiesLevel;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="current_studies_level"
-        
+    
+    @Enumerated(EnumType.STRING)
+    @Column(name="current_studies_level"  )
       
-    */
-    public final fr.cg95.cvq.business.request.school.CurrentStudiesLevelType getCurrentStudiesLevel() {
+    public fr.cg95.cvq.business.request.school.CurrentStudiesLevelType getCurrentStudiesLevel() {
         return this.currentStudiesLevel;
     }
   
@@ -475,7 +454,8 @@ public class CurrentStudiesInformations implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['currentStudiesInformations.abroadInternship'].test(_this.abroadInternship.toString());" +
+              "active &= _this.conditions['currentStudiesInformations.abroadInternship'].test(_this.abroadInternship.toString());" +
+                  
                 
               
             
@@ -488,18 +468,14 @@ public class CurrentStudiesInformations implements Serializable {
     
     private java.util.Date abroadInternshipStartDate;
 
-    public final void setAbroadInternshipStartDate(final java.util.Date abroadInternshipStartDate) {
+    public void setAbroadInternshipStartDate(final java.util.Date abroadInternshipStartDate) {
         this.abroadInternshipStartDate = abroadInternshipStartDate;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="abroad_internship_start_date"
-        
+    
+    @Column(name="abroad_internship_start_date"  )
       
-    */
-    public final java.util.Date getAbroadInternshipStartDate() {
+    public java.util.Date getAbroadInternshipStartDate() {
         return this.abroadInternshipStartDate;
     }
   
@@ -513,18 +489,14 @@ public class CurrentStudiesInformations implements Serializable {
     
     private Boolean sandwichCourses;
 
-    public final void setSandwichCourses(final Boolean sandwichCourses) {
+    public void setSandwichCourses(final Boolean sandwichCourses) {
         this.sandwichCourses = sandwichCourses;
     }
 
-    /**
-  
-        * @hibernate.property
-        *  column="sandwich_courses"
-        
+    
+    @Column(name="sandwich_courses"  )
       
-    */
-    public final Boolean getSandwichCourses() {
+    public Boolean getSandwichCourses() {
         return this.sandwichCourses;
     }
   

@@ -1,42 +1,42 @@
 package fr.cg95.cvq.business.request.social;
 
-import fr.cg95.cvq.dao.hibernate.PersistentStringEnum;
-
 /**
  * Generated class file, do not edit !
  */
-public final class CategoriePensionInvaliditeType extends PersistentStringEnum {
+public enum CategoriePensionInvaliditeType {
 
-    private static final long serialVersionUID = 1L;
-  
-    public static final CategoriePensionInvaliditeType UN = new CategoriePensionInvaliditeType("Un");
-  
-    public static final CategoriePensionInvaliditeType DEUX = new CategoriePensionInvaliditeType("Deux");
-  
-    public static final CategoriePensionInvaliditeType TROIS = new CategoriePensionInvaliditeType("Trois");
-  
+    UN("Un"),
+    DEUX("Deux"),
+    TROIS("Trois");
+
 
     /**
-     * Prevent instantiation and subclassing with a private constructor.
+     * only for backward use CategoriePensionInvaliditeType.values() instead
+     * @deprecated only for backward
      */
-    private CategoriePensionInvaliditeType(String value) {
-        super(value);
+    @Deprecated 
+    public static CategoriePensionInvaliditeType[] allCategoriePensionInvaliditeTypes = CategoriePensionInvaliditeType.values();
+
+    private String legacyLabel;
+
+    private CategoriePensionInvaliditeType(String legacyLabel){
+        this.legacyLabel = legacyLabel;
     }
 
-    public CategoriePensionInvaliditeType() {}
-
-    public static CategoriePensionInvaliditeType[] allCategoriePensionInvaliditeTypes = {
-        UN,
-        DEUX,
-        TROIS
-    };
+    public String getLegacyLabel() {
+        return legacyLabel;
+    }
 
     public static CategoriePensionInvaliditeType getDefaultCategoriePensionInvaliditeType() {
         return null;
     }
 
+    /**
+     * @deprecated use valueOf instead. Watchout! you must provid something of CategoriePensionInvaliditeType.something
+     * not the value of the name attribut.
+     */
     public static CategoriePensionInvaliditeType forString(final String enumAsString) {
-        for (CategoriePensionInvaliditeType value : allCategoriePensionInvaliditeTypes)
+        for (CategoriePensionInvaliditeType value : values())
             if (value.toString().equals(enumAsString))
                 return value;
         return getDefaultCategoriePensionInvaliditeType();

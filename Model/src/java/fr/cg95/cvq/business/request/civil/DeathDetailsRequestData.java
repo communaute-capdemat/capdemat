@@ -311,26 +311,15 @@ public class DeathDetailsRequestData implements Serializable {
     
     private fr.cg95.cvq.business.users.InseeDepartementCodeType deathPostalCode;
 
-    public final void setDeathPostalCode(final String deathPostalCode) {
-    public void setDeathPostalCode(final String deathPostalCode) {
-    public final void setDeathPostalCode(final fr.cg95.cvq.business.users.InseeDepartementCodeType deathPostalCode) {
+    public void setDeathPostalCode(final fr.cg95.cvq.business.users.InseeDepartementCodeType deathPostalCode) {
         this.deathPostalCode = deathPostalCode;
     }
 
  
-        * @hibernate.property
-        *  column="death_postal_code"
-        *  length="2"
-    @Column(name="death_postal_code" , length=2 )
-        * @hibernate.property
-        *  column="death_postal_code"
-        
+    @Enumerated(EnumType.STRING)
+    @Column(name="death_postal_code"  )
       
-    */
-    public final String getDeathPostalCode() {
-    public String getDeathPostalCode() {
-    */
-    public final fr.cg95.cvq.business.users.InseeDepartementCodeType getDeathPostalCode() {
+    public fr.cg95.cvq.business.users.InseeDepartementCodeType getDeathPostalCode() {
         return this.deathPostalCode;
     }
   
