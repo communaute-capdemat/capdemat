@@ -6,6 +6,7 @@ import java.util.Map;
 
 import fr.cg95.cvq.business.users.Individual;
 import fr.cg95.cvq.dao.users.IIndividualDAO;
+import fr.cg95.cvq.dao.users.hibernate.IndividualDAO.IndividualListFilters;
 import fr.cg95.cvq.service.users.external.IExternalHomeFolderService;
 import fr.cg95.cvq.service.users.external.IExternalUserService;
 
@@ -13,8 +14,6 @@ public class ExternalUserService implements IExternalUserService {
 
     private IExternalHomeFolderService externalHomeFolderService;
     private IIndividualDAO individualDAO;
-
-    private static final String PG_DATE_FORMAT = "DD/MM/YYYY";
 
     @Override
     public Individual getIndividualByCapdematId(final String externalServiceLabel, final String capdematId) {
@@ -35,38 +34,22 @@ public class ExternalUserService implements IExternalUserService {
 
     @Override
     public List<Individual> listEditedUsers(final String startDate, final String externalServiceLabel) {
-        String condition =  "lastModificationDate > to_date(:date, '"+PG_DATE_FORMAT+"') " +
-                            "AND state != 'ARCHIVED' " +
-                            "AND creationDate < to_date(:date, '"+PG_DATE_FORMAT+"')";
-
-        Map<String, Object> params = new HashMap<String, Object>();
-        params.put("date", startDate);
-        return individualDAO.listByIdsWithMapping(condition, params, externalServiceLabel);
+        return individualDAO.listWithMapping(IndividualListFilters.EDITED, externalServiceLabel, startDate);
     }
 
     @Override
     public List<Individual> listCreatedUsers(final String startDate, final String externalServiceLabel) {
-        String condition = "creationDate >= to_date(:date, '"+PG_DATE_FORMAT+"')";
-
-        Map<String, Object> params = new HashMap<String, Object>();
-        params.put("date", startDate);
-        return individualDAO.listByIdsWithMapping(condition, params, externalServiceLabel);
+        return individualDAO.listWithMapping(IndividualListFilters.CREATED, externalServiceLabel, startDate);
     }
 
     @Override
     public List<Individual> listDeletedUsers(final String startDate, final String externalServiceLabel) {
-        String condition =  "lastModificationDate > to_date(:date, '"+PG_DATE_FORMAT+"') " +
-                            "AND state = 'ARCHIVED' " +
-                            "AND creationDate < to_date(:date, '"+PG_DATE_FORMAT+"')";
-
-        Map<String, Object> params = new HashMap<String, Object>();
-        params.put("date", startDate);
-        return individualDAO.listByIdsWithMapping(condition, params, externalServiceLabel);
+        return individualDAO.listWithMapping(IndividualListFilters.DELETED, externalServiceLabel, startDate);
     }
 
     @Override
     public List<Individual> listAllUsers(final String externalServiceLabel) {
-        return individualDAO.listByIdsWithMapping("1=1", null, externalServiceLabel);
+        return individualDAO.listWithMapping(IndividualListFilters.ALL, externalServiceLabel, null);
     }
 
     public void setExternalHomeFolderService(IExternalHomeFolderService externalHomeFolderService) {

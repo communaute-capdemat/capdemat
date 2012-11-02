@@ -10,6 +10,7 @@ import fr.cg95.cvq.business.users.Individual;
 import fr.cg95.cvq.business.users.RoleType;
 import fr.cg95.cvq.business.users.UserState;
 import fr.cg95.cvq.dao.jpa.IJpaTemplate;
+import fr.cg95.cvq.dao.users.hibernate.IndividualDAO.IndividualListFilters;
 import fr.cg95.cvq.util.Critere;
 
 /**
@@ -74,12 +75,13 @@ public interface IIndividualDAO extends IJpaTemplate<Individual,Long>{
      * Return the list of {@link Individual individuals} with their mapping informations for this
      * provider.
      * Users are filtered by a custom sql condition.
-     * @param sqlCondition
-     * @param params
+     * @param filter
      * @param externalServiceLabel
+     * @param referenceDate
      */
-    List<Individual> listByIdsWithMapping(String sqlCondition, Map<String, Object> params, String externalServiceLabel); 
-    
+    List<Individual> listWithMapping(final IndividualListFilters filter, final String externalServiceLabel,
+            final String referenceDate);
+
     /**
      * Return the list of individual logins that start with the given
      * base login.

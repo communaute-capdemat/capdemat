@@ -36,6 +36,10 @@ public class IndividualDAO extends JpaTemplate<Individual,Long> implements IIndi
 
     private static HibernateUtil hUtil = new HibernateUtil();
 
+    public static enum IndividualListFilters { ALL, EDITED, DELETED, CREATED }
+
+    private static final String PG_DATE_FORMAT = "DD/MM/YYYY";
+
     public Individual findByFederationKey(final String federationKey) {
         Criteria crit = HibernateUtil.getSession().createCriteria(Individual.class);
         crit.add(Critere.compose("federationKey", federationKey, Critere.EQUALS));
@@ -345,22 +349,52 @@ public class IndividualDAO extends JpaTemplate<Individual,Long> implements IIndi
 
     @SuppressWarnings("unchecked")
     @Override
-    public List<Individual> listByIdsWithMapping(String sqlCondition, Map<String, Object> params, String externalServiceLabel) {
+    public List<Individual> listWithMapping(final IndividualListFilters filter,
+            final String externalServiceLabel, final String referenceDate) {
+
+        String hqlFilter = generateConditionFromFilter(filter);
         String hql =
                 "SELECT indiv FROM Individual indiv" +
                 " JOIN FETCH indiv.individualMappings im" +
                 " INNER JOIN im.homeFolderMapping hfm" +
-                " WHERE hfm.externalServiceLabel = :externalServiceLabel " +
-                "   AND indiv.id IN (SELECT id FROM Individual WHERE " + sqlCondition + ")";
+                " WHERE hfm.externalServiceLabel = :externalServiceLabel" +
+                "   AND indiv.id IN (" +
+                "       SELECT id" +
+                "       FROM Individual " + (hqlFilter != null ? "WHERE " + hqlFilter : "") + ")";
 
         javax.persistence.Query query = JpaUtil.getEntityManager().createQuery(hql);
         query.setParameter("externalServiceLabel", externalServiceLabel);
-        if (params != null) {
-            for (Entry<String, Object> param : params.entrySet()) {
-                query.setParameter(param.getKey(), param.getValue());
-            }
+        if (referenceDate != null && hqlFilter.contains(":date")) {
+            query.setParameter("date", referenceDate);
+            query.setParameter("pgDateFormat", PG_DATE_FORMAT);
         }
 
         return (List<Individual>) query.getResultList();
+    }
+
+    private String generateConditionFromFilter(final IndividualListFilters filter) {
+        String hqlCondition;
+        switch (filter) {
+            default:
+            case ALL:
+                hqlCondition = "1=1";
+            break;
+            case CREATED:
+                hqlCondition = "creationDate >= to_date(:date, :pgDateFormat)";
+            break;
+            case EDITED:
+                hqlCondition =
+                    "lastModificationDate > to_date(:date, :pgDateFormat) " +
+                    "AND state != 'ARCHIVED' " +
+                    "AND creationDate < to_date(:date, :pgDateFormat)";
+            break;
+            case DELETED:
+                hqlCondition =
+                    "lastModificationDate > to_date(:date, :pgDateFormat) " +
+                    "AND state = 'ARCHIVED' " +
+                    "AND creationDate < to_date(:date, :pgDateFormat)";
+            break;
+        }
+        return hqlCondition;
     }
 }
