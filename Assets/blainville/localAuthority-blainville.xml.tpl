@@ -113,21 +113,6 @@
             </property>
           </bean>
         </entry>
-
-        <entry>
-          <key>
-            <ref bean="angelusExternalService" />
-          </key>
-          <bean class="fr.cg95.cvq.external.ExternalServiceBean">
-            <property name="requestTypes">
-              <list>
-                <value>School Canteen Registration</value> <!-- Fake -->
-              </list>
-            </property>
-            <property name="login" value="Angelus"/>
-            <property name="password" value="abcd"/>
-          </bean>
-        </entry>
       </map>
     </property>
      <property name="agentNotifications">
