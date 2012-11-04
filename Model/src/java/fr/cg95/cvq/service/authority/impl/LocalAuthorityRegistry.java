@@ -404,8 +404,7 @@ public class LocalAuthorityRegistry
                 try {
                     fileReader.close();
                 } catch (IOException e) {
-                    logger.error("getBufferedCurrentLocalAuthorityResource() failed to close file reader stream !");
-                    e.printStackTrace();
+                    logger.error("getBufferedCurrentLocalAuthorityResource() failed to close file reader stream !", e);
                 }
         }
         return result;
@@ -677,8 +676,7 @@ public class LocalAuthorityRegistry
                                     templateEmf.close();
                                 }
                             } catch (URISyntaxException e) {
-                                logger.error("got an exception while trying to create dev database");
-                                e.printStackTrace();
+                                logger.error("got an exception while trying to create dev database", e);
                             }
                         }
                         break;
@@ -822,8 +820,7 @@ public class LocalAuthorityRegistry
             }
 
         } catch (Exception e) {
-            logger.error("callback() got an exception, rollbacking");
-            e.printStackTrace();
+            logger.error("callback() got an exception, rollbacking", e);
             rollback = true;
         } finally {
             Store.release();
@@ -856,8 +853,7 @@ public class LocalAuthorityRegistry
             }
             fos.close();
         } catch (Exception e) {
-            logger.error("generateLocalAuthoritiesList() got exception while writing local authorities list");
-            e.printStackTrace();
+            logger.error("generateLocalAuthoritiesList() got exception while writing local authorities list", e);
         }
     }
 
