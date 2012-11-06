@@ -19,4 +19,5 @@
       </g:if>
     </g:else>
   </g:each>
-</ul>
+  </ul>
+</g:if>
