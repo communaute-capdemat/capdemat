@@ -65,7 +65,7 @@
       <input type="file" name="documentData-${document != null ? document.datas.size() : 0}" />
     </p>
     <p style="padding-top: .5em;">
-      <input type="submit" name="saveDocument" value="${message(code:'action.save')}" />
+      <input type="submit" name="saveDocument" value="${message(code:'document.action.save')}" />
     </p>
   </dd>
 </dl>
