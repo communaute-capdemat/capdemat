@@ -19,7 +19,6 @@
         sgr_current_school_id int8 not null,
         current_school_name_id int8 not null,
         current_school_name_index int4 not null,
-        primary key (current_school_name_id, current_school_name_index)
         primary key (sgr_current_school_id, current_school_name_index)
     );
 
@@ -1192,8 +1191,8 @@ DROP FUNCTION migrate_study_grant_request();
         drop dhr_spouse_address_id,
         drop dhr_have_family_referent,
         drop dhr_pension_plan_detail,
-        drop dhr_spouse_complementary_pension_plan;
-        drop dhr_furniture_investment_income
+        drop dhr_spouse_complementary_pension_plan,
+        drop dhr_furniture_investment_income;
  alter table birth_details_request
     drop mother_first_names,
     drop mother_maiden_name,
