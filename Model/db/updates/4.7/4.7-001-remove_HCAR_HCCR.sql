@@ -144,3 +144,39 @@ drop table hccr_other_benefit cascade;
 drop table hccr_other_folder cascade;
 
 drop table hccr_professional cascade;
+
+delete from request_action where request_id in (
+  select id from request where request_type_id in (
+    select id from request_type where label='Handicap Compensation Adult' or label='Handicap Compensation Child'
+  )
+);
+
+delete from request_note where request_id in (
+  select id from request where request_type_id in (
+    select id from request_type where label='Handicap Compensation Adult' or label='Handicap Compensation Child'
+  )
+);
+
+delete from request_document where request_id in (
+  select id from request where request_type_id in (
+    select id from request_type where label='Handicap Compensation Adult' or label='Handicap Compensation Child'
+  )
+);
+
+delete from request where request_type_id in (
+  select id from request_type where label='Handicap Compensation Adult' or label='Handicap Compensation Child'
+);
+
+delete from requirement where request_type_id in (
+  select id from request_type where label='Handicap Compensation Adult' or label='Handicap Compensation Child'
+);
+
+delete from forms where request_type_id in (
+  select id from request_type where label='Handicap Compensation Adult' or label='Handicap Compensation Child'
+);
+
+delete from request_season where request_type_id in (
+  select id from request_type where label='Handicap Compensation Adult' or label='Handicap Compensation Child'
+);
+
+delete from request_type where label='Handicap Compensation Adult' or label='Handicap Compensation Child';
