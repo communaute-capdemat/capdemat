@@ -108,7 +108,6 @@ alter table hccr_professional
 alter table hccr_professional
     drop constraint FKBD0E59CEB2A3B3A;
 
-
 drop table handicap_compensation_adult_request cascade;
 
 drop table handicap_compensation_child_request cascade;
