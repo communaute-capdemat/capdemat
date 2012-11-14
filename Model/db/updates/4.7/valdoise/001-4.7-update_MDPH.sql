@@ -293,13 +293,16 @@
     
     create table sgr_current_school (
         id int8 not null,
-        current_school_postal_code varchar(5),
         current_school_name_precision varchar(255),
-        current_school_country varchar(255),
-        current_school_city varchar(32),
+        current_school_address_id int8,
         primary key (id)
     );
     
+    alter table sgr_current_school
+        add constraint FK369752BB6A39B687 
+        foreign key (current_school_address_id) 
+        references address;
+
     alter table current_school_name 
         add constraint FK7C728EB0693B5BC2 
         foreign key (current_school_name_id) 
@@ -549,8 +552,8 @@ CREATE FUNCTION migrate_domestic_help_request() RETURNS void AS $$
                     dhrr.local_rate, 
                     dhrr.dhr_income_tax);
                     
-          INSERT INTO domestic_help_request 
-            (dhr_requester_id,
+          UPDATE domestic_help_request 
+            SET (dhr_requester_id,
             dhr_requester_guardian_id,
             dhr_requester_pension_plan_id,
             dhr_current_dwelling_id,
@@ -559,19 +562,18 @@ CREATE FUNCTION migrate_domestic_help_request() RETURNS void AS $$
             dhr_family_referent_id,
             dhr_spouse_id,
             dhr_taxes_amount_id,
-            dhr_spouse_incomes_id)
-                VALUES
-                    ((SELECT id FROM dhr_requester ORDER BY id DESC LIMIT 1),
-                    (SELECT id FROM dhr_requester_guardian ORDER BY id DESC LIMIT 1),
-                    (SELECT id FROM dhr_requester_pension_plan ORDER BY id DESC LIMIT 1),
-                    (SELECT id FROM dhr_current_dwelling ORDER BY id DESC LIMIT 1),
-                    (SELECT id FROM dhr_spouse_status ORDER BY id DESC LIMIT 1),
-                    (SELECT id FROM dhr_incomes ORDER BY id DESC LIMIT 1),
-                    (SELECT id FROM dhr_family_referent ORDER BY id DESC LIMIT 1),
-                    (SELECT id FROM dhr_spouse ORDER BY id DESC LIMIT 1),
-                    (SELECT id FROM dhr_taxes_amount ORDER BY id DESC LIMIT 1),
-                    (SELECT id FROM dhr_incomes ORDER BY id DESC LIMIT 1));
-                    
+            dhr_spouse_incomes_id) =
+              ((SELECT id FROM dhr_requester ORDER BY id DESC LIMIT 1),
+              (SELECT id FROM dhr_requester_guardian ORDER BY id DESC LIMIT 1),
+              (SELECT id FROM dhr_requester_pension_plan ORDER BY id DESC LIMIT 1),
+              (SELECT id FROM dhr_current_dwelling ORDER BY id DESC LIMIT 1),
+              (SELECT id FROM dhr_spouse_status ORDER BY id DESC LIMIT 1),
+              (SELECT id FROM dhr_incomes ORDER BY id DESC LIMIT 1),
+              (SELECT id FROM dhr_family_referent ORDER BY id DESC LIMIT 1),
+              (SELECT id FROM dhr_spouse ORDER BY id DESC LIMIT 1),
+              (SELECT id FROM dhr_taxes_amount ORDER BY id DESC LIMIT 1),
+              (SELECT id FROM dhr_incomes ORDER BY id DESC LIMIT 1))
+             WHERE id=dhrr.id;
          END LOOP;
     RETURN;
     END;
@@ -617,17 +619,17 @@ CREATE FUNCTION migrate_birth_details_request() RETURNS void AS $$
                     bdrr.father_last_name,
                     bdrr.father_first_names);
                     
-            INSERT INTO birth_details_request
-                (mother_information_id,
-                father_information_id)
-                VALUES
+            UPDATE birth_details_request
+            SET (mother_information_id,
+                father_information_id) =
                     ((SELECT id FROM mother_information ORDER BY id DESC LIMIT 1),
-                    (SELECT id FROM father_information ORDER BY id DESC LIMIT 1));
+                    (SELECT id FROM father_information ORDER BY id DESC LIMIT 1))
+                  WHERE id=bdrr.id;
         END LOOP;
     RETURN;
     END;
 $$ LANGUAGE plpgsql;
-
+/*{{{*/
 SELECT migrate_birth_details_request();
 DROP FUNCTION migrate_birth_details_request();
 
@@ -661,7 +663,7 @@ DROP FUNCTION migrate_birth_details_request();
     alter table marriage_details_request 
         add constraint FK38315C1D3C2E0479 
         foreign key (marriage_wife_id) 
-        references marriage_wife_information;
+        references marriage_wife_information;/*}}}*/
         
 CREATE FUNCTION migrate_marriage_details_request() RETURNS void AS $$
     DECLARE
@@ -715,18 +717,19 @@ CREATE FUNCTION migrate_marriage_details_request() RETURNS void AS $$
                     mdrr.marriage_wife_first_names,
                     mdrr.marriage_wife_last_name);
                     
-            INSERT INTO marriage_details_request
-                (marriage_husband_id,
+            UPDATE marriage_details_request
+            SET (marriage_husband_id,
                 mother_information_id,
                 marriage_id,
                 father_information_id,
                 marriage_wife_id)
-                VALUES
+                =
                     ((SELECT id FROM marriage_husband_information ORDER BY id DESC LIMIT 1),
                     (SELECT id FROM marriage_mother_information ORDER BY id DESC LIMIT 1),
                     (SELECT id FROM marriage_information ORDER BY id DESC LIMIT 1),
                     (SELECT id FROM marriage_father_information ORDER BY id DESC LIMIT 1),
-                    (SELECT id FROM marriage_wife_information ORDER BY id DESC LIMIT 1));
+                    (SELECT id FROM marriage_wife_information ORDER BY id DESC LIMIT 1))
+                  WHERE id = mdrr.id;
         END LOOP;
     RETURN;
     END;
@@ -836,16 +839,16 @@ CREATE FUNCTION migrate_military_census_request() RETURNS void AS $$
                     mcrr.other_situation,
                     mcrr.prefect_pupil_department);
                     
-            INSERT INTO military_census_request
-                (mother_information_id,
+            UPDATE military_census_request
+            SET (mother_information_id,
                 professional_situation_information_id,
                 father_information_id,
-                family_situation_information_id)
-                VALUES
+                family_situation_information_id) =
                     ((SELECT id FROM military_mother_information ORDER BY id DESC LIMIT 1),
                     (SELECT id FROM professional_situation_information ORDER BY id DESC LIMIT 1),
                     (SELECT id FROM military_father_information ORDER BY id DESC LIMIT 1),
-                    (SELECT id FROM family_situation_information ORDER BY id DESC LIMIT 1));
+                    (SELECT id FROM family_situation_information ORDER BY id DESC LIMIT 1))
+                  WHERE id=mcrr.id;
          END LOOP;
     RETURN;
     END;
@@ -973,20 +976,20 @@ CREATE FUNCTION migrate_remote_support_request() RETURNS void AS $$
                     rsrr.contact_first_name,
                     rsrr.contact_phone);
                     
-            INSERT INTO remote_support_request
-                (second_contact_id,
+            UPDATE remote_support_request
+            SET (second_contact_id,
                 rsr_subject_id,
                 first_contact_id,
                 trustee_id,
                 request_information_id,
-                spouse_id)
-                VALUES
+                spouse_id) =
                     ((SELECT id FROM rsr_second_contact ORDER BY id DESC LIMIT 1),
                     (SELECT id FROM rsr_subject ORDER BY id DESC LIMIT 1),
                     (SELECT id FROM rsr_contact ORDER BY id DESC LIMIT 1),
                     (SELECT id FROM rsr_trustee ORDER BY id DESC LIMIT 1),
                     (SELECT id FROM rsr_request_information ORDER BY id DESC LIMIT 1),
-                    (SELECT id FROM rsr_spouse ORDER BY id DESC LIMIT 1));
+                    (SELECT id FROM rsr_spouse ORDER BY id DESC LIMIT 1))
+                  WHERE id=rsrr.id;
          END LOOP;
     RETURN;
     END;
@@ -1019,10 +1022,10 @@ CREATE FUNCTION migrate_school_registration_request() RETURNS void AS $$
                     srrr.current_section,
                     srrr.current_school_name);
                      
-            INSERT INTO school_registration_request
-                (current_school_id)
-                VALUES
-                    ((SELECT id FROM current_school ORDER BY id DESC LIMIT 1));
+            UPDATE school_registration_request
+            SET (current_school_id) =
+            ((SELECT id FROM current_school ORDER BY id DESC LIMIT 1))
+            WHERE id=srrr.id;
          END LOOP;
     RETURN;
     END;
@@ -1063,10 +1066,12 @@ CREATE FUNCTION migrate_study_grant_request() RETURNS void AS $$
     BEGIN
         FOR sgrr IN SELECT * FROM study_grant_request LOOP
             INSERT INTO a_levels_informations
-                (alevels,
+                (id,
+                alevels,
                 alevels_date)
                 VALUES
-                    (sgrr.alevels,
+                    (nextval('hibernate_sequence'),
+                    sgrr.alevels,
                     sgrr.alevels_date);
                     
             INSERT INTO current_studies_informations
@@ -1094,16 +1099,12 @@ CREATE FUNCTION migrate_study_grant_request() RETURNS void AS $$
                     
             INSERT INTO sgr_current_school
                 (id,
-                current_school_postal_code,
                 current_school_name_precision,
-                current_school_country,
-                current_school_city)
+                current_school_address_id)
                 VALUES
                     (nextval('hibernate_sequence'),
-                    sgrr.current_school_postal_code,
                     sgrr.current_school_name_precision,
-                    sgrr.current_school_country,
-                    sgrr.current_school_city);
+                    sgrr.current_school_address_id);
                      
             INSERT INTO subject_informations
                 (id,
@@ -1122,16 +1123,16 @@ CREATE FUNCTION migrate_study_grant_request() RETURNS void AS $$
                     sgrr.subject_phone,
                     sgrr.subject_email);
                     
-            INSERT INTO study_grant_request
-                (current_school_id,
+            UPDATE study_grant_request
+            SET (current_school_id,
                 current_studies_informations_id,
                 subject_informations_id,
-                alevels_informations_id)
-                VALUES
+                alevels_informations_id) =
                     ((SELECT id FROM sgr_current_school ORDER BY id DESC LIMIT 1),
                     (SELECT id FROM current_studies_informations ORDER BY id DESC LIMIT 1),
                     (SELECT id FROM subject_informations ORDER BY id DESC LIMIT 1),
-                    (SELECT id FROM a_levels_informations ORDER BY id DESC LIMIT 1));
+                    (SELECT id FROM a_levels_informations ORDER BY id DESC LIMIT 1))
+                  WHERE id=sgrr.id;
          END LOOP;
     RETURN;
     END;
@@ -1191,8 +1192,7 @@ DROP FUNCTION migrate_study_grant_request();
         drop dhr_spouse_address_id,
         drop dhr_have_family_referent,
         drop dhr_pension_plan_detail,
-        drop dhr_spouse_complementary_pension_plan,
-        drop dhr_furniture_investment_income;
+        drop dhr_spouse_complementary_pension_plan;
  alter table birth_details_request
     drop mother_first_names,
     drop mother_maiden_name,
@@ -1240,7 +1240,7 @@ DROP FUNCTION migrate_study_grant_request();
     drop trustee_phone,
     drop spouse_is_disabled_person,
     drop subject_birth_date,
-    drop subject_is_a_p_a_beneficiaryl,
+    drop subject_is_a_p_a_beneficiary,
     drop subject_reside_with,
     drop spouse_birth_date,
     drop contact_phone,
@@ -1276,10 +1276,7 @@ DROP FUNCTION migrate_study_grant_request();
     drop current_studies_level,
     drop abroad_internship_start_date,
     drop sandwich_courses,
-    drop current_school_postal_code,
     drop current_school_name_precision,
-    drop current_school_country,
-    drop current_school_city,
     drop subject_birth_date,
     drop subject_address_id,
     drop subject_first_request,
@@ -2226,11 +2223,11 @@ DROP FUNCTION migrate_study_grant_request();
  alter table mar_precedent_dossier_mdph alter column departement_mdph type varchar(255);
 
 alter table domestic_help_request add column dhr_request_kind varchar(255);
-update domestic_help_request set dhr_request_kind = (select dhr_spouse.dhr_request_kind from dhr_spouse, domestic_help_request  where domestic_help_request.dhr_spouse_id = dhr_spouse.id);
+update domestic_help_request set dhr_request_kind = (select dhr_spouse.dhr_request_kind from dhr_spouse, domestic_help_request  where domestic_help_request.dhr_spouse_id = dhr_spouse.id LIMIT 1);
 alter table dhr_spouse drop column dhr_request_kind;
 
 alter table remote_support_request add column request_information_request_kind varchar(255);
-update remote_support_request set request_information_request_kind = (select rsr_request_information.request_information_request_kind from rsr_request_information, remote_support_request where remote_support_request.request_information_id = rsr_request_information.id);
+update remote_support_request set request_information_request_kind = (select rsr_request_information.request_information_request_kind from rsr_request_information, remote_support_request where remote_support_request.request_information_id = rsr_request_information.id LIMIT 1);
 alter table rsr_request_information drop column request_information_request_kind;
 
 /* Migration local complex type for HSR */
@@ -2275,10 +2272,10 @@ CREATE FUNCTION migrate_holiday_security_request() RETURNS void AS $$
                     hsr.other_contact_phone,
 		    hsr.other_contact_last_name);
                      
-            INSERT INTO holiday_security_request
-                (other_contact_informations_id)
-                VALUES
-                    ((SELECT id FROM hsr_other_contact ORDER BY id DESC LIMIT 1));
+            UPDATE holiday_security_request
+            SET (other_contact_informations_id) =
+                    ((SELECT id FROM hsr_other_contact ORDER BY id DESC LIMIT 1))
+                    WHERE id =hsr.id;
          END LOOP;
     RETURN;
     END;
@@ -2291,4 +2288,886 @@ alter table holiday_security_request drop column other_contact_address_id;
 alter table holiday_security_request drop column other_contact_first_name;
 alter table holiday_security_request drop column other_contact_phone;
 alter table holiday_security_request drop column other_contact_last_name;
+
+
+
+
+/* Migration de DayCareCenterRegistration */
+
+alter table day_care_center_registration_request add column telephone varchar(10);
+alter table day_care_center_registration_request add column plage_horaire_accueil_reguliere_id int8;
+
+alter table day_care_center_registration_request add column information_mere_id int8;
+alter table day_care_center_registration_request add column information_pere_id int8;
+alter table day_care_center_registration_request add column date_placement_accueil_regulier_id int8;
+alter table day_care_center_registration_request add column lundi_id int8;
+alter table day_care_center_registration_request add column mardi_id int8;
+alter table day_care_center_registration_request add column mercredi_id int8;
+alter table day_care_center_registration_request add column jeudi_id int8;
+alter table day_care_center_registration_request add column vendredi_id int8;
+
+
+alter table day_care_center_registration_request 
+    drop constraint FKB69A86C8E44A3DDE;
+
+alter table day_care_center_registration_request 
+    drop constraint FKB69A86C88C770038;
+
+alter table day_care_center_registration_request 
+    drop constraint FKB69A86C863DC3BFC;
+
+alter table day_care_center_registration_request 
+    drop constraint FKB69A86C840BC8382;
+
+alter table day_care_center_registration_request 
+    drop constraint FKB69A86C87633B81C;
+
+alter table day_care_center_registration_request 
+    drop constraint FKB69A86C87F7602B8;
+
+alter table day_care_center_registration_request 
+    drop constraint FKB69A86C8C2F0B57C;
+
+alter table day_care_center_registration_request 
+    drop constraint FKB69A86C8A20874A2;
+
+alter table day_care_center_registration_request 
+    drop constraint FKB69A86C8CC1ABED4;
+
+drop table if exists dccrr_dates_placement;
+drop table if exists dccrr_mere;
+drop table if exists dccrr_pere;
+drop table if exists dccrr_plage_horaire;
+drop table if exists dccrr_plage_horaire_jeudi;
+drop table if exists dccrr_plage_horaire_lundi;
+drop table if exists dccrr_plage_horaire_mardi;
+drop table if exists dccrr_plage_horaire_mercredi;
+drop table if exists dccrr_plage_horaire_vendredi;
+
+
+create table dccrr_dates_placement (
+    id int8 not null,
+    choix_type_date_placement_accueil_regulier varchar(255),
+    date_placement_debut timestamp,
+    primary key (id)
+);
+
+create table dccrr_mere (
+    id int8 not null,
+    commune_lieu_travail_mere varchar(255),
+    est_horaires_reguliers_mere bool,
+    horaires_reguliers_mere varchar(255),
+    horaires_travail_jeudi_mere varchar(255),
+    horaires_travail_lundi_mere varchar(255),
+    horaires_travail_mardi_mere varchar(255),
+    horaires_travail_mercredi_mere varchar(255),
+    horaires_travail_vendredi_mere varchar(255),
+    precision_autre_situation_actuelle_mere varchar(255),
+    profession_mere varchar(255),
+    situation_actuelle_mere varchar(255),
+    primary key (id)
+);
+
+create table dccrr_pere (
+    id int8 not null,
+    commune_lieu_travail_pere varchar(255),
+    est_horaires_reguliers_pere bool,
+    horaires_reguliers_pere varchar(255),
+    horaires_travail_jeudi_pere varchar(255),
+    horaires_travail_lundi_pere varchar(255),
+    horaires_travail_mardi_pere varchar(255),
+    horaires_travail_mercredi_pere varchar(255),
+    horaires_travail_vendredi_pere varchar(255),
+    precision_autre_situation_actuelle_pere varchar(255),
+    profession_pere varchar(255),
+    situation_actuelle_pere varchar(255),
+    primary key (id)
+);
+
+create table dccrr_plage_horaire (
+    id int8 not null,
+    horaire_placement_apres_midi_debut bytea,
+    horaire_placement_apres_midi_fin bytea,
+    horaire_placement_matin_debut bytea,
+    horaire_placement_matin_fin bytea,
+    primary key (id)
+);
+
+create table dccrr_plage_horaire_jeudi (
+    id int8 not null,
+    horaire_placement_apres_midi_debut_jeudi bytea,
+    horaire_placement_apres_midi_fin_jeudi bytea,
+    horaire_placement_matin_debut_jeudi bytea,
+    horaire_placement_matin_fin_jeudi bytea,
+    primary key (id)
+);
+
+create table dccrr_plage_horaire_lundi (
+    id int8 not null,
+    horaire_placement_apres_midi_debut_lundi bytea,
+    horaire_placement_apres_midi_fin_lundi bytea,
+    horaire_placement_matin_debut_lundi bytea,
+    horaire_placement_matin_fin_lundi bytea,
+    primary key (id)
+);
+
+create table dccrr_plage_horaire_mardi (
+    id int8 not null,
+    horaire_placement_apres_midi_debut_mardi bytea,
+    horaire_placement_apres_midi_fin_mardi bytea,
+    horaire_placement_matin_debut_mardi bytea,
+    horaire_placement_matin_fin_mardi bytea,
+    primary key (id)
+);
+
+create table dccrr_plage_horaire_mercredi (
+    id int8 not null,
+    horaire_placement_apres_midi_debut_mercredi bytea,
+    horaire_placement_apres_midi_fin_mercredi bytea,
+    horaire_placement_matin_debut_mercredi bytea,
+    horaire_placement_matin_fin_mercredi bytea,
+    primary key (id)
+);
+
+create table dccrr_plage_horaire_vendredi (
+    id int8 not null,
+    horaire_placement_apres_midi_debut_vendredi bytea,
+    horaire_placement_apres_midi_fin_vendredi bytea,
+    horaire_placement_matin_debut_vendredi bytea,
+    horaire_placement_matin_fin_vendredi bytea,
+    primary key (id)
+);
+
+
+
+alter table day_care_center_registration_request 
+    add constraint FKB69A86C8E44A3DDE 
+    foreign key (plage_horaire_accueil_reguliere_id) 
+    references dccrr_plage_horaire;
+
+alter table day_care_center_registration_request 
+    add constraint FKB69A86C88C770038 
+    foreign key (mercredi_id) 
+    references dccrr_plage_horaire_mercredi;
+
+alter table day_care_center_registration_request 
+    add constraint FKB69A86C863DC3BFC 
+    foreign key (jeudi_id) 
+    references dccrr_plage_horaire_jeudi;
+
+alter table day_care_center_registration_request 
+    add constraint FKB69A86C840BC8382 
+    foreign key (information_pere_id) 
+    references dccrr_pere;
+
+alter table day_care_center_registration_request 
+    add constraint FKB69A86C87633B81C 
+    foreign key (lundi_id) 
+    references dccrr_plage_horaire_lundi;
+
+alter table day_care_center_registration_request 
+    add constraint FKB69A86C87F7602B8 
+    foreign key (vendredi_id) 
+    references dccrr_plage_horaire_vendredi;
+
+alter table day_care_center_registration_request 
+    add constraint FKB69A86C8C2F0B57C 
+    foreign key (mardi_id) 
+    references dccrr_plage_horaire_mardi;
+
+alter table day_care_center_registration_request 
+    add constraint FKB69A86C8A20874A2 
+    foreign key (information_mere_id) 
+    references dccrr_mere;
+
+alter table day_care_center_registration_request 
+    add constraint FKB69A86C8CC1ABED4 
+    foreign key (date_placement_accueil_regulier_id) 
+    references dccrr_dates_placement;
+
+
+CREATE FUNCTION migrate_day_care_center_registration_request() RETURNS void AS $$
+    DECLARE
+        dccrr RECORD;
+    BEGIN
+        FOR dccrr IN SELECT * FROM day_care_center_registration_request LOOP
+            INSERT INTO dccrr_dates_placement
+                (id,
+                choix_type_date_placement_accueil_regulier,
+                date_placement_debut)
+                VALUES
+                    (nextval('hibernate_sequence'),
+                    dccrr.choix_type_date_placement_accueil_regulier,
+                    dccrr.date_placement_debut);
+
+            INSERT INTO dccrr_mere
+                (id,
+                horaires_reguliers_mere,
+                est_horaires_reguliers_mere,
+                horaires_travail_lundi_mere,
+                horaires_travail_mardi_mere,
+                horaires_travail_mercredi_mere,
+                horaires_travail_jeudi_mere,
+                horaires_travail_vendredi_mere,
+                profession_mere,
+                situation_actuelle_mere,
+                commune_lieu_travail_mere,
+                precision_autre_situation_actuelle_mere)
+                VALUES
+                    (nextval('hibernate_sequence'),
+                      dccrr.horaires_reguliers_mere,
+                      dccrr.est_horaires_reguliers_mere,
+                      dccrr.horaires_travail_lundi_mere,
+                      dccrr.horaires_travail_mardi_mere,
+                      dccrr.horaires_travail_mercredi_mere,
+                      dccrr.horaires_travail_jeudi_mere,
+                      dccrr.horaires_travail_vendredi_mere,
+                      dccrr.profession_mere,
+                      dccrr.situation_actuelle_mere,
+                      dccrr.commune_lieu_travail_mere,
+                      dccrr.precision_autre_situation_actuelle_mere
+                  );
+            INSERT INTO dccrr_pere
+                (id,
+                horaires_reguliers_pere,
+                est_horaires_reguliers_pere,
+                horaires_travail_lundi_pere,
+                horaires_travail_mardi_pere,
+                horaires_travail_mercredi_pere,
+                horaires_travail_jeudi_pere,
+                horaires_travail_vendredi_pere,
+                profession_pere,
+                situation_actuelle_pere,
+                commune_lieu_travail_pere,
+                precision_autre_situation_actuelle_pere)
+                VALUES
+                    (nextval('hibernate_sequence'),
+                      dccrr.horaires_reguliers_pere,
+                      dccrr.est_horaires_reguliers_pere,
+                      dccrr.horaires_travail_lundi_pere,
+                      dccrr.horaires_travail_mardi_pere,
+                      dccrr.horaires_travail_mercredi_pere,
+                      dccrr.horaires_travail_jeudi_pere,
+                      dccrr.horaires_travail_vendredi_pere,
+                      dccrr.profession_pere,
+                      dccrr.situation_actuelle_pere,
+                      dccrr.commune_lieu_travail_pere,
+                      dccrr.precision_autre_situation_actuelle_pere
+                  );
+
+            INSERT INTO dccrr_plage_horaire_lundi
+            (id,
+              horaire_placement_matin_debut_lundi,
+              horaire_placement_matin_fin_lundi,
+              horaire_placement_apres_midi_debut_lundi,
+              horaire_placement_apres_midi_fin_lundi)
+            VALUES
+            (nextval('hibernate_sequence'),
+              dccrr.horaire_placement_matin_debut_lundi,
+              dccrr.horaire_placement_matin_fin_lundi,
+              dccrr.horaire_placement_apres_midi_debut_lundi,
+              dccrr.horaire_placement_apres_midi_fin_lundi);
+
+
+            INSERT INTO dccrr_plage_horaire_mardi
+            (id,
+              horaire_placement_matin_debut_mardi,
+              horaire_placement_matin_fin_mardi,
+              horaire_placement_apres_midi_debut_mardi,
+              horaire_placement_apres_midi_fin_mardi)
+            VALUES
+            (nextval('hibernate_sequence'),
+              dccrr.horaire_placement_matin_debut_mardi,
+              dccrr.horaire_placement_matin_fin_mardi,
+              dccrr.horaire_placement_apres_midi_debut_mardi,
+              dccrr.horaire_placement_apres_midi_fin_mardi);
+
+
+            INSERT INTO dccrr_plage_horaire_mercredi
+            (id,
+              horaire_placement_matin_debut_mercredi,
+              horaire_placement_matin_fin_mercredi,
+              horaire_placement_apres_midi_debut_mercredi,
+              horaire_placement_apres_midi_fin_mercredi)
+            VALUES
+            (nextval('hibernate_sequence'),
+              dccrr.horaire_placement_matin_debut_mercredi,
+              dccrr.horaire_placement_matin_fin_mercredi,
+              dccrr.horaire_placement_apres_midi_debut_mercredi,
+              dccrr.horaire_placement_apres_midi_fin_mercredi);
+
+
+            INSERT INTO dccrr_plage_horaire_jeudi
+            (id,
+              horaire_placement_matin_debut_jeudi,
+              horaire_placement_matin_fin_jeudi,
+              horaire_placement_apres_midi_debut_jeudi,
+              horaire_placement_apres_midi_fin_jeudi)
+            VALUES
+            (nextval('hibernate_sequence'),
+              dccrr.horaire_placement_matin_debut_jeudi,
+              dccrr.horaire_placement_matin_fin_jeudi,
+              dccrr.horaire_placement_apres_midi_debut_jeudi,
+              dccrr.horaire_placement_apres_midi_fin_jeudi);
+
+
+            INSERT INTO dccrr_plage_horaire_vendredi
+            (id,
+              horaire_placement_matin_debut_vendredi,
+              horaire_placement_matin_fin_vendredi,
+              horaire_placement_apres_midi_debut_vendredi,
+              horaire_placement_apres_midi_fin_vendredi)
+            VALUES
+            (nextval('hibernate_sequence'),
+              dccrr.horaire_placement_matin_debut_vendredi,
+              dccrr.horaire_placement_matin_fin_vendredi,
+              dccrr.horaire_placement_apres_midi_debut_vendredi,
+              dccrr.horaire_placement_apres_midi_fin_vendredi);
+
+
+            UPDATE day_care_center_registration_request
+                SET (date_placement_accueil_regulier_id,
+                information_mere_id,
+                information_pere_id,
+                lundi_id,
+                mardi_id,
+                mercredi_id,
+                jeudi_id,
+                vendredi_id) =
+                ((SELECT id FROM dccrr_dates_placement ORDER BY id DESC LIMIT 1),
+                (SELECT id FROM dccrr_mere ORDER BY id DESC LIMIT 1),
+                (SELECT id FROM dccrr_pere ORDER BY id DESC LIMIT 1),
+                (SELECT id FROM dccrr_plage_horaire_lundi ORDER BY id DESC LIMIT 1),
+                (SELECT id FROM dccrr_plage_horaire_mardi ORDER BY id DESC LIMIT 1),
+                (SELECT id FROM dccrr_plage_horaire_mercredi ORDER BY id DESC LIMIT 1),
+                (SELECT id FROM dccrr_plage_horaire_jeudi ORDER BY id DESC LIMIT 1),
+                (SELECT id FROM dccrr_plage_horaire_vendredi ORDER BY id DESC LIMIT 1))
+              WHERE id=dccrr.id;
+         END LOOP;
+    RETURN;
+    END;
+$$ LANGUAGE plpgsql;
+
+SELECT migrate_day_care_center_registration_request();
+DROP FUNCTION migrate_day_care_center_registration_request();
+
+alter table day_care_center_registration_request drop column choix_type_date_placement_accueil_regulier;
+alter table day_care_center_registration_request drop column horaire_placement_apres_midi_debut_mardi;
+alter table day_care_center_registration_request drop column horaire_placement_apres_midi_debut_mercredi;
+alter table day_care_center_registration_request drop column horaire_placement_apres_midi_debut_vendredi;
+alter table day_care_center_registration_request drop column horaire_placement_apres_midi_fin;
+alter table day_care_center_registration_request drop column horaire_placement_apres_midi_fin_jeudi;
+alter table day_care_center_registration_request drop column horaire_placement_apres_midi_fin_mardi;
+alter table day_care_center_registration_request drop column horaire_placement_apres_midi_fin_mercredi;
+alter table day_care_center_registration_request drop column horaire_placement_apres_midi_fin_vendredi;
+alter table day_care_center_registration_request drop column horaire_placement_matin_debut;
+alter table day_care_center_registration_request drop column horaire_placement_matin_debut_jeudi;
+alter table day_care_center_registration_request drop column horaire_placement_matin_debut_lundi;
+alter table day_care_center_registration_request drop column horaire_placement_matin_debut_mardi;
+alter table day_care_center_registration_request drop column horaire_placement_matin_debut_mercredi;
+alter table day_care_center_registration_request drop column horaire_placement_matin_debut_vendredi;
+alter table day_care_center_registration_request drop column horaire_placement_matin_fin;
+alter table day_care_center_registration_request drop column horaire_placement_matin_fin_jeudi;
+alter table day_care_center_registration_request drop column horaires_reguliers_mere;
+alter table day_care_center_registration_request drop column horaires_reguliers_pere;
+alter table day_care_center_registration_request drop column horaires_travail_jeudi_mere;
+alter table day_care_center_registration_request drop column horaires_travail_jeudi_pere;
+alter table day_care_center_registration_request drop column horaires_travail_lundi_mere;
+alter table day_care_center_registration_request drop column horaires_travail_lundi_pere;
+alter table day_care_center_registration_request drop column horaires_travail_mardi_mere;
+alter table day_care_center_registration_request drop column horaires_travail_mardi_pere;
+alter table day_care_center_registration_request drop column horaires_travail_mercredi_mere;
+alter table day_care_center_registration_request drop column horaires_travail_mercredi_pere;
+alter table day_care_center_registration_request drop column horaires_travail_vendredi_mere;
+alter table day_care_center_registration_request drop column horaires_travail_vendredi_pere;
+--alter table day_care_center_registration_request drop column mode_accueil;
+--alter table day_care_center_registration_request drop column mode_accueil_choix_deux;
+--alter table day_care_center_registration_request drop column mode_accueil_choix_un;
+--alter table day_care_center_registration_request drop column plage_horaire_contact;
+alter table day_care_center_registration_request drop column precision_autre_situation_actuelle_mere;
+alter table day_care_center_registration_request drop column precision_autre_situation_actuelle_pere;
+alter table day_care_center_registration_request drop column profession_mere;
+alter table day_care_center_registration_request drop column profession_pere;
+alter table day_care_center_registration_request drop column situation_actuelle_mere;
+alter table day_care_center_registration_request drop column situation_actuelle_pere;
+--alter table day_care_center_registration_request drop column telephone_contact;
+
+
+/* Migration de GlobalSchoolRegistration */
+alter table global_school_registration_request add column ecole_derogation_id int8;
+alter table global_school_registration_request add column ecole_secteur_id int8;
+
+alter table global_school_registration_request
+  drop constraint FK4566A65831FFB6C1;
+
+alter table global_school_registration_request
+  drop constraint FK4566A6588F89CCAE;
+
+drop table if exists ecole_derog;
+drop table if exists ecole_secteur;
+
+create table ecole_derog (
+    id int8 not null,
+    id_ecole_derog varchar(255),
+    label_ecole_derog varchar(255),
+    primary key (id)
+);
+
+create table ecole_secteur (
+    id int8 not null,
+    id_ecole_secteur varchar(255),
+    label_ecole_secteur varchar(255),
+    primary key (id)
+);
+
+alter table global_school_registration_request
+    add constraint FK4566A65831FFB6C1
+    foreign key (ecole_derogation_id)
+    references ecole_derog;
+
+alter table global_school_registration_request
+    add constraint FK4566A6588F89CCAE
+    foreign key (ecole_secteur_id)
+    references ecole_secteur;
+
+
+
+CREATE FUNCTION migrate_global_school_registration_request() RETURNS void AS $$
+    DECLARE
+        gsrr RECORD;
+    BEGIN
+        FOR gsrr IN SELECT * FROM global_school_registration_request LOOP
+          INSERT INTO ecole_secteur (id,id_ecole_secteur,label_ecole_secteur)
+          VALUES (nextval('hibernate_sequence'), gsrr.id_ecole_secteur,gsrr.label_ecole_secteur);
+
+          INSERT INTO ecole_derog (id,id_ecole_derog,label_ecole_derog)
+          VALUES (nextval('hibernate_sequence'), gsrr.id_ecole_derog,gsrr.label_ecole_derog);
+
+          UPDATE global_school_registration_request
+          SET (ecole_secteur_id, ecole_derogation_id) =
+          ((SELECT id FROM ecole_secteur ORDER BY id DESC LIMIT 1),
+          (SELECT id FROM ecole_derog ORDER BY id DESC LIMIT 1))
+          WHERE id = gsrr.id;
+        END LOOP;
+    RETURN;
+END;
+$$ LANGUAGE plpgsql;
+
+
+
+SELECT migrate_global_school_registration_request();
+DROP FUNCTION migrate_global_school_registration_request();
+
+
+alter table global_school_registration_request drop column id_ecole_secteur;
+alter table global_school_registration_request drop column id_ecole_derog;
+alter table global_school_registration_request drop column label_ecole_secteur;
+alter table global_school_registration_request drop column label_ecole_derog;
+
+/* Migration de HolidayCampRegistration */
+
+alter table holiday_camp_registration_request add column centre_sejours_id int8;
+
+alter table holiday_camp_registration_request
+  drop constraint FK9D0D66E0C812801A;
+
+drop table if exists centre_sejours;
+
+create table centre_sejours (
+    id int8 not null,
+    id_centre_sejours varchar(255),
+    label_centre_sejours varchar(255),
+    primary key (id)
+);
+
+alter table holiday_camp_registration_request
+  add constraint FK9D0D66E0C812801A
+  foreign key (centre_sejours_id)
+  references centre_sejours;
+
+
+CREATE FUNCTION migrate_holiday_camp_registration_request() RETURNS void AS $$
+    DECLARE
+        hcrr RECORD;
+    BEGIN
+        FOR hcrr IN SELECT * FROM holiday_camp_registration_request LOOP
+          INSERT INTO centre_sejours (id,id_centre_sejours,label_centre_sejours)
+          VALUES (nextval('hibernate_sequence'), hcrr.id_centre_sejours, hcrr.label_centre_sejours);
+
+          UPDATE holiday_camp_registration_request
+          SET centre_sejours_id = (SELECT id FROM centre_sejours ORDER BY id DESC LIMIT 1)
+          WHERE id = hcrr.id;
+        END LOOP;
+    RETURN;
+END;
+$$ LANGUAGE plpgsql;
+
+SELECT migrate_holiday_camp_registration_request();
+DROP FUNCTION migrate_holiday_camp_registration_request();
+
+
+alter table holiday_camp_registration_request drop column id_centre_sejours;
+alter table holiday_camp_registration_request drop column label_centre_sejours;
+
+/* Migration de LeisureCenterRegistration */
+
+alter table leisure_center_registration_request add column centres_loisirs_id int8;
+alter table leisure_center_registration_request add column transports_id int8;
+
+alter table leisure_center_registration_request
+    drop constraint FK25E6799150A571D;
+
+alter table leisure_center_registration_request
+    drop constraint FK25E6799FCB630A3;
+
+drop table if exists centre_loisirs;
+drop table if exists transports;
+
+create table centre_loisirs (
+    id int8 not null,
+    id_centre_loisirs varchar(255),
+    label_centre_loisirs varchar(255),
+    primary key (id)
+);
+
+create table transports (
+    id int8 not null,
+    id_arret varchar(255),
+    id_ligne varchar(255),
+    label_arret varchar(255),
+    label_ligne varchar(255),
+    primary key (id)
+);
+
+alter table leisure_center_registration_request
+    add constraint FK25E6799150A571D
+    foreign key (centres_loisirs_id)
+    references centre_loisirs;
+
+alter table leisure_center_registration_request
+    add constraint FK25E6799FCB630A3
+    foreign key (transports_id)
+    references transports;
+
+CREATE FUNCTION migrate_leisure_center_registration_request() RETURNS void AS $$
+    DECLARE
+        lcrr RECORD;
+    BEGIN
+        FOR lcrr IN SELECT * FROM leisure_center_registration_request LOOP
+          INSERT INTO centre_sejours (id, id_centre_loisirs, label_centre_loisirs)
+          VALUES (nextval('hibernate_sequence'), lcrr.id_centre_loisirs, lcrr.label_centre_loisirs);
+
+          INSERT INTO transports (id, id_arret, id_ligne, label_arret, label_ligne)
+          VALUES (nextval('hibernate_sequence'), lcrr.id_arret, lcrr.id_ligne, lcrr.label_arret, lcrr.label_ligne);
+
+          UPDATE leisure_center_registration_request
+          SET (centre_loisirs_id, transports_id) = ((SELECT id FROM centre_sejours ORDER BY id DESC LIMIT 1), (SELECT id FROM transports ORDER BY id DESC LIMIT 1))
+          WHERE id = lcrr.id;
+        END LOOP;
+    RETURN;
+END;
+$$ LANGUAGE plpgsql;
+
+
+SELECT migrate_leisure_center_registration_request();
+DROP FUNCTION migrate_leisure_center_registration_request();
+
+alter table leisure_center_registration_request drop column id_arret;
+alter table leisure_center_registration_request drop column id_centre_loisirs;
+alter table leisure_center_registration_request drop column id_ligne;
+alter table leisure_center_registration_request drop column label_arret;
+alter table leisure_center_registration_request drop column label_centre_loisirs;
+alter table leisure_center_registration_request drop column label_ligne;
+
+
+/* migration de schoolTransportRegistration */
+
+
+alter table school_transport_registration_request add column ligne_id int8;
+alter table school_transport_registration_request add column arret_id int8;
+alter table school_transport_registration_request add column frere_ou_soeur_autorise_id int8;
+
+drop table if exists arret;
+drop table if exists ligne;
+
+create table arret (
+    id int8 not null,
+    id_arret varchar(255),
+    label_arret varchar(255),
+    primary key (id)
+);
+
+create table ligne (
+    id int8 not null,
+    id_ligne varchar(255),
+    label_ligne varchar(255),
+    primary key (id)
+);
+
+create table frere_ou_soeur_informations (
+    id int8 not null,
+    frere_ou_soeur_classe varchar(255),
+    frere_ou_soeur_ecole varchar(255),
+    frere_ou_soeur_nom varchar(38),
+    frere_ou_soeur_prenom varchar(38),
+    primary key (id)
+);
+
+alter table school_transport_registration_request
+    add constraint FK7B1CA68A7F32DAF1
+    foreign key (arret_id)
+    references arret;
+
+alter table school_transport_registration_request
+    add constraint FK7B1CA68A8112951
+    foreign key (ligne_id)
+    references ligne;
+
+alter table school_transport_registration_request
+    add constraint FK7B1CA68AF6C2D767
+    foreign key (frere_ou_soeur_autorise_id)
+    references frere_ou_soeur_informations;
+
+CREATE FUNCTION migrate_school_transport_registration_request() RETURNS void AS $$
+    DECLARE
+        strr RECORD;
+    BEGIN
+        FOR strr IN SELECT * FROM school_transport_registration_request LOOP
+          INSERT INTO arret (id, id_arret, label_arret)
+          VALUES (nextval('hibernate_sequence'), strr.id_arret, strr.label_arret);
+
+          INSERT INTO ligne (id, id_ligne, label_ligne)
+          VALUES (nextval('hibernate_sequence'), strr.id_ligne, strr.label_ligne);
+
+          INSERT INTO frere_ou_soeur_informations (id, frere_ou_soeur_classe, frere_ou_soeur_ecole, frere_ou_soeur_nom, frere_ou_soeur_prenom)
+          VALUES (nextval('hibernate_sequence'), strr.frere_ou_soeur_classe, strr.frere_ou_soeur_ecole, strr.frere_ou_soeur_nom, strr.frere_ou_soeur_prenom);
+
+          UPDATE school_transport_registration_request
+          SET (arret_id, ligne_id, frere_ou_soeur_autorise_id) = ((SELECT id FROM arret ORDER BY id DESC LIMIT 1), (SELECT id FROM ligne ORDER BY id DESC LIMIT 1), (SELECT id FROM frere_ou_soeur_informations ORDER BY id DESC LIMIT 1))
+          WHERE id = strr.id;
+        END LOOP;
+    RETURN;
+END;
+$$ LANGUAGE plpgsql;
+
+
+alter table school_transport_registration_request drop column id_arret;
+alter table school_transport_registration_request drop column id_ligne;
+alter table school_transport_registration_request drop column label_arret;
+alter table school_transport_registration_request drop column label_ligne;
+alter table school_transport_registration_request drop column frere_ou_soeur_classe;
+alter table school_transport_registration_request drop column frere_ou_soeur_ecole;
+alter table school_transport_registration_request drop column frere_ou_soeur_nom;
+alter table school_transport_registration_request drop column frere_ou_soeur_prenom;
+
+/* migration de sportAssociationGrant */
+
+
+alter table sports_associations_grant_request add column contacts_association_id int8;
+alter table sports_associations_grant_request add column numeros_association_id int8;
+alter table sports_associations_grant_request add column precision_president_id int8;
+alter table sports_associations_grant_request add column subvention_publique_fonctionnement_id int8;
+alter table sports_associations_grant_request add column identifiant_e_demande_association  varchar(255);
+
+alter table sagr_activite_association add column somme_sollicitee_activite numeric(19, 2);
+alter table sagr_activite_association add column identifiant_e_demande_activite varchar(255);
+
+drop table if exists sagr_numeros_association;
+drop table if exists sagr_precision_president;
+drop table if exists sagr_subvention_publique_fonctionnement;
+drop table if exists sagr_contacts_association;
+
+CREATE TABLE sagr_numeros_association (
+    id int8 not null,
+    numero_enregistrement_prefecture_association varchar(9),
+    numero_siret_association varchar(14),
+    primary key (id)
+);
+
+CREATE TABLE sagr_precision_president(
+    id int8 not null,
+    email_president varchar(255),
+    nom_president varchar(38),
+    prenom_president varchar(38),
+    telephone_president varchar(10),
+    primary key (id)
+);
+
+CREATE TABLE sagr_subvention_publique_fonctionnement (
+    id int8 not null,
+    budget_saison_ecoulee_depenses varchar(255),
+    budget_saison_ecoulee_recette varchar(255),
+    commune_annee_n varchar(255),
+    commune_annee_n_plus_un varchar(255),
+    nombre_licencie_moins_dix_huit_saison_ecoulee varchar(255),
+    nombre_licencie_plus_dix_huit_saison_ecoulee varchar(255),
+    primary key (id)
+);
+
+CREATE TABLE sagr_contacts_association (
+    id int8 not null,
+    email_club_ou_correspondant varchar(255),
+    est_adresse_correspondant_principal bool,
+    nom_complet_correspondant_principal varchar(255),
+    adresse_correspondant_principal_id int8,
+    primary key (id)
+);
+
+alter table sports_associations_grant_request
+    drop constraint fkb93535bf6aeb0adf;
+
+alter table sports_associations_grant_request
+    add constraint FKB93535BF340B8454
+    foreign key (numeros_association_id)
+    references sagr_numeros_association;
+
+alter table sports_associations_grant_request
+    add constraint FKB93535BF4180BA26
+    Foreign key (precision_president_id)
+    references sagr_precision_president;
+
+alter table sports_associations_grant_request
+    add constraint FKB93535BF70548191
+    foreign key (subvention_publique_fonctionnement_id)
+    references sagr_subvention_publique_fonctionnement;
+
+alter table sports_associations_grant_request
+    add constraint FKB93535BF7AA4092A
+    foreign key (contacts_association_id)
+    references sagr_contacts_association;
+
+CREATE FUNCTION migrate_sports_associations_grant_request() RETURNS void AS $$
+    DECLARE
+        sagr RECORD;
+    BEGIN
+        FOR sagr IN SELECT * FROM sports_associations_grant_request LOOP
+          INSERT INTO sagr_numeros_association(id, numero_enregistrement_prefecture_association, numero_siret_association)
+          VALUES (nextval('hibernate_sequence'), sagr.numero_enregistrement_prefecture_association, sagr.numero_siret_association);
+
+          INSERT INTO sagr_precision_president(id, email_president, nom_president, prenom_president, telephone_president)
+          VALUES (nextval('hibernate_sequence'), sagr.email_president, sagr.nom_president, sagr.prenom_president, sagr.telephone_president);
+
+          INSERT INTO sagr_subvention_publique_fonctionnement (id, budget_saison_ecoulee_depenses , budget_saison_ecoulee_recette , commune_annee_n , commune_annee_n_plus_un , nombre_licencie_moins_dix_huit_saison_ecoulee , nombre_licencie_plus_dix_huit_saison_ecoulee)
+          VALUES (nextval('hibernate_sequence'), sagr.budget_saison_ecoulee_depenses , sagr.budget_saison_ecoulee_recette , sagr.commune_annee_n , sagr.commune_annee_n_plus_un , sagr.nombre_licencie_moins_dix_huit_saison_ecoulee , sagr.nombre_licencie_plus_dix_huit_saison_ecoulee);
+
+          INSERT INTO sagr_contacts_association(id, email_club_ou_correspondant , est_adresse_correspondant_principal , nom_complet_correspondant_principal , adresse_correspondant_principal_id)
+          VALUES (nextval('hibernate_sequence'), sagr.email_club_ou_correspondant , sagr.est_adresse_correspondant_principal , sagr.nom_complet_correspondant_principal , sagr.adresse_correspondant_principal_id);
+
+        UPDATE sports_associations_grant_request
+          SET (contacts_association_id, numeros_association_id, precision_president_id, subvention_publique_fonctionnement_id) = (
+            (SELECT id FROM sagr_contacts_association ORDER BY id DESC LIMIT 1), (SELECT id FROM sagr_numeros_association ORDER BY id DESC LIMIT 1), (SELECT id FROM sagr_precision_president ORDER BY id DESC LIMIT 1), (SELECT id FROM sagr_subvention_publique_fonctionnement ORDER BY id DESC LIMIT 1))
+          WHERE id = sagr.id;
+        END LOOP;
+    RETURN;
+END;
+$$ LANGUAGE plpgsql;
+
+SELECT migrate_sports_associations_grant_request();
+DROP FUNCTION migrate_sports_associations_grant_request();
+
+alter table sports_associations_grant_request drop column budget_saison_ecoulee_depenses;
+alter table sports_associations_grant_request drop column budget_saison_ecoulee_recette;
+alter table sports_associations_grant_request drop column commune_annee_n;
+alter table sports_associations_grant_request drop column commune_annee_n_plus_un;
+alter table sports_associations_grant_request drop column email_club_ou_correspondant;
+alter table sports_associations_grant_request drop column email_president;
+alter table sports_associations_grant_request drop column est_adresse_correspondant_principal;
+alter table sports_associations_grant_request drop column nom_complet_correspondant_principal;
+alter table sports_associations_grant_request drop column nom_president;
+alter table sports_associations_grant_request drop column nombre_licencie_moins_dix_huit_saison_ecoulee;
+alter table sports_associations_grant_request drop column nombre_licencie_plus_dix_huit_saison_ecoulee;
+alter table sports_associations_grant_request drop column numero_enregistrement_prefecture_association;
+alter table sports_associations_grant_request drop column numero_siret_association;
+alter table sports_associations_grant_request drop column prenom_president;
+alter table sports_associations_grant_request drop column telephone_president;
+alter table sports_associations_grant_request drop column adresse_correspondant_principal_id;
+
+
+/* migration de standardElectoralRollRegistration */
+
+alter table standard_electoral_roll_registration_request add column fieldset_est_union_europeenne_id int8;
+alter table standard_electoral_roll_registration_request add column lieu_naissance_id int8;
+alter table standard_electoral_roll_registration_request add column precedent_lieu_inscription_id int8;
+
+drop table if exists serrr_fieldset_est_union_europeenne ;
+drop table if exists serrr_lieu_naissance;
+drop table if exists serrr_precedent_lieu_inscription;
+
+CREATE TABLE serrr_fieldset_est_union_europeenne (
+    id int8 not null,
+    commune_ou_localite_precedente varchar(32),
+    pays_precedent varchar(255),
+    precision_nationalite varchar(255),
+    subdivision_administrative_precedente varchar(255),
+    type_election varchar(255),
+    primary key (id)
+);
+
+CREATE TABLE serrr_lieu_naissance (
+    id int8 not null,
+    lieu_naissance_departement varchar(255),
+    lieu_naissance_pays varchar(255),
+    ville_naissance_code_postal varchar(32),
+    primary key (id)
+);
+
+CREATE TABLE serrr_precedent_lieu_inscription (
+    id int8 not null,
+    ancienne_commune varchar(32),
+    departement_ancienne_commune varchar(255),
+    primary key (id)
+);
+/*{{{*/
+alter table standard_electoral_roll_registration_request
+    add constraint FK4A4584A72928E95C
+    foreign key (precedent_lieu_inscription_id)
+    references serrr_precedent_lieu_inscription;
+
+alter table standard_electoral_roll_registration_request
+    add constraint FK4A4584A7AB51223
+    foreign key (lieu_naissance_id)
+    references serrr_lieu_naissance;
+
+alter table standard_electoral_roll_registration_request
+    add constraint FK4A4584A7DA80AB67
+    foreign key (fieldset_est_union_europeenne_id)
+    references serrr_fieldset_est_union_europeenne;
+/*}}}*/
+
+CREATE FUNCTION migrate_standard_electoral_roll_registration_request() RETURNS void AS $$
+    DECLARE
+        serrr RECORD;
+    BEGIN
+        FOR serrr IN SELECT * FROM standard_electoral_roll_registration_request LOOP
+          INSERT INTO serrr_fieldset_est_union_europeenne (id, commune_ou_localite_precedente, pays_precedent, precision_nationalite, subdivision_administrative_precedente, type_election)
+          VALUES (nextval('hibernate_sequence'), serrr.commune_ou_localite_precedente, serrr.pays_precedent, serrr.precision_nationalite, serrr.subdivision_administrative_precedente, serrr.type_election);
+
+          INSERT INTO serrr_lieu_naissance (id, lieu_naissance_departement, lieu_naissance_pays, ville_naissance_code_postal)
+          VALUES (nextval('hibernate_sequence'), serrr.lieu_naissance_departement, serrr.lieu_naissance_pays, serrr.ville_naissance_code_postal);
+
+          INSERT INTO serrr_precedent_lieu_inscription (id, ancienne_commune, departement_ancienne_commune)
+          VALUES (nextval('hibernate_sequence'), serrr.ancienne_commune, serrr.departement_ancienne_commune);
+
+        UPDATE sports_associations_grant_request
+          SET (fieldset_est_union_europeenne_id, lieu_naissance_id, precedent_lieu_inscription_id) = (
+            (SELECT id FROM serrr_fieldset_est_union_europeenne ORDER BY id DESC LIMIT 1), (SELECT id FROM serrr_lieu_naissance ORDER BY id DESC LIMIT 1), (SELECT id FROM serrr_precedent_lieu_inscription ORDER BY id DESC LIMIT 1))
+          WHERE id = serrr.id;
+        END LOOP;
+    RETURN;
+END;
+$$ LANGUAGE plpgsql;
+
+SELECT migrate_standard_electoral_roll_registration_request();
+DROP FUNCTION migrate_standard_electoral_roll_registration_request();
+
+alter table standard_electoral_roll_registration_request drop column ancienne_commune;
+alter table standard_electoral_roll_registration_request drop column commune_ou_localite_precedente;
+alter table standard_electoral_roll_registration_request drop column departement_ancienne_commune;
+alter table standard_electoral_roll_registration_request drop column lieu_naissance_departement;
+alter table standard_electoral_roll_registration_request drop column lieu_naissance_pays;
+alter table standard_electoral_roll_registration_request drop column pays_precedent;
+alter table standard_electoral_roll_registration_request drop column precision_nationalite;
+alter table standard_electoral_roll_registration_request drop column subdivision_administrative_precedente;
+alter table standard_electoral_roll_registration_request drop column type_election;
+alter table standard_electoral_roll_registration_request drop column ville_naissance_code_postal;
 
