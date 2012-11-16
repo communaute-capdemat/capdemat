@@ -526,4 +526,20 @@ class FrontofficeRequestController {
             'records' : []
         ]
     }
+
+    /**
+     * Return business referential for client-side use
+     * @param label request type label
+     */
+    def referential = {
+        try {
+            def referential = requestServiceRegistry.getRequestService(params.label)?.businessReferential
+            render( text:(referential ?: []) as JSON
+                  , contentType: 'application/json')
+        } catch (Exception e) {
+            render( status:500
+                  , text:[status:'error', error_msg:message(code:'error.unexpected')] as JSON
+                  , contentType: 'application/json')
+        }
+    }
 }
