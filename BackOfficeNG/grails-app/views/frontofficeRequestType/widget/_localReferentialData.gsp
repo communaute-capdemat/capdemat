@@ -1,4 +1,5 @@
-<g:set var="pathJavaName" value="${wrapperJavaName == '' ? javaName : wrapperJavaName + '.' + javaName}" />
+<g:set var="pathJavaName" value="${wrapperJavaName == '' ? javaName :
+                                      (wrapperJavaName == null ? javaName : wrapperJavaName + '.' + javaName) }" />
 <g:set var="currentLrDatas" value="${wrapper != null ? wrapper[javaName].collect{it.name} : null}" />
 
 <g:if test="${lrTypes[javaName].isMultiple()}">
