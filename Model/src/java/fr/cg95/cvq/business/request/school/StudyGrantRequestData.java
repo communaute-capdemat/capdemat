@@ -852,7 +852,7 @@ public class StudyGrantRequestData implements Serializable {
     
       @MatchPattern(
         
-          pattern = "^\\d+(?:\\,\\d{1,2})?$",
+          pattern = "^[\\d+\\s?]+(?:(\\.|,)\\d{1,2})?$",
         
         
         profiles = {"taxHousehold"},

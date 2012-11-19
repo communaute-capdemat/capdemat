@@ -217,7 +217,7 @@
               </xs:annotation>
             </xs:element>
 
-            <xs:element name="Trustee" type="rsr:RsrTrusteeType">
+            <xs:element name="Trustee" type="rsr:RsrTrusteeType" minOccurs="0">
               <xs:annotation>
                 <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">
                   Informations conçernant les coordonnées de la personne dépositaire des clés du demandeur

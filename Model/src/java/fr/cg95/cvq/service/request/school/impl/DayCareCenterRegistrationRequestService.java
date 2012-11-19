@@ -30,10 +30,13 @@ public final class DayCareCenterRegistrationRequestService extends RequestServic
         DayCareCenterRegistrationRequest.conditions.put("informationPere.situationActuellePere", new EqualityChecker(ChoixSituationActuelle.AUTRE.name()));
         DayCareCenterRegistrationRequest.conditions.put("informationMere.estHorairesReguliersMere", new EqualityChecker("true"));
         DayCareCenterRegistrationRequest.conditions.put("informationPere.estHorairesReguliersPere", new EqualityChecker("true"));
-        DayCareCenterRegistrationRequest.conditions.put("choixTypeDatePlacementAccueilRegulier", new EqualityChecker(ChoixDatePlacement.CONNUE.name()));
+        DayCareCenterRegistrationRequest.conditions.put("datePlacementAccueilRegulier.choixTypeDatePlacementAccueilRegulier", new EqualityChecker(ChoixDatePlacement.CONNUE.name()));
+
         DayCareCenterRegistrationRequest.conditions.put("modeAccueil", new EqualityChecker("false"));
         DayCareCenterRegistrationRequest.conditions.put("choixHorairesAccueil",
                 new EqualityListChecker(Arrays.asList("estHorairesAccueilRegulier="+ChoixHorairesAccueilType.REGULIER.name(),"estHorairesAccueilIrregulier="+ChoixHorairesAccueilType.IRREGULIER.name())));
+
+        DayCareCenterRegistrationRequest.conditions.put("dccrrDatesPlacement.choixTypeDatePlacementAccueilRegulier", new EqualityChecker(ChoixDatePlacement.CONNUE.name()));
         DayCareCenterRegistrationRequest.conditions.put("dccrrMere.situationActuelleMere", new EqualityChecker(ChoixSituationActuelle.AUTRE.name()));
         DayCareCenterRegistrationRequest.conditions.put("dccrrPere.situationActuellePere", new EqualityChecker(ChoixSituationActuelle.AUTRE.name()));
         DayCareCenterRegistrationRequest.conditions.put("dccrrMere.estHorairesReguliersMere", new EqualityChecker("true"));

@@ -18,13 +18,17 @@ public class StandardElectoralRollRegistrationRequestService extends RequestServ
                 new EqualityChecker(SerrrSexeType.FEMININ.name()));
 
         StandardElectoralRollRegistrationRequest.conditions.put("nationalite",
-            new EqualityChecker(SerrrNationaliteType.RESSORTISSANT_U_E.name()));
+                new EqualityChecker(SerrrNationaliteType.RESSORTISSANT_U_E.name()));
 
-        StandardElectoralRollRegistrationRequest.conditions.put("typeElection",
+        StandardElectoralRollRegistrationRequest.conditions.put("fieldsetEstUnionEuropeenne.typeElection",
                 new EqualityChecker(SerrrTypeElectionType.ELECTION_EUROPEENNE.name()));
 
         StandardElectoralRollRegistrationRequest.conditions.put("situation",
                 new EqualityChecker(SerrrSituationType.CHANGEMENT_COMMUNE.name()));
+
+        //server side validation
+        StandardElectoralRollRegistrationRequest.conditions.put("serrrFieldsetEstUnionEuropeenne.typeElection",
+                new EqualityChecker(SerrrTypeElectionType.ELECTION_EUROPEENNE.name()));
     }
 
     @Override

@@ -66,7 +66,7 @@
   
 
   
-    <fieldset class="required">
+    <fieldset class="">
     <legend><g:message code="rsr.property.trustee.label" /></legend>
     
       <label for="trustee.trusteeLastName" class=""><g:message code="rsr.property.trusteeLastName.label" />   <span><g:message code="rsr.property.trusteeLastName.help" /></span></label>

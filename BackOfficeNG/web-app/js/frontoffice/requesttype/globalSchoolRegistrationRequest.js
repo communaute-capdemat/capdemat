@@ -100,8 +100,8 @@ zenexity.capdemat.tools.namespace("zenexity.capdemat.fong.requesttype");
             + ' de la poste ou votre rue est nouvelle et non référencée. Contactez votre mairie.',
 
       initSchools: function() {
-        var schoolSector = createSelect('idEcoleSecteur');
-        var schoolDerog = createSelect('idEcoleDerog');
+        var schoolSector = createSelect('ecoleSecteur.idEcoleSecteur');
+        var schoolDerog = createSelect('ecoleDerogation.idEcoleDerog');
 
         var childId = yud.get('subjectId').value;
         if (childId !== '') {

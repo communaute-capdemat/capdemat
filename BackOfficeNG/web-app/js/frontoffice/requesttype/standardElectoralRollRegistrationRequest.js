@@ -77,8 +77,8 @@ zenexity.capdemat.tools.namespace("zenexity.capdemat.fong.requesttype");
       // Hack to bypass no-reset in condition unfilled field
       removeTypeElection : function() {
         var stepForm = yud.get('stepForm');
-        stepForm['typeElection'][0].checked = false;
-        stepForm['typeElection'][1].checked = false;
+        stepForm['fieldsetEstUnionEuropeenne.typeElection'][0].checked = false;
+        stepForm['fieldsetEstUnionEuropeenne.typeElection'][1].checked = false;
 
         if (!!yud.get('hiddenTypeElection'))
           return;
@@ -90,7 +90,7 @@ zenexity.capdemat.tools.namespace("zenexity.capdemat.fong.requesttype");
         hiddenTypeElection.value = '';
         stepForm.appendChild(hiddenTypeElection);
 
-        yud.get('precisionNationalite').selectedIndex = 0;
+        yud.get('fieldsetEstUnionEuropeenne.precisionNationalite').selectedIndex = 0;
       }
     };
 

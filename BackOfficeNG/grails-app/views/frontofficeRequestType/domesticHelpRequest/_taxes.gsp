@@ -2,7 +2,7 @@
 
 
   
-    <fieldset class="required">
+    <fieldset class="">
     <legend><g:message code="dhr.property.dhrTaxesAmount.label" /></legend>
     
       <label for="dhrTaxesAmount.dhrIncomeTax" class=""><g:message code="dhr.property.dhrIncomeTax.label" />   <span><g:message code="dhr.property.dhrIncomeTax.help" /></span></label>

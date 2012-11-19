@@ -175,13 +175,6 @@ public class DhrIncomes implements Serializable {
     }
   
     
-      @NotNull(
-        
-        
-        profiles = {"resources"},
-        message = "dhrIncomesAnnualTotal"
-      )
-    
     private java.math.BigInteger dhrIncomesAnnualTotal;
 
     public void setDhrIncomesAnnualTotal(final java.math.BigInteger dhrIncomesAnnualTotal) {

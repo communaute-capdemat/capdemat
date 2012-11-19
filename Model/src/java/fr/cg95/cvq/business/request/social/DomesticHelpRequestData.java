@@ -593,13 +593,6 @@ public class DomesticHelpRequestData implements Serializable {
     }
   
     
-      @NotNull(
-        
-        
-        profiles = {"taxes"},
-        message = "dhrTaxesAmount"
-      )
-    
       @AssertValid(
         
         

@@ -230,6 +230,9 @@
     alter table individual_mapping 
         drop constraint FK19DDB92881C62393;
 
+    alter table individual_mapping 
+        drop constraint FK19DDB92859302132;
+
     alter table individual_role 
         drop constraint FK3C7D4E5CD4C3A2D8;
 
@@ -3785,6 +3788,11 @@
         add constraint FK19DDB92881C62393 
         foreign key (home_folder_mapping_id) 
         references home_folder_mapping;
+
+    alter table individual_mapping 
+        add constraint FK19DDB92859302132 
+        foreign key (individual_id) 
+        references individual;
 
     alter table individual_role 
         add constraint FK3C7D4E5CD4C3A2D8 

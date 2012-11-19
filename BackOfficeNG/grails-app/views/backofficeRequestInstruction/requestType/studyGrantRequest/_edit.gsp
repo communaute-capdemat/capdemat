@@ -114,7 +114,7 @@
             
               
               <dl>
-                <dt class="required">${message(code:'sgr.property.taxHouseholdIncome.label')} * :</dt><dd id="taxHouseholdIncome" class="action-editField validate-regex required-true i18n-sgr.property.taxHouseholdIncome" regex="^\d+(?:\,\d{1,2})?$"><span>${formatNumber(number: rqt?.taxHouseholdIncome, type: 'number')}</span></dd>
+                <dt class="required">${message(code:'sgr.property.taxHouseholdIncome.label')} * :</dt><dd id="taxHouseholdIncome" class="action-editField validate-regex required-true i18n-sgr.property.taxHouseholdIncome" regex="^[\d+\s?]+(?:(\.|,)\d{1,2})?$"><span>${formatNumber(number: rqt?.taxHouseholdIncome, type: 'number')}</span></dd>
               </dl>
               
             

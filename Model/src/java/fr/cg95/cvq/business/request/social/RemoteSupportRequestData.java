@@ -373,13 +373,6 @@ public class RemoteSupportRequestData implements Serializable {
     }
   
     
-      @NotNull(
-        
-        
-        profiles = {"contact"},
-        message = "trustee"
-      )
-    
       @AssertValid(
         
         

@@ -150,7 +150,7 @@
             
               
               <h3><g:message code="rsr.property.trustee.label" /></h3>
-              <dl class="required">
+              <dl class="">
                 
                   <dt class="">${message(code:'rsr.property.trusteeLastName.label')} :</dt><dd id="trusteeLastName" class="action-editField validate-lastName i18n-rsr.property.trusteeLastName maxLength-38" ><span>${rqt.trustee?.trusteeLastName}</span></dd>
                 

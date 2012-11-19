@@ -72,10 +72,10 @@ zenexity.capdemat.tools.namespace("zenexity.capdemat.fong.requesttype");
     };
 
     var changeLayout = function() {
-      zct.each(yus.query('legend, label[for^="label"]'), function() {
+      zct.each(yus.query('legend, label[for*="label"]'), function() {
         yud.addClass(this, 'unactive');
       });
-      zct.each(yus.query('label[for^="id"]'), function() {
+      zct.each(yus.query('label[for*="id"]'), function() {
         this.innerHTML = yud.getPreviousSibling(this).innerHTML + ' *';
       });
     };
@@ -95,37 +95,37 @@ zenexity.capdemat.tools.namespace("zenexity.capdemat.fong.requesttype");
       // If we come back from step 2, save last line and stop values.
       var lastLineValue, lastStopValue;
       if (subject.value !== '') {
-        lastLineValue = yud.get('idLigne').value;
-        lastStopValue = yud.get('idArret').value;
+        lastLineValue = yud.get('ligne.idLigne').value;
+        lastStopValue = yud.get('arret.idArret').value;
       }
 
-      yud.get('idLigne').parentNode.replaceChild(new Selector('idLigne'), yud.get('idLigne'));
-      yud.get('idLigne').updateLabelInput();
-      yud.get('idArret').parentNode.replaceChild(new Selector('idArret'), yud.get('idArret'));
-      yud.get('idArret').updateLabelInput();
+      yud.get('ligne.idLigne').parentNode.replaceChild(new Selector('ligne.idLigne'), yud.get('ligne.idLigne'));
+      yud.get('ligne.idLigne').updateLabelInput();
+      yud.get('arret.idArret').parentNode.replaceChild(new Selector('arret.idArret'), yud.get('arret.idArret'));
+      yud.get('arret.idArret').updateLabelInput();
 
       // Then refill selectors and reselect last values.
       if (subject.value !== '') {
-        yud.get('idLigne').fill(linesCallUrlPrefix + '/?requestId=' + requestId + '&childId=' + subject.value,
+        yud.get('ligne.idLigne').fill(linesCallUrlPrefix + '/?requestId=' + requestId + '&childId=' + subject.value,
             select, [lastLineValue]);
-        yud.get('idArret').fill(stopsCallUrlPrefix + '/?requestId=' + requestId + '&childId=' + subject.value + '&lineId=' + lastLineValue,
+        yud.get('arret.idArret').fill(stopsCallUrlPrefix + '/?requestId=' + requestId + '&childId=' + subject.value + '&lineId=' + lastLineValue,
             select, [lastStopValue]);
       }
 
       yue.on('subjectId', 'change', function(event) {
         if (this.value !== '') {
-          yud.get('idLigne').fill(linesCallUrlPrefix + '/?requestId=' + requestId + '&childId=' + subject.value);
+          yud.get('ligne.idLigne').fill(linesCallUrlPrefix + '/?requestId=' + requestId + '&childId=' + subject.value);
         } else {
-          yud.get('idLigne').empty();
-          yud.get('idArret').empty();
+          yud.get('ligne.idLigne').empty();
+          yud.get('arret.idArret').empty();
         }
       });
 
-      yue.on('idLigne', 'change', function(event) {
+      yue.on('ligne.idLigne', 'change', function(event) {
         if (this.value !== '') {
-          yud.get('idArret').fill(stopsCallUrlPrefix + '/?requestId=' + requestId + '&childId=' + subject.value + '&lineId=' + this.value);
+          yud.get('arret.idArret').fill(stopsCallUrlPrefix + '/?requestId=' + requestId + '&childId=' + subject.value + '&lineId=' + this.value);
         } else {
-          yud.get('idArret').empty();
+          yud.get('arret.idArret').empty();
         }
       });
     };

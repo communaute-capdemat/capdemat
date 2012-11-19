@@ -226,7 +226,7 @@
                 
                   <dt class="">${message(code:'dhr.property.dhrNetIncome.label')} :</dt><dd id="dhrNetIncome" class="action-editField validate-positiveInteger i18n-dhr.property.dhrNetIncome" ><span>${rqt.dhrSpouseIncomes?.dhrNetIncome}</span></dd>
                 
-                  <dt class="required">${message(code:'dhr.property.dhrIncomesAnnualTotal.label')} * :</dt><dd id="dhrIncomesAnnualTotal" class="action-editField validate-positiveInteger required-true i18n-dhr.property.dhrIncomesAnnualTotal" ><span>${rqt.dhrSpouseIncomes?.dhrIncomesAnnualTotal}</span></dd>
+                  <dt class="">${message(code:'dhr.property.dhrIncomesAnnualTotal.label')} :</dt><dd id="dhrIncomesAnnualTotal" class="action-editField validate-positiveInteger i18n-dhr.property.dhrIncomesAnnualTotal" ><span>${rqt.dhrSpouseIncomes?.dhrIncomesAnnualTotal}</span></dd>
                 
               </dl>
               
@@ -316,7 +316,7 @@
                 
                   <dt class="">${message(code:'dhr.property.dhrNetIncome.label')} :</dt><dd id="dhrNetIncome" class="action-editField validate-positiveInteger i18n-dhr.property.dhrNetIncome" ><span>${rqt.dhrRequesterIncomes?.dhrNetIncome}</span></dd>
                 
-                  <dt class="required">${message(code:'dhr.property.dhrIncomesAnnualTotal.label')} * :</dt><dd id="dhrIncomesAnnualTotal" class="action-editField validate-positiveInteger required-true i18n-dhr.property.dhrIncomesAnnualTotal" ><span>${rqt.dhrRequesterIncomes?.dhrIncomesAnnualTotal}</span></dd>
+                  <dt class="">${message(code:'dhr.property.dhrIncomesAnnualTotal.label')} :</dt><dd id="dhrIncomesAnnualTotal" class="action-editField validate-positiveInteger i18n-dhr.property.dhrIncomesAnnualTotal" ><span>${rqt.dhrRequesterIncomes?.dhrIncomesAnnualTotal}</span></dd>
                 
               </dl>
               
@@ -360,7 +360,7 @@
             
               
               <h3><g:message code="dhr.property.dhrTaxesAmount.label" /></h3>
-              <dl class="required">
+              <dl class="">
                 
                   <dt class="">${message(code:'dhr.property.dhrIncomeTax.label')} :</dt><dd id="dhrIncomeTax" class="action-editField validate-positiveInteger i18n-dhr.property.dhrIncomeTax" ><span>${rqt.dhrTaxesAmount?.dhrIncomeTax}</span></dd>
                 
