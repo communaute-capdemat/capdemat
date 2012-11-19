@@ -86,9 +86,13 @@
               zcf.Condition.run, zcf.Condition, true);
       },
       
+      /**
+       * @param e: either an event or an element
+       */
       run : function(e) {
+          var element = e instanceof Event ? yue.getTarget(e) : e;
           reset();
-          zcf.Condition.set(e);
+          zcf.Condition.set(element);
           if (!zcf.Condition.triggers.length) return;
           zcf.Condition.test();
       },
@@ -120,9 +124,8 @@
           });
       },
 
-      set : function(e) {
-        var targetEl = yue.getTarget(e);
-        zct.each (targetEl.className.split(' '), function() {
+      set : function(el) {
+        zct.each (el.className.split(' '), function() {
           var trigger = /condition-(\w+)-trigger/i.exec(this);
           if (trigger) {
             zcf.Condition.addTriggers(trigger[1], getTriggerEls(trigger[0]));
