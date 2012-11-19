@@ -4,6 +4,7 @@ import fr.cg95.cvq.business.authority.Agent
 import fr.cg95.cvq.business.authority.RecreationCenter
 import fr.cg95.cvq.business.authority.School
 import fr.cg95.cvq.business.authority.SiteProfile
+import fr.cg95.cvq.exception.CvqModelException;
 
 import fr.cg95.cvq.service.authority.IAgentService
 import fr.cg95.cvq.service.authority.IRecreationCenterService
@@ -70,13 +71,20 @@ class BackofficeReferentialController {
                 def selfLoginChange = false
                 if (params.profile) {
                     def currentAgent = agentService.getByLogin(session.currentUser)
-                    selfLoginChange = (Long.valueOf(params.id) == currentAgent.id && currentAgent.login != params.login)
+                    def isCurrentAgent = params.getLong('id') == currentAgent.id
+                    def isSameLogin = params.login == currentAgent.login
+                    selfLoginChange = isCurrentAgent && !isSameLogin
+
+                    // Prevent admin to assign its login to another agent
+                    if (!isCurrentAgent && isSameLogin) {
+                        throw new CvqModelException("message.updateSelfLoginFail");
+                    }
                 }
                 bind(agent)
+                agentService.modify(agent)
                 if (selfLoginChange) {
                     session.currentUser = params.login
                 }
-                agentService.modify(agent)
                 codeString = "message.updateDone"
             } else {
                 agent = new Agent()
