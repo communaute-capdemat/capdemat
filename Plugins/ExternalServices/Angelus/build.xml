@@ -55,7 +55,7 @@
   </target>
 
   <target name="dist"
-          depends="compile, compiletests"
+          depends="compile"
           description="Build the Angelus plugin jar">
     <jar compress="on"
          jarfile="${basedir}/${build.archives.dir}/${application.name}-${module.name}-${application.version}.jar"
@@ -78,22 +78,5 @@
       file="${basedir}/${build.archives.dir}/${application.name}-${module.name}-${application.version}.jar"/>
   </target>
 
-  <!-- =================================================================== -->
-  <!--                     Tests                                           -->
-  <!-- =================================================================== -->
-
-  <target name="compiletests" depends="compile">
-    <javac optimize="on"
-           debug="on"
-           deprecation="on"
-           verbose="off"
-           srcdir="${basedir}/${test.java.dir}"
-           includes="**/*.java"
-           destdir="${basedir}/${build.test.dir}">
-      <classpath refid="classpath.compile.test" />
-    </javac>
-    <!--  add other directories and files here (eg, test data) -->
-  </target>
-
-
 </project>
+
