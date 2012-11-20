@@ -655,6 +655,8 @@
         active bool,
         preferences bytea,
         email varchar(255),
+        validation_code varchar(100),
+        validation_code_expiration timestamp,
         primary key (id)
     );
 
@@ -1502,6 +1504,7 @@
         external_home_folder_id varchar(255),
         external_individual_id varchar(255),
         external_item_id varchar(255),
+        external_notification_status varchar(32),
         external_service_label varchar(255),
         creation_date timestamp,
         max_buy int4,

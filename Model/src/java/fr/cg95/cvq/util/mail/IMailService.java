@@ -47,4 +47,7 @@ public interface IMailService {
             final String body,
             Map<String, byte[]> attachments)
         throws CvqException;
+
+    String prepareBodyFromAsset(final String fileName, final Map<String, String> variables);
+
 }
