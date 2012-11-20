@@ -350,13 +350,13 @@
 <% elementList.each { element -> %>
   <% if (element.typeClass == "COLLECTION") { %>
     <div class="collection ${element.listenerConditionsClass} summary-box">
-      <h4 class="${element.listenerConditionsClass}"><g:message code="${element.i18nPrefixCode}.label" /> 
+      <h4 class="${element.listenerConditionsClass}">
         <span><g:message code="${element.i18nPrefixCode}.help" /></span>
       </h4>
       <p>
-        <g:message code="request.message.howToAddCollectionItem" />
+        <g:message code="${element.i18nPrefixCode}.message.howToAddCollectionItem" default="\${message(code:'request.message.howToAddCollectionItem')}" />
         <a href="\${createLink(controller : 'frontofficeRequest', action : 'edit', params:['id':rqt.id, 'currentStep':'${step.name}', 'currentCollection':'${element.javaFieldName}', 'collectionIndex':(rqt.${element.javaFieldName} ? rqt.${element.javaFieldName}.size() : 0)])}" style="font-size:1.3em;" />
-          \${message(code:'request.action.newCollectionItem')}
+          \${message(code:'${element.i18nPrefixCode}.action.newCollectionItem', default:message(code:'request.action.newCollectionItem'))}
         </a>
       </p>
     <g:each var="it" in="\${rqt.${element.javaFieldName}}" status="index">
@@ -365,10 +365,10 @@
         <dt class="head"><g:message code="${element.i18nPrefixCode}.label" /> : \${index + 1}</dt>
         <dd class="head">
           <a href="\${createLink(controller : 'frontofficeRequest', action : 'edit', params:['id':rqt.id, 'currentStep':'${step.name}', 'currentCollection':'${element.javaFieldName}', 'collectionIndex':index])}">
-           \${message(code:'request.action.editCollectionItem')}
+           \${message(code:'${element.i18nPrefixCode}.action.editCollectionItem', default:message(code:'request.action.editCollectionItem'))}
          </a>&nbsp;
          <a href="\${createLink(controller : 'frontofficeRequest', action : 'collectionRemove', params:['id':rqt.id, 'currentStep':'${step.name}', 'currentCollection':'${element.javaFieldName}', 'collectionIndex':index])}">
-           \${message(code:'request.action.deleteCollectionItem')}
+           \${message(code:'${element.i18nPrefixCode}.action.deleteCollectionItem', default:message(code:'request.action.deleteCollectionItem'))}
          </a>
         </dd>
     <% element.elements.each { subElement -> %>

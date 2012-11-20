@@ -222,13 +222,12 @@
 %>
   <g:set var="currentCollectionItem" value="\${rqt?.${element.javaFieldName}.size() > collectionIndex ? rqt.${element.javaFieldName}.get(collectionIndex) : null}" />
   <h4>
-    \${message(code:'${element.i18nPrefixCode}.label')}
     <span>
       <g:if test="\${currentCollectionItem != null}">
-        \${message(code:'request.message.editCollectionItem', args:[collectionIndex + 1])}
+        \${message(code:'${element.i18nPrefixCode}.message.editCollectionItem', default:message(code:'request.message.editCollectionItem'))}\${collectionIndex + 1}
       </g:if>
       <g:else>
-        \${message(code:'request.message.addCollectionItem')}
+        \${message(code:'${element.i18nPrefixCode}.message.addCollectionItem', default:message(code:'request.message.addCollectionItem'))}
       </g:else>
     </span>
   </h4>
@@ -237,8 +236,8 @@
   <% } %>
   <input type="hidden" name="currentCollection" value="\${currentCollection}" />
   <input type="hidden" name="collectionIndex" value="\${collectionIndex}" />
-  <input type="submit" id="collectionSave" name="collectionSave" value="\${message(code:'action.' + (currentCollectionItem != null ? 'save' : 'add'))}" />
+  <input type="submit" id="collectionSave" name="collectionSave" value="\${message(code:'${element.i18nPrefixCode}.action.' + (currentCollectionItem != null ? 'save' : 'add'), default:message(code:'action.' + (currentCollectionItem != null ? 'save' : 'add')))}" />
   <a href="\${createLink(controller : 'frontofficeRequest', action : 'edit', params:['id': rqt.id, 'currentStep': '${step.name}'])}">
-    \${message(code:'request.action.backToMainForm')}
+    \${message(code:'${element.i18nPrefixCode}.action.backToMainForm', default:message(code:'request.action.backToMainForm'))}
   </a>
   
