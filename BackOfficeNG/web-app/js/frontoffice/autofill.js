@@ -105,6 +105,13 @@ zenexity.capdemat.tools.namespace('zenexity.capdemat.fong');
           });
           zct.val(yud.get('autofillContainer'), ylj.stringify(zcf.Autofill.fields)||[]);
           zct.doAjaxFormSubmitCall('autofillForm', [], function(o){
+            // Clear listeners fields
+            zct.each(zcf.Autofill.listeners, function(key, value) {
+              zct.each(value, function(i, el) {
+                zct.val(el, '')
+              })
+            })
+            // Fill listeners fields
             zct.each(ylj.parse(o.responseText), function(i, el) {
               zct.each(zcf.Autofill.listeners[i], function(j) {
                 zct.val(zcf.Autofill.listeners[i][j], el);
