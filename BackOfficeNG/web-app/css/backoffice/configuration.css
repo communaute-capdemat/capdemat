@@ -426,8 +426,19 @@ select { display: block; }
 #emails .state-form {
   padding: 5px 0 0 0;
 }
-#emails #save {
+#emails input {
   float: right;
-  margin: 5px 0;
+  margin: 5px 0 5px 5px;
   font-size: 1.2em;
+  padding: 0 2px;
+}
+.cke_combo__variables .cke_combo_text {
+  width: 117px;
+}
+.cke_combo__variables .cke_combo_button {
+  margin-right: 0;
+}
+.cke_combopanel__variables {
+  width:  183px !important;
+  height: 400px !important;
 }

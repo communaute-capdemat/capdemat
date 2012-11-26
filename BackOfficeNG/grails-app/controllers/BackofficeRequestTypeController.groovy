@@ -6,6 +6,7 @@ import fr.cg95.cvq.business.request.RequestType
 import fr.cg95.cvq.business.request.Requirement
 import fr.cg95.cvq.business.request.RequestForm
 import fr.cg95.cvq.business.request.RequestState
+import fr.cg95.cvq.business.request.RequestVariable
 import fr.cg95.cvq.business.authority.LocalAuthorityResource.Type
 import fr.cg95.cvq.business.authority.LocalAuthorityResource.Version
 import fr.cg95.cvq.security.SecurityContext;
@@ -480,11 +481,25 @@ class BackofficeRequestTypeController {
     def mails = {
         def id = Long.valueOf(params.id)
         def requestType = requestTypeService.getRequestTypeById(id)
+        def dir = CapdematUtils.requestTypeLabelAsDir(requestType.label)
+        def file
+        def enabled = false
+        def code
 
-        def states = RequestState.values().inject([:], { map, state ->
-            def code = 'request.state.' + state.name().toLowerCase()
-            map[code] = message(code:code)
-            return map
+        def states = RequestState.values().inject([], { array, state ->
+            file = localAuthorityRegistry.getLocalAuthorityResourceFile(
+                Type.HTML,
+                'templates/mails/notification/' + dir + '/' + state.toString().toUpperCase(),
+                false)
+            try {
+                enabled = file.exists()
+            } catch (SecurityException se) {
+                log.error "No read rights on file " + state.toString().toUpperCase() + ".html"
+            }
+            code = 'request.state.' + state.toString().toLowerCase()
+
+            array.add([code:code, label:message(code:code), enabled:enabled])
+            return array
         })
 
         render(
@@ -530,21 +545,60 @@ class BackofficeRequestTypeController {
 <head>
   <title></title>
 </head>
-<body></body>
+<body>&nbsp;</body>
 </html>
 """
+        def texts
         if (html && html != emptyhtml) {
           localAuthorityRegistry.saveLocalAuthorityResource(
               Type.HTML,
               'templates/mails/notification/' + dir + '/' + state,
               html.getBytes('UTF-8'))
-          render message(code:'message.updateDone')
+
+          texts = [ option:message(code:params.state) + ' (' + message(code:'requestType.configuration.mails.enabled') + ')'
+                  , notif:message(code:'requestType.configuration.mails.notify.enabled', args:[message(code:params.state)])
+                  ]
+          render([ id: params.state
+                 , enabled: true
+                 , texts: texts
+                 ] as JSON)
         } else {
           localAuthorityRegistry.removeLocalAuthorityResource(
               Type.HTML,
               'templates/mails/notification/' + dir + '/' + state)
-          render message(code:'message.updateDone')
+
+          texts = [ option:message(code:params.state)
+                  , notif:message(code:'requestType.configuration.mails.notify.disabled', args:[message(code:params.state)])
+                  ]
+          render([ id: params.state
+                 , enabled: false
+                 , texts: texts
+                 ] as JSON)
         }
+    }
+
+    /**
+     * Return groups of mail variables, in JSON:
+     * [ { label: 'Sujet'
+     *   , variables: [ {label: 'Prénom', variable:'RR_FNAME'} ]
+     *   }
+     * ]
+     */
+    def variables = {
+        def groups = [], variables, grouplabel, variablelabel
+
+        RequestVariable.grouped().each { group ->
+            grouplabel = message(code:'request.variable.group.' + group.key.toString().toLowerCase())
+
+            variables = group.value.inject([], { array, variable ->
+                variablelabel = message(code:'request.variable.' + variable.toString().toLowerCase())
+                array.add([label:variablelabel, variable:'#{' + variable.toString() + '}'])
+                return array
+            })
+
+            groups.add([label:grouplabel, variables:variables])
+        }
+        render groups as JSON
     }
 
     def ticketBooking = {
