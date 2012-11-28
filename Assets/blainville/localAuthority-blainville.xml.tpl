@@ -75,6 +75,63 @@
         <entry>
           <key>
             <ref bean="fakeExternalService" />
+		  </key>
+          <bean class="fr.cg95.cvq.external.ExternalServiceBean">
+            <property name="requestTypes">
+              <list>
+                <value>Perischool Activity Registration</value>
+                <value>Birth Details</value>
+                <value>Death Details</value>
+                <value>Marriage Details</value>
+                <value>Iconito Ps Subscription</value>
+                <value>Electoral Roll Registration</value>
+              </list>
+            </property>
+            <property name="password">
+              <value>blainvillepwd</value>
+            </property>
+            <property name="serviceProperties">
+              <map>
+                <entry>
+                  <key><value>baseUrl</value></key>
+                  <value></value>
+                </entry>
+              </map>
+            </property>
+          </bean>
+        </entry>
+        <!--<entry>
+          <key>
+            <ref bean="iconitoPeriscolaireExternalService" />
+          </key>
+          <bean class="fr.cg95.cvq.external.ExternalServiceBean">
+            <property name="requestTypes">
+              <list>
+                <value>Perischool Activity Registration</value>
+                <value>Birth Details</value>
+                <value>Death Details</value>
+                <value>Marriage Details</value>
+                <value>Iconito Ps Subscription</value>
+                <value>Electoral Roll Registration</value>
+              </list>
+            </property>
+            <property name="password">
+              <value>blainvillepwd</value>
+            </property>
+            <property name="serviceProperties">
+              <map>
+                <entry>
+                  <key><value>baseUrl</value></key>
+                  <value></value>
+                </entry>
+              </map>
+            </property>
+          </bean>
+        </entry>
+        <entry>-->
+        <!--<entry>
+          <key>
+            <ref bean="horanetExternalService" />
           </key>
           <bean class="fr.cg95.cvq.external.ExternalServiceBean">
             <property name="requestTypes">
@@ -91,6 +148,24 @@
                 <entry>
                   <key><value>businessInformationProvider</value></key>
                   <value>true</value>
+                  <key><value>endPoint</value></key>
+                  <value>http://80.118.178.14/WebServiceCG95/CVQ.asmx</value>
+                </entry>
+                <entry>
+                  <key><value>endPoint2</value></key>
+                  <value>http://80.118.178.14/WebServiceCG95/CVQ2.asmx</value>
+                </entry>
+                <entry>
+                  <key><value>endPoint3</value></key>
+                  <value>http://80.118.178.14/WS-WebCT/CVQ3.asmx</value>
+                </entry>
+                <entry>
+                  <key><value>login</value></key>
+                  <value>test</value>
+                </entry>
+                <entry>
+                  <key><value>password</value></key>
+                  <value>test</value>
                 </entry>
                 <entry>
                   <key><value>sendHomeFolderCreation</value></key>
@@ -107,7 +182,7 @@
               </map>
             </property>
           </bean>
-        </entry>
+        </entry>-->
         <entry>
           <key>
             <ref bean="fakePointExternalService" />
@@ -187,6 +262,14 @@
         </entry>
       </map>
     </property>
+    <!--
+    <property name="externalApplicationProperties">
+      <map>
+        <entry key="booker.url" value="http://booker:9001/blainville/"/>
+        <entry key="booker.logouturl" value="http://booker:9001/logout"/>
+      </map>
+    </property>
+    -->
   </bean>
 
 </beans>

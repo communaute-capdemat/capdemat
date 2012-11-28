@@ -6,7 +6,6 @@ import java.io.InputStream;
 import java.io.StringWriter;
 import java.lang.reflect.Method;
 import java.math.BigDecimal;
-import java.net.MalformedURLException;
 import java.rmi.RemoteException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -144,7 +143,7 @@ public class HoranetService extends ConfigurableExternalProviderServiceAdapter i
         else
             return defaultValue;
     }
-    
+
     public final String sendRequest(XmlObject requestXml)
         throws CvqException {
 
@@ -836,17 +835,17 @@ public class HoranetService extends ConfigurableExternalProviderServiceAdapter i
         }
     }
 
+    @Override
     public final void checkConfiguration(final ExternalServiceBean externalServiceBean, String localAuthorityName)
         throws CvqConfigurationException {
 
-        // for now, let's authorize a default global configuration (transition period)
-//        if (externalServiceBean.getProperty("endPoint") == null 
-//                || externalServiceBean.getProperty("endPoint2") == null
-//                || externalServiceBean.getProperty("endPoint3") == null
-//                || externalServiceBean.getProperty("login") == null
-//                || externalServiceBean.getProperty("password") == null)
-//            throw new CvqConfigurationException("Missing one of the required configuration parameters : " 
-//                    + " endPoint, endPoint2, endPoint3, login or password");
+        if (externalServiceBean.getProperty("endPoint") == null
+                || externalServiceBean.getProperty("endPoint2") == null
+                || externalServiceBean.getProperty("endPoint3") == null
+                || externalServiceBean.getProperty("login") == null
+                || externalServiceBean.getProperty("password") == null)
+            throw new CvqConfigurationException("Missing one of the required configuration parameters : "
+                    + " endPoint, endPoint2, endPoint3, login or password");
 
         localAuthoritySpecificConfiguration.put(localAuthorityName, externalServiceBean);
     }
@@ -960,26 +959,6 @@ public class HoranetService extends ConfigurableExternalProviderServiceAdapter i
         String propertySpecificValue = (String)
             localAuthoritySpecificConfiguration.get(SecurityContext.getCurrentSite().getName()).getProperty(propertyName); 
         return propertySpecificValue != null ? propertySpecificValue : globalConfiguration.get(propertyName);
-    }
-
-    public final void setEndPoint(final String endPoint) throws MalformedURLException {
-        this.globalConfiguration.put("endPoint", endPoint);
-    }
-
-    public final void setEndPoint2(final String endPoint2) throws MalformedURLException {
-        this.globalConfiguration.put("endPoint2", endPoint2);
-    }
-
-    public final void setEndPoint3(final String endPoint3) throws MalformedURLException {
-        this.globalConfiguration.put("endPoint3", endPoint3);
-    }
-
-    public final void setLogin(final String login) {
-        this.globalConfiguration.put("login", login);
-    }
-
-    public final void setPassword(final String password) {
-        this.globalConfiguration.put("password", password);
     }
 
     public void setUserSearchService(IUserSearchService userSearchService) {
@@ -1314,6 +1293,7 @@ public class HoranetService extends ConfigurableExternalProviderServiceAdapter i
                 sitesproduits = ws.getSitesProduits( postalCode
                                                    , msrrId
                                                    , externalCapDematId
+                                                   , getConfigurationProperty("endPoint3")
                                                    )
                                   .get();
             } catch (Exception e) {
@@ -1358,6 +1338,7 @@ public class HoranetService extends ConfigurableExternalProviderServiceAdapter i
                 sitesproduits = ws.getSitesProduits( postalCode
                                                    , msrrId
                                                    , externalCapDematId
+                                                   , getConfigurationProperty("endPoint3")
                                                    )
                                   .get();
             } catch (Exception e) {
@@ -1410,6 +1391,7 @@ public class HoranetService extends ConfigurableExternalProviderServiceAdapter i
                                                               , msrrId
                                                               , externalCapDematId
                                                               , productId
+                                                              , getConfigurationProperty("endPoint3")
                                                               )
                                   .get();
             } catch (Exception e) {
@@ -1440,5 +1422,4 @@ public class HoranetService extends ConfigurableExternalProviderServiceAdapter i
         logger.debug("getSegments(): return " + list.size() + " segments.");
         return list;
     }
->>>>>>> 8b2ed9d... [Evo][ES][Horanet] Implement IActivityRegistrationProviderService
 }

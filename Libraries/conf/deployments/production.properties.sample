@@ -49,13 +49,6 @@ plugins.externalservices.clever.username=toto
 plugins.externalservices.clever.password=titi
 plugins.externalservices.clever.enabled=false
 
-# ExternalServices - Horanet
-plugins.externalservices.horanet.end_point=http://80.118.178.14/WebServiceCG95/CVQ.asmx
-plugins.externalservices.horanet.end_point2=http://80.118.178.14/WebServiceCG95/CVQ2.asmx
-plugins.externalservices.horanet.end_point3=http://80.118.178.14/WS-WebCT/CVQ3.asmx
-plugins.externalservices.horanet.login=test
-plugins.externalservices.horanet.password=test
-
 # ExternalServices - Generic SOAP version
 plugins.externalservices.soap.load_invoice_details_uri=http://localhost:8090/PaymentModule/webservice
 plugins.externalservices.soap.load_account_details_uri=http://localhost:8090/PaymentModule/webservice

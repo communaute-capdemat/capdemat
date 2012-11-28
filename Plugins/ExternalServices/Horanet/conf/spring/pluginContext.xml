@@ -4,18 +4,12 @@
 <beans>
 
   <bean id="ws" class="com.zenexity.booker.ws.WSClient">
-    <constructor-arg index="0" value="${plugins.externalservices.horanet.end_point3}" />
   </bean>
 
   <bean id="horanetExternalService"
         class="fr.capwebct.capdemat.plugins.externalservices.horanet.service.HoranetService"
         parent="externalProviderServiceAdapter">
     <property name="label" value="Horanet" />
-    <property name="endPoint" value="${plugins.externalservices.horanet.end_point}" />
-    <property name="endPoint2" value="${plugins.externalservices.horanet.end_point2}" />
-    <property name="endPoint3" value="${plugins.externalservices.horanet.end_point3}" />
-    <property name="login" value="${plugins.externalservices.horanet.login}" />
-    <property name="password" value="${plugins.externalservices.horanet.password}" />
     <property name="userSearchService" ref="userSearchService" />
     <property name="externalHomeFolderService" ref="externalHomeFolderService" />
     <property name="localAuthorityRegistry" ref="localAuthorityRegistry" />
