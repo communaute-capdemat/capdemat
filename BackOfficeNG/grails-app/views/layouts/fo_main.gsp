@@ -10,7 +10,7 @@
     <g:render template="/shared/fo_resources" />
     <g:layoutHead />
   </head>
-  <body>
+  <body class="yui-skin-sam">
   
    <div id="doc4" class="yui-t4 yui-skin-fong">
    
