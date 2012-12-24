@@ -155,7 +155,7 @@
             <ul class="yes-no required condition-isSpouseNonEuropean-filled ${rqt.stepStates['spouse'].invalidFields.contains('dhrSpouseIsFrenchResident') ? 'validation-failed' : ''}">
               <g:each in="${[true,false]}">
               <li>
-                <input type="radio" id="dhrSpouseIsFrenchResident_${it ? 'yes' : 'no'}" class="required condition-isSpouseNonEuropean-filled  validate-one-required boolean" title="" value="${it}" name="dhrSpouseIsFrenchResident" ${it == rqt.dhrSpouseIsFrenchResident ? 'checked="checked"': ''} />
+                <input type="radio" id="dhrSpouseIsFrenchResident_${it ? 'yes' : 'no'}" class="required condition-isSpouseNonEuropean-filled  validate-one-required boolean" title="" value="${it}" name="dhrSpouseIsFrenchResident" ${ rq ?  (it == rqt.dhrSpouseIsFrenchResident ? 'checked="checked"': '') : (it == false ? 'checked="checked"': '') } />
                 <label for="dhrSpouseIsFrenchResident_${it ? 'yes' : 'no'}"><g:message code="message.${it ? 'yes' : 'no'}" /></label>
               </li>
               </g:each>
@@ -174,7 +174,7 @@
             <ul class="yes-no required ${rqt.stepStates['spouse'].invalidFields.contains('dhrIsSpouseRetired') ? 'validation-failed' : ''}">
               <g:each in="${[true,false]}">
               <li>
-                <input type="radio" id="dhrIsSpouseRetired_${it ? 'yes' : 'no'}" class="required condition-isSpouseRetired-trigger  validate-one-required boolean" title="" value="${it}" name="dhrIsSpouseRetired" ${it == rqt.dhrIsSpouseRetired ? 'checked="checked"': ''} />
+                <input type="radio" id="dhrIsSpouseRetired_${it ? 'yes' : 'no'}" class="required condition-isSpouseRetired-trigger  validate-one-required boolean" title="" value="${it}" name="dhrIsSpouseRetired" ${ rq ?  (it == rqt.dhrIsSpouseRetired ? 'checked="checked"': '') : (it == false ? 'checked="checked"': '') } />
                 <label for="dhrIsSpouseRetired_${it ? 'yes' : 'no'}"><g:message code="message.${it ? 'yes' : 'no'}" /></label>
               </li>
               </g:each>

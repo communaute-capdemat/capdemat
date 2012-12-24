@@ -62,7 +62,7 @@
             <ul class="yes-no  ${rqt.stepStates['subject'].invalidFields.contains('estHorairesReguliersMere') ? 'validation-failed' : ''}">
               <g:each in="${[true,false]}">
               <li>
-                <input type="radio" id="estHorairesReguliersMere_${it ? 'yes' : 'no'}" class="condition-estHorairesReguliersMere-trigger  validate-one-required boolean" title="" value="${it}" name="estHorairesReguliersMere" ${it == rqt.estHorairesReguliersMere ? 'checked="checked"': ''} />
+                <input type="radio" id="estHorairesReguliersMere_${it ? 'yes' : 'no'}" class="condition-estHorairesReguliersMere-trigger  validate-one-required boolean" title="" value="${it}" name="estHorairesReguliersMere" ${ rq ?  (it == rqt.estHorairesReguliersMere ? 'checked="checked"': '') : (it == true ? 'checked="checked"': '') } />
                 <label for="estHorairesReguliersMere_${it ? 'yes' : 'no'}"><g:message code="message.${it ? 'yes' : 'no'}" /></label>
               </li>
               </g:each>
@@ -145,7 +145,7 @@
             <ul class="yes-no  ${rqt.stepStates['subject'].invalidFields.contains('estHorairesReguliersPere') ? 'validation-failed' : ''}">
               <g:each in="${[true,false]}">
               <li>
-                <input type="radio" id="estHorairesReguliersPere_${it ? 'yes' : 'no'}" class="condition-estHorairesReguliersPere-trigger  validate-one-required boolean" title="" value="${it}" name="estHorairesReguliersPere" ${it == rqt.estHorairesReguliersPere ? 'checked="checked"': ''} />
+                <input type="radio" id="estHorairesReguliersPere_${it ? 'yes' : 'no'}" class="condition-estHorairesReguliersPere-trigger  validate-one-required boolean" title="" value="${it}" name="estHorairesReguliersPere" ${ rq ?  (it == rqt.estHorairesReguliersPere ? 'checked="checked"': '') : (it == true ? 'checked="checked"': '') } />
                 <label for="estHorairesReguliersPere_${it ? 'yes' : 'no'}"><g:message code="message.${it ? 'yes' : 'no'}" /></label>
               </li>
               </g:each>

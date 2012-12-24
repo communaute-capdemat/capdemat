@@ -158,6 +158,7 @@ public class FoPlugin implements IPluginGenerator {
         elementFo.setMinLength(elementProp.getMinLength());
         elementFo.setMaxLength(elementProp.getMaxLength());
         elementFo.setTypeClass(elementProp.getTypeClass());
+        elementFo.setDefaultValue(elementProp.getDefaultValue());
         // TODO - define a more robust namespace mapping policy
         if (elementProp.isReferentialType())
             elementFo.setModelNamespace(IPluginGenerator.MODEL_BASE_TARGET_NS + ".users");

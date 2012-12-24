@@ -45,7 +45,7 @@
             <ul class="yes-no required ${rqt.stepStates['subscription'].invalidFields.contains('subscription') ? 'validation-failed' : ''}">
               <g:each in="${[true,false]}">
               <li>
-                <input type="radio" id="subscription_${it ? 'yes' : 'no'}" class="required  validate-one-required boolean" title="" value="${it}" name="subscription" ${it == rqt.subscription ? 'checked="checked"': ''} />
+                <input type="radio" id="subscription_${it ? 'yes' : 'no'}" class="required  validate-one-required boolean" title="" value="${it}" name="subscription" ${ rq ?  (it == rqt.subscription ? 'checked="checked"': '') : (it == false ? 'checked="checked"': '') } />
                 <label for="subscription_${it ? 'yes' : 'no'}"><g:message code="message.${it ? 'yes' : 'no'}" /></label>
               </li>
               </g:each>

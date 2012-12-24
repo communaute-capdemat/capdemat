@@ -65,7 +65,7 @@
             <ul class="yes-no required ${rqt.stepStates['registration'].invalidFields.contains('foodAllergy') ? 'validation-failed' : ''}">
               <g:each in="${[true,false]}">
               <li>
-                <input type="radio" id="foodAllergy_${it ? 'yes' : 'no'}" class="required condition-foodAllergy-trigger  validate-one-required boolean" title="" value="${it}" name="foodAllergy" ${it == rqt.foodAllergy ? 'checked="checked"': ''} />
+                <input type="radio" id="foodAllergy_${it ? 'yes' : 'no'}" class="required condition-foodAllergy-trigger  validate-one-required boolean" title="" value="${it}" name="foodAllergy" ${ rq ?  (it == rqt.foodAllergy ? 'checked="checked"': '') : (it == false ? 'checked="checked"': '') } />
                 <label for="foodAllergy_${it ? 'yes' : 'no'}"><g:message code="message.${it ? 'yes' : 'no'}" /></label>
               </li>
               </g:each>

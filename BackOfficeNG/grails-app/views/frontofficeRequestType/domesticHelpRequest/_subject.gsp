@@ -134,7 +134,7 @@
             <ul class="yes-no required condition-isNonEuropean-filled ${rqt.stepStates['subject'].invalidFields.contains('dhrRequesterIsFrenchResident') ? 'validation-failed' : ''}">
               <g:each in="${[true,false]}">
               <li>
-                <input type="radio" id="dhrRequesterIsFrenchResident_${it ? 'yes' : 'no'}" class="required condition-isNonEuropean-filled  validate-one-required boolean" title="" value="${it}" name="dhrRequesterIsFrenchResident" ${it == rqt.dhrRequesterIsFrenchResident ? 'checked="checked"': ''} />
+                <input type="radio" id="dhrRequesterIsFrenchResident_${it ? 'yes' : 'no'}" class="required condition-isNonEuropean-filled  validate-one-required boolean" title="" value="${it}" name="dhrRequesterIsFrenchResident" ${ rq ?  (it == rqt.dhrRequesterIsFrenchResident ? 'checked="checked"': '') : (it == false ? 'checked="checked"': '') } />
                 <label for="dhrRequesterIsFrenchResident_${it ? 'yes' : 'no'}"><g:message code="message.${it ? 'yes' : 'no'}" /></label>
               </li>
               </g:each>
@@ -182,7 +182,7 @@
             <ul class="yes-no required ${rqt.stepStates['subject'].invalidFields.contains('dhrRequesterHaveGuardian') ? 'validation-failed' : ''}">
               <g:each in="${[true,false]}">
               <li>
-                <input type="radio" id="dhrRequesterHaveGuardian_${it ? 'yes' : 'no'}" class="required condition-haveGuardian-trigger  validate-one-required boolean" title="" value="${it}" name="dhrRequesterHaveGuardian" ${it == rqt.dhrRequesterHaveGuardian ? 'checked="checked"': ''} />
+                <input type="radio" id="dhrRequesterHaveGuardian_${it ? 'yes' : 'no'}" class="required condition-haveGuardian-trigger  validate-one-required boolean" title="" value="${it}" name="dhrRequesterHaveGuardian" ${ rq ?  (it == rqt.dhrRequesterHaveGuardian ? 'checked="checked"': '') : (it == false ? 'checked="checked"': '') } />
                 <label for="dhrRequesterHaveGuardian_${it ? 'yes' : 'no'}"><g:message code="message.${it ? 'yes' : 'no'}" /></label>
               </li>
               </g:each>

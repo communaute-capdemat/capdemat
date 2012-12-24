@@ -6,7 +6,7 @@
             <ul class="yes-no required ${rqt.stepStates['otherHelps'].invalidFields.contains('hasCROUSHelp') ? 'validation-failed' : ''}">
               <g:each in="${[true,false]}">
               <li>
-                <input type="radio" id="hasCROUSHelp_${it ? 'yes' : 'no'}" class="required  validate-one-required boolean" title="" value="${it}" name="hasCROUSHelp" ${it == rqt.hasCROUSHelp ? 'checked="checked"': ''} />
+                <input type="radio" id="hasCROUSHelp_${it ? 'yes' : 'no'}" class="required  validate-one-required boolean" title="" value="${it}" name="hasCROUSHelp" ${ rq ?  (it == rqt.hasCROUSHelp ? 'checked="checked"': '') : (it == null ? 'checked="checked"': '') } />
                 <label for="hasCROUSHelp_${it ? 'yes' : 'no'}"><g:message code="message.${it ? 'yes' : 'no'}" /></label>
               </li>
               </g:each>
@@ -20,7 +20,7 @@
             <ul class="yes-no required ${rqt.stepStates['otherHelps'].invalidFields.contains('hasRegionalCouncilHelp') ? 'validation-failed' : ''}">
               <g:each in="${[true,false]}">
               <li>
-                <input type="radio" id="hasRegionalCouncilHelp_${it ? 'yes' : 'no'}" class="required  validate-one-required boolean" title="" value="${it}" name="hasRegionalCouncilHelp" ${it == rqt.hasRegionalCouncilHelp ? 'checked="checked"': ''} />
+                <input type="radio" id="hasRegionalCouncilHelp_${it ? 'yes' : 'no'}" class="required  validate-one-required boolean" title="" value="${it}" name="hasRegionalCouncilHelp" ${ rq ?  (it == rqt.hasRegionalCouncilHelp ? 'checked="checked"': '') : (it == null ? 'checked="checked"': '') } />
                 <label for="hasRegionalCouncilHelp_${it ? 'yes' : 'no'}"><g:message code="message.${it ? 'yes' : 'no'}" /></label>
               </li>
               </g:each>
@@ -34,7 +34,7 @@
             <ul class="yes-no required ${rqt.stepStates['otherHelps'].invalidFields.contains('hasEuropeHelp') ? 'validation-failed' : ''}">
               <g:each in="${[true,false]}">
               <li>
-                <input type="radio" id="hasEuropeHelp_${it ? 'yes' : 'no'}" class="required  validate-one-required boolean" title="" value="${it}" name="hasEuropeHelp" ${it == rqt.hasEuropeHelp ? 'checked="checked"': ''} />
+                <input type="radio" id="hasEuropeHelp_${it ? 'yes' : 'no'}" class="required  validate-one-required boolean" title="" value="${it}" name="hasEuropeHelp" ${ rq ?  (it == rqt.hasEuropeHelp ? 'checked="checked"': '') : (it == null ? 'checked="checked"': '') } />
                 <label for="hasEuropeHelp_${it ? 'yes' : 'no'}"><g:message code="message.${it ? 'yes' : 'no'}" /></label>
               </li>
               </g:each>
@@ -48,7 +48,7 @@
             <ul class="yes-no required ${rqt.stepStates['otherHelps'].invalidFields.contains('hasOtherHelp') ? 'validation-failed' : ''}">
               <g:each in="${[true,false]}">
               <li>
-                <input type="radio" id="hasOtherHelp_${it ? 'yes' : 'no'}" class="required  validate-one-required boolean" title="" value="${it}" name="hasOtherHelp" ${it == rqt.hasOtherHelp ? 'checked="checked"': ''} />
+                <input type="radio" id="hasOtherHelp_${it ? 'yes' : 'no'}" class="required  validate-one-required boolean" title="" value="${it}" name="hasOtherHelp" ${ rq ?  (it == rqt.hasOtherHelp ? 'checked="checked"': '') : (it == null ? 'checked="checked"': '') } />
                 <label for="hasOtherHelp_${it ? 'yes' : 'no'}"><g:message code="message.${it ? 'yes' : 'no'}" /></label>
               </li>
               </g:each>

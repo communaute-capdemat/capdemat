@@ -37,7 +37,7 @@
             <ul class="yes-no required ${rqt.stepStates['situation'].invalidFields.contains('statePupil') ? 'validation-failed' : ''}">
               <g:each in="${[true,false]}">
               <li>
-                <input type="radio" id="statePupil_${it ? 'yes' : 'no'}" class="required  validate-one-required boolean" title="" value="${it}" name="statePupil" ${it == rqt.statePupil ? 'checked="checked"': ''} />
+                <input type="radio" id="statePupil_${it ? 'yes' : 'no'}" class="required  validate-one-required boolean" title="" value="${it}" name="statePupil" ${ rq ?  (it == rqt.statePupil ? 'checked="checked"': '') : (it == false ? 'checked="checked"': '') } />
                 <label for="statePupil_${it ? 'yes' : 'no'}"><g:message code="message.${it ? 'yes' : 'no'}" /></label>
               </li>
               </g:each>
@@ -49,7 +49,7 @@
             <ul class="yes-no required ${rqt.stepStates['situation'].invalidFields.contains('prefectPupil') ? 'validation-failed' : ''}">
               <g:each in="${[true,false]}">
               <li>
-                <input type="radio" id="prefectPupil_${it ? 'yes' : 'no'}" class="required condition-isPrefectPupil-trigger  validate-one-required boolean" title="" value="${it}" name="prefectPupil" ${it == rqt.prefectPupil ? 'checked="checked"': ''} />
+                <input type="radio" id="prefectPupil_${it ? 'yes' : 'no'}" class="required condition-isPrefectPupil-trigger  validate-one-required boolean" title="" value="${it}" name="prefectPupil" ${ rq ?  (it == rqt.prefectPupil ? 'checked="checked"': '') : (it == false ? 'checked="checked"': '') } />
                 <label for="prefectPupil_${it ? 'yes' : 'no'}"><g:message code="message.${it ? 'yes' : 'no'}" /></label>
               </li>
               </g:each>

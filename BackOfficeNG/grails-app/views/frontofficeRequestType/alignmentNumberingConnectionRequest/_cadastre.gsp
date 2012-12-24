@@ -93,7 +93,7 @@
             <ul class="yes-no required ${rqt.stepStates['cadastre'].invalidFields.contains('moreThanTwoYears') ? 'validation-failed' : ''}">
               <g:each in="${[true,false]}">
               <li>
-                <input type="radio" id="moreThanTwoYears_${it ? 'yes' : 'no'}" class="required  validate-one-required boolean" title="" value="${it}" name="moreThanTwoYears" ${it == rqt.moreThanTwoYears ? 'checked="checked"': ''} />
+                <input type="radio" id="moreThanTwoYears_${it ? 'yes' : 'no'}" class="required  validate-one-required boolean" title="" value="${it}" name="moreThanTwoYears" ${ rq ?  (it == rqt.moreThanTwoYears ? 'checked="checked"': '') : (it == null ? 'checked="checked"': '') } />
                 <label for="moreThanTwoYears_${it ? 'yes' : 'no'}"><g:message code="message.${it ? 'yes' : 'no'}" /></label>
               </li>
               </g:each>
@@ -115,7 +115,7 @@
             <ul class="yes-no required ${rqt.stepStates['cadastre'].invalidFields.contains('isAlignment') ? 'validation-failed' : ''}">
               <g:each in="${[true,false]}">
               <li>
-                <input type="radio" id="isAlignment_${it ? 'yes' : 'no'}" class="required  validate-one-required boolean" title="" value="${it}" name="isAlignment" ${it == rqt.isAlignment ? 'checked="checked"': ''} />
+                <input type="radio" id="isAlignment_${it ? 'yes' : 'no'}" class="required  validate-one-required boolean" title="" value="${it}" name="isAlignment" ${ rq ?  (it == rqt.isAlignment ? 'checked="checked"': '') : (it == null ? 'checked="checked"': '') } />
                 <label for="isAlignment_${it ? 'yes' : 'no'}"><g:message code="message.${it ? 'yes' : 'no'}" /></label>
               </li>
               </g:each>
@@ -129,7 +129,7 @@
             <ul class="yes-no required ${rqt.stepStates['cadastre'].invalidFields.contains('isNumbering') ? 'validation-failed' : ''}">
               <g:each in="${[true,false]}">
               <li>
-                <input type="radio" id="isNumbering_${it ? 'yes' : 'no'}" class="required  validate-one-required boolean" title="" value="${it}" name="isNumbering" ${it == rqt.isNumbering ? 'checked="checked"': ''} />
+                <input type="radio" id="isNumbering_${it ? 'yes' : 'no'}" class="required  validate-one-required boolean" title="" value="${it}" name="isNumbering" ${ rq ?  (it == rqt.isNumbering ? 'checked="checked"': '') : (it == null ? 'checked="checked"': '') } />
                 <label for="isNumbering_${it ? 'yes' : 'no'}"><g:message code="message.${it ? 'yes' : 'no'}" /></label>
               </li>
               </g:each>
@@ -143,7 +143,7 @@
             <ul class="yes-no required ${rqt.stepStates['cadastre'].invalidFields.contains('isConnection') ? 'validation-failed' : ''}">
               <g:each in="${[true,false]}">
               <li>
-                <input type="radio" id="isConnection_${it ? 'yes' : 'no'}" class="required  validate-one-required boolean" title="" value="${it}" name="isConnection" ${it == rqt.isConnection ? 'checked="checked"': ''} />
+                <input type="radio" id="isConnection_${it ? 'yes' : 'no'}" class="required  validate-one-required boolean" title="" value="${it}" name="isConnection" ${ rq ?  (it == rqt.isConnection ? 'checked="checked"': '') : (it == null ? 'checked="checked"': '') } />
                 <label for="isConnection_${it ? 'yes' : 'no'}"><g:message code="message.${it ? 'yes' : 'no'}" /></label>
               </li>
               </g:each>

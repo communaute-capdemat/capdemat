@@ -6,7 +6,7 @@
             <ul class="yes-no required ${rqt.stepStates['autorisations'].invalidFields.contains('estMaternelleElementaireAutorisations') ? 'validation-failed' : ''}">
               <g:each in="${[true,false]}">
               <li>
-                <input type="radio" id="estMaternelleElementaireAutorisations_${it ? 'yes' : 'no'}" class="required condition-estMaternelleElementaire-trigger  validate-one-required boolean" title="" value="${it}" name="estMaternelleElementaireAutorisations" ${it == rqt.estMaternelleElementaireAutorisations ? 'checked="checked"': ''} />
+                <input type="radio" id="estMaternelleElementaireAutorisations_${it ? 'yes' : 'no'}" class="required condition-estMaternelleElementaire-trigger  validate-one-required boolean" title="" value="${it}" name="estMaternelleElementaireAutorisations" ${ rq ?  (it == rqt.estMaternelleElementaireAutorisations ? 'checked="checked"': '') : (it == false ? 'checked="checked"': '') } />
                 <label for="estMaternelleElementaireAutorisations_${it ? 'yes' : 'no'}"><g:message code="message.${it ? 'yes' : 'no'}" /></label>
               </li>
               </g:each>

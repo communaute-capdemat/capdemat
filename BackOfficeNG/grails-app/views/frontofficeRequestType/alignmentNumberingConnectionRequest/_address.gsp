@@ -6,7 +6,7 @@
             <ul class="yes-no required ${rqt.stepStates['address'].invalidFields.contains('isAccountAddress') ? 'validation-failed' : ''}">
               <g:each in="${[true,false]}">
               <li>
-                <input type="radio" id="isAccountAddress_${it ? 'yes' : 'no'}" class="required condition-isSameAddress-trigger  validate-one-required boolean" title="" value="${it}" name="isAccountAddress" ${it == rqt.isAccountAddress ? 'checked="checked"': ''} />
+                <input type="radio" id="isAccountAddress_${it ? 'yes' : 'no'}" class="required condition-isSameAddress-trigger  validate-one-required boolean" title="" value="${it}" name="isAccountAddress" ${ rq ?  (it == rqt.isAccountAddress ? 'checked="checked"': '') : (it == true ? 'checked="checked"': '') } />
                 <label for="isAccountAddress_${it ? 'yes' : 'no'}"><g:message code="message.${it ? 'yes' : 'no'}" /></label>
               </li>
               </g:each>

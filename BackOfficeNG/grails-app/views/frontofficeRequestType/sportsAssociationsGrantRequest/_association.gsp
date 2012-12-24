@@ -63,7 +63,7 @@
             <ul class="yes-no required ${rqt.stepStates['association'].invalidFields.contains('estAdresseCorrespondantPrincipal') ? 'validation-failed' : ''}">
               <g:each in="${[true,false]}">
               <li>
-                <input type="radio" id="estAdresseCorrespondantPrincipal_${it ? 'yes' : 'no'}" class="required condition-estAdresseCorrespondantPrincipal-trigger  validate-one-required boolean" title="" value="${it}" name="estAdresseCorrespondantPrincipal" ${it == rqt.estAdresseCorrespondantPrincipal ? 'checked="checked"': ''} />
+                <input type="radio" id="estAdresseCorrespondantPrincipal_${it ? 'yes' : 'no'}" class="required condition-estAdresseCorrespondantPrincipal-trigger  validate-one-required boolean" title="" value="${it}" name="estAdresseCorrespondantPrincipal" ${ rq ?  (it == rqt.estAdresseCorrespondantPrincipal ? 'checked="checked"': '') : (it == true ? 'checked="checked"': '') } />
                 <label for="estAdresseCorrespondantPrincipal_${it ? 'yes' : 'no'}"><g:message code="message.${it ? 'yes' : 'no'}" /></label>
               </li>
               </g:each>
