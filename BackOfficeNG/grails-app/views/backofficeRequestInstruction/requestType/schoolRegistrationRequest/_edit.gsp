@@ -62,11 +62,11 @@
               <h3><g:message code="srr.property.currentSchool.label" /></h3>
               <dl class="required">
                 
-                  <dt class="">${message(code:'srr.property.currentSchoolName.label')} :</dt><dd id="currentSchoolName" class="action-editField validate-string i18n-srr.property.currentSchoolName" ><span>${rqt?.currentSchoolName}</span></dd>
+                  <dt class="">${message(code:'srr.property.currentSchoolName.label')} :</dt><dd id="currentSchoolName" class="action-editField validate-string i18n-srr.property.currentSchoolName" ><span>${rqt.currentSchool?.currentSchoolName}</span></dd>
                 
-                  <dt class="">${message(code:'srr.property.currentSchoolAddress.label')} :</dt><dd id="currentSchoolAddress" class="action-editField validate-string i18n-srr.property.currentSchoolAddress" ><span>${rqt?.currentSchoolAddress}</span></dd>
+                  <dt class="">${message(code:'srr.property.currentSchoolAddress.label')} :</dt><dd id="currentSchoolAddress" class="action-editField validate-string i18n-srr.property.currentSchoolAddress" ><span>${rqt.currentSchool?.currentSchoolAddress}</span></dd>
                 
-                  <dt class="">${message(code:'srr.property.currentSection.label')} :</dt><dd id="currentSection" class="action-editField validate-capdematEnum i18n-srr.property.currentSection javatype-fr.cg95.cvq.business.users.SectionType maxLength-32" ><g:capdematEnumToField var="${rqt?.currentSection}" i18nKeyPrefix="srr.property.currentSection" /></dd>
+                  <dt class="">${message(code:'srr.property.currentSection.label')} :</dt><dd id="currentSection" class="action-editField validate-capdematEnum i18n-srr.property.currentSection javatype-fr.cg95.cvq.business.users.SectionType maxLength-32" ><g:capdematEnumToField var="${rqt.currentSchool?.currentSection}" i18nKeyPrefix="srr.property.currentSection" /></dd>
                 
               </dl>
               

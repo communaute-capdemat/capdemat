@@ -7,6 +7,8 @@ import fr.cg95.cvq.business.request.civil.MarriageCertificateFormatType;
 import fr.cg95.cvq.business.request.civil.MarriageDetailsRequest;
 import fr.cg95.cvq.business.request.civil.MarriageRequesterQualityType;
 import fr.cg95.cvq.business.users.InseeDepartementCodeType;
+import fr.cg95.cvq.business.request.civil.MarriageInformation;
+import fr.cg95.cvq.exception.CvqException;
 import fr.cg95.cvq.security.SecurityContext;
 import fr.cg95.cvq.service.request.condition.EqualityChecker;
 import fr.cg95.cvq.service.request.condition.EqualityListChecker;
@@ -36,8 +38,9 @@ public final class MarriageDetailsRequestService extends RequestService {
         MarriageDetailsRequest request = new MarriageDetailsRequest();
         //FIXME see Birth
         if (SecurityContext.getCurrentSite() != null) {
-            request.setMarriageCity(SecurityContext.getCurrentSite().getDisplayTitle());
-            request.setMarriagePostalCode(InseeDepartementCodeType.getDepartementCodeByPostalCode(SecurityContext.getCurrentSite().getPostalCode()));
+            request.setMarriage(new MarriageInformation());
+            request.getMarriage().setMarriageCity(SecurityContext.getCurrentSite().getDisplayTitle());
+            request.getMarriage().setMarriagePostalCode(InseeDepartementCodeType.getDepartementCodeByPostalCode(SecurityContext.getCurrentSite().getPostalCode()));
         }
         return request;
     }

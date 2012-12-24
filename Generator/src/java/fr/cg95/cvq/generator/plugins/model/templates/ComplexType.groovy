@@ -64,7 +64,7 @@
       """,
       "complex" : """
         if (this.${element.nameAsParam} != null)
-            ${wrapper}.set${StringUtils.capitalize(element.nameAsParam)}(${element.modelClassName}.modelToXml(this.${element.nameAsParam}));
+            ${wrapper}.set${StringUtils.capitalize(element.nameAsParam)}(this.${element.nameAsParam}.modelToXml());
       """,
       "referentialList" : """
         i = 0;
@@ -149,8 +149,9 @@
     def output = widgets[element.widget]
     if (output != null) print output
   }
-  def displayAnnotation = { element ->
-    def sqlName = ModelPluginUtils.getSQLName(StringUtils.capitalize(element.nameAsParam))
+  def displayAnnotation = { element, wrapper ->
+    def sqlName = ModelPluginUtils.getSQLName(element.nameAsParam)
+    def wrapperSQLName = ModelPluginUtils.getSQLName(wrapper)
     def widgets = [
       "simple" : """
     @Column(name="${sqlName}" ${element.maxLength > 0 ? ', length=' + element.maxLength : element.length > 0 ? ', length=' + element.length : ""} )
@@ -166,6 +167,7 @@
       "localTime" : """
     @Column(name="${sqlName}" ${element.maxLength > 0 ? ', length=' + element.maxLength : element.length > 0 ? ', length=' + element.length : ""} )
       """,
+      // FIXME: collection are not cleanly supported in Generator
       "one-to-many" : """
     @OneToMany(cascade=CascadeType.ALL)
     @OrderColumn(name="${sqlName}_index")
@@ -243,6 +245,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.HashMap;
 import org.joda.time.LocalTime;
 
 import net.sf.oval.constraint.*;
@@ -372,11 +375,13 @@ public class ${className} implements Serializable {
             [element.elementCommon.conditionListener, element.complexContainerConditionListener].each { listener ->
               if (listener != null) {
                 def trigger = complexType.getElementModelProperties(listener.condition.trigger.name)
-                if ("LocalReferentialData".equals(trigger.modelClassName)) {
+                if(trigger != null) {
+                  if ("LocalReferentialData".equals(trigger.modelClassName)) {
           %>
-            "if (_this.${trigger.nameAsParam} == null || _this.${trigger.nameAsParam}.isEmpty()) return false; _this.${trigger.nameAsParam}.each { active &= <% if (RoleType.unfilled.equals(listener.role)) { %>!<% } %>_this.conditions['${StringUtils.uncapitalize(className)}.${trigger.nameAsParam}'].test(it.name) };" +
-                <% } else { %>
-            "active &= <% if (RoleType.unfilled.equals(listener.role)) { %>!<% } %>_this.conditions['${StringUtils.uncapitalize(className)}.${trigger.nameAsParam}'].test(_this.${trigger.nameAsParam}.toString());" +
+             "if (_this.${trigger.nameAsParam} == null || _this.${trigger.nameAsParam}.isEmpty()) return false; _this.${trigger.nameAsParam}.each { active &= <% if (RoleType.unfilled.equals(listener.role)) { %>!<% } %>_this.conditions['${StringUtils.uncapitalize(className)}.${trigger.nameAsParam}'].test(it.name) };" +
+                  <% } else { %>
+             "active &= <% if (RoleType.unfilled.equals(listener.role)) { %>!<% } %>_this.conditions['${StringUtils.uncapitalize(className)}.${trigger.nameAsParam}'].test(_this.${trigger.nameAsParam}.toString());" +
+                  <% } %>
                 <% } %>
               <% } %>
             <% } %>
@@ -392,7 +397,7 @@ public class ${className} implements Serializable {
         this.${element.nameAsParam} = ${element.nameAsParam};
     }
 
-<% displayAnnotation(element) %>
+    <% displayAnnotation(element,className) %>
     public ${element.type()} get${StringUtils.capitalize(element.nameAsParam)}() {
         return this.${element.nameAsParam};
     }

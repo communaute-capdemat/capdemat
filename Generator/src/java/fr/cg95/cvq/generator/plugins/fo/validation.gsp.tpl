@@ -67,7 +67,7 @@
           """
           <dd>
           <g:render template="/frontofficeRequestType/widget/localReferentialDataSummary" 
-                    model="['javaName':'${element.javaFieldName}', 'lrEntries': lrTypes.${element.javaFieldName}.entries, 'depth':0]" />
+                    model="['wrapper':${wrapper.replace('?','')}, 'javaName':'${element.javaFieldName}', 'lrEntries': lrTypes.${element.javaFieldName}.entries, 'depth':0]" />
           </dd>
           """
       ,'date' :
@@ -161,7 +161,7 @@
       <h4><g:message code="${element.i18nPrefixCode}.label" /></h4>
       <dl>
         <% element.elements.each { subElement -> %>
-          <% displayWidget(subElement, "rqt") %>
+          <% displayWidget(subElement, "rqt.${element.javaFieldName}?") %>
         <% } %>
       </dl>
       <% } else { %>

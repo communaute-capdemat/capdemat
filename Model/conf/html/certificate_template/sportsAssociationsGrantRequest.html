@@ -6,27 +6,26 @@
   import fr.cg95.cvq.util.EnumTool
   import java.text.NumberFormat
   def esc(s) { return org.apache.commons.lang3.StringEscapeUtils.escapeXml(s) }
-  def localReferentialWidget(rqt, javaName, lrEntries, depth) {
-    def currentLrDatas = rqt[javaName].collect{it.name}
-    if (lrEntries.any{it.entries}) {
-      println "<ul ${depth==0 ? 'class="dataTree"' : ''}>"
-      
-      lrEntries.each { entry ->
-        println "<li>"
-        if (entry.entries) {
-          println "<em ${currentLrDatas?.contains(entry.key) ? 'class="checked"' : ''}>${entry.label} :</em>"
-          localReferentialWidget(rqt, javaName, entry.entries, depth + 1)
-        } else {
-          println "<span ${currentLrDatas?.contains(entry.key) ? 'class="checked"' : ''}>${entry.label}</span>"
-        }
-        println "</li>"
-      }
-
-      println "</ul>"
-    } else {
-      lrEntries.eachWithIndex { entry, i ->
-        println "<span ${currentLrDatas?.contains(entry.key) ? 'class="checked"' : ''}>${entry.label}</span>${i + 1 < lrEntries.size() ? ', ' : ''}"
-      }
+  def localReferentialWidget(wrapper, javaName, lrEntries, depth) {
+    def lrHtml = ''
+    def currentLrDatas = wrapper != null ? wrapper[javaName].collect{it.name} : null
+    if (lrTypes[javaName].isMultiple()) { 
+      lrHtml += "<ul ${depth==0 ? 'class="dataTree"' : ''}>"
+      lrEntries.eachWithIndex { entry, i -> 
+      if (entry.entries) { 
+        lrHtml += "<li>"
+        lrHtml += "<em>${esc(entry.label)} :</em>"
+        lrHtml += localReferentialWidget(wrapper, javaName, entry.entries,++depth)
+        lrHtml += "</li>"
+      } else {
+         lrHtml += "<li><span ${currentLrDatas?.contains(entry.key) ? 'class="checked"' : ''}>${esc(entry.label)}</span>${i + 1 < lrEntries.size() ? ',' : ''}</li>"
+      } 
+    } 
+    lrHtml += "</ul>"
+    } else { 
+      lrEntries.each { entry -> 
+        lrHtml += "${currentLrDatas?.contains(entry.key) ? esc(entry.label): ''}"
+      } 
     }
   }
 
@@ -117,10 +116,10 @@
       <h3>${i18n.translate('sagr.property.numerosAssociation.label')}</h3>
       <div class="complex">
         
-          <p class="label">${esc(i18n.translate('sagr.property.numeroSiretAssociation.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.numeroSiretAssociation?.toString()))}</div>
+          <p class="label">${esc(i18n.translate('sagr.property.numeroSiretAssociation.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.numerosAssociation?.numeroSiretAssociation?.toString()))}</div>
 
         
-          <p class="label">${esc(i18n.translate('sagr.property.numeroEnregistrementPrefectureAssociation.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.numeroEnregistrementPrefectureAssociation?.toString()))}</div>
+          <p class="label">${esc(i18n.translate('sagr.property.numeroEnregistrementPrefectureAssociation.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.numerosAssociation?.numeroEnregistrementPrefectureAssociation?.toString()))}</div>
 
         
       </div>
@@ -133,7 +132,7 @@
           <p class="label">${esc(i18n.translate('sagr.property.estAdresseCorrespondantPrincipal.label'))}</p>
           <div class="response choice">
             <% [true,false].each { %>
-              <span ${it == rqt.estAdresseCorrespondantPrincipal ? 'class="checked"': ''}>
+              <span ${it == rqt.contactsAssociation?.estAdresseCorrespondantPrincipal ? 'class="checked"': ''}>
                 ${esc(i18n.translate('message.' + (it ? 'yes' : 'no')))}
               </span>
               ${it ? ' / ' : ''}
@@ -142,24 +141,24 @@
           
 
         
-          <p class="label">${esc(i18n.translate('sagr.property.nomCompletCorrespondantPrincipal.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.nomCompletCorrespondantPrincipal?.toString()))}</div>
+          <p class="label">${esc(i18n.translate('sagr.property.nomCompletCorrespondantPrincipal.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.contactsAssociation?.nomCompletCorrespondantPrincipal?.toString()))}</div>
 
         
           <p class="label">${esc(i18n.translate('sagr.property.adresseCorrespondantPrincipal.label'))}</p>
           <div class="response">
-            <% if(rqt.adresseCorrespondantPrincipal) { %>
-              <p>${esc(StringUtils.defaultString(rqt.adresseCorrespondantPrincipal?.additionalDeliveryInformation))}</p>
-              <p>${esc(StringUtils.defaultString(rqt.adresseCorrespondantPrincipal?.additionalGeographicalInformation))}</p>
-              <p>${esc(StringUtils.defaultString(rqt.adresseCorrespondantPrincipal?.streetNumber))} ${esc(StringUtils.defaultString(rqt.adresseCorrespondantPrincipal?.streetName))}</p>
-              <p>${esc(StringUtils.defaultString(rqt.adresseCorrespondantPrincipal?.placeNameOrService))}</p>
-              <p>${esc(StringUtils.defaultString(rqt.adresseCorrespondantPrincipal?.postalCode))} ${esc(StringUtils.defaultString(rqt.adresseCorrespondantPrincipal?.city))}</p>
-              <p>${esc(StringUtils.defaultString(rqt.adresseCorrespondantPrincipal?.countryName))}</p>
+            <% if(rqt.contactsAssociation?.adresseCorrespondantPrincipal) { %>
+              <p>${esc(StringUtils.defaultString(rqt.contactsAssociation?.adresseCorrespondantPrincipal?.additionalDeliveryInformation))}</p>
+              <p>${esc(StringUtils.defaultString(rqt.contactsAssociation?.adresseCorrespondantPrincipal?.additionalGeographicalInformation))}</p>
+              <p>${esc(StringUtils.defaultString(rqt.contactsAssociation?.adresseCorrespondantPrincipal?.streetNumber))} ${esc(StringUtils.defaultString(rqt.contactsAssociation?.adresseCorrespondantPrincipal?.streetName))}</p>
+              <p>${esc(StringUtils.defaultString(rqt.contactsAssociation?.adresseCorrespondantPrincipal?.placeNameOrService))}</p>
+              <p>${esc(StringUtils.defaultString(rqt.contactsAssociation?.adresseCorrespondantPrincipal?.postalCode))} ${esc(StringUtils.defaultString(rqt.contactsAssociation?.adresseCorrespondantPrincipal?.city))}</p>
+              <p>${esc(StringUtils.defaultString(rqt.contactsAssociation?.adresseCorrespondantPrincipal?.countryName))}</p>
             <% } %>
           </div>
           
 
         
-          <p class="label">${esc(i18n.translate('sagr.property.emailClubOuCorrespondant.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.emailClubOuCorrespondant?.toString()))}</div>
+          <p class="label">${esc(i18n.translate('sagr.property.emailClubOuCorrespondant.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.contactsAssociation?.emailClubOuCorrespondant?.toString()))}</div>
 
         
       </div>
@@ -184,16 +183,16 @@
       <h3>${i18n.translate('sagr.property.precisionPresident.label')}</h3>
       <div class="complex">
         
-          <p class="label">${esc(i18n.translate('sagr.property.nomPresident.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.nomPresident?.toString()))}</div>
+          <p class="label">${esc(i18n.translate('sagr.property.nomPresident.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.precisionPresident?.nomPresident?.toString()))}</div>
 
         
-          <p class="label">${esc(i18n.translate('sagr.property.prenomPresident.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.prenomPresident?.toString()))}</div>
+          <p class="label">${esc(i18n.translate('sagr.property.prenomPresident.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.precisionPresident?.prenomPresident?.toString()))}</div>
 
         
-          <p class="label">${esc(i18n.translate('sagr.property.telephonePresident.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.telephonePresident?.toString()))}</div>
+          <p class="label">${esc(i18n.translate('sagr.property.telephonePresident.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.precisionPresident?.telephonePresident?.toString()))}</div>
 
         
-          <p class="label">${esc(i18n.translate('sagr.property.emailPresident.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.emailPresident?.toString()))}</div>
+          <p class="label">${esc(i18n.translate('sagr.property.emailPresident.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.precisionPresident?.emailPresident?.toString()))}</div>
 
         
       </div>
@@ -301,22 +300,22 @@
       <h3>${i18n.translate('sagr.property.subventionPubliqueFonctionnement.label')}</h3>
       <div class="complex">
         
-          <p class="label">${esc(i18n.translate('sagr.property.budgetSaisonEcouleeRecette.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.budgetSaisonEcouleeRecette?.toString()))}</div>
+          <p class="label">${esc(i18n.translate('sagr.property.budgetSaisonEcouleeRecette.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.subventionPubliqueFonctionnement?.budgetSaisonEcouleeRecette?.toString()))}</div>
 
         
-          <p class="label">${esc(i18n.translate('sagr.property.budgetSaisonEcouleeDepenses.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.budgetSaisonEcouleeDepenses?.toString()))}</div>
+          <p class="label">${esc(i18n.translate('sagr.property.budgetSaisonEcouleeDepenses.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.subventionPubliqueFonctionnement?.budgetSaisonEcouleeDepenses?.toString()))}</div>
 
         
-          <p class="label">${esc(i18n.translate('sagr.property.nombreLicencieMoinsDixHuitSaisonEcoulee.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.nombreLicencieMoinsDixHuitSaisonEcoulee?.toString()))}</div>
+          <p class="label">${esc(i18n.translate('sagr.property.nombreLicencieMoinsDixHuitSaisonEcoulee.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.subventionPubliqueFonctionnement?.nombreLicencieMoinsDixHuitSaisonEcoulee?.toString()))}</div>
 
         
-          <p class="label">${esc(i18n.translate('sagr.property.nombreLicenciePlusDixHuitSaisonEcoulee.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.nombreLicenciePlusDixHuitSaisonEcoulee?.toString()))}</div>
+          <p class="label">${esc(i18n.translate('sagr.property.nombreLicenciePlusDixHuitSaisonEcoulee.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.subventionPubliqueFonctionnement?.nombreLicenciePlusDixHuitSaisonEcoulee?.toString()))}</div>
 
         
-          <p class="label">${esc(i18n.translate('sagr.property.communeAnneeN.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.communeAnneeN?.toString()))}</div>
+          <p class="label">${esc(i18n.translate('sagr.property.communeAnneeN.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.subventionPubliqueFonctionnement?.communeAnneeN?.toString()))}</div>
 
         
-          <p class="label">${esc(i18n.translate('sagr.property.communeAnneeNPlusUn.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.communeAnneeNPlusUn?.toString()))}</div>
+          <p class="label">${esc(i18n.translate('sagr.property.communeAnneeNPlusUn.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.subventionPubliqueFonctionnement?.communeAnneeNPlusUn?.toString()))}</div>
 
         
       </div>

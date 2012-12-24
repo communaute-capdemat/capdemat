@@ -128,6 +128,12 @@ public class GlobalSchoolRegistrationRequest extends Request implements Serializ
         if (getAcceptationReglementInterieur() != null)
             globalSchoolRegistrationRequest.setAcceptationReglementInterieur(getAcceptationReglementInterieur().booleanValue());
       
+        if (getEcoleDerogation() != null)
+            globalSchoolRegistrationRequest.setEcoleDerogation(getEcoleDerogation().modelToXml());
+      
+        if (getEcoleSecteur() != null)
+            globalSchoolRegistrationRequest.setEcoleSecteur(getEcoleSecteur().modelToXml());
+      
         if (getEstDerogation() != null)
             globalSchoolRegistrationRequest.setEstDerogation(getEstDerogation().booleanValue());
       
@@ -136,16 +142,8 @@ public class GlobalSchoolRegistrationRequest extends Request implements Serializ
       
         if (getEstRestauration() != null)
             globalSchoolRegistrationRequest.setEstRestauration(getEstRestauration().booleanValue());
-        EcoleDerogType ecoleDerogTypeEcoleDerogation = globalSchoolRegistrationRequest.addNewEcoleDerogation();
-        ecoleDerogTypeEcoleDerogation.setIdEcoleDerog(getIdEcoleDerog());
-        EcoleSecteurType ecoleSecteurTypeEcoleSecteur = globalSchoolRegistrationRequest.addNewEcoleSecteur();
-        ecoleSecteurTypeEcoleSecteur.setIdEcoleSecteur(getIdEcoleSecteur());
       
         globalSchoolRegistrationRequest.setInformationsComplementairesDerogation(getInformationsComplementairesDerogation());
-      
-        ecoleDerogTypeEcoleDerogation.setLabelEcoleDerog(getLabelEcoleDerog());
-      
-        ecoleSecteurTypeEcoleSecteur.setLabelEcoleSecteur(getLabelEcoleSecteur());
       
         i = 0;
         if (getMotifsDerogationEcole() != null) {
@@ -174,21 +172,19 @@ public class GlobalSchoolRegistrationRequest extends Request implements Serializ
         
         globalSchoolRegistrationRequest.setAcceptationReglementInterieur(Boolean.valueOf(globalSchoolRegistrationRequestXml.getAcceptationReglementInterieur()));
       
+        if (globalSchoolRegistrationRequestXml.getEcoleDerogation() != null)
+            globalSchoolRegistrationRequest.setEcoleDerogation(EcoleDerog.xmlToModel(globalSchoolRegistrationRequestXml.getEcoleDerogation()));
+      
+        if (globalSchoolRegistrationRequestXml.getEcoleSecteur() != null)
+            globalSchoolRegistrationRequest.setEcoleSecteur(EcoleSecteur.xmlToModel(globalSchoolRegistrationRequestXml.getEcoleSecteur()));
+      
         globalSchoolRegistrationRequest.setEstDerogation(Boolean.valueOf(globalSchoolRegistrationRequestXml.getEstDerogation()));
       
         globalSchoolRegistrationRequest.setEstPeriscolaire(Boolean.valueOf(globalSchoolRegistrationRequestXml.getEstPeriscolaire()));
       
         globalSchoolRegistrationRequest.setEstRestauration(Boolean.valueOf(globalSchoolRegistrationRequestXml.getEstRestauration()));
       
-        globalSchoolRegistrationRequest.setIdEcoleDerog(globalSchoolRegistrationRequestXml.getEcoleDerogation().getIdEcoleDerog());
-      
-        globalSchoolRegistrationRequest.setIdEcoleSecteur(globalSchoolRegistrationRequestXml.getEcoleSecteur().getIdEcoleSecteur());
-      
         globalSchoolRegistrationRequest.setInformationsComplementairesDerogation(globalSchoolRegistrationRequestXml.getInformationsComplementairesDerogation());
-      
-        globalSchoolRegistrationRequest.setLabelEcoleDerog(globalSchoolRegistrationRequestXml.getEcoleDerogation().getLabelEcoleDerog());
-      
-        globalSchoolRegistrationRequest.setLabelEcoleSecteur(globalSchoolRegistrationRequestXml.getEcoleSecteur().getLabelEcoleSecteur());
       
         List<fr.cg95.cvq.business.request.LocalReferentialData> motifsDerogationEcoleList = new ArrayList<fr.cg95.cvq.business.request.LocalReferentialData>(globalSchoolRegistrationRequestXml.sizeOfMotifsDerogationEcoleArray());
         for (LocalReferentialDataType object : globalSchoolRegistrationRequestXml.getMotifsDerogationEcoleArray()) {
@@ -259,6 +255,24 @@ public class GlobalSchoolRegistrationRequest extends Request implements Serializ
         return globalSchoolRegistrationRequestData.getAcceptationReglementInterieur();
     }
   
+    public final void setEcoleDerogation(final fr.cg95.cvq.business.request.school.EcoleDerog ecoleDerogation) {
+        globalSchoolRegistrationRequestData.setEcoleDerogation(ecoleDerogation);
+    }
+
+    
+    public final fr.cg95.cvq.business.request.school.EcoleDerog getEcoleDerogation() {
+        return globalSchoolRegistrationRequestData.getEcoleDerogation();
+    }
+  
+    public final void setEcoleSecteur(final fr.cg95.cvq.business.request.school.EcoleSecteur ecoleSecteur) {
+        globalSchoolRegistrationRequestData.setEcoleSecteur(ecoleSecteur);
+    }
+
+    
+    public final fr.cg95.cvq.business.request.school.EcoleSecteur getEcoleSecteur() {
+        return globalSchoolRegistrationRequestData.getEcoleSecteur();
+    }
+  
     public final void setEstDerogation(final Boolean estDerogation) {
         globalSchoolRegistrationRequestData.setEstDerogation(estDerogation);
     }
@@ -286,24 +300,6 @@ public class GlobalSchoolRegistrationRequest extends Request implements Serializ
         return globalSchoolRegistrationRequestData.getEstRestauration();
     }
   
-    public final void setIdEcoleDerog(final String idEcoleDerog) {
-        globalSchoolRegistrationRequestData.setIdEcoleDerog(idEcoleDerog);
-    }
-
-    
-    public final String getIdEcoleDerog() {
-        return globalSchoolRegistrationRequestData.getIdEcoleDerog();
-    }
-  
-    public final void setIdEcoleSecteur(final String idEcoleSecteur) {
-        globalSchoolRegistrationRequestData.setIdEcoleSecteur(idEcoleSecteur);
-    }
-
-    
-    public final String getIdEcoleSecteur() {
-        return globalSchoolRegistrationRequestData.getIdEcoleSecteur();
-    }
-  
     public final void setInformationsComplementairesDerogation(final String informationsComplementairesDerogation) {
         globalSchoolRegistrationRequestData.setInformationsComplementairesDerogation(informationsComplementairesDerogation);
     }
@@ -311,24 +307,6 @@ public class GlobalSchoolRegistrationRequest extends Request implements Serializ
     
     public final String getInformationsComplementairesDerogation() {
         return globalSchoolRegistrationRequestData.getInformationsComplementairesDerogation();
-    }
-  
-    public final void setLabelEcoleDerog(final String labelEcoleDerog) {
-        globalSchoolRegistrationRequestData.setLabelEcoleDerog(labelEcoleDerog);
-    }
-
-    
-    public final String getLabelEcoleDerog() {
-        return globalSchoolRegistrationRequestData.getLabelEcoleDerog();
-    }
-  
-    public final void setLabelEcoleSecteur(final String labelEcoleSecteur) {
-        globalSchoolRegistrationRequestData.setLabelEcoleSecteur(labelEcoleSecteur);
-    }
-
-    
-    public final String getLabelEcoleSecteur() {
-        return globalSchoolRegistrationRequestData.getLabelEcoleSecteur();
     }
   
     public final void setMotifsDerogationEcole(final List<fr.cg95.cvq.business.request.LocalReferentialData> motifsDerogationEcole) {

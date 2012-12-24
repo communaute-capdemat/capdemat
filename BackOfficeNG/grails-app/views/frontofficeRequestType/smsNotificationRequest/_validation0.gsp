@@ -33,7 +33,7 @@
         <dt><g:message code="snr.property.interests.label" /></dt>
           <dd>
           <g:render template="/frontofficeRequestType/widget/localReferentialDataSummary" 
-                    model="['javaName':'interests', 'lrEntries': lrTypes.interests.entries, 'depth':0]" />
+                    model="['wrapper':rqt, 'javaName':'interests', 'lrEntries': lrTypes.interests.entries, 'depth':0]" />
           </dd>
           
 

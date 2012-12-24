@@ -40,9 +40,9 @@
               <h3><g:message code="hcrr.property.centreSejours.label" /></h3>
               <dl class="required">
                 
-                  <dt class="required">${message(code:'hcrr.property.idCentreSejours.label')} * :</dt><dd id="idCentreSejours" class="action-editField validate-string required-true i18n-hcrr.property.idCentreSejours" ><span>${rqt?.idCentreSejours}</span></dd>
+                  <dt class="required">${message(code:'hcrr.property.idCentreSejours.label')} * :</dt><dd id="idCentreSejours" class="action-editField validate-string required-true i18n-hcrr.property.idCentreSejours" ><span>${rqt.centreSejours?.idCentreSejours}</span></dd>
                 
-                  <dt class="required">${message(code:'hcrr.property.labelCentreSejours.label')} * :</dt><dd id="labelCentreSejours" class="action-editField validate-string required-true i18n-hcrr.property.labelCentreSejours" ><span>${rqt?.labelCentreSejours}</span></dd>
+                  <dt class="required">${message(code:'hcrr.property.labelCentreSejours.label')} * :</dt><dd id="labelCentreSejours" class="action-editField validate-string required-true i18n-hcrr.property.labelCentreSejours" ><span>${rqt.centreSejours?.labelCentreSejours}</span></dd>
                 
               </dl>
               

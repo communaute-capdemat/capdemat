@@ -90,11 +90,11 @@
               <h3><g:message code="serrr.property.lieuNaissance.label" /></h3>
               <dl class="required">
                 
-                  <dt class="required">${message(code:'serrr.property.villeNaissanceCodePostal.label')} * :</dt><dd id="villeNaissanceCodePostal" class="action-editField validate-city required-true i18n-serrr.property.villeNaissanceCodePostal maxLength-32" ><span>${rqt?.villeNaissanceCodePostal}</span></dd>
+                  <dt class="required">${message(code:'serrr.property.villeNaissanceCodePostal.label')} * :</dt><dd id="villeNaissanceCodePostal" class="action-editField validate-city required-true i18n-serrr.property.villeNaissanceCodePostal maxLength-32" ><span>${rqt.lieuNaissance?.villeNaissanceCodePostal}</span></dd>
                 
-                  <dt class="">${message(code:'serrr.property.lieuNaissanceDepartement.label')} :</dt><dd id="lieuNaissanceDepartement" class="action-editField validate-capdematEnum i18n-serrr.property.lieuNaissanceDepartement javatype-fr.cg95.cvq.business.users.InseeDepartementCodeType" ><g:capdematEnumToField var="${rqt?.lieuNaissanceDepartement}" i18nKeyPrefix="serrr.property.lieuNaissanceDepartement" /></dd>
+                  <dt class="">${message(code:'serrr.property.lieuNaissanceDepartement.label')} :</dt><dd id="lieuNaissanceDepartement" class="action-editField validate-capdematEnum i18n-serrr.property.lieuNaissanceDepartement javatype-fr.cg95.cvq.business.users.InseeDepartementCodeType" ><g:capdematEnumToField var="${rqt.lieuNaissance?.lieuNaissanceDepartement}" i18nKeyPrefix="serrr.property.lieuNaissanceDepartement" /></dd>
                 
-                  <dt class="">${message(code:'serrr.property.lieuNaissancePays.label')} :</dt><dd id="lieuNaissancePays" class="action-editField validate-capdematEnum i18n-serrr.property.lieuNaissancePays javatype-fr.cg95.cvq.business.users.CountryType" ><g:capdematEnumToField var="${rqt?.lieuNaissancePays}" i18nKeyPrefix="serrr.property.lieuNaissancePays" /></dd>
+                  <dt class="">${message(code:'serrr.property.lieuNaissancePays.label')} :</dt><dd id="lieuNaissancePays" class="action-editField validate-capdematEnum i18n-serrr.property.lieuNaissancePays javatype-fr.cg95.cvq.business.users.CountryType" ><g:capdematEnumToField var="${rqt.lieuNaissance?.lieuNaissancePays}" i18nKeyPrefix="serrr.property.lieuNaissancePays" /></dd>
                 
               </dl>
               
@@ -109,15 +109,15 @@
               <h3><g:message code="serrr.property.fieldsetEstUnionEuropeenne.label" /></h3>
               <dl class="required condition-estUnionEuropenne-filled">
                 
-                  <dt class="required condition-estUnionEuropenne-filled">${message(code:'serrr.property.precisionNationalite.label')} * :</dt><dd id="precisionNationalite" class="action-editField validate-capdematEnum required-true i18n-serrr.property.precisionNationalite javatype-fr.cg95.cvq.business.request.election.SerrrPrecisionNationaliteType" ><g:capdematEnumToField var="${rqt?.precisionNationalite}" i18nKeyPrefix="serrr.property.precisionNationalite" /></dd>
+                  <dt class="required condition-estUnionEuropenne-filled">${message(code:'serrr.property.precisionNationalite.label')} * :</dt><dd id="precisionNationalite" class="action-editField validate-capdematEnum required-true i18n-serrr.property.precisionNationalite javatype-fr.cg95.cvq.business.request.election.SerrrPrecisionNationaliteType" ><g:capdematEnumToField var="${rqt.fieldsetEstUnionEuropeenne?.precisionNationalite}" i18nKeyPrefix="serrr.property.precisionNationalite" /></dd>
                 
-                  <dt class="required condition-estUnionEuropenne-filled condition-estElectionEuropenne-trigger">${message(code:'serrr.property.typeElection.label')} * :</dt><dd id="typeElection" class="action-editField validate-capdematEnum required-true i18n-serrr.property.typeElection javatype-fr.cg95.cvq.business.request.election.SerrrTypeElectionType" ><g:capdematEnumToField var="${rqt?.typeElection}" i18nKeyPrefix="serrr.property.typeElection" /></dd>
+                  <dt class="required condition-estUnionEuropenne-filled condition-estElectionEuropenne-trigger">${message(code:'serrr.property.typeElection.label')} * :</dt><dd id="typeElection" class="action-editField validate-capdematEnum required-true i18n-serrr.property.typeElection javatype-fr.cg95.cvq.business.request.election.SerrrTypeElectionType" ><g:capdematEnumToField var="${rqt.fieldsetEstUnionEuropeenne?.typeElection}" i18nKeyPrefix="serrr.property.typeElection" /></dd>
                 
-                  <dt class="condition-estElectionEuropenne-filled">${message(code:'serrr.property.paysPrecedent.label')} :</dt><dd id="paysPrecedent" class="action-editField validate-capdematEnum i18n-serrr.property.paysPrecedent javatype-fr.cg95.cvq.business.users.CountryType" ><g:capdematEnumToField var="${rqt?.paysPrecedent}" i18nKeyPrefix="serrr.property.paysPrecedent" /></dd>
+                  <dt class="condition-estElectionEuropenne-filled">${message(code:'serrr.property.paysPrecedent.label')} :</dt><dd id="paysPrecedent" class="action-editField validate-capdematEnum i18n-serrr.property.paysPrecedent javatype-fr.cg95.cvq.business.users.CountryType" ><g:capdematEnumToField var="${rqt.fieldsetEstUnionEuropeenne?.paysPrecedent}" i18nKeyPrefix="serrr.property.paysPrecedent" /></dd>
                 
-                  <dt class="condition-estElectionEuropenne-filled">${message(code:'serrr.property.subdivisionAdministrativePrecedente.label')} :</dt><dd id="subdivisionAdministrativePrecedente" class="action-editField validate-string i18n-serrr.property.subdivisionAdministrativePrecedente" ><span>${rqt?.subdivisionAdministrativePrecedente}</span></dd>
+                  <dt class="condition-estElectionEuropenne-filled">${message(code:'serrr.property.subdivisionAdministrativePrecedente.label')} :</dt><dd id="subdivisionAdministrativePrecedente" class="action-editField validate-string i18n-serrr.property.subdivisionAdministrativePrecedente" ><span>${rqt.fieldsetEstUnionEuropeenne?.subdivisionAdministrativePrecedente}</span></dd>
                 
-                  <dt class="condition-estElectionEuropenne-filled">${message(code:'serrr.property.communeOuLocalitePrecedente.label')} :</dt><dd id="communeOuLocalitePrecedente" class="action-editField validate-city i18n-serrr.property.communeOuLocalitePrecedente maxLength-32" ><span>${rqt?.communeOuLocalitePrecedente}</span></dd>
+                  <dt class="condition-estElectionEuropenne-filled">${message(code:'serrr.property.communeOuLocalitePrecedente.label')} :</dt><dd id="communeOuLocalitePrecedente" class="action-editField validate-city i18n-serrr.property.communeOuLocalitePrecedente maxLength-32" ><span>${rqt.fieldsetEstUnionEuropeenne?.communeOuLocalitePrecedente}</span></dd>
                 
               </dl>
               
@@ -157,9 +157,9 @@
               <h3><g:message code="serrr.property.precedentLieuInscription.label" /></h3>
               <dl class="required condition-estChangementCommune-filled">
                 
-                  <dt class="required">${message(code:'serrr.property.ancienneCommune.label')} * :</dt><dd id="ancienneCommune" class="action-editField validate-city required-true i18n-serrr.property.ancienneCommune maxLength-32" ><span>${rqt?.ancienneCommune}</span></dd>
+                  <dt class="required">${message(code:'serrr.property.ancienneCommune.label')} * :</dt><dd id="ancienneCommune" class="action-editField validate-city required-true i18n-serrr.property.ancienneCommune maxLength-32" ><span>${rqt.precedentLieuInscription?.ancienneCommune}</span></dd>
                 
-                  <dt class="required">${message(code:'serrr.property.departementAncienneCommune.label')} * :</dt><dd id="departementAncienneCommune" class="action-editField validate-capdematEnum required-true i18n-serrr.property.departementAncienneCommune javatype-fr.cg95.cvq.business.users.InseeDepartementCodeType" ><g:capdematEnumToField var="${rqt?.departementAncienneCommune}" i18nKeyPrefix="serrr.property.departementAncienneCommune" /></dd>
+                  <dt class="required">${message(code:'serrr.property.departementAncienneCommune.label')} * :</dt><dd id="departementAncienneCommune" class="action-editField validate-capdematEnum required-true i18n-serrr.property.departementAncienneCommune javatype-fr.cg95.cvq.business.users.InseeDepartementCodeType" ><g:capdematEnumToField var="${rqt.precedentLieuInscription?.departementAncienneCommune}" i18nKeyPrefix="serrr.property.departementAncienneCommune" /></dd>
                 
               </dl>
               

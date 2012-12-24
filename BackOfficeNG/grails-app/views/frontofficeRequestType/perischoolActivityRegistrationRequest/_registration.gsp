@@ -36,7 +36,9 @@
     <label class="required"><g:message code="parr.property.perischoolActivity.label" /> *  <span><g:message code="parr.property.perischoolActivity.help" /></span></label>
             <g:set var="perischoolActivityIndex" value="${0}" scope="flash" />
             <g:render template="/frontofficeRequestType/widget/localReferentialData" 
-                      model="['javaName':'perischoolActivity', 'i18nPrefixCode':'parr.property.perischoolActivity', 'htmlClass':'required  ', 
+                      model="['wrapper':rqt, 'wrapperJavaName':'',
+                              'javaName':'perischoolActivity', 'i18nPrefixCode':'parr.property.perischoolActivity',
+                              'htmlClass':'required  ', 
                               'lrEntries': lrTypes.perischoolActivity.entries, 'depth':0]" />
             
 

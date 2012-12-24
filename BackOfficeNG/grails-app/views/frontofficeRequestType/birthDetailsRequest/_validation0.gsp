@@ -96,10 +96,10 @@
       <h4><g:message code="bdr.property.fatherInformation.label" /></h4>
       <dl>
         
-          <dt><g:message code="bdr.property.fatherLastName.label" /></dt><dd>${rqt.fatherLastName?.toString()}</dd>
+          <dt><g:message code="bdr.property.fatherLastName.label" /></dt><dd>${rqt.fatherInformation?.fatherLastName?.toString()}</dd>
 
         
-          <dt><g:message code="bdr.property.fatherFirstNames.label" /></dt><dd>${rqt.fatherFirstNames?.toString()}</dd>
+          <dt><g:message code="bdr.property.fatherFirstNames.label" /></dt><dd>${rqt.fatherInformation?.fatherFirstNames?.toString()}</dd>
 
         
       </dl>
@@ -109,10 +109,10 @@
       <h4><g:message code="bdr.property.motherInformation.label" /></h4>
       <dl>
         
-          <dt><g:message code="bdr.property.motherMaidenName.label" /></dt><dd>${rqt.motherMaidenName?.toString()}</dd>
+          <dt><g:message code="bdr.property.motherMaidenName.label" /></dt><dd>${rqt.motherInformation?.motherMaidenName?.toString()}</dd>
 
         
-          <dt><g:message code="bdr.property.motherFirstNames.label" /></dt><dd>${rqt.motherFirstNames?.toString()}</dd>
+          <dt><g:message code="bdr.property.motherFirstNames.label" /></dt><dd>${rqt.motherInformation?.motherFirstNames?.toString()}</dd>
 
         
       </dl>

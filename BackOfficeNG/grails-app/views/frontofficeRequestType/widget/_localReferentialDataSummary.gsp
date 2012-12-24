@@ -1,4 +1,4 @@
-<g:set var="lrDatas" value="${rqt[javaName].collect{it.name}}" />
+<g:set var="lrDatas" value="${wrapper != null ? wrapper[javaName].collect{it.name} : null}" />
 <ul ${depth==0 ? 'class="dataTree"' : ''}>
   <g:each status="i" var="entry" in="${lrEntries}">
     <g:if test="${entry.entries}">

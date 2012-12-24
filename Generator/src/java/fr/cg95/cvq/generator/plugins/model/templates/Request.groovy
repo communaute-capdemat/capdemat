@@ -62,7 +62,7 @@
       """,
         "complex" : """
         if (get${element.elementName}() != null)
-            ${wrapper}.set${StringUtils.capitalize(element.nameAsParam)}(${element.modelClassName}.modelToXml(get${element.elementName}()));
+            ${wrapper}.set${StringUtils.capitalize(element.nameAsParam)}(get${element.elementName}().modelToXml());
       """,
         "referentialList" : """
         i = 0;

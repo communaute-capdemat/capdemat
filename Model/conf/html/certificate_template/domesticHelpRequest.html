@@ -6,27 +6,26 @@
   import fr.cg95.cvq.util.EnumTool
   import java.text.NumberFormat
   def esc(s) { return org.apache.commons.lang3.StringEscapeUtils.escapeXml(s) }
-  def localReferentialWidget(rqt, javaName, lrEntries, depth) {
-    def currentLrDatas = rqt[javaName].collect{it.name}
-    if (lrEntries.any{it.entries}) {
-      println "<ul ${depth==0 ? 'class="dataTree"' : ''}>"
-      
-      lrEntries.each { entry ->
-        println "<li>"
-        if (entry.entries) {
-          println "<em ${currentLrDatas?.contains(entry.key) ? 'class="checked"' : ''}>${entry.label} :</em>"
-          localReferentialWidget(rqt, javaName, entry.entries, depth + 1)
-        } else {
-          println "<span ${currentLrDatas?.contains(entry.key) ? 'class="checked"' : ''}>${entry.label}</span>"
-        }
-        println "</li>"
-      }
-
-      println "</ul>"
-    } else {
-      lrEntries.eachWithIndex { entry, i ->
-        println "<span ${currentLrDatas?.contains(entry.key) ? 'class="checked"' : ''}>${entry.label}</span>${i + 1 < lrEntries.size() ? ', ' : ''}"
-      }
+  def localReferentialWidget(wrapper, javaName, lrEntries, depth) {
+    def lrHtml = ''
+    def currentLrDatas = wrapper != null ? wrapper[javaName].collect{it.name} : null
+    if (lrTypes[javaName].isMultiple()) { 
+      lrHtml += "<ul ${depth==0 ? 'class="dataTree"' : ''}>"
+      lrEntries.eachWithIndex { entry, i -> 
+      if (entry.entries) { 
+        lrHtml += "<li>"
+        lrHtml += "<em>${esc(entry.label)} :</em>"
+        lrHtml += localReferentialWidget(wrapper, javaName, entry.entries,++depth)
+        lrHtml += "</li>"
+      } else {
+         lrHtml += "<li><span ${currentLrDatas?.contains(entry.key) ? 'class="checked"' : ''}>${esc(entry.label)}</span>${i + 1 < lrEntries.size() ? ',' : ''}</li>"
+      } 
+    } 
+    lrHtml += "</ul>"
+    } else { 
+      lrEntries.each { entry -> 
+        lrHtml += "${currentLrDatas?.contains(entry.key) ? esc(entry.label): ''}"
+      } 
     }
   }
 
@@ -103,31 +102,31 @@
 
         
           <p class="label">${esc(i18n.translate('dhr.property.dhrRequesterBirthDate.label'))}</p>
-          <div class="response">${rqt.dhrRequesterBirthDate ? String.format('%td/%<tm/%<tY',rqt.dhrRequesterBirthDate) : ''}</div>
+          <div class="response">${rqt.dhrRequester?.dhrRequesterBirthDate ? String.format('%td/%<tm/%<tY',rqt.dhrRequester?.dhrRequesterBirthDate) : ''}</div>
           
 
         
-          <p class="label">${esc(i18n.translate('dhr.property.dhrRequesterBirthPlace.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.dhrRequesterBirthPlace?.toString()))}</div>
+          <p class="label">${esc(i18n.translate('dhr.property.dhrRequesterBirthPlace.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.dhrRequester?.dhrRequesterBirthPlace?.toString()))}</div>
 
         
           <p class="label">${esc(i18n.translate('dhr.property.dhrRequesterNationality.label'))}</p>
           <div class="response">
-            <% if(rqt.dhrRequesterNationality) { %>
-              ${esc(i18n.translate('dhr.property.dhrRequesterNationality.' + EnumTool.toLowerCamelCase(rqt.dhrRequesterNationality.toString())))}
+            <% if(rqt.dhrRequester?.dhrRequesterNationality) { %>
+              ${esc(i18n.translate('dhr.property.dhrRequesterNationality.' + EnumTool.toLowerCamelCase(rqt.dhrRequester?.dhrRequesterNationality.toString())))}
             <% } %>
           </div>
           
 
         
           <p class="label">${esc(i18n.translate('dhr.property.dhrRequesterFranceArrivalDate.label'))}</p>
-          <div class="response">${rqt.dhrRequesterFranceArrivalDate ? String.format('%td/%<tm/%<tY',rqt.dhrRequesterFranceArrivalDate) : ''}</div>
+          <div class="response">${rqt.dhrRequester?.dhrRequesterFranceArrivalDate ? String.format('%td/%<tm/%<tY',rqt.dhrRequester?.dhrRequesterFranceArrivalDate) : ''}</div>
           
 
         
           <p class="label">${esc(i18n.translate('dhr.property.dhrRequesterIsFrenchResident.label'))}</p>
           <div class="response choice">
             <% [true,false].each { %>
-              <span ${it == rqt.dhrRequesterIsFrenchResident ? 'class="checked"': ''}>
+              <span ${it == rqt.dhrRequester?.dhrRequesterIsFrenchResident ? 'class="checked"': ''}>
                 ${esc(i18n.translate('message.' + (it ? 'yes' : 'no')))}
               </span>
               ${it ? ' / ' : ''}
@@ -145,17 +144,17 @@
         
           <p class="label">${esc(i18n.translate('dhr.property.dhrPrincipalPensionPlan.label'))}</p>
           <div class="response">
-            <% if(rqt.dhrPrincipalPensionPlan) { %>
-              ${esc(i18n.translate('dhr.property.dhrPrincipalPensionPlan.' + EnumTool.toLowerCamelCase(rqt.dhrPrincipalPensionPlan.toString())))}
+            <% if(rqt.dhrRequesterPensionPlan?.dhrPrincipalPensionPlan) { %>
+              ${esc(i18n.translate('dhr.property.dhrPrincipalPensionPlan.' + EnumTool.toLowerCamelCase(rqt.dhrRequesterPensionPlan?.dhrPrincipalPensionPlan.toString())))}
             <% } %>
           </div>
           
 
         
-          <p class="label">${esc(i18n.translate('dhr.property.dhrPensionPlanDetail.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.dhrPensionPlanDetail?.toString()))}</div>
+          <p class="label">${esc(i18n.translate('dhr.property.dhrPensionPlanDetail.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.dhrRequesterPensionPlan?.dhrPensionPlanDetail?.toString()))}</div>
 
         
-          <p class="label">${esc(i18n.translate('dhr.property.dhrComplementaryPensionPlan.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.dhrComplementaryPensionPlan?.toString()))}</div>
+          <p class="label">${esc(i18n.translate('dhr.property.dhrComplementaryPensionPlan.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.dhrRequesterPensionPlan?.dhrComplementaryPensionPlan?.toString()))}</div>
 
         
       </div>
@@ -168,7 +167,7 @@
           <p class="label">${esc(i18n.translate('dhr.property.dhrRequesterHaveGuardian.label'))}</p>
           <div class="response choice">
             <% [true,false].each { %>
-              <span ${it == rqt.dhrRequesterHaveGuardian ? 'class="checked"': ''}>
+              <span ${it == rqt.dhrRequesterGuardian?.dhrRequesterHaveGuardian ? 'class="checked"': ''}>
                 ${esc(i18n.translate('message.' + (it ? 'yes' : 'no')))}
               </span>
               ${it ? ' / ' : ''}
@@ -179,25 +178,25 @@
         
           <p class="label">${esc(i18n.translate('dhr.property.dhrGuardianMeasure.label'))}</p>
           <div class="response">
-            <% if(rqt.dhrGuardianMeasure) { %>
-              ${esc(i18n.translate('dhr.property.dhrGuardianMeasure.' + EnumTool.toLowerCamelCase(rqt.dhrGuardianMeasure.toString())))}
+            <% if(rqt.dhrRequesterGuardian?.dhrGuardianMeasure) { %>
+              ${esc(i18n.translate('dhr.property.dhrGuardianMeasure.' + EnumTool.toLowerCamelCase(rqt.dhrRequesterGuardian?.dhrGuardianMeasure.toString())))}
             <% } %>
           </div>
           
 
         
-          <p class="label">${esc(i18n.translate('dhr.property.dhrGuardianName.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.dhrGuardianName?.toString()))}</div>
+          <p class="label">${esc(i18n.translate('dhr.property.dhrGuardianName.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.dhrRequesterGuardian?.dhrGuardianName?.toString()))}</div>
 
         
           <p class="label">${esc(i18n.translate('dhr.property.dhrGuardianAddress.label'))}</p>
           <div class="response">
-            <% if(rqt.dhrGuardianAddress) { %>
-              <p>${esc(StringUtils.defaultString(rqt.dhrGuardianAddress?.additionalDeliveryInformation))}</p>
-              <p>${esc(StringUtils.defaultString(rqt.dhrGuardianAddress?.additionalGeographicalInformation))}</p>
-              <p>${esc(StringUtils.defaultString(rqt.dhrGuardianAddress?.streetNumber))} ${esc(StringUtils.defaultString(rqt.dhrGuardianAddress?.streetName))}</p>
-              <p>${esc(StringUtils.defaultString(rqt.dhrGuardianAddress?.placeNameOrService))}</p>
-              <p>${esc(StringUtils.defaultString(rqt.dhrGuardianAddress?.postalCode))} ${esc(StringUtils.defaultString(rqt.dhrGuardianAddress?.city))}</p>
-              <p>${esc(StringUtils.defaultString(rqt.dhrGuardianAddress?.countryName))}</p>
+            <% if(rqt.dhrRequesterGuardian?.dhrGuardianAddress) { %>
+              <p>${esc(StringUtils.defaultString(rqt.dhrRequesterGuardian?.dhrGuardianAddress?.additionalDeliveryInformation))}</p>
+              <p>${esc(StringUtils.defaultString(rqt.dhrRequesterGuardian?.dhrGuardianAddress?.additionalGeographicalInformation))}</p>
+              <p>${esc(StringUtils.defaultString(rqt.dhrRequesterGuardian?.dhrGuardianAddress?.streetNumber))} ${esc(StringUtils.defaultString(rqt.dhrRequesterGuardian?.dhrGuardianAddress?.streetName))}</p>
+              <p>${esc(StringUtils.defaultString(rqt.dhrRequesterGuardian?.dhrGuardianAddress?.placeNameOrService))}</p>
+              <p>${esc(StringUtils.defaultString(rqt.dhrRequesterGuardian?.dhrGuardianAddress?.postalCode))} ${esc(StringUtils.defaultString(rqt.dhrRequesterGuardian?.dhrGuardianAddress?.city))}</p>
+              <p>${esc(StringUtils.defaultString(rqt.dhrRequesterGuardian?.dhrGuardianAddress?.countryName))}</p>
             <% } %>
           </div>
           
@@ -217,7 +216,7 @@
           <p class="label">${esc(i18n.translate('dhr.property.dhrHaveFamilyReferent.label'))}</p>
           <div class="response choice">
             <% [true,false].each { %>
-              <span ${it == rqt.dhrHaveFamilyReferent ? 'class="checked"': ''}>
+              <span ${it == rqt.dhrFamilyReferent?.dhrHaveFamilyReferent ? 'class="checked"': ''}>
                 ${esc(i18n.translate('message.' + (it ? 'yes' : 'no')))}
               </span>
               ${it ? ' / ' : ''}
@@ -226,21 +225,21 @@
           
 
         
-          <p class="label">${esc(i18n.translate('dhr.property.dhrReferentName.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.dhrReferentName?.toString()))}</div>
+          <p class="label">${esc(i18n.translate('dhr.property.dhrReferentName.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.dhrFamilyReferent?.dhrReferentName?.toString()))}</div>
 
         
-          <p class="label">${esc(i18n.translate('dhr.property.dhrReferentFirstName.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.dhrReferentFirstName?.toString()))}</div>
+          <p class="label">${esc(i18n.translate('dhr.property.dhrReferentFirstName.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.dhrFamilyReferent?.dhrReferentFirstName?.toString()))}</div>
 
         
           <p class="label">${esc(i18n.translate('dhr.property.dhrReferentAddress.label'))}</p>
           <div class="response">
-            <% if(rqt.dhrReferentAddress) { %>
-              <p>${esc(StringUtils.defaultString(rqt.dhrReferentAddress?.additionalDeliveryInformation))}</p>
-              <p>${esc(StringUtils.defaultString(rqt.dhrReferentAddress?.additionalGeographicalInformation))}</p>
-              <p>${esc(StringUtils.defaultString(rqt.dhrReferentAddress?.streetNumber))} ${esc(StringUtils.defaultString(rqt.dhrReferentAddress?.streetName))}</p>
-              <p>${esc(StringUtils.defaultString(rqt.dhrReferentAddress?.placeNameOrService))}</p>
-              <p>${esc(StringUtils.defaultString(rqt.dhrReferentAddress?.postalCode))} ${esc(StringUtils.defaultString(rqt.dhrReferentAddress?.city))}</p>
-              <p>${esc(StringUtils.defaultString(rqt.dhrReferentAddress?.countryName))}</p>
+            <% if(rqt.dhrFamilyReferent?.dhrReferentAddress) { %>
+              <p>${esc(StringUtils.defaultString(rqt.dhrFamilyReferent?.dhrReferentAddress?.additionalDeliveryInformation))}</p>
+              <p>${esc(StringUtils.defaultString(rqt.dhrFamilyReferent?.dhrReferentAddress?.additionalGeographicalInformation))}</p>
+              <p>${esc(StringUtils.defaultString(rqt.dhrFamilyReferent?.dhrReferentAddress?.streetNumber))} ${esc(StringUtils.defaultString(rqt.dhrFamilyReferent?.dhrReferentAddress?.streetName))}</p>
+              <p>${esc(StringUtils.defaultString(rqt.dhrFamilyReferent?.dhrReferentAddress?.placeNameOrService))}</p>
+              <p>${esc(StringUtils.defaultString(rqt.dhrFamilyReferent?.dhrReferentAddress?.postalCode))} ${esc(StringUtils.defaultString(rqt.dhrFamilyReferent?.dhrReferentAddress?.city))}</p>
+              <p>${esc(StringUtils.defaultString(rqt.dhrFamilyReferent?.dhrReferentAddress?.countryName))}</p>
             <% } %>
           </div>
           
@@ -259,8 +258,8 @@
         
           <p class="label">${esc(i18n.translate('dhr.property.dhrRequestKind.label'))}</p>
           <div class="response">
-            <% if(rqt.dhrRequestKind) { %>
-              ${esc(i18n.translate('dhr.property.dhrRequestKind.' + EnumTool.toLowerCamelCase(rqt.dhrRequestKind.toString())))}
+            <% if(rqt.dhrSpouse?.dhrRequestKind) { %>
+              ${esc(i18n.translate('dhr.property.dhrRequestKind.' + EnumTool.toLowerCamelCase(rqt.dhrSpouse?.dhrRequestKind.toString())))}
             <% } %>
           </div>
           
@@ -268,8 +267,8 @@
         
           <p class="label">${esc(i18n.translate('dhr.property.dhrSpouseTitle.label'))}</p>
           <div class="response">
-            <% if(rqt.dhrSpouseTitle) { %>
-              ${esc(i18n.translate('dhr.property.dhrSpouseTitle.' + EnumTool.toLowerCamelCase(rqt.dhrSpouseTitle.toString())))}
+            <% if(rqt.dhrSpouse?.dhrSpouseTitle) { %>
+              ${esc(i18n.translate('dhr.property.dhrSpouseTitle.' + EnumTool.toLowerCamelCase(rqt.dhrSpouse?.dhrSpouseTitle.toString())))}
             <% } %>
           </div>
           
@@ -277,48 +276,48 @@
         
           <p class="label">${esc(i18n.translate('dhr.property.dhrSpouseFamilyStatus.label'))}</p>
           <div class="response">
-            <% if(rqt.dhrSpouseFamilyStatus) { %>
-              ${esc(i18n.translate('dhr.property.dhrSpouseFamilyStatus.' + EnumTool.toLowerCamelCase(rqt.dhrSpouseFamilyStatus.toString())))}
+            <% if(rqt.dhrSpouse?.dhrSpouseFamilyStatus) { %>
+              ${esc(i18n.translate('dhr.property.dhrSpouseFamilyStatus.' + EnumTool.toLowerCamelCase(rqt.dhrSpouse?.dhrSpouseFamilyStatus.toString())))}
             <% } %>
           </div>
           
 
         
-          <p class="label">${esc(i18n.translate('dhr.property.dhrSpouseName.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.dhrSpouseName?.toString()))}</div>
+          <p class="label">${esc(i18n.translate('dhr.property.dhrSpouseName.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.dhrSpouse?.dhrSpouseName?.toString()))}</div>
 
         
-          <p class="label">${esc(i18n.translate('dhr.property.dhrSpouseFirstName.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.dhrSpouseFirstName?.toString()))}</div>
+          <p class="label">${esc(i18n.translate('dhr.property.dhrSpouseFirstName.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.dhrSpouse?.dhrSpouseFirstName?.toString()))}</div>
 
         
-          <p class="label">${esc(i18n.translate('dhr.property.dhrSpouseMaidenName.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.dhrSpouseMaidenName?.toString()))}</div>
+          <p class="label">${esc(i18n.translate('dhr.property.dhrSpouseMaidenName.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.dhrSpouse?.dhrSpouseMaidenName?.toString()))}</div>
 
         
           <p class="label">${esc(i18n.translate('dhr.property.dhrSpouseBirthDate.label'))}</p>
-          <div class="response">${rqt.dhrSpouseBirthDate ? String.format('%td/%<tm/%<tY',rqt.dhrSpouseBirthDate) : ''}</div>
+          <div class="response">${rqt.dhrSpouse?.dhrSpouseBirthDate ? String.format('%td/%<tm/%<tY',rqt.dhrSpouse?.dhrSpouseBirthDate) : ''}</div>
           
 
         
-          <p class="label">${esc(i18n.translate('dhr.property.dhrSpouseBirthPlace.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.dhrSpouseBirthPlace?.toString()))}</div>
+          <p class="label">${esc(i18n.translate('dhr.property.dhrSpouseBirthPlace.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.dhrSpouse?.dhrSpouseBirthPlace?.toString()))}</div>
 
         
           <p class="label">${esc(i18n.translate('dhr.property.dhrSpouseNationality.label'))}</p>
           <div class="response">
-            <% if(rqt.dhrSpouseNationality) { %>
-              ${esc(i18n.translate('dhr.property.dhrSpouseNationality.' + EnumTool.toLowerCamelCase(rqt.dhrSpouseNationality.toString())))}
+            <% if(rqt.dhrSpouse?.dhrSpouseNationality) { %>
+              ${esc(i18n.translate('dhr.property.dhrSpouseNationality.' + EnumTool.toLowerCamelCase(rqt.dhrSpouse?.dhrSpouseNationality.toString())))}
             <% } %>
           </div>
           
 
         
           <p class="label">${esc(i18n.translate('dhr.property.dhrSpouseFranceArrivalDate.label'))}</p>
-          <div class="response">${rqt.dhrSpouseFranceArrivalDate ? String.format('%td/%<tm/%<tY',rqt.dhrSpouseFranceArrivalDate) : ''}</div>
+          <div class="response">${rqt.dhrSpouse?.dhrSpouseFranceArrivalDate ? String.format('%td/%<tm/%<tY',rqt.dhrSpouse?.dhrSpouseFranceArrivalDate) : ''}</div>
           
 
         
           <p class="label">${esc(i18n.translate('dhr.property.dhrSpouseIsFrenchResident.label'))}</p>
           <div class="response choice">
             <% [true,false].each { %>
-              <span ${it == rqt.dhrSpouseIsFrenchResident ? 'class="checked"': ''}>
+              <span ${it == rqt.dhrSpouse?.dhrSpouseIsFrenchResident ? 'class="checked"': ''}>
                 ${esc(i18n.translate('message.' + (it ? 'yes' : 'no')))}
               </span>
               ${it ? ' / ' : ''}
@@ -337,7 +336,7 @@
           <p class="label">${esc(i18n.translate('dhr.property.dhrIsSpouseRetired.label'))}</p>
           <div class="response choice">
             <% [true,false].each { %>
-              <span ${it == rqt.dhrIsSpouseRetired ? 'class="checked"': ''}>
+              <span ${it == rqt.dhrSpouseStatus?.dhrIsSpouseRetired ? 'class="checked"': ''}>
                 ${esc(i18n.translate('message.' + (it ? 'yes' : 'no')))}
               </span>
               ${it ? ' / ' : ''}
@@ -348,34 +347,34 @@
         
           <p class="label">${esc(i18n.translate('dhr.property.dhrSpousePrincipalPensionPlan.label'))}</p>
           <div class="response">
-            <% if(rqt.dhrSpousePrincipalPensionPlan) { %>
-              ${esc(i18n.translate('dhr.property.dhrSpousePrincipalPensionPlan.' + EnumTool.toLowerCamelCase(rqt.dhrSpousePrincipalPensionPlan.toString())))}
+            <% if(rqt.dhrSpouseStatus?.dhrSpousePrincipalPensionPlan) { %>
+              ${esc(i18n.translate('dhr.property.dhrSpousePrincipalPensionPlan.' + EnumTool.toLowerCamelCase(rqt.dhrSpouseStatus?.dhrSpousePrincipalPensionPlan.toString())))}
             <% } %>
           </div>
           
 
         
-          <p class="label">${esc(i18n.translate('dhr.property.dhrSpousePensionPlanDetail.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.dhrSpousePensionPlanDetail?.toString()))}</div>
+          <p class="label">${esc(i18n.translate('dhr.property.dhrSpousePensionPlanDetail.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.dhrSpouseStatus?.dhrSpousePensionPlanDetail?.toString()))}</div>
 
         
-          <p class="label">${esc(i18n.translate('dhr.property.dhrSpouseComplementaryPensionPlan.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.dhrSpouseComplementaryPensionPlan?.toString()))}</div>
+          <p class="label">${esc(i18n.translate('dhr.property.dhrSpouseComplementaryPensionPlan.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.dhrSpouseStatus?.dhrSpouseComplementaryPensionPlan?.toString()))}</div>
 
         
-          <p class="label">${esc(i18n.translate('dhr.property.dhrSpouseProfession.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.dhrSpouseProfession?.toString()))}</div>
+          <p class="label">${esc(i18n.translate('dhr.property.dhrSpouseProfession.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.dhrSpouseStatus?.dhrSpouseProfession?.toString()))}</div>
 
         
-          <p class="label">${esc(i18n.translate('dhr.property.dhrSpouseEmployer.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.dhrSpouseEmployer?.toString()))}</div>
+          <p class="label">${esc(i18n.translate('dhr.property.dhrSpouseEmployer.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.dhrSpouseStatus?.dhrSpouseEmployer?.toString()))}</div>
 
         
           <p class="label">${esc(i18n.translate('dhr.property.dhrSpouseAddress.label'))}</p>
           <div class="response">
-            <% if(rqt.dhrSpouseAddress) { %>
-              <p>${esc(StringUtils.defaultString(rqt.dhrSpouseAddress?.additionalDeliveryInformation))}</p>
-              <p>${esc(StringUtils.defaultString(rqt.dhrSpouseAddress?.additionalGeographicalInformation))}</p>
-              <p>${esc(StringUtils.defaultString(rqt.dhrSpouseAddress?.streetNumber))} ${esc(StringUtils.defaultString(rqt.dhrSpouseAddress?.streetName))}</p>
-              <p>${esc(StringUtils.defaultString(rqt.dhrSpouseAddress?.placeNameOrService))}</p>
-              <p>${esc(StringUtils.defaultString(rqt.dhrSpouseAddress?.postalCode))} ${esc(StringUtils.defaultString(rqt.dhrSpouseAddress?.city))}</p>
-              <p>${esc(StringUtils.defaultString(rqt.dhrSpouseAddress?.countryName))}</p>
+            <% if(rqt.dhrSpouseStatus?.dhrSpouseAddress) { %>
+              <p>${esc(StringUtils.defaultString(rqt.dhrSpouseStatus?.dhrSpouseAddress?.additionalDeliveryInformation))}</p>
+              <p>${esc(StringUtils.defaultString(rqt.dhrSpouseStatus?.dhrSpouseAddress?.additionalGeographicalInformation))}</p>
+              <p>${esc(StringUtils.defaultString(rqt.dhrSpouseStatus?.dhrSpouseAddress?.streetNumber))} ${esc(StringUtils.defaultString(rqt.dhrSpouseStatus?.dhrSpouseAddress?.streetName))}</p>
+              <p>${esc(StringUtils.defaultString(rqt.dhrSpouseStatus?.dhrSpouseAddress?.placeNameOrService))}</p>
+              <p>${esc(StringUtils.defaultString(rqt.dhrSpouseStatus?.dhrSpouseAddress?.postalCode))} ${esc(StringUtils.defaultString(rqt.dhrSpouseStatus?.dhrSpouseAddress?.city))}</p>
+              <p>${esc(StringUtils.defaultString(rqt.dhrSpouseStatus?.dhrSpouseAddress?.countryName))}</p>
             <% } %>
           </div>
           
@@ -388,22 +387,22 @@
       <h3>${i18n.translate('dhr.property.dhrSpouseIncomes.label')}</h3>
       <div class="complex">
         
-          <p class="label">${esc(i18n.translate('dhr.property.pensions.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.pensions?.toString()))}</div>
+          <p class="label">${esc(i18n.translate('dhr.property.pensions.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.dhrSpouseIncomes?.pensions?.toString()))}</div>
 
         
-          <p class="label">${esc(i18n.translate('dhr.property.dhrAllowances.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.dhrAllowances?.toString()))}</div>
+          <p class="label">${esc(i18n.translate('dhr.property.dhrAllowances.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.dhrSpouseIncomes?.dhrAllowances?.toString()))}</div>
 
         
-          <p class="label">${esc(i18n.translate('dhr.property.dhrFurnitureInvestmentIncome.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.dhrFurnitureInvestmentIncome?.toString()))}</div>
+          <p class="label">${esc(i18n.translate('dhr.property.dhrFurnitureInvestmentIncome.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.dhrSpouseIncomes?.dhrFurnitureInvestmentIncome?.toString()))}</div>
 
         
-          <p class="label">${esc(i18n.translate('dhr.property.dhrRealEstateInvestmentIncome.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.dhrRealEstateInvestmentIncome?.toString()))}</div>
+          <p class="label">${esc(i18n.translate('dhr.property.dhrRealEstateInvestmentIncome.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.dhrSpouseIncomes?.dhrRealEstateInvestmentIncome?.toString()))}</div>
 
         
-          <p class="label">${esc(i18n.translate('dhr.property.dhrNetIncome.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.dhrNetIncome?.toString()))}</div>
+          <p class="label">${esc(i18n.translate('dhr.property.dhrNetIncome.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.dhrSpouseIncomes?.dhrNetIncome?.toString()))}</div>
 
         
-          <p class="label">${esc(i18n.translate('dhr.property.dhrIncomesAnnualTotal.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.dhrIncomesAnnualTotal?.toString()))}</div>
+          <p class="label">${esc(i18n.translate('dhr.property.dhrIncomesAnnualTotal.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.dhrSpouseIncomes?.dhrIncomesAnnualTotal?.toString()))}</div>
 
         
       </div>
@@ -419,48 +418,48 @@
         
           <p class="label">${esc(i18n.translate('dhr.property.dhrCurrentDwellingAddress.label'))}</p>
           <div class="response">
-            <% if(rqt.dhrCurrentDwellingAddress) { %>
-              <p>${esc(StringUtils.defaultString(rqt.dhrCurrentDwellingAddress?.additionalDeliveryInformation))}</p>
-              <p>${esc(StringUtils.defaultString(rqt.dhrCurrentDwellingAddress?.additionalGeographicalInformation))}</p>
-              <p>${esc(StringUtils.defaultString(rqt.dhrCurrentDwellingAddress?.streetNumber))} ${esc(StringUtils.defaultString(rqt.dhrCurrentDwellingAddress?.streetName))}</p>
-              <p>${esc(StringUtils.defaultString(rqt.dhrCurrentDwellingAddress?.placeNameOrService))}</p>
-              <p>${esc(StringUtils.defaultString(rqt.dhrCurrentDwellingAddress?.postalCode))} ${esc(StringUtils.defaultString(rqt.dhrCurrentDwellingAddress?.city))}</p>
-              <p>${esc(StringUtils.defaultString(rqt.dhrCurrentDwellingAddress?.countryName))}</p>
+            <% if(rqt.dhrCurrentDwelling?.dhrCurrentDwellingAddress) { %>
+              <p>${esc(StringUtils.defaultString(rqt.dhrCurrentDwelling?.dhrCurrentDwellingAddress?.additionalDeliveryInformation))}</p>
+              <p>${esc(StringUtils.defaultString(rqt.dhrCurrentDwelling?.dhrCurrentDwellingAddress?.additionalGeographicalInformation))}</p>
+              <p>${esc(StringUtils.defaultString(rqt.dhrCurrentDwelling?.dhrCurrentDwellingAddress?.streetNumber))} ${esc(StringUtils.defaultString(rqt.dhrCurrentDwelling?.dhrCurrentDwellingAddress?.streetName))}</p>
+              <p>${esc(StringUtils.defaultString(rqt.dhrCurrentDwelling?.dhrCurrentDwellingAddress?.placeNameOrService))}</p>
+              <p>${esc(StringUtils.defaultString(rqt.dhrCurrentDwelling?.dhrCurrentDwellingAddress?.postalCode))} ${esc(StringUtils.defaultString(rqt.dhrCurrentDwelling?.dhrCurrentDwellingAddress?.city))}</p>
+              <p>${esc(StringUtils.defaultString(rqt.dhrCurrentDwelling?.dhrCurrentDwellingAddress?.countryName))}</p>
             <% } %>
           </div>
           
 
         
-          <p class="label">${esc(i18n.translate('dhr.property.dhrCurrentDwellingPhone.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.dhrCurrentDwellingPhone?.toString()))}</div>
+          <p class="label">${esc(i18n.translate('dhr.property.dhrCurrentDwellingPhone.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.dhrCurrentDwelling?.dhrCurrentDwellingPhone?.toString()))}</div>
 
         
           <p class="label">${esc(i18n.translate('dhr.property.dhrCurrentDwellingKind.label'))}</p>
           <div class="response">
-            <% if(rqt.dhrCurrentDwellingKind) { %>
-              ${esc(i18n.translate('dhr.property.dhrCurrentDwellingKind.' + EnumTool.toLowerCamelCase(rqt.dhrCurrentDwellingKind.toString())))}
+            <% if(rqt.dhrCurrentDwelling?.dhrCurrentDwellingKind) { %>
+              ${esc(i18n.translate('dhr.property.dhrCurrentDwellingKind.' + EnumTool.toLowerCamelCase(rqt.dhrCurrentDwelling?.dhrCurrentDwellingKind.toString())))}
             <% } %>
           </div>
           
 
         
           <p class="label">${esc(i18n.translate('dhr.property.dhrCurrentDwellingArrivalDate.label'))}</p>
-          <div class="response">${rqt.dhrCurrentDwellingArrivalDate ? String.format('%td/%<tm/%<tY',rqt.dhrCurrentDwellingArrivalDate) : ''}</div>
+          <div class="response">${rqt.dhrCurrentDwelling?.dhrCurrentDwellingArrivalDate ? String.format('%td/%<tm/%<tY',rqt.dhrCurrentDwelling?.dhrCurrentDwellingArrivalDate) : ''}</div>
           
 
         
           <p class="label">${esc(i18n.translate('dhr.property.dhrCurrentDwellingStatus.label'))}</p>
           <div class="response">
-            <% if(rqt.dhrCurrentDwellingStatus) { %>
-              ${esc(i18n.translate('dhr.property.dhrCurrentDwellingStatus.' + EnumTool.toLowerCamelCase(rqt.dhrCurrentDwellingStatus.toString())))}
+            <% if(rqt.dhrCurrentDwelling?.dhrCurrentDwellingStatus) { %>
+              ${esc(i18n.translate('dhr.property.dhrCurrentDwellingStatus.' + EnumTool.toLowerCamelCase(rqt.dhrCurrentDwelling?.dhrCurrentDwellingStatus.toString())))}
             <% } %>
           </div>
           
 
         
-          <p class="label">${esc(i18n.translate('dhr.property.dhrCurrentDwellingNumberOfRoom.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.dhrCurrentDwellingNumberOfRoom?.toString()))}</div>
+          <p class="label">${esc(i18n.translate('dhr.property.dhrCurrentDwellingNumberOfRoom.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.dhrCurrentDwelling?.dhrCurrentDwellingNumberOfRoom?.toString()))}</div>
 
         
-          <p class="label">${esc(i18n.translate('dhr.property.dhrCurrentDwellingNetArea.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.dhrCurrentDwellingNetArea?.toString()))}</div>
+          <p class="label">${esc(i18n.translate('dhr.property.dhrCurrentDwellingNetArea.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.dhrCurrentDwelling?.dhrCurrentDwellingNetArea?.toString()))}</div>
 
         
       </div>
@@ -528,22 +527,22 @@
       <h3>${i18n.translate('dhr.property.dhrRequesterIncomes.label')}</h3>
       <div class="complex">
         
-          <p class="label">${esc(i18n.translate('dhr.property.pensions.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.pensions?.toString()))}</div>
+          <p class="label">${esc(i18n.translate('dhr.property.pensions.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.dhrRequesterIncomes?.pensions?.toString()))}</div>
 
         
-          <p class="label">${esc(i18n.translate('dhr.property.dhrAllowances.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.dhrAllowances?.toString()))}</div>
+          <p class="label">${esc(i18n.translate('dhr.property.dhrAllowances.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.dhrRequesterIncomes?.dhrAllowances?.toString()))}</div>
 
         
-          <p class="label">${esc(i18n.translate('dhr.property.dhrFurnitureInvestmentIncome.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.dhrFurnitureInvestmentIncome?.toString()))}</div>
+          <p class="label">${esc(i18n.translate('dhr.property.dhrFurnitureInvestmentIncome.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.dhrRequesterIncomes?.dhrFurnitureInvestmentIncome?.toString()))}</div>
 
         
-          <p class="label">${esc(i18n.translate('dhr.property.dhrRealEstateInvestmentIncome.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.dhrRealEstateInvestmentIncome?.toString()))}</div>
+          <p class="label">${esc(i18n.translate('dhr.property.dhrRealEstateInvestmentIncome.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.dhrRequesterIncomes?.dhrRealEstateInvestmentIncome?.toString()))}</div>
 
         
-          <p class="label">${esc(i18n.translate('dhr.property.dhrNetIncome.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.dhrNetIncome?.toString()))}</div>
+          <p class="label">${esc(i18n.translate('dhr.property.dhrNetIncome.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.dhrRequesterIncomes?.dhrNetIncome?.toString()))}</div>
 
         
-          <p class="label">${esc(i18n.translate('dhr.property.dhrIncomesAnnualTotal.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.dhrIncomesAnnualTotal?.toString()))}</div>
+          <p class="label">${esc(i18n.translate('dhr.property.dhrIncomesAnnualTotal.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.dhrRequesterIncomes?.dhrIncomesAnnualTotal?.toString()))}</div>
 
         
       </div>
@@ -672,16 +671,16 @@
       <h3>${i18n.translate('dhr.property.dhrTaxesAmount.label')}</h3>
       <div class="complex">
         
-          <p class="label">${esc(i18n.translate('dhr.property.dhrIncomeTax.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.dhrIncomeTax?.toString()))}</div>
+          <p class="label">${esc(i18n.translate('dhr.property.dhrIncomeTax.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.dhrTaxesAmount?.dhrIncomeTax?.toString()))}</div>
 
         
-          <p class="label">${esc(i18n.translate('dhr.property.localRate.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.localRate?.toString()))}</div>
+          <p class="label">${esc(i18n.translate('dhr.property.localRate.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.dhrTaxesAmount?.localRate?.toString()))}</div>
 
         
-          <p class="label">${esc(i18n.translate('dhr.property.propertyTaxes.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.propertyTaxes?.toString()))}</div>
+          <p class="label">${esc(i18n.translate('dhr.property.propertyTaxes.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.dhrTaxesAmount?.propertyTaxes?.toString()))}</div>
 
         
-          <p class="label">${esc(i18n.translate('dhr.property.professionalTaxes.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.professionalTaxes?.toString()))}</div>
+          <p class="label">${esc(i18n.translate('dhr.property.professionalTaxes.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.dhrTaxesAmount?.professionalTaxes?.toString()))}</div>
 
         
       </div>

@@ -106,7 +106,7 @@ public class HomeFolder implements Serializable {
         if (this.id != null)
             homeFolderType.setId(this.id.longValue());
         if (this.address != null)
-            homeFolderType.setAddress(Address.modelToXml(this.address));
+            homeFolderType.setAddress(this.address.modelToXml());
 
         IndividualType[] individualsArray = new IndividualType[individuals.size()];
         int i = 0;

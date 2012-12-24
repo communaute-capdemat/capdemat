@@ -138,10 +138,7 @@ public class SportsAssociationsGrantRequest extends Request implements Serializa
         SportsAssociationsGrantRequestDocument.SportsAssociationsGrantRequest sportsAssociationsGrantRequest = sportsAssociationsGrantRequestDoc.addNewSportsAssociationsGrantRequest();
         super.fillCommonXmlInfo(sportsAssociationsGrantRequest);
         int i = 0;
-          SagrContactsAssociationType sagrContactsAssociationTypeContactsAssociation = sportsAssociationsGrantRequest.addNewContactsAssociation();
-        if (getAdresseCorrespondantPrincipal() != null)
-            sagrContactsAssociationTypeContactsAssociation.setAdresseCorrespondantPrincipal(Address.modelToXml(getAdresseCorrespondantPrincipal()));
-      
+        
         i = 0;
         if (getAutreMembreBureau() != null) {
             fr.cg95.cvq.xml.request.social.SagrMembreBureauType[] autreMembreBureauTypeTab = new fr.cg95.cvq.xml.request.social.SagrMembreBureauType[getAutreMembreBureau().size()];
@@ -150,24 +147,12 @@ public class SportsAssociationsGrantRequest extends Request implements Serializa
             }
             sportsAssociationsGrantRequest.setAutreMembreBureauArray(autreMembreBureauTypeTab);
         }
-        SagrSubventionPubliqueFonctionnementType sagrSubventionPubliqueFonctionnementTypeSubventionPubliqueFonctionnement = sportsAssociationsGrantRequest.addNewSubventionPubliqueFonctionnement();
-        sagrSubventionPubliqueFonctionnementTypeSubventionPubliqueFonctionnement.setBudgetSaisonEcouleeDepenses(getBudgetSaisonEcouleeDepenses());
-      
-        sagrSubventionPubliqueFonctionnementTypeSubventionPubliqueFonctionnement.setBudgetSaisonEcouleeRecette(getBudgetSaisonEcouleeRecette());
-      
-        sagrSubventionPubliqueFonctionnementTypeSubventionPubliqueFonctionnement.setCommuneAnneeN(getCommuneAnneeN());
-      
-        sagrSubventionPubliqueFonctionnementTypeSubventionPubliqueFonctionnement.setCommuneAnneeNPlusUn(getCommuneAnneeNPlusUn());
       
         if (getCompteBancaire() != null)
-            sportsAssociationsGrantRequest.setCompteBancaire(BankAccount.modelToXml(getCompteBancaire()));
+            sportsAssociationsGrantRequest.setCompteBancaire(getCompteBancaire().modelToXml());
       
-        sagrContactsAssociationTypeContactsAssociation.setEmailClubOuCorrespondant(getEmailClubOuCorrespondant());
-        SagrPrecisionPresidentType sagrPrecisionPresidentTypePrecisionPresident = sportsAssociationsGrantRequest.addNewPrecisionPresident();
-        sagrPrecisionPresidentTypePrecisionPresident.setEmailPresident(getEmailPresident());
-      
-        if (getEstAdresseCorrespondantPrincipal() != null)
-            sagrContactsAssociationTypeContactsAssociation.setEstAdresseCorrespondantPrincipal(getEstAdresseCorrespondantPrincipal().booleanValue());
+        if (getContactsAssociation() != null)
+            sportsAssociationsGrantRequest.setContactsAssociation(getContactsAssociation().modelToXml());
       
         sportsAssociationsGrantRequest.setIdentifiantEDemandeAssociation(getIdentifiantEDemandeAssociation());
       
@@ -176,21 +161,13 @@ public class SportsAssociationsGrantRequest extends Request implements Serializa
       
         sportsAssociationsGrantRequest.setNomAssociation(getNomAssociation());
       
-        sagrContactsAssociationTypeContactsAssociation.setNomCompletCorrespondantPrincipal(getNomCompletCorrespondantPrincipal());
-      
-        sagrPrecisionPresidentTypePrecisionPresident.setNomPresident(getNomPresident());
-      
-        sagrSubventionPubliqueFonctionnementTypeSubventionPubliqueFonctionnement.setNombreLicencieMoinsDixHuitSaisonEcoulee(getNombreLicencieMoinsDixHuitSaisonEcoulee());
-      
-        sagrSubventionPubliqueFonctionnementTypeSubventionPubliqueFonctionnement.setNombreLicenciePlusDixHuitSaisonEcoulee(getNombreLicenciePlusDixHuitSaisonEcoulee());
-      
         sportsAssociationsGrantRequest.setNumeroEnregistrementAssociation(getNumeroEnregistrementAssociation());
-        SagrNumerosAssociationType sagrNumerosAssociationTypeNumerosAssociation = sportsAssociationsGrantRequest.addNewNumerosAssociation();
-        sagrNumerosAssociationTypeNumerosAssociation.setNumeroEnregistrementPrefectureAssociation(getNumeroEnregistrementPrefectureAssociation());
       
-        sagrNumerosAssociationTypeNumerosAssociation.setNumeroSiretAssociation(getNumeroSiretAssociation());
+        if (getNumerosAssociation() != null)
+            sportsAssociationsGrantRequest.setNumerosAssociation(getNumerosAssociation().modelToXml());
       
-        sagrPrecisionPresidentTypePrecisionPresident.setPrenomPresident(getPrenomPresident());
+        if (getPrecisionPresident() != null)
+            sportsAssociationsGrantRequest.setPrecisionPresident(getPrecisionPresident().modelToXml());
       
         if (getRoleDemandeur() != null)
             sportsAssociationsGrantRequest.setRoleDemandeur(fr.cg95.cvq.xml.request.social.SagrRoleAssociationType.Enum.forString(getRoleDemandeur().getLegacyLabel()));
@@ -205,12 +182,13 @@ public class SportsAssociationsGrantRequest extends Request implements Serializa
         }
       
         if (getSiegeSocialAssociation() != null)
-            sportsAssociationsGrantRequest.setSiegeSocialAssociation(Address.modelToXml(getSiegeSocialAssociation()));
+            sportsAssociationsGrantRequest.setSiegeSocialAssociation(getSiegeSocialAssociation().modelToXml());
+      
+        if (getSubventionPubliqueFonctionnement() != null)
+            sportsAssociationsGrantRequest.setSubventionPubliqueFonctionnement(getSubventionPubliqueFonctionnement().modelToXml());
       
         if (getSubventionSolliciteConseilGeneral() != null)
             sportsAssociationsGrantRequest.setSubventionSolliciteConseilGeneral(getSubventionSolliciteConseilGeneral());
-      
-        sagrPrecisionPresidentTypePrecisionPresident.setTelephonePresident(getTelephonePresident());
       
         return sportsAssociationsGrantRequestDoc;
     }
@@ -228,31 +206,17 @@ public class SportsAssociationsGrantRequest extends Request implements Serializa
         SportsAssociationsGrantRequest sportsAssociationsGrantRequest = new SportsAssociationsGrantRequest();
         sportsAssociationsGrantRequest.fillCommonModelInfo(sportsAssociationsGrantRequest, sportsAssociationsGrantRequestXml);
         
-        if (sportsAssociationsGrantRequestXml.getContactsAssociation().getAdresseCorrespondantPrincipal() != null)
-            sportsAssociationsGrantRequest.setAdresseCorrespondantPrincipal(Address.xmlToModel(sportsAssociationsGrantRequestXml.getContactsAssociation().getAdresseCorrespondantPrincipal()));
-      
         List<fr.cg95.cvq.business.request.social.SagrMembreBureau> autreMembreBureauList = new ArrayList<fr.cg95.cvq.business.request.social.SagrMembreBureau>(sportsAssociationsGrantRequestXml.sizeOfAutreMembreBureauArray());
         for (SagrMembreBureauType object : sportsAssociationsGrantRequestXml.getAutreMembreBureauArray()) {
             autreMembreBureauList.add(fr.cg95.cvq.business.request.social.SagrMembreBureau.xmlToModel(object));
         }
         sportsAssociationsGrantRequest.setAutreMembreBureau(autreMembreBureauList);
       
-        sportsAssociationsGrantRequest.setBudgetSaisonEcouleeDepenses(sportsAssociationsGrantRequestXml.getSubventionPubliqueFonctionnement().getBudgetSaisonEcouleeDepenses());
-      
-        sportsAssociationsGrantRequest.setBudgetSaisonEcouleeRecette(sportsAssociationsGrantRequestXml.getSubventionPubliqueFonctionnement().getBudgetSaisonEcouleeRecette());
-      
-        sportsAssociationsGrantRequest.setCommuneAnneeN(sportsAssociationsGrantRequestXml.getSubventionPubliqueFonctionnement().getCommuneAnneeN());
-      
-        sportsAssociationsGrantRequest.setCommuneAnneeNPlusUn(sportsAssociationsGrantRequestXml.getSubventionPubliqueFonctionnement().getCommuneAnneeNPlusUn());
-      
         if (sportsAssociationsGrantRequestXml.getCompteBancaire() != null)
             sportsAssociationsGrantRequest.setCompteBancaire(BankAccount.xmlToModel(sportsAssociationsGrantRequestXml.getCompteBancaire()));
       
-        sportsAssociationsGrantRequest.setEmailClubOuCorrespondant(sportsAssociationsGrantRequestXml.getContactsAssociation().getEmailClubOuCorrespondant());
-      
-        sportsAssociationsGrantRequest.setEmailPresident(sportsAssociationsGrantRequestXml.getPrecisionPresident().getEmailPresident());
-      
-        sportsAssociationsGrantRequest.setEstAdresseCorrespondantPrincipal(Boolean.valueOf(sportsAssociationsGrantRequestXml.getContactsAssociation().getEstAdresseCorrespondantPrincipal()));
+        if (sportsAssociationsGrantRequestXml.getContactsAssociation() != null)
+            sportsAssociationsGrantRequest.setContactsAssociation(SagrContactsAssociation.xmlToModel(sportsAssociationsGrantRequestXml.getContactsAssociation()));
       
         sportsAssociationsGrantRequest.setIdentifiantEDemandeAssociation(sportsAssociationsGrantRequestXml.getIdentifiantEDemandeAssociation());
       
@@ -261,21 +225,13 @@ public class SportsAssociationsGrantRequest extends Request implements Serializa
       
         sportsAssociationsGrantRequest.setNomAssociation(sportsAssociationsGrantRequestXml.getNomAssociation());
       
-        sportsAssociationsGrantRequest.setNomCompletCorrespondantPrincipal(sportsAssociationsGrantRequestXml.getContactsAssociation().getNomCompletCorrespondantPrincipal());
-      
-        sportsAssociationsGrantRequest.setNomPresident(sportsAssociationsGrantRequestXml.getPrecisionPresident().getNomPresident());
-      
-        sportsAssociationsGrantRequest.setNombreLicencieMoinsDixHuitSaisonEcoulee(sportsAssociationsGrantRequestXml.getSubventionPubliqueFonctionnement().getNombreLicencieMoinsDixHuitSaisonEcoulee());
-      
-        sportsAssociationsGrantRequest.setNombreLicenciePlusDixHuitSaisonEcoulee(sportsAssociationsGrantRequestXml.getSubventionPubliqueFonctionnement().getNombreLicenciePlusDixHuitSaisonEcoulee());
-      
         sportsAssociationsGrantRequest.setNumeroEnregistrementAssociation(sportsAssociationsGrantRequestXml.getNumeroEnregistrementAssociation());
       
-        sportsAssociationsGrantRequest.setNumeroEnregistrementPrefectureAssociation(sportsAssociationsGrantRequestXml.getNumerosAssociation().getNumeroEnregistrementPrefectureAssociation());
+        if (sportsAssociationsGrantRequestXml.getNumerosAssociation() != null)
+            sportsAssociationsGrantRequest.setNumerosAssociation(SagrNumerosAssociation.xmlToModel(sportsAssociationsGrantRequestXml.getNumerosAssociation()));
       
-        sportsAssociationsGrantRequest.setNumeroSiretAssociation(sportsAssociationsGrantRequestXml.getNumerosAssociation().getNumeroSiretAssociation());
-      
-        sportsAssociationsGrantRequest.setPrenomPresident(sportsAssociationsGrantRequestXml.getPrecisionPresident().getPrenomPresident());
+        if (sportsAssociationsGrantRequestXml.getPrecisionPresident() != null)
+            sportsAssociationsGrantRequest.setPrecisionPresident(SagrPrecisionPresident.xmlToModel(sportsAssociationsGrantRequestXml.getPrecisionPresident()));
       
         if (sportsAssociationsGrantRequestXml.getRoleDemandeur() != null)
             sportsAssociationsGrantRequest.setRoleDemandeur(fr.cg95.cvq.business.request.social.SagrRoleAssociationType.forString(sportsAssociationsGrantRequestXml.getRoleDemandeur().toString()));
@@ -291,10 +247,11 @@ public class SportsAssociationsGrantRequest extends Request implements Serializa
         if (sportsAssociationsGrantRequestXml.getSiegeSocialAssociation() != null)
             sportsAssociationsGrantRequest.setSiegeSocialAssociation(Address.xmlToModel(sportsAssociationsGrantRequestXml.getSiegeSocialAssociation()));
       
+        if (sportsAssociationsGrantRequestXml.getSubventionPubliqueFonctionnement() != null)
+            sportsAssociationsGrantRequest.setSubventionPubliqueFonctionnement(SagrSubventionPubliqueFonctionnement.xmlToModel(sportsAssociationsGrantRequestXml.getSubventionPubliqueFonctionnement()));
+      
         if (sportsAssociationsGrantRequestXml.getSubventionSolliciteConseilGeneral() != null)
             sportsAssociationsGrantRequest.setSubventionSolliciteConseilGeneral(sportsAssociationsGrantRequestXml.getSubventionSolliciteConseilGeneral());
-      
-        sportsAssociationsGrantRequest.setTelephonePresident(sportsAssociationsGrantRequestXml.getPrecisionPresident().getTelephonePresident());
       
         return sportsAssociationsGrantRequest;
     }
@@ -364,15 +321,6 @@ public class SportsAssociationsGrantRequest extends Request implements Serializa
     }
 
   
-    public final void setAdresseCorrespondantPrincipal(final fr.cg95.cvq.business.users.Address adresseCorrespondantPrincipal) {
-        sportsAssociationsGrantRequestData.setAdresseCorrespondantPrincipal(adresseCorrespondantPrincipal);
-    }
-
-    
-    public final fr.cg95.cvq.business.users.Address getAdresseCorrespondantPrincipal() {
-        return sportsAssociationsGrantRequestData.getAdresseCorrespondantPrincipal();
-    }
-  
     public final void setAutreMembreBureau(final List<fr.cg95.cvq.business.request.social.SagrMembreBureau> autreMembreBureau) {
         sportsAssociationsGrantRequestData.setAutreMembreBureau(autreMembreBureau);
     }
@@ -380,42 +328,6 @@ public class SportsAssociationsGrantRequest extends Request implements Serializa
     
     public final List<fr.cg95.cvq.business.request.social.SagrMembreBureau> getAutreMembreBureau() {
         return sportsAssociationsGrantRequestData.getAutreMembreBureau();
-    }
-  
-    public final void setBudgetSaisonEcouleeDepenses(final String budgetSaisonEcouleeDepenses) {
-        sportsAssociationsGrantRequestData.setBudgetSaisonEcouleeDepenses(budgetSaisonEcouleeDepenses);
-    }
-
-    
-    public final String getBudgetSaisonEcouleeDepenses() {
-        return sportsAssociationsGrantRequestData.getBudgetSaisonEcouleeDepenses();
-    }
-  
-    public final void setBudgetSaisonEcouleeRecette(final String budgetSaisonEcouleeRecette) {
-        sportsAssociationsGrantRequestData.setBudgetSaisonEcouleeRecette(budgetSaisonEcouleeRecette);
-    }
-
-    
-    public final String getBudgetSaisonEcouleeRecette() {
-        return sportsAssociationsGrantRequestData.getBudgetSaisonEcouleeRecette();
-    }
-  
-    public final void setCommuneAnneeN(final String communeAnneeN) {
-        sportsAssociationsGrantRequestData.setCommuneAnneeN(communeAnneeN);
-    }
-
-    
-    public final String getCommuneAnneeN() {
-        return sportsAssociationsGrantRequestData.getCommuneAnneeN();
-    }
-  
-    public final void setCommuneAnneeNPlusUn(final String communeAnneeNPlusUn) {
-        sportsAssociationsGrantRequestData.setCommuneAnneeNPlusUn(communeAnneeNPlusUn);
-    }
-
-    
-    public final String getCommuneAnneeNPlusUn() {
-        return sportsAssociationsGrantRequestData.getCommuneAnneeNPlusUn();
     }
   
     public final void setCompteBancaire(final fr.cg95.cvq.business.users.BankAccount compteBancaire) {
@@ -427,31 +339,13 @@ public class SportsAssociationsGrantRequest extends Request implements Serializa
         return sportsAssociationsGrantRequestData.getCompteBancaire();
     }
   
-    public final void setEmailClubOuCorrespondant(final String emailClubOuCorrespondant) {
-        sportsAssociationsGrantRequestData.setEmailClubOuCorrespondant(emailClubOuCorrespondant);
+    public final void setContactsAssociation(final fr.cg95.cvq.business.request.social.SagrContactsAssociation contactsAssociation) {
+        sportsAssociationsGrantRequestData.setContactsAssociation(contactsAssociation);
     }
 
     
-    public final String getEmailClubOuCorrespondant() {
-        return sportsAssociationsGrantRequestData.getEmailClubOuCorrespondant();
-    }
-  
-    public final void setEmailPresident(final String emailPresident) {
-        sportsAssociationsGrantRequestData.setEmailPresident(emailPresident);
-    }
-
-    
-    public final String getEmailPresident() {
-        return sportsAssociationsGrantRequestData.getEmailPresident();
-    }
-  
-    public final void setEstAdresseCorrespondantPrincipal(final Boolean estAdresseCorrespondantPrincipal) {
-        sportsAssociationsGrantRequestData.setEstAdresseCorrespondantPrincipal(estAdresseCorrespondantPrincipal);
-    }
-
-    
-    public final Boolean getEstAdresseCorrespondantPrincipal() {
-        return sportsAssociationsGrantRequestData.getEstAdresseCorrespondantPrincipal();
+    public final fr.cg95.cvq.business.request.social.SagrContactsAssociation getContactsAssociation() {
+        return sportsAssociationsGrantRequestData.getContactsAssociation();
     }
   
     public final void setIdentifiantEDemandeAssociation(final String identifiantEDemandeAssociation) {
@@ -481,42 +375,6 @@ public class SportsAssociationsGrantRequest extends Request implements Serializa
         return sportsAssociationsGrantRequestData.getNomAssociation();
     }
   
-    public final void setNomCompletCorrespondantPrincipal(final String nomCompletCorrespondantPrincipal) {
-        sportsAssociationsGrantRequestData.setNomCompletCorrespondantPrincipal(nomCompletCorrespondantPrincipal);
-    }
-
-    
-    public final String getNomCompletCorrespondantPrincipal() {
-        return sportsAssociationsGrantRequestData.getNomCompletCorrespondantPrincipal();
-    }
-  
-    public final void setNomPresident(final String nomPresident) {
-        sportsAssociationsGrantRequestData.setNomPresident(nomPresident);
-    }
-
-    
-    public final String getNomPresident() {
-        return sportsAssociationsGrantRequestData.getNomPresident();
-    }
-  
-    public final void setNombreLicencieMoinsDixHuitSaisonEcoulee(final String nombreLicencieMoinsDixHuitSaisonEcoulee) {
-        sportsAssociationsGrantRequestData.setNombreLicencieMoinsDixHuitSaisonEcoulee(nombreLicencieMoinsDixHuitSaisonEcoulee);
-    }
-
-    
-    public final String getNombreLicencieMoinsDixHuitSaisonEcoulee() {
-        return sportsAssociationsGrantRequestData.getNombreLicencieMoinsDixHuitSaisonEcoulee();
-    }
-  
-    public final void setNombreLicenciePlusDixHuitSaisonEcoulee(final String nombreLicenciePlusDixHuitSaisonEcoulee) {
-        sportsAssociationsGrantRequestData.setNombreLicenciePlusDixHuitSaisonEcoulee(nombreLicenciePlusDixHuitSaisonEcoulee);
-    }
-
-    
-    public final String getNombreLicenciePlusDixHuitSaisonEcoulee() {
-        return sportsAssociationsGrantRequestData.getNombreLicenciePlusDixHuitSaisonEcoulee();
-    }
-  
     public final void setNumeroEnregistrementAssociation(final String numeroEnregistrementAssociation) {
         sportsAssociationsGrantRequestData.setNumeroEnregistrementAssociation(numeroEnregistrementAssociation);
     }
@@ -526,31 +384,22 @@ public class SportsAssociationsGrantRequest extends Request implements Serializa
         return sportsAssociationsGrantRequestData.getNumeroEnregistrementAssociation();
     }
   
-    public final void setNumeroEnregistrementPrefectureAssociation(final String numeroEnregistrementPrefectureAssociation) {
-        sportsAssociationsGrantRequestData.setNumeroEnregistrementPrefectureAssociation(numeroEnregistrementPrefectureAssociation);
+    public final void setNumerosAssociation(final fr.cg95.cvq.business.request.social.SagrNumerosAssociation numerosAssociation) {
+        sportsAssociationsGrantRequestData.setNumerosAssociation(numerosAssociation);
     }
 
     
-    public final String getNumeroEnregistrementPrefectureAssociation() {
-        return sportsAssociationsGrantRequestData.getNumeroEnregistrementPrefectureAssociation();
+    public final fr.cg95.cvq.business.request.social.SagrNumerosAssociation getNumerosAssociation() {
+        return sportsAssociationsGrantRequestData.getNumerosAssociation();
     }
   
-    public final void setNumeroSiretAssociation(final String numeroSiretAssociation) {
-        sportsAssociationsGrantRequestData.setNumeroSiretAssociation(numeroSiretAssociation);
+    public final void setPrecisionPresident(final fr.cg95.cvq.business.request.social.SagrPrecisionPresident precisionPresident) {
+        sportsAssociationsGrantRequestData.setPrecisionPresident(precisionPresident);
     }
 
     
-    public final String getNumeroSiretAssociation() {
-        return sportsAssociationsGrantRequestData.getNumeroSiretAssociation();
-    }
-  
-    public final void setPrenomPresident(final String prenomPresident) {
-        sportsAssociationsGrantRequestData.setPrenomPresident(prenomPresident);
-    }
-
-    
-    public final String getPrenomPresident() {
-        return sportsAssociationsGrantRequestData.getPrenomPresident();
+    public final fr.cg95.cvq.business.request.social.SagrPrecisionPresident getPrecisionPresident() {
+        return sportsAssociationsGrantRequestData.getPrecisionPresident();
     }
   
     public final void setRoleDemandeur(final fr.cg95.cvq.business.request.social.SagrRoleAssociationType roleDemandeur) {
@@ -580,6 +429,15 @@ public class SportsAssociationsGrantRequest extends Request implements Serializa
         return sportsAssociationsGrantRequestData.getSiegeSocialAssociation();
     }
   
+    public final void setSubventionPubliqueFonctionnement(final fr.cg95.cvq.business.request.social.SagrSubventionPubliqueFonctionnement subventionPubliqueFonctionnement) {
+        sportsAssociationsGrantRequestData.setSubventionPubliqueFonctionnement(subventionPubliqueFonctionnement);
+    }
+
+    
+    public final fr.cg95.cvq.business.request.social.SagrSubventionPubliqueFonctionnement getSubventionPubliqueFonctionnement() {
+        return sportsAssociationsGrantRequestData.getSubventionPubliqueFonctionnement();
+    }
+  
     public final void setSubventionSolliciteConseilGeneral(final java.math.BigDecimal subventionSolliciteConseilGeneral) {
         sportsAssociationsGrantRequestData.setSubventionSolliciteConseilGeneral(subventionSolliciteConseilGeneral);
     }
@@ -587,15 +445,6 @@ public class SportsAssociationsGrantRequest extends Request implements Serializa
     
     public final java.math.BigDecimal getSubventionSolliciteConseilGeneral() {
         return sportsAssociationsGrantRequestData.getSubventionSolliciteConseilGeneral();
-    }
-  
-    public final void setTelephonePresident(final String telephonePresident) {
-        sportsAssociationsGrantRequestData.setTelephonePresident(telephonePresident);
-    }
-
-    
-    public final String getTelephonePresident() {
-        return sportsAssociationsGrantRequestData.getTelephonePresident();
     }
   
 }

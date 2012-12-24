@@ -16,10 +16,10 @@
       <h4><g:message code="hcrr.property.centreSejours.label" /></h4>
       <dl>
         
-          <dt><g:message code="hcrr.property.idCentreSejours.label" /></dt><dd>${rqt.idCentreSejours?.toString()}</dd>
+          <dt><g:message code="hcrr.property.idCentreSejours.label" /></dt><dd>${rqt.centreSejours?.idCentreSejours?.toString()}</dd>
 
         
-          <dt><g:message code="hcrr.property.labelCentreSejours.label" /></dt><dd>${rqt.labelCentreSejours?.toString()}</dd>
+          <dt><g:message code="hcrr.property.labelCentreSejours.label" /></dt><dd>${rqt.centreSejours?.labelCentreSejours?.toString()}</dd>
 
         
       </dl>

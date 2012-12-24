@@ -39,8 +39,6 @@ public class SportsAssociationsGrantRequestData implements Serializable {
 
     public SportsAssociationsGrantRequestData() {
       
-        estAdresseCorrespondantPrincipal = Boolean.valueOf(true);
-      
         roleDemandeur = fr.cg95.cvq.business.request.social.SagrRoleAssociationType.PRESIDENT;
       
     }
@@ -48,13 +46,6 @@ public class SportsAssociationsGrantRequestData implements Serializable {
     @Override
     public SportsAssociationsGrantRequestData clone() {
         SportsAssociationsGrantRequestData result = new SportsAssociationsGrantRequestData();
-        
-          
-            
-        if (adresseCorrespondantPrincipal != null)
-            result.setAdresseCorrespondantPrincipal(adresseCorrespondantPrincipal.clone());
-      
-          
         
           
             
@@ -68,30 +59,6 @@ public class SportsAssociationsGrantRequestData implements Serializable {
         
           
             
-        result.setBudgetSaisonEcouleeDepenses(budgetSaisonEcouleeDepenses);
-      
-          
-        
-          
-            
-        result.setBudgetSaisonEcouleeRecette(budgetSaisonEcouleeRecette);
-      
-          
-        
-          
-            
-        result.setCommuneAnneeN(communeAnneeN);
-      
-          
-        
-          
-            
-        result.setCommuneAnneeNPlusUn(communeAnneeNPlusUn);
-      
-          
-        
-          
-            
         if (compteBancaire != null)
             result.setCompteBancaire(compteBancaire.clone());
       
@@ -99,19 +66,8 @@ public class SportsAssociationsGrantRequestData implements Serializable {
         
           
             
-        result.setEmailClubOuCorrespondant(emailClubOuCorrespondant);
-      
-          
-        
-          
-            
-        result.setEmailPresident(emailPresident);
-      
-          
-        
-          
-            
-        result.setEstAdresseCorrespondantPrincipal(estAdresseCorrespondantPrincipal);
+        if (contactsAssociation != null)
+            result.setContactsAssociation(contactsAssociation.clone());
       
           
         
@@ -135,49 +91,21 @@ public class SportsAssociationsGrantRequestData implements Serializable {
         
           
             
-        result.setNomCompletCorrespondantPrincipal(nomCompletCorrespondantPrincipal);
-      
-          
-        
-          
-            
-        result.setNomPresident(nomPresident);
-      
-          
-        
-          
-            
-        result.setNombreLicencieMoinsDixHuitSaisonEcoulee(nombreLicencieMoinsDixHuitSaisonEcoulee);
-      
-          
-        
-          
-            
-        result.setNombreLicenciePlusDixHuitSaisonEcoulee(nombreLicenciePlusDixHuitSaisonEcoulee);
-      
-          
-        
-          
-            
         result.setNumeroEnregistrementAssociation(numeroEnregistrementAssociation);
       
           
         
           
             
-        result.setNumeroEnregistrementPrefectureAssociation(numeroEnregistrementPrefectureAssociation);
+        if (numerosAssociation != null)
+            result.setNumerosAssociation(numerosAssociation.clone());
       
           
         
           
             
-        result.setNumeroSiretAssociation(numeroSiretAssociation);
-      
-          
-        
-          
-            
-        result.setPrenomPresident(prenomPresident);
+        if (precisionPresident != null)
+            result.setPrecisionPresident(precisionPresident.clone());
       
           
         
@@ -209,13 +137,14 @@ public class SportsAssociationsGrantRequestData implements Serializable {
         
           
             
-        result.setSubventionSolliciteConseilGeneral(subventionSolliciteConseilGeneral);
+        if (subventionPubliqueFonctionnement != null)
+            result.setSubventionPubliqueFonctionnement(subventionPubliqueFonctionnement.clone());
       
           
         
           
             
-        result.setTelephonePresident(telephonePresident);
+        result.setSubventionSolliciteConseilGeneral(subventionSolliciteConseilGeneral);
       
           
         
@@ -232,53 +161,6 @@ public class SportsAssociationsGrantRequestData implements Serializable {
         return this.id;
     }
 
-  
-    
-      @NotNull(
-        
-        
-          when = "groovy:def active = true;" +
-          
-            "active &= _this.conditions['estAdresseCorrespondantPrincipal'].test(_this.estAdresseCorrespondantPrincipal.toString());" +
-                
-              
-            
-            
-            "return active",
-        
-        profiles = {"association"},
-        message = "adresseCorrespondantPrincipal"
-      )
-    
-      @AssertValid(
-        
-        
-          when = "groovy:def active = true;" +
-          
-            "active &= _this.conditions['estAdresseCorrespondantPrincipal'].test(_this.estAdresseCorrespondantPrincipal.toString());" +
-                
-              
-            
-            
-            "return active",
-        
-        profiles = {"association"},
-        message = "adresseCorrespondantPrincipal"
-      )
-    
-    private fr.cg95.cvq.business.users.Address adresseCorrespondantPrincipal;
-
-    public void setAdresseCorrespondantPrincipal(final fr.cg95.cvq.business.users.Address adresseCorrespondantPrincipal) {
-        this.adresseCorrespondantPrincipal = adresseCorrespondantPrincipal;
-    }
-
- 
-    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
-    @JoinColumn(name="adresse_correspondant_principal_id")
-      
-    public fr.cg95.cvq.business.users.Address getAdresseCorrespondantPrincipal() {
-        return this.adresseCorrespondantPrincipal;
-    }
   
     
       @AssertValid(
@@ -301,62 +183,6 @@ public class SportsAssociationsGrantRequestData implements Serializable {
       
     public List<fr.cg95.cvq.business.request.social.SagrMembreBureau> getAutreMembreBureau() {
         return this.autreMembreBureau;
-    }
-  
-    
-    private String budgetSaisonEcouleeDepenses;
-
-    public void setBudgetSaisonEcouleeDepenses(final String budgetSaisonEcouleeDepenses) {
-        this.budgetSaisonEcouleeDepenses = budgetSaisonEcouleeDepenses;
-    }
-
- 
-    @Column(name="budget_saison_ecoulee_depenses"  )
-      
-    public String getBudgetSaisonEcouleeDepenses() {
-        return this.budgetSaisonEcouleeDepenses;
-    }
-  
-    
-    private String budgetSaisonEcouleeRecette;
-
-    public void setBudgetSaisonEcouleeRecette(final String budgetSaisonEcouleeRecette) {
-        this.budgetSaisonEcouleeRecette = budgetSaisonEcouleeRecette;
-    }
-
- 
-    @Column(name="budget_saison_ecoulee_recette"  )
-      
-    public String getBudgetSaisonEcouleeRecette() {
-        return this.budgetSaisonEcouleeRecette;
-    }
-  
-    
-    private String communeAnneeN;
-
-    public void setCommuneAnneeN(final String communeAnneeN) {
-        this.communeAnneeN = communeAnneeN;
-    }
-
- 
-    @Column(name="commune_annee_n"  )
-      
-    public String getCommuneAnneeN() {
-        return this.communeAnneeN;
-    }
-  
-    
-    private String communeAnneeNPlusUn;
-
-    public void setCommuneAnneeNPlusUn(final String communeAnneeNPlusUn) {
-        this.communeAnneeNPlusUn = communeAnneeNPlusUn;
-    }
-
- 
-    @Column(name="commune_annee_n_plus_un"  )
-      
-    public String getCommuneAnneeNPlusUn() {
-        return this.communeAnneeNPlusUn;
     }
   
     
@@ -389,52 +215,32 @@ public class SportsAssociationsGrantRequestData implements Serializable {
     }
   
     
-    private String emailClubOuCorrespondant;
-
-    public void setEmailClubOuCorrespondant(final String emailClubOuCorrespondant) {
-        this.emailClubOuCorrespondant = emailClubOuCorrespondant;
-    }
-
- 
-    @Column(name="email_club_ou_correspondant"  )
-      
-    public String getEmailClubOuCorrespondant() {
-        return this.emailClubOuCorrespondant;
-    }
-  
-    
-    private String emailPresident;
-
-    public void setEmailPresident(final String emailPresident) {
-        this.emailPresident = emailPresident;
-    }
-
- 
-    @Column(name="email_president"  )
-      
-    public String getEmailPresident() {
-        return this.emailPresident;
-    }
-  
-    
       @NotNull(
         
         
         profiles = {"association"},
-        message = "estAdresseCorrespondantPrincipal"
+        message = "contactsAssociation"
       )
     
-    private Boolean estAdresseCorrespondantPrincipal;
+      @AssertValid(
+        
+        
+        profiles = {"association"},
+        message = "contactsAssociation"
+      )
+    
+    private fr.cg95.cvq.business.request.social.SagrContactsAssociation contactsAssociation;
 
-    public void setEstAdresseCorrespondantPrincipal(final Boolean estAdresseCorrespondantPrincipal) {
-        this.estAdresseCorrespondantPrincipal = estAdresseCorrespondantPrincipal;
+    public void setContactsAssociation(final fr.cg95.cvq.business.request.social.SagrContactsAssociation contactsAssociation) {
+        this.contactsAssociation = contactsAssociation;
     }
 
  
-    @Column(name="est_adresse_correspondant_principal"  )
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name="contacts_association_id")
       
-    public Boolean getEstAdresseCorrespondantPrincipal() {
-        return this.estAdresseCorrespondantPrincipal;
+    public fr.cg95.cvq.business.request.social.SagrContactsAssociation getContactsAssociation() {
+        return this.contactsAssociation;
     }
   
     
@@ -504,144 +310,6 @@ public class SportsAssociationsGrantRequestData implements Serializable {
       @NotNull(
         
         
-          when = "groovy:def active = true;" +
-          
-            "active &= _this.conditions['estAdresseCorrespondantPrincipal'].test(_this.estAdresseCorrespondantPrincipal.toString());" +
-                
-              
-            
-            
-            "return active",
-        
-        profiles = {"association"},
-        message = "nomCompletCorrespondantPrincipal"
-      )
-    
-      @NotBlank(
-        
-        
-          when = "groovy:def active = true;" +
-          
-            "active &= _this.conditions['estAdresseCorrespondantPrincipal'].test(_this.estAdresseCorrespondantPrincipal.toString());" +
-                
-              
-            
-            
-            "return active",
-        
-        profiles = {"association"},
-        message = "nomCompletCorrespondantPrincipal"
-      )
-    
-    private String nomCompletCorrespondantPrincipal;
-
-    public void setNomCompletCorrespondantPrincipal(final String nomCompletCorrespondantPrincipal) {
-        this.nomCompletCorrespondantPrincipal = nomCompletCorrespondantPrincipal;
-    }
-
- 
-    @Column(name="nom_complet_correspondant_principal"  )
-      
-    public String getNomCompletCorrespondantPrincipal() {
-        return this.nomCompletCorrespondantPrincipal;
-    }
-  
-    
-      @MaxLength(
-        
-          value = 38,
-        
-        
-          when = "groovy:def active = true;" +
-          
-            
-            "active &= !_this.conditions['roleDemandeur'].test(_this.roleDemandeur.toString());" +
-                
-              
-            
-            "return active",
-        
-        profiles = {"president"},
-        message = "nomPresident"
-      )
-    
-      @NotNull(
-        
-        
-          when = "groovy:def active = true;" +
-          
-            
-            "active &= !_this.conditions['roleDemandeur'].test(_this.roleDemandeur.toString());" +
-                
-              
-            
-            "return active",
-        
-        profiles = {"president"},
-        message = "nomPresident"
-      )
-    
-      @NotBlank(
-        
-        
-          when = "groovy:def active = true;" +
-          
-            
-            "active &= !_this.conditions['roleDemandeur'].test(_this.roleDemandeur.toString());" +
-                
-              
-            
-            "return active",
-        
-        profiles = {"president"},
-        message = "nomPresident"
-      )
-    
-    private String nomPresident;
-
-    public void setNomPresident(final String nomPresident) {
-        this.nomPresident = nomPresident;
-    }
-
- 
-    @Column(name="nom_president" , length=38 )
-      
-    public String getNomPresident() {
-        return this.nomPresident;
-    }
-  
-    
-    private String nombreLicencieMoinsDixHuitSaisonEcoulee;
-
-    public void setNombreLicencieMoinsDixHuitSaisonEcoulee(final String nombreLicencieMoinsDixHuitSaisonEcoulee) {
-        this.nombreLicencieMoinsDixHuitSaisonEcoulee = nombreLicencieMoinsDixHuitSaisonEcoulee;
-    }
-
- 
-    @Column(name="nombre_licencie_moins_dix_huit_saison_ecoulee"  )
-      
-    public String getNombreLicencieMoinsDixHuitSaisonEcoulee() {
-        return this.nombreLicencieMoinsDixHuitSaisonEcoulee;
-    }
-  
-    
-    private String nombreLicenciePlusDixHuitSaisonEcoulee;
-
-    public void setNombreLicenciePlusDixHuitSaisonEcoulee(final String nombreLicenciePlusDixHuitSaisonEcoulee) {
-        this.nombreLicenciePlusDixHuitSaisonEcoulee = nombreLicenciePlusDixHuitSaisonEcoulee;
-    }
-
- 
-    @Column(name="nombre_licencie_plus_dix_huit_saison_ecoulee"  )
-      
-    public String getNombreLicenciePlusDixHuitSaisonEcoulee() {
-        return this.nombreLicenciePlusDixHuitSaisonEcoulee;
-    }
-  
-    
-      @NotNull(
-        
-        
         profiles = {"administration"},
         message = "numeroEnregistrementAssociation"
       )
@@ -667,159 +335,81 @@ public class SportsAssociationsGrantRequestData implements Serializable {
     }
   
     
-      @MaxLength(
-        
-          value = 9,
-        
-        
-        profiles = {"association"},
-        message = "numeroEnregistrementPrefectureAssociation"
-      )
-    
       @NotNull(
         
         
         profiles = {"association"},
-        message = "numeroEnregistrementPrefectureAssociation"
+        message = "numerosAssociation"
       )
     
-      @MatchPattern(
-        
-          pattern = "^[\\w\\W]{0,9}$",
+      @AssertValid(
         
         
         profiles = {"association"},
-        message = "numeroEnregistrementPrefectureAssociation"
+        message = "numerosAssociation"
       )
     
-      @NotBlank(
-        
-        
-        profiles = {"association"},
-        message = "numeroEnregistrementPrefectureAssociation"
-      )
-    
-    private String numeroEnregistrementPrefectureAssociation;
+    private fr.cg95.cvq.business.request.social.SagrNumerosAssociation numerosAssociation;
 
-    public void setNumeroEnregistrementPrefectureAssociation(final String numeroEnregistrementPrefectureAssociation) {
-        this.numeroEnregistrementPrefectureAssociation = numeroEnregistrementPrefectureAssociation;
+    public void setNumerosAssociation(final fr.cg95.cvq.business.request.social.SagrNumerosAssociation numerosAssociation) {
+        this.numerosAssociation = numerosAssociation;
     }
 
  
-    @Column(name="numero_enregistrement_prefecture_association" , length=9 )
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name="numeros_association_id")
       
-    public String getNumeroEnregistrementPrefectureAssociation() {
-        return this.numeroEnregistrementPrefectureAssociation;
+    public fr.cg95.cvq.business.request.social.SagrNumerosAssociation getNumerosAssociation() {
+        return this.numerosAssociation;
     }
   
     
-      @MaxLength(
-        
-          value = 14,
-        
-        
-        profiles = {"association"},
-        message = "numeroSiretAssociation"
-      )
-    
-      @NotNull(
-        
-        
-        profiles = {"association"},
-        message = "numeroSiretAssociation"
-      )
-    
-      @MatchPattern(
-        
-          pattern = "^[\\w\\W]{0,14}$",
-        
-        
-        profiles = {"association"},
-        message = "numeroSiretAssociation"
-      )
-    
-      @NotBlank(
-        
-        
-        profiles = {"association"},
-        message = "numeroSiretAssociation"
-      )
-    
-    private String numeroSiretAssociation;
-
-    public void setNumeroSiretAssociation(final String numeroSiretAssociation) {
-        this.numeroSiretAssociation = numeroSiretAssociation;
-    }
-
- 
-    @Column(name="numero_siret_association" , length=14 )
-      
-    public String getNumeroSiretAssociation() {
-        return this.numeroSiretAssociation;
-    }
-  
-    
-      @MaxLength(
-        
-          value = 38,
-        
-        
-          when = "groovy:def active = true;" +
-          
-            
-            "active &= !_this.conditions['roleDemandeur'].test(_this.roleDemandeur.toString());" +
-                
-              
-            
-            "return active",
-        
-        profiles = {"president"},
-        message = "prenomPresident"
-      )
-    
       @NotNull(
         
         
           when = "groovy:def active = true;" +
           
-            
             "active &= !_this.conditions['roleDemandeur'].test(_this.roleDemandeur.toString());" +
                 
               
+              
+            
             
             "return active",
         
         profiles = {"president"},
-        message = "prenomPresident"
+        message = "precisionPresident"
       )
     
-      @NotBlank(
+      @AssertValid(
         
         
           when = "groovy:def active = true;" +
           
-            
             "active &= !_this.conditions['roleDemandeur'].test(_this.roleDemandeur.toString());" +
                 
               
+              
+            
             
             "return active",
         
         profiles = {"president"},
-        message = "prenomPresident"
+        message = "precisionPresident"
       )
     
-    private String prenomPresident;
+    private fr.cg95.cvq.business.request.social.SagrPrecisionPresident precisionPresident;
 
-    public void setPrenomPresident(final String prenomPresident) {
-        this.prenomPresident = prenomPresident;
+    public void setPrecisionPresident(final fr.cg95.cvq.business.request.social.SagrPrecisionPresident precisionPresident) {
+        this.precisionPresident = precisionPresident;
     }
 
  
-    @Column(name="prenom_president" , length=38 )
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name="precision_president_id")
       
-    public String getPrenomPresident() {
-        return this.prenomPresident;
+    public fr.cg95.cvq.business.request.social.SagrPrecisionPresident getPrecisionPresident() {
+        return this.precisionPresident;
     }
   
     
@@ -906,6 +496,28 @@ public class SportsAssociationsGrantRequestData implements Serializable {
     }
   
     
+      @AssertValid(
+        
+        
+        profiles = {"subvention"},
+        message = "subventionPubliqueFonctionnement"
+      )
+    
+    private fr.cg95.cvq.business.request.social.SagrSubventionPubliqueFonctionnement subventionPubliqueFonctionnement;
+
+    public void setSubventionPubliqueFonctionnement(final fr.cg95.cvq.business.request.social.SagrSubventionPubliqueFonctionnement subventionPubliqueFonctionnement) {
+        this.subventionPubliqueFonctionnement = subventionPubliqueFonctionnement;
+    }
+
+ 
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name="subvention_publique_fonctionnement_id")
+      
+    public fr.cg95.cvq.business.request.social.SagrSubventionPubliqueFonctionnement getSubventionPubliqueFonctionnement() {
+        return this.subventionPubliqueFonctionnement;
+    }
+  
+    
     private java.math.BigDecimal subventionSolliciteConseilGeneral;
 
     public void setSubventionSolliciteConseilGeneral(final java.math.BigDecimal subventionSolliciteConseilGeneral) {
@@ -917,38 +529,6 @@ public class SportsAssociationsGrantRequestData implements Serializable {
       
     public java.math.BigDecimal getSubventionSolliciteConseilGeneral() {
         return this.subventionSolliciteConseilGeneral;
-    }
-  
-    
-      @MaxLength(
-        
-          value = 10,
-        
-        
-          when = "groovy:def active = true;" +
-          
-            
-            "active &= !_this.conditions['roleDemandeur'].test(_this.roleDemandeur.toString());" +
-                
-              
-            
-            "return active",
-        
-        profiles = {"president"},
-        message = "telephonePresident"
-      )
-    
-    private String telephonePresident;
-
-    public void setTelephonePresident(final String telephonePresident) {
-        this.telephonePresident = telephonePresident;
-    }
-
- 
-    @Column(name="telephone_president" , length=10 )
-      
-    public String getTelephonePresident() {
-        return this.telephonePresident;
     }
   
 }

@@ -33,10 +33,10 @@
       <h4><g:message code="sagr.property.numerosAssociation.label" /></h4>
       <dl>
         
-          <dt><g:message code="sagr.property.numeroSiretAssociation.label" /></dt><dd>${rqt.numeroSiretAssociation?.toString()}</dd>
+          <dt><g:message code="sagr.property.numeroSiretAssociation.label" /></dt><dd>${rqt.numerosAssociation?.numeroSiretAssociation?.toString()}</dd>
 
         
-          <dt><g:message code="sagr.property.numeroEnregistrementPrefectureAssociation.label" /></dt><dd>${rqt.numeroEnregistrementPrefectureAssociation?.toString()}</dd>
+          <dt><g:message code="sagr.property.numeroEnregistrementPrefectureAssociation.label" /></dt><dd>${rqt.numerosAssociation?.numeroEnregistrementPrefectureAssociation?.toString()}</dd>
 
         
       </dl>
@@ -47,28 +47,28 @@
       <dl>
         
           <dt><g:message code="sagr.property.estAdresseCorrespondantPrincipal.label" /></dt>
-          <dd><g:message code="message.${rqt.estAdresseCorrespondantPrincipal ? 'yes' : 'no'}" /></dd>
+          <dd><g:message code="message.${rqt.contactsAssociation?.estAdresseCorrespondantPrincipal ? 'yes' : 'no'}" /></dd>
           
 
         
-          <dt><g:message code="sagr.property.nomCompletCorrespondantPrincipal.label" /></dt><dd>${rqt.nomCompletCorrespondantPrincipal?.toString()}</dd>
+          <dt><g:message code="sagr.property.nomCompletCorrespondantPrincipal.label" /></dt><dd>${rqt.contactsAssociation?.nomCompletCorrespondantPrincipal?.toString()}</dd>
 
         
           <dt><g:message code="sagr.property.adresseCorrespondantPrincipal.label" /></dt>
           <dd>
-          <g:if test="${rqt.adresseCorrespondantPrincipal}">
-              <p>${rqt.adresseCorrespondantPrincipal?.additionalDeliveryInformation}</p>
-              <p>${rqt.adresseCorrespondantPrincipal?.additionalGeographicalInformation}</p>
-              <p>${rqt.adresseCorrespondantPrincipal?.streetNumber} ${rqt.adresseCorrespondantPrincipal?.streetName}</p>
-              <p>${rqt.adresseCorrespondantPrincipal?.placeNameOrService}</p>
-              <p>${rqt.adresseCorrespondantPrincipal?.postalCode} ${rqt.adresseCorrespondantPrincipal?.city}</p>
-              <p>${rqt.adresseCorrespondantPrincipal?.countryName}</p>
+          <g:if test="${rqt.contactsAssociation?.adresseCorrespondantPrincipal}">
+              <p>${rqt.contactsAssociation?.adresseCorrespondantPrincipal?.additionalDeliveryInformation}</p>
+              <p>${rqt.contactsAssociation?.adresseCorrespondantPrincipal?.additionalGeographicalInformation}</p>
+              <p>${rqt.contactsAssociation?.adresseCorrespondantPrincipal?.streetNumber} ${rqt.contactsAssociation?.adresseCorrespondantPrincipal?.streetName}</p>
+              <p>${rqt.contactsAssociation?.adresseCorrespondantPrincipal?.placeNameOrService}</p>
+              <p>${rqt.contactsAssociation?.adresseCorrespondantPrincipal?.postalCode} ${rqt.contactsAssociation?.adresseCorrespondantPrincipal?.city}</p>
+              <p>${rqt.contactsAssociation?.adresseCorrespondantPrincipal?.countryName}</p>
           </g:if>
           </dd>
           
 
         
-          <dt><g:message code="sagr.property.emailClubOuCorrespondant.label" /></dt><dd>${rqt.emailClubOuCorrespondant?.toString()}</dd>
+          <dt><g:message code="sagr.property.emailClubOuCorrespondant.label" /></dt><dd>${rqt.contactsAssociation?.emailClubOuCorrespondant?.toString()}</dd>
 
         
       </dl>
@@ -96,16 +96,16 @@
       <h4><g:message code="sagr.property.precisionPresident.label" /></h4>
       <dl>
         
-          <dt><g:message code="sagr.property.nomPresident.label" /></dt><dd>${rqt.nomPresident?.toString()}</dd>
+          <dt><g:message code="sagr.property.nomPresident.label" /></dt><dd>${rqt.precisionPresident?.nomPresident?.toString()}</dd>
 
         
-          <dt><g:message code="sagr.property.prenomPresident.label" /></dt><dd>${rqt.prenomPresident?.toString()}</dd>
+          <dt><g:message code="sagr.property.prenomPresident.label" /></dt><dd>${rqt.precisionPresident?.prenomPresident?.toString()}</dd>
 
         
-          <dt><g:message code="sagr.property.telephonePresident.label" /></dt><dd>${rqt.telephonePresident?.toString()}</dd>
+          <dt><g:message code="sagr.property.telephonePresident.label" /></dt><dd>${rqt.precisionPresident?.telephonePresident?.toString()}</dd>
 
         
-          <dt><g:message code="sagr.property.emailPresident.label" /></dt><dd>${rqt.emailPresident?.toString()}</dd>
+          <dt><g:message code="sagr.property.emailPresident.label" /></dt><dd>${rqt.precisionPresident?.emailPresident?.toString()}</dd>
 
         
       </dl>
@@ -212,22 +212,22 @@
       <h4><g:message code="sagr.property.subventionPubliqueFonctionnement.label" /></h4>
       <dl>
         
-          <dt><g:message code="sagr.property.budgetSaisonEcouleeRecette.label" /></dt><dd>${rqt.budgetSaisonEcouleeRecette?.toString()}</dd>
+          <dt><g:message code="sagr.property.budgetSaisonEcouleeRecette.label" /></dt><dd>${rqt.subventionPubliqueFonctionnement?.budgetSaisonEcouleeRecette?.toString()}</dd>
 
         
-          <dt><g:message code="sagr.property.budgetSaisonEcouleeDepenses.label" /></dt><dd>${rqt.budgetSaisonEcouleeDepenses?.toString()}</dd>
+          <dt><g:message code="sagr.property.budgetSaisonEcouleeDepenses.label" /></dt><dd>${rqt.subventionPubliqueFonctionnement?.budgetSaisonEcouleeDepenses?.toString()}</dd>
 
         
-          <dt><g:message code="sagr.property.nombreLicencieMoinsDixHuitSaisonEcoulee.label" /></dt><dd>${rqt.nombreLicencieMoinsDixHuitSaisonEcoulee?.toString()}</dd>
+          <dt><g:message code="sagr.property.nombreLicencieMoinsDixHuitSaisonEcoulee.label" /></dt><dd>${rqt.subventionPubliqueFonctionnement?.nombreLicencieMoinsDixHuitSaisonEcoulee?.toString()}</dd>
 
         
-          <dt><g:message code="sagr.property.nombreLicenciePlusDixHuitSaisonEcoulee.label" /></dt><dd>${rqt.nombreLicenciePlusDixHuitSaisonEcoulee?.toString()}</dd>
+          <dt><g:message code="sagr.property.nombreLicenciePlusDixHuitSaisonEcoulee.label" /></dt><dd>${rqt.subventionPubliqueFonctionnement?.nombreLicenciePlusDixHuitSaisonEcoulee?.toString()}</dd>
 
         
-          <dt><g:message code="sagr.property.communeAnneeN.label" /></dt><dd>${rqt.communeAnneeN?.toString()}</dd>
+          <dt><g:message code="sagr.property.communeAnneeN.label" /></dt><dd>${rqt.subventionPubliqueFonctionnement?.communeAnneeN?.toString()}</dd>
 
         
-          <dt><g:message code="sagr.property.communeAnneeNPlusUn.label" /></dt><dd>${rqt.communeAnneeNPlusUn?.toString()}</dd>
+          <dt><g:message code="sagr.property.communeAnneeNPlusUn.label" /></dt><dd>${rqt.subventionPubliqueFonctionnement?.communeAnneeNPlusUn?.toString()}</dd>
 
         
       </dl>

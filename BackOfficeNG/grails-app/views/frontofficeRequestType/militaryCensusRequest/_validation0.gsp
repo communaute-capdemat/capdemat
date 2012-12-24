@@ -114,24 +114,24 @@
       <h4><g:message code="mcr.property.fatherInformation.label" /></h4>
       <dl>
         
-          <dt><g:message code="mcr.property.fatherLastName.label" /></dt><dd>${rqt.fatherLastName?.toString()}</dd>
+          <dt><g:message code="mcr.property.fatherLastName.label" /></dt><dd>${rqt.fatherInformation?.fatherLastName?.toString()}</dd>
 
         
-          <dt><g:message code="mcr.property.fatherFirstName.label" /></dt><dd>${rqt.fatherFirstName?.toString()}</dd>
+          <dt><g:message code="mcr.property.fatherFirstName.label" /></dt><dd>${rqt.fatherInformation?.fatherFirstName?.toString()}</dd>
 
         
           <dt><g:message code="mcr.property.fatherBirthDate.label" /></dt>
-          <dd><g:formatDate formatName="format.date" date="${rqt.fatherBirthDate}"/></dd>
+          <dd><g:formatDate formatName="format.date" date="${rqt.fatherInformation?.fatherBirthDate}"/></dd>
           
 
         
-          <dt><g:message code="mcr.property.fatherBirthCity.label" /></dt><dd>${rqt.fatherBirthCity?.toString()}</dd>
+          <dt><g:message code="mcr.property.fatherBirthCity.label" /></dt><dd>${rqt.fatherInformation?.fatherBirthCity?.toString()}</dd>
 
         
           <dt><g:message code="mcr.property.fatherBirthDepartment.label" /></dt>
           <dd>
-            <g:if test="${rqt.fatherBirthDepartment}">
-              <g:capdematEnumToField var="${rqt.fatherBirthDepartment}" i18nKeyPrefix="mcr.property.fatherBirthDepartment" />
+            <g:if test="${rqt.fatherInformation?.fatherBirthDepartment}">
+              <g:capdematEnumToField var="${rqt.fatherInformation?.fatherBirthDepartment}" i18nKeyPrefix="mcr.property.fatherBirthDepartment" />
             </g:if>
           </dd>
           
@@ -139,8 +139,8 @@
         
           <dt><g:message code="mcr.property.fatherBirthCountry.label" /></dt>
           <dd>
-            <g:if test="${rqt.fatherBirthCountry}">
-              <g:capdematEnumToField var="${rqt.fatherBirthCountry}" i18nKeyPrefix="mcr.property.fatherBirthCountry" />
+            <g:if test="${rqt.fatherInformation?.fatherBirthCountry}">
+              <g:capdematEnumToField var="${rqt.fatherInformation?.fatherBirthCountry}" i18nKeyPrefix="mcr.property.fatherBirthCountry" />
             </g:if>
           </dd>
           
@@ -148,8 +148,8 @@
         
           <dt><g:message code="mcr.property.fatherNationality.label" /></dt>
           <dd>
-            <g:if test="${rqt.fatherNationality}">
-              <g:capdematEnumToField var="${rqt.fatherNationality}" i18nKeyPrefix="mcr.property.fatherNationality" />
+            <g:if test="${rqt.fatherInformation?.fatherNationality}">
+              <g:capdematEnumToField var="${rqt.fatherInformation?.fatherNationality}" i18nKeyPrefix="mcr.property.fatherNationality" />
             </g:if>
           </dd>
           
@@ -162,24 +162,24 @@
       <h4><g:message code="mcr.property.motherInformation.label" /></h4>
       <dl>
         
-          <dt><g:message code="mcr.property.motherLastName.label" /></dt><dd>${rqt.motherLastName?.toString()}</dd>
+          <dt><g:message code="mcr.property.motherLastName.label" /></dt><dd>${rqt.motherInformation?.motherLastName?.toString()}</dd>
 
         
-          <dt><g:message code="mcr.property.motherFirstName.label" /></dt><dd>${rqt.motherFirstName?.toString()}</dd>
+          <dt><g:message code="mcr.property.motherFirstName.label" /></dt><dd>${rqt.motherInformation?.motherFirstName?.toString()}</dd>
 
         
           <dt><g:message code="mcr.property.motherBirthDate.label" /></dt>
-          <dd><g:formatDate formatName="format.date" date="${rqt.motherBirthDate}"/></dd>
+          <dd><g:formatDate formatName="format.date" date="${rqt.motherInformation?.motherBirthDate}"/></dd>
           
 
         
-          <dt><g:message code="mcr.property.motherBirthCity.label" /></dt><dd>${rqt.motherBirthCity?.toString()}</dd>
+          <dt><g:message code="mcr.property.motherBirthCity.label" /></dt><dd>${rqt.motherInformation?.motherBirthCity?.toString()}</dd>
 
         
           <dt><g:message code="mcr.property.motherBirthDepartment.label" /></dt>
           <dd>
-            <g:if test="${rqt.motherBirthDepartment}">
-              <g:capdematEnumToField var="${rqt.motherBirthDepartment}" i18nKeyPrefix="mcr.property.motherBirthDepartment" />
+            <g:if test="${rqt.motherInformation?.motherBirthDepartment}">
+              <g:capdematEnumToField var="${rqt.motherInformation?.motherBirthDepartment}" i18nKeyPrefix="mcr.property.motherBirthDepartment" />
             </g:if>
           </dd>
           
@@ -187,8 +187,8 @@
         
           <dt><g:message code="mcr.property.motherBirthCountry.label" /></dt>
           <dd>
-            <g:if test="${rqt.motherBirthCountry}">
-              <g:capdematEnumToField var="${rqt.motherBirthCountry}" i18nKeyPrefix="mcr.property.motherBirthCountry" />
+            <g:if test="${rqt.motherInformation?.motherBirthCountry}">
+              <g:capdematEnumToField var="${rqt.motherInformation?.motherBirthCountry}" i18nKeyPrefix="mcr.property.motherBirthCountry" />
             </g:if>
           </dd>
           
@@ -196,8 +196,8 @@
         
           <dt><g:message code="mcr.property.motherNationality.label" /></dt>
           <dd>
-            <g:if test="${rqt.motherNationality}">
-              <g:capdematEnumToField var="${rqt.motherNationality}" i18nKeyPrefix="mcr.property.motherNationality" />
+            <g:if test="${rqt.motherInformation?.motherNationality}">
+              <g:capdematEnumToField var="${rqt.motherInformation?.motherNationality}" i18nKeyPrefix="mcr.property.motherNationality" />
             </g:if>
           </dd>
           
@@ -215,38 +215,38 @@
       <h4><g:message code="mcr.property.familySituationInformation.label" /></h4>
       <dl>
         
-          <dt><g:message code="mcr.property.aliveChildren.label" /></dt><dd>${rqt.aliveChildren?.toString()}</dd>
+          <dt><g:message code="mcr.property.aliveChildren.label" /></dt><dd>${rqt.familySituationInformation?.aliveChildren?.toString()}</dd>
 
         
           <dt><g:message code="mcr.property.childStatus.label" /></dt>
           <dd>
-            <g:if test="${rqt.childStatus}">
-              <g:capdematEnumToField var="${rqt.childStatus}" i18nKeyPrefix="mcr.property.childStatus" />
+            <g:if test="${rqt.familySituationInformation?.childStatus}">
+              <g:capdematEnumToField var="${rqt.familySituationInformation?.childStatus}" i18nKeyPrefix="mcr.property.childStatus" />
             </g:if>
           </dd>
           
 
         
-          <dt><g:message code="mcr.property.childrenInCharge.label" /></dt><dd>${rqt.childrenInCharge?.toString()}</dd>
+          <dt><g:message code="mcr.property.childrenInCharge.label" /></dt><dd>${rqt.familySituationInformation?.childrenInCharge?.toString()}</dd>
 
         
-          <dt><g:message code="mcr.property.otherSituation.label" /></dt><dd>${rqt.otherSituation?.toString()}</dd>
+          <dt><g:message code="mcr.property.otherSituation.label" /></dt><dd>${rqt.familySituationInformation?.otherSituation?.toString()}</dd>
 
         
           <dt><g:message code="mcr.property.statePupil.label" /></dt>
-          <dd><g:message code="message.${rqt.statePupil ? 'yes' : 'no'}" /></dd>
+          <dd><g:message code="message.${rqt.familySituationInformation?.statePupil ? 'yes' : 'no'}" /></dd>
           
 
         
           <dt><g:message code="mcr.property.prefectPupil.label" /></dt>
-          <dd><g:message code="message.${rqt.prefectPupil ? 'yes' : 'no'}" /></dd>
+          <dd><g:message code="message.${rqt.familySituationInformation?.prefectPupil ? 'yes' : 'no'}" /></dd>
           
 
         
           <dt><g:message code="mcr.property.prefectPupilDepartment.label" /></dt>
           <dd>
-            <g:if test="${rqt.prefectPupilDepartment}">
-              <g:capdematEnumToField var="${rqt.prefectPupilDepartment}" i18nKeyPrefix="mcr.property.prefectPupilDepartment" />
+            <g:if test="${rqt.familySituationInformation?.prefectPupilDepartment}">
+              <g:capdematEnumToField var="${rqt.familySituationInformation?.prefectPupilDepartment}" i18nKeyPrefix="mcr.property.prefectPupilDepartment" />
             </g:if>
           </dd>
           
@@ -261,8 +261,8 @@
         
           <dt><g:message code="mcr.property.childSituation.label" /></dt>
           <dd>
-            <g:if test="${rqt.childSituation}">
-              <g:capdematEnumToField var="${rqt.childSituation}" i18nKeyPrefix="mcr.property.childSituation" />
+            <g:if test="${rqt.professionalSituationInformation?.childSituation}">
+              <g:capdematEnumToField var="${rqt.professionalSituationInformation?.childSituation}" i18nKeyPrefix="mcr.property.childSituation" />
             </g:if>
           </dd>
           
@@ -270,17 +270,17 @@
         
           <dt><g:message code="mcr.property.childDiploma.label" /></dt>
           <dd>
-            <g:if test="${rqt.childDiploma}">
-              <g:capdematEnumToField var="${rqt.childDiploma}" i18nKeyPrefix="mcr.property.childDiploma" />
+            <g:if test="${rqt.professionalSituationInformation?.childDiploma}">
+              <g:capdematEnumToField var="${rqt.professionalSituationInformation?.childDiploma}" i18nKeyPrefix="mcr.property.childDiploma" />
             </g:if>
           </dd>
           
 
         
-          <dt><g:message code="mcr.property.childSpeciality.label" /></dt><dd>${rqt.childSpeciality?.toString()}</dd>
+          <dt><g:message code="mcr.property.childSpeciality.label" /></dt><dd>${rqt.professionalSituationInformation?.childSpeciality?.toString()}</dd>
 
         
-          <dt><g:message code="mcr.property.childProfession.label" /></dt><dd>${rqt.childProfession?.toString()}</dd>
+          <dt><g:message code="mcr.property.childProfession.label" /></dt><dd>${rqt.professionalSituationInformation?.childProfession?.toString()}</dd>
 
         
       </dl>

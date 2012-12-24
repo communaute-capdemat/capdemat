@@ -61,6 +61,20 @@ public class GlobalSchoolRegistrationRequestData implements Serializable {
         
           
             
+        if (ecoleDerogation != null)
+            result.setEcoleDerogation(ecoleDerogation.clone());
+      
+          
+        
+          
+            
+        if (ecoleSecteur != null)
+            result.setEcoleSecteur(ecoleSecteur.clone());
+      
+          
+        
+          
+            
         result.setEstDerogation(estDerogation);
       
           
@@ -79,31 +93,7 @@ public class GlobalSchoolRegistrationRequestData implements Serializable {
         
           
             
-        result.setIdEcoleDerog(idEcoleDerog);
-      
-          
-        
-          
-            
-        result.setIdEcoleSecteur(idEcoleSecteur);
-      
-          
-        
-          
-            
         result.setInformationsComplementairesDerogation(informationsComplementairesDerogation);
-      
-          
-        
-          
-            
-        result.setLabelEcoleDerog(labelEcoleDerog);
-      
-          
-        
-          
-            
-        result.setLabelEcoleSecteur(labelEcoleSecteur);
       
           
         
@@ -143,6 +133,104 @@ public class GlobalSchoolRegistrationRequestData implements Serializable {
       
     public Boolean getAcceptationReglementInterieur() {
         return this.acceptationReglementInterieur;
+    }
+  
+    
+      @NotNull(
+        
+        
+          when = "groovy:def active = true;" +
+          
+            "active &= _this.conditions['estDerogation'].test(_this.estDerogation.toString());" +
+                
+              
+              
+            
+            
+            "return active",
+        
+        profiles = {"enfant"},
+        message = "ecoleDerogation"
+      )
+    
+      @AssertValid(
+        
+        
+          when = "groovy:def active = true;" +
+          
+            "active &= _this.conditions['estDerogation'].test(_this.estDerogation.toString());" +
+                
+              
+              
+            
+            
+            "return active",
+        
+        profiles = {"enfant"},
+        message = "ecoleDerogation"
+      )
+    
+    private fr.cg95.cvq.business.request.school.EcoleDerog ecoleDerogation;
+
+    public void setEcoleDerogation(final fr.cg95.cvq.business.request.school.EcoleDerog ecoleDerogation) {
+        this.ecoleDerogation = ecoleDerogation;
+    }
+
+ 
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name="ecole_derogation_id")
+      
+    public fr.cg95.cvq.business.request.school.EcoleDerog getEcoleDerogation() {
+        return this.ecoleDerogation;
+    }
+  
+    
+      @NotNull(
+        
+        
+          when = "groovy:def active = true;" +
+          
+            "active &= !_this.conditions['estDerogation'].test(_this.estDerogation.toString());" +
+                
+              
+              
+            
+            
+            "return active",
+        
+        profiles = {"enfant"},
+        message = "ecoleSecteur"
+      )
+    
+      @AssertValid(
+        
+        
+          when = "groovy:def active = true;" +
+          
+            "active &= !_this.conditions['estDerogation'].test(_this.estDerogation.toString());" +
+                
+              
+              
+            
+            
+            "return active",
+        
+        profiles = {"enfant"},
+        message = "ecoleSecteur"
+      )
+    
+    private fr.cg95.cvq.business.request.school.EcoleSecteur ecoleSecteur;
+
+    public void setEcoleSecteur(final fr.cg95.cvq.business.request.school.EcoleSecteur ecoleSecteur) {
+        this.ecoleSecteur = ecoleSecteur;
+    }
+
+ 
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name="ecole_secteur_id")
+      
+    public fr.cg95.cvq.business.request.school.EcoleSecteur getEcoleSecteur() {
+        return this.ecoleSecteur;
     }
   
     
@@ -209,98 +297,6 @@ public class GlobalSchoolRegistrationRequestData implements Serializable {
     }
   
     
-      @NotNull(
-        
-        
-          when = "groovy:def active = true;" +
-          
-            
-            "active &= _this.conditions['estDerogation'].test(_this.estDerogation.toString());" +
-                
-              
-            
-            "return active",
-        
-        profiles = {"enfant"},
-        message = "idEcoleDerog"
-      )
-    
-      @NotBlank(
-        
-        
-          when = "groovy:def active = true;" +
-          
-            
-            "active &= _this.conditions['estDerogation'].test(_this.estDerogation.toString());" +
-                
-              
-            
-            "return active",
-        
-        profiles = {"enfant"},
-        message = "idEcoleDerog"
-      )
-    
-    private String idEcoleDerog;
-
-    public void setIdEcoleDerog(final String idEcoleDerog) {
-        this.idEcoleDerog = idEcoleDerog;
-    }
-
- 
-    @Column(name="id_ecole_derog"  )
-      
-    public String getIdEcoleDerog() {
-        return this.idEcoleDerog;
-    }
-  
-    
-      @NotNull(
-        
-        
-          when = "groovy:def active = true;" +
-          
-            
-            "active &= !_this.conditions['estDerogation'].test(_this.estDerogation.toString());" +
-                
-              
-            
-            "return active",
-        
-        profiles = {"enfant"},
-        message = "idEcoleSecteur"
-      )
-    
-      @NotBlank(
-        
-        
-          when = "groovy:def active = true;" +
-          
-            
-            "active &= !_this.conditions['estDerogation'].test(_this.estDerogation.toString());" +
-                
-              
-            
-            "return active",
-        
-        profiles = {"enfant"},
-        message = "idEcoleSecteur"
-      )
-    
-    private String idEcoleSecteur;
-
-    public void setIdEcoleSecteur(final String idEcoleSecteur) {
-        this.idEcoleSecteur = idEcoleSecteur;
-    }
-
- 
-    @Column(name="id_ecole_secteur"  )
-      
-    public String getIdEcoleSecteur() {
-        return this.idEcoleSecteur;
-    }
-  
-    
       @MaxLength(
         
           value = 1024,
@@ -310,6 +306,7 @@ public class GlobalSchoolRegistrationRequestData implements Serializable {
           
             "active &= _this.conditions['estDerogation'].test(_this.estDerogation.toString());" +
                 
+              
               
             
             
@@ -328,6 +325,7 @@ public class GlobalSchoolRegistrationRequestData implements Serializable {
           
             "active &= _this.conditions['estDerogation'].test(_this.estDerogation.toString());" +
                 
+              
               
             
             
@@ -351,98 +349,6 @@ public class GlobalSchoolRegistrationRequestData implements Serializable {
     }
   
     
-      @NotNull(
-        
-        
-          when = "groovy:def active = true;" +
-          
-            
-            "active &= _this.conditions['estDerogation'].test(_this.estDerogation.toString());" +
-                
-              
-            
-            "return active",
-        
-        profiles = {"enfant"},
-        message = "labelEcoleDerog"
-      )
-    
-      @NotBlank(
-        
-        
-          when = "groovy:def active = true;" +
-          
-            
-            "active &= _this.conditions['estDerogation'].test(_this.estDerogation.toString());" +
-                
-              
-            
-            "return active",
-        
-        profiles = {"enfant"},
-        message = "labelEcoleDerog"
-      )
-    
-    private String labelEcoleDerog;
-
-    public void setLabelEcoleDerog(final String labelEcoleDerog) {
-        this.labelEcoleDerog = labelEcoleDerog;
-    }
-
- 
-    @Column(name="label_ecole_derog"  )
-      
-    public String getLabelEcoleDerog() {
-        return this.labelEcoleDerog;
-    }
-  
-    
-      @NotNull(
-        
-        
-          when = "groovy:def active = true;" +
-          
-            
-            "active &= !_this.conditions['estDerogation'].test(_this.estDerogation.toString());" +
-                
-              
-            
-            "return active",
-        
-        profiles = {"enfant"},
-        message = "labelEcoleSecteur"
-      )
-    
-      @NotBlank(
-        
-        
-          when = "groovy:def active = true;" +
-          
-            
-            "active &= !_this.conditions['estDerogation'].test(_this.estDerogation.toString());" +
-                
-              
-            
-            "return active",
-        
-        profiles = {"enfant"},
-        message = "labelEcoleSecteur"
-      )
-    
-    private String labelEcoleSecteur;
-
-    public void setLabelEcoleSecteur(final String labelEcoleSecteur) {
-        this.labelEcoleSecteur = labelEcoleSecteur;
-    }
-
- 
-    @Column(name="label_ecole_secteur"  )
-      
-    public String getLabelEcoleSecteur() {
-        return this.labelEcoleSecteur;
-    }
-  
-    
       @LocalReferential(
         
         
@@ -450,6 +356,7 @@ public class GlobalSchoolRegistrationRequestData implements Serializable {
           
             "active &= _this.conditions['estDerogation'].test(_this.estDerogation.toString());" +
                 
+              
               
             
             
@@ -468,6 +375,7 @@ public class GlobalSchoolRegistrationRequestData implements Serializable {
           
             "active &= _this.conditions['estDerogation'].test(_this.estDerogation.toString());" +
                 
+              
               
             
             

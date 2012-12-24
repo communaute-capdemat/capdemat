@@ -70,27 +70,27 @@
     <fieldset class="required condition-autoriseFrereOuSoeur-filled">
     <legend><g:message code="strr.property.frereOuSoeurAutorise.label" /></legend>
     
-      <label for="frereOuSoeurNom" class="required"><g:message code="strr.property.frereOuSoeurNom.label" /> *  <span><g:message code="strr.property.frereOuSoeurNom.help" /></span></label>
-            <input type="text" id="frereOuSoeurNom" name="frereOuSoeurNom" value="${rqt.frereOuSoeurNom?.toString()}" 
-                    class="required  validate-lastName ${rqt.stepStates['autorisations'].invalidFields.contains('frereOuSoeurNom') ? 'validation-failed' : ''}" title="<g:message code="strr.property.frereOuSoeurNom.validationError" />"  maxlength="38" />
+      <label for="frereOuSoeurAutorise.frereOuSoeurNom" class="required"><g:message code="strr.property.frereOuSoeurNom.label" /> *  <span><g:message code="strr.property.frereOuSoeurNom.help" /></span></label>
+            <input type="text" id="frereOuSoeurAutorise.frereOuSoeurNom" name="frereOuSoeurAutorise.frereOuSoeurNom" value="${rqt.frereOuSoeurAutorise?.frereOuSoeurNom?.toString()}" 
+                    class="required  validate-lastName ${rqt.stepStates['autorisations'].invalidFields.contains('frereOuSoeurAutorise.frereOuSoeurNom') ? 'validation-failed' : ''}" title="<g:message code="strr.property.frereOuSoeurNom.validationError" />"  maxlength="38" />
             
 
     
-      <label for="frereOuSoeurPrenom" class="required"><g:message code="strr.property.frereOuSoeurPrenom.label" /> *  <span><g:message code="strr.property.frereOuSoeurPrenom.help" /></span></label>
-            <input type="text" id="frereOuSoeurPrenom" name="frereOuSoeurPrenom" value="${rqt.frereOuSoeurPrenom?.toString()}" 
-                    class="required  validate-firstName ${rqt.stepStates['autorisations'].invalidFields.contains('frereOuSoeurPrenom') ? 'validation-failed' : ''}" title="<g:message code="strr.property.frereOuSoeurPrenom.validationError" />"  maxlength="38" />
+      <label for="frereOuSoeurAutorise.frereOuSoeurPrenom" class="required"><g:message code="strr.property.frereOuSoeurPrenom.label" /> *  <span><g:message code="strr.property.frereOuSoeurPrenom.help" /></span></label>
+            <input type="text" id="frereOuSoeurAutorise.frereOuSoeurPrenom" name="frereOuSoeurAutorise.frereOuSoeurPrenom" value="${rqt.frereOuSoeurAutorise?.frereOuSoeurPrenom?.toString()}" 
+                    class="required  validate-firstName ${rqt.stepStates['autorisations'].invalidFields.contains('frereOuSoeurAutorise.frereOuSoeurPrenom') ? 'validation-failed' : ''}" title="<g:message code="strr.property.frereOuSoeurPrenom.validationError" />"  maxlength="38" />
             
 
     
-      <label for="frereOuSoeurEcole" class="required"><g:message code="strr.property.frereOuSoeurEcole.label" /> *  <span><g:message code="strr.property.frereOuSoeurEcole.help" /></span></label>
-            <input type="text" id="frereOuSoeurEcole" name="frereOuSoeurEcole" value="${rqt.frereOuSoeurEcole?.toString()}" 
-                    class="required  validate-string ${rqt.stepStates['autorisations'].invalidFields.contains('frereOuSoeurEcole') ? 'validation-failed' : ''}" title="<g:message code="strr.property.frereOuSoeurEcole.validationError" />"   />
+      <label for="frereOuSoeurAutorise.frereOuSoeurEcole" class="required"><g:message code="strr.property.frereOuSoeurEcole.label" /> *  <span><g:message code="strr.property.frereOuSoeurEcole.help" /></span></label>
+            <input type="text" id="frereOuSoeurAutorise.frereOuSoeurEcole" name="frereOuSoeurAutorise.frereOuSoeurEcole" value="${rqt.frereOuSoeurAutorise?.frereOuSoeurEcole?.toString()}" 
+                    class="required  validate-string ${rqt.stepStates['autorisations'].invalidFields.contains('frereOuSoeurAutorise.frereOuSoeurEcole') ? 'validation-failed' : ''}" title="<g:message code="strr.property.frereOuSoeurEcole.validationError" />"   />
             
 
     
-      <label for="frereOuSoeurClasse" class="required"><g:message code="strr.property.frereOuSoeurClasse.label" /> *  <span><g:message code="strr.property.frereOuSoeurClasse.help" /></span></label>
-            <input type="text" id="frereOuSoeurClasse" name="frereOuSoeurClasse" value="${rqt.frereOuSoeurClasse?.toString()}" 
-                    class="required  validate-string ${rqt.stepStates['autorisations'].invalidFields.contains('frereOuSoeurClasse') ? 'validation-failed' : ''}" title="<g:message code="strr.property.frereOuSoeurClasse.validationError" />"   />
+      <label for="frereOuSoeurAutorise.frereOuSoeurClasse" class="required"><g:message code="strr.property.frereOuSoeurClasse.label" /> *  <span><g:message code="strr.property.frereOuSoeurClasse.help" /></span></label>
+            <input type="text" id="frereOuSoeurAutorise.frereOuSoeurClasse" name="frereOuSoeurAutorise.frereOuSoeurClasse" value="${rqt.frereOuSoeurAutorise?.frereOuSoeurClasse?.toString()}" 
+                    class="required  validate-string ${rqt.stepStates['autorisations'].invalidFields.contains('frereOuSoeurAutorise.frereOuSoeurClasse') ? 'validation-failed' : ''}" title="<g:message code="strr.property.frereOuSoeurClasse.validationError" />"   />
             
 
     

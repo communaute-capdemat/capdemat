@@ -114,23 +114,14 @@ public class LeisureCenterRegistrationRequest extends Request implements Seriali
         if (getAcceptationReglementInterieur() != null)
             leisureCenterRegistrationRequest.setAcceptationReglementInterieur(getAcceptationReglementInterieur().booleanValue());
       
+        if (getCentresLoisirs() != null)
+            leisureCenterRegistrationRequest.setCentresLoisirs(getCentresLoisirs().modelToXml());
+      
         if (getEstDerogation() != null)
             leisureCenterRegistrationRequest.setEstDerogation(getEstDerogation().booleanValue());
       
         if (getEstTransport() != null)
             leisureCenterRegistrationRequest.setEstTransport(getEstTransport().booleanValue());
-        TransportsType transportsTypeTransports = leisureCenterRegistrationRequest.addNewTransports();
-        transportsTypeTransports.setIdArret(getIdArret());
-        CentreLoisirsType centreLoisirsTypeCentresLoisirs = leisureCenterRegistrationRequest.addNewCentresLoisirs();
-        centreLoisirsTypeCentresLoisirs.setIdCentreLoisirs(getIdCentreLoisirs());
-      
-        transportsTypeTransports.setIdLigne(getIdLigne());
-      
-        transportsTypeTransports.setLabelArret(getLabelArret());
-      
-        centreLoisirsTypeCentresLoisirs.setLabelCentreLoisirs(getLabelCentreLoisirs());
-      
-        transportsTypeTransports.setLabelLigne(getLabelLigne());
       
         i = 0;
         if (getMotifsDerogationCentreLoisirs() != null) {
@@ -140,6 +131,9 @@ public class LeisureCenterRegistrationRequest extends Request implements Seriali
             }
             leisureCenterRegistrationRequest.setMotifsDerogationCentreLoisirsArray(motifsDerogationCentreLoisirsTypeTab);
         }
+      
+        if (getTransports() != null)
+            leisureCenterRegistrationRequest.setTransports(getTransports().modelToXml());
       
         return leisureCenterRegistrationRequestDoc;
     }
@@ -159,27 +153,21 @@ public class LeisureCenterRegistrationRequest extends Request implements Seriali
         
         leisureCenterRegistrationRequest.setAcceptationReglementInterieur(Boolean.valueOf(leisureCenterRegistrationRequestXml.getAcceptationReglementInterieur()));
       
+        if (leisureCenterRegistrationRequestXml.getCentresLoisirs() != null)
+            leisureCenterRegistrationRequest.setCentresLoisirs(CentreLoisirs.xmlToModel(leisureCenterRegistrationRequestXml.getCentresLoisirs()));
+      
         leisureCenterRegistrationRequest.setEstDerogation(Boolean.valueOf(leisureCenterRegistrationRequestXml.getEstDerogation()));
       
         leisureCenterRegistrationRequest.setEstTransport(Boolean.valueOf(leisureCenterRegistrationRequestXml.getEstTransport()));
-      
-        leisureCenterRegistrationRequest.setIdArret(leisureCenterRegistrationRequestXml.getTransports().getIdArret());
-      
-        leisureCenterRegistrationRequest.setIdCentreLoisirs(leisureCenterRegistrationRequestXml.getCentresLoisirs().getIdCentreLoisirs());
-      
-        leisureCenterRegistrationRequest.setIdLigne(leisureCenterRegistrationRequestXml.getTransports().getIdLigne());
-      
-        leisureCenterRegistrationRequest.setLabelArret(leisureCenterRegistrationRequestXml.getTransports().getLabelArret());
-      
-        leisureCenterRegistrationRequest.setLabelCentreLoisirs(leisureCenterRegistrationRequestXml.getCentresLoisirs().getLabelCentreLoisirs());
-      
-        leisureCenterRegistrationRequest.setLabelLigne(leisureCenterRegistrationRequestXml.getTransports().getLabelLigne());
       
         List<fr.cg95.cvq.business.request.LocalReferentialData> motifsDerogationCentreLoisirsList = new ArrayList<fr.cg95.cvq.business.request.LocalReferentialData>(leisureCenterRegistrationRequestXml.sizeOfMotifsDerogationCentreLoisirsArray());
         for (LocalReferentialDataType object : leisureCenterRegistrationRequestXml.getMotifsDerogationCentreLoisirsArray()) {
             motifsDerogationCentreLoisirsList.add(fr.cg95.cvq.business.request.LocalReferentialData.xmlToModel(object));
         }
         leisureCenterRegistrationRequest.setMotifsDerogationCentreLoisirs(motifsDerogationCentreLoisirsList);
+      
+        if (leisureCenterRegistrationRequestXml.getTransports() != null)
+            leisureCenterRegistrationRequest.setTransports(Transports.xmlToModel(leisureCenterRegistrationRequestXml.getTransports()));
       
         return leisureCenterRegistrationRequest;
     }
@@ -230,6 +218,15 @@ public class LeisureCenterRegistrationRequest extends Request implements Seriali
         return leisureCenterRegistrationRequestData.getAcceptationReglementInterieur();
     }
   
+    public final void setCentresLoisirs(final fr.cg95.cvq.business.request.school.CentreLoisirs centresLoisirs) {
+        leisureCenterRegistrationRequestData.setCentresLoisirs(centresLoisirs);
+    }
+
+    
+    public final fr.cg95.cvq.business.request.school.CentreLoisirs getCentresLoisirs() {
+        return leisureCenterRegistrationRequestData.getCentresLoisirs();
+    }
+  
     public final void setEstDerogation(final Boolean estDerogation) {
         leisureCenterRegistrationRequestData.setEstDerogation(estDerogation);
     }
@@ -248,60 +245,6 @@ public class LeisureCenterRegistrationRequest extends Request implements Seriali
         return leisureCenterRegistrationRequestData.getEstTransport();
     }
   
-    public final void setIdArret(final String idArret) {
-        leisureCenterRegistrationRequestData.setIdArret(idArret);
-    }
-
-    
-    public final String getIdArret() {
-        return leisureCenterRegistrationRequestData.getIdArret();
-    }
-  
-    public final void setIdCentreLoisirs(final String idCentreLoisirs) {
-        leisureCenterRegistrationRequestData.setIdCentreLoisirs(idCentreLoisirs);
-    }
-
-    
-    public final String getIdCentreLoisirs() {
-        return leisureCenterRegistrationRequestData.getIdCentreLoisirs();
-    }
-  
-    public final void setIdLigne(final String idLigne) {
-        leisureCenterRegistrationRequestData.setIdLigne(idLigne);
-    }
-
-    
-    public final String getIdLigne() {
-        return leisureCenterRegistrationRequestData.getIdLigne();
-    }
-  
-    public final void setLabelArret(final String labelArret) {
-        leisureCenterRegistrationRequestData.setLabelArret(labelArret);
-    }
-
-    
-    public final String getLabelArret() {
-        return leisureCenterRegistrationRequestData.getLabelArret();
-    }
-  
-    public final void setLabelCentreLoisirs(final String labelCentreLoisirs) {
-        leisureCenterRegistrationRequestData.setLabelCentreLoisirs(labelCentreLoisirs);
-    }
-
-    
-    public final String getLabelCentreLoisirs() {
-        return leisureCenterRegistrationRequestData.getLabelCentreLoisirs();
-    }
-  
-    public final void setLabelLigne(final String labelLigne) {
-        leisureCenterRegistrationRequestData.setLabelLigne(labelLigne);
-    }
-
-    
-    public final String getLabelLigne() {
-        return leisureCenterRegistrationRequestData.getLabelLigne();
-    }
-  
     public final void setMotifsDerogationCentreLoisirs(final List<fr.cg95.cvq.business.request.LocalReferentialData> motifsDerogationCentreLoisirs) {
         leisureCenterRegistrationRequestData.setMotifsDerogationCentreLoisirs(motifsDerogationCentreLoisirs);
     }
@@ -309,6 +252,15 @@ public class LeisureCenterRegistrationRequest extends Request implements Seriali
     
     public final List<fr.cg95.cvq.business.request.LocalReferentialData> getMotifsDerogationCentreLoisirs() {
         return leisureCenterRegistrationRequestData.getMotifsDerogationCentreLoisirs();
+    }
+  
+    public final void setTransports(final fr.cg95.cvq.business.request.school.Transports transports) {
+        leisureCenterRegistrationRequestData.setTransports(transports);
+    }
+
+    
+    public final fr.cg95.cvq.business.request.school.Transports getTransports() {
+        return leisureCenterRegistrationRequestData.getTransports();
     }
   
 }

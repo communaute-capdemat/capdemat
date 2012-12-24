@@ -9,6 +9,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.HashMap;
 import org.joda.time.LocalTime;
 
 import net.sf.oval.constraint.*;
@@ -63,7 +64,7 @@ public class RecreationAuthorizedIndividual implements Serializable {
         recreationAuthorizedIndividual.setOfficePhone(this.officePhone);
       
         if (this.address != null)
-            recreationAuthorizedIndividual.setAddress(Address.modelToXml(this.address));
+            recreationAuthorizedIndividual.setAddress(this.address.modelToXml());
       
         recreationAuthorizedIndividual.setFirstName(this.firstName);
       
@@ -161,7 +162,7 @@ public class RecreationAuthorizedIndividual implements Serializable {
         this.officePhone = officePhone;
     }
 
-
+    
     @Column(name="office_phone" , length=10 )
       
     public String getOfficePhone() {
@@ -189,7 +190,7 @@ public class RecreationAuthorizedIndividual implements Serializable {
         this.address = address;
     }
 
-
+    
     @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name="address_id")
       
@@ -227,7 +228,7 @@ public class RecreationAuthorizedIndividual implements Serializable {
         this.firstName = firstName;
     }
 
-
+    
     @Column(name="first_name" , length=38 )
       
     public String getFirstName() {
@@ -264,7 +265,7 @@ public class RecreationAuthorizedIndividual implements Serializable {
         this.lastName = lastName;
     }
 
-
+    
     @Column(name="last_name" , length=38 )
       
     public String getLastName() {
@@ -287,7 +288,7 @@ public class RecreationAuthorizedIndividual implements Serializable {
         this.homePhone = homePhone;
     }
 
-
+    
     @Column(name="home_phone" , length=10 )
       
     public String getHomePhone() {

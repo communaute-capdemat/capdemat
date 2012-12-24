@@ -5,33 +5,33 @@
     <fieldset class="required">
     <legend><g:message code="dhr.property.dhrRequesterIncomes.label" /></legend>
     
-      <label for="pensions" class=""><g:message code="dhr.property.pensions.label" />   <span><g:message code="dhr.property.pensions.help" /></span></label>
-            <input type="text" id="pensions" name="pensions" value="${rqt.pensions?.toString()}" 
-                    class="  validate-positiveInteger ${rqt.stepStates['resources'].invalidFields.contains('pensions') ? 'validation-failed' : ''}" title="<g:message code="dhr.property.pensions.validationError" />"   />
+      <label for="dhrRequesterIncomes.pensions" class=""><g:message code="dhr.property.pensions.label" />   <span><g:message code="dhr.property.pensions.help" /></span></label>
+            <input type="text" id="dhrRequesterIncomes.pensions" name="dhrRequesterIncomes.pensions" value="${rqt.dhrRequesterIncomes?.pensions?.toString()}" 
+                    class="  validate-positiveInteger ${rqt.stepStates['resources'].invalidFields.contains('dhrRequesterIncomes.pensions') ? 'validation-failed' : ''}" title="<g:message code="dhr.property.pensions.validationError" />"   />
             
 
     
-      <label for="dhrAllowances" class=""><g:message code="dhr.property.dhrAllowances.label" />   <span><g:message code="dhr.property.dhrAllowances.help" /></span></label>
-            <input type="text" id="dhrAllowances" name="dhrAllowances" value="${rqt.dhrAllowances?.toString()}" 
-                    class="  validate-positiveInteger ${rqt.stepStates['resources'].invalidFields.contains('dhrAllowances') ? 'validation-failed' : ''}" title="<g:message code="dhr.property.dhrAllowances.validationError" />"   />
+      <label for="dhrRequesterIncomes.dhrAllowances" class=""><g:message code="dhr.property.dhrAllowances.label" />   <span><g:message code="dhr.property.dhrAllowances.help" /></span></label>
+            <input type="text" id="dhrRequesterIncomes.dhrAllowances" name="dhrRequesterIncomes.dhrAllowances" value="${rqt.dhrRequesterIncomes?.dhrAllowances?.toString()}" 
+                    class="  validate-positiveInteger ${rqt.stepStates['resources'].invalidFields.contains('dhrRequesterIncomes.dhrAllowances') ? 'validation-failed' : ''}" title="<g:message code="dhr.property.dhrAllowances.validationError" />"   />
             
 
     
-      <label for="dhrFurnitureInvestmentIncome" class=""><g:message code="dhr.property.dhrFurnitureInvestmentIncome.label" />   <span><g:message code="dhr.property.dhrFurnitureInvestmentIncome.help" /></span></label>
-            <input type="text" id="dhrFurnitureInvestmentIncome" name="dhrFurnitureInvestmentIncome" value="${rqt.dhrFurnitureInvestmentIncome?.toString()}" 
-                    class="  validate-positiveInteger ${rqt.stepStates['resources'].invalidFields.contains('dhrFurnitureInvestmentIncome') ? 'validation-failed' : ''}" title="<g:message code="dhr.property.dhrFurnitureInvestmentIncome.validationError" />"   />
+      <label for="dhrRequesterIncomes.dhrFurnitureInvestmentIncome" class=""><g:message code="dhr.property.dhrFurnitureInvestmentIncome.label" />   <span><g:message code="dhr.property.dhrFurnitureInvestmentIncome.help" /></span></label>
+            <input type="text" id="dhrRequesterIncomes.dhrFurnitureInvestmentIncome" name="dhrRequesterIncomes.dhrFurnitureInvestmentIncome" value="${rqt.dhrRequesterIncomes?.dhrFurnitureInvestmentIncome?.toString()}" 
+                    class="  validate-positiveInteger ${rqt.stepStates['resources'].invalidFields.contains('dhrRequesterIncomes.dhrFurnitureInvestmentIncome') ? 'validation-failed' : ''}" title="<g:message code="dhr.property.dhrFurnitureInvestmentIncome.validationError" />"   />
             
 
     
-      <label for="dhrRealEstateInvestmentIncome" class=""><g:message code="dhr.property.dhrRealEstateInvestmentIncome.label" />   <span><g:message code="dhr.property.dhrRealEstateInvestmentIncome.help" /></span></label>
-            <input type="text" id="dhrRealEstateInvestmentIncome" name="dhrRealEstateInvestmentIncome" value="${rqt.dhrRealEstateInvestmentIncome?.toString()}" 
-                    class="  validate-positiveInteger ${rqt.stepStates['resources'].invalidFields.contains('dhrRealEstateInvestmentIncome') ? 'validation-failed' : ''}" title="<g:message code="dhr.property.dhrRealEstateInvestmentIncome.validationError" />"   />
+      <label for="dhrRequesterIncomes.dhrRealEstateInvestmentIncome" class=""><g:message code="dhr.property.dhrRealEstateInvestmentIncome.label" />   <span><g:message code="dhr.property.dhrRealEstateInvestmentIncome.help" /></span></label>
+            <input type="text" id="dhrRequesterIncomes.dhrRealEstateInvestmentIncome" name="dhrRequesterIncomes.dhrRealEstateInvestmentIncome" value="${rqt.dhrRequesterIncomes?.dhrRealEstateInvestmentIncome?.toString()}" 
+                    class="  validate-positiveInteger ${rqt.stepStates['resources'].invalidFields.contains('dhrRequesterIncomes.dhrRealEstateInvestmentIncome') ? 'validation-failed' : ''}" title="<g:message code="dhr.property.dhrRealEstateInvestmentIncome.validationError" />"   />
             
 
     
-      <label for="dhrNetIncome" class=""><g:message code="dhr.property.dhrNetIncome.label" />   <span><g:message code="dhr.property.dhrNetIncome.help" /></span></label>
-            <input type="text" id="dhrNetIncome" name="dhrNetIncome" value="${rqt.dhrNetIncome?.toString()}" 
-                    class="  validate-positiveInteger ${rqt.stepStates['resources'].invalidFields.contains('dhrNetIncome') ? 'validation-failed' : ''}" title="<g:message code="dhr.property.dhrNetIncome.validationError" />"   />
+      <label for="dhrRequesterIncomes.dhrNetIncome" class=""><g:message code="dhr.property.dhrNetIncome.label" />   <span><g:message code="dhr.property.dhrNetIncome.help" /></span></label>
+            <input type="text" id="dhrRequesterIncomes.dhrNetIncome" name="dhrRequesterIncomes.dhrNetIncome" value="${rqt.dhrRequesterIncomes?.dhrNetIncome?.toString()}" 
+                    class="  validate-positiveInteger ${rqt.stepStates['resources'].invalidFields.contains('dhrRequesterIncomes.dhrNetIncome') ? 'validation-failed' : ''}" title="<g:message code="dhr.property.dhrNetIncome.validationError" />"   />
             
 
     

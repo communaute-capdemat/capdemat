@@ -100,13 +100,8 @@ public class BirthDetailsRequestData implements Serializable {
         
           
             
-        result.setFatherFirstNames(fatherFirstNames);
-      
-          
-        
-          
-            
-        result.setFatherLastName(fatherLastName);
+        if (fatherInformation != null)
+            result.setFatherInformation(fatherInformation.clone());
       
           
         
@@ -121,13 +116,8 @@ public class BirthDetailsRequestData implements Serializable {
         
           
             
-        result.setMotherFirstNames(motherFirstNames);
-      
-          
-        
-          
-            
-        result.setMotherMaidenName(motherMaidenName);
+        if (motherInformation != null)
+            result.setMotherInformation(motherInformation.clone());
       
           
         
@@ -392,113 +382,35 @@ public class BirthDetailsRequestData implements Serializable {
     }
   
     
-      @NotNull(
+      @AssertValid(
         
         
           when = "groovy:def active = true;" +
           
-            
             "active &= _this.conditions['format'].test(_this.format.toString());" +
                 
               
+              
+            
             
             "return active",
         
         profiles = {"type"},
-        message = "fatherFirstNames"
+        message = "fatherInformation"
       )
     
-      @NotBlank(
-        
-        
-          when = "groovy:def active = true;" +
-          
-            
-            "active &= _this.conditions['format'].test(_this.format.toString());" +
-                
-              
-            
-            "return active",
-        
-        profiles = {"type"},
-        message = "fatherFirstNames"
-      )
-    
-    private String fatherFirstNames;
+    private fr.cg95.cvq.business.request.civil.FatherInformation fatherInformation;
 
-    public void setFatherFirstNames(final String fatherFirstNames) {
-        this.fatherFirstNames = fatherFirstNames;
+    public void setFatherInformation(final fr.cg95.cvq.business.request.civil.FatherInformation fatherInformation) {
+        this.fatherInformation = fatherInformation;
     }
 
  
-    @Column(name="father_first_names"  )
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name="father_information_id")
       
-    public String getFatherFirstNames() {
-        return this.fatherFirstNames;
-    }
-  
-    
-      @MaxLength(
-        
-          value = 38,
-        
-        
-          when = "groovy:def active = true;" +
-          
-            
-            "active &= _this.conditions['format'].test(_this.format.toString());" +
-                
-              
-            
-            "return active",
-        
-        profiles = {"type"},
-        message = "fatherLastName"
-      )
-    
-      @NotNull(
-        
-        
-          when = "groovy:def active = true;" +
-          
-            
-            "active &= _this.conditions['format'].test(_this.format.toString());" +
-                
-              
-            
-            "return active",
-        
-        profiles = {"type"},
-        message = "fatherLastName"
-      )
-    
-      @NotBlank(
-        
-        
-          when = "groovy:def active = true;" +
-          
-            
-            "active &= _this.conditions['format'].test(_this.format.toString());" +
-                
-              
-            
-            "return active",
-        
-        profiles = {"type"},
-        message = "fatherLastName"
-      )
-    
-    private String fatherLastName;
-
-    public void setFatherLastName(final String fatherLastName) {
-        this.fatherLastName = fatherLastName;
-    }
-
- 
-    @Column(name="father_last_name" , length=38 )
-      
-    public String getFatherLastName() {
-        return this.fatherLastName;
+    public fr.cg95.cvq.business.request.civil.FatherInformation getFatherInformation() {
+        return this.fatherInformation;
     }
   
     
@@ -524,113 +436,35 @@ public class BirthDetailsRequestData implements Serializable {
     }
   
     
-      @NotNull(
+      @AssertValid(
         
         
           when = "groovy:def active = true;" +
           
-            
             "active &= _this.conditions['format'].test(_this.format.toString());" +
                 
               
+              
+            
             
             "return active",
         
         profiles = {"type"},
-        message = "motherFirstNames"
+        message = "motherInformation"
       )
     
-      @NotBlank(
-        
-        
-          when = "groovy:def active = true;" +
-          
-            
-            "active &= _this.conditions['format'].test(_this.format.toString());" +
-                
-              
-            
-            "return active",
-        
-        profiles = {"type"},
-        message = "motherFirstNames"
-      )
-    
-    private String motherFirstNames;
+    private fr.cg95.cvq.business.request.civil.MotherInformation motherInformation;
 
-    public void setMotherFirstNames(final String motherFirstNames) {
-        this.motherFirstNames = motherFirstNames;
+    public void setMotherInformation(final fr.cg95.cvq.business.request.civil.MotherInformation motherInformation) {
+        this.motherInformation = motherInformation;
     }
 
  
-    @Column(name="mother_first_names"  )
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name="mother_information_id")
       
-    public String getMotherFirstNames() {
-        return this.motherFirstNames;
-    }
-  
-    
-      @MaxLength(
-        
-          value = 38,
-        
-        
-          when = "groovy:def active = true;" +
-          
-            
-            "active &= _this.conditions['format'].test(_this.format.toString());" +
-                
-              
-            
-            "return active",
-        
-        profiles = {"type"},
-        message = "motherMaidenName"
-      )
-    
-      @NotNull(
-        
-        
-          when = "groovy:def active = true;" +
-          
-            
-            "active &= _this.conditions['format'].test(_this.format.toString());" +
-                
-              
-            
-            "return active",
-        
-        profiles = {"type"},
-        message = "motherMaidenName"
-      )
-    
-      @NotBlank(
-        
-        
-          when = "groovy:def active = true;" +
-          
-            
-            "active &= _this.conditions['format'].test(_this.format.toString());" +
-                
-              
-            
-            "return active",
-        
-        profiles = {"type"},
-        message = "motherMaidenName"
-      )
-    
-    private String motherMaidenName;
-
-    public void setMotherMaidenName(final String motherMaidenName) {
-        this.motherMaidenName = motherMaidenName;
-    }
-
- 
-    @Column(name="mother_maiden_name" , length=38 )
-      
-    public String getMotherMaidenName() {
-        return this.motherMaidenName;
+    public fr.cg95.cvq.business.request.civil.MotherInformation getMotherInformation() {
+        return this.motherInformation;
     }
   
     

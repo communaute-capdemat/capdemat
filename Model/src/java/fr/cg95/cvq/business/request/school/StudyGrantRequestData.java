@@ -39,54 +39,15 @@ public class StudyGrantRequestData implements Serializable {
 
     public StudyGrantRequestData() {
       
-        abroadInternship = Boolean.valueOf(false);
-      
         distance = fr.cg95.cvq.business.request.school.DistanceType.UNDETERMINED;
       
         isSubjectAccountHolder = Boolean.valueOf(true);
-      
-        sandwichCourses = Boolean.valueOf(false);
-      
-        subjectFirstRequest = Boolean.valueOf(true);
       
     }
 
     @Override
     public StudyGrantRequestData clone() {
         StudyGrantRequestData result = new StudyGrantRequestData();
-        
-          
-            
-        result.setAbroadInternship(abroadInternship);
-      
-          
-        
-          
-            
-        result.setAbroadInternshipEndDate(abroadInternshipEndDate);
-      
-          
-        
-          
-            
-        if (abroadInternshipSchoolCountry != null)
-            result.setAbroadInternshipSchoolCountry(abroadInternshipSchoolCountry);
-        else
-            result.setAbroadInternshipSchoolCountry(fr.cg95.cvq.business.users.CountryType.getDefaultCountryType());
-      
-          
-        
-          
-            
-        result.setAbroadInternshipSchoolName(abroadInternshipSchoolName);
-      
-          
-        
-          
-            
-        result.setAbroadInternshipStartDate(abroadInternshipStartDate);
-      
-          
         
           
             
@@ -123,16 +84,8 @@ public class StudyGrantRequestData implements Serializable {
         
           
             
-        if (alevels != null)
-            result.setAlevels(alevels);
-        else
-            result.setAlevels(fr.cg95.cvq.business.request.school.ALevelsType.getDefaultALevelsType());
-      
-          
-        
-          
-            
-        result.setAlevelsDate(alevelsDate);
+        if (alevelsInformations != null)
+            result.setAlevelsInformations(alevelsInformations.clone());
       
           
         
@@ -145,42 +98,15 @@ public class StudyGrantRequestData implements Serializable {
         
           
             
-        if (currentSchoolAddress != null)
-            result.setCurrentSchoolAddress(currentSchoolAddress.clone());
+        if (currentSchool != null)
+            result.setCurrentSchool(currentSchool.clone());
       
           
         
           
             
-        List<fr.cg95.cvq.business.request.LocalReferentialData> currentSchoolNameList = new ArrayList<fr.cg95.cvq.business.request.LocalReferentialData>();
-        for (LocalReferentialData object : currentSchoolName) {
-            currentSchoolNameList.add(object.clone());
-        }
-        result.setCurrentSchoolName(currentSchoolNameList);
-      
-          
-        
-          
-            
-        result.setCurrentSchoolNamePrecision(currentSchoolNamePrecision);
-      
-          
-        
-          
-            
-        if (currentStudiesDiploma != null)
-            result.setCurrentStudiesDiploma(currentStudiesDiploma);
-        else
-            result.setCurrentStudiesDiploma(fr.cg95.cvq.business.request.school.CurrentStudiesType.getDefaultCurrentStudiesType());
-      
-          
-        
-          
-            
-        if (currentStudiesLevel != null)
-            result.setCurrentStudiesLevel(currentStudiesLevel);
-        else
-            result.setCurrentStudiesLevel(fr.cg95.cvq.business.request.school.CurrentStudiesLevelType.getDefaultCurrentStudiesLevelType());
+        if (currentStudiesInformations != null)
+            result.setCurrentStudiesInformations(currentStudiesInformations.clone());
       
           
         
@@ -231,25 +157,8 @@ public class StudyGrantRequestData implements Serializable {
         
           
             
-        result.setOtherStudiesLabel(otherStudiesLabel);
-      
-          
-        
-          
-            
-        result.setSandwichCourses(sandwichCourses);
-      
-          
-        
-          
-            
-        result.setSubjectBirthDate(subjectBirthDate);
-      
-          
-        
-          
-            
-        result.setSubjectFirstRequest(subjectFirstRequest);
+        if (subjectInformations != null)
+            result.setSubjectInformations(subjectInformations.clone());
       
           
         
@@ -305,168 +214,11 @@ public class StudyGrantRequestData implements Serializable {
       @NotNull(
         
         
-        profiles = {"currentStudies"},
-        message = "abroadInternship"
-      )
-    
-    private Boolean abroadInternship;
-
-    public void setAbroadInternship(final Boolean abroadInternship) {
-        this.abroadInternship = abroadInternship;
-    }
-
- 
-    @Column(name="abroad_internship"  )
-      
-    public Boolean getAbroadInternship() {
-        return this.abroadInternship;
-    }
-  
-    
-      @NotNull(
-        
-        
-          when = "groovy:def active = true;" +
-          
-            "active &= _this.conditions['abroadInternship'].test(_this.abroadInternship.toString());" +
-                
-              
-            
-            
-            "return active",
-        
-        profiles = {"currentStudies"},
-        message = "abroadInternshipEndDate"
-      )
-    
-    private java.util.Date abroadInternshipEndDate;
-
-    public void setAbroadInternshipEndDate(final java.util.Date abroadInternshipEndDate) {
-        this.abroadInternshipEndDate = abroadInternshipEndDate;
-    }
-
- 
-    @Column(name="abroad_internship_end_date"  )
-      
-    public java.util.Date getAbroadInternshipEndDate() {
-        return this.abroadInternshipEndDate;
-    }
-  
-    
-      @NotNull(
-        
-        
-          when = "groovy:def active = true;" +
-          
-            "active &= _this.conditions['abroadInternship'].test(_this.abroadInternship.toString());" +
-                
-              
-            
-            
-            "return active",
-        
-        profiles = {"currentStudies"},
-        message = "abroadInternshipSchoolCountry"
-      )
-    
-    private fr.cg95.cvq.business.users.CountryType abroadInternshipSchoolCountry;
-
-    public void setAbroadInternshipSchoolCountry(final fr.cg95.cvq.business.users.CountryType abroadInternshipSchoolCountry) {
-        this.abroadInternshipSchoolCountry = abroadInternshipSchoolCountry;
-    }
-
- 
-    @Enumerated(EnumType.STRING)
-    @Column(name="abroad_internship_school_country"  )
-      
-    public fr.cg95.cvq.business.users.CountryType getAbroadInternshipSchoolCountry() {
-        return this.abroadInternshipSchoolCountry;
-    }
-  
-    
-      @NotNull(
-        
-        
-          when = "groovy:def active = true;" +
-          
-            "active &= _this.conditions['abroadInternship'].test(_this.abroadInternship.toString());" +
-                
-              
-            
-            
-            "return active",
-        
-        profiles = {"currentStudies"},
-        message = "abroadInternshipSchoolName"
-      )
-    
-      @NotBlank(
-        
-        
-          when = "groovy:def active = true;" +
-          
-            "active &= _this.conditions['abroadInternship'].test(_this.abroadInternship.toString());" +
-                
-              
-            
-            
-            "return active",
-        
-        profiles = {"currentStudies"},
-        message = "abroadInternshipSchoolName"
-      )
-    
-    private String abroadInternshipSchoolName;
-
-    public void setAbroadInternshipSchoolName(final String abroadInternshipSchoolName) {
-        this.abroadInternshipSchoolName = abroadInternshipSchoolName;
-    }
-
- 
-    @Column(name="abroad_internship_school_name"  )
-      
-    public String getAbroadInternshipSchoolName() {
-        return this.abroadInternshipSchoolName;
-    }
-  
-    
-      @NotNull(
-        
-        
-          when = "groovy:def active = true;" +
-          
-            "active &= _this.conditions['abroadInternship'].test(_this.abroadInternship.toString());" +
-                
-              
-            
-            
-            "return active",
-        
-        profiles = {"currentStudies"},
-        message = "abroadInternshipStartDate"
-      )
-    
-    private java.util.Date abroadInternshipStartDate;
-
-    public void setAbroadInternshipStartDate(final java.util.Date abroadInternshipStartDate) {
-        this.abroadInternshipStartDate = abroadInternshipStartDate;
-    }
-
- 
-    @Column(name="abroad_internship_start_date"  )
-      
-    public java.util.Date getAbroadInternshipStartDate() {
-        return this.abroadInternshipStartDate;
-    }
-  
-    
-      @NotNull(
-        
-        
           when = "groovy:def active = true;" +
           
             "active &= !_this.conditions['isSubjectAccountHolder'].test(_this.isSubjectAccountHolder.toString());" +
                 
+              
               
             
             
@@ -528,6 +280,7 @@ public class StudyGrantRequestData implements Serializable {
             "active &= !_this.conditions['isSubjectAccountHolder'].test(_this.isSubjectAccountHolder.toString());" +
                 
               
+              
             
             
             "return active",
@@ -544,6 +297,7 @@ public class StudyGrantRequestData implements Serializable {
             "active &= !_this.conditions['isSubjectAccountHolder'].test(_this.isSubjectAccountHolder.toString());" +
                 
               
+              
             
             
             "return active",
@@ -559,6 +313,7 @@ public class StudyGrantRequestData implements Serializable {
           
             "active &= !_this.conditions['isSubjectAccountHolder'].test(_this.isSubjectAccountHolder.toString());" +
                 
+              
               
             
             
@@ -592,6 +347,7 @@ public class StudyGrantRequestData implements Serializable {
             "active &= !_this.conditions['isSubjectAccountHolder'].test(_this.isSubjectAccountHolder.toString());" +
                 
               
+              
             
             
             "return active",
@@ -608,6 +364,7 @@ public class StudyGrantRequestData implements Serializable {
             "active &= !_this.conditions['isSubjectAccountHolder'].test(_this.isSubjectAccountHolder.toString());" +
                 
               
+              
             
             
             "return active",
@@ -623,6 +380,7 @@ public class StudyGrantRequestData implements Serializable {
           
             "active &= !_this.conditions['isSubjectAccountHolder'].test(_this.isSubjectAccountHolder.toString());" +
                 
+              
               
             
             
@@ -654,6 +412,7 @@ public class StudyGrantRequestData implements Serializable {
             "active &= !_this.conditions['isSubjectAccountHolder'].test(_this.isSubjectAccountHolder.toString());" +
                 
               
+              
             
             
             "return active",
@@ -681,67 +440,28 @@ public class StudyGrantRequestData implements Serializable {
         
         
         profiles = {"currentStudies"},
-        message = "alevels"
+        message = "alevelsInformations"
       )
     
-    private fr.cg95.cvq.business.request.school.ALevelsType alevels;
+      @AssertValid(
+        
+        
+        profiles = {"currentStudies"},
+        message = "alevelsInformations"
+      )
+    
+    private fr.cg95.cvq.business.request.school.ALevelsInformations alevelsInformations;
 
-    public void setAlevels(final fr.cg95.cvq.business.request.school.ALevelsType alevels) {
-        this.alevels = alevels;
+    public void setAlevelsInformations(final fr.cg95.cvq.business.request.school.ALevelsInformations alevelsInformations) {
+        this.alevelsInformations = alevelsInformations;
     }
 
  
-    @Enumerated(EnumType.STRING)
-    @Column(name="alevels"  )
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name="alevels_informations_id")
       
-    public fr.cg95.cvq.business.request.school.ALevelsType getAlevels() {
-        return this.alevels;
-    }
-  
-    
-      @MaxLength(
-        
-          value = 4,
-        
-        
-        profiles = {"currentStudies"},
-        message = "alevelsDate"
-      )
-    
-      @NotNull(
-        
-        
-        profiles = {"currentStudies"},
-        message = "alevelsDate"
-      )
-    
-      @MatchPattern(
-        
-          pattern = "^\\d{2,4}$",
-        
-        
-        profiles = {"currentStudies"},
-        message = "alevelsDate"
-      )
-    
-      @NotBlank(
-        
-        
-        profiles = {"currentStudies"},
-        message = "alevelsDate"
-      )
-    
-    private String alevelsDate;
-
-    public void setAlevelsDate(final String alevelsDate) {
-        this.alevelsDate = alevelsDate;
-    }
-
- 
-    @Column(name="alevels_date" , length=4 )
-      
-    public String getAlevelsDate() {
-        return this.alevelsDate;
+    public fr.cg95.cvq.business.request.school.ALevelsInformations getAlevelsInformations() {
+        return this.alevelsInformations;
     }
   
     
@@ -774,176 +494,47 @@ public class StudyGrantRequestData implements Serializable {
     }
   
     
-      @NotNull(
+      @AssertValid(
         
-        
-          when = "groovy:def active = true;" +
-          
-            "if (_this.currentSchoolName == null || _this.currentSchoolName.isEmpty()) return false; _this.currentSchoolName.each { active &= _this.conditions['currentSchoolName'].test(it.name) };" +
-                
-              
-            
-            
-            "return active",
         
         profiles = {"currentStudies"},
-        message = "currentSchoolAddress"
+        message = "currentSchool"
       )
+    
+    private fr.cg95.cvq.business.request.school.SgrCurrentSchool currentSchool;
+
+    public void setCurrentSchool(final fr.cg95.cvq.business.request.school.SgrCurrentSchool currentSchool) {
+        this.currentSchool = currentSchool;
+    }
+
+ 
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name="current_school_id")
+      
+    public fr.cg95.cvq.business.request.school.SgrCurrentSchool getCurrentSchool() {
+        return this.currentSchool;
+    }
+  
     
       @AssertValid(
         
         
-          when = "groovy:def active = true;" +
-          
-            "if (_this.currentSchoolName == null || _this.currentSchoolName.isEmpty()) return false; _this.currentSchoolName.each { active &= _this.conditions['currentSchoolName'].test(it.name) };" +
-                
-              
-            
-            
-            "return active",
-        
         profiles = {"currentStudies"},
-        message = "currentSchoolAddress"
+        message = "currentStudiesInformations"
       )
     
-    private fr.cg95.cvq.business.users.Address currentSchoolAddress;
+    private fr.cg95.cvq.business.request.school.CurrentStudiesInformations currentStudiesInformations;
 
-    public void setCurrentSchoolAddress(final fr.cg95.cvq.business.users.Address currentSchoolAddress) {
-        this.currentSchoolAddress = currentSchoolAddress;
+    public void setCurrentStudiesInformations(final fr.cg95.cvq.business.request.school.CurrentStudiesInformations currentStudiesInformations) {
+        this.currentStudiesInformations = currentStudiesInformations;
     }
 
  
-    @ManyToOne(fetch=FetchType.EAGER)
-    @JoinColumn(name="current_school_address_id")
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name="current_studies_informations_id")
       
-    public fr.cg95.cvq.business.users.Address getCurrentSchoolAddress() {
-        return this.currentSchoolAddress;
-    }
-  
-    
-      @LocalReferential(
-        
-        
-        profiles = {"currentStudies"},
-        message = "currentSchoolName"
-      )
-    
-      @MinSize(
-        
-          value = 1,
-        
-        
-        profiles = {"currentStudies"},
-        message = "currentSchoolName"
-      )
-    
-    private List<fr.cg95.cvq.business.request.LocalReferentialData> currentSchoolName;
-
-    public void setCurrentSchoolName(final List<fr.cg95.cvq.business.request.LocalReferentialData> currentSchoolName) {
-        this.currentSchoolName = currentSchoolName;
-    }
-
- 
-    @ManyToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
-    @JoinTable(name="study_grant_request_current_school_name",
-            joinColumns=
-                @JoinColumn(name="study_grant_request_id"),
-            inverseJoinColumns=
-                @JoinColumn(name="current_school_name_id"))
-    @OrderColumn(name="current_school_name_index")
-      
-    public List<fr.cg95.cvq.business.request.LocalReferentialData> getCurrentSchoolName() {
-        return this.currentSchoolName;
-    }
-  
-    
-      @NotNull(
-        
-        
-          when = "groovy:def active = true;" +
-          
-            "if (_this.currentSchoolName == null || _this.currentSchoolName.isEmpty()) return false; _this.currentSchoolName.each { active &= _this.conditions['currentSchoolName'].test(it.name) };" +
-                
-              
-            
-            
-            "return active",
-        
-        profiles = {"currentStudies"},
-        message = "currentSchoolNamePrecision"
-      )
-    
-      @NotBlank(
-        
-        
-          when = "groovy:def active = true;" +
-          
-            "if (_this.currentSchoolName == null || _this.currentSchoolName.isEmpty()) return false; _this.currentSchoolName.each { active &= _this.conditions['currentSchoolName'].test(it.name) };" +
-                
-              
-            
-            
-            "return active",
-        
-        profiles = {"currentStudies"},
-        message = "currentSchoolNamePrecision"
-      )
-    
-    private String currentSchoolNamePrecision;
-
-    public void setCurrentSchoolNamePrecision(final String currentSchoolNamePrecision) {
-        this.currentSchoolNamePrecision = currentSchoolNamePrecision;
-    }
-
- 
-    @Column(name="current_school_name_precision"  )
-      
-    public String getCurrentSchoolNamePrecision() {
-        return this.currentSchoolNamePrecision;
-    }
-  
-    
-      @NotNull(
-        
-        
-        profiles = {"currentStudies"},
-        message = "currentStudiesDiploma"
-      )
-    
-    private fr.cg95.cvq.business.request.school.CurrentStudiesType currentStudiesDiploma;
-
-    public void setCurrentStudiesDiploma(final fr.cg95.cvq.business.request.school.CurrentStudiesType currentStudiesDiploma) {
-        this.currentStudiesDiploma = currentStudiesDiploma;
-    }
-
- 
-    @Enumerated(EnumType.STRING)
-    @Column(name="current_studies_diploma"  )
-      
-    public fr.cg95.cvq.business.request.school.CurrentStudiesType getCurrentStudiesDiploma() {
-        return this.currentStudiesDiploma;
-    }
-  
-    
-      @NotNull(
-        
-        
-        profiles = {"currentStudies"},
-        message = "currentStudiesLevel"
-      )
-    
-    private fr.cg95.cvq.business.request.school.CurrentStudiesLevelType currentStudiesLevel;
-
-    public void setCurrentStudiesLevel(final fr.cg95.cvq.business.request.school.CurrentStudiesLevelType currentStudiesLevel) {
-        this.currentStudiesLevel = currentStudiesLevel;
-    }
-
- 
-    @Enumerated(EnumType.STRING)
-    @Column(name="current_studies_level"  )
-      
-    public fr.cg95.cvq.business.request.school.CurrentStudiesLevelType getCurrentStudiesLevel() {
-        return this.currentStudiesLevel;
+    public fr.cg95.cvq.business.request.school.CurrentStudiesInformations getCurrentStudiesInformations() {
+        return this.currentStudiesInformations;
     }
   
     
@@ -1105,109 +696,29 @@ public class StudyGrantRequestData implements Serializable {
       @NotNull(
         
         
-          when = "groovy:def active = true;" +
-          
-            "active &= _this.conditions['currentStudiesDiploma'].test(_this.currentStudiesDiploma.toString());" +
-                
-              
-            
-            
-            "return active",
-        
-        profiles = {"currentStudies"},
-        message = "otherStudiesLabel"
+        profiles = {"subject"},
+        message = "subjectInformations"
       )
     
-      @NotBlank(
-        
-        
-          when = "groovy:def active = true;" +
-          
-            "active &= _this.conditions['currentStudiesDiploma'].test(_this.currentStudiesDiploma.toString());" +
-                
-              
-            
-            
-            "return active",
-        
-        profiles = {"currentStudies"},
-        message = "otherStudiesLabel"
-      )
-    
-    private String otherStudiesLabel;
-
-    public void setOtherStudiesLabel(final String otherStudiesLabel) {
-        this.otherStudiesLabel = otherStudiesLabel;
-    }
-
- 
-    @Column(name="other_studies_label"  )
-      
-    public String getOtherStudiesLabel() {
-        return this.otherStudiesLabel;
-    }
-  
-    
-      @NotNull(
-        
-        
-        profiles = {"currentStudies"},
-        message = "sandwichCourses"
-      )
-    
-    private Boolean sandwichCourses;
-
-    public void setSandwichCourses(final Boolean sandwichCourses) {
-        this.sandwichCourses = sandwichCourses;
-    }
-
- 
-    @Column(name="sandwich_courses"  )
-      
-    public Boolean getSandwichCourses() {
-        return this.sandwichCourses;
-    }
-  
-    
-      @NotNull(
+      @AssertValid(
         
         
         profiles = {"subject"},
-        message = "subjectBirthDate"
+        message = "subjectInformations"
       )
     
-    private java.util.Date subjectBirthDate;
+    private fr.cg95.cvq.business.request.school.SubjectInformations subjectInformations;
 
-    public void setSubjectBirthDate(final java.util.Date subjectBirthDate) {
-        this.subjectBirthDate = subjectBirthDate;
+    public void setSubjectInformations(final fr.cg95.cvq.business.request.school.SubjectInformations subjectInformations) {
+        this.subjectInformations = subjectInformations;
     }
 
  
-    @Column(name="subject_birth_date"  )
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name="subject_informations_id")
       
-    public java.util.Date getSubjectBirthDate() {
-        return this.subjectBirthDate;
-    }
-  
-    
-      @NotNull(
-        
-        
-        profiles = {"subject"},
-        message = "subjectFirstRequest"
-      )
-    
-    private Boolean subjectFirstRequest;
-
-    public void setSubjectFirstRequest(final Boolean subjectFirstRequest) {
-        this.subjectFirstRequest = subjectFirstRequest;
-    }
-
- 
-    @Column(name="subject_first_request"  )
-      
-    public Boolean getSubjectFirstRequest() {
-        return this.subjectFirstRequest;
+    public fr.cg95.cvq.business.request.school.SubjectInformations getSubjectInformations() {
+        return this.subjectInformations;
     }
   
     
@@ -1255,6 +766,7 @@ public class StudyGrantRequestData implements Serializable {
             "if (_this.taxHouseholdCity == null || _this.taxHouseholdCity.isEmpty()) return false; _this.taxHouseholdCity.each { active &= _this.conditions['taxHouseholdCity'].test(it.name) };" +
                 
               
+              
             
             
             "return active",
@@ -1270,6 +782,7 @@ public class StudyGrantRequestData implements Serializable {
           
             "if (_this.taxHouseholdCity == null || _this.taxHouseholdCity.isEmpty()) return false; _this.taxHouseholdCity.each { active &= _this.conditions['taxHouseholdCity'].test(it.name) };" +
                 
+              
               
             
             
@@ -1339,7 +852,7 @@ public class StudyGrantRequestData implements Serializable {
     
       @MatchPattern(
         
-          pattern = "^\\d+(?:\\,\\d{1,2})?$",
+          pattern = "^[\\d+\\s?]+(?:(\\.|,)\\d{1,2})?$",
         
         
         profiles = {"taxHousehold"},

@@ -123,7 +123,7 @@ public class ElectoralRollRegistrationRequest extends Request implements Seriali
             electoralRollRegistrationRequest.setPollingStation(getPollingStation().longValue());
       
         if (getSubjectAddressOutsideCity() != null)
-            electoralRollRegistrationRequest.setSubjectAddressOutsideCity(Address.modelToXml(getSubjectAddressOutsideCity()));
+            electoralRollRegistrationRequest.setSubjectAddressOutsideCity(getSubjectAddressOutsideCity().modelToXml());
       
         if (getSubjectNationality() != null)
             electoralRollRegistrationRequest.setSubjectNationality(fr.cg95.cvq.xml.common.NationalityType.Enum.forString(getSubjectNationality().getLegacyLabel()));

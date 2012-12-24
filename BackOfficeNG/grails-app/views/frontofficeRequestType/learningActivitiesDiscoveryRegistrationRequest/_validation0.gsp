@@ -17,7 +17,7 @@
         <dt><g:message code="ladrr.property.atelierEveil.label" /></dt>
           <dd>
           <g:render template="/frontofficeRequestType/widget/localReferentialDataSummary" 
-                    model="['javaName':'atelierEveil', 'lrEntries': lrTypes.atelierEveil.entries, 'depth':0]" />
+                    model="['wrapper':rqt, 'javaName':'atelierEveil', 'lrEntries': lrTypes.atelierEveil.entries, 'depth':0]" />
           </dd>
           
 

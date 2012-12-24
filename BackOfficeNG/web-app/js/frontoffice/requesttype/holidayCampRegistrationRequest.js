@@ -80,7 +80,7 @@ zenexity.capdemat.tools.namespace("zenexity.capdemat.fong.requesttype");
       },
 
       initCamps: function() {
-        var camps = createSelect('idCentreSejours');
+        var camps = createSelect('centreSejours.idCentreSejours');
 
         var childId = yud.get('subjectId').value;
         var requestId = yud.get("stepForm").id.value;

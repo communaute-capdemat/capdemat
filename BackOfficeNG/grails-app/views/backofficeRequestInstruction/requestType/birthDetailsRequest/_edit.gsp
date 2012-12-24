@@ -111,9 +111,9 @@
               <h3><g:message code="bdr.property.fatherInformation.label" /></h3>
               <dl class="condition-isWithRelationship-filled">
                 
-                  <dt class="required">${message(code:'bdr.property.fatherLastName.label')} * :</dt><dd id="fatherLastName" class="action-editField validate-lastName required-true i18n-bdr.property.fatherLastName maxLength-38" ><span>${rqt?.fatherLastName}</span></dd>
+                  <dt class="required">${message(code:'bdr.property.fatherLastName.label')} * :</dt><dd id="fatherLastName" class="action-editField validate-lastName required-true i18n-bdr.property.fatherLastName maxLength-38" ><span>${rqt.fatherInformation?.fatherLastName}</span></dd>
                 
-                  <dt class="required">${message(code:'bdr.property.fatherFirstNames.label')} * :</dt><dd id="fatherFirstNames" class="action-editField validate-string required-true i18n-bdr.property.fatherFirstNames" ><span>${rqt?.fatherFirstNames}</span></dd>
+                  <dt class="required">${message(code:'bdr.property.fatherFirstNames.label')} * :</dt><dd id="fatherFirstNames" class="action-editField validate-string required-true i18n-bdr.property.fatherFirstNames" ><span>${rqt.fatherInformation?.fatherFirstNames}</span></dd>
                 
               </dl>
               
@@ -122,9 +122,9 @@
               <h3><g:message code="bdr.property.motherInformation.label" /></h3>
               <dl class="condition-isWithRelationship-filled">
                 
-                  <dt class="required">${message(code:'bdr.property.motherMaidenName.label')} * :</dt><dd id="motherMaidenName" class="action-editField validate-lastName required-true i18n-bdr.property.motherMaidenName maxLength-38" ><span>${rqt?.motherMaidenName}</span></dd>
+                  <dt class="required">${message(code:'bdr.property.motherMaidenName.label')} * :</dt><dd id="motherMaidenName" class="action-editField validate-lastName required-true i18n-bdr.property.motherMaidenName maxLength-38" ><span>${rqt.motherInformation?.motherMaidenName}</span></dd>
                 
-                  <dt class="required">${message(code:'bdr.property.motherFirstNames.label')} * :</dt><dd id="motherFirstNames" class="action-editField validate-string required-true i18n-bdr.property.motherFirstNames" ><span>${rqt?.motherFirstNames}</span></dd>
+                  <dt class="required">${message(code:'bdr.property.motherFirstNames.label')} * :</dt><dd id="motherFirstNames" class="action-editField validate-string required-true i18n-bdr.property.motherFirstNames" ><span>${rqt.motherInformation?.motherFirstNames}</span></dd>
                 
               </dl>
               

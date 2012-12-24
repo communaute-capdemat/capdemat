@@ -36,7 +36,9 @@
     <label class="required"><g:message code="ladrr.property.atelierEveil.label" /> *  <span><g:message code="ladrr.property.atelierEveil.help" /></span></label>
             <g:set var="atelierEveilIndex" value="${0}" scope="flash" />
             <g:render template="/frontofficeRequestType/widget/localReferentialData" 
-                      model="['javaName':'atelierEveil', 'i18nPrefixCode':'ladrr.property.atelierEveil', 'htmlClass':'required  ', 
+                      model="['wrapper':rqt, 'wrapperJavaName':'',
+                              'javaName':'atelierEveil', 'i18nPrefixCode':'ladrr.property.atelierEveil',
+                              'htmlClass':'required  ', 
                               'lrEntries': lrTypes.atelierEveil.entries, 'depth':0]" />
             
 

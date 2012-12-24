@@ -36,16 +36,16 @@
       <h4><g:message code="srr.property.currentSchool.label" /></h4>
       <dl>
         
-          <dt><g:message code="srr.property.currentSchoolName.label" /></dt><dd>${rqt.currentSchoolName?.toString()}</dd>
+          <dt><g:message code="srr.property.currentSchoolName.label" /></dt><dd>${rqt.currentSchool?.currentSchoolName?.toString()}</dd>
 
         
-          <dt><g:message code="srr.property.currentSchoolAddress.label" /></dt><dd>${rqt.currentSchoolAddress?.toString()}</dd>
+          <dt><g:message code="srr.property.currentSchoolAddress.label" /></dt><dd>${rqt.currentSchool?.currentSchoolAddress?.toString()}</dd>
 
         
           <dt><g:message code="srr.property.currentSection.label" /></dt>
           <dd>
-            <g:if test="${rqt.currentSection}">
-              <g:capdematEnumToField var="${rqt.currentSection}" i18nKeyPrefix="srr.property.currentSection" />
+            <g:if test="${rqt.currentSchool?.currentSection}">
+              <g:capdematEnumToField var="${rqt.currentSchool?.currentSection}" i18nKeyPrefix="srr.property.currentSection" />
             </g:if>
           </dd>
           

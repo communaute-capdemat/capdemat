@@ -61,13 +61,8 @@ public class MarriageDetailsRequestData implements Serializable {
         
           
             
-        result.setFatherFirstNames(fatherFirstNames);
-      
-          
-        
-          
-            
-        result.setFatherLastName(fatherLastName);
+        if (fatherInformation != null)
+            result.setFatherInformation(fatherInformation.clone());
       
           
         
@@ -82,58 +77,29 @@ public class MarriageDetailsRequestData implements Serializable {
         
           
             
-        result.setMarriageCity(marriageCity);
+        if (marriage != null)
+            result.setMarriage(marriage.clone());
       
           
         
           
             
-        result.setMarriageDate(marriageDate);
+        if (marriageHusband != null)
+            result.setMarriageHusband(marriageHusband.clone());
       
           
         
           
             
-        result.setMarriageHusbandFirstNames(marriageHusbandFirstNames);
+        if (marriageWife != null)
+            result.setMarriageWife(marriageWife.clone());
       
           
         
           
             
-        result.setMarriageHusbandLastName(marriageHusbandLastName);
-      
-          
-        
-          
-            
-        if (marriagePostalCode != null)
-            result.setMarriagePostalCode(marriagePostalCode);
-        else
-            result.setMarriagePostalCode(fr.cg95.cvq.business.users.InseeDepartementCodeType.getDefaultInseeDepartementCodeType());
-      
-          
-        
-          
-            
-        result.setMarriageWifeFirstNames(marriageWifeFirstNames);
-      
-          
-        
-          
-            
-        result.setMarriageWifeLastName(marriageWifeLastName);
-      
-          
-        
-          
-            
-        result.setMotherFirstNames(motherFirstNames);
-      
-          
-        
-          
-            
-        result.setMotherMaidenName(motherMaidenName);
+        if (motherInformation != null)
+            result.setMotherInformation(motherInformation.clone());
       
           
         
@@ -239,113 +205,35 @@ public class MarriageDetailsRequestData implements Serializable {
     }
   
     
-      @NotNull(
+      @AssertValid(
         
         
           when = "groovy:def active = true;" +
           
-            
             "active &= _this.conditions['format'].test(_this.format.toString());" +
                 
               
+              
+            
             
             "return active",
         
         profiles = {"type"},
-        message = "fatherFirstNames"
+        message = "fatherInformation"
       )
     
-      @NotBlank(
-        
-        
-          when = "groovy:def active = true;" +
-          
-            
-            "active &= _this.conditions['format'].test(_this.format.toString());" +
-                
-              
-            
-            "return active",
-        
-        profiles = {"type"},
-        message = "fatherFirstNames"
-      )
-    
-    private String fatherFirstNames;
+    private fr.cg95.cvq.business.request.civil.MarriageFatherInformation fatherInformation;
 
-    public void setFatherFirstNames(final String fatherFirstNames) {
-        this.fatherFirstNames = fatherFirstNames;
+    public void setFatherInformation(final fr.cg95.cvq.business.request.civil.MarriageFatherInformation fatherInformation) {
+        this.fatherInformation = fatherInformation;
     }
 
  
-    @Column(name="father_first_names"  )
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name="father_information_id")
       
-    public String getFatherFirstNames() {
-        return this.fatherFirstNames;
-    }
-  
-    
-      @MaxLength(
-        
-          value = 38,
-        
-        
-          when = "groovy:def active = true;" +
-          
-            
-            "active &= _this.conditions['format'].test(_this.format.toString());" +
-                
-              
-            
-            "return active",
-        
-        profiles = {"type"},
-        message = "fatherLastName"
-      )
-    
-      @NotNull(
-        
-        
-          when = "groovy:def active = true;" +
-          
-            
-            "active &= _this.conditions['format'].test(_this.format.toString());" +
-                
-              
-            
-            "return active",
-        
-        profiles = {"type"},
-        message = "fatherLastName"
-      )
-    
-      @NotBlank(
-        
-        
-          when = "groovy:def active = true;" +
-          
-            
-            "active &= _this.conditions['format'].test(_this.format.toString());" +
-                
-              
-            
-            "return active",
-        
-        profiles = {"type"},
-        message = "fatherLastName"
-      )
-    
-    private String fatherLastName;
-
-    public void setFatherLastName(final String fatherLastName) {
-        this.fatherLastName = fatherLastName;
-    }
-
- 
-    @Column(name="father_last_name" , length=38 )
-      
-    public String getFatherLastName() {
-        return this.fatherLastName;
+    public fr.cg95.cvq.business.request.civil.MarriageFatherInformation getFatherInformation() {
+        return this.fatherInformation;
     }
   
     
@@ -371,40 +259,32 @@ public class MarriageDetailsRequestData implements Serializable {
     }
   
     
-      @MaxLength(
-        
-          value = 32,
-        
-        
-        profiles = {"nature"},
-        message = "marriageCity"
-      )
-    
       @NotNull(
         
         
         profiles = {"nature"},
-        message = "marriageCity"
+        message = "marriage"
       )
     
-      @NotBlank(
+      @AssertValid(
         
         
         profiles = {"nature"},
-        message = "marriageCity"
+        message = "marriage"
       )
     
-    private String marriageCity;
+    private fr.cg95.cvq.business.request.civil.MarriageInformation marriage;
 
-    public void setMarriageCity(final String marriageCity) {
-        this.marriageCity = marriageCity;
+    public void setMarriage(final fr.cg95.cvq.business.request.civil.MarriageInformation marriage) {
+        this.marriage = marriage;
     }
 
  
-    @Column(name="marriage_city" , length=32 )
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name="marriage_id")
       
-    public String getMarriageCity() {
-        return this.marriageCity;
+    public fr.cg95.cvq.business.request.civil.MarriageInformation getMarriage() {
+        return this.marriage;
     }
   
     
@@ -412,20 +292,28 @@ public class MarriageDetailsRequestData implements Serializable {
         
         
         profiles = {"nature"},
-        message = "marriageDate"
+        message = "marriageHusband"
       )
     
-    private java.util.Date marriageDate;
+      @AssertValid(
+        
+        
+        profiles = {"nature"},
+        message = "marriageHusband"
+      )
+    
+    private fr.cg95.cvq.business.request.civil.MarriageHusbandInformation marriageHusband;
 
-    public void setMarriageDate(final java.util.Date marriageDate) {
-        this.marriageDate = marriageDate;
+    public void setMarriageHusband(final fr.cg95.cvq.business.request.civil.MarriageHusbandInformation marriageHusband) {
+        this.marriageHusband = marriageHusband;
     }
 
  
-    @Column(name="marriage_date"  )
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name="marriage_husband_id")
       
-    public java.util.Date getMarriageDate() {
-        return this.marriageDate;
+    public fr.cg95.cvq.business.request.civil.MarriageHusbandInformation getMarriageHusband() {
+        return this.marriageHusband;
     }
   
     
@@ -433,261 +321,60 @@ public class MarriageDetailsRequestData implements Serializable {
         
         
         profiles = {"nature"},
-        message = "marriageHusbandFirstNames"
+        message = "marriageWife"
       )
     
-      @NotBlank(
+      @AssertValid(
         
         
         profiles = {"nature"},
-        message = "marriageHusbandFirstNames"
+        message = "marriageWife"
       )
     
-    private String marriageHusbandFirstNames;
+    private fr.cg95.cvq.business.request.civil.MarriageWifeInformation marriageWife;
 
-    public void setMarriageHusbandFirstNames(final String marriageHusbandFirstNames) {
-        this.marriageHusbandFirstNames = marriageHusbandFirstNames;
+    public void setMarriageWife(final fr.cg95.cvq.business.request.civil.MarriageWifeInformation marriageWife) {
+        this.marriageWife = marriageWife;
     }
 
  
-    @Column(name="marriage_husband_first_names"  )
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name="marriage_wife_id")
       
-    public String getMarriageHusbandFirstNames() {
-        return this.marriageHusbandFirstNames;
+    public fr.cg95.cvq.business.request.civil.MarriageWifeInformation getMarriageWife() {
+        return this.marriageWife;
     }
   
     
-      @MaxLength(
-        
-          value = 38,
-        
-        
-        profiles = {"nature"},
-        message = "marriageHusbandLastName"
-      )
-    
-      @NotNull(
-        
-        
-        profiles = {"nature"},
-        message = "marriageHusbandLastName"
-      )
-    
-      @NotBlank(
-        
-        
-        profiles = {"nature"},
-        message = "marriageHusbandLastName"
-      )
-    
-    private String marriageHusbandLastName;
-
-    public void setMarriageHusbandLastName(final String marriageHusbandLastName) {
-        this.marriageHusbandLastName = marriageHusbandLastName;
-    }
-
- 
-    @Column(name="marriage_husband_last_name" , length=38 )
-      
-    public String getMarriageHusbandLastName() {
-        return this.marriageHusbandLastName;
-    }
-  
-    
-      @NotNull(
-        
-        
-        profiles = {"nature"},
-        message = "marriagePostalCode"
-      )
-    
-    private fr.cg95.cvq.business.users.InseeDepartementCodeType marriagePostalCode;
-
-    public void setMarriagePostalCode(final fr.cg95.cvq.business.users.InseeDepartementCodeType marriagePostalCode) {
-        this.marriagePostalCode = marriagePostalCode;
-    }
-
- 
-    @Enumerated(EnumType.STRING)
-    @Column(name="marriage_postal_code"  )
-      
-    public fr.cg95.cvq.business.users.InseeDepartementCodeType getMarriagePostalCode() {
-        return this.marriagePostalCode;
-    }
-  
-    
-      @NotNull(
-        
-        
-        profiles = {"nature"},
-        message = "marriageWifeFirstNames"
-      )
-    
-      @NotBlank(
-        
-        
-        profiles = {"nature"},
-        message = "marriageWifeFirstNames"
-      )
-    
-    private String marriageWifeFirstNames;
-
-    public void setMarriageWifeFirstNames(final String marriageWifeFirstNames) {
-        this.marriageWifeFirstNames = marriageWifeFirstNames;
-    }
-
- 
-    @Column(name="marriage_wife_first_names"  )
-      
-    public String getMarriageWifeFirstNames() {
-        return this.marriageWifeFirstNames;
-    }
-  
-    
-      @MaxLength(
-        
-          value = 38,
-        
-        
-        profiles = {"nature"},
-        message = "marriageWifeLastName"
-      )
-    
-      @NotNull(
-        
-        
-        profiles = {"nature"},
-        message = "marriageWifeLastName"
-      )
-    
-      @NotBlank(
-        
-        
-        profiles = {"nature"},
-        message = "marriageWifeLastName"
-      )
-    
-    private String marriageWifeLastName;
-
-    public void setMarriageWifeLastName(final String marriageWifeLastName) {
-        this.marriageWifeLastName = marriageWifeLastName;
-    }
-
- 
-    @Column(name="marriage_wife_last_name" , length=38 )
-      
-    public String getMarriageWifeLastName() {
-        return this.marriageWifeLastName;
-    }
-  
-    
-      @NotNull(
+      @AssertValid(
         
         
           when = "groovy:def active = true;" +
           
-            
             "active &= _this.conditions['format'].test(_this.format.toString());" +
                 
               
+              
+            
             
             "return active",
         
         profiles = {"type"},
-        message = "motherFirstNames"
+        message = "motherInformation"
       )
     
-      @NotBlank(
-        
-        
-          when = "groovy:def active = true;" +
-          
-            
-            "active &= _this.conditions['format'].test(_this.format.toString());" +
-                
-              
-            
-            "return active",
-        
-        profiles = {"type"},
-        message = "motherFirstNames"
-      )
-    
-    private String motherFirstNames;
+    private fr.cg95.cvq.business.request.civil.MarriageMotherInformation motherInformation;
 
-    public void setMotherFirstNames(final String motherFirstNames) {
-        this.motherFirstNames = motherFirstNames;
+    public void setMotherInformation(final fr.cg95.cvq.business.request.civil.MarriageMotherInformation motherInformation) {
+        this.motherInformation = motherInformation;
     }
 
  
-    @Column(name="mother_first_names"  )
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name="mother_information_id")
       
-    public String getMotherFirstNames() {
-        return this.motherFirstNames;
-    }
-  
-    
-      @MaxLength(
-        
-          value = 38,
-        
-        
-          when = "groovy:def active = true;" +
-          
-            
-            "active &= _this.conditions['format'].test(_this.format.toString());" +
-                
-              
-            
-            "return active",
-        
-        profiles = {"type"},
-        message = "motherMaidenName"
-      )
-    
-      @NotNull(
-        
-        
-          when = "groovy:def active = true;" +
-          
-            
-            "active &= _this.conditions['format'].test(_this.format.toString());" +
-                
-              
-            
-            "return active",
-        
-        profiles = {"type"},
-        message = "motherMaidenName"
-      )
-    
-      @NotBlank(
-        
-        
-          when = "groovy:def active = true;" +
-          
-            
-            "active &= _this.conditions['format'].test(_this.format.toString());" +
-                
-              
-            
-            "return active",
-        
-        profiles = {"type"},
-        message = "motherMaidenName"
-      )
-    
-    private String motherMaidenName;
-
-    public void setMotherMaidenName(final String motherMaidenName) {
-        this.motherMaidenName = motherMaidenName;
-    }
-
- 
-    @Column(name="mother_maiden_name" , length=38 )
-      
-    public String getMotherMaidenName() {
-        return this.motherMaidenName;
+    public fr.cg95.cvq.business.request.civil.MarriageMotherInformation getMotherInformation() {
+        return this.motherInformation;
     }
   
     
@@ -713,6 +400,7 @@ public class MarriageDetailsRequestData implements Serializable {
           
             "active &= _this.conditions['format'].test(_this.format.toString());" +
                 
+              
               
             
             

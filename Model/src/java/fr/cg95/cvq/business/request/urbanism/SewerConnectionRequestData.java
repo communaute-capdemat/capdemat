@@ -187,6 +187,7 @@ public class SewerConnectionRequestData implements Serializable {
             "active &= _this.conditions['requesterQuality'].test(_this.requesterQuality.toString());" +
                 
               
+              
             
             
             "return active",
@@ -202,6 +203,7 @@ public class SewerConnectionRequestData implements Serializable {
           
             "active &= _this.conditions['requesterQuality'].test(_this.requesterQuality.toString());" +
                 
+              
               
             
             
@@ -234,6 +236,7 @@ public class SewerConnectionRequestData implements Serializable {
             "active &= _this.conditions['requesterQuality'].test(_this.requesterQuality.toString());" +
                 
               
+              
             
             
             "return active",
@@ -249,6 +252,7 @@ public class SewerConnectionRequestData implements Serializable {
           
             "active &= _this.conditions['requesterQuality'].test(_this.requesterQuality.toString());" +
                 
+              
               
             
             
@@ -282,6 +286,7 @@ public class SewerConnectionRequestData implements Serializable {
             "active &= _this.conditions['requesterQuality'].test(_this.requesterQuality.toString());" +
                 
               
+              
             
             
             "return active",
@@ -298,6 +303,7 @@ public class SewerConnectionRequestData implements Serializable {
             "active &= _this.conditions['requesterQuality'].test(_this.requesterQuality.toString());" +
                 
               
+              
             
             
             "return active",
@@ -313,6 +319,7 @@ public class SewerConnectionRequestData implements Serializable {
           
             "active &= _this.conditions['requesterQuality'].test(_this.requesterQuality.toString());" +
                 
+              
               
             
             

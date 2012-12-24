@@ -5,7 +5,9 @@
     <label class="required"><g:message code="cwcr.property.compostableWasteType.label" /> *  <span><g:message code="cwcr.property.compostableWasteType.help" /></span></label>
             <g:set var="compostableWasteTypeIndex" value="${0}" scope="flash" />
             <g:render template="/frontofficeRequestType/widget/localReferentialData" 
-                      model="['javaName':'compostableWasteType', 'i18nPrefixCode':'cwcr.property.compostableWasteType', 'htmlClass':'required  ', 
+                      model="['wrapper':rqt, 'wrapperJavaName':'',
+                              'javaName':'compostableWasteType', 'i18nPrefixCode':'cwcr.property.compostableWasteType',
+                              'htmlClass':'required  ', 
                               'lrEntries': lrTypes.compostableWasteType.entries, 'depth':0]" />
             
 

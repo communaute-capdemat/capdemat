@@ -228,7 +228,7 @@
                 </xs:annotation>
               </xs:element>
 
-            <xs:element name="SubventionPubliqueFonctionnement" type="sagr:SagrSubventionPubliqueFonctionnementType">
+            <xs:element name="SubventionPubliqueFonctionnement" type="sagr:SagrSubventionPubliqueFonctionnementType" minOccurs="0">
               <xs:annotation>
                 <xs:appinfo>
                   <model namespace="social" isTiedToRequest="true" />

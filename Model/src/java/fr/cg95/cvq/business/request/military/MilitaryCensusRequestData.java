@@ -47,17 +47,9 @@ public class MilitaryCensusRequestData implements Serializable {
       
         childResidenceCountry = fr.cg95.cvq.business.users.CountryType.FR;
       
-        childStatus = fr.cg95.cvq.business.users.FamilyStatusType.OTHER;
-      
         highlyInfirm = Boolean.valueOf(false);
       
         japdExemption = Boolean.valueOf(false);
-      
-        motherNationality = fr.cg95.cvq.business.users.FullNationalityType.FR;
-      
-        prefectPupil = Boolean.valueOf(false);
-      
-        statePupil = Boolean.valueOf(false);
       
     }
 
@@ -68,12 +60,6 @@ public class MilitaryCensusRequestData implements Serializable {
           
             
         result.setAffectionOrDisease(affectionOrDisease);
-      
-          
-        
-          
-            
-        result.setAliveChildren(aliveChildren);
       
           
         
@@ -103,15 +89,6 @@ public class MilitaryCensusRequestData implements Serializable {
         
           
             
-        if (childDiploma != null)
-            result.setChildDiploma(childDiploma);
-        else
-            result.setChildDiploma(fr.cg95.cvq.business.request.military.ChildDiplomaType.getDefaultChildDiplomaType());
-      
-          
-        
-          
-            
         result.setChildMail(childMail);
       
           
@@ -133,40 +110,10 @@ public class MilitaryCensusRequestData implements Serializable {
         
           
             
-        result.setChildProfession(childProfession);
-      
-          
-        
-          
-            
         if (childResidenceCountry != null)
             result.setChildResidenceCountry(childResidenceCountry);
         else
             result.setChildResidenceCountry(fr.cg95.cvq.business.users.CountryType.getDefaultCountryType());
-      
-          
-        
-          
-            
-        if (childSituation != null)
-            result.setChildSituation(childSituation);
-        else
-            result.setChildSituation(fr.cg95.cvq.business.request.military.ChildSituationType.getDefaultChildSituationType());
-      
-          
-        
-          
-            
-        result.setChildSpeciality(childSpeciality);
-      
-          
-        
-          
-            
-        if (childStatus != null)
-            result.setChildStatus(childStatus);
-        else
-            result.setChildStatus(fr.cg95.cvq.business.users.FamilyStatusType.getDefaultFamilyStatusType());
       
           
         
@@ -181,58 +128,15 @@ public class MilitaryCensusRequestData implements Serializable {
         
           
             
-        result.setChildrenInCharge(childrenInCharge);
+        if (familySituationInformation != null)
+            result.setFamilySituationInformation(familySituationInformation.clone());
       
           
         
           
             
-        result.setFatherBirthCity(fatherBirthCity);
-      
-          
-        
-          
-            
-        if (fatherBirthCountry != null)
-            result.setFatherBirthCountry(fatherBirthCountry);
-        else
-            result.setFatherBirthCountry(fr.cg95.cvq.business.users.CountryType.getDefaultCountryType());
-      
-          
-        
-          
-            
-        result.setFatherBirthDate(fatherBirthDate);
-      
-          
-        
-          
-            
-        if (fatherBirthDepartment != null)
-            result.setFatherBirthDepartment(fatherBirthDepartment);
-        else
-            result.setFatherBirthDepartment(fr.cg95.cvq.business.users.InseeDepartementCodeType.getDefaultInseeDepartementCodeType());
-      
-          
-        
-          
-            
-        result.setFatherFirstName(fatherFirstName);
-      
-          
-        
-          
-            
-        result.setFatherLastName(fatherLastName);
-      
-          
-        
-          
-            
-        if (fatherNationality != null)
-            result.setFatherNationality(fatherNationality);
-        else
-            result.setFatherNationality(fr.cg95.cvq.business.users.FullNationalityType.getDefaultFullNationalityType());
+        if (fatherInformation != null)
+            result.setFatherInformation(fatherInformation.clone());
       
           
         
@@ -256,79 +160,15 @@ public class MilitaryCensusRequestData implements Serializable {
         
           
             
-        result.setMotherBirthCity(motherBirthCity);
+        if (motherInformation != null)
+            result.setMotherInformation(motherInformation.clone());
       
           
         
           
             
-        if (motherBirthCountry != null)
-            result.setMotherBirthCountry(motherBirthCountry);
-        else
-            result.setMotherBirthCountry(fr.cg95.cvq.business.users.CountryType.getDefaultCountryType());
-      
-          
-        
-          
-            
-        result.setMotherBirthDate(motherBirthDate);
-      
-          
-        
-          
-            
-        if (motherBirthDepartment != null)
-            result.setMotherBirthDepartment(motherBirthDepartment);
-        else
-            result.setMotherBirthDepartment(fr.cg95.cvq.business.users.InseeDepartementCodeType.getDefaultInseeDepartementCodeType());
-      
-          
-        
-          
-            
-        result.setMotherFirstName(motherFirstName);
-      
-          
-        
-          
-            
-        result.setMotherLastName(motherLastName);
-      
-          
-        
-          
-            
-        if (motherNationality != null)
-            result.setMotherNationality(motherNationality);
-        else
-            result.setMotherNationality(fr.cg95.cvq.business.users.FullNationalityType.getDefaultFullNationalityType());
-      
-          
-        
-          
-            
-        result.setOtherSituation(otherSituation);
-      
-          
-        
-          
-            
-        result.setPrefectPupil(prefectPupil);
-      
-          
-        
-          
-            
-        if (prefectPupilDepartment != null)
-            result.setPrefectPupilDepartment(prefectPupilDepartment);
-        else
-            result.setPrefectPupilDepartment(fr.cg95.cvq.business.users.InseeDepartementCodeType.getDefaultInseeDepartementCodeType());
-      
-          
-        
-          
-            
-        result.setStatePupil(statePupil);
+        if (professionalSituationInformation != null)
+            result.setProfessionalSituationInformation(professionalSituationInformation.clone());
       
           
         
@@ -358,28 +198,6 @@ public class MilitaryCensusRequestData implements Serializable {
       
     public Boolean getAffectionOrDisease() {
         return this.affectionOrDisease;
-    }
-  
-    
-      @NotNull(
-        
-        
-        profiles = {"situation"},
-        message = "aliveChildren"
-      )
-    
-    private java.math.BigInteger aliveChildren;
-
-    public void setAliveChildren(final java.math.BigInteger aliveChildren) {
-        this.aliveChildren = aliveChildren;
-    }
-
- 
-    @Column(name="alive_children" , columnDefinition="bytea" )
-    @Type(type="serializable") //Hack see http://capdemat.capwebct.fr/ticket/338
-      
-    public java.math.BigInteger getAliveChildren() {
-        return this.aliveChildren;
     }
   
     
@@ -459,28 +277,6 @@ public class MilitaryCensusRequestData implements Serializable {
     }
   
     
-      @NotNull(
-        
-        
-        profiles = {"situation"},
-        message = "childDiploma"
-      )
-    
-    private fr.cg95.cvq.business.request.military.ChildDiplomaType childDiploma;
-
-    public void setChildDiploma(final fr.cg95.cvq.business.request.military.ChildDiplomaType childDiploma) {
-        this.childDiploma = childDiploma;
-    }
-
- 
-    @Enumerated(EnumType.STRING)
-    @Column(name="child_diploma"  )
-      
-    public fr.cg95.cvq.business.request.military.ChildDiplomaType getChildDiploma() {
-        return this.childDiploma;
-    }
-  
-    
     private String childMail;
 
     public void setChildMail(final String childMail) {
@@ -547,20 +343,6 @@ public class MilitaryCensusRequestData implements Serializable {
     }
   
     
-    private String childProfession;
-
-    public void setChildProfession(final String childProfession) {
-        this.childProfession = childProfession;
-    }
-
- 
-    @Column(name="child_profession"  )
-      
-    public String getChildProfession() {
-        return this.childProfession;
-    }
-  
-    
     private fr.cg95.cvq.business.users.CountryType childResidenceCountry;
 
     public void setChildResidenceCountry(final fr.cg95.cvq.business.users.CountryType childResidenceCountry) {
@@ -573,64 +355,6 @@ public class MilitaryCensusRequestData implements Serializable {
       
     public fr.cg95.cvq.business.users.CountryType getChildResidenceCountry() {
         return this.childResidenceCountry;
-    }
-  
-    
-      @NotNull(
-        
-        
-        profiles = {"situation"},
-        message = "childSituation"
-      )
-    
-    private fr.cg95.cvq.business.request.military.ChildSituationType childSituation;
-
-    public void setChildSituation(final fr.cg95.cvq.business.request.military.ChildSituationType childSituation) {
-        this.childSituation = childSituation;
-    }
-
- 
-    @Enumerated(EnumType.STRING)
-    @Column(name="child_situation"  )
-      
-    public fr.cg95.cvq.business.request.military.ChildSituationType getChildSituation() {
-        return this.childSituation;
-    }
-  
-    
-    private String childSpeciality;
-
-    public void setChildSpeciality(final String childSpeciality) {
-        this.childSpeciality = childSpeciality;
-    }
-
- 
-    @Column(name="child_speciality"  )
-      
-    public String getChildSpeciality() {
-        return this.childSpeciality;
-    }
-  
-    
-      @NotNull(
-        
-        
-        profiles = {"situation"},
-        message = "childStatus"
-      )
-    
-    private fr.cg95.cvq.business.users.FamilyStatusType childStatus;
-
-    public void setChildStatus(final fr.cg95.cvq.business.users.FamilyStatusType childStatus) {
-        this.childStatus = childStatus;
-    }
-
- 
-    @Enumerated(EnumType.STRING)
-    @Column(name="child_status"  )
-      
-    public fr.cg95.cvq.business.users.FamilyStatusType getChildStatus() {
-        return this.childStatus;
     }
   
     
@@ -660,140 +384,57 @@ public class MilitaryCensusRequestData implements Serializable {
         
         
         profiles = {"situation"},
-        message = "childrenInCharge"
+        message = "familySituationInformation"
       )
     
-    private java.math.BigInteger childrenInCharge;
-
-    public void setChildrenInCharge(final java.math.BigInteger childrenInCharge) {
-        this.childrenInCharge = childrenInCharge;
-    }
-
- 
-    @Column(name="children_in_charge" , columnDefinition="bytea" )
-    @Type(type="serializable") //Hack see http://capdemat.capwebct.fr/ticket/338
-      
-    public java.math.BigInteger getChildrenInCharge() {
-        return this.childrenInCharge;
-    }
-  
-    
-    private String fatherBirthCity;
-
-    public void setFatherBirthCity(final String fatherBirthCity) {
-        this.fatherBirthCity = fatherBirthCity;
-    }
-
- 
-    @Column(name="father_birth_city"  )
-      
-    public String getFatherBirthCity() {
-        return this.fatherBirthCity;
-    }
-  
-    
-    private fr.cg95.cvq.business.users.CountryType fatherBirthCountry;
-
-    public void setFatherBirthCountry(final fr.cg95.cvq.business.users.CountryType fatherBirthCountry) {
-        this.fatherBirthCountry = fatherBirthCountry;
-    }
-
- 
-    @Enumerated(EnumType.STRING)
-    @Column(name="father_birth_country"  )
-      
-    public fr.cg95.cvq.business.users.CountryType getFatherBirthCountry() {
-        return this.fatherBirthCountry;
-    }
-  
-    
-    private java.util.Date fatherBirthDate;
-
-    public void setFatherBirthDate(final java.util.Date fatherBirthDate) {
-        this.fatherBirthDate = fatherBirthDate;
-    }
-
- 
-    @Column(name="father_birth_date"  )
-      
-    public java.util.Date getFatherBirthDate() {
-        return this.fatherBirthDate;
-    }
-  
-    
-    private fr.cg95.cvq.business.users.InseeDepartementCodeType fatherBirthDepartment;
-
-    public void setFatherBirthDepartment(final fr.cg95.cvq.business.users.InseeDepartementCodeType fatherBirthDepartment) {
-        this.fatherBirthDepartment = fatherBirthDepartment;
-    }
-
- 
-    @Enumerated(EnumType.STRING)
-    @Column(name="father_birth_department"  )
-      
-    public fr.cg95.cvq.business.users.InseeDepartementCodeType getFatherBirthDepartment() {
-        return this.fatherBirthDepartment;
-    }
-  
-    
-      @MaxLength(
+      @AssertValid(
         
-          value = 38,
+        
+        profiles = {"situation"},
+        message = "familySituationInformation"
+      )
+    
+    private fr.cg95.cvq.business.request.military.FamilySituationInformation familySituationInformation;
+
+    public void setFamilySituationInformation(final fr.cg95.cvq.business.request.military.FamilySituationInformation familySituationInformation) {
+        this.familySituationInformation = familySituationInformation;
+    }
+
+ 
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name="family_situation_information_id")
+      
+    public fr.cg95.cvq.business.request.military.FamilySituationInformation getFamilySituationInformation() {
+        return this.familySituationInformation;
+    }
+  
+    
+      @NotNull(
         
         
         profiles = {"parentage"},
-        message = "fatherFirstName"
+        message = "fatherInformation"
       )
     
-    private String fatherFirstName;
-
-    public void setFatherFirstName(final String fatherFirstName) {
-        this.fatherFirstName = fatherFirstName;
-    }
-
- 
-    @Column(name="father_first_name" , length=38 )
-      
-    public String getFatherFirstName() {
-        return this.fatherFirstName;
-    }
-  
-    
-      @MaxLength(
-        
-          value = 38,
+      @AssertValid(
         
         
         profiles = {"parentage"},
-        message = "fatherLastName"
+        message = "fatherInformation"
       )
     
-    private String fatherLastName;
+    private fr.cg95.cvq.business.request.military.MilitaryFatherInformation fatherInformation;
 
-    public void setFatherLastName(final String fatherLastName) {
-        this.fatherLastName = fatherLastName;
+    public void setFatherInformation(final fr.cg95.cvq.business.request.military.MilitaryFatherInformation fatherInformation) {
+        this.fatherInformation = fatherInformation;
     }
 
  
-    @Column(name="father_last_name" , length=38 )
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name="father_information_id")
       
-    public String getFatherLastName() {
-        return this.fatherLastName;
-    }
-  
-    
-    private fr.cg95.cvq.business.users.FullNationalityType fatherNationality;
-
-    public void setFatherNationality(final fr.cg95.cvq.business.users.FullNationalityType fatherNationality) {
-        this.fatherNationality = fatherNationality;
-    }
-
- 
-    @Enumerated(EnumType.STRING)
-    @Column(name="father_nationality"  )
-      
-    public fr.cg95.cvq.business.users.FullNationalityType getFatherNationality() {
-        return this.fatherNationality;
+    public fr.cg95.cvq.business.request.military.MilitaryFatherInformation getFatherInformation() {
+        return this.fatherInformation;
     }
   
     
@@ -859,188 +500,28 @@ public class MilitaryCensusRequestData implements Serializable {
         
         
         profiles = {"parentage"},
-        message = "motherBirthCity"
+        message = "motherInformation"
       )
     
-      @NotBlank(
+      @AssertValid(
         
         
         profiles = {"parentage"},
-        message = "motherBirthCity"
+        message = "motherInformation"
       )
     
-    private String motherBirthCity;
+    private fr.cg95.cvq.business.request.military.MilitaryMotherInformation motherInformation;
 
-    public void setMotherBirthCity(final String motherBirthCity) {
-        this.motherBirthCity = motherBirthCity;
+    public void setMotherInformation(final fr.cg95.cvq.business.request.military.MilitaryMotherInformation motherInformation) {
+        this.motherInformation = motherInformation;
     }
 
  
-    @Column(name="mother_birth_city"  )
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name="mother_information_id")
       
-    public String getMotherBirthCity() {
-        return this.motherBirthCity;
-    }
-  
-    
-    private fr.cg95.cvq.business.users.CountryType motherBirthCountry;
-
-    public void setMotherBirthCountry(final fr.cg95.cvq.business.users.CountryType motherBirthCountry) {
-        this.motherBirthCountry = motherBirthCountry;
-    }
-
- 
-    @Enumerated(EnumType.STRING)
-    @Column(name="mother_birth_country"  )
-      
-    public fr.cg95.cvq.business.users.CountryType getMotherBirthCountry() {
-        return this.motherBirthCountry;
-    }
-  
-    
-      @NotNull(
-        
-        
-        profiles = {"parentage"},
-        message = "motherBirthDate"
-      )
-    
-    private java.util.Date motherBirthDate;
-
-    public void setMotherBirthDate(final java.util.Date motherBirthDate) {
-        this.motherBirthDate = motherBirthDate;
-    }
-
- 
-    @Column(name="mother_birth_date"  )
-      
-    public java.util.Date getMotherBirthDate() {
-        return this.motherBirthDate;
-    }
-  
-    
-    private fr.cg95.cvq.business.users.InseeDepartementCodeType motherBirthDepartment;
-
-    public void setMotherBirthDepartment(final fr.cg95.cvq.business.users.InseeDepartementCodeType motherBirthDepartment) {
-        this.motherBirthDepartment = motherBirthDepartment;
-    }
-
- 
-    @Enumerated(EnumType.STRING)
-    @Column(name="mother_birth_department"  )
-      
-    public fr.cg95.cvq.business.users.InseeDepartementCodeType getMotherBirthDepartment() {
-        return this.motherBirthDepartment;
-    }
-  
-    
-      @MaxLength(
-        
-          value = 38,
-        
-        
-        profiles = {"parentage"},
-        message = "motherFirstName"
-      )
-    
-      @NotNull(
-        
-        
-        profiles = {"parentage"},
-        message = "motherFirstName"
-      )
-    
-      @NotBlank(
-        
-        
-        profiles = {"parentage"},
-        message = "motherFirstName"
-      )
-    
-    private String motherFirstName;
-
-    public void setMotherFirstName(final String motherFirstName) {
-        this.motherFirstName = motherFirstName;
-    }
-
- 
-    @Column(name="mother_first_name" , length=38 )
-      
-    public String getMotherFirstName() {
-        return this.motherFirstName;
-    }
-  
-    
-      @MaxLength(
-        
-          value = 38,
-        
-        
-        profiles = {"parentage"},
-        message = "motherLastName"
-      )
-    
-      @NotNull(
-        
-        
-        profiles = {"parentage"},
-        message = "motherLastName"
-      )
-    
-      @NotBlank(
-        
-        
-        profiles = {"parentage"},
-        message = "motherLastName"
-      )
-    
-    private String motherLastName;
-
-    public void setMotherLastName(final String motherLastName) {
-        this.motherLastName = motherLastName;
-    }
-
- 
-    @Column(name="mother_last_name" , length=38 )
-      
-    public String getMotherLastName() {
-        return this.motherLastName;
-    }
-  
-    
-      @NotNull(
-        
-        
-        profiles = {"parentage"},
-        message = "motherNationality"
-      )
-    
-    private fr.cg95.cvq.business.users.FullNationalityType motherNationality;
-
-    public void setMotherNationality(final fr.cg95.cvq.business.users.FullNationalityType motherNationality) {
-        this.motherNationality = motherNationality;
-    }
-
- 
-    @Enumerated(EnumType.STRING)
-    @Column(name="mother_nationality"  )
-      
-    public fr.cg95.cvq.business.users.FullNationalityType getMotherNationality() {
-        return this.motherNationality;
-    }
-  
-    
-    private String otherSituation;
-
-    public void setOtherSituation(final String otherSituation) {
-        this.otherSituation = otherSituation;
-    }
-
- 
-    @Column(name="other_situation"  )
-      
-    public String getOtherSituation() {
-        return this.otherSituation;
+    public fr.cg95.cvq.business.request.military.MilitaryMotherInformation getMotherInformation() {
+        return this.motherInformation;
     }
   
     
@@ -1048,72 +529,28 @@ public class MilitaryCensusRequestData implements Serializable {
         
         
         profiles = {"situation"},
-        message = "prefectPupil"
+        message = "professionalSituationInformation"
       )
     
-    private Boolean prefectPupil;
-
-    public void setPrefectPupil(final Boolean prefectPupil) {
-        this.prefectPupil = prefectPupil;
-    }
-
- 
-    @Column(name="prefect_pupil"  )
-      
-    public Boolean getPrefectPupil() {
-        return this.prefectPupil;
-    }
-  
-    
-      @NotNull(
-        
-        
-          when = "groovy:def active = true;" +
-          
-            "active &= _this.conditions['prefectPupil'].test(_this.prefectPupil.toString());" +
-                
-              
-            
-            
-            "return active",
-        
-        profiles = {"situation"},
-        message = "prefectPupilDepartment"
-      )
-    
-    private fr.cg95.cvq.business.users.InseeDepartementCodeType prefectPupilDepartment;
-
-    public void setPrefectPupilDepartment(final fr.cg95.cvq.business.users.InseeDepartementCodeType prefectPupilDepartment) {
-        this.prefectPupilDepartment = prefectPupilDepartment;
-    }
-
- 
-    @Enumerated(EnumType.STRING)
-    @Column(name="prefect_pupil_department"  )
-      
-    public fr.cg95.cvq.business.users.InseeDepartementCodeType getPrefectPupilDepartment() {
-        return this.prefectPupilDepartment;
-    }
-  
-    
-      @NotNull(
+      @AssertValid(
         
         
         profiles = {"situation"},
-        message = "statePupil"
+        message = "professionalSituationInformation"
       )
     
-    private Boolean statePupil;
+    private fr.cg95.cvq.business.request.military.ProfessionalSituationInformation professionalSituationInformation;
 
-    public void setStatePupil(final Boolean statePupil) {
-        this.statePupil = statePupil;
+    public void setProfessionalSituationInformation(final fr.cg95.cvq.business.request.military.ProfessionalSituationInformation professionalSituationInformation) {
+        this.professionalSituationInformation = professionalSituationInformation;
     }
 
  
-    @Column(name="state_pupil"  )
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name="professional_situation_information_id")
       
-    public Boolean getStatePupil() {
-        return this.statePupil;
+    public fr.cg95.cvq.business.request.military.ProfessionalSituationInformation getProfessionalSituationInformation() {
+        return this.professionalSituationInformation;
     }
   
 }

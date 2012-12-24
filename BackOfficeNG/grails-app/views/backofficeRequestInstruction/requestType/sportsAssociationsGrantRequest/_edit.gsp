@@ -66,9 +66,9 @@
               <h3><g:message code="sagr.property.numerosAssociation.label" /></h3>
               <dl class="required">
                 
-                  <dt class="required">${message(code:'sagr.property.numeroSiretAssociation.label')} * :</dt><dd id="numeroSiretAssociation" class="action-editField validate-regex required-true i18n-sagr.property.numeroSiretAssociation maxLength-14" regex="^[\w\W]{0,14}$"><span>${rqt?.numeroSiretAssociation}</span></dd>
+                  <dt class="required">${message(code:'sagr.property.numeroSiretAssociation.label')} * :</dt><dd id="numeroSiretAssociation" class="action-editField validate-regex required-true i18n-sagr.property.numeroSiretAssociation maxLength-14" regex="^[\w\W]{0,14}$"><span>${rqt.numerosAssociation?.numeroSiretAssociation}</span></dd>
                 
-                  <dt class="required">${message(code:'sagr.property.numeroEnregistrementPrefectureAssociation.label')} * :</dt><dd id="numeroEnregistrementPrefectureAssociation" class="action-editField validate-regex required-true i18n-sagr.property.numeroEnregistrementPrefectureAssociation maxLength-9" regex="^[\w\W]{0,9}$"><span>${rqt?.numeroEnregistrementPrefectureAssociation}</span></dd>
+                  <dt class="required">${message(code:'sagr.property.numeroEnregistrementPrefectureAssociation.label')} * :</dt><dd id="numeroEnregistrementPrefectureAssociation" class="action-editField validate-regex required-true i18n-sagr.property.numeroEnregistrementPrefectureAssociation maxLength-9" regex="^[\w\W]{0,9}$"><span>${rqt.numerosAssociation?.numeroEnregistrementPrefectureAssociation}</span></dd>
                 
               </dl>
               
@@ -77,13 +77,13 @@
               <h3><g:message code="sagr.property.contactsAssociation.label" /></h3>
               <dl class="required">
                 
-                  <dt class="required condition-estAdresseCorrespondantPrincipal-trigger">${message(code:'sagr.property.estAdresseCorrespondantPrincipal.label')} * :</dt><dd id="estAdresseCorrespondantPrincipal" class="action-editField validate-boolean required-true i18n-sagr.property.estAdresseCorrespondantPrincipal" ><span class="value-${rqt?.estAdresseCorrespondantPrincipal}"><g:message code="message.${rqt?.estAdresseCorrespondantPrincipal ? 'yes' : 'no'}" /></span></dd>
+                  <dt class="required condition-estAdresseCorrespondantPrincipal-trigger">${message(code:'sagr.property.estAdresseCorrespondantPrincipal.label')} * :</dt><dd id="estAdresseCorrespondantPrincipal" class="action-editField validate-boolean required-true i18n-sagr.property.estAdresseCorrespondantPrincipal" ><span class="value-${rqt.contactsAssociation?.estAdresseCorrespondantPrincipal}"><g:message code="message.${rqt.contactsAssociation?.estAdresseCorrespondantPrincipal ? 'yes' : 'no'}" /></span></dd>
                 
-                  <dt class="required condition-estAdresseCorrespondantPrincipal-filled">${message(code:'sagr.property.nomCompletCorrespondantPrincipal.label')} * :</dt><dd id="nomCompletCorrespondantPrincipal" class="action-editField validate-string required-true i18n-sagr.property.nomCompletCorrespondantPrincipal" ><span>${rqt?.nomCompletCorrespondantPrincipal}</span></dd>
+                  <dt class="required condition-estAdresseCorrespondantPrincipal-filled">${message(code:'sagr.property.nomCompletCorrespondantPrincipal.label')} * :</dt><dd id="nomCompletCorrespondantPrincipal" class="action-editField validate-string required-true i18n-sagr.property.nomCompletCorrespondantPrincipal" ><span>${rqt.contactsAssociation?.nomCompletCorrespondantPrincipal}</span></dd>
                 
-                  <dt class="required condition-estAdresseCorrespondantPrincipal-filled">${message(code:'sagr.property.adresseCorrespondantPrincipal.label')} * :</dt><dd id="adresseCorrespondantPrincipal" class="action-editField validate-address required-true i18n-sagr.property.adresseCorrespondantPrincipal" ><div><p class="additionalDeliveryInformation">${rqt?.adresseCorrespondantPrincipal?.additionalDeliveryInformation}</p><p class="additionalGeographicalInformation">${rqt?.adresseCorrespondantPrincipal?.additionalGeographicalInformation}</p><span class="streetNumber">${rqt?.adresseCorrespondantPrincipal?.streetNumber}</span> <span class="streetName">${rqt?.adresseCorrespondantPrincipal?.streetName}</span><g:if test="${!!rqt?.adresseCorrespondantPrincipal?.streetMatriculation}"><br /><em><g:message code="address.property.streetMatriculation" /></em><span class="streetMatriculation">${rqt?.adresseCorrespondantPrincipal?.streetMatriculation}</span></g:if><g:if test="${!!rqt?.adresseCorrespondantPrincipal?.streetRivoliCode}"><br /><em><g:message code="address.property.streetRivoliCode" /></em><span class="streetRivoliCode">${rqt?.adresseCorrespondantPrincipal?.streetRivoliCode}</span></g:if><p class="placeNameOrService">${rqt?.adresseCorrespondantPrincipal?.placeNameOrService}</p><span class="postalCode">${rqt?.adresseCorrespondantPrincipal?.postalCode}</span> <span class="city">${rqt?.adresseCorrespondantPrincipal?.city}</span><p class="countryName">${rqt?.adresseCorrespondantPrincipal?.countryName}</p><g:if test="${!!rqt?.adresseCorrespondantPrincipal?.cityInseeCode}"><em><g:message code="address.property.cityInseeCode" /></em><span class="cityInseeCode">${rqt?.adresseCorrespondantPrincipal?.cityInseeCode}</span></g:if></div></dd>
+                  <dt class="required condition-estAdresseCorrespondantPrincipal-filled">${message(code:'sagr.property.adresseCorrespondantPrincipal.label')} * :</dt><dd id="adresseCorrespondantPrincipal" class="action-editField validate-address required-true i18n-sagr.property.adresseCorrespondantPrincipal" ><div><p class="additionalDeliveryInformation">${rqt.contactsAssociation?.adresseCorrespondantPrincipal?.additionalDeliveryInformation}</p><p class="additionalGeographicalInformation">${rqt.contactsAssociation?.adresseCorrespondantPrincipal?.additionalGeographicalInformation}</p><span class="streetNumber">${rqt.contactsAssociation?.adresseCorrespondantPrincipal?.streetNumber}</span> <span class="streetName">${rqt.contactsAssociation?.adresseCorrespondantPrincipal?.streetName}</span><g:if test="${!!rqt.contactsAssociation?.adresseCorrespondantPrincipal?.streetMatriculation}"><br /><em><g:message code="address.property.streetMatriculation" /></em><span class="streetMatriculation">${rqt.contactsAssociation?.adresseCorrespondantPrincipal?.streetMatriculation}</span></g:if><g:if test="${!!rqt.contactsAssociation?.adresseCorrespondantPrincipal?.streetRivoliCode}"><br /><em><g:message code="address.property.streetRivoliCode" /></em><span class="streetRivoliCode">${rqt.contactsAssociation?.adresseCorrespondantPrincipal?.streetRivoliCode}</span></g:if><p class="placeNameOrService">${rqt.contactsAssociation?.adresseCorrespondantPrincipal?.placeNameOrService}</p><span class="postalCode">${rqt.contactsAssociation?.adresseCorrespondantPrincipal?.postalCode}</span> <span class="city">${rqt.contactsAssociation?.adresseCorrespondantPrincipal?.city}</span><p class="countryName">${rqt.contactsAssociation?.adresseCorrespondantPrincipal?.countryName}</p><g:if test="${!!rqt.contactsAssociation?.adresseCorrespondantPrincipal?.cityInseeCode}"><em><g:message code="address.property.cityInseeCode" /></em><span class="cityInseeCode">${rqt.contactsAssociation?.adresseCorrespondantPrincipal?.cityInseeCode}</span></g:if></div></dd>
                 
-                  <dt class="">${message(code:'sagr.property.emailClubOuCorrespondant.label')} :</dt><dd id="emailClubOuCorrespondant" class="action-editField validate-email i18n-sagr.property.emailClubOuCorrespondant" ><span>${rqt?.emailClubOuCorrespondant}</span></dd>
+                  <dt class="">${message(code:'sagr.property.emailClubOuCorrespondant.label')} :</dt><dd id="emailClubOuCorrespondant" class="action-editField validate-email i18n-sagr.property.emailClubOuCorrespondant" ><span>${rqt.contactsAssociation?.emailClubOuCorrespondant}</span></dd>
                 
               </dl>
               
@@ -123,13 +123,13 @@
               <h3><g:message code="sagr.property.precisionPresident.label" /></h3>
               <dl class="required condition-estPresident-unfilled">
                 
-                  <dt class="required">${message(code:'sagr.property.nomPresident.label')} * :</dt><dd id="nomPresident" class="action-editField validate-lastName required-true i18n-sagr.property.nomPresident maxLength-38" ><span>${rqt?.nomPresident}</span></dd>
+                  <dt class="required">${message(code:'sagr.property.nomPresident.label')} * :</dt><dd id="nomPresident" class="action-editField validate-lastName required-true i18n-sagr.property.nomPresident maxLength-38" ><span>${rqt.precisionPresident?.nomPresident}</span></dd>
                 
-                  <dt class="required">${message(code:'sagr.property.prenomPresident.label')} * :</dt><dd id="prenomPresident" class="action-editField validate-firstName required-true i18n-sagr.property.prenomPresident maxLength-38" ><span>${rqt?.prenomPresident}</span></dd>
+                  <dt class="required">${message(code:'sagr.property.prenomPresident.label')} * :</dt><dd id="prenomPresident" class="action-editField validate-firstName required-true i18n-sagr.property.prenomPresident maxLength-38" ><span>${rqt.precisionPresident?.prenomPresident}</span></dd>
                 
-                  <dt class="">${message(code:'sagr.property.telephonePresident.label')} :</dt><dd id="telephonePresident" class="action-editField validate-phone i18n-sagr.property.telephonePresident maxLength-10" ><span>${rqt?.telephonePresident}</span></dd>
+                  <dt class="">${message(code:'sagr.property.telephonePresident.label')} :</dt><dd id="telephonePresident" class="action-editField validate-phone i18n-sagr.property.telephonePresident maxLength-10" ><span>${rqt.precisionPresident?.telephonePresident}</span></dd>
                 
-                  <dt class="">${message(code:'sagr.property.emailPresident.label')} :</dt><dd id="emailPresident" class="action-editField validate-email i18n-sagr.property.emailPresident" ><span>${rqt?.emailPresident}</span></dd>
+                  <dt class="">${message(code:'sagr.property.emailPresident.label')} :</dt><dd id="emailPresident" class="action-editField validate-email i18n-sagr.property.emailPresident" ><span>${rqt.precisionPresident?.emailPresident}</span></dd>
                 
               </dl>
               
@@ -223,19 +223,19 @@
             
               
               <h3><g:message code="sagr.property.subventionPubliqueFonctionnement.label" /></h3>
-              <dl class="required">
+              <dl class="">
                 
-                  <dt class="">${message(code:'sagr.property.budgetSaisonEcouleeRecette.label')} :</dt><dd id="budgetSaisonEcouleeRecette" class="action-editField validate-string i18n-sagr.property.budgetSaisonEcouleeRecette" ><span>${rqt?.budgetSaisonEcouleeRecette}</span></dd>
+                  <dt class="">${message(code:'sagr.property.budgetSaisonEcouleeRecette.label')} :</dt><dd id="budgetSaisonEcouleeRecette" class="action-editField validate-string i18n-sagr.property.budgetSaisonEcouleeRecette" ><span>${rqt.subventionPubliqueFonctionnement?.budgetSaisonEcouleeRecette}</span></dd>
                 
-                  <dt class="">${message(code:'sagr.property.budgetSaisonEcouleeDepenses.label')} :</dt><dd id="budgetSaisonEcouleeDepenses" class="action-editField validate-string i18n-sagr.property.budgetSaisonEcouleeDepenses" ><span>${rqt?.budgetSaisonEcouleeDepenses}</span></dd>
+                  <dt class="">${message(code:'sagr.property.budgetSaisonEcouleeDepenses.label')} :</dt><dd id="budgetSaisonEcouleeDepenses" class="action-editField validate-string i18n-sagr.property.budgetSaisonEcouleeDepenses" ><span>${rqt.subventionPubliqueFonctionnement?.budgetSaisonEcouleeDepenses}</span></dd>
                 
-                  <dt class="">${message(code:'sagr.property.nombreLicencieMoinsDixHuitSaisonEcoulee.label')} :</dt><dd id="nombreLicencieMoinsDixHuitSaisonEcoulee" class="action-editField validate-string i18n-sagr.property.nombreLicencieMoinsDixHuitSaisonEcoulee" ><span>${rqt?.nombreLicencieMoinsDixHuitSaisonEcoulee}</span></dd>
+                  <dt class="">${message(code:'sagr.property.nombreLicencieMoinsDixHuitSaisonEcoulee.label')} :</dt><dd id="nombreLicencieMoinsDixHuitSaisonEcoulee" class="action-editField validate-string i18n-sagr.property.nombreLicencieMoinsDixHuitSaisonEcoulee" ><span>${rqt.subventionPubliqueFonctionnement?.nombreLicencieMoinsDixHuitSaisonEcoulee}</span></dd>
                 
-                  <dt class="">${message(code:'sagr.property.nombreLicenciePlusDixHuitSaisonEcoulee.label')} :</dt><dd id="nombreLicenciePlusDixHuitSaisonEcoulee" class="action-editField validate-string i18n-sagr.property.nombreLicenciePlusDixHuitSaisonEcoulee" ><span>${rqt?.nombreLicenciePlusDixHuitSaisonEcoulee}</span></dd>
+                  <dt class="">${message(code:'sagr.property.nombreLicenciePlusDixHuitSaisonEcoulee.label')} :</dt><dd id="nombreLicenciePlusDixHuitSaisonEcoulee" class="action-editField validate-string i18n-sagr.property.nombreLicenciePlusDixHuitSaisonEcoulee" ><span>${rqt.subventionPubliqueFonctionnement?.nombreLicenciePlusDixHuitSaisonEcoulee}</span></dd>
                 
-                  <dt class="">${message(code:'sagr.property.communeAnneeN.label')} :</dt><dd id="communeAnneeN" class="action-editField validate-string i18n-sagr.property.communeAnneeN" ><span>${rqt?.communeAnneeN}</span></dd>
+                  <dt class="">${message(code:'sagr.property.communeAnneeN.label')} :</dt><dd id="communeAnneeN" class="action-editField validate-string i18n-sagr.property.communeAnneeN" ><span>${rqt.subventionPubliqueFonctionnement?.communeAnneeN}</span></dd>
                 
-                  <dt class="">${message(code:'sagr.property.communeAnneeNPlusUn.label')} :</dt><dd id="communeAnneeNPlusUn" class="action-editField validate-string i18n-sagr.property.communeAnneeNPlusUn" ><span>${rqt?.communeAnneeNPlusUn}</span></dd>
+                  <dt class="">${message(code:'sagr.property.communeAnneeNPlusUn.label')} :</dt><dd id="communeAnneeNPlusUn" class="action-editField validate-string i18n-sagr.property.communeAnneeNPlusUn" ><span>${rqt.subventionPubliqueFonctionnement?.communeAnneeNPlusUn}</span></dd>
                 
               </dl>
               

@@ -69,7 +69,7 @@ public class BafaGrantEdemandeRequest implements EdemandeRequest {
         if (request.getBankAccount() == null) return null;
         BankAccount bankAccount = BankAccount.xmlToModel(request.getBankAccount());
         if (bankAccount == null) return null;
-        return FrenchRIB.modelToXml(bankAccount.toFrenchRIB());
+        return bankAccount.toFrenchRIB().modelToXml();
     }
 
     @Override

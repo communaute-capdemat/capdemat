@@ -29,8 +29,7 @@
                 <dt class="required">${message(code:'cwcr.property.compostableWasteType.label')} * :</dt><dd id="compostableWasteType" class="action-editField validate-localReferentialData required-true i18n-cwcr.property.compostableWasteType data-localReferentialData" >
            <g:render template="/backofficeRequestInstruction/widget/localReferentialDataStatic" 
                      model="['javaName':'compostableWasteType', 'lrEntries': lrTypes.compostableWasteType?.entries, 
-                             'rqt':rqt, 'isMultiple':lrTypes.compostableWasteType?.isMultiple(), 'depth':0]" />
- 
+                             'wrapper':rqt, 'isMultiple':lrTypes.compostableWasteType?.isMultiple(), 'depth':0]" />
           </dd>
               </dl>
               

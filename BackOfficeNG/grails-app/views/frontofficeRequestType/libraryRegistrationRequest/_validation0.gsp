@@ -17,7 +17,7 @@
         <dt><g:message code="lrr.property.subscription.label" /></dt>
           <dd>
           <g:render template="/frontofficeRequestType/widget/localReferentialDataSummary" 
-                    model="['javaName':'subscription', 'lrEntries': lrTypes.subscription.entries, 'depth':0]" />
+                    model="['wrapper':rqt, 'javaName':'subscription', 'lrEntries': lrTypes.subscription.entries, 'depth':0]" />
           </dd>
           
 

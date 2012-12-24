@@ -39,8 +39,6 @@ public class SchoolRegistrationRequestData implements Serializable {
 
     public SchoolRegistrationRequestData() {
       
-        currentSection = fr.cg95.cvq.business.users.SectionType.UNKNOWN;
-      
         rulesAndRegulationsAcceptance = Boolean.valueOf(false);
       
         section = fr.cg95.cvq.business.users.SectionType.UNKNOWN;
@@ -53,22 +51,8 @@ public class SchoolRegistrationRequestData implements Serializable {
         
           
             
-        result.setCurrentSchoolAddress(currentSchoolAddress);
-      
-          
-        
-          
-            
-        result.setCurrentSchoolName(currentSchoolName);
-      
-          
-        
-          
-            
-        if (currentSection != null)
-            result.setCurrentSection(currentSection);
-        else
-            result.setCurrentSection(fr.cg95.cvq.business.users.SectionType.getDefaultSectionType());
+        if (currentSchool != null)
+            result.setCurrentSchool(currentSchool.clone());
       
           
         
@@ -112,46 +96,32 @@ public class SchoolRegistrationRequestData implements Serializable {
 
   
     
-    private String currentSchoolAddress;
-
-    public void setCurrentSchoolAddress(final String currentSchoolAddress) {
-        this.currentSchoolAddress = currentSchoolAddress;
-    }
-
- 
-    @Column(name="current_school_address"  )
-      
-    public String getCurrentSchoolAddress() {
-        return this.currentSchoolAddress;
-    }
-  
+      @NotNull(
+        
+        
+        profiles = {"registration"},
+        message = "currentSchool"
+      )
     
-    private String currentSchoolName;
-
-    public void setCurrentSchoolName(final String currentSchoolName) {
-        this.currentSchoolName = currentSchoolName;
-    }
-
- 
-    @Column(name="current_school_name"  )
-      
-    public String getCurrentSchoolName() {
-        return this.currentSchoolName;
-    }
-  
+      @AssertValid(
+        
+        
+        profiles = {"registration"},
+        message = "currentSchool"
+      )
     
-    private fr.cg95.cvq.business.users.SectionType currentSection;
+    private fr.cg95.cvq.business.request.school.CurrentSchool currentSchool;
 
-    public void setCurrentSection(final fr.cg95.cvq.business.users.SectionType currentSection) {
-        this.currentSection = currentSection;
+    public void setCurrentSchool(final fr.cg95.cvq.business.request.school.CurrentSchool currentSchool) {
+        this.currentSchool = currentSchool;
     }
 
  
-    @Enumerated(EnumType.STRING)
-    @Column(name="current_section" , length=32 )
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name="current_school_id")
       
-    public fr.cg95.cvq.business.users.SectionType getCurrentSection() {
-        return this.currentSection;
+    public fr.cg95.cvq.business.request.school.CurrentSchool getCurrentSchool() {
+        return this.currentSchool;
     }
   
     

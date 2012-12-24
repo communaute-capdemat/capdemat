@@ -43,11 +43,11 @@ public class School implements Serializable {
     public School() {
     }
 
-    public static SchoolType modelToXml(School school) {
+    public SchoolType modelToXml() {
 
         SchoolType schoolType = SchoolType.Factory.newInstance();
-        schoolType.setId(school.getId().longValue());
-        schoolType.setName(school.getName());
+        schoolType.setId(getId().longValue());
+        schoolType.setName(getName());
         return schoolType;
     }
 

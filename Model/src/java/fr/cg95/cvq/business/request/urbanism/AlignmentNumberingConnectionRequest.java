@@ -128,10 +128,10 @@ public class AlignmentNumberingConnectionRequest extends Request implements Seri
             alignmentNumberingConnectionRequest.setNumber(new BigInteger(getNumber().toString()));
       
         if (getOtherAddress() != null)
-            alignmentNumberingConnectionRequest.setOtherAddress(Address.modelToXml(getOtherAddress()));
+            alignmentNumberingConnectionRequest.setOtherAddress(getOtherAddress().modelToXml());
       
         if (getOwnerAddress() != null)
-            alignmentNumberingConnectionRequest.setOwnerAddress(Address.modelToXml(getOwnerAddress()));
+            alignmentNumberingConnectionRequest.setOwnerAddress(getOwnerAddress().modelToXml());
       
         alignmentNumberingConnectionRequest.setOwnerFirstNames(getOwnerFirstNames());
       

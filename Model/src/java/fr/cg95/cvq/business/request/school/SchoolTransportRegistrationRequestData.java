@@ -57,6 +57,13 @@ public class SchoolTransportRegistrationRequestData implements Serializable {
         
           
             
+        if (arret != null)
+            result.setArret(arret.clone());
+      
+          
+        
+          
+            
         if (autorisation != null)
             result.setAutorisation(autorisation);
         else
@@ -72,49 +79,15 @@ public class SchoolTransportRegistrationRequestData implements Serializable {
         
           
             
-        result.setFrereOuSoeurClasse(frereOuSoeurClasse);
+        if (frereOuSoeurAutorise != null)
+            result.setFrereOuSoeurAutorise(frereOuSoeurAutorise.clone());
       
           
         
           
             
-        result.setFrereOuSoeurEcole(frereOuSoeurEcole);
-      
-          
-        
-          
-            
-        result.setFrereOuSoeurNom(frereOuSoeurNom);
-      
-          
-        
-          
-            
-        result.setFrereOuSoeurPrenom(frereOuSoeurPrenom);
-      
-          
-        
-          
-            
-        result.setIdArret(idArret);
-      
-          
-        
-          
-            
-        result.setIdLigne(idLigne);
-      
-          
-        
-          
-            
-        result.setLabelArret(labelArret);
-      
-          
-        
-          
-            
-        result.setLabelLigne(labelLigne);
+        if (ligne != null)
+            result.setLigne(ligne.clone());
       
           
         
@@ -160,10 +133,40 @@ public class SchoolTransportRegistrationRequestData implements Serializable {
       @NotNull(
         
         
+        profiles = {"enfant"},
+        message = "arret"
+      )
+    
+      @AssertValid(
+        
+        
+        profiles = {"enfant"},
+        message = "arret"
+      )
+    
+    private fr.cg95.cvq.business.request.school.Arret arret;
+
+    public void setArret(final fr.cg95.cvq.business.request.school.Arret arret) {
+        this.arret = arret;
+    }
+
+ 
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name="arret_id")
+      
+    public fr.cg95.cvq.business.request.school.Arret getArret() {
+        return this.arret;
+    }
+  
+    
+      @NotNull(
+        
+        
           when = "groovy:def active = true;" +
           
             "active &= _this.conditions['estMaternelleElementaireAutorisations'].test(_this.estMaternelleElementaireAutorisations.toString());" +
                 
+              
               
             
             
@@ -214,218 +217,47 @@ public class SchoolTransportRegistrationRequestData implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            
             "active &= _this.conditions['autorisation'].test('autoriseFrereOuSoeur='+_this.autorisation.toString());" +
                 
               
+              
+            
             
             "return active",
         
         profiles = {"autorisations"},
-        message = "frereOuSoeurClasse"
+        message = "frereOuSoeurAutorise"
       )
     
-      @NotBlank(
+      @AssertValid(
         
         
           when = "groovy:def active = true;" +
           
-            
             "active &= _this.conditions['autorisation'].test('autoriseFrereOuSoeur='+_this.autorisation.toString());" +
                 
               
+              
+            
             
             "return active",
         
         profiles = {"autorisations"},
-        message = "frereOuSoeurClasse"
+        message = "frereOuSoeurAutorise"
       )
     
-    private String frereOuSoeurClasse;
+    private fr.cg95.cvq.business.request.school.FrereOuSoeurInformations frereOuSoeurAutorise;
 
-    public void setFrereOuSoeurClasse(final String frereOuSoeurClasse) {
-        this.frereOuSoeurClasse = frereOuSoeurClasse;
+    public void setFrereOuSoeurAutorise(final fr.cg95.cvq.business.request.school.FrereOuSoeurInformations frereOuSoeurAutorise) {
+        this.frereOuSoeurAutorise = frereOuSoeurAutorise;
     }
 
  
-    @Column(name="frere_ou_soeur_classe"  )
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name="frere_ou_soeur_autorise_id")
       
-    public String getFrereOuSoeurClasse() {
-        return this.frereOuSoeurClasse;
-    }
-  
-    
-      @NotNull(
-        
-        
-          when = "groovy:def active = true;" +
-          
-            
-            "active &= _this.conditions['autorisation'].test('autoriseFrereOuSoeur='+_this.autorisation.toString());" +
-                
-              
-            
-            "return active",
-        
-        profiles = {"autorisations"},
-        message = "frereOuSoeurEcole"
-      )
-    
-      @NotBlank(
-        
-        
-          when = "groovy:def active = true;" +
-          
-            
-            "active &= _this.conditions['autorisation'].test('autoriseFrereOuSoeur='+_this.autorisation.toString());" +
-                
-              
-            
-            "return active",
-        
-        profiles = {"autorisations"},
-        message = "frereOuSoeurEcole"
-      )
-    
-    private String frereOuSoeurEcole;
-
-    public void setFrereOuSoeurEcole(final String frereOuSoeurEcole) {
-        this.frereOuSoeurEcole = frereOuSoeurEcole;
-    }
-
- 
-    @Column(name="frere_ou_soeur_ecole"  )
-      
-    public String getFrereOuSoeurEcole() {
-        return this.frereOuSoeurEcole;
-    }
-  
-    
-      @MaxLength(
-        
-          value = 38,
-        
-        
-          when = "groovy:def active = true;" +
-          
-            
-            "active &= _this.conditions['autorisation'].test('autoriseFrereOuSoeur='+_this.autorisation.toString());" +
-                
-              
-            
-            "return active",
-        
-        profiles = {"autorisations"},
-        message = "frereOuSoeurNom"
-      )
-    
-      @NotNull(
-        
-        
-          when = "groovy:def active = true;" +
-          
-            
-            "active &= _this.conditions['autorisation'].test('autoriseFrereOuSoeur='+_this.autorisation.toString());" +
-                
-              
-            
-            "return active",
-        
-        profiles = {"autorisations"},
-        message = "frereOuSoeurNom"
-      )
-    
-      @NotBlank(
-        
-        
-          when = "groovy:def active = true;" +
-          
-            
-            "active &= _this.conditions['autorisation'].test('autoriseFrereOuSoeur='+_this.autorisation.toString());" +
-                
-              
-            
-            "return active",
-        
-        profiles = {"autorisations"},
-        message = "frereOuSoeurNom"
-      )
-    
-    private String frereOuSoeurNom;
-
-    public void setFrereOuSoeurNom(final String frereOuSoeurNom) {
-        this.frereOuSoeurNom = frereOuSoeurNom;
-    }
-
- 
-    @Column(name="frere_ou_soeur_nom" , length=38 )
-      
-    public String getFrereOuSoeurNom() {
-        return this.frereOuSoeurNom;
-    }
-  
-    
-      @MaxLength(
-        
-          value = 38,
-        
-        
-          when = "groovy:def active = true;" +
-          
-            
-            "active &= _this.conditions['autorisation'].test('autoriseFrereOuSoeur='+_this.autorisation.toString());" +
-                
-              
-            
-            "return active",
-        
-        profiles = {"autorisations"},
-        message = "frereOuSoeurPrenom"
-      )
-    
-      @NotNull(
-        
-        
-          when = "groovy:def active = true;" +
-          
-            
-            "active &= _this.conditions['autorisation'].test('autoriseFrereOuSoeur='+_this.autorisation.toString());" +
-                
-              
-            
-            "return active",
-        
-        profiles = {"autorisations"},
-        message = "frereOuSoeurPrenom"
-      )
-    
-      @NotBlank(
-        
-        
-          when = "groovy:def active = true;" +
-          
-            
-            "active &= _this.conditions['autorisation'].test('autoriseFrereOuSoeur='+_this.autorisation.toString());" +
-                
-              
-            
-            "return active",
-        
-        profiles = {"autorisations"},
-        message = "frereOuSoeurPrenom"
-      )
-    
-    private String frereOuSoeurPrenom;
-
-    public void setFrereOuSoeurPrenom(final String frereOuSoeurPrenom) {
-        this.frereOuSoeurPrenom = frereOuSoeurPrenom;
-    }
-
- 
-    @Column(name="frere_ou_soeur_prenom" , length=38 )
-      
-    public String getFrereOuSoeurPrenom() {
-        return this.frereOuSoeurPrenom;
+    public fr.cg95.cvq.business.request.school.FrereOuSoeurInformations getFrereOuSoeurAutorise() {
+        return this.frereOuSoeurAutorise;
     }
   
     
@@ -433,111 +265,28 @@ public class SchoolTransportRegistrationRequestData implements Serializable {
         
         
         profiles = {"enfant"},
-        message = "idArret"
+        message = "ligne"
       )
     
-      @NotBlank(
+      @AssertValid(
         
         
         profiles = {"enfant"},
-        message = "idArret"
+        message = "ligne"
       )
     
-    private String idArret;
+    private fr.cg95.cvq.business.request.school.Ligne ligne;
 
-    public void setIdArret(final String idArret) {
-        this.idArret = idArret;
+    public void setLigne(final fr.cg95.cvq.business.request.school.Ligne ligne) {
+        this.ligne = ligne;
     }
 
  
-    @Column(name="id_arret"  )
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name="ligne_id")
       
-    public String getIdArret() {
-        return this.idArret;
-    }
-  
-    
-      @NotNull(
-        
-        
-        profiles = {"enfant"},
-        message = "idLigne"
-      )
-    
-      @NotBlank(
-        
-        
-        profiles = {"enfant"},
-        message = "idLigne"
-      )
-    
-    private String idLigne;
-
-    public void setIdLigne(final String idLigne) {
-        this.idLigne = idLigne;
-    }
-
- 
-    @Column(name="id_ligne"  )
-      
-    public String getIdLigne() {
-        return this.idLigne;
-    }
-  
-    
-      @NotNull(
-        
-        
-        profiles = {"enfant"},
-        message = "labelArret"
-      )
-    
-      @NotBlank(
-        
-        
-        profiles = {"enfant"},
-        message = "labelArret"
-      )
-    
-    private String labelArret;
-
-    public void setLabelArret(final String labelArret) {
-        this.labelArret = labelArret;
-    }
-
- 
-    @Column(name="label_arret"  )
-      
-    public String getLabelArret() {
-        return this.labelArret;
-    }
-  
-    
-      @NotNull(
-        
-        
-        profiles = {"enfant"},
-        message = "labelLigne"
-      )
-    
-      @NotBlank(
-        
-        
-        profiles = {"enfant"},
-        message = "labelLigne"
-      )
-    
-    private String labelLigne;
-
-    public void setLabelLigne(final String labelLigne) {
-        this.labelLigne = labelLigne;
-    }
-
- 
-    @Column(name="label_ligne"  )
-      
-    public String getLabelLigne() {
-        return this.labelLigne;
+    public fr.cg95.cvq.business.request.school.Ligne getLigne() {
+        return this.ligne;
     }
   
     
@@ -548,6 +297,7 @@ public class SchoolTransportRegistrationRequestData implements Serializable {
           
             "active &= _this.conditions['autorisation'].test('autoriseTiers='+_this.autorisation.toString());" +
                 
+              
               
             
             
@@ -566,6 +316,7 @@ public class SchoolTransportRegistrationRequestData implements Serializable {
           
             "active &= _this.conditions['autorisation'].test('autoriseTiers='+_this.autorisation.toString());" +
                 
+              
               
             
             

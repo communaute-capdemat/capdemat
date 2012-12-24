@@ -132,17 +132,15 @@ public class BirthDetailsRequest extends Request implements Serializable {
       
         if (getCopies() != null)
             birthDetailsRequest.setCopies(new BigInteger(getCopies().toString()));
-        FatherInformationType fatherInformationTypeFatherInformation = birthDetailsRequest.addNewFatherInformation();
-        fatherInformationTypeFatherInformation.setFatherFirstNames(getFatherFirstNames());
       
-        fatherInformationTypeFatherInformation.setFatherLastName(getFatherLastName());
+        if (getFatherInformation() != null)
+            birthDetailsRequest.setFatherInformation(getFatherInformation().modelToXml());
       
         if (getFormat() != null)
             birthDetailsRequest.setFormat(fr.cg95.cvq.xml.request.civil.BirthCertificateFormatType.Enum.forString(getFormat().getLegacyLabel()));
-        MotherInformationType motherInformationTypeMotherInformation = birthDetailsRequest.addNewMotherInformation();
-        motherInformationTypeMotherInformation.setMotherFirstNames(getMotherFirstNames());
       
-        motherInformationTypeMotherInformation.setMotherMaidenName(getMotherMaidenName());
+        if (getMotherInformation() != null)
+            birthDetailsRequest.setMotherInformation(getMotherInformation().modelToXml());
       
         if (getMotive() != null)
             birthDetailsRequest.setMotive(fr.cg95.cvq.xml.request.civil.BirthCertificateMotiveType.Enum.forString(getMotive().getLegacyLabel()));
@@ -190,18 +188,16 @@ public class BirthDetailsRequest extends Request implements Serializable {
       
         birthDetailsRequest.setCopies(birthDetailsRequestXml.getCopies());
       
-        birthDetailsRequest.setFatherFirstNames(birthDetailsRequestXml.getFatherInformation().getFatherFirstNames());
-      
-        birthDetailsRequest.setFatherLastName(birthDetailsRequestXml.getFatherInformation().getFatherLastName());
+        if (birthDetailsRequestXml.getFatherInformation() != null)
+            birthDetailsRequest.setFatherInformation(FatherInformation.xmlToModel(birthDetailsRequestXml.getFatherInformation()));
       
         if (birthDetailsRequestXml.getFormat() != null)
             birthDetailsRequest.setFormat(fr.cg95.cvq.business.request.civil.BirthCertificateFormatType.forString(birthDetailsRequestXml.getFormat().toString()));
         else
             birthDetailsRequest.setFormat(fr.cg95.cvq.business.request.civil.BirthCertificateFormatType.getDefaultBirthCertificateFormatType());
       
-        birthDetailsRequest.setMotherFirstNames(birthDetailsRequestXml.getMotherInformation().getMotherFirstNames());
-      
-        birthDetailsRequest.setMotherMaidenName(birthDetailsRequestXml.getMotherInformation().getMotherMaidenName());
+        if (birthDetailsRequestXml.getMotherInformation() != null)
+            birthDetailsRequest.setMotherInformation(MotherInformation.xmlToModel(birthDetailsRequestXml.getMotherInformation()));
       
         if (birthDetailsRequestXml.getMotive() != null)
             birthDetailsRequest.setMotive(fr.cg95.cvq.business.request.civil.BirthCertificateMotiveType.forString(birthDetailsRequestXml.getMotive().toString()));
@@ -327,22 +323,13 @@ public class BirthDetailsRequest extends Request implements Serializable {
         return birthDetailsRequestData.getCopies();
     }
   
-    public final void setFatherFirstNames(final String fatherFirstNames) {
-        birthDetailsRequestData.setFatherFirstNames(fatherFirstNames);
+    public final void setFatherInformation(final fr.cg95.cvq.business.request.civil.FatherInformation fatherInformation) {
+        birthDetailsRequestData.setFatherInformation(fatherInformation);
     }
 
     
-    public final String getFatherFirstNames() {
-        return birthDetailsRequestData.getFatherFirstNames();
-    }
-  
-    public final void setFatherLastName(final String fatherLastName) {
-        birthDetailsRequestData.setFatherLastName(fatherLastName);
-    }
-
-    
-    public final String getFatherLastName() {
-        return birthDetailsRequestData.getFatherLastName();
+    public final fr.cg95.cvq.business.request.civil.FatherInformation getFatherInformation() {
+        return birthDetailsRequestData.getFatherInformation();
     }
   
     public final void setFormat(final fr.cg95.cvq.business.request.civil.BirthCertificateFormatType format) {
@@ -354,22 +341,13 @@ public class BirthDetailsRequest extends Request implements Serializable {
         return birthDetailsRequestData.getFormat();
     }
   
-    public final void setMotherFirstNames(final String motherFirstNames) {
-        birthDetailsRequestData.setMotherFirstNames(motherFirstNames);
+    public final void setMotherInformation(final fr.cg95.cvq.business.request.civil.MotherInformation motherInformation) {
+        birthDetailsRequestData.setMotherInformation(motherInformation);
     }
 
     
-    public final String getMotherFirstNames() {
-        return birthDetailsRequestData.getMotherFirstNames();
-    }
-  
-    public final void setMotherMaidenName(final String motherMaidenName) {
-        birthDetailsRequestData.setMotherMaidenName(motherMaidenName);
-    }
-
-    
-    public final String getMotherMaidenName() {
-        return birthDetailsRequestData.getMotherMaidenName();
+    public final fr.cg95.cvq.business.request.civil.MotherInformation getMotherInformation() {
+        return birthDetailsRequestData.getMotherInformation();
     }
   
     public final void setMotive(final fr.cg95.cvq.business.request.civil.BirthCertificateMotiveType motive) {

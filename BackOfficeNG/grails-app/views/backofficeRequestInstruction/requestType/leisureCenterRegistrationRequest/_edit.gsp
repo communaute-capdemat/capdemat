@@ -40,9 +40,9 @@
               <h3><g:message code="lcrr.property.centresLoisirs.label" /></h3>
               <dl class="required">
                 
-                  <dt class="required">${message(code:'lcrr.property.idCentreLoisirs.label')} * :</dt><dd id="idCentreLoisirs" class="action-editField validate-string required-true i18n-lcrr.property.idCentreLoisirs" ><span>${rqt?.idCentreLoisirs}</span></dd>
+                  <dt class="required">${message(code:'lcrr.property.idCentreLoisirs.label')} * :</dt><dd id="idCentreLoisirs" class="action-editField validate-string required-true i18n-lcrr.property.idCentreLoisirs" ><span>${rqt.centresLoisirs?.idCentreLoisirs}</span></dd>
                 
-                  <dt class="required">${message(code:'lcrr.property.labelCentreLoisirs.label')} * :</dt><dd id="labelCentreLoisirs" class="action-editField validate-string required-true i18n-lcrr.property.labelCentreLoisirs" ><span>${rqt?.labelCentreLoisirs}</span></dd>
+                  <dt class="required">${message(code:'lcrr.property.labelCentreLoisirs.label')} * :</dt><dd id="labelCentreLoisirs" class="action-editField validate-string required-true i18n-lcrr.property.labelCentreLoisirs" ><span>${rqt.centresLoisirs?.labelCentreLoisirs}</span></dd>
                 
               </dl>
               
@@ -57,13 +57,13 @@
               <h3><g:message code="lcrr.property.transports.label" /></h3>
               <dl class="required condition-estTransport-filled">
                 
-                  <dt class="required">${message(code:'lcrr.property.idLigne.label')} * :</dt><dd id="idLigne" class="action-editField validate-string required-true i18n-lcrr.property.idLigne" ><span>${rqt?.idLigne}</span></dd>
+                  <dt class="required">${message(code:'lcrr.property.idLigne.label')} * :</dt><dd id="idLigne" class="action-editField validate-string required-true i18n-lcrr.property.idLigne" ><span>${rqt.transports?.idLigne}</span></dd>
                 
-                  <dt class="required">${message(code:'lcrr.property.labelLigne.label')} * :</dt><dd id="labelLigne" class="action-editField validate-string required-true i18n-lcrr.property.labelLigne" ><span>${rqt?.labelLigne}</span></dd>
+                  <dt class="required">${message(code:'lcrr.property.labelLigne.label')} * :</dt><dd id="labelLigne" class="action-editField validate-string required-true i18n-lcrr.property.labelLigne" ><span>${rqt.transports?.labelLigne}</span></dd>
                 
-                  <dt class="required">${message(code:'lcrr.property.idArret.label')} * :</dt><dd id="idArret" class="action-editField validate-string required-true i18n-lcrr.property.idArret" ><span>${rqt?.idArret}</span></dd>
+                  <dt class="required">${message(code:'lcrr.property.idArret.label')} * :</dt><dd id="idArret" class="action-editField validate-string required-true i18n-lcrr.property.idArret" ><span>${rqt.transports?.idArret}</span></dd>
                 
-                  <dt class="required">${message(code:'lcrr.property.labelArret.label')} * :</dt><dd id="labelArret" class="action-editField validate-string required-true i18n-lcrr.property.labelArret" ><span>${rqt?.labelArret}</span></dd>
+                  <dt class="required">${message(code:'lcrr.property.labelArret.label')} * :</dt><dd id="labelArret" class="action-editField validate-string required-true i18n-lcrr.property.labelArret" ><span>${rqt.transports?.labelArret}</span></dd>
                 
               </dl>
               
@@ -85,8 +85,7 @@
                 <dt class="required condition-estDerogation-filled">${message(code:'lcrr.property.motifsDerogationCentreLoisirs.label')} * :</dt><dd id="motifsDerogationCentreLoisirs" class="action-editField validate-localReferentialData required-true i18n-lcrr.property.motifsDerogationCentreLoisirs data-localReferentialData" >
            <g:render template="/backofficeRequestInstruction/widget/localReferentialDataStatic" 
                      model="['javaName':'motifsDerogationCentreLoisirs', 'lrEntries': lrTypes.motifsDerogationCentreLoisirs?.entries, 
-                             'rqt':rqt, 'isMultiple':lrTypes.motifsDerogationCentreLoisirs?.isMultiple(), 'depth':0]" />
- 
+                             'wrapper':rqt, 'isMultiple':lrTypes.motifsDerogationCentreLoisirs?.isMultiple(), 'depth':0]" />
           </dd>
               </dl>
               

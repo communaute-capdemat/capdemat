@@ -114,7 +114,7 @@ public class BulkyWasteCollectionRequest extends Request implements Serializable
         }
       
         if (getCollectionAddress() != null)
-            bulkyWasteCollectionRequest.setCollectionAddress(Address.modelToXml(getCollectionAddress()));
+            bulkyWasteCollectionRequest.setCollectionAddress(getCollectionAddress().modelToXml());
       
         bulkyWasteCollectionRequest.setOtherWaste(getOtherWaste());
       

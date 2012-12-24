@@ -36,7 +36,9 @@
     <label class="required"><g:message code="msrr.property.activity.label" /> *  <span><g:message code="msrr.property.activity.help" /></span></label>
             <g:set var="activityIndex" value="${0}" scope="flash" />
             <g:render template="/frontofficeRequestType/widget/localReferentialData" 
-                      model="['javaName':'activity', 'i18nPrefixCode':'msrr.property.activity', 'htmlClass':'required  ', 
+                      model="['wrapper':rqt, 'wrapperJavaName':'',
+                              'javaName':'activity', 'i18nPrefixCode':'msrr.property.activity',
+                              'htmlClass':'required  ', 
                               'lrEntries': lrTypes.activity.entries, 'depth':0]" />
             
 

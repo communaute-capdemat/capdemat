@@ -7,12 +7,26 @@ import fr.cg95.cvq.business.request.social.DhrAssetKindType;
 import fr.cg95.cvq.business.request.social.DhrDwellingKindType;
 import fr.cg95.cvq.business.request.social.DhrPrincipalPensionPlanType;
 import fr.cg95.cvq.business.request.social.DhrRequestKindType;
+import fr.cg95.cvq.business.request.social.DhrCurrentDwelling;
+import fr.cg95.cvq.business.request.social.DhrFamilyReferent;
+import fr.cg95.cvq.business.request.social.DhrNotRealAsset;
+import fr.cg95.cvq.business.request.social.DhrPreviousDwelling;
+import fr.cg95.cvq.business.request.social.DhrRequester;
+import fr.cg95.cvq.business.request.social.DhrRequesterGuardian;
+import fr.cg95.cvq.business.request.social.DhrRequesterPensionPlan;
+import fr.cg95.cvq.business.request.social.DhrSpouse;
+import fr.cg95.cvq.business.request.social.DhrSpouseStatus;
 import fr.cg95.cvq.business.request.social.DomesticHelpRequest;
+import fr.cg95.cvq.business.users.NationalityType;
+import fr.cg95.cvq.business.users.TitleType;
 import fr.cg95.cvq.exception.CvqException;
 import fr.cg95.cvq.exception.CvqObjectNotFoundException;
 import fr.cg95.cvq.service.request.condition.EqualityChecker;
 import fr.cg95.cvq.service.request.impl.RequestService;
 import fr.cg95.cvq.xml.request.social.DhrCurrentDwellingType;
+import fr.cg95.cvq.xml.request.social.DhrNotRealAssetType;
+import fr.cg95.cvq.xml.request.social.DhrPreviousDwellingType;
+import fr.cg95.cvq.xml.request.social.DhrRequesterType;
 import fr.cg95.cvq.xml.request.social.DhrSpouseStatusType;
 import fr.cg95.cvq.xml.request.social.DhrSpouseType;
 
@@ -28,23 +42,54 @@ public class DomesticHelpRequestService extends RequestService {
     @Override
     public void init() {
         DomesticHelpRequest.conditions.put("dhrRequestKind", new EqualityChecker(DhrRequestKindType.COUPLE.name()));
-        DomesticHelpRequest.conditions.put("dhrHaveFamilyReferent", new EqualityChecker("true"));
-        DomesticHelpRequest.conditions.put("dhrRequesterNationality",
-            new EqualityChecker("OutsideEuropeanUnion"));
-        DomesticHelpRequest.conditions.put("dhrPrincipalPensionPlan", new EqualityChecker(DhrPrincipalPensionPlanType.OTHER.name()));
-        DomesticHelpRequest.conditions.put("dhrRequesterHaveGuardian", new EqualityChecker("true"));
-        DomesticHelpRequest.conditions.put("dhrSpouseTitle", new EqualityChecker("Madam"));
-        DomesticHelpRequest.conditions.put("dhrSpouseNationality",
-            new EqualityChecker("OutsideEuropeanUnion"));
-        DomesticHelpRequest.conditions.put("dhrIsSpouseRetired", new EqualityChecker("true"));
-        DomesticHelpRequest.conditions.put("dhrSpousePrincipalPensionPlan",
-            new EqualityChecker("Other"));
-        DomesticHelpRequest.conditions.put("dhrCurrentDwellingKind",
-            new EqualityChecker(DhrDwellingKindType.PLACE_OF_RESIDENCE.name()));
+        
+        // kept them for client side JS validation script
         DomesticHelpRequest.conditions.put("dhrPreviousDwelling.dhrPreviousDwellingKind",
             new EqualityChecker(DhrDwellingKindType.PLACE_OF_RESIDENCE.name()));
         DomesticHelpRequest.conditions.put("dhrNotRealAsset.dhrNotRealAssetKind",
             new EqualityChecker(DhrAssetKindType.REAL_ESTATE.name()));
+        DomesticHelpRequest.conditions.put("dhrRequester.dhrRequesterNationality",
+                new EqualityChecker(NationalityType.OUTSIDE_EUROPEAN_UNION.name()));
+        DomesticHelpRequest.conditions.put("dhrRequesterGuardian.dhrRequesterHaveGuardian",
+                new EqualityChecker("true"));
+        DomesticHelpRequest.conditions.put("dhrSpouse.dhrSpouseTitle",
+                new EqualityChecker(TitleType.MADAM.name()));
+        DomesticHelpRequest.conditions.put("dhrSpouse.dhrSpouseNationality",
+                new EqualityChecker(NationalityType.OUTSIDE_EUROPEAN_UNION.name()));
+        DomesticHelpRequest.conditions.put("dhrSpouseStatus.dhrIsSpouseRetired",
+                new EqualityChecker("true"));
+        DomesticHelpRequest.conditions.put("dhrSpouseStatus.dhrSpousePrincipalPensionPlan",
+                new EqualityChecker(DhrPrincipalPensionPlanType.OTHER.name()));
+        DomesticHelpRequest.conditions.put("dhrCurrentDwelling.dhrCurrentDwellingKind",
+                new EqualityChecker(DhrDwellingKindType.PLACE_OF_RESIDENCE.name()));
+        DomesticHelpRequest.conditions.put("dhrFamilyReferent.dhrHaveFamilyReferent",
+                new EqualityChecker("true"));
+        DomesticHelpRequest.conditions.put("dhrRequesterPensionPlan.dhrPrincipalPensionPlan",
+                new EqualityChecker(DhrPrincipalPensionPlanType.OTHER.name()));
+
+        // added for server side vaidation
+        DomesticHelpRequest.conditions.put("dhrPreviousDwellingType.dhrPreviousDwellingKind",
+                new EqualityChecker(DhrDwellingKindType.PLACE_OF_RESIDENCE.name()));
+        DomesticHelpRequest.conditions.put("dhrNotRealAssetType.dhrNotRealAssetKind",
+                new EqualityChecker(DhrAssetKindType.REAL_ESTATE.name()));
+        DomesticHelpRequest.conditions.put("dhrRequesterType.dhrRequesterNationality",
+                new EqualityChecker(NationalityType.OUTSIDE_EUROPEAN_UNION.name()));
+        DomesticHelpRequest.conditions.put("dhrRequesterGuardianType.dhrRequesterHaveGuardian",
+                new EqualityChecker("true"));
+        DomesticHelpRequest.conditions.put("dhrSpouseType.dhrSpouseTitle",
+                new EqualityChecker(TitleType.MADAM.name()));
+        DomesticHelpRequest.conditions.put("dhrSpouseType.dhrSpouseNationality",
+                new EqualityChecker(NationalityType.OUTSIDE_EUROPEAN_UNION.name()));
+        DomesticHelpRequest.conditions.put("dhrSpouseStatusType.dhrIsSpouseRetired",
+                new EqualityChecker("true"));
+        DomesticHelpRequest.conditions.put("dhrSpouseStatusType.dhrSpousePrincipalPensionPlan",
+                new EqualityChecker(DhrPrincipalPensionPlanType.OTHER.name()));
+        DomesticHelpRequest.conditions.put("dhrCurrentDwellingType.dhrCurrentDwellingKind",
+                new EqualityChecker(DhrDwellingKindType.PLACE_OF_RESIDENCE.name()));
+        DomesticHelpRequest.conditions.put("dhrFamilyReferentType.dhrHaveFamilyReferent",
+                new EqualityChecker("true"));
+        DomesticHelpRequest.conditions.put("dhrRequesterPensionPlanType.dhrPrincipalPensionPlan",
+                new EqualityChecker(DhrPrincipalPensionPlanType.OTHER.name()));
     }
 
     @Override

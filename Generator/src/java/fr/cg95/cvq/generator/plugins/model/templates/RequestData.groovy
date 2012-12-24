@@ -43,6 +43,10 @@
     @ManyToOne(fetch=FetchType.EAGER${element.tiedToRequest ? ', cascade=CascadeType.ALL)' : ")"}
     @JoinColumn(name="${sqlName}_id")
       """,
+      "many-to-one-local" : """
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name="${sqlName}_id")
+      """,
       "many-to-many" : """
     @ManyToMany(fetch=FetchType.EAGER${element.tiedToRequest ? ', cascade=CascadeType.ALL)' : ")"}
     @JoinTable(name="${wrapperSQLName}_${sqlName}",
@@ -62,7 +66,7 @@
     widgets["boolean"] = widgets["simple"]
     widgets["referential"] = widgets["many-to-one"]
     widgets["referentialList"] = widgets["many-to-many"]
-    widgets["complex"] = widgets["one-to-many"]
+    widgets["complex"] = widgets["many-to-one-local"]
     widgets["complexList"] = widgets["one-to-many"]
     def output = widgets[element.widget]
     if (output != null) print output
@@ -186,12 +190,14 @@ public class ${requestName}Data implements Serializable {
               if (listener != null) {
                 def trigger = request.getField(listener.condition.trigger.name)
                 def prefix = listener.listenAMultiTrigger() ? '\''+listener.condition.name+'=\'+' : ''
+                if (trigger != null) {
                 if ("LocalReferentialData".equals(trigger.modelClassName)) {
           %>
             "if (_this.${trigger.nameAsParam} == null || _this.${trigger.nameAsParam}.isEmpty()) return false; _this.${trigger.nameAsParam}.each { active &= <% if (RoleType.unfilled.equals(listener.role)) { %>!<% } %>_this.conditions['${trigger.nameAsParam}'].test(${!prefix.isEmpty() ? prefix : ''}it.name) };" +
                 <% } else { %>
             "active &= <% if (RoleType.unfilled.equals(listener.role)) { %>!<% } %>_this.conditions['${trigger.nameAsParam}'].test(${!prefix.isEmpty() ? prefix : ''}_this.${trigger.nameAsParam}.toString());" +
                 <% } %>
+              <% } %>
               <% } %>
             <% } %>
             "return active",

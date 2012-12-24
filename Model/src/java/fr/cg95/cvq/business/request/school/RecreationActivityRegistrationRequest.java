@@ -169,7 +169,7 @@ public class RecreationActivityRegistrationRequest extends Request implements Se
         }
       
         if (getRecreationCenter() != null)
-            recreationActivityRegistrationRequest.setRecreationCenter(RecreationCenter.modelToXml(getRecreationCenter()));
+            recreationActivityRegistrationRequest.setRecreationCenter(getRecreationCenter().modelToXml());
       
         if (getRulesAndRegulationsAcceptance() != null)
             recreationActivityRegistrationRequest.setRulesAndRegulationsAcceptance(getRulesAndRegulationsAcceptance().booleanValue());

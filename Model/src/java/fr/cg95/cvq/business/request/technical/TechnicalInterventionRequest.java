@@ -107,7 +107,7 @@ public class TechnicalInterventionRequest extends Request implements Serializabl
         technicalInterventionRequest.setInterventionDescription(getInterventionDescription());
       
         if (getInterventionPlace() != null)
-            technicalInterventionRequest.setInterventionPlace(Address.modelToXml(getInterventionPlace()));
+            technicalInterventionRequest.setInterventionPlace(getInterventionPlace().modelToXml());
       
         i = 0;
         if (getInterventionType() != null) {

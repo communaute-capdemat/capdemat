@@ -190,6 +190,7 @@ public class TechnicalInterventionRequestData implements Serializable {
             "if (_this.interventionType == null || _this.interventionType.isEmpty()) return false; _this.interventionType.each { active &= _this.conditions['interventionType'].test(it.name) };" +
                 
               
+              
             
             
             "return active",
@@ -205,6 +206,7 @@ public class TechnicalInterventionRequestData implements Serializable {
           
             "if (_this.interventionType == null || _this.interventionType.isEmpty()) return false; _this.interventionType.each { active &= _this.conditions['interventionType'].test(it.name) };" +
                 
+              
               
             
             

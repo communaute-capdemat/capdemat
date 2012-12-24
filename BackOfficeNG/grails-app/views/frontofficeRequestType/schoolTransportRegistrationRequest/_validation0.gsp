@@ -16,10 +16,10 @@
       <h4><g:message code="strr.property.ligne.label" /></h4>
       <dl>
         
-          <dt><g:message code="strr.property.idLigne.label" /></dt><dd>${rqt.idLigne?.toString()}</dd>
+          <dt><g:message code="strr.property.idLigne.label" /></dt><dd>${rqt.ligne?.idLigne?.toString()}</dd>
 
         
-          <dt><g:message code="strr.property.labelLigne.label" /></dt><dd>${rqt.labelLigne?.toString()}</dd>
+          <dt><g:message code="strr.property.labelLigne.label" /></dt><dd>${rqt.ligne?.labelLigne?.toString()}</dd>
 
         
       </dl>
@@ -29,10 +29,10 @@
       <h4><g:message code="strr.property.arret.label" /></h4>
       <dl>
         
-          <dt><g:message code="strr.property.idArret.label" /></dt><dd>${rqt.idArret?.toString()}</dd>
+          <dt><g:message code="strr.property.idArret.label" /></dt><dd>${rqt.arret?.idArret?.toString()}</dd>
 
         
-          <dt><g:message code="strr.property.labelArret.label" /></dt><dd>${rqt.labelArret?.toString()}</dd>
+          <dt><g:message code="strr.property.labelArret.label" /></dt><dd>${rqt.arret?.labelArret?.toString()}</dd>
 
         
       </dl>
@@ -87,16 +87,16 @@
       <h4><g:message code="strr.property.frereOuSoeurAutorise.label" /></h4>
       <dl>
         
-          <dt><g:message code="strr.property.frereOuSoeurNom.label" /></dt><dd>${rqt.frereOuSoeurNom?.toString()}</dd>
+          <dt><g:message code="strr.property.frereOuSoeurNom.label" /></dt><dd>${rqt.frereOuSoeurAutorise?.frereOuSoeurNom?.toString()}</dd>
 
         
-          <dt><g:message code="strr.property.frereOuSoeurPrenom.label" /></dt><dd>${rqt.frereOuSoeurPrenom?.toString()}</dd>
+          <dt><g:message code="strr.property.frereOuSoeurPrenom.label" /></dt><dd>${rqt.frereOuSoeurAutorise?.frereOuSoeurPrenom?.toString()}</dd>
 
         
-          <dt><g:message code="strr.property.frereOuSoeurEcole.label" /></dt><dd>${rqt.frereOuSoeurEcole?.toString()}</dd>
+          <dt><g:message code="strr.property.frereOuSoeurEcole.label" /></dt><dd>${rqt.frereOuSoeurAutorise?.frereOuSoeurEcole?.toString()}</dd>
 
         
-          <dt><g:message code="strr.property.frereOuSoeurClasse.label" /></dt><dd>${rqt.frereOuSoeurClasse?.toString()}</dd>
+          <dt><g:message code="strr.property.frereOuSoeurClasse.label" /></dt><dd>${rqt.frereOuSoeurAutorise?.frereOuSoeurClasse?.toString()}</dd>
 
         
       </dl>

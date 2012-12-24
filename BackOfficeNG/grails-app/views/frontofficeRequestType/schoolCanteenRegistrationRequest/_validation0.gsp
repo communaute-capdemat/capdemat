@@ -24,7 +24,7 @@
         <dt><g:message code="scrr.property.foodDiet.label" /></dt>
           <dd>
           <g:render template="/frontofficeRequestType/widget/localReferentialDataSummary" 
-                    model="['javaName':'foodDiet', 'lrEntries': lrTypes.foodDiet.entries, 'depth':0]" />
+                    model="['wrapper':rqt, 'javaName':'foodDiet', 'lrEntries': lrTypes.foodDiet.entries, 'depth':0]" />
           </dd>
           
 
@@ -36,7 +36,7 @@
         <dt><g:message code="scrr.property.canteenAttendingDays.label" /></dt>
           <dd>
           <g:render template="/frontofficeRequestType/widget/localReferentialDataSummary" 
-                    model="['javaName':'canteenAttendingDays', 'lrEntries': lrTypes.canteenAttendingDays.entries, 'depth':0]" />
+                    model="['wrapper':rqt, 'javaName':'canteenAttendingDays', 'lrEntries': lrTypes.canteenAttendingDays.entries, 'depth':0]" />
           </dd>
           
 

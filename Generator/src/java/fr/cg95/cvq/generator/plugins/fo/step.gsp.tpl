@@ -110,7 +110,9 @@
             """
             <g:set var="${element.javaFieldName}Index" value="\${0}" scope="flash" />
             <g:render template="/frontofficeRequestType/widget/localReferentialData" 
-                      model="['javaName':'${element.javaFieldName}', 'i18nPrefixCode':'${element.i18nPrefixCode}', 'htmlClass':'${element.htmlClass.replace('validate-localReferentialData','')}', 
+                      model="['wrapper':${valuePrefix.replace('?','')}, 'wrapperJavaName':'${namePrefix.replace('.','')}',
+                              'javaName':'${element.javaFieldName}', 'i18nPrefixCode':'${element.i18nPrefixCode}',
+                              'htmlClass':'${element.htmlClass.replace('validate-localReferentialData','')}', 
                               'lrEntries': lrTypes.${element.javaFieldName}.entries, 'depth':0]" />
             """
          ,'date' :
@@ -381,7 +383,7 @@
     <fieldset class="${element.listenerConditionsClass}">
     <legend><g:message code="${element.i18nPrefixCode}.label" /></legend>
     <% element.elements.each { subElement -> %>
-      <% displayWidget(subElement, 'rqt', '') %>
+      <% displayWidget(subElement, 'rqt.' + element.javaFieldName + '?', element.javaFieldName + '.') %>
     <% } %>
     </fieldset>
   <% } else { %>

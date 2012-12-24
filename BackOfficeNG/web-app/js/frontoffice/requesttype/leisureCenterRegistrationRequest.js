@@ -83,7 +83,7 @@ zenexity.capdemat.tools.namespace("zenexity.capdemat.fong.requesttype");
       },
 
       initCenters: function() {
-        var centers = createSelect('idCentreLoisirs');
+        var centers = createSelect('centresLoisirs.idCentreLoisirs');
 
         var childId = yud.get('subjectId').value;
         var requestId = yud.get("stepForm").id.value;
@@ -98,7 +98,7 @@ zenexity.capdemat.tools.namespace("zenexity.capdemat.fong.requesttype");
       },
 
       initLines: function() {
-        var lines = createSelect('idLigne');
+        var lines = createSelect('transports.idLigne');
         yue.on('idLigne', 'change', zcfr.LeisureCenterRegistrationRequest.initStops);
         var childId = yud.get('subjectId').value;
         var requestId = yud.get("stepForm").id.value;
@@ -113,11 +113,11 @@ zenexity.capdemat.tools.namespace("zenexity.capdemat.fong.requesttype");
       },
 
       initStops: function() {
-        var stops = createSelect('idArret');
+        var stops = createSelect('transports.idArret');
 
         var childId = yud.get('subjectId').value;
         var requestId = yud.get("stepForm").id.value;
-        var lineId = yud.get('idLigne').value;
+        var lineId = yud.get('transports.idLigne').value;
         if (lineId !== '') {
           zct.doAjaxCall(zenexity.capdemat.contextPath + '/frontoffice/leisureCenterRegistration/stops/?requestId=' + requestId + '&childId=' + childId
                   + '&lineId=' + lineId, null, function(o){

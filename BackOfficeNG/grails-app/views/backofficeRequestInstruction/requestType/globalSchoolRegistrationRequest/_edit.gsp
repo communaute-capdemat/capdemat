@@ -54,9 +54,9 @@
               <h3><g:message code="gsrr.property.ecoleDerogation.label" /></h3>
               <dl class="required condition-estDerogation-filled">
                 
-                  <dt class="required">${message(code:'gsrr.property.idEcoleDerog.label')} * :</dt><dd id="idEcoleDerog" class="action-editField validate-string required-true i18n-gsrr.property.idEcoleDerog" ><span>${rqt?.idEcoleDerog}</span></dd>
+                  <dt class="required">${message(code:'gsrr.property.idEcoleDerog.label')} * :</dt><dd id="idEcoleDerog" class="action-editField validate-string required-true i18n-gsrr.property.idEcoleDerog" ><span>${rqt.ecoleDerogation?.idEcoleDerog}</span></dd>
                 
-                  <dt class="required">${message(code:'gsrr.property.labelEcoleDerog.label')} * :</dt><dd id="labelEcoleDerog" class="action-editField validate-string required-true i18n-gsrr.property.labelEcoleDerog" ><span>${rqt?.labelEcoleDerog}</span></dd>
+                  <dt class="required">${message(code:'gsrr.property.labelEcoleDerog.label')} * :</dt><dd id="labelEcoleDerog" class="action-editField validate-string required-true i18n-gsrr.property.labelEcoleDerog" ><span>${rqt.ecoleDerogation?.labelEcoleDerog}</span></dd>
                 
               </dl>
               
@@ -66,8 +66,7 @@
                 <dt class="required condition-estDerogation-filled">${message(code:'gsrr.property.motifsDerogationEcole.label')} * :</dt><dd id="motifsDerogationEcole" class="action-editField validate-localReferentialData required-true i18n-gsrr.property.motifsDerogationEcole data-localReferentialData" >
            <g:render template="/backofficeRequestInstruction/widget/localReferentialDataStatic" 
                      model="['javaName':'motifsDerogationEcole', 'lrEntries': lrTypes.motifsDerogationEcole?.entries, 
-                             'rqt':rqt, 'isMultiple':lrTypes.motifsDerogationEcole?.isMultiple(), 'depth':0]" />
- 
+                             'wrapper':rqt, 'isMultiple':lrTypes.motifsDerogationEcole?.isMultiple(), 'depth':0]" />
           </dd>
               </dl>
               
@@ -88,9 +87,9 @@
               <h3><g:message code="gsrr.property.ecoleSecteur.label" /></h3>
               <dl class="required condition-estDerogation-unfilled">
                 
-                  <dt class="required">${message(code:'gsrr.property.idEcoleSecteur.label')} * :</dt><dd id="idEcoleSecteur" class="action-editField validate-string required-true i18n-gsrr.property.idEcoleSecteur" ><span>${rqt?.idEcoleSecteur}</span></dd>
+                  <dt class="required">${message(code:'gsrr.property.idEcoleSecteur.label')} * :</dt><dd id="idEcoleSecteur" class="action-editField validate-string required-true i18n-gsrr.property.idEcoleSecteur" ><span>${rqt.ecoleSecteur?.idEcoleSecteur}</span></dd>
                 
-                  <dt class="required">${message(code:'gsrr.property.labelEcoleSecteur.label')} * :</dt><dd id="labelEcoleSecteur" class="action-editField validate-string required-true i18n-gsrr.property.labelEcoleSecteur" ><span>${rqt?.labelEcoleSecteur}</span></dd>
+                  <dt class="required">${message(code:'gsrr.property.labelEcoleSecteur.label')} * :</dt><dd id="labelEcoleSecteur" class="action-editField validate-string required-true i18n-gsrr.property.labelEcoleSecteur" ><span>${rqt.ecoleSecteur?.labelEcoleSecteur}</span></dd>
                 
               </dl>
               

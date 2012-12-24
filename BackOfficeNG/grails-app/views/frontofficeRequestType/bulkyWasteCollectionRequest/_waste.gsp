@@ -5,7 +5,9 @@
     <label class="required"><g:message code="bwcr.property.bulkyWasteType.label" /> *  <span><g:message code="bwcr.property.bulkyWasteType.help" /></span></label>
             <g:set var="bulkyWasteTypeIndex" value="${0}" scope="flash" />
             <g:render template="/frontofficeRequestType/widget/localReferentialData" 
-                      model="['javaName':'bulkyWasteType', 'i18nPrefixCode':'bwcr.property.bulkyWasteType', 'htmlClass':'required  ', 
+                      model="['wrapper':rqt, 'wrapperJavaName':'',
+                              'javaName':'bulkyWasteType', 'i18nPrefixCode':'bwcr.property.bulkyWasteType',
+                              'htmlClass':'required  ', 
                               'lrEntries': lrTypes.bulkyWasteType.entries, 'depth':0]" />
             
 

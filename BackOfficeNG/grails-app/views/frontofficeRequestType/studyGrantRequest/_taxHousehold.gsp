@@ -21,7 +21,9 @@
     <label class="required"><g:message code="sgr.property.taxHouseholdCity.label" /> *  <span><g:message code="sgr.property.taxHouseholdCity.help" /></span></label>
             <g:set var="taxHouseholdCityIndex" value="${0}" scope="flash" />
             <g:render template="/frontofficeRequestType/widget/localReferentialData" 
-                      model="['javaName':'taxHouseholdCity', 'i18nPrefixCode':'sgr.property.taxHouseholdCity', 'htmlClass':'required condition-isTaxHouseholdCityOther-trigger  ', 
+                      model="['wrapper':rqt, 'wrapperJavaName':'',
+                              'javaName':'taxHouseholdCity', 'i18nPrefixCode':'sgr.property.taxHouseholdCity',
+                              'htmlClass':'required condition-isTaxHouseholdCityOther-trigger  ', 
                               'lrEntries': lrTypes.taxHouseholdCity.entries, 'depth':0]" />
             
 
@@ -38,7 +40,7 @@
   
     <label for="taxHouseholdIncome" class="required"><g:message code="sgr.property.taxHouseholdIncome.label" /> *  <span><g:message code="sgr.property.taxHouseholdIncome.help" /></span></label>
             <input type="text" id="taxHouseholdIncome" name="taxHouseholdIncome" value="${formatNumber(number: rqt.taxHouseholdIncome, type: 'number')}"
-                    class="required  validate-regex ${rqt.stepStates['taxHousehold'].invalidFields.contains('taxHouseholdIncome') ? 'validation-failed' : ''}" title="<g:message code="sgr.property.taxHouseholdIncome.validationError" />" regex="^\d+(?:\,\d{1,2})?$"  />
+                    class="required  validate-regex ${rqt.stepStates['taxHousehold'].invalidFields.contains('taxHouseholdIncome') ? 'validation-failed' : ''}" title="<g:message code="sgr.property.taxHouseholdIncome.validationError" />" regex="^[\d+\s?]+(?:(\.|,)\d{1,2})?$"  />
             
 
   

@@ -113,10 +113,9 @@ public class HolidayCampRegistrationRequest extends Request implements Serializa
         
         if (getAcceptationReglementInterieur() != null)
             holidayCampRegistrationRequest.setAcceptationReglementInterieur(getAcceptationReglementInterieur().booleanValue());
-        CentreSejoursType centreSejoursTypeCentreSejours = holidayCampRegistrationRequest.addNewCentreSejours();
-        centreSejoursTypeCentreSejours.setIdCentreSejours(getIdCentreSejours());
       
-        centreSejoursTypeCentreSejours.setLabelCentreSejours(getLabelCentreSejours());
+        if (getCentreSejours() != null)
+            holidayCampRegistrationRequest.setCentreSejours(getCentreSejours().modelToXml());
       
         return holidayCampRegistrationRequestDoc;
     }
@@ -136,9 +135,8 @@ public class HolidayCampRegistrationRequest extends Request implements Serializa
         
         holidayCampRegistrationRequest.setAcceptationReglementInterieur(Boolean.valueOf(holidayCampRegistrationRequestXml.getAcceptationReglementInterieur()));
       
-        holidayCampRegistrationRequest.setIdCentreSejours(holidayCampRegistrationRequestXml.getCentreSejours().getIdCentreSejours());
-      
-        holidayCampRegistrationRequest.setLabelCentreSejours(holidayCampRegistrationRequestXml.getCentreSejours().getLabelCentreSejours());
+        if (holidayCampRegistrationRequestXml.getCentreSejours() != null)
+            holidayCampRegistrationRequest.setCentreSejours(CentreSejours.xmlToModel(holidayCampRegistrationRequestXml.getCentreSejours()));
       
         return holidayCampRegistrationRequest;
     }
@@ -189,22 +187,13 @@ public class HolidayCampRegistrationRequest extends Request implements Serializa
         return holidayCampRegistrationRequestData.getAcceptationReglementInterieur();
     }
   
-    public final void setIdCentreSejours(final String idCentreSejours) {
-        holidayCampRegistrationRequestData.setIdCentreSejours(idCentreSejours);
+    public final void setCentreSejours(final fr.cg95.cvq.business.request.school.CentreSejours centreSejours) {
+        holidayCampRegistrationRequestData.setCentreSejours(centreSejours);
     }
 
     
-    public final String getIdCentreSejours() {
-        return holidayCampRegistrationRequestData.getIdCentreSejours();
-    }
-  
-    public final void setLabelCentreSejours(final String labelCentreSejours) {
-        holidayCampRegistrationRequestData.setLabelCentreSejours(labelCentreSejours);
-    }
-
-    
-    public final String getLabelCentreSejours() {
-        return holidayCampRegistrationRequestData.getLabelCentreSejours();
+    public final fr.cg95.cvq.business.request.school.CentreSejours getCentreSejours() {
+        return holidayCampRegistrationRequestData.getCentreSejours();
     }
   
 }

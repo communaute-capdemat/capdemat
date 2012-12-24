@@ -73,13 +73,13 @@
       <h4><g:message code="serrr.property.lieuNaissance.label" /></h4>
       <dl>
         
-          <dt><g:message code="serrr.property.villeNaissanceCodePostal.label" /></dt><dd>${rqt.villeNaissanceCodePostal?.toString()}</dd>
+          <dt><g:message code="serrr.property.villeNaissanceCodePostal.label" /></dt><dd>${rqt.lieuNaissance?.villeNaissanceCodePostal?.toString()}</dd>
 
         
           <dt><g:message code="serrr.property.lieuNaissanceDepartement.label" /></dt>
           <dd>
-            <g:if test="${rqt.lieuNaissanceDepartement}">
-              <g:capdematEnumToField var="${rqt.lieuNaissanceDepartement}" i18nKeyPrefix="serrr.property.lieuNaissanceDepartement" />
+            <g:if test="${rqt.lieuNaissance?.lieuNaissanceDepartement}">
+              <g:capdematEnumToField var="${rqt.lieuNaissance?.lieuNaissanceDepartement}" i18nKeyPrefix="serrr.property.lieuNaissanceDepartement" />
             </g:if>
           </dd>
           
@@ -87,8 +87,8 @@
         
           <dt><g:message code="serrr.property.lieuNaissancePays.label" /></dt>
           <dd>
-            <g:if test="${rqt.lieuNaissancePays}">
-              <g:capdematEnumToField var="${rqt.lieuNaissancePays}" i18nKeyPrefix="serrr.property.lieuNaissancePays" />
+            <g:if test="${rqt.lieuNaissance?.lieuNaissancePays}">
+              <g:capdematEnumToField var="${rqt.lieuNaissance?.lieuNaissancePays}" i18nKeyPrefix="serrr.property.lieuNaissancePays" />
             </g:if>
           </dd>
           
@@ -116,8 +116,8 @@
         
           <dt><g:message code="serrr.property.precisionNationalite.label" /></dt>
           <dd>
-            <g:if test="${rqt.precisionNationalite}">
-              <g:capdematEnumToField var="${rqt.precisionNationalite}" i18nKeyPrefix="serrr.property.precisionNationalite" />
+            <g:if test="${rqt.fieldsetEstUnionEuropeenne?.precisionNationalite}">
+              <g:capdematEnumToField var="${rqt.fieldsetEstUnionEuropeenne?.precisionNationalite}" i18nKeyPrefix="serrr.property.precisionNationalite" />
             </g:if>
           </dd>
           
@@ -125,8 +125,8 @@
         
           <dt><g:message code="serrr.property.typeElection.label" /></dt>
           <dd>
-            <g:if test="${rqt.typeElection}">
-              <g:capdematEnumToField var="${rqt.typeElection}" i18nKeyPrefix="serrr.property.typeElection" />
+            <g:if test="${rqt.fieldsetEstUnionEuropeenne?.typeElection}">
+              <g:capdematEnumToField var="${rqt.fieldsetEstUnionEuropeenne?.typeElection}" i18nKeyPrefix="serrr.property.typeElection" />
             </g:if>
           </dd>
           
@@ -134,17 +134,17 @@
         
           <dt><g:message code="serrr.property.paysPrecedent.label" /></dt>
           <dd>
-            <g:if test="${rqt.paysPrecedent}">
-              <g:capdematEnumToField var="${rqt.paysPrecedent}" i18nKeyPrefix="serrr.property.paysPrecedent" />
+            <g:if test="${rqt.fieldsetEstUnionEuropeenne?.paysPrecedent}">
+              <g:capdematEnumToField var="${rqt.fieldsetEstUnionEuropeenne?.paysPrecedent}" i18nKeyPrefix="serrr.property.paysPrecedent" />
             </g:if>
           </dd>
           
 
         
-          <dt><g:message code="serrr.property.subdivisionAdministrativePrecedente.label" /></dt><dd>${rqt.subdivisionAdministrativePrecedente?.toString()}</dd>
+          <dt><g:message code="serrr.property.subdivisionAdministrativePrecedente.label" /></dt><dd>${rqt.fieldsetEstUnionEuropeenne?.subdivisionAdministrativePrecedente?.toString()}</dd>
 
         
-          <dt><g:message code="serrr.property.communeOuLocalitePrecedente.label" /></dt><dd>${rqt.communeOuLocalitePrecedente?.toString()}</dd>
+          <dt><g:message code="serrr.property.communeOuLocalitePrecedente.label" /></dt><dd>${rqt.fieldsetEstUnionEuropeenne?.communeOuLocalitePrecedente?.toString()}</dd>
 
         
       </dl>
@@ -172,13 +172,13 @@
       <h4><g:message code="serrr.property.precedentLieuInscription.label" /></h4>
       <dl>
         
-          <dt><g:message code="serrr.property.ancienneCommune.label" /></dt><dd>${rqt.ancienneCommune?.toString()}</dd>
+          <dt><g:message code="serrr.property.ancienneCommune.label" /></dt><dd>${rqt.precedentLieuInscription?.ancienneCommune?.toString()}</dd>
 
         
           <dt><g:message code="serrr.property.departementAncienneCommune.label" /></dt>
           <dd>
-            <g:if test="${rqt.departementAncienneCommune}">
-              <g:capdematEnumToField var="${rqt.departementAncienneCommune}" i18nKeyPrefix="serrr.property.departementAncienneCommune" />
+            <g:if test="${rqt.precedentLieuInscription?.departementAncienneCommune}">
+              <g:capdematEnumToField var="${rqt.precedentLieuInscription?.departementAncienneCommune}" i18nKeyPrefix="serrr.property.departementAncienneCommune" />
             </g:if>
           </dd>
           

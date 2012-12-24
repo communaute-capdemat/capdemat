@@ -38,12 +38,12 @@ public class RecreationCenter implements Serializable {
     public RecreationCenter() {
     }
 
-    public static RecreationCenterType modelToXml(RecreationCenter recreationCenter) {
+    public RecreationCenterType modelToXml() {
 
         RecreationCenterType recreationCenterType =
             RecreationCenterType.Factory.newInstance();
-        recreationCenterType.setId(recreationCenter.getId().longValue());
-        recreationCenterType.setName(recreationCenter.getName());
+        recreationCenterType.setId(getId().longValue());
+        recreationCenterType.setName(getName());
 
         return recreationCenterType;
     }

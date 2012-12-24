@@ -323,6 +323,7 @@ public class AlignmentNumberingConnectionRequestData implements Serializable {
             "active &= !_this.conditions['isAccountAddress'].test(_this.isAccountAddress.toString());" +
                 
               
+              
             
             
             "return active",
@@ -338,6 +339,7 @@ public class AlignmentNumberingConnectionRequestData implements Serializable {
           
             "active &= !_this.conditions['isAccountAddress'].test(_this.isAccountAddress.toString());" +
                 
+              
               
             
             
@@ -370,6 +372,7 @@ public class AlignmentNumberingConnectionRequestData implements Serializable {
             "active &= !_this.conditions['requesterQuality'].test(_this.requesterQuality.toString());" +
                 
               
+              
             
             
             "return active",
@@ -385,6 +388,7 @@ public class AlignmentNumberingConnectionRequestData implements Serializable {
           
             "active &= !_this.conditions['requesterQuality'].test(_this.requesterQuality.toString());" +
                 
+              
               
             
             
@@ -417,6 +421,7 @@ public class AlignmentNumberingConnectionRequestData implements Serializable {
             "active &= !_this.conditions['requesterQuality'].test(_this.requesterQuality.toString());" +
                 
               
+              
             
             
             "return active",
@@ -432,6 +437,7 @@ public class AlignmentNumberingConnectionRequestData implements Serializable {
           
             "active &= !_this.conditions['requesterQuality'].test(_this.requesterQuality.toString());" +
                 
+              
               
             
             
@@ -465,6 +471,7 @@ public class AlignmentNumberingConnectionRequestData implements Serializable {
             "active &= !_this.conditions['requesterQuality'].test(_this.requesterQuality.toString());" +
                 
               
+              
             
             
             "return active",
@@ -481,6 +488,7 @@ public class AlignmentNumberingConnectionRequestData implements Serializable {
             "active &= !_this.conditions['requesterQuality'].test(_this.requesterQuality.toString());" +
                 
               
+              
             
             
             "return active",
@@ -496,6 +504,7 @@ public class AlignmentNumberingConnectionRequestData implements Serializable {
           
             "active &= !_this.conditions['requesterQuality'].test(_this.requesterQuality.toString());" +
                 
+              
               
             
             

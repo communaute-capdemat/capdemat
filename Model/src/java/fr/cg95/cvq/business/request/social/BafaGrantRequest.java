@@ -141,7 +141,7 @@ public class BafaGrantRequest extends Request implements Serializable {
             bafaGrantRequest.setAccountHolderTitle(fr.cg95.cvq.xml.common.TitleType.Enum.forString(getAccountHolderTitle().getLegacyLabel()));
       
         if (getBankAccount() != null)
-            bafaGrantRequest.setBankAccount(BankAccount.modelToXml(getBankAccount()));
+            bafaGrantRequest.setBankAccount(getBankAccount().modelToXml());
       
         bafaGrantRequest.setEdemandeId(getEdemandeId());
       
@@ -152,7 +152,7 @@ public class BafaGrantRequest extends Request implements Serializable {
         }
       
         if (getInternshipInstituteAddress() != null)
-            bafaGrantRequest.setInternshipInstituteAddress(Address.modelToXml(getInternshipInstituteAddress()));
+            bafaGrantRequest.setInternshipInstituteAddress(getInternshipInstituteAddress().modelToXml());
       
         bafaGrantRequest.setInternshipInstituteName(getInternshipInstituteName());
       
@@ -166,7 +166,7 @@ public class BafaGrantRequest extends Request implements Serializable {
             bafaGrantRequest.setIsSubjectAccountHolder(getIsSubjectAccountHolder().booleanValue());
       
         if (getSubjectAddress() != null)
-            bafaGrantRequest.setSubjectAddress(Address.modelToXml(getSubjectAddress()));
+            bafaGrantRequest.setSubjectAddress(getSubjectAddress().modelToXml());
       
         bafaGrantRequest.setSubjectBirthCity(getSubjectBirthCity());
       

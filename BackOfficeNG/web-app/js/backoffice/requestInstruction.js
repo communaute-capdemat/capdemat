@@ -252,7 +252,7 @@ zenexity.capdemat.tools.namespace('zenexity.capdemat.bong.request');
       else if (isSubmit && yud.hasClass(ddEl, 'validate-localReferentialData')) {
         zct.doAjaxCall(['/localReferentialData/',
             '?requestId=', zenexity.capdemat.bong.requestId,
-            '&javaName=', formEl.id.replace('_Form','')].join(''), [], function(o){
+            '&bindPathName=', formEl.id.replace('_Form','')].join(''), [], function(o){
           zct.html(propertyWrapperEl,o.responseText);
         });
       }

@@ -45,8 +45,6 @@ public class StandardElectoralRollRegistrationRequestData implements Serializabl
       
         situation = fr.cg95.cvq.business.request.election.SerrrSituationType.PREMIERE_INSCRIPTION;
       
-        typeElection = fr.cg95.cvq.business.request.election.SerrrTypeElectionType.ELECTION_MUNICIPALE;
-      
     }
 
     @Override
@@ -61,28 +59,7 @@ public class StandardElectoralRollRegistrationRequestData implements Serializabl
         
           
             
-        result.setAncienneCommune(ancienneCommune);
-      
-          
-        
-          
-            
-        result.setCommuneOuLocalitePrecedente(communeOuLocalitePrecedente);
-      
-          
-        
-          
-            
         result.setDateNaissance(dateNaissance);
-      
-          
-        
-          
-            
-        if (departementAncienneCommune != null)
-            result.setDepartementAncienneCommune(departementAncienneCommune);
-        else
-            result.setDepartementAncienneCommune(fr.cg95.cvq.business.users.InseeDepartementCodeType.getDefaultInseeDepartementCodeType());
       
           
         
@@ -94,19 +71,15 @@ public class StandardElectoralRollRegistrationRequestData implements Serializabl
         
           
             
-        if (lieuNaissanceDepartement != null)
-            result.setLieuNaissanceDepartement(lieuNaissanceDepartement);
-        else
-            result.setLieuNaissanceDepartement(fr.cg95.cvq.business.users.InseeDepartementCodeType.getDefaultInseeDepartementCodeType());
+        if (fieldsetEstUnionEuropeenne != null)
+            result.setFieldsetEstUnionEuropeenne(fieldsetEstUnionEuropeenne.clone());
       
           
         
           
             
-        if (lieuNaissancePays != null)
-            result.setLieuNaissancePays(lieuNaissancePays);
-        else
-            result.setLieuNaissancePays(fr.cg95.cvq.business.users.CountryType.getDefaultCountryType());
+        if (lieuNaissance != null)
+            result.setLieuNaissance(lieuNaissance.clone());
       
           
         
@@ -133,15 +106,6 @@ public class StandardElectoralRollRegistrationRequestData implements Serializabl
         
           
             
-        if (paysPrecedent != null)
-            result.setPaysPrecedent(paysPrecedent);
-        else
-            result.setPaysPrecedent(fr.cg95.cvq.business.users.CountryType.getDefaultCountryType());
-      
-          
-        
-          
-            
         if (paysRadiation != null)
             result.setPaysRadiation(paysRadiation);
         else
@@ -151,10 +115,8 @@ public class StandardElectoralRollRegistrationRequestData implements Serializabl
         
           
             
-        if (precisionNationalite != null)
-            result.setPrecisionNationalite(precisionNationalite);
-        else
-            result.setPrecisionNationalite(fr.cg95.cvq.business.request.election.SerrrPrecisionNationaliteType.getDefaultSerrrPrecisionNationaliteType());
+        if (precedentLieuInscription != null)
+            result.setPrecedentLieuInscription(precedentLieuInscription.clone());
       
           
         
@@ -184,22 +146,7 @@ public class StandardElectoralRollRegistrationRequestData implements Serializabl
         
           
             
-        result.setSubdivisionAdministrativePrecedente(subdivisionAdministrativePrecedente);
-      
-          
-        
-          
-            
         result.setTroisiemePrenom(troisiemePrenom);
-      
-          
-        
-          
-            
-        if (typeElection != null)
-            result.setTypeElection(typeElection);
-        else
-            result.setTypeElection(fr.cg95.cvq.business.request.election.SerrrTypeElectionType.getDefaultSerrrTypeElectionType());
       
           
         
@@ -209,12 +156,6 @@ public class StandardElectoralRollRegistrationRequestData implements Serializabl
             result.setTypeInscription(typeInscription);
         else
             result.setTypeInscription(fr.cg95.cvq.business.request.election.SerrrTypeInscriptionType.getDefaultSerrrTypeInscriptionType());
-      
-          
-        
-          
-            
-        result.setVilleNaissanceCodePostal(villeNaissanceCodePostal);
       
           
         
@@ -247,105 +188,6 @@ public class StandardElectoralRollRegistrationRequestData implements Serializabl
     }
   
     
-      @MaxLength(
-        
-          value = 32,
-        
-        
-          when = "groovy:def active = true;" +
-          
-            
-            "active &= _this.conditions['situation'].test(_this.situation.toString());" +
-                
-              
-            
-            "return active",
-        
-        profiles = {"situation"},
-        message = "ancienneCommune"
-      )
-    
-      @NotNull(
-        
-        
-          when = "groovy:def active = true;" +
-          
-            
-            "active &= _this.conditions['situation'].test(_this.situation.toString());" +
-                
-              
-            
-            "return active",
-        
-        profiles = {"situation"},
-        message = "ancienneCommune"
-      )
-    
-      @NotBlank(
-        
-        
-          when = "groovy:def active = true;" +
-          
-            
-            "active &= _this.conditions['situation'].test(_this.situation.toString());" +
-                
-              
-            
-            "return active",
-        
-        profiles = {"situation"},
-        message = "ancienneCommune"
-      )
-    
-    private String ancienneCommune;
-
-    public void setAncienneCommune(final String ancienneCommune) {
-        this.ancienneCommune = ancienneCommune;
-    }
-
- 
-    @Column(name="ancienne_commune" , length=32 )
-      
-    public String getAncienneCommune() {
-        return this.ancienneCommune;
-    }
-  
-    
-      @MaxLength(
-        
-          value = 32,
-        
-        
-          when = "groovy:def active = true;" +
-          
-            "active &= _this.conditions['typeElection'].test(_this.typeElection.toString());" +
-                
-              
-            
-            "active &= _this.conditions['nationalite'].test(_this.nationalite.toString());" +
-                
-              
-            
-            "return active",
-        
-        profiles = {"inscription"},
-        message = "communeOuLocalitePrecedente"
-      )
-    
-    private String communeOuLocalitePrecedente;
-
-    public void setCommuneOuLocalitePrecedente(final String communeOuLocalitePrecedente) {
-        this.communeOuLocalitePrecedente = communeOuLocalitePrecedente;
-    }
-
- 
-    @Column(name="commune_ou_localite_precedente" , length=32 )
-      
-    public String getCommuneOuLocalitePrecedente() {
-        return this.communeOuLocalitePrecedente;
-    }
-  
-    
       @NotNull(
         
         
@@ -364,37 +206,6 @@ public class StandardElectoralRollRegistrationRequestData implements Serializabl
       
     public java.util.Date getDateNaissance() {
         return this.dateNaissance;
-    }
-  
-    
-      @NotNull(
-        
-        
-          when = "groovy:def active = true;" +
-          
-            
-            "active &= _this.conditions['situation'].test(_this.situation.toString());" +
-                
-              
-            
-            "return active",
-        
-        profiles = {"situation"},
-        message = "departementAncienneCommune"
-      )
-    
-    private fr.cg95.cvq.business.users.InseeDepartementCodeType departementAncienneCommune;
-
-    public void setDepartementAncienneCommune(final fr.cg95.cvq.business.users.InseeDepartementCodeType departementAncienneCommune) {
-        this.departementAncienneCommune = departementAncienneCommune;
-    }
-
- 
-    @Enumerated(EnumType.STRING)
-    @Column(name="departement_ancienne_commune"  )
-      
-    public fr.cg95.cvq.business.users.InseeDepartementCodeType getDepartementAncienneCommune() {
-        return this.departementAncienneCommune;
     }
   
     
@@ -421,33 +232,81 @@ public class StandardElectoralRollRegistrationRequestData implements Serializabl
     }
   
     
-    private fr.cg95.cvq.business.users.InseeDepartementCodeType lieuNaissanceDepartement;
+      @NotNull(
+        
+        
+          when = "groovy:def active = true;" +
+          
+            "active &= _this.conditions['nationalite'].test(_this.nationalite.toString());" +
+                
+              
+              
+            
+            
+            "return active",
+        
+        profiles = {"inscription"},
+        message = "fieldsetEstUnionEuropeenne"
+      )
+    
+      @AssertValid(
+        
+        
+          when = "groovy:def active = true;" +
+          
+            "active &= _this.conditions['nationalite'].test(_this.nationalite.toString());" +
+                
+              
+              
+            
+            
+            "return active",
+        
+        profiles = {"inscription"},
+        message = "fieldsetEstUnionEuropeenne"
+      )
+    
+    private fr.cg95.cvq.business.request.election.SerrrFieldsetEstUnionEuropeenne fieldsetEstUnionEuropeenne;
 
-    public void setLieuNaissanceDepartement(final fr.cg95.cvq.business.users.InseeDepartementCodeType lieuNaissanceDepartement) {
-        this.lieuNaissanceDepartement = lieuNaissanceDepartement;
+    public void setFieldsetEstUnionEuropeenne(final fr.cg95.cvq.business.request.election.SerrrFieldsetEstUnionEuropeenne fieldsetEstUnionEuropeenne) {
+        this.fieldsetEstUnionEuropeenne = fieldsetEstUnionEuropeenne;
     }
 
  
-    @Enumerated(EnumType.STRING)
-    @Column(name="lieu_naissance_departement"  )
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name="fieldset_est_union_europeenne_id")
       
-    public fr.cg95.cvq.business.users.InseeDepartementCodeType getLieuNaissanceDepartement() {
-        return this.lieuNaissanceDepartement;
+    public fr.cg95.cvq.business.request.election.SerrrFieldsetEstUnionEuropeenne getFieldsetEstUnionEuropeenne() {
+        return this.fieldsetEstUnionEuropeenne;
     }
   
     
-    private fr.cg95.cvq.business.users.CountryType lieuNaissancePays;
+      @NotNull(
+        
+        
+        profiles = {"inscription"},
+        message = "lieuNaissance"
+      )
+    
+      @AssertValid(
+        
+        
+        profiles = {"inscription"},
+        message = "lieuNaissance"
+      )
+    
+    private fr.cg95.cvq.business.request.election.SerrrLieuNaissance lieuNaissance;
 
-    public void setLieuNaissancePays(final fr.cg95.cvq.business.users.CountryType lieuNaissancePays) {
-        this.lieuNaissancePays = lieuNaissancePays;
+    public void setLieuNaissance(final fr.cg95.cvq.business.request.election.SerrrLieuNaissance lieuNaissance) {
+        this.lieuNaissance = lieuNaissance;
     }
 
  
-    @Enumerated(EnumType.STRING)
-    @Column(name="lieu_naissance_pays"  )
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name="lieu_naissance_id")
       
-    public fr.cg95.cvq.business.users.CountryType getLieuNaissancePays() {
-        return this.lieuNaissancePays;
+    public fr.cg95.cvq.business.request.election.SerrrLieuNaissance getLieuNaissance() {
+        return this.lieuNaissance;
     }
   
     
@@ -482,6 +341,7 @@ public class StandardElectoralRollRegistrationRequestData implements Serializabl
           
             "active &= _this.conditions['sexe'].test(_this.sexe.toString());" +
                 
+              
               
             
             
@@ -542,21 +402,6 @@ public class StandardElectoralRollRegistrationRequestData implements Serializabl
     }
   
     
-    private fr.cg95.cvq.business.users.CountryType paysPrecedent;
-
-    public void setPaysPrecedent(final fr.cg95.cvq.business.users.CountryType paysPrecedent) {
-        this.paysPrecedent = paysPrecedent;
-    }
-
- 
-    @Enumerated(EnumType.STRING)
-    @Column(name="pays_precedent"  )
-      
-    public fr.cg95.cvq.business.users.CountryType getPaysPrecedent() {
-        return this.paysPrecedent;
-    }
-  
-    
     private fr.cg95.cvq.business.users.CountryType paysRadiation;
 
     public void setPaysRadiation(final fr.cg95.cvq.business.users.CountryType paysRadiation) {
@@ -577,32 +422,47 @@ public class StandardElectoralRollRegistrationRequestData implements Serializabl
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['nationalite'].test(_this.nationalite.toString());" +
+            "active &= _this.conditions['situation'].test(_this.situation.toString());" +
                 
+              
               
             
-            "active &= _this.conditions['nationalite'].test(_this.nationalite.toString());" +
-                
-              
             
             "return active",
         
-        profiles = {"inscription"},
-        message = "precisionNationalite"
+        profiles = {"situation"},
+        message = "precedentLieuInscription"
       )
     
-    private fr.cg95.cvq.business.request.election.SerrrPrecisionNationaliteType precisionNationalite;
+      @AssertValid(
+        
+        
+          when = "groovy:def active = true;" +
+          
+            "active &= _this.conditions['situation'].test(_this.situation.toString());" +
+                
+              
+              
+            
+            
+            "return active",
+        
+        profiles = {"situation"},
+        message = "precedentLieuInscription"
+      )
+    
+    private fr.cg95.cvq.business.request.election.SerrrPrecedentLieuInscription precedentLieuInscription;
 
-    public void setPrecisionNationalite(final fr.cg95.cvq.business.request.election.SerrrPrecisionNationaliteType precisionNationalite) {
-        this.precisionNationalite = precisionNationalite;
+    public void setPrecedentLieuInscription(final fr.cg95.cvq.business.request.election.SerrrPrecedentLieuInscription precedentLieuInscription) {
+        this.precedentLieuInscription = precedentLieuInscription;
     }
 
  
-    @Enumerated(EnumType.STRING)
-    @Column(name="precision_nationalite"  )
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name="precedent_lieu_inscription_id")
       
-    public fr.cg95.cvq.business.request.election.SerrrPrecisionNationaliteType getPrecisionNationalite() {
-        return this.precisionNationalite;
+    public fr.cg95.cvq.business.request.election.SerrrPrecedentLieuInscription getPrecedentLieuInscription() {
+        return this.precedentLieuInscription;
     }
   
     
@@ -687,20 +547,6 @@ public class StandardElectoralRollRegistrationRequestData implements Serializabl
     }
   
     
-    private String subdivisionAdministrativePrecedente;
-
-    public void setSubdivisionAdministrativePrecedente(final String subdivisionAdministrativePrecedente) {
-        this.subdivisionAdministrativePrecedente = subdivisionAdministrativePrecedente;
-    }
-
- 
-    @Column(name="subdivision_administrative_precedente"  )
-      
-    public String getSubdivisionAdministrativePrecedente() {
-        return this.subdivisionAdministrativePrecedente;
-    }
-  
-    
       @MaxLength(
         
           value = 38,
@@ -724,40 +570,6 @@ public class StandardElectoralRollRegistrationRequestData implements Serializabl
     }
   
     
-      @NotNull(
-        
-        
-          when = "groovy:def active = true;" +
-          
-            "active &= _this.conditions['nationalite'].test(_this.nationalite.toString());" +
-                
-              
-            
-            "active &= _this.conditions['nationalite'].test(_this.nationalite.toString());" +
-                
-              
-            
-            "return active",
-        
-        profiles = {"inscription"},
-        message = "typeElection"
-      )
-    
-    private fr.cg95.cvq.business.request.election.SerrrTypeElectionType typeElection;
-
-    public void setTypeElection(final fr.cg95.cvq.business.request.election.SerrrTypeElectionType typeElection) {
-        this.typeElection = typeElection;
-    }
-
- 
-    @Enumerated(EnumType.STRING)
-    @Column(name="type_election"  )
-      
-    public fr.cg95.cvq.business.request.election.SerrrTypeElectionType getTypeElection() {
-        return this.typeElection;
-    }
-  
-    
     private fr.cg95.cvq.business.request.election.SerrrTypeInscriptionType typeInscription;
 
     public void setTypeInscription(final fr.cg95.cvq.business.request.election.SerrrTypeInscriptionType typeInscription) {
@@ -770,43 +582,6 @@ public class StandardElectoralRollRegistrationRequestData implements Serializabl
       
     public fr.cg95.cvq.business.request.election.SerrrTypeInscriptionType getTypeInscription() {
         return this.typeInscription;
-    }
-  
-    
-      @MaxLength(
-        
-          value = 32,
-        
-        
-        profiles = {"inscription"},
-        message = "villeNaissanceCodePostal"
-      )
-    
-      @NotNull(
-        
-        
-        profiles = {"inscription"},
-        message = "villeNaissanceCodePostal"
-      )
-    
-      @NotBlank(
-        
-        
-        profiles = {"inscription"},
-        message = "villeNaissanceCodePostal"
-      )
-    
-    private String villeNaissanceCodePostal;
-
-    public void setVilleNaissanceCodePostal(final String villeNaissanceCodePostal) {
-        this.villeNaissanceCodePostal = villeNaissanceCodePostal;
-    }
-
- 
-    @Column(name="ville_naissance_code_postal" , length=32 )
-      
-    public String getVilleNaissanceCodePostal() {
-        return this.villeNaissanceCodePostal;
     }
   
 }

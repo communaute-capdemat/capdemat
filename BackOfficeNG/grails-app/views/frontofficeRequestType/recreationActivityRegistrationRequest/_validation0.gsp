@@ -17,7 +17,7 @@
         <dt><g:message code="rarr.property.recreationActivity.label" /></dt>
           <dd>
           <g:render template="/frontofficeRequestType/widget/localReferentialDataSummary" 
-                    model="['javaName':'recreationActivity', 'lrEntries': lrTypes.recreationActivity.entries, 'depth':0]" />
+                    model="['wrapper':rqt, 'javaName':'recreationActivity', 'lrEntries': lrTypes.recreationActivity.entries, 'depth':0]" />
           </dd>
           
 

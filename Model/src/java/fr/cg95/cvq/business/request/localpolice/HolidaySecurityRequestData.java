@@ -91,26 +91,8 @@ public class HolidaySecurityRequestData implements Serializable {
         
           
             
-        if (otherContactAddress != null)
-            result.setOtherContactAddress(otherContactAddress.clone());
-      
-          
-        
-          
-            
-        result.setOtherContactFirstName(otherContactFirstName);
-      
-          
-        
-          
-            
-        result.setOtherContactLastName(otherContactLastName);
-      
-          
-        
-          
-            
-        result.setOtherContactPhone(otherContactPhone);
+        if (otherContactInformations != null)
+            result.setOtherContactInformations(otherContactInformations.clone());
       
           
         
@@ -282,15 +264,16 @@ public class HolidaySecurityRequestData implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            
             "active &= _this.conditions['otherContact'].test(_this.otherContact.toString());" +
                 
               
+              
+            
             
             "return active",
         
         profiles = {"contact"},
-        message = "otherContactAddress"
+        message = "otherContactInformations"
       )
     
       @AssertValid(
@@ -298,221 +281,30 @@ public class HolidaySecurityRequestData implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            
             "active &= _this.conditions['otherContact'].test(_this.otherContact.toString());" +
                 
               
+              
+            
             
             "return active",
         
         profiles = {"contact"},
-        message = "otherContactAddress"
+        message = "otherContactInformations"
       )
     
-    private fr.cg95.cvq.business.users.Address otherContactAddress;
+    private fr.cg95.cvq.business.request.localpolice.HsrOtherContact otherContactInformations;
 
-    public void setOtherContactAddress(final fr.cg95.cvq.business.users.Address otherContactAddress) {
-        this.otherContactAddress = otherContactAddress;
+    public void setOtherContactInformations(final fr.cg95.cvq.business.request.localpolice.HsrOtherContact otherContactInformations) {
+        this.otherContactInformations = otherContactInformations;
     }
 
  
     @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
-    @JoinColumn(name="other_contact_address_id")
+    @JoinColumn(name="other_contact_informations_id")
       
-    public fr.cg95.cvq.business.users.Address getOtherContactAddress() {
-        return this.otherContactAddress;
-    }
-  
-    
-      @MaxLength(
-        
-          value = 38,
-        
-        
-          when = "groovy:def active = true;" +
-          
-            
-            "active &= _this.conditions['otherContact'].test(_this.otherContact.toString());" +
-                
-              
-            
-            "return active",
-        
-        profiles = {"contact"},
-        message = "otherContactFirstName"
-      )
-    
-      @NotNull(
-        
-        
-          when = "groovy:def active = true;" +
-          
-            
-            "active &= _this.conditions['otherContact'].test(_this.otherContact.toString());" +
-                
-              
-            
-            "return active",
-        
-        profiles = {"contact"},
-        message = "otherContactFirstName"
-      )
-    
-      @NotBlank(
-        
-        
-          when = "groovy:def active = true;" +
-          
-            
-            "active &= _this.conditions['otherContact'].test(_this.otherContact.toString());" +
-                
-              
-            
-            "return active",
-        
-        profiles = {"contact"},
-        message = "otherContactFirstName"
-      )
-    
-    private String otherContactFirstName;
-
-    public void setOtherContactFirstName(final String otherContactFirstName) {
-        this.otherContactFirstName = otherContactFirstName;
-    }
-
- 
-    @Column(name="other_contact_first_name" , length=38 )
-      
-    public String getOtherContactFirstName() {
-        return this.otherContactFirstName;
-    }
-  
-    
-      @MaxLength(
-        
-          value = 38,
-        
-        
-          when = "groovy:def active = true;" +
-          
-            
-            "active &= _this.conditions['otherContact'].test(_this.otherContact.toString());" +
-                
-              
-            
-            "return active",
-        
-        profiles = {"contact"},
-        message = "otherContactLastName"
-      )
-    
-      @NotNull(
-        
-        
-          when = "groovy:def active = true;" +
-          
-            
-            "active &= _this.conditions['otherContact'].test(_this.otherContact.toString());" +
-                
-              
-            
-            "return active",
-        
-        profiles = {"contact"},
-        message = "otherContactLastName"
-      )
-    
-      @NotBlank(
-        
-        
-          when = "groovy:def active = true;" +
-          
-            
-            "active &= _this.conditions['otherContact'].test(_this.otherContact.toString());" +
-                
-              
-            
-            "return active",
-        
-        profiles = {"contact"},
-        message = "otherContactLastName"
-      )
-    
-    private String otherContactLastName;
-
-    public void setOtherContactLastName(final String otherContactLastName) {
-        this.otherContactLastName = otherContactLastName;
-    }
-
- 
-    @Column(name="other_contact_last_name" , length=38 )
-      
-    public String getOtherContactLastName() {
-        return this.otherContactLastName;
-    }
-  
-    
-      @MaxLength(
-        
-          value = 10,
-        
-        
-          when = "groovy:def active = true;" +
-          
-            
-            "active &= _this.conditions['otherContact'].test(_this.otherContact.toString());" +
-                
-              
-            
-            "return active",
-        
-        profiles = {"contact"},
-        message = "otherContactPhone"
-      )
-    
-      @NotNull(
-        
-        
-          when = "groovy:def active = true;" +
-          
-            
-            "active &= _this.conditions['otherContact'].test(_this.otherContact.toString());" +
-                
-              
-            
-            "return active",
-        
-        profiles = {"contact"},
-        message = "otherContactPhone"
-      )
-    
-      @NotBlank(
-        
-        
-          when = "groovy:def active = true;" +
-          
-            
-            "active &= _this.conditions['otherContact'].test(_this.otherContact.toString());" +
-                
-              
-            
-            "return active",
-        
-        profiles = {"contact"},
-        message = "otherContactPhone"
-      )
-    
-    private String otherContactPhone;
-
-    public void setOtherContactPhone(final String otherContactPhone) {
-        this.otherContactPhone = otherContactPhone;
-    }
-
- 
-    @Column(name="other_contact_phone" , length=10 )
-      
-    public String getOtherContactPhone() {
-        return this.otherContactPhone;
+    public fr.cg95.cvq.business.request.localpolice.HsrOtherContact getOtherContactInformations() {
+        return this.otherContactInformations;
     }
   
     

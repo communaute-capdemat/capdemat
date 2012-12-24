@@ -41,31 +41,11 @@ public class RemoteSupportRequestData implements Serializable {
       
         contactKind = fr.cg95.cvq.business.request.social.RsrContactKindType.REQUESTER;
       
-        requestInformationEmergency = Boolean.valueOf(false);
-      
-        requestInformationRequestKind = fr.cg95.cvq.business.request.social.RsrRequestInformationRequestKindType.INDIVIDUAL;
-      
-        spouseIsDisabledPerson = Boolean.valueOf(false);
-      
-        subjectIsAPABeneficiary = Boolean.valueOf(false);
-      
-        subjectIsDisabledPerson = Boolean.valueOf(false);
-      
-        subjectIsTaxable = Boolean.valueOf(false);
-      
-        subjectResideWith = fr.cg95.cvq.business.request.social.RsrSubjectResideWithType.ALONE;
-      
     }
 
     @Override
     public RemoteSupportRequestData clone() {
         RemoteSupportRequestData result = new RemoteSupportRequestData();
-        
-          
-            
-        result.setContactFirstName(contactFirstName);
-      
-          
         
           
             
@@ -78,145 +58,43 @@ public class RemoteSupportRequestData implements Serializable {
         
           
             
-        result.setContactLastName(contactLastName);
+        if (firstContact != null)
+            result.setFirstContact(firstContact.clone());
       
           
         
           
             
-        result.setContactPhone(contactPhone);
+        if (requestInformation != null)
+            result.setRequestInformation(requestInformation.clone());
       
           
         
           
             
-        result.setRequestInformationEmergency(requestInformationEmergency);
+        if (rsrSubject != null)
+            result.setRsrSubject(rsrSubject.clone());
       
           
         
           
             
-        result.setRequestInformationEmergencyMotive(requestInformationEmergencyMotive);
+        if (secondContact != null)
+            result.setSecondContact(secondContact.clone());
       
           
         
           
             
-        if (requestInformationRequestKind != null)
-            result.setRequestInformationRequestKind(requestInformationRequestKind);
-        else
-            result.setRequestInformationRequestKind(fr.cg95.cvq.business.request.social.RsrRequestInformationRequestKindType.getDefaultRsrRequestInformationRequestKindType());
+        if (spouse != null)
+            result.setSpouse(spouse.clone());
       
           
         
           
             
-        result.setSecondContactFirstName(secondContactFirstName);
-      
-          
-        
-          
-            
-        result.setSecondContactLastName(secondContactLastName);
-      
-          
-        
-          
-            
-        result.setSecondContactPhone(secondContactPhone);
-      
-          
-        
-          
-            
-        result.setSpouseBirthDate(spouseBirthDate);
-      
-          
-        
-          
-            
-        result.setSpouseFirstName(spouseFirstName);
-      
-          
-        
-          
-            
-        result.setSpouseIsDisabledPerson(spouseIsDisabledPerson);
-      
-          
-        
-          
-            
-        result.setSpouseLastName(spouseLastName);
-      
-          
-        
-          
-            
-        if (spouseTitle != null)
-            result.setSpouseTitle(spouseTitle);
-        else
-            result.setSpouseTitle(fr.cg95.cvq.business.users.TitleType.getDefaultTitleType());
-      
-          
-        
-          
-            
-        result.setSubjectBirthDate(subjectBirthDate);
-      
-          
-        
-          
-            
-        result.setSubjectIsAPABeneficiary(subjectIsAPABeneficiary);
-      
-          
-        
-          
-            
-        result.setSubjectIsDisabledPerson(subjectIsDisabledPerson);
-      
-          
-        
-          
-            
-        result.setSubjectIsTaxable(subjectIsTaxable);
-      
-          
-        
-          
-            
-        if (subjectResideWith != null)
-            result.setSubjectResideWith(subjectResideWith);
-        else
-            result.setSubjectResideWith(fr.cg95.cvq.business.request.social.RsrSubjectResideWithType.getDefaultRsrSubjectResideWithType());
-      
-          
-        
-          
-            
-        if (subjectTitle != null)
-            result.setSubjectTitle(subjectTitle);
-        else
-            result.setSubjectTitle(fr.cg95.cvq.business.users.TitleType.getDefaultTitleType());
-      
-          
-        
-          
-            
-        result.setTrusteeFirstName(trusteeFirstName);
-      
-          
-        
-          
-            
-        result.setTrusteeLastName(trusteeLastName);
-      
-          
-        
-          
-            
-        result.setTrusteePhone(trusteePhone);
+        if (trustee != null)
+            result.setTrustee(trustee.clone());
       
           
         
@@ -233,70 +111,6 @@ public class RemoteSupportRequestData implements Serializable {
         return this.id;
     }
 
-  
-    
-      @MaxLength(
-        
-          value = 38,
-        
-        
-          when = "groovy:def active = true;" +
-          
-            
-            "active &= _this.conditions['contactKind'].test(_this.contactKind.toString());" +
-                
-              
-            
-            "return active",
-        
-        profiles = {"contact"},
-        message = "contactFirstName"
-      )
-    
-      @NotNull(
-        
-        
-          when = "groovy:def active = true;" +
-          
-            
-            "active &= _this.conditions['contactKind'].test(_this.contactKind.toString());" +
-                
-              
-            
-            "return active",
-        
-        profiles = {"contact"},
-        message = "contactFirstName"
-      )
-    
-      @NotBlank(
-        
-        
-          when = "groovy:def active = true;" +
-          
-            
-            "active &= _this.conditions['contactKind'].test(_this.contactKind.toString());" +
-                
-              
-            
-            "return active",
-        
-        profiles = {"contact"},
-        message = "contactFirstName"
-      )
-    
-    private String contactFirstName;
-
-    public void setContactFirstName(final String contactFirstName) {
-        this.contactFirstName = contactFirstName;
-    }
-
- 
-    @Column(name="contact_first_name" , length=38 )
-      
-    public String getContactFirstName() {
-        return this.contactFirstName;
-    }
   
     
       @NotNull(
@@ -321,334 +135,159 @@ public class RemoteSupportRequestData implements Serializable {
     }
   
     
-      @MaxLength(
-        
-          value = 38,
+      @NotNull(
         
         
           when = "groovy:def active = true;" +
           
-            
             "active &= _this.conditions['contactKind'].test(_this.contactKind.toString());" +
                 
               
+              
+            
             
             "return active",
         
         profiles = {"contact"},
-        message = "contactLastName"
+        message = "firstContact"
       )
     
-      @NotNull(
+      @AssertValid(
         
         
           when = "groovy:def active = true;" +
           
-            
             "active &= _this.conditions['contactKind'].test(_this.contactKind.toString());" +
                 
               
+              
+            
             
             "return active",
         
         profiles = {"contact"},
-        message = "contactLastName"
+        message = "firstContact"
       )
     
-      @NotBlank(
+    private fr.cg95.cvq.business.request.social.RsrContact firstContact;
+
+    public void setFirstContact(final fr.cg95.cvq.business.request.social.RsrContact firstContact) {
+        this.firstContact = firstContact;
+    }
+
+ 
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name="first_contact_id")
+      
+    public fr.cg95.cvq.business.request.social.RsrContact getFirstContact() {
+        return this.firstContact;
+    }
+  
+    
+      @NotNull(
+        
+        
+        profiles = {"subject"},
+        message = "requestInformation"
+      )
+    
+      @AssertValid(
+        
+        
+        profiles = {"subject"},
+        message = "requestInformation"
+      )
+    
+    private fr.cg95.cvq.business.request.social.RsrRequestInformation requestInformation;
+
+    public void setRequestInformation(final fr.cg95.cvq.business.request.social.RsrRequestInformation requestInformation) {
+        this.requestInformation = requestInformation;
+    }
+
+ 
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name="request_information_id")
+      
+    public fr.cg95.cvq.business.request.social.RsrRequestInformation getRequestInformation() {
+        return this.requestInformation;
+    }
+  
+    
+      @NotNull(
+        
+        
+        profiles = {"subject"},
+        message = "rsrSubject"
+      )
+    
+      @AssertValid(
+        
+        
+        profiles = {"subject"},
+        message = "rsrSubject"
+      )
+    
+    private fr.cg95.cvq.business.request.social.RsrSubject rsrSubject;
+
+    public void setRsrSubject(final fr.cg95.cvq.business.request.social.RsrSubject rsrSubject) {
+        this.rsrSubject = rsrSubject;
+    }
+
+ 
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name="rsr_subject_id")
+      
+    public fr.cg95.cvq.business.request.social.RsrSubject getRsrSubject() {
+        return this.rsrSubject;
+    }
+  
+    
+      @NotNull(
         
         
           when = "groovy:def active = true;" +
           
-            
             "active &= _this.conditions['contactKind'].test(_this.contactKind.toString());" +
                 
               
+              
+            
             
             "return active",
         
         profiles = {"contact"},
-        message = "contactLastName"
+        message = "secondContact"
       )
     
-    private String contactLastName;
-
-    public void setContactLastName(final String contactLastName) {
-        this.contactLastName = contactLastName;
-    }
-
- 
-    @Column(name="contact_last_name" , length=38 )
-      
-    public String getContactLastName() {
-        return this.contactLastName;
-    }
-  
-    
-      @MaxLength(
-        
-          value = 10,
+      @AssertValid(
         
         
           when = "groovy:def active = true;" +
           
-            
             "active &= _this.conditions['contactKind'].test(_this.contactKind.toString());" +
                 
               
+              
+            
             
             "return active",
         
         profiles = {"contact"},
-        message = "contactPhone"
+        message = "secondContact"
       )
     
-      @NotNull(
-        
-        
-          when = "groovy:def active = true;" +
-          
-            
-            "active &= _this.conditions['contactKind'].test(_this.contactKind.toString());" +
-                
-              
-            
-            "return active",
-        
-        profiles = {"contact"},
-        message = "contactPhone"
-      )
-    
-      @NotBlank(
-        
-        
-          when = "groovy:def active = true;" +
-          
-            
-            "active &= _this.conditions['contactKind'].test(_this.contactKind.toString());" +
-                
-              
-            
-            "return active",
-        
-        profiles = {"contact"},
-        message = "contactPhone"
-      )
-    
-    private String contactPhone;
+    private fr.cg95.cvq.business.request.social.RsrSecondContact secondContact;
 
-    public void setContactPhone(final String contactPhone) {
-        this.contactPhone = contactPhone;
+    public void setSecondContact(final fr.cg95.cvq.business.request.social.RsrSecondContact secondContact) {
+        this.secondContact = secondContact;
     }
 
  
-    @Column(name="contact_phone" , length=10 )
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name="second_contact_id")
       
-    public String getContactPhone() {
-        return this.contactPhone;
-    }
-  
-    
-      @NotNull(
-        
-        
-        profiles = {"subject"},
-        message = "requestInformationEmergency"
-      )
-    
-    private Boolean requestInformationEmergency;
-
-    public void setRequestInformationEmergency(final Boolean requestInformationEmergency) {
-        this.requestInformationEmergency = requestInformationEmergency;
-    }
-
- 
-    @Column(name="request_information_emergency"  )
-      
-    public Boolean getRequestInformationEmergency() {
-        return this.requestInformationEmergency;
-    }
-  
-    
-      @MaxLength(
-        
-          value = 180,
-        
-        
-          when = "groovy:def active = true;" +
-          
-            "active &= _this.conditions['requestInformationEmergency'].test(_this.requestInformationEmergency.toString());" +
-                
-              
-            
-            
-            "return active",
-        
-        profiles = {"subject"},
-        message = "requestInformationEmergencyMotive"
-      )
-    
-      @NotNull(
-        
-        
-          when = "groovy:def active = true;" +
-          
-            "active &= _this.conditions['requestInformationEmergency'].test(_this.requestInformationEmergency.toString());" +
-                
-              
-            
-            
-            "return active",
-        
-        profiles = {"subject"},
-        message = "requestInformationEmergencyMotive"
-      )
-    
-      @NotBlank(
-        
-        
-          when = "groovy:def active = true;" +
-          
-            "active &= _this.conditions['requestInformationEmergency'].test(_this.requestInformationEmergency.toString());" +
-                
-              
-            
-            
-            "return active",
-        
-        profiles = {"subject"},
-        message = "requestInformationEmergencyMotive"
-      )
-    
-    private String requestInformationEmergencyMotive;
-
-    public void setRequestInformationEmergencyMotive(final String requestInformationEmergencyMotive) {
-        this.requestInformationEmergencyMotive = requestInformationEmergencyMotive;
-    }
-
- 
-    @Column(name="request_information_emergency_motive" , length=180 )
-      
-    public String getRequestInformationEmergencyMotive() {
-        return this.requestInformationEmergencyMotive;
-    }
-  
-    
-      @NotNull(
-        
-        
-        profiles = {"subject"},
-        message = "requestInformationRequestKind"
-      )
-    
-    private fr.cg95.cvq.business.request.social.RsrRequestInformationRequestKindType requestInformationRequestKind;
-
-    public void setRequestInformationRequestKind(final fr.cg95.cvq.business.request.social.RsrRequestInformationRequestKindType requestInformationRequestKind) {
-        this.requestInformationRequestKind = requestInformationRequestKind;
-    }
-
- 
-    @Enumerated(EnumType.STRING)
-    @Column(name="request_information_request_kind"  )
-      
-    public fr.cg95.cvq.business.request.social.RsrRequestInformationRequestKindType getRequestInformationRequestKind() {
-        return this.requestInformationRequestKind;
-    }
-  
-    
-      @MaxLength(
-        
-          value = 38,
-        
-        
-          when = "groovy:def active = true;" +
-          
-            
-            "active &= _this.conditions['contactKind'].test(_this.contactKind.toString());" +
-                
-              
-            
-            "return active",
-        
-        profiles = {"contact"},
-        message = "secondContactFirstName"
-      )
-    
-    private String secondContactFirstName;
-
-    public void setSecondContactFirstName(final String secondContactFirstName) {
-        this.secondContactFirstName = secondContactFirstName;
-    }
-
- 
-    @Column(name="second_contact_first_name" , length=38 )
-      
-    public String getSecondContactFirstName() {
-        return this.secondContactFirstName;
-    }
-  
-    
-      @MaxLength(
-        
-          value = 38,
-        
-        
-          when = "groovy:def active = true;" +
-          
-            
-            "active &= _this.conditions['contactKind'].test(_this.contactKind.toString());" +
-                
-              
-            
-            "return active",
-        
-        profiles = {"contact"},
-        message = "secondContactLastName"
-      )
-    
-    private String secondContactLastName;
-
-    public void setSecondContactLastName(final String secondContactLastName) {
-        this.secondContactLastName = secondContactLastName;
-    }
-
- 
-    @Column(name="second_contact_last_name" , length=38 )
-      
-    public String getSecondContactLastName() {
-        return this.secondContactLastName;
-    }
-  
-    
-      @MaxLength(
-        
-          value = 10,
-        
-        
-          when = "groovy:def active = true;" +
-          
-            
-            "active &= _this.conditions['contactKind'].test(_this.contactKind.toString());" +
-                
-              
-            
-            "return active",
-        
-        profiles = {"contact"},
-        message = "secondContactPhone"
-      )
-    
-    private String secondContactPhone;
-
-    public void setSecondContactPhone(final String secondContactPhone) {
-        this.secondContactPhone = secondContactPhone;
-    }
-
- 
-    @Column(name="second_contact_phone" , length=10 )
-      
-    public String getSecondContactPhone() {
-        return this.secondContactPhone;
+    public fr.cg95.cvq.business.request.social.RsrSecondContact getSecondContact() {
+        return this.secondContact;
     }
   
     
@@ -657,414 +296,63 @@ public class RemoteSupportRequestData implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            
-            "active &= _this.conditions['requestInformationRequestKind'].test(_this.requestInformationRequestKind.toString());" +
-                
               
+            
             
             "return active",
         
         profiles = {"subject"},
-        message = "spouseBirthDate"
+        message = "spouse"
       )
     
-    private java.util.Date spouseBirthDate;
-
-    public void setSpouseBirthDate(final java.util.Date spouseBirthDate) {
-        this.spouseBirthDate = spouseBirthDate;
-    }
-
- 
-    @Column(name="spouse_birth_date"  )
-      
-    public java.util.Date getSpouseBirthDate() {
-        return this.spouseBirthDate;
-    }
-  
-    
-      @MaxLength(
-        
-          value = 38,
+      @AssertValid(
         
         
           when = "groovy:def active = true;" +
           
-            
-            "active &= _this.conditions['requestInformationRequestKind'].test(_this.requestInformationRequestKind.toString());" +
-                
               
+            
             
             "return active",
         
         profiles = {"subject"},
-        message = "spouseFirstName"
+        message = "spouse"
       )
     
-      @NotNull(
-        
-        
-          when = "groovy:def active = true;" +
-          
-            
-            "active &= _this.conditions['requestInformationRequestKind'].test(_this.requestInformationRequestKind.toString());" +
-                
-              
-            
-            "return active",
-        
-        profiles = {"subject"},
-        message = "spouseFirstName"
-      )
-    
-      @NotBlank(
-        
-        
-          when = "groovy:def active = true;" +
-          
-            
-            "active &= _this.conditions['requestInformationRequestKind'].test(_this.requestInformationRequestKind.toString());" +
-                
-              
-            
-            "return active",
-        
-        profiles = {"subject"},
-        message = "spouseFirstName"
-      )
-    
-    private String spouseFirstName;
+    private fr.cg95.cvq.business.request.social.RsrSpouse spouse;
 
-    public void setSpouseFirstName(final String spouseFirstName) {
-        this.spouseFirstName = spouseFirstName;
+    public void setSpouse(final fr.cg95.cvq.business.request.social.RsrSpouse spouse) {
+        this.spouse = spouse;
     }
 
  
-    @Column(name="spouse_first_name" , length=38 )
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name="spouse_id")
       
-    public String getSpouseFirstName() {
-        return this.spouseFirstName;
+    public fr.cg95.cvq.business.request.social.RsrSpouse getSpouse() {
+        return this.spouse;
     }
   
     
-      @NotNull(
-        
-        
-          when = "groovy:def active = true;" +
-          
-            
-            "active &= _this.conditions['requestInformationRequestKind'].test(_this.requestInformationRequestKind.toString());" +
-                
-              
-            
-            "return active",
-        
-        profiles = {"subject"},
-        message = "spouseIsDisabledPerson"
-      )
-    
-    private Boolean spouseIsDisabledPerson;
-
-    public void setSpouseIsDisabledPerson(final Boolean spouseIsDisabledPerson) {
-        this.spouseIsDisabledPerson = spouseIsDisabledPerson;
-    }
-
- 
-    @Column(name="spouse_is_disabled_person"  )
-      
-    public Boolean getSpouseIsDisabledPerson() {
-        return this.spouseIsDisabledPerson;
-    }
-  
-    
-      @MaxLength(
-        
-          value = 38,
-        
-        
-          when = "groovy:def active = true;" +
-          
-            
-            "active &= _this.conditions['requestInformationRequestKind'].test(_this.requestInformationRequestKind.toString());" +
-                
-              
-            
-            "return active",
-        
-        profiles = {"subject"},
-        message = "spouseLastName"
-      )
-    
-      @NotNull(
-        
-        
-          when = "groovy:def active = true;" +
-          
-            
-            "active &= _this.conditions['requestInformationRequestKind'].test(_this.requestInformationRequestKind.toString());" +
-                
-              
-            
-            "return active",
-        
-        profiles = {"subject"},
-        message = "spouseLastName"
-      )
-    
-      @NotBlank(
-        
-        
-          when = "groovy:def active = true;" +
-          
-            
-            "active &= _this.conditions['requestInformationRequestKind'].test(_this.requestInformationRequestKind.toString());" +
-                
-              
-            
-            "return active",
-        
-        profiles = {"subject"},
-        message = "spouseLastName"
-      )
-    
-    private String spouseLastName;
-
-    public void setSpouseLastName(final String spouseLastName) {
-        this.spouseLastName = spouseLastName;
-    }
-
- 
-    @Column(name="spouse_last_name" , length=38 )
-      
-    public String getSpouseLastName() {
-        return this.spouseLastName;
-    }
-  
-    
-      @NotNull(
-        
-        
-          when = "groovy:def active = true;" +
-          
-            
-            "active &= _this.conditions['requestInformationRequestKind'].test(_this.requestInformationRequestKind.toString());" +
-                
-              
-            
-            "return active",
-        
-        profiles = {"subject"},
-        message = "spouseTitle"
-      )
-    
-    private fr.cg95.cvq.business.users.TitleType spouseTitle;
-
-    public void setSpouseTitle(final fr.cg95.cvq.business.users.TitleType spouseTitle) {
-        this.spouseTitle = spouseTitle;
-    }
-
- 
-    @Enumerated(EnumType.STRING)
-    @Column(name="spouse_title"  )
-      
-    public fr.cg95.cvq.business.users.TitleType getSpouseTitle() {
-        return this.spouseTitle;
-    }
-  
-    
-      @NotNull(
-        
-        
-        profiles = {"subject"},
-        message = "subjectBirthDate"
-      )
-    
-    private java.util.Date subjectBirthDate;
-
-    public void setSubjectBirthDate(final java.util.Date subjectBirthDate) {
-        this.subjectBirthDate = subjectBirthDate;
-    }
-
- 
-    @Column(name="subject_birth_date"  )
-      
-    public java.util.Date getSubjectBirthDate() {
-        return this.subjectBirthDate;
-    }
-  
-    
-      @NotNull(
-        
-        
-        profiles = {"subject"},
-        message = "subjectIsAPABeneficiary"
-      )
-    
-    private Boolean subjectIsAPABeneficiary;
-
-    public void setSubjectIsAPABeneficiary(final Boolean subjectIsAPABeneficiary) {
-        this.subjectIsAPABeneficiary = subjectIsAPABeneficiary;
-    }
-
- 
-    @Column(name="subject_is_a_p_a_beneficiary"  )
-      
-    public Boolean getSubjectIsAPABeneficiary() {
-        return this.subjectIsAPABeneficiary;
-    }
-  
-    
-      @NotNull(
-        
-        
-        profiles = {"subject"},
-        message = "subjectIsDisabledPerson"
-      )
-    
-    private Boolean subjectIsDisabledPerson;
-
-    public void setSubjectIsDisabledPerson(final Boolean subjectIsDisabledPerson) {
-        this.subjectIsDisabledPerson = subjectIsDisabledPerson;
-    }
-
- 
-    @Column(name="subject_is_disabled_person"  )
-      
-    public Boolean getSubjectIsDisabledPerson() {
-        return this.subjectIsDisabledPerson;
-    }
-  
-    
-      @NotNull(
-        
-        
-        profiles = {"subject"},
-        message = "subjectIsTaxable"
-      )
-    
-    private Boolean subjectIsTaxable;
-
-    public void setSubjectIsTaxable(final Boolean subjectIsTaxable) {
-        this.subjectIsTaxable = subjectIsTaxable;
-    }
-
- 
-    @Column(name="subject_is_taxable"  )
-      
-    public Boolean getSubjectIsTaxable() {
-        return this.subjectIsTaxable;
-    }
-  
-    
-      @NotNull(
-        
-        
-        profiles = {"subject"},
-        message = "subjectResideWith"
-      )
-    
-    private fr.cg95.cvq.business.request.social.RsrSubjectResideWithType subjectResideWith;
-
-    public void setSubjectResideWith(final fr.cg95.cvq.business.request.social.RsrSubjectResideWithType subjectResideWith) {
-        this.subjectResideWith = subjectResideWith;
-    }
-
- 
-    @Enumerated(EnumType.STRING)
-    @Column(name="subject_reside_with"  )
-      
-    public fr.cg95.cvq.business.request.social.RsrSubjectResideWithType getSubjectResideWith() {
-        return this.subjectResideWith;
-    }
-  
-    
-      @NotNull(
-        
-        
-        profiles = {"subject"},
-        message = "subjectTitle"
-      )
-    
-    private fr.cg95.cvq.business.users.TitleType subjectTitle;
-
-    public void setSubjectTitle(final fr.cg95.cvq.business.users.TitleType subjectTitle) {
-        this.subjectTitle = subjectTitle;
-    }
-
- 
-    @Enumerated(EnumType.STRING)
-    @Column(name="subject_title"  )
-      
-    public fr.cg95.cvq.business.users.TitleType getSubjectTitle() {
-        return this.subjectTitle;
-    }
-  
-    
-      @MaxLength(
-        
-          value = 38,
+      @AssertValid(
         
         
         profiles = {"contact"},
-        message = "trusteeFirstName"
+        message = "trustee"
       )
     
-    private String trusteeFirstName;
+    private fr.cg95.cvq.business.request.social.RsrTrustee trustee;
 
-    public void setTrusteeFirstName(final String trusteeFirstName) {
-        this.trusteeFirstName = trusteeFirstName;
+    public void setTrustee(final fr.cg95.cvq.business.request.social.RsrTrustee trustee) {
+        this.trustee = trustee;
     }
 
  
-    @Column(name="trustee_first_name" , length=38 )
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name="trustee_id")
       
-    public String getTrusteeFirstName() {
-        return this.trusteeFirstName;
-    }
-  
-    
-      @MaxLength(
-        
-          value = 38,
-        
-        
-        profiles = {"contact"},
-        message = "trusteeLastName"
-      )
-    
-    private String trusteeLastName;
-
-    public void setTrusteeLastName(final String trusteeLastName) {
-        this.trusteeLastName = trusteeLastName;
-    }
-
- 
-    @Column(name="trustee_last_name" , length=38 )
-      
-    public String getTrusteeLastName() {
-        return this.trusteeLastName;
-    }
-  
-    
-      @MaxLength(
-        
-          value = 10,
-        
-        
-        profiles = {"contact"},
-        message = "trusteePhone"
-      )
-    
-    private String trusteePhone;
-
-    public void setTrusteePhone(final String trusteePhone) {
-        this.trusteePhone = trusteePhone;
-    }
-
- 
-    @Column(name="trustee_phone" , length=10 )
-      
-    public String getTrusteePhone() {
-        return this.trusteePhone;
+    public fr.cg95.cvq.business.request.social.RsrTrustee getTrustee() {
+        return this.trustee;
     }
   
 }

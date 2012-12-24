@@ -50,7 +50,9 @@
     <label class="required condition-estDerogation-filled"><g:message code="lcrr.property.motifsDerogationCentreLoisirs.label" /> *  <span><g:message code="lcrr.property.motifsDerogationCentreLoisirs.help" /></span></label>
             <g:set var="motifsDerogationCentreLoisirsIndex" value="${0}" scope="flash" />
             <g:render template="/frontofficeRequestType/widget/localReferentialData" 
-                      model="['javaName':'motifsDerogationCentreLoisirs', 'i18nPrefixCode':'lcrr.property.motifsDerogationCentreLoisirs', 'htmlClass':'required condition-estDerogation-filled  ', 
+                      model="['wrapper':rqt, 'wrapperJavaName':'',
+                              'javaName':'motifsDerogationCentreLoisirs', 'i18nPrefixCode':'lcrr.property.motifsDerogationCentreLoisirs',
+                              'htmlClass':'required condition-estDerogation-filled  ', 
                               'lrEntries': lrTypes.motifsDerogationCentreLoisirs.entries, 'depth':0]" />
             
 
@@ -60,15 +62,15 @@
     <fieldset class="required">
     <legend><g:message code="lcrr.property.centresLoisirs.label" /></legend>
     
-      <label for="idCentreLoisirs" class="required"><g:message code="lcrr.property.idCentreLoisirs.label" /> *  <span><g:message code="lcrr.property.idCentreLoisirs.help" /></span></label>
-            <input type="text" id="idCentreLoisirs" name="idCentreLoisirs" value="${rqt.idCentreLoisirs?.toString()}" 
-                    class="required  validate-string ${rqt.stepStates['enfant'].invalidFields.contains('idCentreLoisirs') ? 'validation-failed' : ''}" title="<g:message code="lcrr.property.idCentreLoisirs.validationError" />"   />
+      <label for="centresLoisirs.idCentreLoisirs" class="required"><g:message code="lcrr.property.idCentreLoisirs.label" /> *  <span><g:message code="lcrr.property.idCentreLoisirs.help" /></span></label>
+            <input type="text" id="centresLoisirs.idCentreLoisirs" name="centresLoisirs.idCentreLoisirs" value="${rqt.centresLoisirs?.idCentreLoisirs?.toString()}" 
+                    class="required  validate-string ${rqt.stepStates['enfant'].invalidFields.contains('centresLoisirs.idCentreLoisirs') ? 'validation-failed' : ''}" title="<g:message code="lcrr.property.idCentreLoisirs.validationError" />"   />
             
 
     
-      <label for="labelCentreLoisirs" class="required"><g:message code="lcrr.property.labelCentreLoisirs.label" /> *  <span><g:message code="lcrr.property.labelCentreLoisirs.help" /></span></label>
-            <input type="text" id="labelCentreLoisirs" name="labelCentreLoisirs" value="${rqt.labelCentreLoisirs?.toString()}" 
-                    class="required  validate-string ${rqt.stepStates['enfant'].invalidFields.contains('labelCentreLoisirs') ? 'validation-failed' : ''}" title="<g:message code="lcrr.property.labelCentreLoisirs.validationError" />"   />
+      <label for="centresLoisirs.labelCentreLoisirs" class="required"><g:message code="lcrr.property.labelCentreLoisirs.label" /> *  <span><g:message code="lcrr.property.labelCentreLoisirs.help" /></span></label>
+            <input type="text" id="centresLoisirs.labelCentreLoisirs" name="centresLoisirs.labelCentreLoisirs" value="${rqt.centresLoisirs?.labelCentreLoisirs?.toString()}" 
+                    class="required  validate-string ${rqt.stepStates['enfant'].invalidFields.contains('centresLoisirs.labelCentreLoisirs') ? 'validation-failed' : ''}" title="<g:message code="lcrr.property.labelCentreLoisirs.validationError" />"   />
             
 
     
@@ -93,27 +95,27 @@
     <fieldset class="required condition-estTransport-filled">
     <legend><g:message code="lcrr.property.transports.label" /></legend>
     
-      <label for="idLigne" class="required"><g:message code="lcrr.property.idLigne.label" /> *  <span><g:message code="lcrr.property.idLigne.help" /></span></label>
-            <input type="text" id="idLigne" name="idLigne" value="${rqt.idLigne?.toString()}" 
-                    class="required  validate-string ${rqt.stepStates['enfant'].invalidFields.contains('idLigne') ? 'validation-failed' : ''}" title="<g:message code="lcrr.property.idLigne.validationError" />"   />
+      <label for="transports.idLigne" class="required"><g:message code="lcrr.property.idLigne.label" /> *  <span><g:message code="lcrr.property.idLigne.help" /></span></label>
+            <input type="text" id="transports.idLigne" name="transports.idLigne" value="${rqt.transports?.idLigne?.toString()}" 
+                    class="required  validate-string ${rqt.stepStates['enfant'].invalidFields.contains('transports.idLigne') ? 'validation-failed' : ''}" title="<g:message code="lcrr.property.idLigne.validationError" />"   />
             
 
     
-      <label for="labelLigne" class="required"><g:message code="lcrr.property.labelLigne.label" /> *  <span><g:message code="lcrr.property.labelLigne.help" /></span></label>
-            <input type="text" id="labelLigne" name="labelLigne" value="${rqt.labelLigne?.toString()}" 
-                    class="required  validate-string ${rqt.stepStates['enfant'].invalidFields.contains('labelLigne') ? 'validation-failed' : ''}" title="<g:message code="lcrr.property.labelLigne.validationError" />"   />
+      <label for="transports.labelLigne" class="required"><g:message code="lcrr.property.labelLigne.label" /> *  <span><g:message code="lcrr.property.labelLigne.help" /></span></label>
+            <input type="text" id="transports.labelLigne" name="transports.labelLigne" value="${rqt.transports?.labelLigne?.toString()}" 
+                    class="required  validate-string ${rqt.stepStates['enfant'].invalidFields.contains('transports.labelLigne') ? 'validation-failed' : ''}" title="<g:message code="lcrr.property.labelLigne.validationError" />"   />
             
 
     
-      <label for="idArret" class="required"><g:message code="lcrr.property.idArret.label" /> *  <span><g:message code="lcrr.property.idArret.help" /></span></label>
-            <input type="text" id="idArret" name="idArret" value="${rqt.idArret?.toString()}" 
-                    class="required  validate-string ${rqt.stepStates['enfant'].invalidFields.contains('idArret') ? 'validation-failed' : ''}" title="<g:message code="lcrr.property.idArret.validationError" />"   />
+      <label for="transports.idArret" class="required"><g:message code="lcrr.property.idArret.label" /> *  <span><g:message code="lcrr.property.idArret.help" /></span></label>
+            <input type="text" id="transports.idArret" name="transports.idArret" value="${rqt.transports?.idArret?.toString()}" 
+                    class="required  validate-string ${rqt.stepStates['enfant'].invalidFields.contains('transports.idArret') ? 'validation-failed' : ''}" title="<g:message code="lcrr.property.idArret.validationError" />"   />
             
 
     
-      <label for="labelArret" class="required"><g:message code="lcrr.property.labelArret.label" /> *  <span><g:message code="lcrr.property.labelArret.help" /></span></label>
-            <input type="text" id="labelArret" name="labelArret" value="${rqt.labelArret?.toString()}" 
-                    class="required  validate-string ${rqt.stepStates['enfant'].invalidFields.contains('labelArret') ? 'validation-failed' : ''}" title="<g:message code="lcrr.property.labelArret.validationError" />"   />
+      <label for="transports.labelArret" class="required"><g:message code="lcrr.property.labelArret.label" /> *  <span><g:message code="lcrr.property.labelArret.help" /></span></label>
+            <input type="text" id="transports.labelArret" name="transports.labelArret" value="${rqt.transports?.labelArret?.toString()}" 
+                    class="required  validate-string ${rqt.stepStates['enfant'].invalidFields.contains('transports.labelArret') ? 'validation-failed' : ''}" title="<g:message code="lcrr.property.labelArret.validationError" />"   />
             
 
     

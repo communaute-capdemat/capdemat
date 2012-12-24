@@ -39,10 +39,6 @@ public class DayCareCenterRegistrationRequestData implements Serializable {
 
     public DayCareCenterRegistrationRequestData() {
       
-        estHorairesReguliersMere = Boolean.valueOf(true);
-      
-        estHorairesReguliersPere = Boolean.valueOf(true);
-      
         modeAccueil = Boolean.valueOf(true);
       
     }
@@ -68,15 +64,6 @@ public class DayCareCenterRegistrationRequestData implements Serializable {
         
           
             
-        if (choixTypeDatePlacementAccueilRegulier != null)
-            result.setChoixTypeDatePlacementAccueilRegulier(choixTypeDatePlacementAccueilRegulier);
-        else
-            result.setChoixTypeDatePlacementAccueilRegulier(fr.cg95.cvq.business.request.school.ChoixDatePlacement.getDefaultChoixDatePlacement());
-      
-          
-        
-          
-            
         if (choixTypeRendezVous != null)
             result.setChoixTypeRendezVous(choixTypeRendezVous);
         else
@@ -92,19 +79,8 @@ public class DayCareCenterRegistrationRequestData implements Serializable {
         
           
             
-        result.setCommuneLieuTravailMere(communeLieuTravailMere);
-      
-          
-        
-          
-            
-        result.setCommuneLieuTravailPere(communeLieuTravailPere);
-      
-          
-        
-          
-            
-        result.setDatePlacementDebut(datePlacementDebut);
+        if (datePlacementAccueilRegulier != null)
+            result.setDatePlacementAccueilRegulier(datePlacementAccueilRegulier.clone());
       
           
         
@@ -116,229 +92,43 @@ public class DayCareCenterRegistrationRequestData implements Serializable {
         
           
             
-        result.setEstHorairesReguliersMere(estHorairesReguliersMere);
+        if (informationMere != null)
+            result.setInformationMere(informationMere.clone());
       
           
         
           
             
-        result.setEstHorairesReguliersPere(estHorairesReguliersPere);
+        if (informationPere != null)
+            result.setInformationPere(informationPere.clone());
       
           
         
           
             
-        result.setHorairePlacementApresMidiDebut(horairePlacementApresMidiDebut);
+        if (jeudi != null)
+            result.setJeudi(jeudi.clone());
       
           
         
           
             
-        result.setHorairePlacementApresMidiDebutJeudi(horairePlacementApresMidiDebutJeudi);
+        if (lundi != null)
+            result.setLundi(lundi.clone());
       
           
         
           
             
-        result.setHorairePlacementApresMidiDebutLundi(horairePlacementApresMidiDebutLundi);
+        if (mardi != null)
+            result.setMardi(mardi.clone());
       
           
         
           
             
-        result.setHorairePlacementApresMidiDebutMardi(horairePlacementApresMidiDebutMardi);
-      
-          
-        
-          
-            
-        result.setHorairePlacementApresMidiDebutMercredi(horairePlacementApresMidiDebutMercredi);
-      
-          
-        
-          
-            
-        result.setHorairePlacementApresMidiDebutVendredi(horairePlacementApresMidiDebutVendredi);
-      
-          
-        
-          
-            
-        result.setHorairePlacementApresMidiFin(horairePlacementApresMidiFin);
-      
-          
-        
-          
-            
-        result.setHorairePlacementApresMidiFinJeudi(horairePlacementApresMidiFinJeudi);
-      
-          
-        
-          
-            
-        result.setHorairePlacementApresMidiFinLundi(horairePlacementApresMidiFinLundi);
-      
-          
-        
-          
-            
-        result.setHorairePlacementApresMidiFinMardi(horairePlacementApresMidiFinMardi);
-      
-          
-        
-          
-            
-        result.setHorairePlacementApresMidiFinMercredi(horairePlacementApresMidiFinMercredi);
-      
-          
-        
-          
-            
-        result.setHorairePlacementApresMidiFinVendredi(horairePlacementApresMidiFinVendredi);
-      
-          
-        
-          
-            
-        result.setHorairePlacementMatinDebut(horairePlacementMatinDebut);
-      
-          
-        
-          
-            
-        result.setHorairePlacementMatinDebutJeudi(horairePlacementMatinDebutJeudi);
-      
-          
-        
-          
-            
-        result.setHorairePlacementMatinDebutLundi(horairePlacementMatinDebutLundi);
-      
-          
-        
-          
-            
-        result.setHorairePlacementMatinDebutMardi(horairePlacementMatinDebutMardi);
-      
-          
-        
-          
-            
-        result.setHorairePlacementMatinDebutMercredi(horairePlacementMatinDebutMercredi);
-      
-          
-        
-          
-            
-        result.setHorairePlacementMatinDebutVendredi(horairePlacementMatinDebutVendredi);
-      
-          
-        
-          
-            
-        result.setHorairePlacementMatinFin(horairePlacementMatinFin);
-      
-          
-        
-          
-            
-        result.setHorairePlacementMatinFinJeudi(horairePlacementMatinFinJeudi);
-      
-          
-        
-          
-            
-        result.setHorairePlacementMatinFinLundi(horairePlacementMatinFinLundi);
-      
-          
-        
-          
-            
-        result.setHorairePlacementMatinFinMardi(horairePlacementMatinFinMardi);
-      
-          
-        
-          
-            
-        result.setHorairePlacementMatinFinMercredi(horairePlacementMatinFinMercredi);
-      
-          
-        
-          
-            
-        result.setHorairePlacementMatinFinVendredi(horairePlacementMatinFinVendredi);
-      
-          
-        
-          
-            
-        result.setHorairesReguliersMere(horairesReguliersMere);
-      
-          
-        
-          
-            
-        result.setHorairesReguliersPere(horairesReguliersPere);
-      
-          
-        
-          
-            
-        result.setHorairesTravailJeudiMere(horairesTravailJeudiMere);
-      
-          
-        
-          
-            
-        result.setHorairesTravailJeudiPere(horairesTravailJeudiPere);
-      
-          
-        
-          
-            
-        result.setHorairesTravailLundiMere(horairesTravailLundiMere);
-      
-          
-        
-          
-            
-        result.setHorairesTravailLundiPere(horairesTravailLundiPere);
-      
-          
-        
-          
-            
-        result.setHorairesTravailMardiMere(horairesTravailMardiMere);
-      
-          
-        
-          
-            
-        result.setHorairesTravailMardiPere(horairesTravailMardiPere);
-      
-          
-        
-          
-            
-        result.setHorairesTravailMercrediMere(horairesTravailMercrediMere);
-      
-          
-        
-          
-            
-        result.setHorairesTravailMercrediPere(horairesTravailMercrediPere);
-      
-          
-        
-          
-            
-        result.setHorairesTravailVendrediMere(horairesTravailVendrediMere);
-      
-          
-        
-          
-            
-        result.setHorairesTravailVendrediPere(horairesTravailVendrediPere);
+        if (mercredi != null)
+            result.setMercredi(mercredi.clone());
       
           
         
@@ -368,6 +158,13 @@ public class DayCareCenterRegistrationRequestData implements Serializable {
         
           
             
+        if (plageHoraireAccueilReguliere != null)
+            result.setPlageHoraireAccueilReguliere(plageHoraireAccueilReguliere.clone());
+      
+          
+        
+          
+            
         if (plageHoraireContact != null)
             result.setPlageHoraireContact(plageHoraireContact);
         else
@@ -377,49 +174,14 @@ public class DayCareCenterRegistrationRequestData implements Serializable {
         
           
             
-        result.setPrecisionAutreSituationActuelleMere(precisionAutreSituationActuelleMere);
-      
-          
-        
-          
-            
-        result.setPrecisionAutreSituationActuellePere(precisionAutreSituationActuellePere);
-      
-          
-        
-          
-            
-        result.setProfessionMere(professionMere);
-      
-          
-        
-          
-            
-        result.setProfessionPere(professionPere);
-      
-          
-        
-          
-            
-        if (situationActuelleMere != null)
-            result.setSituationActuelleMere(situationActuelleMere);
-        else
-            result.setSituationActuelleMere(fr.cg95.cvq.business.request.school.ChoixSituationActuelle.getDefaultChoixSituationActuelle());
-      
-          
-        
-          
-            
-        if (situationActuellePere != null)
-            result.setSituationActuellePere(situationActuellePere);
-        else
-            result.setSituationActuellePere(fr.cg95.cvq.business.request.school.ChoixSituationActuelle.getDefaultChoixSituationActuelle());
-      
-          
-        
-          
-            
         result.setTelephoneContact(telephoneContact);
+      
+          
+        
+          
+            
+        if (vendredi != null)
+            result.setVendredi(vendredi.clone());
       
           
         
@@ -477,28 +239,6 @@ public class DayCareCenterRegistrationRequestData implements Serializable {
       @NotNull(
         
         
-        profiles = {"accueil"},
-        message = "choixTypeDatePlacementAccueilRegulier"
-      )
-    
-    private fr.cg95.cvq.business.request.school.ChoixDatePlacement choixTypeDatePlacementAccueilRegulier;
-
-    public void setChoixTypeDatePlacementAccueilRegulier(final fr.cg95.cvq.business.request.school.ChoixDatePlacement choixTypeDatePlacementAccueilRegulier) {
-        this.choixTypeDatePlacementAccueilRegulier = choixTypeDatePlacementAccueilRegulier;
-    }
-
- 
-    @Enumerated(EnumType.STRING)
-    @Column(name="choix_type_date_placement_accueil_regulier"  )
-      
-    public fr.cg95.cvq.business.request.school.ChoixDatePlacement getChoixTypeDatePlacementAccueilRegulier() {
-        return this.choixTypeDatePlacementAccueilRegulier;
-    }
-  
-    
-      @NotNull(
-        
-        
         profiles = {"rendezVous"},
         message = "choixTypeRendezVous"
       )
@@ -541,61 +281,32 @@ public class DayCareCenterRegistrationRequestData implements Serializable {
     }
   
     
-    private String communeLieuTravailMere;
-
-    public void setCommuneLieuTravailMere(final String communeLieuTravailMere) {
-        this.communeLieuTravailMere = communeLieuTravailMere;
-    }
-
- 
-    @Column(name="commune_lieu_travail_mere"  )
-      
-    public String getCommuneLieuTravailMere() {
-        return this.communeLieuTravailMere;
-    }
-  
-    
-    private String communeLieuTravailPere;
-
-    public void setCommuneLieuTravailPere(final String communeLieuTravailPere) {
-        this.communeLieuTravailPere = communeLieuTravailPere;
-    }
-
- 
-    @Column(name="commune_lieu_travail_pere"  )
-      
-    public String getCommuneLieuTravailPere() {
-        return this.communeLieuTravailPere;
-    }
-  
-    
       @NotNull(
         
         
-          when = "groovy:def active = true;" +
-          
-            "active &= _this.conditions['choixTypeDatePlacementAccueilRegulier'].test(_this.choixTypeDatePlacementAccueilRegulier.toString());" +
-                
-              
-            
-            
-            "return active",
-        
         profiles = {"accueil"},
-        message = "datePlacementDebut"
+        message = "datePlacementAccueilRegulier"
       )
     
-    private java.util.Date datePlacementDebut;
+      @AssertValid(
+        
+        
+        profiles = {"accueil"},
+        message = "datePlacementAccueilRegulier"
+      )
+    
+    private fr.cg95.cvq.business.request.school.DccrrDatesPlacement datePlacementAccueilRegulier;
 
-    public void setDatePlacementDebut(final java.util.Date datePlacementDebut) {
-        this.datePlacementDebut = datePlacementDebut;
+    public void setDatePlacementAccueilRegulier(final fr.cg95.cvq.business.request.school.DccrrDatesPlacement datePlacementAccueilRegulier) {
+        this.datePlacementAccueilRegulier = datePlacementAccueilRegulier;
     }
 
  
-    @Column(name="date_placement_debut"  )
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name="date_placement_accueil_regulier_id")
       
-    public java.util.Date getDatePlacementDebut() {
-        return this.datePlacementDebut;
+    public fr.cg95.cvq.business.request.school.DccrrDatesPlacement getDatePlacementAccueilRegulier() {
+        return this.datePlacementAccueilRegulier;
     }
   
     
@@ -613,535 +324,250 @@ public class DayCareCenterRegistrationRequestData implements Serializable {
     }
   
     
-    private Boolean estHorairesReguliersMere;
+      @NotNull(
+        
+        
+        profiles = {"subject"},
+        message = "informationMere"
+      )
+    
+      @AssertValid(
+        
+        
+        profiles = {"subject"},
+        message = "informationMere"
+      )
+    
+    private fr.cg95.cvq.business.request.school.DccrrMere informationMere;
 
-    public void setEstHorairesReguliersMere(final Boolean estHorairesReguliersMere) {
-        this.estHorairesReguliersMere = estHorairesReguliersMere;
+    public void setInformationMere(final fr.cg95.cvq.business.request.school.DccrrMere informationMere) {
+        this.informationMere = informationMere;
     }
 
  
-    @Column(name="est_horaires_reguliers_mere"  )
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name="information_mere_id")
       
-    public Boolean getEstHorairesReguliersMere() {
-        return this.estHorairesReguliersMere;
+    public fr.cg95.cvq.business.request.school.DccrrMere getInformationMere() {
+        return this.informationMere;
     }
   
     
-    private Boolean estHorairesReguliersPere;
+      @AssertValid(
+        
+        
+        profiles = {"subject"},
+        message = "informationPere"
+      )
+    
+    private fr.cg95.cvq.business.request.school.DccrrPere informationPere;
 
-    public void setEstHorairesReguliersPere(final Boolean estHorairesReguliersPere) {
-        this.estHorairesReguliersPere = estHorairesReguliersPere;
+    public void setInformationPere(final fr.cg95.cvq.business.request.school.DccrrPere informationPere) {
+        this.informationPere = informationPere;
     }
 
  
-    @Column(name="est_horaires_reguliers_pere"  )
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name="information_pere_id")
       
-    public Boolean getEstHorairesReguliersPere() {
-        return this.estHorairesReguliersPere;
+    public fr.cg95.cvq.business.request.school.DccrrPere getInformationPere() {
+        return this.informationPere;
     }
   
     
-    private org.joda.time.LocalTime horairePlacementApresMidiDebut;
+      @NotNull(
+        
+        
+          when = "groovy:def active = true;" +
+          
+            "active &= _this.conditions['choixHorairesAccueil'].test('estHorairesAccueilIrregulier='+_this.choixHorairesAccueil.toString());" +
+                
+              
+              
+            
+            
+            "return active",
+        
+        profiles = {"accueil"},
+        message = "jeudi"
+      )
+    
+      @AssertValid(
+        
+        
+          when = "groovy:def active = true;" +
+          
+            "active &= _this.conditions['choixHorairesAccueil'].test('estHorairesAccueilIrregulier='+_this.choixHorairesAccueil.toString());" +
+                
+              
+              
+            
+            
+            "return active",
+        
+        profiles = {"accueil"},
+        message = "jeudi"
+      )
+    
+    private fr.cg95.cvq.business.request.school.DccrrPlageHoraireJeudi jeudi;
 
-    public void setHorairePlacementApresMidiDebut(final org.joda.time.LocalTime horairePlacementApresMidiDebut) {
-        this.horairePlacementApresMidiDebut = horairePlacementApresMidiDebut;
+    public void setJeudi(final fr.cg95.cvq.business.request.school.DccrrPlageHoraireJeudi jeudi) {
+        this.jeudi = jeudi;
     }
 
  
-    @Column(name="horaire_placement_apres_midi_debut"  )
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name="jeudi_id")
       
-    public org.joda.time.LocalTime getHorairePlacementApresMidiDebut() {
-        return this.horairePlacementApresMidiDebut;
+    public fr.cg95.cvq.business.request.school.DccrrPlageHoraireJeudi getJeudi() {
+        return this.jeudi;
     }
   
     
-    private org.joda.time.LocalTime horairePlacementApresMidiDebutJeudi;
+      @NotNull(
+        
+        
+          when = "groovy:def active = true;" +
+          
+            "active &= _this.conditions['choixHorairesAccueil'].test('estHorairesAccueilIrregulier='+_this.choixHorairesAccueil.toString());" +
+                
+              
+              
+            
+            
+            "return active",
+        
+        profiles = {"accueil"},
+        message = "lundi"
+      )
+    
+      @AssertValid(
+        
+        
+          when = "groovy:def active = true;" +
+          
+            "active &= _this.conditions['choixHorairesAccueil'].test('estHorairesAccueilIrregulier='+_this.choixHorairesAccueil.toString());" +
+                
+              
+              
+            
+            
+            "return active",
+        
+        profiles = {"accueil"},
+        message = "lundi"
+      )
+    
+    private fr.cg95.cvq.business.request.school.DccrrPlageHoraireLundi lundi;
 
-    public void setHorairePlacementApresMidiDebutJeudi(final org.joda.time.LocalTime horairePlacementApresMidiDebutJeudi) {
-        this.horairePlacementApresMidiDebutJeudi = horairePlacementApresMidiDebutJeudi;
+    public void setLundi(final fr.cg95.cvq.business.request.school.DccrrPlageHoraireLundi lundi) {
+        this.lundi = lundi;
     }
 
  
-    @Column(name="horaire_placement_apres_midi_debut_jeudi"  )
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name="lundi_id")
       
-    public org.joda.time.LocalTime getHorairePlacementApresMidiDebutJeudi() {
-        return this.horairePlacementApresMidiDebutJeudi;
+    public fr.cg95.cvq.business.request.school.DccrrPlageHoraireLundi getLundi() {
+        return this.lundi;
     }
   
     
-    private org.joda.time.LocalTime horairePlacementApresMidiDebutLundi;
+      @NotNull(
+        
+        
+          when = "groovy:def active = true;" +
+          
+            "active &= _this.conditions['choixHorairesAccueil'].test('estHorairesAccueilIrregulier='+_this.choixHorairesAccueil.toString());" +
+                
+              
+              
+            
+            
+            "return active",
+        
+        profiles = {"accueil"},
+        message = "mardi"
+      )
+    
+      @AssertValid(
+        
+        
+          when = "groovy:def active = true;" +
+          
+            "active &= _this.conditions['choixHorairesAccueil'].test('estHorairesAccueilIrregulier='+_this.choixHorairesAccueil.toString());" +
+                
+              
+              
+            
+            
+            "return active",
+        
+        profiles = {"accueil"},
+        message = "mardi"
+      )
+    
+    private fr.cg95.cvq.business.request.school.DccrrPlageHoraireMardi mardi;
 
-    public void setHorairePlacementApresMidiDebutLundi(final org.joda.time.LocalTime horairePlacementApresMidiDebutLundi) {
-        this.horairePlacementApresMidiDebutLundi = horairePlacementApresMidiDebutLundi;
+    public void setMardi(final fr.cg95.cvq.business.request.school.DccrrPlageHoraireMardi mardi) {
+        this.mardi = mardi;
     }
 
  
-    @Column(name="horaire_placement_apres_midi_debut_lundi"  )
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name="mardi_id")
       
-    public org.joda.time.LocalTime getHorairePlacementApresMidiDebutLundi() {
-        return this.horairePlacementApresMidiDebutLundi;
+    public fr.cg95.cvq.business.request.school.DccrrPlageHoraireMardi getMardi() {
+        return this.mardi;
     }
   
     
-    private org.joda.time.LocalTime horairePlacementApresMidiDebutMardi;
-
-    public void setHorairePlacementApresMidiDebutMardi(final org.joda.time.LocalTime horairePlacementApresMidiDebutMardi) {
-        this.horairePlacementApresMidiDebutMardi = horairePlacementApresMidiDebutMardi;
-    }
-
- 
-    @Column(name="horaire_placement_apres_midi_debut_mardi"  )
-      
-    public org.joda.time.LocalTime getHorairePlacementApresMidiDebutMardi() {
-        return this.horairePlacementApresMidiDebutMardi;
-    }
-  
+      @NotNull(
+        
+        
+          when = "groovy:def active = true;" +
+          
+            "active &= _this.conditions['choixHorairesAccueil'].test('estHorairesAccueilIrregulier='+_this.choixHorairesAccueil.toString());" +
+                
+              
+              
+            
+            
+            "return active",
+        
+        profiles = {"accueil"},
+        message = "mercredi"
+      )
     
-    private org.joda.time.LocalTime horairePlacementApresMidiDebutMercredi;
-
-    public void setHorairePlacementApresMidiDebutMercredi(final org.joda.time.LocalTime horairePlacementApresMidiDebutMercredi) {
-        this.horairePlacementApresMidiDebutMercredi = horairePlacementApresMidiDebutMercredi;
-    }
-
- 
-    @Column(name="horaire_placement_apres_midi_debut_mercredi"  )
-      
-    public org.joda.time.LocalTime getHorairePlacementApresMidiDebutMercredi() {
-        return this.horairePlacementApresMidiDebutMercredi;
-    }
-  
+      @AssertValid(
+        
+        
+          when = "groovy:def active = true;" +
+          
+            "active &= _this.conditions['choixHorairesAccueil'].test('estHorairesAccueilIrregulier='+_this.choixHorairesAccueil.toString());" +
+                
+              
+              
+            
+            
+            "return active",
+        
+        profiles = {"accueil"},
+        message = "mercredi"
+      )
     
-    private org.joda.time.LocalTime horairePlacementApresMidiDebutVendredi;
+    private fr.cg95.cvq.business.request.school.DccrrPlageHoraireMercredi mercredi;
 
-    public void setHorairePlacementApresMidiDebutVendredi(final org.joda.time.LocalTime horairePlacementApresMidiDebutVendredi) {
-        this.horairePlacementApresMidiDebutVendredi = horairePlacementApresMidiDebutVendredi;
+    public void setMercredi(final fr.cg95.cvq.business.request.school.DccrrPlageHoraireMercredi mercredi) {
+        this.mercredi = mercredi;
     }
 
  
-    @Column(name="horaire_placement_apres_midi_debut_vendredi"  )
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name="mercredi_id")
       
-    public org.joda.time.LocalTime getHorairePlacementApresMidiDebutVendredi() {
-        return this.horairePlacementApresMidiDebutVendredi;
-    }
-  
-    
-    private org.joda.time.LocalTime horairePlacementApresMidiFin;
-
-    public void setHorairePlacementApresMidiFin(final org.joda.time.LocalTime horairePlacementApresMidiFin) {
-        this.horairePlacementApresMidiFin = horairePlacementApresMidiFin;
-    }
-
- 
-    @Column(name="horaire_placement_apres_midi_fin"  )
-      
-    public org.joda.time.LocalTime getHorairePlacementApresMidiFin() {
-        return this.horairePlacementApresMidiFin;
-    }
-  
-    
-    private org.joda.time.LocalTime horairePlacementApresMidiFinJeudi;
-
-    public void setHorairePlacementApresMidiFinJeudi(final org.joda.time.LocalTime horairePlacementApresMidiFinJeudi) {
-        this.horairePlacementApresMidiFinJeudi = horairePlacementApresMidiFinJeudi;
-    }
-
- 
-    @Column(name="horaire_placement_apres_midi_fin_jeudi"  )
-      
-    public org.joda.time.LocalTime getHorairePlacementApresMidiFinJeudi() {
-        return this.horairePlacementApresMidiFinJeudi;
-    }
-  
-    
-    private org.joda.time.LocalTime horairePlacementApresMidiFinLundi;
-
-    public void setHorairePlacementApresMidiFinLundi(final org.joda.time.LocalTime horairePlacementApresMidiFinLundi) {
-        this.horairePlacementApresMidiFinLundi = horairePlacementApresMidiFinLundi;
-    }
-
- 
-    @Column(name="horaire_placement_apres_midi_fin_lundi"  )
-      
-    public org.joda.time.LocalTime getHorairePlacementApresMidiFinLundi() {
-        return this.horairePlacementApresMidiFinLundi;
-    }
-  
-    
-    private org.joda.time.LocalTime horairePlacementApresMidiFinMardi;
-
-    public void setHorairePlacementApresMidiFinMardi(final org.joda.time.LocalTime horairePlacementApresMidiFinMardi) {
-        this.horairePlacementApresMidiFinMardi = horairePlacementApresMidiFinMardi;
-    }
-
- 
-    @Column(name="horaire_placement_apres_midi_fin_mardi"  )
-      
-    public org.joda.time.LocalTime getHorairePlacementApresMidiFinMardi() {
-        return this.horairePlacementApresMidiFinMardi;
-    }
-  
-    
-    private org.joda.time.LocalTime horairePlacementApresMidiFinMercredi;
-
-    public void setHorairePlacementApresMidiFinMercredi(final org.joda.time.LocalTime horairePlacementApresMidiFinMercredi) {
-        this.horairePlacementApresMidiFinMercredi = horairePlacementApresMidiFinMercredi;
-    }
-
- 
-    @Column(name="horaire_placement_apres_midi_fin_mercredi"  )
-      
-    public org.joda.time.LocalTime getHorairePlacementApresMidiFinMercredi() {
-        return this.horairePlacementApresMidiFinMercredi;
-    }
-  
-    
-    private org.joda.time.LocalTime horairePlacementApresMidiFinVendredi;
-
-    public void setHorairePlacementApresMidiFinVendredi(final org.joda.time.LocalTime horairePlacementApresMidiFinVendredi) {
-        this.horairePlacementApresMidiFinVendredi = horairePlacementApresMidiFinVendredi;
-    }
-
- 
-    @Column(name="horaire_placement_apres_midi_fin_vendredi"  )
-      
-    public org.joda.time.LocalTime getHorairePlacementApresMidiFinVendredi() {
-        return this.horairePlacementApresMidiFinVendredi;
-    }
-  
-    
-    private org.joda.time.LocalTime horairePlacementMatinDebut;
-
-    public void setHorairePlacementMatinDebut(final org.joda.time.LocalTime horairePlacementMatinDebut) {
-        this.horairePlacementMatinDebut = horairePlacementMatinDebut;
-    }
-
- 
-    @Column(name="horaire_placement_matin_debut"  )
-      
-    public org.joda.time.LocalTime getHorairePlacementMatinDebut() {
-        return this.horairePlacementMatinDebut;
-    }
-  
-    
-    private org.joda.time.LocalTime horairePlacementMatinDebutJeudi;
-
-    public void setHorairePlacementMatinDebutJeudi(final org.joda.time.LocalTime horairePlacementMatinDebutJeudi) {
-        this.horairePlacementMatinDebutJeudi = horairePlacementMatinDebutJeudi;
-    }
-
- 
-    @Column(name="horaire_placement_matin_debut_jeudi"  )
-      
-    public org.joda.time.LocalTime getHorairePlacementMatinDebutJeudi() {
-        return this.horairePlacementMatinDebutJeudi;
-    }
-  
-    
-    private org.joda.time.LocalTime horairePlacementMatinDebutLundi;
-
-    public void setHorairePlacementMatinDebutLundi(final org.joda.time.LocalTime horairePlacementMatinDebutLundi) {
-        this.horairePlacementMatinDebutLundi = horairePlacementMatinDebutLundi;
-    }
-
- 
-    @Column(name="horaire_placement_matin_debut_lundi"  )
-      
-    public org.joda.time.LocalTime getHorairePlacementMatinDebutLundi() {
-        return this.horairePlacementMatinDebutLundi;
-    }
-  
-    
-    private org.joda.time.LocalTime horairePlacementMatinDebutMardi;
-
-    public void setHorairePlacementMatinDebutMardi(final org.joda.time.LocalTime horairePlacementMatinDebutMardi) {
-        this.horairePlacementMatinDebutMardi = horairePlacementMatinDebutMardi;
-    }
-
- 
-    @Column(name="horaire_placement_matin_debut_mardi"  )
-      
-    public org.joda.time.LocalTime getHorairePlacementMatinDebutMardi() {
-        return this.horairePlacementMatinDebutMardi;
-    }
-  
-    
-    private org.joda.time.LocalTime horairePlacementMatinDebutMercredi;
-
-    public void setHorairePlacementMatinDebutMercredi(final org.joda.time.LocalTime horairePlacementMatinDebutMercredi) {
-        this.horairePlacementMatinDebutMercredi = horairePlacementMatinDebutMercredi;
-    }
-
- 
-    @Column(name="horaire_placement_matin_debut_mercredi"  )
-      
-    public org.joda.time.LocalTime getHorairePlacementMatinDebutMercredi() {
-        return this.horairePlacementMatinDebutMercredi;
-    }
-  
-    
-    private org.joda.time.LocalTime horairePlacementMatinDebutVendredi;
-
-    public void setHorairePlacementMatinDebutVendredi(final org.joda.time.LocalTime horairePlacementMatinDebutVendredi) {
-        this.horairePlacementMatinDebutVendredi = horairePlacementMatinDebutVendredi;
-    }
-
- 
-    @Column(name="horaire_placement_matin_debut_vendredi"  )
-      
-    public org.joda.time.LocalTime getHorairePlacementMatinDebutVendredi() {
-        return this.horairePlacementMatinDebutVendredi;
-    }
-  
-    
-    private org.joda.time.LocalTime horairePlacementMatinFin;
-
-    public void setHorairePlacementMatinFin(final org.joda.time.LocalTime horairePlacementMatinFin) {
-        this.horairePlacementMatinFin = horairePlacementMatinFin;
-    }
-
- 
-    @Column(name="horaire_placement_matin_fin"  )
-      
-    public org.joda.time.LocalTime getHorairePlacementMatinFin() {
-        return this.horairePlacementMatinFin;
-    }
-  
-    
-    private org.joda.time.LocalTime horairePlacementMatinFinJeudi;
-
-    public void setHorairePlacementMatinFinJeudi(final org.joda.time.LocalTime horairePlacementMatinFinJeudi) {
-        this.horairePlacementMatinFinJeudi = horairePlacementMatinFinJeudi;
-    }
-
- 
-    @Column(name="horaire_placement_matin_fin_jeudi"  )
-      
-    public org.joda.time.LocalTime getHorairePlacementMatinFinJeudi() {
-        return this.horairePlacementMatinFinJeudi;
-    }
-  
-    
-    private org.joda.time.LocalTime horairePlacementMatinFinLundi;
-
-    public void setHorairePlacementMatinFinLundi(final org.joda.time.LocalTime horairePlacementMatinFinLundi) {
-        this.horairePlacementMatinFinLundi = horairePlacementMatinFinLundi;
-    }
-
- 
-    @Column(name="horaire_placement_matin_fin_lundi"  )
-      
-    public org.joda.time.LocalTime getHorairePlacementMatinFinLundi() {
-        return this.horairePlacementMatinFinLundi;
-    }
-  
-    
-    private org.joda.time.LocalTime horairePlacementMatinFinMardi;
-
-    public void setHorairePlacementMatinFinMardi(final org.joda.time.LocalTime horairePlacementMatinFinMardi) {
-        this.horairePlacementMatinFinMardi = horairePlacementMatinFinMardi;
-    }
-
- 
-    @Column(name="horaire_placement_matin_fin_mardi"  )
-      
-    public org.joda.time.LocalTime getHorairePlacementMatinFinMardi() {
-        return this.horairePlacementMatinFinMardi;
-    }
-  
-    
-    private org.joda.time.LocalTime horairePlacementMatinFinMercredi;
-
-    public void setHorairePlacementMatinFinMercredi(final org.joda.time.LocalTime horairePlacementMatinFinMercredi) {
-        this.horairePlacementMatinFinMercredi = horairePlacementMatinFinMercredi;
-    }
-
- 
-    @Column(name="horaire_placement_matin_fin_mercredi"  )
-      
-    public org.joda.time.LocalTime getHorairePlacementMatinFinMercredi() {
-        return this.horairePlacementMatinFinMercredi;
-    }
-  
-    
-    private org.joda.time.LocalTime horairePlacementMatinFinVendredi;
-
-    public void setHorairePlacementMatinFinVendredi(final org.joda.time.LocalTime horairePlacementMatinFinVendredi) {
-        this.horairePlacementMatinFinVendredi = horairePlacementMatinFinVendredi;
-    }
-
- 
-    @Column(name="horaire_placement_matin_fin_vendredi"  )
-      
-    public org.joda.time.LocalTime getHorairePlacementMatinFinVendredi() {
-        return this.horairePlacementMatinFinVendredi;
-    }
-  
-    
-    private String horairesReguliersMere;
-
-    public void setHorairesReguliersMere(final String horairesReguliersMere) {
-        this.horairesReguliersMere = horairesReguliersMere;
-    }
-
- 
-    @Column(name="horaires_reguliers_mere"  )
-      
-    public String getHorairesReguliersMere() {
-        return this.horairesReguliersMere;
-    }
-  
-    
-    private String horairesReguliersPere;
-
-    public void setHorairesReguliersPere(final String horairesReguliersPere) {
-        this.horairesReguliersPere = horairesReguliersPere;
-    }
-
- 
-    @Column(name="horaires_reguliers_pere"  )
-      
-    public String getHorairesReguliersPere() {
-        return this.horairesReguliersPere;
-    }
-  
-    
-    private String horairesTravailJeudiMere;
-
-    public void setHorairesTravailJeudiMere(final String horairesTravailJeudiMere) {
-        this.horairesTravailJeudiMere = horairesTravailJeudiMere;
-    }
-
- 
-    @Column(name="horaires_travail_jeudi_mere"  )
-      
-    public String getHorairesTravailJeudiMere() {
-        return this.horairesTravailJeudiMere;
-    }
-  
-    
-    private String horairesTravailJeudiPere;
-
-    public void setHorairesTravailJeudiPere(final String horairesTravailJeudiPere) {
-        this.horairesTravailJeudiPere = horairesTravailJeudiPere;
-    }
-
- 
-    @Column(name="horaires_travail_jeudi_pere"  )
-      
-    public String getHorairesTravailJeudiPere() {
-        return this.horairesTravailJeudiPere;
-    }
-  
-    
-    private String horairesTravailLundiMere;
-
-    public void setHorairesTravailLundiMere(final String horairesTravailLundiMere) {
-        this.horairesTravailLundiMere = horairesTravailLundiMere;
-    }
-
- 
-    @Column(name="horaires_travail_lundi_mere"  )
-      
-    public String getHorairesTravailLundiMere() {
-        return this.horairesTravailLundiMere;
-    }
-  
-    
-    private String horairesTravailLundiPere;
-
-    public void setHorairesTravailLundiPere(final String horairesTravailLundiPere) {
-        this.horairesTravailLundiPere = horairesTravailLundiPere;
-    }
-
- 
-    @Column(name="horaires_travail_lundi_pere"  )
-      
-    public String getHorairesTravailLundiPere() {
-        return this.horairesTravailLundiPere;
-    }
-  
-    
-    private String horairesTravailMardiMere;
-
-    public void setHorairesTravailMardiMere(final String horairesTravailMardiMere) {
-        this.horairesTravailMardiMere = horairesTravailMardiMere;
-    }
-
- 
-    @Column(name="horaires_travail_mardi_mere"  )
-      
-    public String getHorairesTravailMardiMere() {
-        return this.horairesTravailMardiMere;
-    }
-  
-    
-    private String horairesTravailMardiPere;
-
-    public void setHorairesTravailMardiPere(final String horairesTravailMardiPere) {
-        this.horairesTravailMardiPere = horairesTravailMardiPere;
-    }
-
- 
-    @Column(name="horaires_travail_mardi_pere"  )
-      
-    public String getHorairesTravailMardiPere() {
-        return this.horairesTravailMardiPere;
-    }
-  
-    
-    private String horairesTravailMercrediMere;
-
-    public void setHorairesTravailMercrediMere(final String horairesTravailMercrediMere) {
-        this.horairesTravailMercrediMere = horairesTravailMercrediMere;
-    }
-
- 
-    @Column(name="horaires_travail_mercredi_mere"  )
-      
-    public String getHorairesTravailMercrediMere() {
-        return this.horairesTravailMercrediMere;
-    }
-  
-    
-    private String horairesTravailMercrediPere;
-
-    public void setHorairesTravailMercrediPere(final String horairesTravailMercrediPere) {
-        this.horairesTravailMercrediPere = horairesTravailMercrediPere;
-    }
-
- 
-    @Column(name="horaires_travail_mercredi_pere"  )
-      
-    public String getHorairesTravailMercrediPere() {
-        return this.horairesTravailMercrediPere;
-    }
-  
-    
-    private String horairesTravailVendrediMere;
-
-    public void setHorairesTravailVendrediMere(final String horairesTravailVendrediMere) {
-        this.horairesTravailVendrediMere = horairesTravailVendrediMere;
-    }
-
- 
-    @Column(name="horaires_travail_vendredi_mere"  )
-      
-    public String getHorairesTravailVendrediMere() {
-        return this.horairesTravailVendrediMere;
-    }
-  
-    
-    private String horairesTravailVendrediPere;
-
-    public void setHorairesTravailVendrediPere(final String horairesTravailVendrediPere) {
-        this.horairesTravailVendrediPere = horairesTravailVendrediPere;
-    }
-
- 
-    @Column(name="horaires_travail_vendredi_pere"  )
-      
-    public String getHorairesTravailVendrediPere() {
-        return this.horairesTravailVendrediPere;
+    public fr.cg95.cvq.business.request.school.DccrrPlageHoraireMercredi getMercredi() {
+        return this.mercredi;
     }
   
     
@@ -1189,6 +615,7 @@ public class DayCareCenterRegistrationRequestData implements Serializable {
             "active &= _this.conditions['modeAccueil'].test(_this.modeAccueil.toString());" +
                 
               
+              
             
             
             "return active",
@@ -1215,6 +642,55 @@ public class DayCareCenterRegistrationRequestData implements Serializable {
       @NotNull(
         
         
+          when = "groovy:def active = true;" +
+          
+            "active &= _this.conditions['choixHorairesAccueil'].test('estHorairesAccueilRegulier='+_this.choixHorairesAccueil.toString());" +
+                
+              
+              
+            
+            
+            "return active",
+        
+        profiles = {"accueil"},
+        message = "plageHoraireAccueilReguliere"
+      )
+    
+      @AssertValid(
+        
+        
+          when = "groovy:def active = true;" +
+          
+            "active &= _this.conditions['choixHorairesAccueil'].test('estHorairesAccueilRegulier='+_this.choixHorairesAccueil.toString());" +
+                
+              
+              
+            
+            
+            "return active",
+        
+        profiles = {"accueil"},
+        message = "plageHoraireAccueilReguliere"
+      )
+    
+    private fr.cg95.cvq.business.request.school.DccrrPlageHoraire plageHoraireAccueilReguliere;
+
+    public void setPlageHoraireAccueilReguliere(final fr.cg95.cvq.business.request.school.DccrrPlageHoraire plageHoraireAccueilReguliere) {
+        this.plageHoraireAccueilReguliere = plageHoraireAccueilReguliere;
+    }
+
+ 
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name="plage_horaire_accueil_reguliere_id")
+      
+    public fr.cg95.cvq.business.request.school.DccrrPlageHoraire getPlageHoraireAccueilReguliere() {
+        return this.plageHoraireAccueilReguliere;
+    }
+  
+    
+      @NotNull(
+        
+        
         profiles = {"rendezVous"},
         message = "plageHoraireContact"
       )
@@ -1231,156 +707,6 @@ public class DayCareCenterRegistrationRequestData implements Serializable {
       
     public fr.cg95.cvq.business.request.school.PlageHoraireContactType getPlageHoraireContact() {
         return this.plageHoraireContact;
-    }
-  
-    
-      @NotNull(
-        
-        
-          when = "groovy:def active = true;" +
-          
-            "active &= _this.conditions['situationActuelleMere'].test(_this.situationActuelleMere.toString());" +
-                
-              
-            
-            
-            "return active",
-        
-        profiles = {"subject"},
-        message = "precisionAutreSituationActuelleMere"
-      )
-    
-      @NotBlank(
-        
-        
-          when = "groovy:def active = true;" +
-          
-            "active &= _this.conditions['situationActuelleMere'].test(_this.situationActuelleMere.toString());" +
-                
-              
-            
-            
-            "return active",
-        
-        profiles = {"subject"},
-        message = "precisionAutreSituationActuelleMere"
-      )
-    
-    private String precisionAutreSituationActuelleMere;
-
-    public void setPrecisionAutreSituationActuelleMere(final String precisionAutreSituationActuelleMere) {
-        this.precisionAutreSituationActuelleMere = precisionAutreSituationActuelleMere;
-    }
-
- 
-    @Column(name="precision_autre_situation_actuelle_mere"  )
-      
-    public String getPrecisionAutreSituationActuelleMere() {
-        return this.precisionAutreSituationActuelleMere;
-    }
-  
-    
-      @NotNull(
-        
-        
-          when = "groovy:def active = true;" +
-          
-            "active &= _this.conditions['situationActuellePere'].test(_this.situationActuellePere.toString());" +
-                
-              
-            
-            
-            "return active",
-        
-        profiles = {"subject"},
-        message = "precisionAutreSituationActuellePere"
-      )
-    
-      @NotBlank(
-        
-        
-          when = "groovy:def active = true;" +
-          
-            "active &= _this.conditions['situationActuellePere'].test(_this.situationActuellePere.toString());" +
-                
-              
-            
-            
-            "return active",
-        
-        profiles = {"subject"},
-        message = "precisionAutreSituationActuellePere"
-      )
-    
-    private String precisionAutreSituationActuellePere;
-
-    public void setPrecisionAutreSituationActuellePere(final String precisionAutreSituationActuellePere) {
-        this.precisionAutreSituationActuellePere = precisionAutreSituationActuellePere;
-    }
-
- 
-    @Column(name="precision_autre_situation_actuelle_pere"  )
-      
-    public String getPrecisionAutreSituationActuellePere() {
-        return this.precisionAutreSituationActuellePere;
-    }
-  
-    
-    private String professionMere;
-
-    public void setProfessionMere(final String professionMere) {
-        this.professionMere = professionMere;
-    }
-
- 
-    @Column(name="profession_mere"  )
-      
-    public String getProfessionMere() {
-        return this.professionMere;
-    }
-  
-    
-    private String professionPere;
-
-    public void setProfessionPere(final String professionPere) {
-        this.professionPere = professionPere;
-    }
-
- 
-    @Column(name="profession_pere"  )
-      
-    public String getProfessionPere() {
-        return this.professionPere;
-    }
-  
-    
-    private fr.cg95.cvq.business.request.school.ChoixSituationActuelle situationActuelleMere;
-
-    public void setSituationActuelleMere(final fr.cg95.cvq.business.request.school.ChoixSituationActuelle situationActuelleMere) {
-        this.situationActuelleMere = situationActuelleMere;
-    }
-
- 
-    @Enumerated(EnumType.STRING)
-    @Column(name="situation_actuelle_mere"  )
-      
-    public fr.cg95.cvq.business.request.school.ChoixSituationActuelle getSituationActuelleMere() {
-        return this.situationActuelleMere;
-    }
-  
-    
-    private fr.cg95.cvq.business.request.school.ChoixSituationActuelle situationActuellePere;
-
-    public void setSituationActuellePere(final fr.cg95.cvq.business.request.school.ChoixSituationActuelle situationActuellePere) {
-        this.situationActuellePere = situationActuellePere;
-    }
-
- 
-    @Enumerated(EnumType.STRING)
-    @Column(name="situation_actuelle_pere"  )
-      
-    public fr.cg95.cvq.business.request.school.ChoixSituationActuelle getSituationActuellePere() {
-        return this.situationActuellePere;
     }
   
     
@@ -1418,6 +744,55 @@ public class DayCareCenterRegistrationRequestData implements Serializable {
       
     public String getTelephoneContact() {
         return this.telephoneContact;
+    }
+  
+    
+      @NotNull(
+        
+        
+          when = "groovy:def active = true;" +
+          
+            "active &= _this.conditions['choixHorairesAccueil'].test('estHorairesAccueilIrregulier='+_this.choixHorairesAccueil.toString());" +
+                
+              
+              
+            
+            
+            "return active",
+        
+        profiles = {"accueil"},
+        message = "vendredi"
+      )
+    
+      @AssertValid(
+        
+        
+          when = "groovy:def active = true;" +
+          
+            "active &= _this.conditions['choixHorairesAccueil'].test('estHorairesAccueilIrregulier='+_this.choixHorairesAccueil.toString());" +
+                
+              
+              
+            
+            
+            "return active",
+        
+        profiles = {"accueil"},
+        message = "vendredi"
+      )
+    
+    private fr.cg95.cvq.business.request.school.DccrrPlageHoraireVendredi vendredi;
+
+    public void setVendredi(final fr.cg95.cvq.business.request.school.DccrrPlageHoraireVendredi vendredi) {
+        this.vendredi = vendredi;
+    }
+
+ 
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name="vendredi_id")
+      
+    public fr.cg95.cvq.business.request.school.DccrrPlageHoraireVendredi getVendredi() {
+        return this.vendredi;
     }
   
 }

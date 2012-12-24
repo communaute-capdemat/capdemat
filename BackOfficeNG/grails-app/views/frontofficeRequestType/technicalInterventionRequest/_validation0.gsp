@@ -9,7 +9,7 @@
         <dt><g:message code="tir.property.interventionType.label" /></dt>
           <dd>
           <g:render template="/frontofficeRequestType/widget/localReferentialDataSummary" 
-                    model="['javaName':'interventionType', 'lrEntries': lrTypes.interventionType.entries, 'depth':0]" />
+                    model="['wrapper':rqt, 'javaName':'interventionType', 'lrEntries': lrTypes.interventionType.entries, 'depth':0]" />
           </dd>
           
 

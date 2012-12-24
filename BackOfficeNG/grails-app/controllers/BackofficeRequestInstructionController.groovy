@@ -89,6 +89,9 @@ class BackofficeRequestInstructionController {
         for (RequestState state : requestWorkflowService.getEditableStates())
             editableStates.add(state.toString())
         
+        def localReferentialTypes =
+            getLocalReferentialTypes(localReferentialService, rqt.requestType.label)
+
         def externalProviderServiceLabel = null
         def externalTemplateName = null
         def lastTraceStatus = null
@@ -184,13 +187,16 @@ class BackofficeRequestInstructionController {
     }
     
     def localReferentialData = {
+        def bindPathNameArray = params.bindPathName.split('\\.')
+        def javaName = bindPathNameArray[bindPathNameArray.length - 1]
         def rqt = requestSearchService.getById(Long.valueOf(params.requestId), true)
-        def lrt = getLocalReferentialType(localReferentialService, rqt.requestType.label, params.javaName)
+        def wrapper = bindPathNameArray.length == 1 ? rqt : rqt[bindPathNameArray[0]]
+        def lrTypes = getLocalReferentialTypes(localReferentialService, rqt.requestType.label)
         render( template: '/backofficeRequestInstruction/widget/localReferentialDataStatic',
-                model: ['rqt':rqt,
-                        'javaName':params.javaName, 
-                        'lrEntries':lrt.entries,
-                        'isMultiple':lrt.isMultiple(),
+                model: ['wrapper':wrapper,
+                        'javaName':javaName, 
+                        'lrEntries':lrTypes[javaName]?.entries,
+                        'isMultiple':lrTypes[javaName]?.entriesSupportMultiple,
                         'depth':0 ])
     }
 
@@ -236,14 +242,16 @@ class BackofficeRequestInstructionController {
         }
         else if (propertyType == "localReferentialData") {
             def rqt = requestSearchService.getById(Long.valueOf(params.id), true)
-            def lrt = getLocalReferentialType(localReferentialService, rqt.requestType.label, params.propertyName)
-            model['lrType'] = lrt
-            model['lrDatas'] = rqt[params.propertyName].collect { it.name }
+            def lrTypes = getLocalReferentialTypes(localReferentialService, rqt.requestType.label)
+            def lrDataNamePath = params.propertyName.split('\\.')
+            def lrDataName = lrDataNamePath[lrDataNamePath.length -1]
+            def lrDatasWrapper = lrDataNamePath.length == 1 ? rqt : rqt[lrDataNamePath[0]]
+            model['lrType'] = lrTypes[lrDataName]
+            model['lrDatas'] = lrDatasWrapper != null ? lrDatasWrapper[lrDataName].collect { it.name } : []
             flash[params.propertyName + 'Index'] = 0
             model["htmlClass"] =
                 (model["lrType"].isMultiple() ? "validate-localReferentialData " :
-                    (model["required"] != "" ? "validate-not-first " : "")) +
-                model["required"]
+                    (model["required"] != "" ? "validate-not-first " : "")) + model["required"]
         }
         else if (propertyType == "school") {
             model.schools = schoolService.getActive()

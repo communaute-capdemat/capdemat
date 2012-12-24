@@ -29,6 +29,8 @@ import fr.cg95.cvq.business.request.RequestState;
 import fr.cg95.cvq.business.request.external.RequestExternalAction;
 import fr.cg95.cvq.business.request.school.DistanceType;
 import fr.cg95.cvq.business.request.school.CurrentStudiesType;
+import fr.cg95.cvq.business.request.school.CurrentStudiesInformations;
+import fr.cg95.cvq.business.request.school.SgrCurrentSchool;
 import fr.cg95.cvq.business.request.school.StudyGrantRequest;
 import fr.cg95.cvq.business.users.Individual;
 import fr.cg95.cvq.business.users.UserAction;
@@ -51,6 +53,7 @@ import fr.cg95.cvq.service.users.IUserSearchService;
 import fr.cg95.cvq.util.Critere;
 import fr.cg95.cvq.util.JSONUtils;
 import fr.cg95.cvq.util.web.WS;
+import fr.cg95.cvq.xml.request.school.SgrCurrentSchoolType;
 
 /**
  * @author Jean-Sébastien Bour (jsb@zenexity.fr)
@@ -88,8 +91,17 @@ public class StudyGrantRequestService extends RequestService implements ILocalAu
         StudyGrantRequest.conditions.put("currentStudiesDiploma",
             new EqualityChecker(CurrentStudiesType.OTHER_STUDIES.name()));
         StudyGrantRequest.conditions.put("taxHouseholdCity", new EqualityChecker("573"));
-        StudyGrantRequest.conditions.put("currentSchoolName", new EqualityChecker("autre"));
         StudyGrantRequest.conditions.put("isSubjectAccountHolder", new EqualityChecker("true"));
+        
+        // kept them for client side JS validation script
+        StudyGrantRequest.conditions.put("currentSchool.currentSchoolName", new EqualityChecker("autre"));
+
+        // added for server side validation
+        SgrCurrentSchool.conditions.put("currentSchoolName", new EqualityChecker("autre"));
+        StudyGrantRequest.conditions.put("currentStudiesInformations.currentStudiesDiploma",
+            new EqualityChecker(CurrentStudiesType.OTHER_STUDIES.name()));
+        StudyGrantRequest.conditions.put("currentStudiesInformations.abroadInternship", new EqualityChecker("true"));
+
     }
 
     public boolean accept(Request request) {
@@ -176,7 +188,7 @@ public class StudyGrantRequestService extends RequestService implements ILocalAu
     public void onRequestCompleted(Request request) throws CvqException {
         StudyGrantRequest sgr = (StudyGrantRequest) request;
         Individual subject = (Individual) genericDAO.findById(Individual.class, sgr.getSubjectId());
-        subject.setBirthDate(sgr.getSubjectBirthDate());
+        subject.setBirthDate(sgr.getSubjectInformations().getSubjectBirthDate());
     }
 
     @Override
@@ -241,12 +253,16 @@ public class StudyGrantRequestService extends RequestService implements ILocalAu
             oldUser = (String)lastCheck.get(0).getComplementaryData().get("userAddress");
         }
         String currentSchool = null;
-        if (request.getCurrentSchoolName().size() > 0
-            && !StudyGrantRequest.conditions.get("currentSchoolName").test(
-                request.getCurrentSchoolName().get(0).getName())) {
-            currentSchool = schoolAddresses.get(request.getCurrentSchoolName().get(0).getName());
-        } else if (request.getCurrentSchoolAddress() != null) {
-            currentSchool = request.getCurrentSchoolAddress().format();
+        if (request.getCurrentSchool() != null) {
+          if( request.getCurrentSchool().getCurrentSchoolName() != null) {
+            if( request.getCurrentSchool().getCurrentSchoolName().size() > 0
+                && !StudyGrantRequest.conditions.get("currentSchool.currentSchoolName").test(
+                    request.getCurrentSchool().getCurrentSchoolName().get(0).getName())) {
+                currentSchool = schoolAddresses.get(request.getCurrentSchool().getCurrentSchoolName().get(0).getName());
+            } else if (request.getCurrentSchool().getCurrentSchoolAddress() != null) {
+                currentSchool = request.getCurrentSchool().getCurrentSchoolAddress().format();
+            }
+          }
         }
         String currentUser = null;
         Individual subject = userSearchService.getById(request.getSubjectId());
@@ -257,7 +273,8 @@ public class StudyGrantRequestService extends RequestService implements ILocalAu
                     + request.getId() + " is null");
         }
         DistanceType distance = request.getDistance();
-        if (request.getAbroadInternship()) {
+        if (request.getCurrentStudiesInformations() != null
+            && request.getCurrentStudiesInformations().getAbroadInternship()) {
             distance = DistanceType.MORE_THAN250KMS_AND_ABROAD;
             requestExternalActionService.addTrace(new RequestExternalAction(new Date(),
                 request.getId(), "capdemat", "Stage à l'étranger",
@@ -290,8 +307,10 @@ public class StudyGrantRequestService extends RequestService implements ILocalAu
             }
         }
         request.setDistance(distance);
-        if (request.getCurrentSchoolAddress() != null)
-            genericDAO.saveOrUpdate(request.getCurrentSchoolAddress());
+        if (request.getCurrentSchool() != null) {
+          if (request.getCurrentSchool().getCurrentSchoolAddress() != null)
+              genericDAO.saveOrUpdate(request.getCurrentSchool().getCurrentSchoolAddress());
+        }
         requestDAO.saveOrUpdate(request);
     }
 
