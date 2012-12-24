@@ -135,7 +135,8 @@ public class MarriageDetailsRequest extends Request implements Serializable {
       
         marriageHusbandInformationTypeMarriageHusband.setMarriageHusbandLastName(getMarriageHusbandLastName());
       
-        marriageInformationTypeMarriage.setMarriagePostalCode(getMarriagePostalCode());
+        if (getMarriagePostalCode() != null)
+            marriageInformationTypeMarriage.setMarriagePostalCode(fr.cg95.cvq.xml.common.InseeDepartementCodeType.Enum.forString(getMarriagePostalCode().getLegacyLabel()));
         MarriageWifeInformationType marriageWifeInformationTypeMarriageWife = marriageDetailsRequest.addNewMarriageWife();
         marriageWifeInformationTypeMarriageWife.setMarriageWifeFirstNames(getMarriageWifeFirstNames());
       
@@ -196,7 +197,10 @@ public class MarriageDetailsRequest extends Request implements Serializable {
       
         marriageDetailsRequest.setMarriageHusbandLastName(marriageDetailsRequestXml.getMarriageHusband().getMarriageHusbandLastName());
       
-        marriageDetailsRequest.setMarriagePostalCode(marriageDetailsRequestXml.getMarriage().getMarriagePostalCode());
+        if (marriageDetailsRequestXml.getMarriage().getMarriagePostalCode() != null)
+            marriageDetailsRequest.setMarriagePostalCode(fr.cg95.cvq.business.users.InseeDepartementCodeType.forString(marriageDetailsRequestXml.getMarriage().getMarriagePostalCode().toString()));
+        else
+            marriageDetailsRequest.setMarriagePostalCode(fr.cg95.cvq.business.users.InseeDepartementCodeType.getDefaultInseeDepartementCodeType());
       
         marriageDetailsRequest.setMarriageWifeFirstNames(marriageDetailsRequestXml.getMarriageWife().getMarriageWifeFirstNames());
       
@@ -344,12 +348,12 @@ public class MarriageDetailsRequest extends Request implements Serializable {
         return marriageDetailsRequestData.getMarriageHusbandLastName();
     }
   
-    public final void setMarriagePostalCode(final String marriagePostalCode) {
+    public final void setMarriagePostalCode(final fr.cg95.cvq.business.users.InseeDepartementCodeType marriagePostalCode) {
         marriageDetailsRequestData.setMarriagePostalCode(marriagePostalCode);
     }
 
     
-    public final String getMarriagePostalCode() {
+    public final fr.cg95.cvq.business.users.InseeDepartementCodeType getMarriagePostalCode() {
         return marriageDetailsRequestData.getMarriagePostalCode();
     }
   

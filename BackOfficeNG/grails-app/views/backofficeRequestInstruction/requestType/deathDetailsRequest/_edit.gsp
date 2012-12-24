@@ -54,7 +54,7 @@
             
               
               <dl>
-                <dt class="required">${message(code:'ddr.property.deathPostalCode.label')} * :</dt><dd id="deathPostalCode" class="action-editField validate-departmentCode required-true i18n-ddr.property.deathPostalCode maxLength-2" ><span>${rqt?.deathPostalCode}</span></dd>
+                <dt class="required">${message(code:'ddr.property.deathPostalCode.label')} * :</dt><dd id="deathPostalCode" class="action-editField validate-capdematEnum required-true i18n-ddr.property.deathPostalCode javatype-fr.cg95.cvq.business.users.InseeDepartementCodeType" ><g:capdematEnumToField var="${rqt?.deathPostalCode}" i18nKeyPrefix="ddr.property.deathPostalCode" /></dd>
               </dl>
               
             

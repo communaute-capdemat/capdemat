@@ -2,6 +2,7 @@ package fr.cg95.cvq.service.request.civil.impl;
 
 import fr.cg95.cvq.business.request.Request;
 import fr.cg95.cvq.business.request.civil.DeathDetailsRequest;
+import fr.cg95.cvq.business.users.InseeDepartementCodeType;
 import fr.cg95.cvq.security.SecurityContext;
 import fr.cg95.cvq.service.request.impl.RequestService;
 
@@ -23,7 +24,7 @@ public final class DeathDetailsRequestService extends RequestService {
         //FIXME see Birth
         if (SecurityContext.getCurrentSite() != null) {
             request.setDeathCity(SecurityContext.getCurrentSite().getDisplayTitle());
-            request.setDeathPostalCode(SecurityContext.getCurrentSite().getPostalCode().substring(0,2));
+            request.setDeathPostalCode(InseeDepartementCodeType.getDepartementCodeByPostalCode(SecurityContext.getCurrentSite().getPostalCode()));
         }
         return request;
     }

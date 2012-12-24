@@ -62,7 +62,13 @@
           <dt><g:message code="mdr.property.marriageCity.label" /></dt><dd>${rqt.marriageCity?.toString()}</dd>
 
         
-          <dt><g:message code="mdr.property.marriagePostalCode.label" /></dt><dd>${rqt.marriagePostalCode?.toString()}</dd>
+          <dt><g:message code="mdr.property.marriagePostalCode.label" /></dt>
+          <dd>
+            <g:if test="${rqt.marriagePostalCode}">
+              <g:capdematEnumToField var="${rqt.marriagePostalCode}" i18nKeyPrefix="mdr.property.marriagePostalCode" />
+            </g:if>
+          </dd>
+          
 
         
       </dl>

@@ -97,8 +97,12 @@
 
   
     <label for="birthPostalCode" class="required"><g:message code="bdr.property.birthPostalCode.label" /> *  <span><g:message code="bdr.property.birthPostalCode.help" /></span></label>
-            <input type="text" id="birthPostalCode" name="birthPostalCode" value="${rqt.birthPostalCode?.toString()}" 
-                    class="required  validate-departmentCode ${rqt.stepStates['nature'].invalidFields.contains('birthPostalCode') ? 'validation-failed' : ''}" title="<g:message code="bdr.property.birthPostalCode.validationError" />"  maxlength="2" />
+            <select id="birthPostalCode" name="birthPostalCode" class="required  validate-not-first ${rqt.stepStates['nature'].invalidFields.contains('birthPostalCode') ? 'validation-failed' : ''}" title="<g:message code="bdr.property.birthPostalCode.validationError" />">
+              <option value=""><g:message code="message.select.defaultOption" /></option>
+              <g:each in="${['NONE','D_E_P01','D_E_P02','D_E_P03','D_E_P04','D_E_P05','D_E_P06','D_E_P07','D_E_P08','D_E_P09','D_E_P10','D_E_P11','D_E_P12','D_E_P13','D_E_P14','D_E_P15','D_E_P16','D_E_P17','D_E_P18','D_E_P19','D_E_P2_A','D_E_P2_B','D_E_P21','D_E_P22','D_E_P23','D_E_P24','D_E_P25','D_E_P26','D_E_P27','D_E_P28','D_E_P29','D_E_P30','D_E_P31','D_E_P32','D_E_P33','D_E_P34','D_E_P35','D_E_P36','D_E_P37','D_E_P38','D_E_P39','D_E_P40','D_E_P41','D_E_P42','D_E_P43','D_E_P44','D_E_P45','D_E_P46','D_E_P47','D_E_P48','D_E_P49','D_E_P50','D_E_P51','D_E_P52','D_E_P53','D_E_P54','D_E_P55','D_E_P56','D_E_P57','D_E_P58','D_E_P59','D_E_P60','D_E_P61','D_E_P62','D_E_P63','D_E_P64','D_E_P65','D_E_P66','D_E_P67','D_E_P68','D_E_P69','D_E_P70','D_E_P71','D_E_P72','D_E_P73','D_E_P74','D_E_P75','D_E_P76','D_E_P77','D_E_P78','D_E_P79','D_E_P80','D_E_P81','D_E_P82','D_E_P83','D_E_P84','D_E_P85','D_E_P86','D_E_P87','D_E_P88','D_E_P89','D_E_P90','D_E_P91','D_E_P92','D_E_P93','D_E_P94','D_E_P95','D_E_P971','D_E_P972','D_E_P973','D_E_P974']}">
+                <option value="${it}" ${it == rqt.birthPostalCode?.toString() ? 'selected="selected"': ''}><g:capdematEnumToText var="${it}" i18nKeyPrefix="bdr.property.birthPostalCode" /></option>
+              </g:each>
+            </select>
             
 
   

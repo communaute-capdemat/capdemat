@@ -116,7 +116,7 @@
               </xs:annotation>
             </xs:element>
 
-            <xs:element name="DeathPostalCode" type="cvq:DepartmentCodeType" minOccurs="1">
+            <xs:element name="DeathPostalCode" type="cvq:InseeDepartementCodeType" minOccurs="1">
               <xs:annotation>
                 <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">
                   Département de décès de l'individu
@@ -125,6 +125,7 @@
                   Département de décès
                 </xs:documentation>
                 <xs:appinfo>
+                  <model namespace="users" />
                   <common>
                     <step name="nature" />
                   </common>

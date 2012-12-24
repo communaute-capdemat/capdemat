@@ -36,7 +36,13 @@
     
       
       <dl>
-        <dt><g:message code="ddr.property.deathPostalCode.label" /></dt><dd>${rqt.deathPostalCode?.toString()}</dd>
+        <dt><g:message code="ddr.property.deathPostalCode.label" /></dt>
+          <dd>
+            <g:if test="${rqt.deathPostalCode}">
+              <g:capdematEnumToField var="${rqt.deathPostalCode}" i18nKeyPrefix="ddr.property.deathPostalCode" />
+            </g:if>
+          </dd>
+          
 
       </dl>
       

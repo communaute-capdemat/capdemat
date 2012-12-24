@@ -115,7 +115,13 @@
     
   
     
-      <p class="label">${esc(i18n.translate('ddr.property.deathPostalCode.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.deathPostalCode?.toString()))}</div>
+      <p class="label">${esc(i18n.translate('ddr.property.deathPostalCode.label'))}</p>
+          <div class="response">
+            <% if(rqt.deathPostalCode) { %>
+              ${esc(i18n.translate('ddr.property.deathPostalCode.' + EnumTool.toLowerCamelCase(rqt.deathPostalCode.toString())))}
+            <% } %>
+          </div>
+          
 
     
   

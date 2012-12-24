@@ -1,5 +1,7 @@
 package fr.cg95.cvq.business.users;
 
+import org.apache.commons.lang.ArrayUtils;
+
 /**
  * Enumeration of all French departments.
  * 
@@ -126,6 +128,22 @@ public enum InseeDepartementCodeType {
         return NONE;
     }
 
+    public static InseeDepartementCodeType getDepartementCodeByPostalCode(String postalCode) {
+        String departementCode = "";
+        if (postalCode.substring(0, 2).equals("97")) {
+            departementCode = postalCode.substring(0,3);
+        } else if (postalCode.substring(0, 2).equals("20")) {
+            departementCode = postalCode.substring(0,3);
+            if (departementCode.equals("200") || departementCode.equals("201"))
+                departementCode = "2A";
+            else
+                departementCode = "2B";
+        } else {
+            departementCode = postalCode.substring(0,2);
+        }
+        
+        return forString("DEP_" + departementCode);
+    }
 
     public static InseeDepartementCodeType forString(final String enumAsString) {
         if (enumAsString == null || enumAsString.equals(""))

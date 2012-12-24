@@ -125,7 +125,8 @@ public class BirthDetailsRequest extends Request implements Serializable {
       
         birthDetailsRequest.setBirthMarriageName(getBirthMarriageName());
       
-        birthDetailsRequest.setBirthPostalCode(getBirthPostalCode());
+        if (getBirthPostalCode() != null)
+            birthDetailsRequest.setBirthPostalCode(fr.cg95.cvq.xml.common.InseeDepartementCodeType.Enum.forString(getBirthPostalCode().getLegacyLabel()));
       
         birthDetailsRequest.setComment(getComment());
       
@@ -180,7 +181,10 @@ public class BirthDetailsRequest extends Request implements Serializable {
       
         birthDetailsRequest.setBirthMarriageName(birthDetailsRequestXml.getBirthMarriageName());
       
-        birthDetailsRequest.setBirthPostalCode(birthDetailsRequestXml.getBirthPostalCode());
+        if (birthDetailsRequestXml.getBirthPostalCode() != null)
+            birthDetailsRequest.setBirthPostalCode(fr.cg95.cvq.business.users.InseeDepartementCodeType.forString(birthDetailsRequestXml.getBirthPostalCode().toString()));
+        else
+            birthDetailsRequest.setBirthPostalCode(fr.cg95.cvq.business.users.InseeDepartementCodeType.getDefaultInseeDepartementCodeType());
       
         birthDetailsRequest.setComment(birthDetailsRequestXml.getComment());
       
@@ -296,12 +300,12 @@ public class BirthDetailsRequest extends Request implements Serializable {
         return birthDetailsRequestData.getBirthMarriageName();
     }
   
-    public final void setBirthPostalCode(final String birthPostalCode) {
+    public final void setBirthPostalCode(final fr.cg95.cvq.business.users.InseeDepartementCodeType birthPostalCode) {
         birthDetailsRequestData.setBirthPostalCode(birthPostalCode);
     }
 
     
-    public final String getBirthPostalCode() {
+    public final fr.cg95.cvq.business.users.InseeDepartementCodeType getBirthPostalCode() {
         return birthDetailsRequestData.getBirthPostalCode();
     }
   

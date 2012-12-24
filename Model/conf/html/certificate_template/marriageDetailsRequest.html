@@ -146,7 +146,13 @@
           <p class="label">${esc(i18n.translate('mdr.property.marriageCity.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.marriageCity?.toString()))}</div>
 
         
-          <p class="label">${esc(i18n.translate('mdr.property.marriagePostalCode.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.marriagePostalCode?.toString()))}</div>
+          <p class="label">${esc(i18n.translate('mdr.property.marriagePostalCode.label'))}</p>
+          <div class="response">
+            <% if(rqt.marriagePostalCode) { %>
+              ${esc(i18n.translate('mdr.property.marriagePostalCode.' + EnumTool.toLowerCamelCase(rqt.marriagePostalCode.toString())))}
+            <% } %>
+          </div>
+          
 
         
       </div>

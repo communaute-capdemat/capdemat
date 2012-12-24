@@ -180,7 +180,7 @@
               </xs:annotation>
             </xs:element>
 
-            <xs:element name="BirthPostalCode" type="cvq:DepartmentCodeType">
+            <xs:element name="BirthPostalCode" type="cvq:InseeDepartementCodeType">
               <xs:annotation>
                 <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">
                   Département de naissance
@@ -189,6 +189,7 @@
                   Département de naissance
                 </xs:documentation>
                 <xs:appinfo>
+                  <model namespace="users" />
                   <common>
                     <step name="nature" />
                   </common>

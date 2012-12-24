@@ -136,7 +136,13 @@
     
   
     
-      <p class="label">${esc(i18n.translate('bdr.property.birthPostalCode.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.birthPostalCode?.toString()))}</div>
+      <p class="label">${esc(i18n.translate('bdr.property.birthPostalCode.label'))}</p>
+          <div class="response">
+            <% if(rqt.birthPostalCode) { %>
+              ${esc(i18n.translate('bdr.property.birthPostalCode.' + EnumTool.toLowerCamelCase(rqt.birthPostalCode.toString())))}
+            <% } %>
+          </div>
+          
 
     
   

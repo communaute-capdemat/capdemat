@@ -63,7 +63,13 @@
     
       
       <dl>
-        <dt><g:message code="bdr.property.birthPostalCode.label" /></dt><dd>${rqt.birthPostalCode?.toString()}</dd>
+        <dt><g:message code="bdr.property.birthPostalCode.label" /></dt>
+          <dd>
+            <g:if test="${rqt.birthPostalCode}">
+              <g:capdematEnumToField var="${rqt.birthPostalCode}" i18nKeyPrefix="bdr.property.birthPostalCode" />
+            </g:if>
+          </dd>
+          
 
       </dl>
       

@@ -106,7 +106,10 @@ public class MarriageDetailsRequestData implements Serializable {
         
           
             
-        result.setMarriagePostalCode(marriagePostalCode);
+        if (marriagePostalCode != null)
+            result.setMarriagePostalCode(marriagePostalCode);
+        else
+            result.setMarriagePostalCode(fr.cg95.cvq.business.users.InseeDepartementCodeType.getDefaultInseeDepartementCodeType());
       
           
         
@@ -491,15 +494,6 @@ public class MarriageDetailsRequestData implements Serializable {
     }
   
     
-      @MaxLength(
-        
-          value = 2,
-        
-        
-        profiles = {"nature"},
-        message = "marriagePostalCode"
-      )
-    
       @NotNull(
         
         
@@ -507,23 +501,17 @@ public class MarriageDetailsRequestData implements Serializable {
         message = "marriagePostalCode"
       )
     
-      @NotBlank(
-        
-        
-        profiles = {"nature"},
-        message = "marriagePostalCode"
-      )
-    
-    private String marriagePostalCode;
+    private fr.cg95.cvq.business.users.InseeDepartementCodeType marriagePostalCode;
 
-    public void setMarriagePostalCode(final String marriagePostalCode) {
+    public void setMarriagePostalCode(final fr.cg95.cvq.business.users.InseeDepartementCodeType marriagePostalCode) {
         this.marriagePostalCode = marriagePostalCode;
     }
 
  
-    @Column(name="marriage_postal_code" , length=2 )
+    @Enumerated(EnumType.STRING)
+    @Column(name="marriage_postal_code"  )
       
-    public String getMarriagePostalCode() {
+    public fr.cg95.cvq.business.users.InseeDepartementCodeType getMarriagePostalCode() {
         return this.marriagePostalCode;
     }
   

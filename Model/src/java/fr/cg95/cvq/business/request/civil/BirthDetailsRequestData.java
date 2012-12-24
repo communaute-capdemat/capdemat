@@ -79,7 +79,10 @@ public class BirthDetailsRequestData implements Serializable {
         
           
             
-        result.setBirthPostalCode(birthPostalCode);
+        if (birthPostalCode != null)
+            result.setBirthPostalCode(birthPostalCode);
+        else
+            result.setBirthPostalCode(fr.cg95.cvq.business.users.InseeDepartementCodeType.getDefaultInseeDepartementCodeType());
       
           
         
@@ -313,15 +316,6 @@ public class BirthDetailsRequestData implements Serializable {
     }
   
     
-      @MaxLength(
-        
-          value = 2,
-        
-        
-        profiles = {"nature"},
-        message = "birthPostalCode"
-      )
-    
       @NotNull(
         
         
@@ -329,23 +323,17 @@ public class BirthDetailsRequestData implements Serializable {
         message = "birthPostalCode"
       )
     
-      @NotBlank(
-        
-        
-        profiles = {"nature"},
-        message = "birthPostalCode"
-      )
-    
-    private String birthPostalCode;
+    private fr.cg95.cvq.business.users.InseeDepartementCodeType birthPostalCode;
 
-    public void setBirthPostalCode(final String birthPostalCode) {
+    public void setBirthPostalCode(final fr.cg95.cvq.business.users.InseeDepartementCodeType birthPostalCode) {
         this.birthPostalCode = birthPostalCode;
     }
 
  
-    @Column(name="birth_postal_code" , length=2 )
+    @Enumerated(EnumType.STRING)
+    @Column(name="birth_postal_code"  )
       
-    public String getBirthPostalCode() {
+    public fr.cg95.cvq.business.users.InseeDepartementCodeType getBirthPostalCode() {
         return this.birthPostalCode;
     }
   
