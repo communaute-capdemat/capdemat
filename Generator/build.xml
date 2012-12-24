@@ -154,7 +154,6 @@
           <include name="model_plugin.xml" />
           <include name="bo_plugin.xml" />
           <include name="pdf_plugin.xml" />
-          <include name="fong_plugin.xml" />
           <include name="i18n_plugin.xml" />
         </fileset>
       </plugins>
