@@ -316,7 +316,7 @@
                 </xs:appinfo>
               </xs:annotation>
             </xs:element>
-            <xs:element name="ALevelsInformations" type="sgr:ALevelsInformationsType">
+            <xs:element name="AlevelsInformations" type="sgr:ALevelsInformationsType">
               <xs:annotation>
                 <xs:appinfo>
                   <common>

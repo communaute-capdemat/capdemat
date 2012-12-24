@@ -173,11 +173,11 @@ public class StudyGrantRequest extends Request implements Serializable {
       
         if (getAccountHolderTitle() != null)
             studyGrantRequest.setAccountHolderTitle(fr.cg95.cvq.xml.common.TitleType.Enum.forString(getAccountHolderTitle().getLegacyLabel()));
-        ALevelsInformationsType aLevelsInformationsTypeALevelsInformations = studyGrantRequest.addNewALevelsInformations();
+        ALevelsInformationsType aLevelsInformationsTypeAlevelsInformations = studyGrantRequest.addNewAlevelsInformations();
         if (getAlevels() != null)
-            aLevelsInformationsTypeALevelsInformations.setAlevels(fr.cg95.cvq.xml.request.school.ALevelsType.Enum.forString(getAlevels().getLegacyLabel()));
+            aLevelsInformationsTypeAlevelsInformations.setAlevels(fr.cg95.cvq.xml.request.school.ALevelsType.Enum.forString(getAlevels().getLegacyLabel()));
       
-        aLevelsInformationsTypeALevelsInformations.setAlevelsDate(getAlevelsDate());
+        aLevelsInformationsTypeAlevelsInformations.setAlevelsDate(getAlevelsDate());
       
         if (getBankAccount() != null)
             studyGrantRequest.setBankAccount(BankAccount.modelToXml(getBankAccount()));
@@ -305,12 +305,12 @@ public class StudyGrantRequest extends Request implements Serializable {
         else
             studyGrantRequest.setAccountHolderTitle(fr.cg95.cvq.business.users.TitleType.getDefaultTitleType());
       
-        if (studyGrantRequestXml.getALevelsInformations().getAlevels() != null)
-            studyGrantRequest.setAlevels(fr.cg95.cvq.business.request.school.ALevelsType.forString(studyGrantRequestXml.getALevelsInformations().getAlevels().toString()));
+        if (studyGrantRequestXml.getAlevelsInformations().getAlevels() != null)
+            studyGrantRequest.setAlevels(fr.cg95.cvq.business.request.school.ALevelsType.forString(studyGrantRequestXml.getAlevelsInformations().getAlevels().toString()));
         else
             studyGrantRequest.setAlevels(fr.cg95.cvq.business.request.school.ALevelsType.getDefaultALevelsType());
       
-        studyGrantRequest.setAlevelsDate(studyGrantRequestXml.getALevelsInformations().getAlevelsDate());
+        studyGrantRequest.setAlevelsDate(studyGrantRequestXml.getAlevelsInformations().getAlevelsDate());
       
         if (studyGrantRequestXml.getBankAccount() != null)
             studyGrantRequest.setBankAccount(BankAccount.xmlToModel(studyGrantRequestXml.getBankAccount()));

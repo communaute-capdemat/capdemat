@@ -212,7 +212,7 @@
               
             
               
-              <h3><g:message code="sgr.property.aLevelsInformations.label" /></h3>
+              <h3><g:message code="sgr.property.alevelsInformations.label" /></h3>
               <dl class="required">
                 
                   <dt class="required">${message(code:'sgr.property.alevelsDate.label')} * :</dt><dd id="alevelsDate" class="action-editField validate-regex required-true i18n-sgr.property.alevelsDate maxLength-4" regex="^\d{2,4}$"><span>${rqt?.alevelsDate}</span></dd>

@@ -49,7 +49,7 @@
 
   
     <fieldset class="required">
-    <legend><g:message code="sgr.property.aLevelsInformations.label" /></legend>
+    <legend><g:message code="sgr.property.alevelsInformations.label" /></legend>
     
       <label for="alevelsDate" class="required"><g:message code="sgr.property.alevelsDate.label" /> *  <span><g:message code="sgr.property.alevelsDate.help" /></span></label>
             <input type="text" id="alevelsDate" name="alevelsDate" value="${rqt.alevelsDate?.toString()}" 

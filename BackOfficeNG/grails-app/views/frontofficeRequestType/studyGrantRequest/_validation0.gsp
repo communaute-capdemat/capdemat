@@ -149,7 +149,7 @@
       
     
       
-      <h4><g:message code="sgr.property.aLevelsInformations.label" /></h4>
+      <h4><g:message code="sgr.property.alevelsInformations.label" /></h4>
       <dl>
         
           <dt><g:message code="sgr.property.alevelsDate.label" /></dt><dd>${rqt.alevelsDate?.toString()}</dd>
