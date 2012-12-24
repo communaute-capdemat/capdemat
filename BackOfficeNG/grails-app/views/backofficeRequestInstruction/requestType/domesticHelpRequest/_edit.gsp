@@ -160,25 +160,23 @@
             
               
               <h3><g:message code="dhr.property.dhrSpouse.label" /></h3>
-              <dl class="required">
+              <dl class="required condition-isCoupleRequest-filled">
                 
-                  <dt class="required condition-isCoupleRequest-trigger">${message(code:'dhr.property.dhrRequestKind.label')} * :</dt><dd id="dhrRequestKind" class="action-editField validate-capdematEnum required-true i18n-dhr.property.dhrRequestKind javatype-fr.cg95.cvq.business.request.social.DhrRequestKindType" ><g:capdematEnumToField var="${rqt.dhrSpouse?.dhrRequestKind}" i18nKeyPrefix="dhr.property.dhrRequestKind" /></dd>
+                  <dt class="required condition-isSpouseMadam-trigger">${message(code:'dhr.property.dhrSpouseTitle.label')} * :</dt><dd id="dhrSpouseTitle" class="action-editField validate-capdematEnum required-true i18n-dhr.property.dhrSpouseTitle javatype-fr.cg95.cvq.business.users.TitleType" ><g:capdematEnumToField var="${rqt.dhrSpouse?.dhrSpouseTitle}" i18nKeyPrefix="dhr.property.dhrSpouseTitle" /></dd>
                 
-                  <dt class="required condition-isCoupleRequest-filled condition-isSpouseMadam-trigger">${message(code:'dhr.property.dhrSpouseTitle.label')} * :</dt><dd id="dhrSpouseTitle" class="action-editField validate-capdematEnum required-true i18n-dhr.property.dhrSpouseTitle javatype-fr.cg95.cvq.business.users.TitleType" ><g:capdematEnumToField var="${rqt.dhrSpouse?.dhrSpouseTitle}" i18nKeyPrefix="dhr.property.dhrSpouseTitle" /></dd>
+                  <dt class="required">${message(code:'dhr.property.dhrSpouseFamilyStatus.label')} * :</dt><dd id="dhrSpouseFamilyStatus" class="action-editField validate-capdematEnum required-true i18n-dhr.property.dhrSpouseFamilyStatus javatype-fr.cg95.cvq.business.users.FamilyStatusType" ><g:capdematEnumToField var="${rqt.dhrSpouse?.dhrSpouseFamilyStatus}" i18nKeyPrefix="dhr.property.dhrSpouseFamilyStatus" /></dd>
                 
-                  <dt class="required condition-isCoupleRequest-filled">${message(code:'dhr.property.dhrSpouseFamilyStatus.label')} * :</dt><dd id="dhrSpouseFamilyStatus" class="action-editField validate-capdematEnum required-true i18n-dhr.property.dhrSpouseFamilyStatus javatype-fr.cg95.cvq.business.users.FamilyStatusType" ><g:capdematEnumToField var="${rqt.dhrSpouse?.dhrSpouseFamilyStatus}" i18nKeyPrefix="dhr.property.dhrSpouseFamilyStatus" /></dd>
+                  <dt class="required">${message(code:'dhr.property.dhrSpouseName.label')} * :</dt><dd id="dhrSpouseName" class="action-editField validate-lastName required-true i18n-dhr.property.dhrSpouseName maxLength-38" ><span>${rqt.dhrSpouse?.dhrSpouseName}</span></dd>
                 
-                  <dt class="required condition-isCoupleRequest-filled">${message(code:'dhr.property.dhrSpouseName.label')} * :</dt><dd id="dhrSpouseName" class="action-editField validate-lastName required-true i18n-dhr.property.dhrSpouseName maxLength-38" ><span>${rqt.dhrSpouse?.dhrSpouseName}</span></dd>
-                
-                  <dt class="required condition-isCoupleRequest-filled">${message(code:'dhr.property.dhrSpouseFirstName.label')} * :</dt><dd id="dhrSpouseFirstName" class="action-editField validate-firstName required-true i18n-dhr.property.dhrSpouseFirstName maxLength-38" ><span>${rqt.dhrSpouse?.dhrSpouseFirstName}</span></dd>
+                  <dt class="required">${message(code:'dhr.property.dhrSpouseFirstName.label')} * :</dt><dd id="dhrSpouseFirstName" class="action-editField validate-firstName required-true i18n-dhr.property.dhrSpouseFirstName maxLength-38" ><span>${rqt.dhrSpouse?.dhrSpouseFirstName}</span></dd>
                 
                   <dt class="required condition-isSpouseMadam-filled">${message(code:'dhr.property.dhrSpouseMaidenName.label')} * :</dt><dd id="dhrSpouseMaidenName" class="action-editField validate-lastName required-true i18n-dhr.property.dhrSpouseMaidenName maxLength-38" ><span>${rqt.dhrSpouse?.dhrSpouseMaidenName}</span></dd>
                 
-                  <dt class="required condition-isCoupleRequest-filled">${message(code:'dhr.property.dhrSpouseBirthDate.label')} * :</dt><dd id="dhrSpouseBirthDate" class="action-editField validate-date required-true i18n-dhr.property.dhrSpouseBirthDate" ><span><g:formatDate formatName="format.date" date="${rqt.dhrSpouse?.dhrSpouseBirthDate}"/></span></dd>
+                  <dt class="required">${message(code:'dhr.property.dhrSpouseBirthDate.label')} * :</dt><dd id="dhrSpouseBirthDate" class="action-editField validate-date required-true i18n-dhr.property.dhrSpouseBirthDate" ><span><g:formatDate formatName="format.date" date="${rqt.dhrSpouse?.dhrSpouseBirthDate}"/></span></dd>
                 
-                  <dt class="required condition-isCoupleRequest-filled">${message(code:'dhr.property.dhrSpouseBirthPlace.label')} * :</dt><dd id="dhrSpouseBirthPlace" class="action-editField validate-string required-true i18n-dhr.property.dhrSpouseBirthPlace" ><span>${rqt.dhrSpouse?.dhrSpouseBirthPlace}</span></dd>
+                  <dt class="required">${message(code:'dhr.property.dhrSpouseBirthPlace.label')} * :</dt><dd id="dhrSpouseBirthPlace" class="action-editField validate-string required-true i18n-dhr.property.dhrSpouseBirthPlace" ><span>${rqt.dhrSpouse?.dhrSpouseBirthPlace}</span></dd>
                 
-                  <dt class="required condition-isCoupleRequest-filled condition-isSpouseNonEuropean-trigger">${message(code:'dhr.property.dhrSpouseNationality.label')} * :</dt><dd id="dhrSpouseNationality" class="action-editField validate-capdematEnum required-true i18n-dhr.property.dhrSpouseNationality javatype-fr.cg95.cvq.business.users.NationalityType maxLength-32" ><g:capdematEnumToField var="${rqt.dhrSpouse?.dhrSpouseNationality}" i18nKeyPrefix="dhr.property.dhrSpouseNationality" /></dd>
+                  <dt class="required condition-isSpouseNonEuropean-trigger">${message(code:'dhr.property.dhrSpouseNationality.label')} * :</dt><dd id="dhrSpouseNationality" class="action-editField validate-capdematEnum required-true i18n-dhr.property.dhrSpouseNationality javatype-fr.cg95.cvq.business.users.NationalityType maxLength-32" ><g:capdematEnumToField var="${rqt.dhrSpouse?.dhrSpouseNationality}" i18nKeyPrefix="dhr.property.dhrSpouseNationality" /></dd>
                 
                   <dt class="required condition-isSpouseNonEuropean-filled">${message(code:'dhr.property.dhrSpouseFranceArrivalDate.label')} * :</dt><dd id="dhrSpouseFranceArrivalDate" class="action-editField validate-date required-true i18n-dhr.property.dhrSpouseFranceArrivalDate" ><span><g:formatDate formatName="format.date" date="${rqt.dhrSpouse?.dhrSpouseFranceArrivalDate}"/></span></dd>
                 

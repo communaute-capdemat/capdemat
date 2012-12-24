@@ -153,6 +153,30 @@
               </xs:annotation>
             </xs:element>
 
+      <xs:element name="DhrRequestKind" type="dhr:DhrRequestKindType" default="Individual">
+        <xs:annotation>
+          <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">
+            Type de la demande
+          </xs:documentation>
+          <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
+            Type de la demande
+          </xs:documentation>
+          <xs:appinfo>
+            <common>
+              <step name="spouse"/>
+              <conditions>
+                <condition name="isCoupleRequest" type="trigger"/>
+              </conditions>
+            </common>
+            <fo>
+              <radio/>
+            </fo>
+            <bo />
+            <pdf />
+                </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+
             <xs:element name="DhrSpouse" type="dhr:DhrSpouseType">
               <xs:annotation>
                 <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">
@@ -164,6 +188,9 @@
                 <xs:appinfo>
                   <common>
                     <step name="spouse"/>
+                    <conditions>
+                      <condition name="isCoupleRequest" type="filled"/>
+                    </conditions>
                   </common>
                   <fo />
                   <bo column="1" />
@@ -890,30 +917,6 @@
     </xs:annotation>
     <xs:sequence>
 
-      <xs:element name="DhrRequestKind" type="dhr:DhrRequestKindType" default="Individual">
-        <xs:annotation>
-          <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">
-            Type de la demande
-          </xs:documentation>
-          <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
-            Type de la demande
-          </xs:documentation>
-          <xs:appinfo>
-            <common>
-              <step name="spouse"/>
-              <conditions>
-                <condition name="isCoupleRequest" type="trigger"/>
-              </conditions>
-            </common>
-            <fo>
-              <radio/>
-            </fo>
-            <bo />
-            <pdf />
-                </xs:appinfo>
-        </xs:annotation>
-      </xs:element>
-
       <xs:element name="DhrSpouseTitle" type="cvq:TitleType">
         <xs:annotation>
           <xs:appinfo>
@@ -921,7 +924,6 @@
             <common>
               <step name="spouse"/>
               <conditions>
-                <condition name="isCoupleRequest" type="filled"/>
                 <condition name="isSpouseMadam" type="trigger"/>
               </conditions>
             </common>
@@ -940,9 +942,6 @@
             <model namespace="users"/>
             <common>
               <step name="spouse"/>
-              <conditions>
-                <condition name="isCoupleRequest" type="filled"/>
-              </conditions>
             </common>
             <fo>
               <select/>
@@ -959,9 +958,6 @@
             <model namespace="users"/>
             <common>
               <step name="spouse"/>
-              <conditions>
-                <condition name="isCoupleRequest" type="filled"/>
-              </conditions>
             </common>
             <fo/>
             <bo />
@@ -976,9 +972,6 @@
             <model namespace="users"/>
             <common>
               <step name="spouse"/>
-              <conditions>
-                <condition name="isCoupleRequest" type="filled"/>
-              </conditions>
             </common>
             <fo/>
             <bo />
@@ -1021,9 +1014,6 @@
           <xs:appinfo>
             <common>
               <step name="spouse"/>
-              <conditions>
-                <condition name="isCoupleRequest" type="filled"/>
-              </conditions>
             </common>
             <fo/>
             <bo />
@@ -1043,9 +1033,6 @@
           <xs:appinfo>
             <common>
               <step name="spouse"/>
-              <conditions>
-                <condition name="isCoupleRequest" type="filled"/>
-              </conditions>
             </common>
             <fo/>
             <bo />
@@ -1061,7 +1048,6 @@
             <common>
               <step name="spouse"/>
               <conditions>
-                <condition name="isCoupleRequest" type="filled"/>
                 <condition name="isSpouseNonEuropean" type="trigger"/>
               </conditions>
             </common>

@@ -253,17 +253,19 @@
   <h2>${i18n.translate('dhr.step.spouse.label')}</h2>
   
     
-      <h3>${i18n.translate('dhr.property.dhrSpouse.label')}</h3>
-      <div class="complex">
-        
-          <p class="label">${esc(i18n.translate('dhr.property.dhrRequestKind.label'))}</p>
+      <p class="label">${esc(i18n.translate('dhr.property.dhrRequestKind.label'))}</p>
           <div class="response">
-            <% if(rqt.dhrSpouse?.dhrRequestKind) { %>
-              ${esc(i18n.translate('dhr.property.dhrRequestKind.' + EnumTool.toLowerCamelCase(rqt.dhrSpouse?.dhrRequestKind.toString())))}
+            <% if(rqt.dhrRequestKind) { %>
+              ${esc(i18n.translate('dhr.property.dhrRequestKind.' + EnumTool.toLowerCamelCase(rqt.dhrRequestKind.toString())))}
             <% } %>
           </div>
           
 
+    
+  
+    
+      <h3>${i18n.translate('dhr.property.dhrSpouse.label')}</h3>
+      <div class="complex">
         
           <p class="label">${esc(i18n.translate('dhr.property.dhrSpouseTitle.label'))}</p>
           <div class="response">

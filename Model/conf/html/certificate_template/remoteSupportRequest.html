@@ -167,15 +167,6 @@
       <h3>${i18n.translate('rsr.property.requestInformation.label')}</h3>
       <div class="complex">
         
-          <p class="label">${esc(i18n.translate('rsr.property.requestInformationRequestKind.label'))}</p>
-          <div class="response">
-            <% if(rqt.requestInformation?.requestInformationRequestKind) { %>
-              ${esc(i18n.translate('rsr.property.requestInformationRequestKind.' + EnumTool.toLowerCamelCase(rqt.requestInformation?.requestInformationRequestKind.toString())))}
-            <% } %>
-          </div>
-          
-
-        
           <p class="label">${esc(i18n.translate('rsr.property.requestInformationEmergency.label'))}</p>
           <div class="response choice">
             <% [true,false].each { %>
@@ -192,6 +183,17 @@
 
         
       </div>
+    
+  
+    
+      <p class="label">${esc(i18n.translate('rsr.property.requestInformationRequestKind.label'))}</p>
+          <div class="response">
+            <% if(rqt.requestInformationRequestKind) { %>
+              ${esc(i18n.translate('rsr.property.requestInformationRequestKind.' + EnumTool.toLowerCamelCase(rqt.requestInformationRequestKind.toString())))}
+            <% } %>
+          </div>
+          
+
     
   
     

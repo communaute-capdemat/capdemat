@@ -55,12 +55,16 @@
               <h3><g:message code="rsr.property.requestInformation.label" /></h3>
               <dl class="required">
                 
-                  <dt class="required condition-isCoupleRequest-trigger">${message(code:'rsr.property.requestInformationRequestKind.label')} * :</dt><dd id="requestInformationRequestKind" class="action-editField validate-capdematEnum required-true i18n-rsr.property.requestInformationRequestKind javatype-fr.cg95.cvq.business.request.social.RsrRequestInformationRequestKindType" ><g:capdematEnumToField var="${rqt.requestInformation?.requestInformationRequestKind}" i18nKeyPrefix="rsr.property.requestInformationRequestKind" /></dd>
-                
                   <dt class="required condition-isEmergency-trigger">${message(code:'rsr.property.requestInformationEmergency.label')} * :</dt><dd id="requestInformationEmergency" class="action-editField validate-boolean required-true i18n-rsr.property.requestInformationEmergency" ><span class="value-${rqt.requestInformation?.requestInformationEmergency}"><g:message code="message.${rqt.requestInformation?.requestInformationEmergency ? 'yes' : 'no'}" /></span></dd>
                 
                   <dt class="required condition-isEmergency-filled">${message(code:'rsr.property.requestInformationEmergencyMotive.label')} * :</dt><dd id="requestInformationEmergencyMotive" class="action-editField validate-textarea required-true i18n-rsr.property.requestInformationEmergencyMotive rows-3 maxLength-180" ><span>${rqt.requestInformation?.requestInformationEmergencyMotive}</span></dd>
                 
+              </dl>
+              
+            
+              
+              <dl>
+                <dt class="required condition-isCoupleRequest-trigger">${message(code:'rsr.property.requestInformationRequestKind.label')} * :</dt><dd id="requestInformationRequestKind" class="action-editField validate-capdematEnum required-true i18n-rsr.property.requestInformationRequestKind javatype-fr.cg95.cvq.business.request.social.RsrRequestInformationRequestKindType" ><g:capdematEnumToField var="${rqt?.requestInformationRequestKind}" i18nKeyPrefix="rsr.property.requestInformationRequestKind" /></dd>
               </dl>
               
             

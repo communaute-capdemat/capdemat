@@ -172,6 +172,9 @@ public class DomesticHelpRequest extends Request implements Serializable {
             domesticHelpRequest.setDhrRealAssetArray(dhrRealAssetTypeTab);
         }
       
+        if (getDhrRequestKind() != null)
+            domesticHelpRequest.setDhrRequestKind(fr.cg95.cvq.xml.request.social.DhrRequestKindType.Enum.forString(getDhrRequestKind().getLegacyLabel()));
+      
         if (getDhrRequester() != null)
             domesticHelpRequest.setDhrRequester(getDhrRequester().modelToXml());
       
@@ -235,6 +238,11 @@ public class DomesticHelpRequest extends Request implements Serializable {
             dhrRealAssetList.add(fr.cg95.cvq.business.request.social.DhrRealAsset.xmlToModel(object));
         }
         domesticHelpRequest.setDhrRealAsset(dhrRealAssetList);
+      
+        if (domesticHelpRequestXml.getDhrRequestKind() != null)
+            domesticHelpRequest.setDhrRequestKind(fr.cg95.cvq.business.request.social.DhrRequestKindType.forString(domesticHelpRequestXml.getDhrRequestKind().toString()));
+        else
+            domesticHelpRequest.setDhrRequestKind(fr.cg95.cvq.business.request.social.DhrRequestKindType.getDefaultDhrRequestKindType());
       
         if (domesticHelpRequestXml.getDhrRequester() != null)
             domesticHelpRequest.setDhrRequester(DhrRequester.xmlToModel(domesticHelpRequestXml.getDhrRequester()));
@@ -371,6 +379,15 @@ public class DomesticHelpRequest extends Request implements Serializable {
     
     public final List<fr.cg95.cvq.business.request.social.DhrRealAsset> getDhrRealAsset() {
         return domesticHelpRequestData.getDhrRealAsset();
+    }
+  
+    public final void setDhrRequestKind(final fr.cg95.cvq.business.request.social.DhrRequestKindType dhrRequestKind) {
+        domesticHelpRequestData.setDhrRequestKind(dhrRequestKind);
+    }
+
+    
+    public final fr.cg95.cvq.business.request.social.DhrRequestKindType getDhrRequestKind() {
+        return domesticHelpRequestData.getDhrRequestKind();
     }
   
     public final void setDhrRequester(final fr.cg95.cvq.business.request.social.DhrRequester dhrRequester) {

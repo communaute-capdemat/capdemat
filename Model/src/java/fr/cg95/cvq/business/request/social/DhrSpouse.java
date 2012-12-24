@@ -41,8 +41,6 @@ public class DhrSpouse implements Serializable {
     public DhrSpouse() {
         super();
       
-        dhrRequestKind = fr.cg95.cvq.business.request.social.DhrRequestKindType.INDIVIDUAL;
-      
         dhrSpouseIsFrenchResident = Boolean.valueOf(false);
       
     }
@@ -91,9 +89,6 @@ public class DhrSpouse implements Serializable {
             dhrSpouse.setDhrSpouseBirthDate(calendar);
         }
       
-        if (this.dhrRequestKind != null)
-            dhrSpouse.setDhrRequestKind(fr.cg95.cvq.xml.request.social.DhrRequestKindType.Enum.forString(this.dhrRequestKind.getLegacyLabel()));
-      
         if (this.dhrSpouseTitle != null)
             dhrSpouse.setDhrSpouseTitle(fr.cg95.cvq.xml.common.TitleType.Enum.forString(this.dhrSpouseTitle.getLegacyLabel()));
       
@@ -136,11 +131,6 @@ public class DhrSpouse implements Serializable {
         if (calendar != null) {
             dhrSpouse.setDhrSpouseBirthDate(calendar.getTime());
         }
-      
-        if (dhrSpouseDoc.getDhrRequestKind() != null)
-            dhrSpouse.setDhrRequestKind(fr.cg95.cvq.business.request.social.DhrRequestKindType.forString(dhrSpouseDoc.getDhrRequestKind().toString()));
-        else
-            dhrSpouse.setDhrRequestKind(fr.cg95.cvq.business.request.social.DhrRequestKindType.getDefaultDhrRequestKindType());
       
         if (dhrSpouseDoc.getDhrSpouseTitle() != null)
             dhrSpouse.setDhrSpouseTitle(fr.cg95.cvq.business.users.TitleType.forString(dhrSpouseDoc.getDhrSpouseTitle().toString()));
@@ -212,15 +202,6 @@ public class DhrSpouse implements Serializable {
         
           
             
-        if (dhrRequestKind != null)
-            result.setDhrRequestKind(dhrRequestKind);
-        else
-            result.setDhrRequestKind(fr.cg95.cvq.business.request.social.DhrRequestKindType.getDefaultDhrRequestKindType());
-      
-          
-        
-          
-            
         if (dhrSpouseTitle != null)
             result.setDhrSpouseTitle(dhrSpouseTitle);
         else
@@ -253,16 +234,6 @@ public class DhrSpouse implements Serializable {
     
       @NotNull(
         
-        
-          when = "groovy:def active = true;" +
-          
-             "active &= _this.conditions['dhrSpouse.dhrRequestKind'].test(_this.dhrRequestKind.toString());" +
-                  
-                
-              
-            
-            
-            "return active",
         
         profiles = {"spouse"},
         message = "dhrSpouseNationality"
@@ -386,16 +357,6 @@ public class DhrSpouse implements Serializable {
           value = 38,
         
         
-          when = "groovy:def active = true;" +
-          
-             "active &= _this.conditions['dhrSpouse.dhrRequestKind'].test(_this.dhrRequestKind.toString());" +
-                  
-                
-              
-            
-            
-            "return active",
-        
         profiles = {"spouse"},
         message = "dhrSpouseFirstName"
       )
@@ -403,32 +364,12 @@ public class DhrSpouse implements Serializable {
       @NotNull(
         
         
-          when = "groovy:def active = true;" +
-          
-             "active &= _this.conditions['dhrSpouse.dhrRequestKind'].test(_this.dhrRequestKind.toString());" +
-                  
-                
-              
-            
-            
-            "return active",
-        
         profiles = {"spouse"},
         message = "dhrSpouseFirstName"
       )
     
       @NotBlank(
         
-        
-          when = "groovy:def active = true;" +
-          
-             "active &= _this.conditions['dhrSpouse.dhrRequestKind'].test(_this.dhrRequestKind.toString());" +
-                  
-                
-              
-            
-            
-            "return active",
         
         profiles = {"spouse"},
         message = "dhrSpouseFirstName"
@@ -450,16 +391,6 @@ public class DhrSpouse implements Serializable {
     
       @NotNull(
         
-        
-          when = "groovy:def active = true;" +
-          
-             "active &= _this.conditions['dhrSpouse.dhrRequestKind'].test(_this.dhrRequestKind.toString());" +
-                  
-                
-              
-            
-            
-            "return active",
         
         profiles = {"spouse"},
         message = "dhrSpouseFamilyStatus"
@@ -485,16 +416,6 @@ public class DhrSpouse implements Serializable {
           value = 38,
         
         
-          when = "groovy:def active = true;" +
-          
-             "active &= _this.conditions['dhrSpouse.dhrRequestKind'].test(_this.dhrRequestKind.toString());" +
-                  
-                
-              
-            
-            
-            "return active",
-        
         profiles = {"spouse"},
         message = "dhrSpouseName"
       )
@@ -502,32 +423,12 @@ public class DhrSpouse implements Serializable {
       @NotNull(
         
         
-          when = "groovy:def active = true;" +
-          
-             "active &= _this.conditions['dhrSpouse.dhrRequestKind'].test(_this.dhrRequestKind.toString());" +
-                  
-                
-              
-            
-            
-            "return active",
-        
         profiles = {"spouse"},
         message = "dhrSpouseName"
       )
     
       @NotBlank(
         
-        
-          when = "groovy:def active = true;" +
-          
-             "active &= _this.conditions['dhrSpouse.dhrRequestKind'].test(_this.dhrRequestKind.toString());" +
-                  
-                
-              
-            
-            
-            "return active",
         
         profiles = {"spouse"},
         message = "dhrSpouseName"
@@ -550,32 +451,12 @@ public class DhrSpouse implements Serializable {
       @NotNull(
         
         
-          when = "groovy:def active = true;" +
-          
-             "active &= _this.conditions['dhrSpouse.dhrRequestKind'].test(_this.dhrRequestKind.toString());" +
-                  
-                
-              
-            
-            
-            "return active",
-        
         profiles = {"spouse"},
         message = "dhrSpouseBirthPlace"
       )
     
       @NotBlank(
         
-        
-          when = "groovy:def active = true;" +
-          
-             "active &= _this.conditions['dhrSpouse.dhrRequestKind'].test(_this.dhrRequestKind.toString());" +
-                  
-                
-              
-            
-            
-            "return active",
         
         profiles = {"spouse"},
         message = "dhrSpouseBirthPlace"
@@ -598,16 +479,6 @@ public class DhrSpouse implements Serializable {
       @NotNull(
         
         
-          when = "groovy:def active = true;" +
-          
-             "active &= _this.conditions['dhrSpouse.dhrRequestKind'].test(_this.dhrRequestKind.toString());" +
-                  
-                
-              
-            
-            
-            "return active",
-        
         profiles = {"spouse"},
         message = "dhrSpouseBirthDate"
       )
@@ -628,38 +499,6 @@ public class DhrSpouse implements Serializable {
     
       @NotNull(
         
-        
-        profiles = {"spouse"},
-        message = "dhrRequestKind"
-      )
-    
-    private fr.cg95.cvq.business.request.social.DhrRequestKindType dhrRequestKind;
-
-    public void setDhrRequestKind(final fr.cg95.cvq.business.request.social.DhrRequestKindType dhrRequestKind) {
-        this.dhrRequestKind = dhrRequestKind;
-    }
-
-    
-    @Enumerated(EnumType.STRING)
-    @Column(name="dhr_request_kind"  )
-      
-    public fr.cg95.cvq.business.request.social.DhrRequestKindType getDhrRequestKind() {
-        return this.dhrRequestKind;
-    }
-  
-    
-      @NotNull(
-        
-        
-          when = "groovy:def active = true;" +
-          
-             "active &= _this.conditions['dhrSpouse.dhrRequestKind'].test(_this.dhrRequestKind.toString());" +
-                  
-                
-              
-            
-            
-            "return active",
         
         profiles = {"spouse"},
         message = "dhrSpouseTitle"

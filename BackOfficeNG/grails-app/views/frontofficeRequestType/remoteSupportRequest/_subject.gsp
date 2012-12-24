@@ -139,18 +139,6 @@
     <fieldset class="required">
     <legend><g:message code="rsr.property.requestInformation.label" /></legend>
     
-      <label class="required"><g:message code="rsr.property.requestInformationRequestKind.label" /> *  <span><g:message code="rsr.property.requestInformationRequestKind.help" /></span></label>
-            <ul class="required ${rqt.stepStates['subject'].invalidFields.contains('requestInformation.requestInformationRequestKind') ? 'validation-failed' : ''}">
-              <g:each in="${['INDIVIDUAL','COUPLE']}">
-              <li>
-                <input type="radio" id="requestInformation.requestInformationRequestKind_${it}" class="required condition-isCoupleRequest-trigger  validate-one-required" value="${it}" name="requestInformation.requestInformationRequestKind" ${it == rqt.requestInformation?.requestInformationRequestKind.toString() ? 'checked="checked"': ''} title="<g:message code="rsr.property.requestInformationRequestKind.validationError" />" />
-                <label for="requestInformation.requestInformationRequestKind_${it}"><g:capdematEnumToText var="${it}" i18nKeyPrefix="rsr.property.requestInformationRequestKind" /></label>
-              </li>
-              </g:each>
-            </ul>
-            
-
-    
       <label class="required"><g:message code="rsr.property.requestInformationEmergency.label" /> *  <span><g:message code="rsr.property.requestInformationEmergency.help" /></span></label>
             <ul class="yes-no required ${rqt.stepStates['subject'].invalidFields.contains('requestInformation.requestInformationEmergency') ? 'validation-failed' : ''}">
               <g:each in="${[true,false]}">
@@ -169,6 +157,20 @@
 
     
     </fieldset>
+  
+
+  
+    <label class="required"><g:message code="rsr.property.requestInformationRequestKind.label" /> *  <span><g:message code="rsr.property.requestInformationRequestKind.help" /></span></label>
+            <ul class="required ${rqt.stepStates['subject'].invalidFields.contains('requestInformationRequestKind') ? 'validation-failed' : ''}">
+              <g:each in="${['INDIVIDUAL','COUPLE']}">
+              <li>
+                <input type="radio" id="requestInformationRequestKind_${it}" class="required condition-isCoupleRequest-trigger  validate-one-required" value="${it}" name="requestInformationRequestKind" ${it == rqt.requestInformationRequestKind.toString() ? 'checked="checked"': ''} title="<g:message code="rsr.property.requestInformationRequestKind.validationError" />" />
+                <label for="requestInformationRequestKind_${it}"><g:capdematEnumToText var="${it}" i18nKeyPrefix="rsr.property.requestInformationRequestKind" /></label>
+              </li>
+              </g:each>
+            </ul>
+            
+
   
 
   

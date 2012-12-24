@@ -1600,7 +1600,6 @@
 
     create table dhr_spouse (
         id int8 not null,
-        dhr_request_kind varchar(255),
         dhr_spouse_birth_date timestamp,
         dhr_spouse_birth_place varchar(255),
         dhr_spouse_family_status varchar(255),
@@ -1693,6 +1692,7 @@
 
     create table domestic_help_request (
         id int8 not null,
+        dhr_request_kind varchar(255),
         dhr_current_dwelling_id int8,
         dhr_family_referent_id int8,
         dhr_requester_id int8,
@@ -2696,27 +2696,27 @@
         amount float8,
         label varchar(255),
         supported_broker varchar(255),
+        key varchar(255),
+        key_owner varchar(255),
+        quantity int4,
+        unit_price float8,
         external_application_id varchar(255),
         external_home_folder_id varchar(255),
         external_individual_id varchar(255),
         external_item_id varchar(255),
         external_notification_status varchar(32),
         external_service_label varchar(255),
-        key varchar(255),
-        key_owner varchar(255),
-        quantity int4,
-        unit_price float8,
+        creation_date timestamp,
+        max_buy int4,
+        min_buy int4,
+        old_quantity int4,
+        subject_id int8,
         old_value float8,
         old_value_date timestamp,
         expiration_date timestamp,
         is_paid bool,
         issue_date timestamp,
         payment_date timestamp,
-        creation_date timestamp,
-        max_buy int4,
-        min_buy int4,
-        old_quantity int4,
-        subject_id int8,
         payment_id int8,
         primary key (id)
     );
@@ -2781,6 +2781,7 @@
     create table remote_support_request (
         id int8 not null,
         contact_kind varchar(255),
+        request_information_request_kind varchar(255),
         first_contact_id int8,
         request_information_id int8,
         rsr_subject_id int8,
@@ -2953,7 +2954,6 @@
         id int8 not null,
         request_information_emergency bool,
         request_information_emergency_motive varchar(180),
-        request_information_request_kind varchar(255),
         primary key (id)
     );
 
