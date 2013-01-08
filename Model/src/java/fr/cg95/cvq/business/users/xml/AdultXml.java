@@ -18,10 +18,10 @@ public class AdultXml extends IndividualXml {
     public AdultXml(Adult adult) {
         super(adult);
 
-        title = adult.getTitle().toString();
+        title = (adult.getTitle() != null) ? adult.getTitle().toString() : "";
         maindenName = adult.getMaidenName();
         nameOfUse = adult.getNameOfUse();
-        familyStatus = adult.getFamilyStatus().toString();
+        familyStatus = (adult.getFamilyStatus() != null) ? adult.getFamilyStatus().toString() : "";
         homePhone = adult.getHomePhone();
         mobilePhone = adult.getMobilePhone();
         email = adult.getEmail();
