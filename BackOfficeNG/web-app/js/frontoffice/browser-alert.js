@@ -53,7 +53,16 @@
       if (browser.name === b.name &&
           browsermajor < b.major &&
           !/\/frontoffice\/home\/browsers/.test(window.location.pathname)) {
-        me.popup(browser)
+
+        if (!(browser.name === 'IE')) {
+          me.popup(browser)
+        } else {
+          // IE's major can be 7 while its document mode is 8.
+          // Check against document mode.
+          if (!(document.documentMode && document.documentMode >= b.major)) {
+            me.popup(browser)
+          }
+        }
       }
     }
   }
