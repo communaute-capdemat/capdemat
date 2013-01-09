@@ -167,9 +167,9 @@ public class StudyGrantEdemandeRequest implements EdemandeRequest {
         result.put("hasRegionalCouncilHelp", request.getHasRegionalCouncilHelp());
         result.put("hasEuropeHelp", request.getHasEuropeHelp());
         result.put("hasOtherHelp", request.getHasOtherHelp());
-        result.put("AlevelsDate", request.getALevelsInformations().getAlevelsDate());
+        result.put("AlevelsDate", request.getAlevelsInformations().getAlevelsDate());
         result.put("AlevelsType", service.translate("sgr.property.alevels."
-            + request.getALevelsInformations().getAlevels().toString().toLowerCase()));
+            + request.getAlevelsInformations().getAlevels().toString().toLowerCase()));
         result.put("currentStudiesType", StringUtils.defaultIfEmpty(
             request.getCurrentStudiesInformations().getOtherStudiesLabel(),
             service.translate("sgr.property.currentStudiesDiploma."
