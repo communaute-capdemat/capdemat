@@ -52,6 +52,7 @@ public final class MdphYouthRequestService extends RequestService {
         MdphYouthRequest.conditions.put("typeLogement", new EqualityChecker(MyrLogementType.AUTRE.name()));
         MdphYouthRequest.conditions.put("choixProjetDeVie", new EqualityChecker(MyrChoixProjetDeVieType.OUI.name()));
         MdphYouthRequest.conditions.put("enfantEnInternat", new EqualityChecker("true"));
+        MdphYouthRequest.conditions.put("organismePayeur", new EqualityChecker("AUTRE"));
         
         // kept them for client side JS validation script
         MdphYouthRequest.conditions.put("besoinsDemandePCH.aideHumaine", new EqualityChecker("true"));

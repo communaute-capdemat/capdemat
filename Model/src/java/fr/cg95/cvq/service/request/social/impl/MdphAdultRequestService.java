@@ -61,6 +61,7 @@ public final class MdphAdultRequestService extends RequestService {
                 PrecedentsRevenusRecusType.ACTIVITE.name(),
                 PrecedentsRevenusRecusType.ESAT.name(),
                 PrecedentsRevenusRecusType.INDEMNITES.name())));
+        MdphAdultRequest.conditions.put("organismePayeur", new EqualityChecker("AUTRE"));
 
         // kept them for client side JS validation script
         MdphAdultRequest.conditions.put("besoinsDemandePCH.aideHumaine", new EqualityChecker("true"));

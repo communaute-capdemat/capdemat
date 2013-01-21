@@ -11,7 +11,7 @@
 
   
     <label for="organismePayeur" class="required"><g:message code="myr.property.organismePayeur.label" /> *  <span><g:message code="myr.property.organismePayeur.help" /></span></label>
-            <select id="organismePayeur" name="organismePayeur" class="required  validate-not-first ${rqt.stepStates['organismePrestationFamiliale'].invalidFields.contains('organismePayeur') ? 'validation-failed' : ''}" title="<g:message code="myr.property.organismePayeur.validationError" />">
+            <select id="organismePayeur" name="organismePayeur" class="required condition-otherPayingOrganism-trigger  validate-not-first ${rqt.stepStates['organismePrestationFamiliale'].invalidFields.contains('organismePayeur') ? 'validation-failed' : ''}" title="<g:message code="myr.property.organismePayeur.validationError" />">
               <option value=""><g:message code="message.select.defaultOption" /></option>
               <g:each in="${['CAF','MSA','AUTRE']}">
                 <option value="${it}" ${it == rqt.organismePayeur?.toString() ? 'selected="selected"': ''}><g:capdematEnumToText var="${it}" i18nKeyPrefix="myr.property.organismePayeur" /></option>
@@ -46,8 +46,8 @@
   
 
   
-    <label class=""><g:message code="myr.property.domiciliationOrganismePayeur.label" />   <span><g:message code="myr.property.domiciliationOrganismePayeur.help" /></span></label>
-            <div id="domiciliationOrganismePayeur" class="address   ${rqt.stepStates['organismePrestationFamiliale'].invalidFields.contains('domiciliationOrganismePayeur') ? 'validation-failed' : ''}">
+    <label class="condition-otherPayingOrganism-filled"><g:message code="myr.property.domiciliationOrganismePayeur.label" />   <span><g:message code="myr.property.domiciliationOrganismePayeur.help" /></span></label>
+            <div id="domiciliationOrganismePayeur" class="address condition-otherPayingOrganism-filled  ${rqt.stepStates['organismePrestationFamiliale'].invalidFields.contains('domiciliationOrganismePayeur') ? 'validation-failed' : ''}">
             <label for="domiciliationOrganismePayeur.additionalDeliveryInformation"><g:message code="address.property.additionalDeliveryInformation" /></label>
             <input type="text" class="validate-addressLine38 ${rqt.stepStates['organismePrestationFamiliale'].invalidFields.contains('domiciliationOrganismePayeur.additionalDeliveryInformation') ? 'validation-failed' : ''}" value="${rqt.domiciliationOrganismePayeur?.additionalDeliveryInformation}" maxlength="38" id="domiciliationOrganismePayeur.additionalDeliveryInformation" name="domiciliationOrganismePayeur.additionalDeliveryInformation" />  
             <label for="domiciliationOrganismePayeur.additionalGeographicalInformation"><g:message code="address.property.additionalGeographicalInformation" /></label>

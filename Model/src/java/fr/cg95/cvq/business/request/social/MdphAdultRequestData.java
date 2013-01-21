@@ -1203,6 +1203,16 @@ public class MdphAdultRequestData implements Serializable {
       @AssertValid(
         
         
+          when = "groovy:def active = true;" +
+          
+            "active &= _this.conditions['organismePayeur'].test(_this.organismePayeur.toString());" +
+                
+              
+              
+            
+            
+            "return active",
+        
         profiles = {"organismePrestationFamiliale"},
         message = "domiciliationOrganismePayeur"
       )

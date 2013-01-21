@@ -33,6 +33,9 @@
                 </conditions>
             </step>
             <step index="2" name="organismePrestationFamiliale">
+              <conditions>
+                <condition name="otherPayingOrganism" />
+              </conditions>
             </step>
             <step index="3" name="situationFamiliale">
                 <conditions>
@@ -459,6 +462,9 @@
                 <xs:appinfo>
                   <common>
                     <step name="organismePrestationFamiliale" />
+                    <conditions>
+                        <condition name="otherPayingOrganism" type="trigger" />
+                    </conditions>
                   </common>
                   <fo />
                   <bo column="1" />
@@ -536,6 +542,9 @@
                   <model namespace="users" isTiedToRequest="true" />
                   <common>
                     <step name="organismePrestationFamiliale" />
+                    <conditions>
+                        <condition name="otherPayingOrganism" type="filled" />
+                    </conditions>
                   </common>
                   <fo />
                   <bo column="1" />
