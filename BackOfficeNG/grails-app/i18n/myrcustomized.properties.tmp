@@ -92,6 +92,10 @@ myr.property.precisionSiDomicileAupresOrganisme.help =
 myr.property.precisionSiDomicileAupresOrganisme.validationError =
 
 
+myr.property.deteneurAutoriteParentale.help =
+myr.property.deteneurAutoriteParentale.validationError =
+
+
 myr.property.autoriteParentaleMere.help =
 myr.property.autoriteParentaleMere.validationError =
 
@@ -148,8 +152,60 @@ myr.property.email.help =
 myr.property.email.validationError =
 
 
-myr.property.deteneurAutoriteParentale.help =
-myr.property.deteneurAutoriteParentale.validationError =
+myr.property.autoriteParentaleLesDeuxPere.help =
+myr.property.autoriteParentaleLesDeuxPere.validationError =
+
+
+myr.property.nom.help =
+myr.property.nom.validationError =
+
+
+myr.property.prenom.help =
+myr.property.prenom.validationError =
+
+
+myr.property.domiciliation.help =
+myr.property.domiciliation.validationError =
+
+
+myr.property.telephone.help =
+myr.property.telephone.validationError =
+
+
+myr.property.fax.help =
+myr.property.fax.validationError =
+
+
+myr.property.email.help =
+myr.property.email.validationError =
+
+
+myr.property.autoriteParentaleLesDeuxMere.help =
+myr.property.autoriteParentaleLesDeuxMere.validationError =
+
+
+myr.property.nom.help =
+myr.property.nom.validationError =
+
+
+myr.property.prenom.help =
+myr.property.prenom.validationError =
+
+
+myr.property.domiciliation.help =
+myr.property.domiciliation.validationError =
+
+
+myr.property.telephone.help =
+myr.property.telephone.validationError =
+
+
+myr.property.fax.help =
+myr.property.fax.validationError =
+
+
+myr.property.email.help =
+myr.property.email.validationError =
 
 
 myr.property.informationAutreDeteneurAutoriteParentale.help =

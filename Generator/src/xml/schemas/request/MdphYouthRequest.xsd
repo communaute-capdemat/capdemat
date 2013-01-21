@@ -29,7 +29,10 @@
             </step>
             <step index="1" name="autoriteParentale">
                 <conditions>
-                        <condition name="deteneurAutoriteParentale" />
+                        <condition name="detenteurAutoriteParentaleOther" />
+                        <condition name="detenteurAutoriteParentaleLesDeux" />
+                        <condition name="detenteurAutoriteParentalePere" />
+                        <condition name="detenteurAutoriteParentaleMere" />
                 </conditions>
             </step>
             <step index="2" name="organismePrestationFamiliale">
@@ -286,6 +289,31 @@
             </xs:element>
             
   <!--        STEP 1 : Autorité parentale       -->
+            <xs:element name="DeteneurAutoriteParentale" type="myr:DeteneurAutoriteParentaleType">
+                <xs:annotation>
+                  <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">
+                       Précisez qui détient l'autorité parentale
+                  </xs:documentation>
+                  <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
+                       Précisez qui détient l'autorité parentale
+                  </xs:documentation>
+                <xs:appinfo>
+                  <common>
+                    <step name="autoriteParentale" />
+                    <conditions>
+                      <condition name="detenteurAutoriteParentaleOther" type="trigger" />
+                      <condition name="detenteurAutoriteParentalePere" type="trigger" />
+                      <condition name="detenteurAutoriteParentaleMere" type="trigger" />
+                      <condition name="detenteurAutoriteParentaleLesDeux" type="trigger" />
+                    </conditions>
+                  </common>
+                  <fo />
+                  <bo column="1" />
+                  <pdf />
+                </xs:appinfo>
+              </xs:annotation>  
+            </xs:element>
+        
             <xs:element name="AutoriteParentaleMere" type="myr:MyrAutoriteParentaleType" minOccurs="0">
                <xs:annotation>
                   <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">
@@ -297,6 +325,9 @@
                   <xs:appinfo>
                   <common>
                     <step name="autoriteParentale" />
+                    <conditions>
+                      <condition name="detenteurAutoriteParentaleMere" type="filled" />
+                    </conditions>
                   </common>
                   <fo />
                   <bo column="1" />
@@ -316,27 +347,8 @@
                 <xs:appinfo>
                   <common>
                     <step name="autoriteParentale" />
-                  </common>
-                  <fo />
-                  <bo column="2" />
-                  <pdf />
-                </xs:appinfo>
-              </xs:annotation>  
-            </xs:element>
-            
-            <xs:element name="DeteneurAutoriteParentale" type="myr:DeteneurAutoriteParentaleType">
-                <xs:annotation>
-                  <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">
-                       Précisez qui détient l'autorité parentale
-                  </xs:documentation>
-                  <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
-                       Précisez qui détient l'autorité parentale
-                  </xs:documentation>
-                <xs:appinfo>
-                  <common>
-                    <step name="autoriteParentale" />
                     <conditions>
-                        <condition name="deteneurAutoriteParentale" type="trigger" />
+                      <condition name="detenteurAutoriteParentalePere" type="filled" />
                     </conditions>
                   </common>
                   <fo />
@@ -345,7 +357,52 @@
                 </xs:appinfo>
               </xs:annotation>  
             </xs:element>
-        
+            
+            <xs:element name="AutoriteParentaleLesDeuxPere" type="myr:MyrAutoriteParentaleType" minOccurs="0">
+                <xs:annotation>
+                  <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">
+                        Père
+                  </xs:documentation>
+                  <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
+                        Père
+                  </xs:documentation>
+                <xs:appinfo>
+                  <common>
+                    <step name="autoriteParentale" />
+                    <conditions>
+                      <condition name="detenteurAutoriteParentaleLesDeux" type="filled" />
+                    </conditions>
+                  </common>
+                  <fo />
+                  <bo column="2" />
+                  <pdf />
+                </xs:appinfo>
+              </xs:annotation>  
+            </xs:element>
+
+
+            <xs:element name="AutoriteParentaleLesDeuxMere" type="myr:MyrAutoriteParentaleType" minOccurs="0">
+                <xs:annotation>
+                  <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">
+                        Mère
+                  </xs:documentation>
+                  <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
+                        Mère
+                  </xs:documentation>
+                <xs:appinfo>
+                  <common>
+                    <step name="autoriteParentale" />
+                    <conditions>
+                      <condition name="detenteurAutoriteParentaleLesDeux" type="filled" />
+                    </conditions>
+                  </common>
+                  <fo />
+                  <bo column="2" />
+                  <pdf />
+                </xs:appinfo>
+              </xs:annotation>  
+            </xs:element>
+            
             <xs:element name="InformationAutreDeteneurAutoriteParentale" type="myr:MyrAutoriteParentaleAutreType">
                 <xs:annotation>
                   <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">
@@ -358,7 +415,7 @@
                   <common>
                     <step name="autoriteParentale" />
                     <conditions>
-                        <condition name="deteneurAutoriteParentale" type="filled" />
+                        <condition name="detenteurAutoriteParentaleOther" type="filled" />
                    </conditions>
                   </common>
                   <fo />

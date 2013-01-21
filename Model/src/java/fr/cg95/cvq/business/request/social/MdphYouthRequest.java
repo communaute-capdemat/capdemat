@@ -177,6 +177,12 @@ public class MdphYouthRequest extends Request implements Serializable {
         if (getAllocationPersonnaliseeAutonomie() != null)
             mdphYouthRequest.setAllocationPersonnaliseeAutonomie(getAllocationPersonnaliseeAutonomie().booleanValue());
       
+        if (getAutoriteParentaleLesDeuxMere() != null)
+            mdphYouthRequest.setAutoriteParentaleLesDeuxMere(getAutoriteParentaleLesDeuxMere().modelToXml());
+      
+        if (getAutoriteParentaleLesDeuxPere() != null)
+            mdphYouthRequest.setAutoriteParentaleLesDeuxPere(getAutoriteParentaleLesDeuxPere().modelToXml());
+      
         if (getAutoriteParentaleMere() != null)
             mdphYouthRequest.setAutoriteParentaleMere(getAutoriteParentaleMere().modelToXml());
       
@@ -384,6 +390,12 @@ public class MdphYouthRequest extends Request implements Serializable {
         mdphYouthRequest.fillCommonModelInfo(mdphYouthRequest, mdphYouthRequestXml);
         
         mdphYouthRequest.setAllocationPersonnaliseeAutonomie(Boolean.valueOf(mdphYouthRequestXml.getAllocationPersonnaliseeAutonomie()));
+      
+        if (mdphYouthRequestXml.getAutoriteParentaleLesDeuxMere() != null)
+            mdphYouthRequest.setAutoriteParentaleLesDeuxMere(MyrAutoriteParentale.xmlToModel(mdphYouthRequestXml.getAutoriteParentaleLesDeuxMere()));
+      
+        if (mdphYouthRequestXml.getAutoriteParentaleLesDeuxPere() != null)
+            mdphYouthRequest.setAutoriteParentaleLesDeuxPere(MyrAutoriteParentale.xmlToModel(mdphYouthRequestXml.getAutoriteParentaleLesDeuxPere()));
       
         if (mdphYouthRequestXml.getAutoriteParentaleMere() != null)
             mdphYouthRequest.setAutoriteParentaleMere(MyrAutoriteParentale.xmlToModel(mdphYouthRequestXml.getAutoriteParentaleMere()));
@@ -692,6 +704,24 @@ public class MdphYouthRequest extends Request implements Serializable {
     
     public final Boolean getAllocationPersonnaliseeAutonomie() {
         return mdphYouthRequestData.getAllocationPersonnaliseeAutonomie();
+    }
+  
+    public final void setAutoriteParentaleLesDeuxMere(final fr.cg95.cvq.business.request.social.MyrAutoriteParentale autoriteParentaleLesDeuxMere) {
+        mdphYouthRequestData.setAutoriteParentaleLesDeuxMere(autoriteParentaleLesDeuxMere);
+    }
+
+    
+    public final fr.cg95.cvq.business.request.social.MyrAutoriteParentale getAutoriteParentaleLesDeuxMere() {
+        return mdphYouthRequestData.getAutoriteParentaleLesDeuxMere();
+    }
+  
+    public final void setAutoriteParentaleLesDeuxPere(final fr.cg95.cvq.business.request.social.MyrAutoriteParentale autoriteParentaleLesDeuxPere) {
+        mdphYouthRequestData.setAutoriteParentaleLesDeuxPere(autoriteParentaleLesDeuxPere);
+    }
+
+    
+    public final fr.cg95.cvq.business.request.social.MyrAutoriteParentale getAutoriteParentaleLesDeuxPere() {
+        return mdphYouthRequestData.getAutoriteParentaleLesDeuxPere();
     }
   
     public final void setAutoriteParentaleMere(final fr.cg95.cvq.business.request.social.MyrAutoriteParentale autoriteParentaleMere) {

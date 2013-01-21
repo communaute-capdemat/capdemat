@@ -23,7 +23,12 @@ public final class MdphYouthRequestService extends RequestService {
 
         super.init();
         
-        MdphYouthRequest.conditions.put("deteneurAutoriteParentale", new EqualityChecker(DeteneurAutoriteParentaleType.AUTRE.name()));
+        MdphYouthRequest.conditions.put("deteneurAutoriteParentale", new EqualityListChecker(Arrays.asList(
+                    "detenteurAutoriteParentaleOther="+DeteneurAutoriteParentaleType.AUTRE.name(),
+                    "detenteurAutoriteParentaleMere="+DeteneurAutoriteParentaleType.MERE.name(),
+                    "detenteurAutoriteParentalePere="+DeteneurAutoriteParentaleType.PERE.name(),
+                    "detenteurAutoriteParentaleLesDeux="+DeteneurAutoriteParentaleType.LES_DEUX.name()
+                )));
         MdphYouthRequest.conditions.put("preferencesEtablissementOuService", new EqualityChecker("true"));
         MdphYouthRequest.conditions.put("situationMaritale", new EqualityListChecker(Arrays.asList(
                 MyrSituationFamilialeType.MARIE.name(), MyrSituationFamilialeType.CONCUBINAGE.name())));

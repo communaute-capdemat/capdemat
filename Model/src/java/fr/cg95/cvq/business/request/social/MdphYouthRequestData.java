@@ -67,6 +67,20 @@ public class MdphYouthRequestData implements Serializable {
         
           
             
+        if (autoriteParentaleLesDeuxMere != null)
+            result.setAutoriteParentaleLesDeuxMere(autoriteParentaleLesDeuxMere.clone());
+      
+          
+        
+          
+            
+        if (autoriteParentaleLesDeuxPere != null)
+            result.setAutoriteParentaleLesDeuxPere(autoriteParentaleLesDeuxPere.clone());
+      
+          
+        
+          
+            
         if (autoriteParentaleMere != null)
             result.setAutoriteParentaleMere(autoriteParentaleMere.clone());
       
@@ -541,6 +555,80 @@ public class MdphYouthRequestData implements Serializable {
       @AssertValid(
         
         
+          when = "groovy:def active = true;" +
+          
+            "active &= _this.conditions['deteneurAutoriteParentale'].test('detenteurAutoriteParentaleLesDeux='+_this.deteneurAutoriteParentale.toString());" +
+                
+              
+              
+            
+            
+            "return active",
+        
+        profiles = {"autoriteParentale"},
+        message = "autoriteParentaleLesDeuxMere"
+      )
+    
+    private fr.cg95.cvq.business.request.social.MyrAutoriteParentale autoriteParentaleLesDeuxMere;
+
+    public void setAutoriteParentaleLesDeuxMere(final fr.cg95.cvq.business.request.social.MyrAutoriteParentale autoriteParentaleLesDeuxMere) {
+        this.autoriteParentaleLesDeuxMere = autoriteParentaleLesDeuxMere;
+    }
+
+ 
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name="autorite_parentale_les_deux_mere_id")
+      
+    public fr.cg95.cvq.business.request.social.MyrAutoriteParentale getAutoriteParentaleLesDeuxMere() {
+        return this.autoriteParentaleLesDeuxMere;
+    }
+  
+    
+      @AssertValid(
+        
+        
+          when = "groovy:def active = true;" +
+          
+            "active &= _this.conditions['deteneurAutoriteParentale'].test('detenteurAutoriteParentaleLesDeux='+_this.deteneurAutoriteParentale.toString());" +
+                
+              
+              
+            
+            
+            "return active",
+        
+        profiles = {"autoriteParentale"},
+        message = "autoriteParentaleLesDeuxPere"
+      )
+    
+    private fr.cg95.cvq.business.request.social.MyrAutoriteParentale autoriteParentaleLesDeuxPere;
+
+    public void setAutoriteParentaleLesDeuxPere(final fr.cg95.cvq.business.request.social.MyrAutoriteParentale autoriteParentaleLesDeuxPere) {
+        this.autoriteParentaleLesDeuxPere = autoriteParentaleLesDeuxPere;
+    }
+
+ 
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name="autorite_parentale_les_deux_pere_id")
+      
+    public fr.cg95.cvq.business.request.social.MyrAutoriteParentale getAutoriteParentaleLesDeuxPere() {
+        return this.autoriteParentaleLesDeuxPere;
+    }
+  
+    
+      @AssertValid(
+        
+        
+          when = "groovy:def active = true;" +
+          
+            "active &= _this.conditions['deteneurAutoriteParentale'].test('detenteurAutoriteParentaleMere='+_this.deteneurAutoriteParentale.toString());" +
+                
+              
+              
+            
+            
+            "return active",
+        
         profiles = {"autoriteParentale"},
         message = "autoriteParentaleMere"
       )
@@ -562,6 +650,16 @@ public class MdphYouthRequestData implements Serializable {
     
       @AssertValid(
         
+        
+          when = "groovy:def active = true;" +
+          
+            "active &= _this.conditions['deteneurAutoriteParentale'].test('detenteurAutoriteParentalePere='+_this.deteneurAutoriteParentale.toString());" +
+                
+              
+              
+            
+            
+            "return active",
         
         profiles = {"autoriteParentale"},
         message = "autoriteParentalePere"
@@ -1206,7 +1304,7 @@ public class MdphYouthRequestData implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['deteneurAutoriteParentale'].test(_this.deteneurAutoriteParentale.toString());" +
+            "active &= _this.conditions['deteneurAutoriteParentale'].test('detenteurAutoriteParentaleOther='+_this.deteneurAutoriteParentale.toString());" +
                 
               
               
@@ -1223,7 +1321,7 @@ public class MdphYouthRequestData implements Serializable {
         
           when = "groovy:def active = true;" +
           
-            "active &= _this.conditions['deteneurAutoriteParentale'].test(_this.deteneurAutoriteParentale.toString());" +
+            "active &= _this.conditions['deteneurAutoriteParentale'].test('detenteurAutoriteParentaleOther='+_this.deteneurAutoriteParentale.toString());" +
                 
               
               

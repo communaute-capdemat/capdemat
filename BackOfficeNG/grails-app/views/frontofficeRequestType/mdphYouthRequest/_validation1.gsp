@@ -2,6 +2,169 @@
 
 
   
+    <h3><g:message code="myr.step.allocationEducationEnfantHandicape.label" /></h3>
+    
+      
+      <dl>
+        <dt><g:message code="myr.property.enfantEnInternat.label" /></dt>
+          <dd><g:message code="message.${rqt.enfantEnInternat ? 'yes' : 'no'}" /></dd>
+          
+
+      </dl>
+      
+    
+      
+      <dl>
+        <dt><g:message code="myr.property.enInternatDepuisLe.label" /></dt>
+          <dd><g:formatDate formatName="format.date" date="${rqt.enInternatDepuisLe}"/></dd>
+          
+
+      </dl>
+      
+    
+      
+      <dl>
+        <dt><g:message code="myr.property.fraisSejourPrisEnCharge.label" /></dt>
+          <dd><g:message code="message.${rqt.fraisSejourPrisEnCharge ? 'yes' : 'no'}" /></dd>
+          
+
+      </dl>
+      
+    
+      
+      <dl>
+        <dt><g:message code="myr.property.typeAccueil.label" /></dt><dd>${rqt.typeAccueil?.toString()}</dd>
+
+      </dl>
+      
+    
+      
+      <dl>
+        <dt><g:message code="myr.property.typeScolarisation.label" /></dt><dd>${rqt.typeScolarisation?.toString()}</dd>
+
+      </dl>
+      
+    
+      
+      <h4><g:message code="myr.property.presencePersonneAupresEnfant.label" /></h4>
+      <dl>
+        
+          <dt><g:message code="myr.property.exerciceActiviteProfessionnelle.label" /></dt>
+          <dd><g:message code="message.${rqt.presencePersonneAupresEnfant?.exerciceActiviteProfessionnelle ? 'yes' : 'no'}" /></dd>
+          
+
+        
+          <dt><g:message code="myr.property.recoursEmploiRemunereTiercePersonne.label" /></dt><dd>${rqt.presencePersonneAupresEnfant?.recoursEmploiRemunereTiercePersonne?.toString()}</dd>
+
+        
+          <dt><g:message code="myr.property.nbHeureParAnEmploiNonRegulier.label" /></dt><dd>${rqt.presencePersonneAupresEnfant?.nbHeureParAnEmploiNonRegulier?.toString()}</dd>
+
+        
+      </dl>
+      
+    
+      
+      <h4><g:message code="myr.property.fraisSuppLiesHandicap.label" /></h4>
+      <g:each var="it" in="${rqt.fraisSuppLiesHandicap}" status="index">
+      <dl>
+        
+          <dt><g:message code="myr.property.natureFrais.label" /></dt><dd>${it.natureFrais?.toString()}</dd>
+
+        
+          <dt><g:message code="myr.property.financeursSollicites.label" /></dt><dd>${it.financeursSollicites?.toString()}</dd>
+
+        
+          <dt><g:message code="myr.property.montantsObtenus.label" /></dt><dd>${it.montantsObtenus?.toString()}</dd>
+
+        
+          <dt><g:message code="myr.property.resteAVotreCharge.label" /></dt><dd>${it.resteAVotreCharge?.toString()}</dd>
+
+        
+          <dt><g:message code="myr.property.periodicite.label" /></dt>
+          <dd>
+            <g:if test="${it.periodicite}">
+              <g:capdematEnumToField var="${it.periodicite}" i18nKeyPrefix="myr.property.periodicite" />
+            </g:if>
+          </dd>
+          
+
+        
+      </dl>
+      </g:each>
+      
+    
+  
+
+  
+    <h3><g:message code="myr.step.demandeParcoursScolaireEtFormation.label" /></h3>
+    
+      
+      <dl>
+        <dt><g:message code="myr.property.demandeLibreScolaire.label" /></dt><dd>${rqt.demandeLibreScolaire?.toString()}</dd>
+
+      </dl>
+      
+    
+      
+      <dl>
+        <dt><g:message code="myr.property.preferencesEtablissementOuService.label" /></dt>
+          <dd><g:message code="message.${rqt.preferencesEtablissementOuService ? 'yes' : 'no'}" /></dd>
+          
+
+      </dl>
+      
+    
+      
+      <h4><g:message code="myr.property.precisionPreferencesEtablissementOuService.label" /></h4>
+      <dl>
+        
+          <dt><g:message code="myr.property.nomPreferenceEtablissementOuService.label" /></dt><dd>${rqt.precisionPreferencesEtablissementOuService?.nomPreferenceEtablissementOuService?.toString()}</dd>
+
+        
+          <dt><g:message code="myr.property.codePostalPreferenceEtablissementOuService.label" /></dt><dd>${rqt.precisionPreferencesEtablissementOuService?.codePostalPreferenceEtablissementOuService?.toString()}</dd>
+
+        
+          <dt><g:message code="myr.property.communePreferenceEtablissementOuService.label" /></dt><dd>${rqt.precisionPreferencesEtablissementOuService?.communePreferenceEtablissementOuService?.toString()}</dd>
+
+        
+      </dl>
+      
+    
+  
+
+  
+    <h3><g:message code="myr.step.demandeCartes.label" /></h3>
+    
+      
+      <dl>
+        <dt><g:message code="myr.property.carteInvalidite.label" /></dt>
+          <dd><g:message code="message.${rqt.carteInvalidite ? 'yes' : 'no'}" /></dd>
+          
+
+      </dl>
+      
+    
+      
+      <dl>
+        <dt><g:message code="myr.property.carteAccompagnement.label" /></dt>
+          <dd><g:message code="message.${rqt.carteAccompagnement ? 'yes' : 'no'}" /></dd>
+          
+
+      </dl>
+      
+    
+      
+      <dl>
+        <dt><g:message code="myr.property.carteStationnement.label" /></dt>
+          <dd><g:message code="message.${rqt.carteStationnement ? 'yes' : 'no'}" /></dd>
+          
+
+      </dl>
+      
+    
+  
+
+  
     <h3><g:message code="myr.step.demandePrestationCompensation.label" /></h3>
     
       

@@ -402,16 +402,22 @@
         drop constraint FK10277AB394A5AE45;
 
     alter table mdph_youth_request 
-        drop constraint FK10277AB35ABFDF4;
+        drop constraint FK10277AB3E9AA5096;
 
     alter table mdph_youth_request 
-        drop constraint FK10277AB37DCFA968;
+        drop constraint FK10277AB35ABFDF4;
 
     alter table mdph_youth_request 
         drop constraint FK10277AB3942D19EA;
 
     alter table mdph_youth_request 
+        drop constraint FK10277AB37DCFA968;
+
+    alter table mdph_youth_request 
         drop constraint FK10277AB3B39AEA92;
+
+    alter table mdph_youth_request 
+        drop constraint FK10277AB34AF79ED3;
 
     alter table mdph_youth_request 
         drop constraint FK10277AB36BE84516;
@@ -2364,6 +2370,8 @@
         type_accueil varchar(1024),
         type_logement varchar(255),
         type_scolarisation varchar(1024),
+        autorite_parentale_les_deux_mere_id int8,
+        autorite_parentale_les_deux_pere_id int8,
         autorite_parentale_mere_id int8,
         autorite_parentale_pere_id int8,
         besoins_demande_p_c_h_id int8,
@@ -4079,14 +4087,14 @@
         references myr_conjoint_identite;
 
     alter table mdph_youth_request 
+        add constraint FK10277AB3E9AA5096 
+        foreign key (autorite_parentale_les_deux_pere_id) 
+        references myr_autorite_parentale;
+
+    alter table mdph_youth_request 
         add constraint FK10277AB35ABFDF4 
         foreign key (domiciliation_etablissement_id) 
         references address;
-
-    alter table mdph_youth_request 
-        add constraint FK10277AB37DCFA968 
-        foreign key (information_autre_deteneur_autorite_parentale_id) 
-        references myr_autorite_parentale_autre;
 
     alter table mdph_youth_request 
         add constraint FK10277AB3942D19EA 
@@ -4094,9 +4102,19 @@
         references myr_situation_professionnelle_stagiaire;
 
     alter table mdph_youth_request 
+        add constraint FK10277AB37DCFA968 
+        foreign key (information_autre_deteneur_autorite_parentale_id) 
+        references myr_autorite_parentale_autre;
+
+    alter table mdph_youth_request 
         add constraint FK10277AB3B39AEA92 
         foreign key (situation_professionnelle_conjoint_non_salarie_id) 
         references myr_situation_professionnelle_non_salarie;
+
+    alter table mdph_youth_request 
+        add constraint FK10277AB34AF79ED3 
+        foreign key (autorite_parentale_les_deux_mere_id) 
+        references myr_autorite_parentale;
 
     alter table mdph_youth_request 
         add constraint FK10277AB36BE84516 

@@ -113,8 +113,14 @@
     <div class="yui-u first">
       
         
+        <dl>
+          <dt class="required condition-detenteurAutoriteParentaleOther-trigger condition-detenteurAutoriteParentalePere-trigger condition-detenteurAutoriteParentaleMere-trigger condition-detenteurAutoriteParentaleLesDeux-trigger">${message(code:'myr.property.deteneurAutoriteParentale.label')} * :</dt><dd id="deteneurAutoriteParentale" class="action-editField validate-capdematEnum required-true i18n-myr.property.deteneurAutoriteParentale javatype-fr.cg95.cvq.business.request.social.DeteneurAutoriteParentaleType" ><g:capdematEnumToField var="${rqt?.deteneurAutoriteParentale}" i18nKeyPrefix="myr.property.deteneurAutoriteParentale" /></dd>
+        </dl>
+        
+      
+        
         <h3><g:message code="myr.property.autoriteParentaleMere.label" /></h3>
-        <dl class="">
+        <dl class="condition-detenteurAutoriteParentaleMere-filled">
           
               <dt class="">${message(code:'myr.property.nom.label')} :</dt><dd id="nom" class="action-editField validate-lastName i18n-myr.property.nom maxLength-38" ><span>${rqt.autoriteParentaleMere?.nom}</span></dd>
           
@@ -132,14 +138,27 @@
         
       
         
-        <dl>
-          <dt class="required condition-deteneurAutoriteParentale-trigger">${message(code:'myr.property.deteneurAutoriteParentale.label')} * :</dt><dd id="deteneurAutoriteParentale" class="action-editField validate-capdematEnum required-true i18n-myr.property.deteneurAutoriteParentale javatype-fr.cg95.cvq.business.request.social.DeteneurAutoriteParentaleType" ><g:capdematEnumToField var="${rqt?.deteneurAutoriteParentale}" i18nKeyPrefix="myr.property.deteneurAutoriteParentale" /></dd>
+        <h3><g:message code="myr.property.autoriteParentalePere.label" /></h3>
+        <dl class="condition-detenteurAutoriteParentalePere-filled">
+          
+              <dt class="">${message(code:'myr.property.nom.label')} :</dt><dd id="nom" class="action-editField validate-lastName i18n-myr.property.nom maxLength-38" ><span>${rqt.autoriteParentalePere?.nom}</span></dd>
+          
+              <dt class="">${message(code:'myr.property.prenom.label')} :</dt><dd id="prenom" class="action-editField validate-firstName i18n-myr.property.prenom maxLength-38" ><span>${rqt.autoriteParentalePere?.prenom}</span></dd>
+          
+              <dt class="">${message(code:'myr.property.domiciliation.label')} :</dt><dd id="domiciliation" class="action-editField validate-address i18n-myr.property.domiciliation" ><div><p class="additionalDeliveryInformation">${rqt.autoriteParentalePere?.domiciliation?.additionalDeliveryInformation}</p><p class="additionalGeographicalInformation">${rqt.autoriteParentalePere?.domiciliation?.additionalGeographicalInformation}</p><span class="streetNumber">${rqt.autoriteParentalePere?.domiciliation?.streetNumber}</span> <span class="streetName">${rqt.autoriteParentalePere?.domiciliation?.streetName}</span><g:if test="${!!rqt.autoriteParentalePere?.domiciliation?.streetMatriculation}"><br /><em><g:message code="address.property.streetMatriculation" /></em><span class="streetMatriculation">${rqt.autoriteParentalePere?.domiciliation?.streetMatriculation}</span></g:if><g:if test="${!!rqt.autoriteParentalePere?.domiciliation?.streetRivoliCode}"><br /><em><g:message code="address.property.streetRivoliCode" /></em><span class="streetRivoliCode">${rqt.autoriteParentalePere?.domiciliation?.streetRivoliCode}</span></g:if><p class="placeNameOrService">${rqt.autoriteParentalePere?.domiciliation?.placeNameOrService}</p><span class="postalCode">${rqt.autoriteParentalePere?.domiciliation?.postalCode}</span> <span class="city">${rqt.autoriteParentalePere?.domiciliation?.city}</span><p class="countryName">${rqt.autoriteParentalePere?.domiciliation?.countryName}</p><g:if test="${!!rqt.autoriteParentalePere?.domiciliation?.cityInseeCode}"><em><g:message code="address.property.cityInseeCode" /></em><span class="cityInseeCode">${rqt.autoriteParentalePere?.domiciliation?.cityInseeCode}</span></g:if></div></dd>
+          
+              <dt class="">${message(code:'myr.property.telephone.label')} :</dt><dd id="telephone" class="action-editField validate-phone i18n-myr.property.telephone maxLength-10" ><span>${rqt.autoriteParentalePere?.telephone}</span></dd>
+          
+              <dt class="">${message(code:'myr.property.fax.label')} :</dt><dd id="fax" class="action-editField validate-phone i18n-myr.property.fax maxLength-10" ><span>${rqt.autoriteParentalePere?.fax}</span></dd>
+          
+              <dt class="">${message(code:'myr.property.email.label')} :</dt><dd id="email" class="action-editField validate-email i18n-myr.property.email" ><span>${rqt.autoriteParentalePere?.email}</span></dd>
+          
         </dl>
         
       
         
         <h3><g:message code="myr.property.informationAutreDeteneurAutoriteParentale.label" /></h3>
-        <dl class="required condition-deteneurAutoriteParentale-filled">
+        <dl class="required condition-detenteurAutoriteParentaleOther-filled">
           
               <dt class="required">${message(code:'myr.property.nom.label')} * :</dt><dd id="nom" class="action-editField validate-lastName required-true i18n-myr.property.nom maxLength-38" ><span>${rqt.informationAutreDeteneurAutoriteParentale?.nom}</span></dd>
           
@@ -161,20 +180,39 @@
     <div class="yui-u">
       
         
-        <h3><g:message code="myr.property.autoriteParentalePere.label" /></h3>
-        <dl class="">
+        <h3><g:message code="myr.property.autoriteParentaleLesDeuxPere.label" /></h3>
+        <dl class="condition-detenteurAutoriteParentaleLesDeux-filled">
           
-              <dt class="">${message(code:'myr.property.nom.label')} :</dt><dd id="nom" class="action-editField validate-lastName i18n-myr.property.nom maxLength-38" ><span>${rqt.autoriteParentalePere?.nom}</span></dd>
+              <dt class="">${message(code:'myr.property.nom.label')} :</dt><dd id="nom" class="action-editField validate-lastName i18n-myr.property.nom maxLength-38" ><span>${rqt.autoriteParentaleLesDeuxPere?.nom}</span></dd>
           
-              <dt class="">${message(code:'myr.property.prenom.label')} :</dt><dd id="prenom" class="action-editField validate-firstName i18n-myr.property.prenom maxLength-38" ><span>${rqt.autoriteParentalePere?.prenom}</span></dd>
+              <dt class="">${message(code:'myr.property.prenom.label')} :</dt><dd id="prenom" class="action-editField validate-firstName i18n-myr.property.prenom maxLength-38" ><span>${rqt.autoriteParentaleLesDeuxPere?.prenom}</span></dd>
           
-              <dt class="">${message(code:'myr.property.domiciliation.label')} :</dt><dd id="domiciliation" class="action-editField validate-address i18n-myr.property.domiciliation" ><div><p class="additionalDeliveryInformation">${rqt.autoriteParentalePere?.domiciliation?.additionalDeliveryInformation}</p><p class="additionalGeographicalInformation">${rqt.autoriteParentalePere?.domiciliation?.additionalGeographicalInformation}</p><span class="streetNumber">${rqt.autoriteParentalePere?.domiciliation?.streetNumber}</span> <span class="streetName">${rqt.autoriteParentalePere?.domiciliation?.streetName}</span><g:if test="${!!rqt.autoriteParentalePere?.domiciliation?.streetMatriculation}"><br /><em><g:message code="address.property.streetMatriculation" /></em><span class="streetMatriculation">${rqt.autoriteParentalePere?.domiciliation?.streetMatriculation}</span></g:if><g:if test="${!!rqt.autoriteParentalePere?.domiciliation?.streetRivoliCode}"><br /><em><g:message code="address.property.streetRivoliCode" /></em><span class="streetRivoliCode">${rqt.autoriteParentalePere?.domiciliation?.streetRivoliCode}</span></g:if><p class="placeNameOrService">${rqt.autoriteParentalePere?.domiciliation?.placeNameOrService}</p><span class="postalCode">${rqt.autoriteParentalePere?.domiciliation?.postalCode}</span> <span class="city">${rqt.autoriteParentalePere?.domiciliation?.city}</span><p class="countryName">${rqt.autoriteParentalePere?.domiciliation?.countryName}</p><g:if test="${!!rqt.autoriteParentalePere?.domiciliation?.cityInseeCode}"><em><g:message code="address.property.cityInseeCode" /></em><span class="cityInseeCode">${rqt.autoriteParentalePere?.domiciliation?.cityInseeCode}</span></g:if></div></dd>
+              <dt class="">${message(code:'myr.property.domiciliation.label')} :</dt><dd id="domiciliation" class="action-editField validate-address i18n-myr.property.domiciliation" ><div><p class="additionalDeliveryInformation">${rqt.autoriteParentaleLesDeuxPere?.domiciliation?.additionalDeliveryInformation}</p><p class="additionalGeographicalInformation">${rqt.autoriteParentaleLesDeuxPere?.domiciliation?.additionalGeographicalInformation}</p><span class="streetNumber">${rqt.autoriteParentaleLesDeuxPere?.domiciliation?.streetNumber}</span> <span class="streetName">${rqt.autoriteParentaleLesDeuxPere?.domiciliation?.streetName}</span><g:if test="${!!rqt.autoriteParentaleLesDeuxPere?.domiciliation?.streetMatriculation}"><br /><em><g:message code="address.property.streetMatriculation" /></em><span class="streetMatriculation">${rqt.autoriteParentaleLesDeuxPere?.domiciliation?.streetMatriculation}</span></g:if><g:if test="${!!rqt.autoriteParentaleLesDeuxPere?.domiciliation?.streetRivoliCode}"><br /><em><g:message code="address.property.streetRivoliCode" /></em><span class="streetRivoliCode">${rqt.autoriteParentaleLesDeuxPere?.domiciliation?.streetRivoliCode}</span></g:if><p class="placeNameOrService">${rqt.autoriteParentaleLesDeuxPere?.domiciliation?.placeNameOrService}</p><span class="postalCode">${rqt.autoriteParentaleLesDeuxPere?.domiciliation?.postalCode}</span> <span class="city">${rqt.autoriteParentaleLesDeuxPere?.domiciliation?.city}</span><p class="countryName">${rqt.autoriteParentaleLesDeuxPere?.domiciliation?.countryName}</p><g:if test="${!!rqt.autoriteParentaleLesDeuxPere?.domiciliation?.cityInseeCode}"><em><g:message code="address.property.cityInseeCode" /></em><span class="cityInseeCode">${rqt.autoriteParentaleLesDeuxPere?.domiciliation?.cityInseeCode}</span></g:if></div></dd>
           
-              <dt class="">${message(code:'myr.property.telephone.label')} :</dt><dd id="telephone" class="action-editField validate-phone i18n-myr.property.telephone maxLength-10" ><span>${rqt.autoriteParentalePere?.telephone}</span></dd>
+              <dt class="">${message(code:'myr.property.telephone.label')} :</dt><dd id="telephone" class="action-editField validate-phone i18n-myr.property.telephone maxLength-10" ><span>${rqt.autoriteParentaleLesDeuxPere?.telephone}</span></dd>
           
-              <dt class="">${message(code:'myr.property.fax.label')} :</dt><dd id="fax" class="action-editField validate-phone i18n-myr.property.fax maxLength-10" ><span>${rqt.autoriteParentalePere?.fax}</span></dd>
+              <dt class="">${message(code:'myr.property.fax.label')} :</dt><dd id="fax" class="action-editField validate-phone i18n-myr.property.fax maxLength-10" ><span>${rqt.autoriteParentaleLesDeuxPere?.fax}</span></dd>
           
-              <dt class="">${message(code:'myr.property.email.label')} :</dt><dd id="email" class="action-editField validate-email i18n-myr.property.email" ><span>${rqt.autoriteParentalePere?.email}</span></dd>
+              <dt class="">${message(code:'myr.property.email.label')} :</dt><dd id="email" class="action-editField validate-email i18n-myr.property.email" ><span>${rqt.autoriteParentaleLesDeuxPere?.email}</span></dd>
+          
+        </dl>
+        
+      
+        
+        <h3><g:message code="myr.property.autoriteParentaleLesDeuxMere.label" /></h3>
+        <dl class="condition-detenteurAutoriteParentaleLesDeux-filled">
+          
+              <dt class="">${message(code:'myr.property.nom.label')} :</dt><dd id="nom" class="action-editField validate-lastName i18n-myr.property.nom maxLength-38" ><span>${rqt.autoriteParentaleLesDeuxMere?.nom}</span></dd>
+          
+              <dt class="">${message(code:'myr.property.prenom.label')} :</dt><dd id="prenom" class="action-editField validate-firstName i18n-myr.property.prenom maxLength-38" ><span>${rqt.autoriteParentaleLesDeuxMere?.prenom}</span></dd>
+          
+              <dt class="">${message(code:'myr.property.domiciliation.label')} :</dt><dd id="domiciliation" class="action-editField validate-address i18n-myr.property.domiciliation" ><div><p class="additionalDeliveryInformation">${rqt.autoriteParentaleLesDeuxMere?.domiciliation?.additionalDeliveryInformation}</p><p class="additionalGeographicalInformation">${rqt.autoriteParentaleLesDeuxMere?.domiciliation?.additionalGeographicalInformation}</p><span class="streetNumber">${rqt.autoriteParentaleLesDeuxMere?.domiciliation?.streetNumber}</span> <span class="streetName">${rqt.autoriteParentaleLesDeuxMere?.domiciliation?.streetName}</span><g:if test="${!!rqt.autoriteParentaleLesDeuxMere?.domiciliation?.streetMatriculation}"><br /><em><g:message code="address.property.streetMatriculation" /></em><span class="streetMatriculation">${rqt.autoriteParentaleLesDeuxMere?.domiciliation?.streetMatriculation}</span></g:if><g:if test="${!!rqt.autoriteParentaleLesDeuxMere?.domiciliation?.streetRivoliCode}"><br /><em><g:message code="address.property.streetRivoliCode" /></em><span class="streetRivoliCode">${rqt.autoriteParentaleLesDeuxMere?.domiciliation?.streetRivoliCode}</span></g:if><p class="placeNameOrService">${rqt.autoriteParentaleLesDeuxMere?.domiciliation?.placeNameOrService}</p><span class="postalCode">${rqt.autoriteParentaleLesDeuxMere?.domiciliation?.postalCode}</span> <span class="city">${rqt.autoriteParentaleLesDeuxMere?.domiciliation?.city}</span><p class="countryName">${rqt.autoriteParentaleLesDeuxMere?.domiciliation?.countryName}</p><g:if test="${!!rqt.autoriteParentaleLesDeuxMere?.domiciliation?.cityInseeCode}"><em><g:message code="address.property.cityInseeCode" /></em><span class="cityInseeCode">${rqt.autoriteParentaleLesDeuxMere?.domiciliation?.cityInseeCode}</span></g:if></div></dd>
+          
+              <dt class="">${message(code:'myr.property.telephone.label')} :</dt><dd id="telephone" class="action-editField validate-phone i18n-myr.property.telephone maxLength-10" ><span>${rqt.autoriteParentaleLesDeuxMere?.telephone}</span></dd>
+          
+              <dt class="">${message(code:'myr.property.fax.label')} :</dt><dd id="fax" class="action-editField validate-phone i18n-myr.property.fax maxLength-10" ><span>${rqt.autoriteParentaleLesDeuxMere?.fax}</span></dd>
+          
+              <dt class="">${message(code:'myr.property.email.label')} :</dt><dd id="email" class="action-editField validate-email i18n-myr.property.email" ><span>${rqt.autoriteParentaleLesDeuxMere?.email}</span></dd>
           
         </dl>
         

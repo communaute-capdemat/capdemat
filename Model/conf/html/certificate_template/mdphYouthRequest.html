@@ -190,6 +190,17 @@
   <h2>${i18n.translate('myr.step.autoriteParentale.label')}</h2>
   
     
+      <p class="label">${esc(i18n.translate('myr.property.deteneurAutoriteParentale.label'))}</p>
+          <div class="response">
+            <% if(rqt.deteneurAutoriteParentale) { %>
+              ${esc(i18n.translate('myr.property.deteneurAutoriteParentale.' + EnumTool.toLowerCamelCase(rqt.deteneurAutoriteParentale.toString())))}
+            <% } %>
+          </div>
+          
+
+    
+  
+    
       <h3>${i18n.translate('myr.property.autoriteParentaleMere.label')}</h3>
       <div class="complex">
         
@@ -262,14 +273,75 @@
     
   
     
-      <p class="label">${esc(i18n.translate('myr.property.deteneurAutoriteParentale.label'))}</p>
+      <h3>${i18n.translate('myr.property.autoriteParentaleLesDeuxPere.label')}</h3>
+      <div class="complex">
+        
+          <p class="label">${esc(i18n.translate('myr.property.nom.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.autoriteParentaleLesDeuxPere?.nom?.toString()))}</div>
+
+        
+          <p class="label">${esc(i18n.translate('myr.property.prenom.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.autoriteParentaleLesDeuxPere?.prenom?.toString()))}</div>
+
+        
+          <p class="label">${esc(i18n.translate('myr.property.domiciliation.label'))}</p>
           <div class="response">
-            <% if(rqt.deteneurAutoriteParentale) { %>
-              ${esc(i18n.translate('myr.property.deteneurAutoriteParentale.' + EnumTool.toLowerCamelCase(rqt.deteneurAutoriteParentale.toString())))}
+            <% if(rqt.autoriteParentaleLesDeuxPere?.domiciliation) { %>
+              <p>${esc(StringUtils.defaultString(rqt.autoriteParentaleLesDeuxPere?.domiciliation?.additionalDeliveryInformation))}</p>
+              <p>${esc(StringUtils.defaultString(rqt.autoriteParentaleLesDeuxPere?.domiciliation?.additionalGeographicalInformation))}</p>
+              <p>${esc(StringUtils.defaultString(rqt.autoriteParentaleLesDeuxPere?.domiciliation?.streetNumber))} ${esc(StringUtils.defaultString(rqt.autoriteParentaleLesDeuxPere?.domiciliation?.streetName))}</p>
+              <p>${esc(StringUtils.defaultString(rqt.autoriteParentaleLesDeuxPere?.domiciliation?.placeNameOrService))}</p>
+              <p>${esc(StringUtils.defaultString(rqt.autoriteParentaleLesDeuxPere?.domiciliation?.postalCode))} ${esc(StringUtils.defaultString(rqt.autoriteParentaleLesDeuxPere?.domiciliation?.city))}</p>
+              <p>${esc(StringUtils.defaultString(rqt.autoriteParentaleLesDeuxPere?.domiciliation?.countryName))}</p>
             <% } %>
           </div>
           
 
+        
+          <p class="label">${esc(i18n.translate('myr.property.telephone.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.autoriteParentaleLesDeuxPere?.telephone?.toString()))}</div>
+
+        
+          <p class="label">${esc(i18n.translate('myr.property.fax.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.autoriteParentaleLesDeuxPere?.fax?.toString()))}</div>
+
+        
+          <p class="label">${esc(i18n.translate('myr.property.email.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.autoriteParentaleLesDeuxPere?.email?.toString()))}</div>
+
+        
+      </div>
+    
+  
+    
+      <h3>${i18n.translate('myr.property.autoriteParentaleLesDeuxMere.label')}</h3>
+      <div class="complex">
+        
+          <p class="label">${esc(i18n.translate('myr.property.nom.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.autoriteParentaleLesDeuxMere?.nom?.toString()))}</div>
+
+        
+          <p class="label">${esc(i18n.translate('myr.property.prenom.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.autoriteParentaleLesDeuxMere?.prenom?.toString()))}</div>
+
+        
+          <p class="label">${esc(i18n.translate('myr.property.domiciliation.label'))}</p>
+          <div class="response">
+            <% if(rqt.autoriteParentaleLesDeuxMere?.domiciliation) { %>
+              <p>${esc(StringUtils.defaultString(rqt.autoriteParentaleLesDeuxMere?.domiciliation?.additionalDeliveryInformation))}</p>
+              <p>${esc(StringUtils.defaultString(rqt.autoriteParentaleLesDeuxMere?.domiciliation?.additionalGeographicalInformation))}</p>
+              <p>${esc(StringUtils.defaultString(rqt.autoriteParentaleLesDeuxMere?.domiciliation?.streetNumber))} ${esc(StringUtils.defaultString(rqt.autoriteParentaleLesDeuxMere?.domiciliation?.streetName))}</p>
+              <p>${esc(StringUtils.defaultString(rqt.autoriteParentaleLesDeuxMere?.domiciliation?.placeNameOrService))}</p>
+              <p>${esc(StringUtils.defaultString(rqt.autoriteParentaleLesDeuxMere?.domiciliation?.postalCode))} ${esc(StringUtils.defaultString(rqt.autoriteParentaleLesDeuxMere?.domiciliation?.city))}</p>
+              <p>${esc(StringUtils.defaultString(rqt.autoriteParentaleLesDeuxMere?.domiciliation?.countryName))}</p>
+            <% } %>
+          </div>
+          
+
+        
+          <p class="label">${esc(i18n.translate('myr.property.telephone.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.autoriteParentaleLesDeuxMere?.telephone?.toString()))}</div>
+
+        
+          <p class="label">${esc(i18n.translate('myr.property.fax.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.autoriteParentaleLesDeuxMere?.fax?.toString()))}</div>
+
+        
+          <p class="label">${esc(i18n.translate('myr.property.email.label'))}</p><div class="response">${esc(StringUtils.defaultString(rqt.autoriteParentaleLesDeuxMere?.email?.toString()))}</div>
+
+        
+      </div>
     
   
     
