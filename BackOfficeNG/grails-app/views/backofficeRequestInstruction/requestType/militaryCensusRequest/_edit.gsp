@@ -125,7 +125,7 @@
             
               
               <h3><g:message code="mcr.property.fatherInformation.label" /></h3>
-              <dl class="required">
+              <dl class="">
                 
                   <dt class="">${message(code:'mcr.property.fatherLastName.label')} :</dt><dd id="fatherLastName" class="action-editField validate-lastName i18n-mcr.property.fatherLastName maxLength-38" ><span>${rqt.fatherInformation?.fatherLastName}</span></dd>
                 

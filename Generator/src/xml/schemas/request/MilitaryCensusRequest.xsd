@@ -284,7 +284,7 @@
               </xs:simpleType>
             </xs:element>
 
-            <xs:element name="FatherInformation" type="mcr:MilitaryFatherInformationType">
+            <xs:element name="FatherInformation" type="mcr:MilitaryFatherInformationType" minOccurs="0">
               <xs:annotation>
                 <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">
                   Informations sur le père

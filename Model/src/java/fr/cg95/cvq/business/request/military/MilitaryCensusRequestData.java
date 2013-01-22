@@ -409,13 +409,6 @@ public class MilitaryCensusRequestData implements Serializable {
     }
   
     
-      @NotNull(
-        
-        
-        profiles = {"parentage"},
-        message = "fatherInformation"
-      )
-    
       @AssertValid(
         
         

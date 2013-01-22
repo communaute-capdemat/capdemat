@@ -2,7 +2,7 @@
 
 
   
-    <fieldset class="required">
+    <fieldset class="">
     <legend><g:message code="mcr.property.fatherInformation.label" /></legend>
     
       <label for="fatherInformation.fatherLastName" class=""><g:message code="mcr.property.fatherLastName.label" />   <span><g:message code="mcr.property.fatherLastName.help" /></span></label>
