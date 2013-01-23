@@ -1,7 +1,7 @@
 /**
  * For date widgets a la CapDémat (<select day> <select month> <input text year>).
  * Adapt the day <select> depending on the month and year.
- * E.g.: 30 days in april and 31 in may.
+ * E.g.: 30 days in April and 31 in May.
  */
 ;(function(date) {
 
@@ -43,4 +43,4 @@
 
   yue.onDOMReady(date.init)
 
-})(zenexity.capdemat.tools.namespace('zenexity.capdemat.tool.ui.date'))
+})(zenexity.capdemat.tools.namespace('zenexity.capdemat.tools.ui.date'))
