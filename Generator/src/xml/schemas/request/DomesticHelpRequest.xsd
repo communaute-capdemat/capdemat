@@ -986,7 +986,7 @@
             Nom de jeune fille
           </xs:documentation>
           <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
-            Nom de jeune fille
+            Nom de famille
           </xs:documentation>
           <xs:appinfo>
             <model namespace="users"/>
