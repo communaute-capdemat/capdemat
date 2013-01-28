@@ -1198,7 +1198,7 @@
   <xs:simpleType name="LastNameType">
     <xs:annotation>
       <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">Type des éléments de nom Etat Civil (ORIGINE ADAE)</xs:documentation>
-      <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">Nom</xs:documentation>
+      <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">Nom de famille</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
       <xs:maxLength value="38"/>
