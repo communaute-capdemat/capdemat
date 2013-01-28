@@ -16,6 +16,7 @@ import fr.cg95.cvq.business.users.external.IndividualMapping;
 abstract public class IndividualXml {
 
     private String capdematId;
+    private String homefolderId;
 
     private String lastName;
     private String firstName;
@@ -42,6 +43,7 @@ abstract public class IndividualXml {
         if (indiv.getIndividualMappings() != null && indiv.getIndividualMappings().size() == 1) {
             IndividualMapping mapping = indiv.getIndividualMappings().iterator().next();
             capdematId = mapping.getExternalCapDematId();
+            homefolderId = mapping.getHomeFolderMapping().getExternalCapDematId();
         }
     }
 
@@ -145,6 +147,14 @@ abstract public class IndividualXml {
 
     public void setAddress(Address address) {
         this.address = address;
+    }
+
+    public String getHomefolderId() {
+        return homefolderId;
+    }
+
+    public void setHomefolderId(String homefolderId) {
+        this.homefolderId = homefolderId;
     }
 
 }
