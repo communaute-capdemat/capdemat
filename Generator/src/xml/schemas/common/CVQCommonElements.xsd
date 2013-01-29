@@ -1302,7 +1302,6 @@
       <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/translation/enum">
         <enum key="Mister" value="Monsieur" />
         <enum key="Madam" value="Madame" />
-        <enum key="Miss" value="Mademoiselle" />
         <enum key="Agency" value="Organisme" />
         <enum key="Unknown" value="Inconnue" />
       </xs:documentation>
@@ -1310,7 +1309,6 @@
     <xs:restriction base="xs:string">
       <xs:enumeration value="Mister" />
       <xs:enumeration value="Madam" />
-      <xs:enumeration value="Miss" />
       <xs:enumeration value="Agency" />
       <xs:enumeration value="Unknown" />
     </xs:restriction>

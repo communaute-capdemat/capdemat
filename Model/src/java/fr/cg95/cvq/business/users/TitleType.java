@@ -10,6 +10,17 @@ public enum TitleType {
     AGENCY("Agency"),
     UNKNOWN("Unknown");
 
+    /**
+     * @deprecated only for backward, use values() instead
+     */
+    public static final TitleType[] allTitleTypes = new TitleType[]{
+        MISTER,
+        MADAM,
+        // remove Miss
+        AGENCY,
+        UNKNOWN
+    };
+
     private String legacyLabel;
 
     public String getLegacyLabel() {
@@ -22,11 +33,6 @@ public enum TitleType {
     private TitleType(String legacyLabel) {
         this.legacyLabel = legacyLabel;
     }
-
-    /**
-     * @deprecated only for backward, use values() instead
-     */
-    public static final TitleType[] allTitleTypes = TitleType.values();
 
     public static TitleType getDefaultTitleType() {
         return UNKNOWN;
