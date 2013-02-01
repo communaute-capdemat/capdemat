@@ -68,7 +68,7 @@
       properties."git.branches".eachLine {
         def current = it =~ /\* (.*)/
         if (current.matches()) {
-          branch = current[0][1]
+          branch = ("(no branch)" == current[0][1]) ? "no_branch" : current[0][1]
         }
       }
       def engine = new groovy.text.SimpleTemplateEngine()
