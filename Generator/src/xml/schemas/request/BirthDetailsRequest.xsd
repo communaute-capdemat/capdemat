@@ -94,7 +94,7 @@
             <xs:element name="BirthLastName" type="cvq:LastNameType">
               <xs:annotation>
                 <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
-                  Nom de naissance (de jeune fille pour les femmes mariées ou divorcées)
+                  Nom de naissance
                 </xs:documentation>
                 <xs:appinfo>
                   <common>
@@ -110,7 +110,7 @@
             <xs:element name="BirthMarriageName" type="cvq:LastNameType" minOccurs="0">
               <xs:annotation>
                 <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
-                  Nom marital ou d'usage
+                  Nom d'usage
                 </xs:documentation>
                 <xs:appinfo>
                   <common>
@@ -470,7 +470,7 @@
       <xs:element name="MotherMaidenName" type="cvq:LastNameType">
         <xs:annotation>
           <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
-            Nom de jeune fille de la mère
+            Nom de famille de la mère
           </xs:documentation>
           <xs:appinfo>
             <common>
