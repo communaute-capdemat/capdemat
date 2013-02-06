@@ -226,7 +226,7 @@
             <xs:element name="AccountHolderLastName" type="cvq:LastNameType" minOccurs="0">
               <xs:annotation>
                 <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
-                  Nom du titulaire du compte
+                  Nom de famille du titulaire du compte
                 </xs:documentation>
                 <xs:appinfo>
                   <model namespace="users" />

@@ -240,10 +240,10 @@
       <xs:element name="LastName" type="cvq:LastNameType">
         <xs:annotation>
           <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">
-            Nom de la personne à contacter
+            Nom de famille de la personne à contacter
           </xs:documentation>
           <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
-            Nom
+            Nom de famille
           </xs:documentation>
           <xs:appinfo>
             <common>
@@ -336,10 +336,10 @@
       <xs:element name="LastName" type="cvq:LastNameType">
         <xs:annotation>
           <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">
-            Nom de la personne autorisée
+            Nom de famille de la personne autorisée
           </xs:documentation>
           <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
-            Nom
+            Nom de famille
           </xs:documentation>
           <xs:appinfo>
             <common>

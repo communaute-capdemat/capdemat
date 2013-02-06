@@ -435,7 +435,7 @@
       <xs:element name="FatherLastName" type="cvq:LastNameType">
         <xs:annotation>
           <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
-            Nom du père
+            Nom de famille du père
           </xs:documentation>
           <xs:appinfo>
             <common>

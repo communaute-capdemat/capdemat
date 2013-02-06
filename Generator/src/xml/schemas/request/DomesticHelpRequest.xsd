@@ -1907,10 +1907,10 @@
       <xs:element name="DhrNotRealAssetBeneficiaryName" type="cvq:LastNameType">
         <xs:annotation>
           <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">
-            Nom du bénéficiaire 
+            Nom de famille du bénéficiaire
           </xs:documentation>
           <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
-            Nom du bénéficiaire
+            Nom de famille du bénéficiaire
           </xs:documentation>
           <xs:appinfo>
             <model namespace="users"/>

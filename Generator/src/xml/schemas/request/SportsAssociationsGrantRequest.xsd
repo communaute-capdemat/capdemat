@@ -895,7 +895,7 @@
       <xs:element name="NomMembre" type="cvq:LastNameType">
         <xs:annotation>
           <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
-            Nom
+            Nom de famille
           </xs:documentation>
           <xs:appinfo>
             <common>

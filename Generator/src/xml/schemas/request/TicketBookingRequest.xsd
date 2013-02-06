@@ -112,10 +112,10 @@
             <xs:element name="SubscriberLastName" type="xs:string">
               <xs:annotation>
                 <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">
-                  Nom
+                  Nom de famille
                 </xs:documentation>
                 <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
-                  Nom
+                  Nom de famille
                 </xs:documentation>
                 <xs:appinfo>
                   <common>

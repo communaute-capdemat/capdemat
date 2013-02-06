@@ -63,10 +63,10 @@
             <xs:element name="OwnerLastName" type="cvq:LastNameType" minOccurs="0">
               <xs:annotation>
                 <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">
-                  Nom du propriétaire
+                  Nom de famille du propriétaire
 		        </xs:documentation>
                 <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
-                  Nom du propriétaire
+                  Nom de famille du propriétaire
 		        </xs:documentation>
                 <xs:appinfo>
                   <common>

@@ -257,10 +257,10 @@
     <xs:element name="OtherContactLastName" type="cvq:LastNameType">
               <xs:annotation>
                 <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">
-                  Nom de l'autre personne à contacter
+                  Nom de famille de l'autre personne à contacter
                 </xs:documentation>
                 <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
-                  Nom de la personne à contacter
+                  Nom de famille de la personne à contacter
                 </xs:documentation>
                 <xs:documentation xml:lang="en" source="http://www.cg95.fr/cvq/schema/longdesc">
                   Other contact lastname

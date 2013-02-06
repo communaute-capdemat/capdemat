@@ -346,10 +346,10 @@
       <xs:element name="MarriageHusbandLastName" type="cvq:LastNameType" minOccurs="1">
         <xs:annotation>
           <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">
-            Nom de l'époux
+            Nom de famille de l'époux
           </xs:documentation>
           <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
-            Nom
+            Nom de famille
           </xs:documentation>
           <xs:appinfo>
             <common>
@@ -387,10 +387,10 @@
       <xs:element name="MarriageWifeLastName" type="cvq:LastNameType" minOccurs="1">
         <xs:annotation>
           <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">
-            Nom de l'épouse
+            Nom de famille de l'épouse
           </xs:documentation>
           <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
-            Nom
+            Nom de famille
           </xs:documentation>
           <xs:appinfo>
             <common>
@@ -562,10 +562,10 @@
       <xs:element name="FatherLastName" type="cvq:LastNameType" minOccurs="1">
         <xs:annotation>
           <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">
-            Nom du père
+            Nom de famille du père
           </xs:documentation>
           <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
-            Nom
+            Nom de famille
           </xs:documentation>
           <xs:appinfo>
             <common>
@@ -606,7 +606,7 @@
             Nom de famille de la mère
           </xs:documentation>
           <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
-            Nom
+            Nom de famille
           </xs:documentation>
           <xs:appinfo>
             <common>

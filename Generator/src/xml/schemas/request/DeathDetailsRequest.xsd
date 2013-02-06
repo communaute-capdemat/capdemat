@@ -43,10 +43,10 @@
             <xs:element name="DeathLastName" type="cvq:LastNameType" minOccurs="1">
               <xs:annotation>
                 <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">
-                  Nom de l'individu
+                  Nom de famille de l'individu
                 </xs:documentation>
                 <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
-                  Nom
+                  Nom de famille
                 </xs:documentation>
                 <xs:appinfo>
                   <common>

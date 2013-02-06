@@ -499,10 +499,10 @@
       <xs:element name="SpouseLastName" type="cvq:LastNameType">
         <xs:annotation>
           <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">
-            Nom du conjoint
+            Nom de famille du conjoint
           </xs:documentation>
           <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
-            Nom
+            Nom de famille
           </xs:documentation>
           <xs:appinfo>
             <model namespace="users" />
@@ -631,10 +631,10 @@
       <xs:element name="ContactLastName" type="cvq:LastNameType">
         <xs:annotation>
           <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">
-            Nom du premier contact
+            Nom de famille du premier contact
           </xs:documentation>
           <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
-            Nom
+            Nom de famille
           </xs:documentation>
           <xs:appinfo>
             <model namespace="users" />
@@ -705,10 +705,10 @@
       <xs:element name="SecondContactLastName" type="cvq:LastNameType" minOccurs="0">
         <xs:annotation>
           <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">
-            Nom du second contact
+            Nom de famille du second contact
           </xs:documentation>
           <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
-            Nom
+            Nom de famille
           </xs:documentation>
           <xs:appinfo>
             <model namespace="users" />
@@ -781,10 +781,10 @@
       <xs:element name="TrusteeLastName" type="cvq:LastNameType" minOccurs="0">
         <xs:annotation>
           <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">
-            Nom du dépositaire
+            Nom de famille du dépositaire
           </xs:documentation>
           <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/shortdesc">
-            Nom
+            Nom de famille
           </xs:documentation>
           <xs:appinfo>
             <model namespace="users" />
