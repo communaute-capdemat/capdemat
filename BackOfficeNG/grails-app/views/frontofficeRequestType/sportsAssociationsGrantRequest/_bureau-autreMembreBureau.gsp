@@ -22,6 +22,16 @@
             
 
   
+    <label for="autreMembreBureau.${collectionIndex}.civiliteMembre" class="required"><g:message code="sagr.property.civiliteMembre.label" /> *  <span><g:message code="sagr.property.civiliteMembre.help" /></span></label>
+            <select id="autreMembreBureau.${collectionIndex}.civiliteMembre" name="autreMembreBureau[${collectionIndex}].civiliteMembre" class="required  validate-not-first ${rqt.stepStates['bureau'].invalidFields.contains('autreMembreBureau['+collectionIndex+'].civiliteMembre') ? 'validation-failed' : ''}" title="<g:message code="sagr.property.civiliteMembre.validationError" />">
+              <option value=""><g:message code="message.select.defaultOption" /></option>
+              <g:each in="${['MISTER','MADAM','AGENCY','UNKNOWN']}">
+                <option value="${it}" ${it == currentCollectionItem?.civiliteMembre?.toString() ? 'selected="selected"': ''}><g:capdematEnumToText var="${it}" i18nKeyPrefix="sagr.property.civiliteMembre" /></option>
+              </g:each>
+            </select>
+            
+
+  
     <label for="autreMembreBureau.${collectionIndex}.nomMembre" class="required"><g:message code="sagr.property.nomMembre.label" /> *  <span><g:message code="sagr.property.nomMembre.help" /></span></label>
             <input type="text" id="autreMembreBureau.${collectionIndex}.nomMembre" name="autreMembreBureau[${collectionIndex}].nomMembre" value="${currentCollectionItem?.nomMembre?.toString()}" 
                     class="required  validate-lastName ${rqt.stepStates['bureau'].invalidFields.contains('autreMembreBureau['+collectionIndex+'].nomMembre') ? 'validation-failed' : ''}" title="<g:message code="sagr.property.nomMembre.validationError" />"  maxlength="38" />

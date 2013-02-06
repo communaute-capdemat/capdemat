@@ -22,7 +22,8 @@
       <label for="dhrSpouse.dhrSpouseTitle" class="required"><g:message code="dhr.property.dhrSpouseTitle.label" /> *  <span><g:message code="dhr.property.dhrSpouseTitle.help" /></span></label>
             <select id="dhrSpouse.dhrSpouseTitle" name="dhrSpouse.dhrSpouseTitle" class="required condition-isSpouseMadam-trigger  validate-not-first ${rqt.stepStates['spouse'].invalidFields.contains('dhrSpouse.dhrSpouseTitle') ? 'validation-failed' : ''}" title="<g:message code="dhr.property.dhrSpouseTitle.validationError" />">
               <option value=""><g:message code="message.select.defaultOption" /></option>
-              <g:each in="${['MISTER','MADAM','MISS','AGENCY','UNKNOWN']}">
+
+              <g:each in="${['MISTER','MADAM','AGENCY','UNKNOWN']}">
                 <option value="${it}" ${it == rqt.dhrSpouse?.dhrSpouseTitle?.toString() ? 'selected="selected"': ''}><g:capdematEnumToText var="${it}" i18nKeyPrefix="dhr.property.dhrSpouseTitle" /></option>
               </g:each>
             </select>

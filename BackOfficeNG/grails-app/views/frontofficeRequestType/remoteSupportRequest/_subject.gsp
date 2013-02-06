@@ -37,7 +37,8 @@
       <label for="rsrSubject.subjectTitle" class="required"><g:message code="rsr.property.subjectTitle.label" /> *  <span><g:message code="rsr.property.subjectTitle.help" /></span></label>
             <select id="rsrSubject.subjectTitle" name="rsrSubject.subjectTitle" class="required autofill-subjectFilling-listener-Title validate-not-first ${rqt.stepStates['subject'].invalidFields.contains('rsrSubject.subjectTitle') ? 'validation-failed' : ''}" title="<g:message code="rsr.property.subjectTitle.validationError" />">
               <option value=""><g:message code="message.select.defaultOption" /></option>
-              <g:each in="${['MISTER','MADAM','MISS','AGENCY','UNKNOWN']}">
+
+              <g:each in="${['MISTER','MADAM','AGENCY','UNKNOWN']}">
                 <option value="${it}" ${it == rqt.rsrSubject?.subjectTitle?.toString() ? 'selected="selected"': ''}><g:capdematEnumToText var="${it}" i18nKeyPrefix="rsr.property.subjectTitle" /></option>
               </g:each>
             </select>
