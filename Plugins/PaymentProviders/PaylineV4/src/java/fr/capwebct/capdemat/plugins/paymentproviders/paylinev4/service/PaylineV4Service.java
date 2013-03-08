@@ -189,9 +189,9 @@ public class PaylineV4Service implements IPaymentProviderService {
     }
 
     public boolean handleParameters(Map<String, String> parameters) {
-
-        if((parameters.get("token") != null) && (parameters.get("broker") != null) && (parameters.get("broker").equals(contractNumber)))
+        if(parameters.get("token") != null) {
             return true;
+        }
         return false;
     }
 
