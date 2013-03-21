@@ -193,7 +193,7 @@
       <label for="spouse.spouseTitle" class="required"><g:message code="rsr.property.spouseTitle.label" /> *  <span><g:message code="rsr.property.spouseTitle.help" /></span></label>
             <select id="spouse.spouseTitle" name="spouse.spouseTitle" class="required  validate-not-first ${rqt.stepStates['subject'].invalidFields.contains('spouse.spouseTitle') ? 'validation-failed' : ''}" title="<g:message code="rsr.property.spouseTitle.validationError" />">
               <option value=""><g:message code="message.select.defaultOption" /></option>
-              <g:each in="${['MISTER','MADAM','MISS','AGENCY','UNKNOWN']}">
+              <g:each in="${['MISTER','MADAM','AGENCY','UNKNOWN']}">
                 <option value="${it}" ${it == rqt.spouse?.spouseTitle?.toString() ? 'selected="selected"': ''}><g:capdematEnumToText var="${it}" i18nKeyPrefix="rsr.property.spouseTitle" /></option>
               </g:each>
             </select>

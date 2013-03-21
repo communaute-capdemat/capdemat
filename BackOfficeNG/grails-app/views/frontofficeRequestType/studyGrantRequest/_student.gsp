@@ -8,7 +8,7 @@
     
             <select name="studentCivility" class="required validate-not-first" title="<g:message code="sgr.property.studentCivility.validationError" />">
               <option value=""><g:message code="message.select.defaultOption" /></option>
-              <g:each in="${['Mister','Madam','Miss','Agency','Unknown']}">
+              <g:each in="${['Mister','Madam','Agency','Unknown']}">
                 <option value="fr.cg95.cvq.business.users.TitleType_${it}" ${it == rqt.studentCivility?.toString() ? 'selected="selected"': ''}><g:capdematEnumToField var="${it}" i18nKeyPrefix="sgr.property.studentCivility" /></option>
               </g:each>
             </select>
