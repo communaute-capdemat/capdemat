@@ -34,6 +34,7 @@ import fr.cg95.cvq.security.annotation.ContextPrivilege;
 import fr.cg95.cvq.security.annotation.ContextType;
 import fr.cg95.cvq.service.users.IUserDeduplicationService;
 import fr.cg95.cvq.service.users.IUserSearchService;
+import fr.cg95.cvq.service.users.IUserService;
 import fr.cg95.cvq.service.users.IUserWorkflowService;
 import fr.cg95.cvq.util.JSONUtils;
 
@@ -47,6 +48,7 @@ public class UserDeduplicationService implements ApplicationListener<UserEvent>,
     private IChildDAO childDAO;
     private IIndividualDAO individualDAO;
     private IHomeFolderDAO homeFolderDAO;
+    private IUserService userService;
     private IUserSearchService userSearchService;
     private IUserWorkflowService userWorkflowService;
     
@@ -63,7 +65,12 @@ public class UserDeduplicationService implements ApplicationListener<UserEvent>,
             }
             
             if (individual instanceof Adult) {
-                findAdultDuplicates((Adult) individual);
+                Adult adult = (Adult)individual;
+                List<String> errors = Collections.emptyList();
+                try { errors = userService.validate(adult); } catch (Exception e) {}
+                if (errors.isEmpty()) {
+                    findAdultDuplicates(adult);
+                }
             } else {
                 Adult homeFolderResponsible = userSearchService.getHomeFolderResponsible(individual.getHomeFolder().getId());
                 for (Long homeFolderId : getResponsibleDuplicatedHomeFolders(homeFolderResponsible.getId()))
@@ -415,6 +422,10 @@ public class UserDeduplicationService implements ApplicationListener<UserEvent>,
 
     public void setIndividualDAO(IIndividualDAO individualDAO) {
         this.individualDAO = individualDAO;
+    }
+
+    public void setUserService(IUserService userService) {
+        this.userService = userService;
     }
 
     public void setUserSearchService(IUserSearchService userSearchService) {

@@ -398,6 +398,7 @@ http://www.springframework.org/schema/task http://www.springframework.org/schema
     <property name="childDAO" ref="childDAO" />
     <property name="homeFolderDAO" ref="homeFolderDAO" />
     <property name="individualDAO" ref="individualDAO" />
+    <property name="userService" ref="userService" />
     <property name="userSearchService" ref="userSearchService" />
     <property name="userWorkflowService" ref="userWorkflowService" />
   </bean>
