@@ -48,7 +48,8 @@ class FrontofficeRequestDocumentController {
                 'document': document,
                 'documentType': documentType,
                 'returnUrl' : (params.returnUrl != null ? params.returnUrl : ""),
-                'isEdition' : !RequestState.DRAFT.equals(rqt.state)
+                'isEdition' : !RequestState.DRAFT.equals(rqt.state),
+                'temporary': SecurityContext.currentCredentialBean.ecitizen?.homeFolder.temporary
             ].plus(requestTypeResources))
         }
         else if (request.post) {
