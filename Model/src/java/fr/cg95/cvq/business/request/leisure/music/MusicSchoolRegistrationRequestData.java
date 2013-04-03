@@ -39,6 +39,8 @@ public class MusicSchoolRegistrationRequestData implements Serializable {
 
     public MusicSchoolRegistrationRequestData() {
       
+        rulesAndRegulationsAcceptance = Boolean.valueOf(false);
+      
     }
 
     @Override

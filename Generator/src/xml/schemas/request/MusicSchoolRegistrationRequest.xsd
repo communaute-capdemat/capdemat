@@ -69,7 +69,7 @@
               </xs:annotation>
             </xs:element>
             <xs:element name="RulesAndRegulationsAcceptance" type="cvq:AcceptanceType"
-              minOccurs="0">
+              minOccurs="0" default="false">
               <xs:annotation>
                 <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">
                   Prise en compte et acceptation du règlement intérieur
