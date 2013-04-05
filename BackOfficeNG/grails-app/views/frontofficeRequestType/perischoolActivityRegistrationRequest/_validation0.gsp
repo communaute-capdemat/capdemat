@@ -16,8 +16,10 @@
       <dl>
         <dt><g:message code="parr.property.perischoolActivity.label" /></dt>
           <dd>
+            <ul>
           <g:render template="/frontofficeRequestType/widget/localReferentialDataSummary" 
-                    model="['wrapper':rqt, 'javaName':'perischoolActivity', 'lrEntries': lrTypes.perischoolActivity.entries, 'depth':0]" />
+                    model="['wrapper':rqt, 'javaName':'perischoolActivity', 'lrEntries': lrTypes.perischoolActivity.entries]" />
+            </ul>
           </dd>
           
 

@@ -83,7 +83,7 @@
       ,'localReferentialData' :
           """
           <div class="response choice">
-            ${toGT("localReferentialWidget(" + wrapper.replace('?', '') + ", '${element.javaFieldName}', lrTypes.${element.javaFieldName}.entries, 0)")}
+            ${toGT("localReferentialWidget(" + wrapper.replace('?', '') + ", '${element.javaFieldName}', lrTypes.${element.javaFieldName}.entries)")}
           </div>
           """
       ,'date' :
@@ -187,27 +187,22 @@ ${beginGT()}
   import fr.cg95.cvq.util.EnumTool
   import java.text.NumberFormat
   def esc(s) { return org.apache.commons.lang3.StringEscapeUtils.escapeXml(s) }
-  def localReferentialWidget(wrapper, javaName, lrEntries, depth) {
-    def lrHtml = ''
-    def currentLrDatas = wrapper != null ? wrapper[javaName].collect{it.name} : null
-    if (lrTypes[javaName].isMultiple()) { 
-      lrHtml += "<ul \${depth==0 ? 'class=\"dataTree\"' : ''}>"
-      lrEntries.eachWithIndex { entry, i -> 
-      if (entry.entries) { 
-        lrHtml += "<li>"
-        lrHtml += "<em>\${esc(entry.label)} :</em>"
-        lrHtml += localReferentialWidget(wrapper, javaName, entry.entries,++depth)
-        lrHtml += "</li>"
-      } else {
-         lrHtml += "<li><span \${currentLrDatas?.contains(entry.key) ? 'class=\"checked\"' : ''}>\${esc(entry.label)}</span>\${i + 1 < lrEntries.size() ? ',' : ''}</li>"
-      } 
-    } 
-    lrHtml += "</ul>"
-    } else { 
-      lrEntries.each { entry -> 
-        lrHtml += "\${currentLrDatas?.contains(entry.key) ? esc(entry.label): ''}"
-      } 
-    }
+  def lrEntry(names, entries, prefix) {
+      entries.each { entry ->
+          if (entry.entries) {
+              lrEntry(names, entry.entries, (prefix ? prefix + ' | ' : '') + entry.label)
+          } else if (names.contains(entry.key)) {
+              println "<li>"
+              println "<span>" + (prefix ? prefix + ' | ' : '') + entry.label + "</span>"
+              println "</li>"
+          }
+      }
+  }
+  def localReferentialWidget(wrapper, javaName, lrEntries) {
+      def names = wrapper[javaName].collect{ it.name }.findAll{ it != null }
+      println '<ul>'
+      lrEntry(names, lrEntries, null)
+      println '</ul>'
   }
 ${endGT()}
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">

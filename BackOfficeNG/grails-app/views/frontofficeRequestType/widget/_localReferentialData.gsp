@@ -9,7 +9,7 @@
       <li>
       <em>${entry.label} :</em>
       <g:render template="/frontofficeRequestType/widget/localReferentialData" 
-                model="['javaName':javaName, 'i18nPrefixCode':i18nPrefixCode, 'htmlClass':htmlClass, 'lrEntries': entry.entries, 'depth':++depth]" />
+                model="['wrapper':wrapper, 'wrapperJavaName':wrapperJavaName, 'javaName':javaName, 'i18nPrefixCode':i18nPrefixCode, 'htmlClass':htmlClass, 'lrEntries': entry.entries, 'depth':++depth]" />
       </li>
     </g:if>
     <g:else>

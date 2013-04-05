@@ -66,8 +66,10 @@
       ,'localReferentialData' :
           """
           <dd>
+            <ul>
           <g:render template="/frontofficeRequestType/widget/localReferentialDataSummary" 
-                    model="['wrapper':${wrapper.replace('?','')}, 'javaName':'${element.javaFieldName}', 'lrEntries': lrTypes.${element.javaFieldName}.entries, 'depth':0]" />
+                    model="['wrapper':${wrapper.replace('?','')}, 'javaName':'${element.javaFieldName}', 'lrEntries': lrTypes.${element.javaFieldName}.entries]" />
+            </ul>
           </dd>
           """
       ,'date' :

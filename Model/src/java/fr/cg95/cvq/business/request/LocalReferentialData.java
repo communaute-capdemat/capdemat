@@ -46,6 +46,8 @@ public class LocalReferentialData implements Serializable {
             inverseJoinColumns=@JoinColumn(name="local_referential_child_data_id"))
     private Set<LocalReferentialData> children;
 
+    // Parent is no more set after moving to XML.
+    @Deprecated
     @ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name="local_referential_parent_data_id")
     private LocalReferentialData parent;

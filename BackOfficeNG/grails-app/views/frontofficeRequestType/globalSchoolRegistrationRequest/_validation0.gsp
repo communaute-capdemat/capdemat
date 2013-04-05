@@ -38,8 +38,10 @@
       <dl>
         <dt><g:message code="gsrr.property.motifsDerogationEcole.label" /></dt>
           <dd>
+            <ul>
           <g:render template="/frontofficeRequestType/widget/localReferentialDataSummary" 
-                    model="['wrapper':rqt, 'javaName':'motifsDerogationEcole', 'lrEntries': lrTypes.motifsDerogationEcole.entries, 'depth':0]" />
+                    model="['wrapper':rqt, 'javaName':'motifsDerogationEcole', 'lrEntries': lrTypes.motifsDerogationEcole.entries]" />
+            </ul>
           </dd>
           
 

@@ -8,8 +8,10 @@
       <dl>
         <dt><g:message code="cwcr.property.compostableWasteType.label" /></dt>
           <dd>
+            <ul>
           <g:render template="/frontofficeRequestType/widget/localReferentialDataSummary" 
-                    model="['wrapper':rqt, 'javaName':'compostableWasteType', 'lrEntries': lrTypes.compostableWasteType.entries, 'depth':0]" />
+                    model="['wrapper':rqt, 'javaName':'compostableWasteType', 'lrEntries': lrTypes.compostableWasteType.entries]" />
+            </ul>
           </dd>
           
 

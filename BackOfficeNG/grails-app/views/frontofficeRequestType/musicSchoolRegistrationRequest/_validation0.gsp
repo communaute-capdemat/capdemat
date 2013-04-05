@@ -16,8 +16,10 @@
       <dl>
         <dt><g:message code="msrr.property.activity.label" /></dt>
           <dd>
+            <ul>
           <g:render template="/frontofficeRequestType/widget/localReferentialDataSummary" 
-                    model="['wrapper':rqt, 'javaName':'activity', 'lrEntries': lrTypes.activity.entries, 'depth':0]" />
+                    model="['wrapper':rqt, 'javaName':'activity', 'lrEntries': lrTypes.activity.entries]" />
+            </ul>
           </dd>
           
 

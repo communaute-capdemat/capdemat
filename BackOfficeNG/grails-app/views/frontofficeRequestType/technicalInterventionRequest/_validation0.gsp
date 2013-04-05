@@ -8,8 +8,10 @@
       <dl>
         <dt><g:message code="tir.property.interventionType.label" /></dt>
           <dd>
+            <ul>
           <g:render template="/frontofficeRequestType/widget/localReferentialDataSummary" 
-                    model="['wrapper':rqt, 'javaName':'interventionType', 'lrEntries': lrTypes.interventionType.entries, 'depth':0]" />
+                    model="['wrapper':rqt, 'javaName':'interventionType', 'lrEntries': lrTypes.interventionType.entries]" />
+            </ul>
           </dd>
           
 

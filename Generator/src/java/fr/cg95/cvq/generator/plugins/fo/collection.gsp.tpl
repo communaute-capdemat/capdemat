@@ -106,8 +106,10 @@
          ,'localReferentialData':
             """
             <g:set var="${element.javaFieldName}Index" value="\${0}" scope="flash" />
-            <g:render template="/frontofficeRequestType/widget/localReferentialData" 
-                      model="['javaName':'${element.javaFieldName}', 'i18nPrefixCode':'${element.i18nPrefixCode}', 'htmlClass':'${element.htmlClass.replace('validate-localReferentialData','')}', 
+            <g:render template="/frontofficeRequestType/widget/localReferentialData"
+                      model="['wrapper':${valuePrefix.replace('?','')}, 'wrapperJavaName':'${namePrefix.replace('.','')}',
+                              'javaName':'${element.javaFieldName}', 'i18nPrefixCode':'${element.i18nPrefixCode}',
+                              'htmlClass':'${element.htmlClass.replace('validate-localReferentialData','')}',
                               'lrEntries': lrTypes.${element.javaFieldName}.entries, 'depth':0]" />
             """
          ,'date' :

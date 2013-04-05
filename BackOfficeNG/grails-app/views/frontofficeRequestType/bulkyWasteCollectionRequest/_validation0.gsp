@@ -8,8 +8,10 @@
       <dl>
         <dt><g:message code="bwcr.property.bulkyWasteType.label" /></dt>
           <dd>
+            <ul>
           <g:render template="/frontofficeRequestType/widget/localReferentialDataSummary" 
-                    model="['wrapper':rqt, 'javaName':'bulkyWasteType', 'lrEntries': lrTypes.bulkyWasteType.entries, 'depth':0]" />
+                    model="['wrapper':rqt, 'javaName':'bulkyWasteType', 'lrEntries': lrTypes.bulkyWasteType.entries]" />
+            </ul>
           </dd>
           
 

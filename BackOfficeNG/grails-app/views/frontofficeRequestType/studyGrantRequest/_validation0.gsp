@@ -48,8 +48,10 @@
       <dl>
         <dt><g:message code="sgr.property.taxHouseholdCity.label" /></dt>
           <dd>
+            <ul>
           <g:render template="/frontofficeRequestType/widget/localReferentialDataSummary" 
-                    model="['wrapper':rqt, 'javaName':'taxHouseholdCity', 'lrEntries': lrTypes.taxHouseholdCity.entries, 'depth':0]" />
+                    model="['wrapper':rqt, 'javaName':'taxHouseholdCity', 'lrEntries': lrTypes.taxHouseholdCity.entries]" />
+            </ul>
           </dd>
           
 
@@ -122,8 +124,10 @@
         
           <dt><g:message code="sgr.property.currentSchoolName.label" /></dt>
           <dd>
+            <ul>
           <g:render template="/frontofficeRequestType/widget/localReferentialDataSummary" 
-                    model="['wrapper':rqt.currentSchool, 'javaName':'currentSchoolName', 'lrEntries': lrTypes.currentSchoolName.entries, 'depth':0]" />
+                    model="['wrapper':rqt.currentSchool, 'javaName':'currentSchoolName', 'lrEntries': lrTypes.currentSchoolName.entries]" />
+            </ul>
           </dd>
           
 
