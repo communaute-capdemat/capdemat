@@ -60,7 +60,7 @@
             
               
               <h3><g:message code="srr.property.currentSchool.label" /></h3>
-              <dl class="required">
+              <dl class="">
                 
                   <dt class="">${message(code:'srr.property.currentSchoolName.label')} :</dt><dd id="currentSchoolName" class="action-editField validate-string i18n-srr.property.currentSchoolName" ><span>${rqt.currentSchool?.currentSchoolName}</span></dd>
                 

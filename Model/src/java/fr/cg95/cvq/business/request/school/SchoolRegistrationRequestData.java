@@ -96,13 +96,6 @@ public class SchoolRegistrationRequestData implements Serializable {
 
   
     
-      @NotNull(
-        
-        
-        profiles = {"registration"},
-        message = "currentSchool"
-      )
-    
       @AssertValid(
         
         

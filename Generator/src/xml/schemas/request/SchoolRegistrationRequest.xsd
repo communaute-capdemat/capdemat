@@ -103,7 +103,7 @@
                 </xs:appinfo>
               </xs:annotation>
             </xs:element>
-            <xs:element name="CurrentSchool" type="srr:CurrentSchoolType">
+            <xs:element name="CurrentSchool" type="srr:CurrentSchoolType" minOccurs="0">
               <xs:annotation>
                 <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">
                   Informations conçernant l'école actuelle

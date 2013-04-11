@@ -53,7 +53,7 @@
   
 
   
-    <fieldset class="required">
+    <fieldset class="">
     <legend><g:message code="srr.property.currentSchool.label" /></legend>
     
       <label for="currentSchool.currentSchoolName" class=""><g:message code="srr.property.currentSchoolName.label" />   <span><g:message code="srr.property.currentSchoolName.help" /></span></label>
