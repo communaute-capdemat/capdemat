@@ -24,14 +24,16 @@ public class HasLegalResponsiblesCheck  extends AbstractAnnotationCheck<HasLegal
         throws OValException {
         Child child = (Child) validatedObject;
         int legalResponsibles = 0;
-        for (Adult adult : userSearchService.getAdults(child.getHomeFolder().getId())) {
-            if (adult.getIndividualRoles() != null) {
-                for (IndividualRole individualRole : adult.getIndividualRoles()) {
-                    if (((child.getId() != null
-                        && child.getId().equals(individualRole.getIndividualId()))
-                        || child.getFullName().equals(individualRole.getIndividualName()))
-                        && ArrayUtils.contains(RoleType.childRoleTypes, individualRole.getRole()))
-                        legalResponsibles++;
+        if(child.getHomeFolder() != null) {
+            for (Adult adult : userSearchService.getAdults(child.getHomeFolder().getId())) {
+                if (adult.getIndividualRoles() != null) {
+                    for (IndividualRole individualRole : adult.getIndividualRoles()) {
+                        if (((child.getId() != null
+                            && child.getId().equals(individualRole.getIndividualId()))
+                            || child.getFullName().equals(individualRole.getIndividualName()))
+                            && ArrayUtils.contains(RoleType.childRoleTypes, individualRole.getRole()))
+                            legalResponsibles++;
+                    }
                 }
             }
         }
