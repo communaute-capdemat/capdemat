@@ -32,6 +32,7 @@ import net.sf.oval.constraint.MaxLength;
 import net.sf.oval.constraint.NotEmpty;
 import net.sf.oval.constraint.NotNull;
 import net.sf.oval.constraint.Past;
+import net.sf.oval.constraint.MatchPattern;
 
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang3.StringUtils;
@@ -94,12 +95,14 @@ public abstract class Individual implements Serializable {
     @NotEmpty(message = "lastName")
     @MaxLength(value=38,message="lastName")
     @Column(name="last_name",length=38)
+    @MatchPattern(pattern = "[^&]*", message = "lastName")
     private String lastName;
 
     @NotNull(message = "firstName", when = "groovy:(_this instanceof fr.cg95.cvq.business.users.Child && _this.born) || _this instanceof fr.cg95.cvq.business.users.Adult")
     @NotEmpty(message = "firstName", when = "groovy:(_this instanceof fr.cg95.cvq.business.users.Child && _this.born) || _this instanceof fr.cg95.cvq.business.users.Adult")
     @MaxLength(value=38, message="firstName")
     @Column(name="first_name", length=38)
+    @MatchPattern(pattern = "[^&]*", message = "firstName")
     private String firstName;
 
     @NotEmpty(message = "firstName2")
