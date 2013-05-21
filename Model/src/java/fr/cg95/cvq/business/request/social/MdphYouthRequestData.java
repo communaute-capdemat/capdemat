@@ -222,9 +222,6 @@ public class MdphYouthRequestData implements Serializable {
           
             
         List<fr.cg95.cvq.business.request.social.MyrFraisSuppLiesHandicap> fraisSuppLiesHandicapList = new ArrayList<fr.cg95.cvq.business.request.social.MyrFraisSuppLiesHandicap>();
-        for (MyrFraisSuppLiesHandicap object : fraisSuppLiesHandicap) {
-            fraisSuppLiesHandicapList.add(object.clone());
-        }
         result.setFraisSuppLiesHandicap(fraisSuppLiesHandicapList);
       
           
