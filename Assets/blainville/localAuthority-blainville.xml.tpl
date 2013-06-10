@@ -96,6 +96,14 @@
                   <key><value>sendHomeFolderCreation</value></key>
                   <value>true</value>
                 </entry>
+                <entry>
+                  <key>
+                    <value>RequestCanGetRedirectUrl</value>
+                  </key>
+                    <list>
+                      <value>Ecole De Musique</value>
+                    </list>
+                </entry>
               </map>
             </property>
           </bean>

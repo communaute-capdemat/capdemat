@@ -177,11 +177,15 @@ class FrontofficeRequestController {
                     } else {
                         IExternalProviderService service = requestExternalService.getExternalServiceByRequestType(rqt.getRequestType().label);
                         if (service instanceof IActivityRegistrationProviderService) {
-                            def redirectUri = ((IActivityRegistrationProviderService) service).getRedirectUrl(rqt);
-                            if(redirectUri!=null){
-                                redirect(url:redirectUri)
-                            }else{
-                            redirect(action:'exit', params:parameters)
+                            if (((IActivityRegistrationProviderService) service).canGetRedirectUrl(rqt)) {
+                                def redirectUri = ((IActivityRegistrationProviderService) service).getRedirectUrl(rqt);
+                                if (redirectUri != null){
+                                    redirect(url:redirectUri)
+                                } else {
+                                    redirect(action:'exit', params:parameters)
+                                }
+                            } else {
+                                redirect(action:'exit', params:parameters)
                             }
                         } else {
                             redirect(action:'exit', params:parameters)

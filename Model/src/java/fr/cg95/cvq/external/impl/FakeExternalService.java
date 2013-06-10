@@ -484,4 +484,40 @@ public class FakeExternalService extends ExternalProviderServiceAdapter implemen
 
       return infos;
     }
+
+    @Override
+    public List<Map<String, String>> getProducts(Individual individual,
+                                                 String siteId) {
+        List<Map<String, String>> list = new ArrayList<Map<String, String>>();
+        if (siteId.equals("ID0")) {
+            Map<String, String> map = new HashMap<String, String>();
+            map.put("id", "ID0");
+            map.put("label", "Aquagym");
+            map.put("type", "1");
+            list.add(map);
+            map = new HashMap<String, String>();
+            map.put("id", "ID1");
+            map.put("label", "Aquabiking");
+            map.put("type", "0");
+            list.add(map);
+            if (individual instanceof Adult) {
+                map = new HashMap<String, String>();
+                map.put("id", "ID2");
+                map.put("label", "Natation synchronisée");
+                map.put("type", "0");
+                list.add(map);
+            }
+        }
+        return list;
+    }
+
+    public Boolean canGetRedirectUrl(Request request) {
+        String rqtLabel = request.getRequestType().getLabel();
+        ExternalServiceBean esb = SecurityContext.getCurrentConfigurationBean().getExternalServiceConfigurationBean().getBeanForExternalService(getLabel());
+
+        List<String> prop = (List<String>) esb.getProperty("RequestCanGetRedirectUrl");
+
+        return prop != null && !prop.isEmpty() && prop.contains(rqtLabel);
+    }
+
 }

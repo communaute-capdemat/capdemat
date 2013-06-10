@@ -982,4 +982,15 @@ public class HoranetService extends ExternalProviderServiceAdapter {
     public Map<Pair<String, String>, LinkedHashMap<Pair<String, String>, Object>> loadAccountExternalInformations(Long homefolderId) throws CvqException {
       return null;
     }
+
+    @Override
+    public Boolean canGetRedirectUrl(Request request) {
+        String rqtLabel = request.getRequestType().getLabel();
+        ExternalServiceBean esb = SecurityContext.getCurrentConfigurationBean().getExternalServiceConfigurationBean().getBeanForExternalService(getLabel());
+
+        List<String> prop = (List<String>) esb.getProperty("RequestCanGetRedirectUrl");
+
+        return prop != null && !prop.isEmpty() && prop.contains(rqtLabel);
+    }
+
 }
