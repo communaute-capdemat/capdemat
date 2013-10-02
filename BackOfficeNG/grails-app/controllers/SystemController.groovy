@@ -44,4 +44,8 @@ public class SystemController {
                 model:['currentSite': currentSiteDisplayTitle,
                        'errorMessage': message(code:ExceptionUtils.getModelI18nKey(exception),args:ExceptionUtils.getModelI18nArgs(exception))])
     }
+
+    def monitoring = {
+        render([result:'ok'] as JSON)
+    }
 }
