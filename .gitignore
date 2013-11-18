@@ -21,3 +21,4 @@ Assets/blainville/localAuthority-blainville.xml
 Assets/blainville/local_referential/local_referential_sagr.xml
 Assets/blainville/local_referential/local_referential_sgr.xml
 Model/build/
+*.swp

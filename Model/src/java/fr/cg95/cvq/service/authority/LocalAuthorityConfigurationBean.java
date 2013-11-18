@@ -40,6 +40,8 @@ public final class LocalAuthorityConfigurationBean {
 
     private Map<String, Map<String, String>> agentNotifications;
     private Map<String, Map<String, String>> paymentNotifications;
+    private Map<IExternalProviderService, Map<String, String>> businessInformations;
+
     private Properties jpaConfigurations;
     private EntityManagerFactory entityManagerFactory;
 
@@ -49,6 +51,16 @@ public final class LocalAuthorityConfigurationBean {
         paymentServices =
             new HashMap<IPaymentProviderService, PaymentServiceBean>();
         escb = new ExternalServiceConfigurationBean();
+    }
+
+    /**
+     * Get the list of business informations services objects for the current local authority.
+     */
+    public Set<IExternalProviderService> getBusinessInformationsObjects() {
+        if (businessInformations == null || businessInformations.isEmpty())
+            return null;
+
+        return businessInformations.keySet();
     }
 
     /**
@@ -177,6 +189,10 @@ public final class LocalAuthorityConfigurationBean {
         return (paymentServices != null && !paymentServices.isEmpty());
     }
 
+    public boolean displayBusinessInformationsTab() {
+        return escb.displayBusinessInformationsTab();
+    }
+
     public boolean supportsActivitiesTab() {
         return escb.supportsActivitiesTab();
     }
@@ -221,7 +237,11 @@ public final class LocalAuthorityConfigurationBean {
         return paymentServices;
     }
 
-    public void setExternalServices(final Map<IExternalProviderService, ExternalServiceBean> externalProviderServices) 
+    public final Map<IExternalProviderService, Map<String, String>> getBusinessInformations() {
+        return businessInformations;
+    }
+
+    public void setExternalServices(final Map<IExternalProviderService, ExternalServiceBean> externalProviderServices)
         throws CvqConfigurationException {
         escb.setExternalServices(externalProviderServices, name);
     }
@@ -253,6 +273,10 @@ public final class LocalAuthorityConfigurationBean {
 
 	public void setPaymentNotifications(Map<String, Map<String, String>> paymentNotifications) {
 		this.paymentNotifications = paymentNotifications;
+	}
+
+	public void setBusinessInformations(Map<IExternalProviderService, Map<String, String>> businessInformations) {
+		this.businessInformations = businessInformations;
 	}
 
     public synchronized EntityManagerFactory getEntityManagerFactory() {

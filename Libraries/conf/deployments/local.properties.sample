@@ -66,6 +66,7 @@ plugins.externalservices.soap.send_request_uri=http://localhost:8090/PaymentModu
 plugins.externalservices.soap.check_external_referential_uri=http://localhost:8090/PaymentModule/webservice
 plugins.externalservices.soap.load_external_information_uri=http://localhost:8090/PaymentModule/webservice
 plugins.externalservices.soap.get_consumptions_uri=http://localhost:8090/PaymentModule/webservice
+plugins.externalservices.soap.get_external_account_information_uri=http://localhost:8090/PaymentModule/webservice
 
 # ExternalServices - Generic REST version
 plugins.externalservices.rest.load_invoice_details_url=http://localhost:9000/services/loadInvoiceDetails

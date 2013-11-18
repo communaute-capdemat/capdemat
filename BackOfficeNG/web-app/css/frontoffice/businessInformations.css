@@ -1,0 +1,35 @@
+.businessInformations h3 { margin: 0 0 .5em !important;}
+
+.businessInformations dl {
+  border-bottom: 1px dashed #e6648d;
+  color: #333; background: #eee;
+  overflow: auto;
+}
+
+.businessInformations ul li {
+  border-bottom : none !important;
+}
+
+.businessInformations h3 {
+
+
+  padding: .1em .5em;
+  font-size: 1.5em;
+  font-weight: normal;
+
+  color : #000;
+  border-bottom: none;
+}
+
+.businessInformations dl {
+  margin : 10px 0;
+  border-bottom: 1px dashed #DB4366;
+  color: #333; background: #eee;
+  overflow: auto;
+}
+.businessInformations dl dt,
+.businessInformations dl dd    { float: left; margin: 0; padding: 0.4em 2%; border-top: 1px dashed #DB4366; }
+.businessInformations dl dt    { width : 30%; min-height: 1.5em; text-align: right; clear: both; }
+.businessInformations dl dd    { width : 62%; font-size: 1.15em; }
+.businessInformations dl dd p  { margin: 0; padding: 0.1em; }
+.businessInformations dl dd li { display:block; }

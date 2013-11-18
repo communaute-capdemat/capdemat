@@ -45,4 +45,12 @@
       </span>
     </a>
   </g:if>
+  <g:if test="${session.displayBusinessInformationsTab}">
+    <a href="${createLink(controller : 'frontofficeBusiness')}"
+      class="${menu.current(elem : 'business')}" accesskey="7">
+      <span>
+        <g:message code="menu.business" />
+      </span>
+    </a>
+  </g:if>
 </div>

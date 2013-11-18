@@ -18,11 +18,25 @@ public class ExternalServiceConfigurationBean {
 
     private static Logger logger = Logger.getLogger(ExternalServiceConfigurationBean.class);
 
-    private Map<IExternalProviderService, ExternalServiceBean> externalProviderServices;
+private Map<IExternalProviderService, ExternalServiceBean> externalProviderServices;
 
     public ExternalServiceConfigurationBean() {
         externalProviderServices =
             new HashMap<IExternalProviderService, ExternalServiceBean>();
+    }
+
+    public boolean displayBusinessInformationsTab() {
+        if (externalProviderServices == null) {
+            return false;
+        }
+        for (ExternalServiceBean s : externalProviderServices.values()) {
+
+            Object val = s.getProperty("businessInformationProvider");
+            if (val != null && val.equals("true")) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public boolean supportsActivitiesTab() {

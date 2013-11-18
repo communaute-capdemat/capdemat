@@ -51,6 +51,8 @@ import fr.cg95.cvq.security.SecurityContext;
 import fr.cg95.cvq.service.payment.IPaymentService;
 import fr.cg95.cvq.service.request.school.external.IScholarBusinessProviderService;
 
+import fr.cg95.cvq.util.Pair;
+
 /**
  * A fake implementation of the {@link IExternalProviderService external provider service interface}
  * that is meant to be used for demonstration purposes only.
@@ -402,21 +404,84 @@ public class FakeExternalService extends ExternalProviderServiceAdapter implemen
     @Override
     public Map<String, String> getLeisureCenterTransportLines(Request request, Child child) {
         Map<String, String> result = new HashMap<String, String>();
-        
+
         result.put("0001", "Romainville");
         result.put("0004", "Magonty");
-        
+
         return result;
     }
 
     @Override
     public Map<String, String> getLeisureCenterTransportStops(Request request, Child child, String lineId) {
         Map<String, String> result = new HashMap<String, String>();
-        
+
         result.put("0001", "Maison de la nature");
         result.put("0004", "Palavas");
         result.put("0002", "Camargues");
 
         return result;
+    }
+
+    @Override
+    public Map<Pair<String, String>, LinkedHashMap<Pair<String, String>, Object>> loadAccountExternalInformations(Long homefolderId) throws CvqException {
+      Map<Pair<String, String>, LinkedHashMap<Pair<String, String>, Object>> infos = new HashMap<Pair<String, String>, LinkedHashMap<Pair<String, String>, Object>>();
+
+      LinkedHashMap<Pair<String, String>, String> dataList = new LinkedHashMap<Pair<String, String>, String>();
+      dataList.put(new Pair<String, String>("0id1", "Montant subvention"), "125.00€");
+      dataList.put(new Pair<String, String>("0id2", "Valide jusqu'au"), "14 Mai 2014");
+
+      LinkedHashMap<Pair<String, String>, Object> socialData = new LinkedHashMap<Pair<String, String>, Object>();
+      socialData.put(new Pair<String, String>("1id1", "Allocations familiales"), "Votre dossier a été mis à jour le <strong>07 Décembre 2013</strong> avec de nouveaux documents.");
+      socialData.put(new Pair<String, String>("1id2", "Demande MDPH pour Emilie Durand (#6416)"), dataList);
+
+      infos.put(new Pair<String, String>("social", "Social"), socialData);
+
+
+      LinkedHashMap<Pair<String, String>, Object> envData = new LinkedHashMap<Pair<String, String>, Object>();
+      envData.put(new Pair<String, String>("2id1", "Consomation d'eau de Novembre 2013"), "<img src='http://www.consospy.fr/image/statistiques_par_mois_date_anniverssaire_consommation_eau2.jpg' width=800/>");
+      envData.put(new Pair<String, String>("2id2", "Consomation d'eau de Octobre 2013"), "<img src='http://www.consospy.fr/image/statistiques_par_mois_date_anniverssaire_consommation_eau2.jpg' width=800/>");
+      envData.put(new Pair<String, String>("2id3", "Consomation d'eau de Septembre 2013"), "<img src='http://www.consospy.fr/image/statistiques_par_mois_date_anniverssaire_consommation_eau2.jpg' width=800/>");
+      String htmlData = "<style type='text/css'>"+
+                "table.gridtable {"+
+                "font-family: verdana,arial,sans-serif;"+
+                "font-size:11px;"+
+                "color:#333333;"+
+                "border-width: 1px;"+
+                "border-color: #666666;"+
+                "border-collapse: collapse;"+
+                "}"+
+                "table.gridtable th {"+
+                "border-width: 1px;"+
+                "padding: 8px;"+
+                "border-style: solid;"+
+                "border-color: #666666;"+
+                "background-color: #dedede;"+
+                "}"+
+                "table.gridtable td {"+
+                "border-width: 1px;"+
+                "padding: 8px;"+
+                "border-style: solid;"+
+                "border-color: #666666;"+
+                "background-color: #ffffff;"+
+                "}"+
+                "</style>"+
+                "<table class='gridtable'>"+
+                "<tr><th>Mois</th><th>Consomation</th></tr>"+
+                "<tr><td>Janvier</td><td>245,54</td></tr>"+
+                "<tr><td>Février</td><td>179,20</td></tr>"+
+                "<tr><td>Mars</td><td>223,80</td></tr>"+
+                "<tr><td>Avril</td><td>188,78</td></tr>"+
+                "<tr><td>Mai</td><td>245,12</td></tr>"+
+                "<tr><td>Juillet</td><td>201,77</td></tr>"+
+                "<tr><td>Août</td><td>213,39</td></tr>"+
+                "</table>";
+
+
+      if(htmlData.startsWith("<![CDATA["))
+        htmlData = htmlData.substring(9, htmlData.length()-3);
+      envData.put(new Pair<String, String>("2id4", "Résumé de la consomation de Janvier à Juin 2013"), htmlData);
+      infos.put(new Pair<String, String>("environment", "Environnement"), envData);
+
+      return infos;
     }
 }

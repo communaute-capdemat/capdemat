@@ -328,6 +328,7 @@ http://www.springframework.org/schema/aop http://www.springframework.org/schema/
     class="fr.cg95.cvq.external.impl.SoapExternalService">
     <property name="label" value="Generic Soap External Service" />
     <property name="soapExternalServiceClient" ref="soapExternalServiceClient" />
+    <property name="externalHomeFolderService" ref="externalHomeFolderService" />
   </bean>
 
   <bean id="xmlBeanMarshaller" 
@@ -337,6 +338,16 @@ http://www.springframework.org/schema/aop http://www.springframework.org/schema/
     class="org.springframework.ws.client.core.WebServiceTemplate">
     <property name="marshaller" ref="xmlBeanMarshaller" />
     <property name="unmarshaller" ref="xmlBeanMarshaller" />
+    <property name="messageSender">
+      <bean class="org.springframework.ws.transport.http.CommonsHttpMessageSender">
+        <property name="credentials">
+          <bean class="org.apache.commons.httpclient.UsernamePasswordCredentials">
+            <property name="userName" value="admin" />
+            <property name="password" value="mulhouse#123456@" />
+          </bean>
+        </property>
+      </bean>
+    </property>
   </bean>
 
   <bean id="soapExternalServiceClient"
@@ -360,6 +371,8 @@ http://www.springframework.org/schema/aop http://www.springframework.org/schema/
           value="${plugins.externalservices.soap.credit_account_uri}" />
         <entry key="getConsumptions"
           value="${plugins.externalservices.soap.get_consumptions_uri}" />
+        <entry key="getExternalAccountInformation"
+          value="${plugins.externalservices.soap.get_external_account_information_uri}" />
       </map>
     </property>
   </bean>

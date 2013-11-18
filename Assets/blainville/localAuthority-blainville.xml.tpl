@@ -89,6 +89,10 @@
             <property name="serviceProperties">
               <map>
                 <entry>
+                  <key><value>businessInformationProvider</value></key>
+                  <value>true</value>
+                </entry>
+                <entry>
                   <key><value>sendHomeFolderCreation</value></key>
                   <value>true</value>
                 </entry>

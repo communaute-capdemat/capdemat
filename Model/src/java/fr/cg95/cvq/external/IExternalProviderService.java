@@ -2,6 +2,7 @@ package fr.cg95.cvq.external;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -17,6 +18,8 @@ import fr.cg95.cvq.exception.CvqConfigurationException;
 import fr.cg95.cvq.exception.CvqException;
 import fr.cg95.cvq.service.payment.IPaymentService;
 import fr.cg95.cvq.xml.common.RequestType;
+
+import fr.cg95.cvq.util.Pair;
 
 /**
  * The interface all external services must implement.
@@ -133,4 +136,12 @@ public interface IExternalProviderService extends IWorkflowEventVisitor{
      */
     Map<String, Object> loadExternalInformations(XmlObject requestXml)
         throws CvqException;
+
+    /**
+     * Asks the external service for informations it knows about the account
+     * (for example, business informations) to display them to the ecitizen
+     * @return Map[ key: (idTheme, labelTheme), value : Map[ key: (idSujet, labelSujet), value: String representing the information] ]
+     */
+    Map<Pair<String, String>, LinkedHashMap<Pair<String, String>, Object>> loadAccountExternalInformations(Long homefolderId)
+            throws CvqException;
 }

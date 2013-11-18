@@ -12,6 +12,7 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Vector;
@@ -824,5 +825,10 @@ public class TechnocarteService extends ExternalProviderServiceAdapter implement
 
     public void setGenericDAO(IGenericDAO genericDAO) {
         this.genericDAO = genericDAO;
+    }
+
+    @Override
+    public Map<String, LinkedHashMap<String, Object>> loadAccountExternalInformations(Long homefolderId) throws CvqException {
+      return null;
     }
 }

@@ -9,6 +9,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -31,7 +32,6 @@ import fr.capwebct.modules.payment.schema.fam.FamilyAccountsResponseDocument;
 import fr.capwebct.modules.payment.schema.inv.InvoiceDetailsResponseDocument;
 import fr.capwebct.modules.payment.schema.rei.ExternalInformationType;
 import fr.capwebct.modules.payment.schema.rei.GetExternalInformationResponseDocument;
-
 import fr.cg95.cvq.business.payment.ExternalAccountItem;
 import fr.cg95.cvq.business.payment.ExternalDepositAccountItem;
 import fr.cg95.cvq.business.payment.ExternalInvoiceItem;
@@ -411,5 +411,10 @@ public class RestExternalService extends ExternalProviderServiceAdapter {
                 }
             }
         });
+    }
+
+    @Override
+    public Map<String, LinkedHashMap<String, Object>> loadAccountExternalInformations(Long homefolderId) throws CvqException {
+      return null;
     }
 }

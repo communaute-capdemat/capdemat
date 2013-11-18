@@ -3,10 +3,12 @@ package fr.cg95.cvq.external.impl;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -15,33 +17,39 @@ import org.apache.xmlbeans.XmlObject;
 
 import fr.capwebct.modules.payment.schema.acc.AccountDetailType;
 import fr.capwebct.modules.payment.schema.acc.AccountDetailsRequestDocument;
-import fr.capwebct.modules.payment.schema.acc.AccountDetailsResponseDocument;
 import fr.capwebct.modules.payment.schema.acc.AccountDetailsRequestDocument.AccountDetailsRequest;
+import fr.capwebct.modules.payment.schema.acc.AccountDetailsResponseDocument;
+import fr.capwebct.modules.payment.schema.aei.GetExternalAccountInformationRequestDocument;
+import fr.capwebct.modules.payment.schema.aei.GetExternalAccountInformationRequestDocument.GetExternalAccountInformationRequest;
+import fr.capwebct.modules.payment.schema.aei.GetExternalAccountInformationResponseDocument;
+import fr.capwebct.modules.payment.schema.aei.InformationsType;
+import fr.capwebct.modules.payment.schema.aei.SujetType;
+import fr.capwebct.modules.payment.schema.aei.ThemeType;
 import fr.capwebct.modules.payment.schema.ban.AccountUpdateType;
 import fr.capwebct.modules.payment.schema.ban.ContractUpdateType;
 import fr.capwebct.modules.payment.schema.ban.CreditAccountRequestDocument;
+import fr.capwebct.modules.payment.schema.ban.CreditAccountRequestDocument.CreditAccountRequest;
 import fr.capwebct.modules.payment.schema.ban.FamilyType;
 import fr.capwebct.modules.payment.schema.ban.InvoiceUpdateType;
 import fr.capwebct.modules.payment.schema.ban.PaymentType;
-import fr.capwebct.modules.payment.schema.ban.CreditAccountRequestDocument.CreditAccountRequest;
 import fr.capwebct.modules.payment.schema.cer.CheckExternalReferentialRequestDocument;
-import fr.capwebct.modules.payment.schema.cer.CheckExternalReferentialResponseDocument;
 import fr.capwebct.modules.payment.schema.cer.CheckExternalReferentialRequestDocument.CheckExternalReferentialRequest;
+import fr.capwebct.modules.payment.schema.cer.CheckExternalReferentialResponseDocument;
 import fr.capwebct.modules.payment.schema.cns.ConsumptionType;
 import fr.capwebct.modules.payment.schema.cns.GetConsumptionsRequestDocument;
-import fr.capwebct.modules.payment.schema.cns.GetConsumptionsResponseDocument;
 import fr.capwebct.modules.payment.schema.cns.GetConsumptionsRequestDocument.GetConsumptionsRequest;
+import fr.capwebct.modules.payment.schema.cns.GetConsumptionsResponseDocument;
 import fr.capwebct.modules.payment.schema.fam.FamilyAccountsRequestDocument;
-import fr.capwebct.modules.payment.schema.fam.FamilyAccountsResponseDocument;
 import fr.capwebct.modules.payment.schema.fam.FamilyAccountsRequestDocument.FamilyAccountsRequest;
+import fr.capwebct.modules.payment.schema.fam.FamilyAccountsResponseDocument;
 import fr.capwebct.modules.payment.schema.inv.InvoiceDetailType;
 import fr.capwebct.modules.payment.schema.inv.InvoiceDetailsRequestDocument;
-import fr.capwebct.modules.payment.schema.inv.InvoiceDetailsResponseDocument;
 import fr.capwebct.modules.payment.schema.inv.InvoiceDetailsRequestDocument.InvoiceDetailsRequest;
+import fr.capwebct.modules.payment.schema.inv.InvoiceDetailsResponseDocument;
 import fr.capwebct.modules.payment.schema.rei.ExternalInformationType;
 import fr.capwebct.modules.payment.schema.rei.GetExternalInformationRequestDocument;
-import fr.capwebct.modules.payment.schema.rei.GetExternalInformationResponseDocument;
 import fr.capwebct.modules.payment.schema.rei.GetExternalInformationRequestDocument.GetExternalInformationRequest;
+import fr.capwebct.modules.payment.schema.rei.GetExternalInformationResponseDocument;
 import fr.capwebct.modules.payment.schema.sre.SendRequestRequestDocument;
 import fr.capwebct.modules.payment.schema.sre.SendRequestRequestDocument.SendRequestRequest;
 import fr.cg95.cvq.business.payment.ExternalAccountItem;
@@ -51,11 +59,13 @@ import fr.cg95.cvq.business.payment.ExternalInvoiceItem;
 import fr.cg95.cvq.business.payment.ExternalInvoiceItemDetail;
 import fr.cg95.cvq.business.payment.ExternalTicketingContractItem;
 import fr.cg95.cvq.business.payment.PurchaseItem;
+import fr.cg95.cvq.business.users.external.HomeFolderMapping;
 import fr.cg95.cvq.exception.CvqConfigurationException;
 import fr.cg95.cvq.exception.CvqException;
 import fr.cg95.cvq.external.ExternalServiceBean;
 import fr.cg95.cvq.external.ExternalServiceUtils;
 import fr.cg95.cvq.security.SecurityContext;
+import fr.cg95.cvq.service.users.external.IExternalHomeFolderService;
 import fr.cg95.cvq.xml.common.RequestType;
 import fr.cg95.cvq.xml.request.civil.BirthDetailsRequestDocument.BirthDetailsRequest;
 import fr.cg95.cvq.xml.request.school.PerischoolActivityRegistrationRequestDocument.PerischoolActivityRegistrationRequest;
@@ -63,15 +73,19 @@ import fr.cg95.cvq.xml.request.school.RecreationActivityRegistrationRequestDocum
 import fr.cg95.cvq.xml.request.school.SchoolCanteenRegistrationRequestDocument.SchoolCanteenRegistrationRequest;
 import fr.cg95.cvq.xml.request.school.SchoolRegistrationRequestDocument.SchoolRegistrationRequest;
 
+import fr.cg95.cvq.util.Pair;
+
 public class SoapExternalService extends ExternalProviderServiceAdapter {
 
     private static Logger logger = Logger.getLogger(SoapExternalService.class);
     
     private String label;
 
-    private SoapExternalServiceClient soapExternalServiceClient;
+    private IExternalHomeFolderService externalHomeFolderService;
     
-    public Map<String, List<ExternalAccountItem>> getAccountsByHomeFolder(Long homeFolderId, 
+    private SoapExternalServiceClient soapExternalServiceClient;
+
+    public Map<String, List<ExternalAccountItem>> getAccountsByHomeFolder(Long homeFolderId,
             String externalHomeFolderId, String externalId)
         throws CvqException {
         
@@ -382,5 +396,54 @@ public class SoapExternalService extends ExternalProviderServiceAdapter {
 
     public void setSoapExternalServiceClient(SoapExternalServiceClient soapExternalServiceClient) {
         this.soapExternalServiceClient = soapExternalServiceClient;
+    }
+
+
+    public void setExternalHomeFolderService(IExternalHomeFolderService externalHomeFolderService) {
+        this.externalHomeFolderService = externalHomeFolderService;
+    }
+
+    @Override
+    public Map<Pair<String, String>, LinkedHashMap<Pair<String, String>, Object>> loadAccountExternalInformations(Long homefolderId) throws CvqException {
+
+        GetExternalAccountInformationRequestDocument geaiRqDoc = GetExternalAccountInformationRequestDocument.Factory.newInstance();
+
+        GetExternalAccountInformationRequest geaiRq = geaiRqDoc.addNewGetExternalAccountInformationRequest();
+
+        HomeFolderMapping hfm = externalHomeFolderService.getHomeFolderMapping(getLabel(), homefolderId);
+
+        if(hfm == null)
+          return Collections.emptyMap();
+
+        geaiRq.setHomeFolderId(hfm.getExternalCapDematId());
+
+        geaiRqDoc.setGetExternalAccountInformationRequest(geaiRq);
+
+        GetExternalAccountInformationResponseDocument geaiResponse =
+            (GetExternalAccountInformationResponseDocument) soapExternalServiceClient.getExternalAccountInformation(geaiRqDoc);
+
+        InformationsType infos[] = geaiResponse.getGetExternalAccountInformationResponse().getInformationsArray();
+
+        Map<Pair<String, String>, LinkedHashMap<Pair<String, String>, Object>> result = new HashMap<Pair<String, String>, LinkedHashMap<Pair<String, String>, Object>>();
+        for(InformationsType ei : infos) {
+            ThemeType th = ei.getTheme();
+            SujetType[] subjects = th.getSujetArray();
+
+            LinkedHashMap<Pair<String, String>, Object> hm = new LinkedHashMap<Pair<String, String>, Object>();
+            for(SujetType sujet : subjects) {
+                String content = "";
+                for ( int i =0; i < sujet.getDomNode().getChildNodes().getLength(); i++) {
+                    content += sujet.getDomNode().getChildNodes().item(i).getNodeValue();
+                }
+
+                if(content.startsWith("<![CDATA["))
+                  content = content.substring(9, content.length()-3);
+
+                hm.put(new Pair<String, String>(sujet.getId(), sujet.getLabel()), content);
+            }
+            result.put(new Pair<String, String>(th.getId(), th.getLabel()), hm);
+        }
+
+        return result;
     }
 }

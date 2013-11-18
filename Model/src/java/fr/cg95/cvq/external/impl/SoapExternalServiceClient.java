@@ -59,6 +59,11 @@ public class SoapExternalServiceClient {
     public Object loadExternalInformation(Object requestPayload) {
         return makeCall("loadExternalInformation", requestPayload);
     }
+    
+    public Object getExternalAccountInformation(Object requestPayload) {
+        return makeCall("getExternalAccountInformation", requestPayload);
+    }
+
 
     private Object makeCall(String mapping, Object requestPayload) {
         if (!isFake) {

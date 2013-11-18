@@ -975,4 +975,9 @@ public class HoranetService extends ExternalProviderServiceAdapter {
         throws CvqException {
         return Collections.emptyMap();
     }
+
+    @Override
+    public Map<String, LinkedHashMap<String, Object>> loadAccountExternalInformations(Long homefolderId) throws CvqException {
+      return null;
+    }
 }

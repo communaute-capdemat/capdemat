@@ -3,6 +3,7 @@ package fr.capwebct.capdemat.plugins.externalservices.angelus.service;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -89,5 +90,9 @@ public class AngelusService extends ExternalProviderServiceAdapter {
     public Map<String, Object> loadExternalInformations(XmlObject requestXml) throws CvqException {
         return Collections.emptyMap();
     }
-
+    
+    @Override
+    public Map<String, LinkedHashMap<String, Object>> loadAccountExternalInformations(Long homefolderId) throws CvqException {
+      return null;
+    }
 }

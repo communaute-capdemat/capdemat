@@ -9,6 +9,8 @@
 --------------------------------------------------------------*/
 .group-box { background: #fff; overflow:auto; }
 
+.group-box.v-spaced { margin-bottom: 1em; }
+
 .group-box h3 {
   padding: .1em .5em;
   font-size: 1.5em; font-weight: normal;

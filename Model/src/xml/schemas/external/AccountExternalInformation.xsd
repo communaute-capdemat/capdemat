@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://www.capwebct.fr/modules/payment/schema/aei"
+  xmlns:aei="http://www.capwebct.fr/modules/payment/schema/aei"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  elementFormDefault="qualified"
+  attributeFormDefault="unqualified">
+
+  <xs:element name="getExternalAccountInformationRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="homeFolderId" type="xs:string">
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="getExternalAccountInformationResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" name="informations" type="aei:informationsType">
+          <xs:annotation>
+            <xs:documentation>
+              The container for the informations
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:complexType name="informationsType">
+    <xs:sequence>
+      <xs:element name="theme" type="aei:themeType" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="themeType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="sujet" type="aei:sujetType" />
+    </xs:sequence>
+    <xs:attribute name="label" type="xs:string">
+      <xs:annotation>
+        <xs:documentation>
+          Human description of the theme
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="id" type="xs:string">
+      <xs:annotation>
+        <xs:documentation>
+          Unique theme identifier ID
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="sujetType">
+    <xs:sequence>
+      <xs:element name="liste" minOccurs="0" maxOccurs="unbounded" type="aei:listeType" />
+    </xs:sequence>
+    <xs:attribute name="label" type="xs:string">
+      <xs:annotation>
+        <xs:documentation>
+          Human description of the theme
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="id" type="xs:string">
+      <xs:annotation>
+        <xs:documentation>
+          Unique theme identifier ID
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="format" type="xs:string">
+      <xs:annotation>
+        <xs:documentation>
+          Data format (text/html/liste)
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="listeType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="entree" type="aei:listEntryType" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="listEntryType">
+    <xs:sequence>
+      <xs:element name="clef" type="xs:string" />
+      <xs:element name="valeur" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>
