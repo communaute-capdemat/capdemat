@@ -77,6 +77,8 @@ import fr.cg95.cvq.service.users.IUserSearchService;
 import fr.cg95.cvq.xml.common.RequestType;
 import fr.cg95.cvq.xml.common.SchoolType;
 
+import fr.cg95.cvq.util.Pair;
+
 /**
  * @author Benoit Orihuela (bor@zenexity.fr)
  */
@@ -977,7 +979,7 @@ public class HoranetService extends ExternalProviderServiceAdapter {
     }
 
     @Override
-    public Map<String, LinkedHashMap<String, Object>> loadAccountExternalInformations(Long homefolderId) throws CvqException {
+    public Map<Pair<String, String>, LinkedHashMap<Pair<String, String>, Object>> loadAccountExternalInformations(Long homefolderId) throws CvqException {
       return null;
     }
 }

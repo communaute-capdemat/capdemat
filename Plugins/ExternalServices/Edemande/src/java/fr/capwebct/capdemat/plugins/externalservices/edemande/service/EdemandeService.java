@@ -79,6 +79,8 @@ import fr.cg95.cvq.xml.request.school.impl.StudyGrantRequestDocumentImpl.StudyGr
 import fr.cg95.cvq.xml.request.social.BafaGrantRequestDocument;
 import fr.cg95.cvq.xml.request.social.impl.BafaGrantRequestDocumentImpl.BafaGrantRequestImpl;
 
+import fr.cg95.cvq.util.Pair;
+
 /**
  * @deprecated 'til updated to fit the new request workflow.
  *
@@ -1055,7 +1057,7 @@ public class EdemandeService extends ExternalProviderServiceAdapter {
     }
 
     @Override
-    public Map<String, LinkedHashMap<String, Object>> loadAccountExternalInformations(Long homefolderId) throws CvqException {
+    public Map<Pair<String, String>, LinkedHashMap<Pair<String, String>, Object>> loadAccountExternalInformations(Long homefolderId) throws CvqException {
       return null;
     }
 }

@@ -67,6 +67,8 @@ import fr.cg95.cvq.service.request.IRequestWorkflowService;
 import fr.cg95.cvq.service.request.school.external.IScholarBusinessProviderService;
 import fr.cg95.cvq.xml.common.RequestType;
 
+import fr.cg95.cvq.util.Pair;
+
 public class TechnocarteService extends ExternalProviderServiceAdapter implements IScholarBusinessProviderService {
     
     private static Logger logger = Logger.getLogger(TechnocarteService.class);
@@ -828,7 +830,7 @@ public class TechnocarteService extends ExternalProviderServiceAdapter implement
     }
 
     @Override
-    public Map<String, LinkedHashMap<String, Object>> loadAccountExternalInformations(Long homefolderId) throws CvqException {
+    public Map<Pair<String, String>, LinkedHashMap<Pair<String, String>, Object>> loadAccountExternalInformations(Long homefolderId) throws CvqException {
       return null;
     }
 }

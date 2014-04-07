@@ -44,6 +44,8 @@ import fr.cg95.cvq.util.translation.ITranslationService;
 import groovy.text.SimpleTemplateEngine;
 import groovy.text.Template;
 
+import fr.cg95.cvq.util.Pair;
+
 public class MailGenericService extends ExternalProviderServiceAdapter {
 
     private static Logger logger = Logger.getLogger(MailGenericService.class);
@@ -438,7 +440,7 @@ public class MailGenericService extends ExternalProviderServiceAdapter {
     }
 
     @Override
-    public Map<String, LinkedHashMap<String, Object>> loadAccountExternalInformations(Long homefolderId) throws CvqException {
+    public Map<Pair<String, String>, LinkedHashMap<Pair<String, String>, Object>> loadAccountExternalInformations(Long homefolderId) throws CvqException {
       return null;
     }
 }
