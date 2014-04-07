@@ -19,6 +19,7 @@ import fr.cg95.cvq.exception.CvqConfigurationException;
 import fr.cg95.cvq.exception.CvqException;
 import fr.cg95.cvq.external.ExternalServiceBean;
 import fr.cg95.cvq.external.IExternalProviderService;
+import fr.cg95.cvq.util.Pair;
 
 /**
  * Empty implementation of the {@link IExternalProviderService external provider service interface}
@@ -93,7 +94,7 @@ public class EntryPointExternalService extends ExternalProviderServiceAdapter {
     }
 
     @Override
-    public Map<String, LinkedHashMap<String, Object>> loadAccountExternalInformations(Long homefolderId) throws CvqException {
+    public Map<Pair<String, String>, LinkedHashMap<Pair<String, String>, Object>> loadAccountExternalInformations(Long homefolderId) throws CvqException {
       return null;
     }
 }

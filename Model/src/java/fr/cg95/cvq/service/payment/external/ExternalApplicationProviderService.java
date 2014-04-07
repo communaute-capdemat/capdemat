@@ -26,6 +26,7 @@ import fr.cg95.cvq.external.ExternalServiceBean;
 import fr.cg95.cvq.external.impl.ExternalProviderServiceAdapter;
 import fr.cg95.cvq.service.payment.IPaymentService;
 import fr.cg95.cvq.util.Critere;
+import fr.cg95.cvq.util.Pair;
 
 public class ExternalApplicationProviderService extends ExternalProviderServiceAdapter {
 
@@ -134,7 +135,7 @@ public class ExternalApplicationProviderService extends ExternalProviderServiceA
     }
 
     @Override
-    public Map<String, LinkedHashMap<String, Object>> loadAccountExternalInformations(Long homefolderId) throws CvqException {
+    public Map<Pair<String, String>, LinkedHashMap<Pair<String, String>, Object>> loadAccountExternalInformations(Long homefolderId) throws CvqException {
       return null;
     }
 }
