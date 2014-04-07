@@ -329,6 +329,7 @@ class FrontofficeHomeFolderController {
 
     private addChild(individual) throws CvqValidationException {
         bind(individual)
+        userWorkflowService.add(currentEcitizen.homeFolder, individual)
         params.roles.each {
             if (it.value instanceof GrailsParameterMap && it.value.owner != '' && it.value.type != '') {
                 userWorkflowService.link(
@@ -339,7 +340,6 @@ class FrontofficeHomeFolderController {
         def invalidFields = userService.validate(individual)
         if (!invalidFields.isEmpty())
             throw new CvqValidationException(invalidFields)
-        userWorkflowService.add(currentEcitizen.homeFolder, individual)
     }
 
     // FIXME :
