@@ -267,7 +267,7 @@
               </xs:annotation>
             </xs:element>
 
-            <xs:element name="DhrPreviousDwelling" type="dhr:DhrPreviousDwellingType" maxOccurs="unbounded">
+            <xs:element name="DhrPreviousDwelling" type="dhr:DhrPreviousDwellingType" minOccurs="0" maxOccurs="unbounded">
               <xs:annotation>
                 <xs:documentation xml:lang="fr" source="http://www.cg95.fr/cvq/schema/longdesc">
                   Habitations antérieures

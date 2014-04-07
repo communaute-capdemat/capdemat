@@ -9,7 +9,7 @@
   <div class="collection-action">
     <a class="deleteListItem" id="delete_dhrPreviousDwelling[${listSize - 1 - index}]"></a>
   </div>
-  <dl class="required">
+  <dl class="">
     
       <dt class="required"><g:message code="dhr.property.dhrPreviousDwellingAddress.label" /> * : </dt>
       <dd id="dhrPreviousDwelling[${listSize - 1 - index}].dhrPreviousDwellingAddress" class="action-editField validate-address required-true i18n-dhr.property.dhrPreviousDwellingAddress" >

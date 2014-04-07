@@ -259,15 +259,6 @@ public class DomesticHelpRequestData implements Serializable {
         message = "dhrPreviousDwelling"
       )
     
-      @MinSize(
-        
-          value = 1,
-        
-        
-        profiles = {"dwelling"},
-        message = "dhrPreviousDwelling"
-      )
-    
     private List<fr.cg95.cvq.business.request.social.DhrPreviousDwelling> dhrPreviousDwelling;
 
     public void setDhrPreviousDwelling(final List<fr.cg95.cvq.business.request.social.DhrPreviousDwelling> dhrPreviousDwelling) {

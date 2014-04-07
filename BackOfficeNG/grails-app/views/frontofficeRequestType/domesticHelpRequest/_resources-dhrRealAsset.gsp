@@ -1,13 +1,12 @@
 
   <g:set var="currentCollectionItem" value="${rqt?.dhrRealAsset.size() > collectionIndex ? rqt.dhrRealAsset.get(collectionIndex) : null}" />
   <h4>
-    ${message(code:'dhr.property.dhrRealAsset.label')}
     <span>
       <g:if test="${currentCollectionItem != null}">
-        ${message(code:'request.message.editCollectionItem', args:[collectionIndex + 1])}
+        ${message(code:'dhr.property.dhrRealAsset.message.editCollectionItem', default:message(code:'request.message.editCollectionItem'))}${collectionIndex + 1}
       </g:if>
       <g:else>
-        ${message(code:'request.message.addCollectionItem')}
+        ${message(code:'dhr.property.dhrRealAsset.message.addCollectionItem', default:message(code:'request.message.addCollectionItem'))}
       </g:else>
     </span>
   </h4>
@@ -48,8 +47,8 @@
   
   <input type="hidden" name="currentCollection" value="${currentCollection}" />
   <input type="hidden" name="collectionIndex" value="${collectionIndex}" />
-  <input type="submit" id="collectionSave" name="collectionSave" value="${message(code:'action.' + (currentCollectionItem != null ? 'save' : 'add'))}" />
+  <input type="submit" id="collectionSave" name="collectionSave" value="${message(code:'dhr.property.dhrRealAsset.action.' + (currentCollectionItem != null ? 'save' : 'add'), default:message(code:'action.' + (currentCollectionItem != null ? 'save' : 'add')))}" />
   <a href="${createLink(controller : 'frontofficeRequest', action : 'edit', params:['id': rqt.id, 'currentStep': 'resources'])}">
-    ${message(code:'request.action.backToMainForm')}
+    ${message(code:'dhr.property.dhrRealAsset.action.backToMainForm', default:message(code:'request.action.backToMainForm'))}
   </a>
   

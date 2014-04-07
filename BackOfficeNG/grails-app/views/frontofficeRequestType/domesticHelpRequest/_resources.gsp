@@ -40,13 +40,13 @@
 
   
     <div class="collection required summary-box">
-      <h4 class="required"><g:message code="dhr.property.dhrRealAsset.label" /> 
+      <h4 class="required">
         <span><g:message code="dhr.property.dhrRealAsset.help" /></span>
       </h4>
       <p>
-        <g:message code="request.message.howToAddCollectionItem" />
+        <g:message code="dhr.property.dhrRealAsset.message.howToAddCollectionItem" default="${message(code:'request.message.howToAddCollectionItem')}" />
         <a href="${createLink(controller : 'frontofficeRequest', action : 'edit', params:['id':rqt.id, 'currentStep':'resources', 'currentCollection':'dhrRealAsset', 'collectionIndex':(rqt.dhrRealAsset ? rqt.dhrRealAsset.size() : 0)])}" style="font-size:1.3em;" />
-          ${message(code:'request.action.newCollectionItem')}
+          ${message(code:'dhr.property.dhrRealAsset.action.newCollectionItem', default:message(code:'request.action.newCollectionItem'))}
         </a>
       </p>
     <g:each var="it" in="${rqt.dhrRealAsset}" status="index">
@@ -55,10 +55,10 @@
         <dt class="head"><g:message code="dhr.property.dhrRealAsset.label" /> : ${index + 1}</dt>
         <dd class="head">
           <a href="${createLink(controller : 'frontofficeRequest', action : 'edit', params:['id':rqt.id, 'currentStep':'resources', 'currentCollection':'dhrRealAsset', 'collectionIndex':index])}">
-           ${message(code:'request.action.editCollectionItem')}
+           ${message(code:'dhr.property.dhrRealAsset.action.editCollectionItem', default:message(code:'request.action.editCollectionItem'))}
          </a>&nbsp;
          <a href="${createLink(controller : 'frontofficeRequest', action : 'collectionRemove', params:['id':rqt.id, 'currentStep':'resources', 'currentCollection':'dhrRealAsset', 'collectionIndex':index])}">
-           ${message(code:'request.action.deleteCollectionItem')}
+           ${message(code:'dhr.property.dhrRealAsset.action.deleteCollectionItem', default:message(code:'request.action.deleteCollectionItem'))}
          </a>
         </dd>
     
@@ -90,13 +90,13 @@
 
   
     <div class="collection required summary-box">
-      <h4 class="required"><g:message code="dhr.property.dhrNotRealAsset.label" /> 
+      <h4 class="required">
         <span><g:message code="dhr.property.dhrNotRealAsset.help" /></span>
       </h4>
       <p>
-        <g:message code="request.message.howToAddCollectionItem" />
+        <g:message code="dhr.property.dhrNotRealAsset.message.howToAddCollectionItem" default="${message(code:'request.message.howToAddCollectionItem')}" />
         <a href="${createLink(controller : 'frontofficeRequest', action : 'edit', params:['id':rqt.id, 'currentStep':'resources', 'currentCollection':'dhrNotRealAsset', 'collectionIndex':(rqt.dhrNotRealAsset ? rqt.dhrNotRealAsset.size() : 0)])}" style="font-size:1.3em;" />
-          ${message(code:'request.action.newCollectionItem')}
+          ${message(code:'dhr.property.dhrNotRealAsset.action.newCollectionItem', default:message(code:'request.action.newCollectionItem'))}
         </a>
       </p>
     <g:each var="it" in="${rqt.dhrNotRealAsset}" status="index">
@@ -105,10 +105,10 @@
         <dt class="head"><g:message code="dhr.property.dhrNotRealAsset.label" /> : ${index + 1}</dt>
         <dd class="head">
           <a href="${createLink(controller : 'frontofficeRequest', action : 'edit', params:['id':rqt.id, 'currentStep':'resources', 'currentCollection':'dhrNotRealAsset', 'collectionIndex':index])}">
-           ${message(code:'request.action.editCollectionItem')}
+           ${message(code:'dhr.property.dhrNotRealAsset.action.editCollectionItem', default:message(code:'request.action.editCollectionItem'))}
          </a>&nbsp;
          <a href="${createLink(controller : 'frontofficeRequest', action : 'collectionRemove', params:['id':rqt.id, 'currentStep':'resources', 'currentCollection':'dhrNotRealAsset', 'collectionIndex':index])}">
-           ${message(code:'request.action.deleteCollectionItem')}
+           ${message(code:'dhr.property.dhrNotRealAsset.action.deleteCollectionItem', default:message(code:'request.action.deleteCollectionItem'))}
          </a>
         </dd>
     

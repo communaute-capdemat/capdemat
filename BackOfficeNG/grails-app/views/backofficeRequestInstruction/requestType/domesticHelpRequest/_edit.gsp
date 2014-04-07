@@ -278,7 +278,7 @@
           <div class="yui-u">
             
               
-              <div id="widget-dhrPreviousDwelling" class="required">
+              <div id="widget-dhrPreviousDwelling" class="">
                 <g:render template="/backofficeRequestInstruction/requestType/domesticHelpRequest/dhrPreviousDwelling" model="['rqt':rqt]" />
               </div>
               

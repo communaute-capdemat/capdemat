@@ -185,9 +185,6 @@
           <dt><g:message code="dhr.property.dhrSpouseFirstName.label" /></dt><dd>${rqt.dhrSpouse?.dhrSpouseFirstName?.toString()}</dd>
 
         
-          <dt><g:message code="dhr.property.dhrSpouseMaidenName.label" /></dt><dd>${rqt.dhrSpouse?.dhrSpouseMaidenName?.toString()}</dd>
-
-        
           <dt><g:message code="dhr.property.dhrSpouseBirthDate.label" /></dt>
           <dd><g:formatDate formatName="format.date" date="${rqt.dhrSpouse?.dhrSpouseBirthDate}"/></dd>
           

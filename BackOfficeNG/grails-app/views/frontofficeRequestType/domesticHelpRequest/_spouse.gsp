@@ -22,7 +22,6 @@
       <label for="dhrSpouse.dhrSpouseTitle" class="required"><g:message code="dhr.property.dhrSpouseTitle.label" /> *  <span><g:message code="dhr.property.dhrSpouseTitle.help" /></span></label>
             <select id="dhrSpouse.dhrSpouseTitle" name="dhrSpouse.dhrSpouseTitle" class="required condition-isSpouseMadam-trigger  validate-not-first ${rqt.stepStates['spouse'].invalidFields.contains('dhrSpouse.dhrSpouseTitle') ? 'validation-failed' : ''}" title="<g:message code="dhr.property.dhrSpouseTitle.validationError" />">
               <option value=""><g:message code="message.select.defaultOption" /></option>
-
               <g:each in="${['MISTER','MADAM','AGENCY','UNKNOWN']}">
                 <option value="${it}" ${it == rqt.dhrSpouse?.dhrSpouseTitle?.toString() ? 'selected="selected"': ''}><g:capdematEnumToText var="${it}" i18nKeyPrefix="dhr.property.dhrSpouseTitle" /></option>
               </g:each>
@@ -49,12 +48,6 @@
       <label for="dhrSpouse.dhrSpouseFirstName" class="required"><g:message code="dhr.property.dhrSpouseFirstName.label" /> *  <span><g:message code="dhr.property.dhrSpouseFirstName.help" /></span></label>
             <input type="text" id="dhrSpouse.dhrSpouseFirstName" name="dhrSpouse.dhrSpouseFirstName" value="${rqt.dhrSpouse?.dhrSpouseFirstName?.toString()}" 
                     class="required  validate-firstName ${rqt.stepStates['spouse'].invalidFields.contains('dhrSpouse.dhrSpouseFirstName') ? 'validation-failed' : ''}" title="<g:message code="dhr.property.dhrSpouseFirstName.validationError" />"  maxlength="38" />
-            
-
-    
-      <label for="dhrSpouse.dhrSpouseMaidenName" class="required condition-isSpouseMadam-filled"><g:message code="dhr.property.dhrSpouseMaidenName.label" /> *  <span><g:message code="dhr.property.dhrSpouseMaidenName.help" /></span></label>
-            <input type="text" id="dhrSpouse.dhrSpouseMaidenName" name="dhrSpouse.dhrSpouseMaidenName" value="${rqt.dhrSpouse?.dhrSpouseMaidenName?.toString()}" 
-                    class="required condition-isSpouseMadam-filled  validate-lastName ${rqt.stepStates['spouse'].invalidFields.contains('dhrSpouse.dhrSpouseMaidenName') ? 'validation-failed' : ''}" title="<g:message code="dhr.property.dhrSpouseMaidenName.validationError" />"  maxlength="38" />
             
 
     

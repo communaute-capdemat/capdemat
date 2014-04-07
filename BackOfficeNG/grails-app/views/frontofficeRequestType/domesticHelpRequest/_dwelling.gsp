@@ -114,14 +114,14 @@
   
 
   
-    <div class="collection required summary-box">
-      <h4 class="required"><g:message code="dhr.property.dhrPreviousDwelling.label" /> 
+    <div class="collection  summary-box">
+      <h4 class="">
         <span><g:message code="dhr.property.dhrPreviousDwelling.help" /></span>
       </h4>
       <p>
-        <g:message code="request.message.howToAddCollectionItem" />
+        <g:message code="dhr.property.dhrPreviousDwelling.message.howToAddCollectionItem" default="${message(code:'request.message.howToAddCollectionItem')}" />
         <a href="${createLink(controller : 'frontofficeRequest', action : 'edit', params:['id':rqt.id, 'currentStep':'dwelling', 'currentCollection':'dhrPreviousDwelling', 'collectionIndex':(rqt.dhrPreviousDwelling ? rqt.dhrPreviousDwelling.size() : 0)])}" style="font-size:1.3em;" />
-          ${message(code:'request.action.newCollectionItem')}
+          ${message(code:'dhr.property.dhrPreviousDwelling.action.newCollectionItem', default:message(code:'request.action.newCollectionItem'))}
         </a>
       </p>
     <g:each var="it" in="${rqt.dhrPreviousDwelling}" status="index">
@@ -130,10 +130,10 @@
         <dt class="head"><g:message code="dhr.property.dhrPreviousDwelling.label" /> : ${index + 1}</dt>
         <dd class="head">
           <a href="${createLink(controller : 'frontofficeRequest', action : 'edit', params:['id':rqt.id, 'currentStep':'dwelling', 'currentCollection':'dhrPreviousDwelling', 'collectionIndex':index])}">
-           ${message(code:'request.action.editCollectionItem')}
+           ${message(code:'dhr.property.dhrPreviousDwelling.action.editCollectionItem', default:message(code:'request.action.editCollectionItem'))}
          </a>&nbsp;
          <a href="${createLink(controller : 'frontofficeRequest', action : 'collectionRemove', params:['id':rqt.id, 'currentStep':'dwelling', 'currentCollection':'dhrPreviousDwelling', 'collectionIndex':index])}">
-           ${message(code:'request.action.deleteCollectionItem')}
+           ${message(code:'dhr.property.dhrPreviousDwelling.action.deleteCollectionItem', default:message(code:'request.action.deleteCollectionItem'))}
          </a>
         </dd>
     
