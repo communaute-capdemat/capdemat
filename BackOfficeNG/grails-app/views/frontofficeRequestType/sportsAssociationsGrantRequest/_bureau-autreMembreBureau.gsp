@@ -1,13 +1,12 @@
 
   <g:set var="currentCollectionItem" value="${rqt?.autreMembreBureau.size() > collectionIndex ? rqt.autreMembreBureau.get(collectionIndex) : null}" />
   <h4>
-    ${message(code:'sagr.property.autreMembreBureau.label')}
     <span>
       <g:if test="${currentCollectionItem != null}">
-        ${message(code:'request.message.editCollectionItem', args:[collectionIndex + 1])}
+        ${message(code:'sagr.property.autreMembreBureau.message.editCollectionItem', default:message(code:'request.message.editCollectionItem'))}${collectionIndex + 1}
       </g:if>
       <g:else>
-        ${message(code:'request.message.addCollectionItem')}
+        ${message(code:'sagr.property.autreMembreBureau.message.addCollectionItem', default:message(code:'request.message.addCollectionItem'))}
       </g:else>
     </span>
   </h4>
@@ -17,16 +16,6 @@
               <option value=""><g:message code="message.select.defaultOption" /></option>
               <g:each in="${['TRESORIER','SECRETAIRE']}">
                 <option value="${it}" ${it == currentCollectionItem?.roleMembre?.toString() ? 'selected="selected"': ''}><g:capdematEnumToText var="${it}" i18nKeyPrefix="sagr.property.roleMembre" /></option>
-              </g:each>
-            </select>
-            
-
-  
-    <label for="autreMembreBureau.${collectionIndex}.civiliteMembre" class="required"><g:message code="sagr.property.civiliteMembre.label" /> *  <span><g:message code="sagr.property.civiliteMembre.help" /></span></label>
-            <select id="autreMembreBureau.${collectionIndex}.civiliteMembre" name="autreMembreBureau[${collectionIndex}].civiliteMembre" class="required  validate-not-first ${rqt.stepStates['bureau'].invalidFields.contains('autreMembreBureau['+collectionIndex+'].civiliteMembre') ? 'validation-failed' : ''}" title="<g:message code="sagr.property.civiliteMembre.validationError" />">
-              <option value=""><g:message code="message.select.defaultOption" /></option>
-              <g:each in="${['MISTER','MADAM','AGENCY','UNKNOWN']}">
-                <option value="${it}" ${it == currentCollectionItem?.civiliteMembre?.toString() ? 'selected="selected"': ''}><g:capdematEnumToText var="${it}" i18nKeyPrefix="sagr.property.civiliteMembre" /></option>
               </g:each>
             </select>
             
@@ -58,8 +47,8 @@
   
   <input type="hidden" name="currentCollection" value="${currentCollection}" />
   <input type="hidden" name="collectionIndex" value="${collectionIndex}" />
-  <input type="submit" id="collectionSave" name="collectionSave" value="${message(code:'action.' + (currentCollectionItem != null ? 'save' : 'add'))}" />
+  <input type="submit" id="collectionSave" name="collectionSave" value="${message(code:'sagr.property.autreMembreBureau.action.' + (currentCollectionItem != null ? 'save' : 'add'), default:message(code:'action.' + (currentCollectionItem != null ? 'save' : 'add')))}" />
   <a href="${createLink(controller : 'frontofficeRequest', action : 'edit', params:['id': rqt.id, 'currentStep': 'bureau'])}">
-    ${message(code:'request.action.backToMainForm')}
+    ${message(code:'sagr.property.autreMembreBureau.action.backToMainForm', default:message(code:'request.action.backToMainForm'))}
   </a>
   

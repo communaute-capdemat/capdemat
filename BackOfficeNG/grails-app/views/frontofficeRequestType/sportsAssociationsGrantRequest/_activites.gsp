@@ -3,13 +3,13 @@
 
   
     <div class="collection required summary-box">
-      <h4 class="required"><g:message code="sagr.property.sagrActiviteAssociation.label" /> 
+      <h4 class="required">
         <span><g:message code="sagr.property.sagrActiviteAssociation.help" /></span>
       </h4>
       <p>
-        <g:message code="request.message.howToAddCollectionItem" />
+        <g:message code="sagr.property.sagrActiviteAssociation.message.howToAddCollectionItem" default="${message(code:'request.message.howToAddCollectionItem')}" />
         <a href="${createLink(controller : 'frontofficeRequest', action : 'edit', params:['id':rqt.id, 'currentStep':'activites', 'currentCollection':'sagrActiviteAssociation', 'collectionIndex':(rqt.sagrActiviteAssociation ? rqt.sagrActiviteAssociation.size() : 0)])}" style="font-size:1.3em;" />
-          ${message(code:'request.action.newCollectionItem')}
+          ${message(code:'sagr.property.sagrActiviteAssociation.action.newCollectionItem', default:message(code:'request.action.newCollectionItem'))}
         </a>
       </p>
     <g:each var="it" in="${rqt.sagrActiviteAssociation}" status="index">
@@ -18,10 +18,10 @@
         <dt class="head"><g:message code="sagr.property.sagrActiviteAssociation.label" /> : ${index + 1}</dt>
         <dd class="head">
           <a href="${createLink(controller : 'frontofficeRequest', action : 'edit', params:['id':rqt.id, 'currentStep':'activites', 'currentCollection':'sagrActiviteAssociation', 'collectionIndex':index])}">
-           ${message(code:'request.action.editCollectionItem')}
+           ${message(code:'sagr.property.sagrActiviteAssociation.action.editCollectionItem', default:message(code:'request.action.editCollectionItem'))}
          </a>&nbsp;
          <a href="${createLink(controller : 'frontofficeRequest', action : 'collectionRemove', params:['id':rqt.id, 'currentStep':'activites', 'currentCollection':'sagrActiviteAssociation', 'collectionIndex':index])}">
-           ${message(code:'request.action.deleteCollectionItem')}
+           ${message(code:'sagr.property.sagrActiviteAssociation.action.deleteCollectionItem', default:message(code:'request.action.deleteCollectionItem'))}
          </a>
         </dd>
     

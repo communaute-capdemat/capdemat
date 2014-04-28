@@ -71,16 +71,6 @@
             
 
     
-      <label for="civiliteCorrespondantPrincipal" class="required condition-estAdresseCorrespondantPrincipal-filled"><g:message code="sagr.property.civiliteCorrespondantPrincipal.label" /> *  <span><g:message code="sagr.property.civiliteCorrespondantPrincipal.help" /></span></label>
-            <select id="civiliteCorrespondantPrincipal" name="civiliteCorrespondantPrincipal" class="required condition-estAdresseCorrespondantPrincipal-filled  validate-not-first ${rqt.stepStates['association'].invalidFields.contains('civiliteCorrespondantPrincipal') ? 'validation-failed' : ''}" title="<g:message code="sagr.property.civiliteCorrespondantPrincipal.validationError" />">
-              <option value=""><g:message code="message.select.defaultOption" /></option>
-              <g:each in="${['MISTER','MADAM','AGENCY','UNKNOWN']}">
-                <option value="${it}" ${it == rqt.civiliteCorrespondantPrincipal?.toString() ? 'selected="selected"': ''}><g:capdematEnumToText var="${it}" i18nKeyPrefix="sagr.property.civiliteCorrespondantPrincipal" /></option>
-              </g:each>
-            </select>
-            
-
-    
       <label for="contactsAssociation.nomCompletCorrespondantPrincipal" class="required condition-estAdresseCorrespondantPrincipal-filled"><g:message code="sagr.property.nomCompletCorrespondantPrincipal.label" /> *  <span><g:message code="sagr.property.nomCompletCorrespondantPrincipal.help" /></span></label>
             <input type="text" id="contactsAssociation.nomCompletCorrespondantPrincipal" name="contactsAssociation.nomCompletCorrespondantPrincipal" value="${rqt.contactsAssociation?.nomCompletCorrespondantPrincipal?.toString()}" 
                     class="required condition-estAdresseCorrespondantPrincipal-filled  validate-string ${rqt.stepStates['association'].invalidFields.contains('contactsAssociation.nomCompletCorrespondantPrincipal') ? 'validation-failed' : ''}" title="<g:message code="sagr.property.nomCompletCorrespondantPrincipal.validationError" />"   />

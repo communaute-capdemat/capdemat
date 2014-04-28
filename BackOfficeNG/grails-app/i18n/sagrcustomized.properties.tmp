@@ -85,6 +85,17 @@ sagr.property.emailPresident.validationError =
 sagr.property.autreMembreBureau.help =
 sagr.property.autreMembreBureau.validationError =
 
+# To customize the collection:
+#sagr.property.autreMembreBureau.message.howToAddCollectionItem=
+#sagr.property.autreMembreBureau.action.newCollectionItem=
+#sagr.property.autreMembreBureau.action.editCollectionItem=
+#sagr.property.autreMembreBureau.action.deleteCollectionItem=
+#sagr.property.autreMembreBureau.message.editCollectionItem=
+#sagr.property.autreMembreBureau.message.addCollectionItem=
+#sagr.property.autreMembreBureau.action.backToMainForm=
+#sagr.property.autreMembreBureau.action.add=
+#sagr.property.autreMembreBureau.action.save=
+
 sagr.property.autreMembreBureau.elementAdditionSuccess =
 
 
@@ -110,6 +121,17 @@ sagr.property.emailMembre.validationError =
 
 sagr.property.sagrActiviteAssociation.help =
 sagr.property.sagrActiviteAssociation.validationError =
+
+# To customize the collection:
+#sagr.property.sagrActiviteAssociation.message.howToAddCollectionItem=
+#sagr.property.sagrActiviteAssociation.action.newCollectionItem=
+#sagr.property.sagrActiviteAssociation.action.editCollectionItem=
+#sagr.property.sagrActiviteAssociation.action.deleteCollectionItem=
+#sagr.property.sagrActiviteAssociation.message.editCollectionItem=
+#sagr.property.sagrActiviteAssociation.message.addCollectionItem=
+#sagr.property.sagrActiviteAssociation.action.backToMainForm=
+#sagr.property.sagrActiviteAssociation.action.add=
+#sagr.property.sagrActiviteAssociation.action.save=
 
 sagr.property.sagrActiviteAssociation.elementAdditionSuccess =
 
