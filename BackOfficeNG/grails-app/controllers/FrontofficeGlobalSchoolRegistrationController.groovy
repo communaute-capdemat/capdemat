@@ -6,14 +6,20 @@ class FrontofficeGlobalSchoolRegistrationController {
     IGlobalSchoolRegistrationRequestService globalSchoolRegistrationRequestService
 
     def schoolSectors = {
+        def schools = globalSchoolRegistrationRequestService.getSchools(Long.valueOf(params.childId))
+        schools = (schools != null && schools.get("schoolSectors") != null) ? Collections.emptyMap() : schools.get("schoolSectors")
+
         render(
-            globalSchoolRegistrationRequestService.getSchools(Long.valueOf(params.childId)).get("schoolSectors")
+          schools
         as JSON)
     }
 
     def schoolDerogs = {
+        def schools = globalSchoolRegistrationRequestService.getSchools(Long.valueOf(params.childId))
+        schools = (schools != null && schools.get("schoolDerogs") != null) ? schools.get("schoolDerogs") : Collections.emptyMap()
+
         render(
-            globalSchoolRegistrationRequestService.getSchools(Long.valueOf(params.childId)).get("schoolDerogs")
+          schools
         as JSON)
     }
 }
