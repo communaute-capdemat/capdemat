@@ -233,7 +233,7 @@ zenexity.capdemat.tools.namespace('zenexity.capdemat.bong.homeFolder');
               this.set("cacheData", cacheData);
             }
           }, null);
-        this.refreshHomeFolderState();
+        zcbh.Details.refreshHomeFolderState();
       },
 
       add : function(e) {

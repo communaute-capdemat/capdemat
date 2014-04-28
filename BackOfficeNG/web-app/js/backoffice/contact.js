@@ -97,6 +97,7 @@ zenexity.capdemat.tools.namespace('zenexity.capdemat.bong');
         }
       },
       hide : function() {
+        yud.get("templateMessage").value = ""; // Clean message content
         panel.hide();
       },
       preview : function() {
@@ -117,7 +118,10 @@ zenexity.capdemat.tools.namespace('zenexity.capdemat.bong');
         cont.innerHTML = "";
         if (zcv.check(yud.get("contactForm"), cont)) {
           var target = yue.getTarget(e);
-          zct.doAjaxFormSubmitCall("contactForm", target, zcb.Contact.notify);
+          zct.doAjaxFormSubmitCall("contactForm", target, function(o) {
+            zcb.Contact.notify(o)
+            zcb.Contact.hide()
+          });
         }
       },
       notify : function(o) {
