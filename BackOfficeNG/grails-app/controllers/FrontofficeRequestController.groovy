@@ -135,6 +135,7 @@ class FrontofficeRequestController {
                 // clean empty collections elements
                 DataBindingUtils.cleanBind(rqt, params)
                 if (params.currentStep == 'validation' && params.send) {
+                    params.requestNote = params.requestNote.replaceAll("[^\\u0000-\\uFFFF]", "")
                     if (!params.useAcceptance) {
                         rqt.stepStates.get('validation').invalidFields = ['useAcceptance']
                         throw new CvqValidationException('request.error.useAcceptanceRequired')
