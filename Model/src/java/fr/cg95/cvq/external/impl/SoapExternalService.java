@@ -426,22 +426,23 @@ public class SoapExternalService extends ExternalProviderServiceAdapter {
 
         Map<Pair<String, String>, LinkedHashMap<Pair<String, String>, Object>> result = new HashMap<Pair<String, String>, LinkedHashMap<Pair<String, String>, Object>>();
         for(InformationsType ei : infos) {
-            ThemeType th = ei.getTheme();
-            SujetType[] subjects = th.getSujetArray();
+            for(ThemeType th : ei.getThemeArray()) {
+                SujetType[] subjects = th.getSujetArray();
 
-            LinkedHashMap<Pair<String, String>, Object> hm = new LinkedHashMap<Pair<String, String>, Object>();
-            for(SujetType sujet : subjects) {
-                String content = "";
-                for ( int i =0; i < sujet.getDomNode().getChildNodes().getLength(); i++) {
-                    content += sujet.getDomNode().getChildNodes().item(i).getNodeValue();
+                LinkedHashMap<Pair<String, String>, Object> hm = new LinkedHashMap<Pair<String, String>, Object>();
+                for(SujetType sujet : subjects) {
+                    String content = "";
+                    for ( int i =0; i < sujet.getDomNode().getChildNodes().getLength(); i++) {
+                        content += sujet.getDomNode().getChildNodes().item(i).getNodeValue();
+                    }
+
+                    if(content.startsWith("<![CDATA["))
+                      content = content.substring(9, content.length()-3);
+
+                    hm.put(new Pair<String, String>(sujet.getId(), sujet.getLabel()), content);
                 }
-
-                if(content.startsWith("<![CDATA["))
-                  content = content.substring(9, content.length()-3);
-
-                hm.put(new Pair<String, String>(sujet.getId(), sujet.getLabel()), content);
+                result.put(new Pair<String, String>(th.getId(), th.getLabel()), hm);
             }
-            result.put(new Pair<String, String>(th.getId(), th.getLabel()), hm);
         }
 
         return result;

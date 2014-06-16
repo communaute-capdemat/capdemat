@@ -30,7 +30,7 @@
 
   <xs:complexType name="informationsType">
     <xs:sequence>
-      <xs:element name="theme" type="aei:themeType" />
+      <xs:element name="theme" maxOccurs="unbounded" type="aei:themeType" />
     </xs:sequence>
   </xs:complexType>
 
