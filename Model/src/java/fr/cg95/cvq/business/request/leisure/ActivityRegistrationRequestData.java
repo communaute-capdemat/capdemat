@@ -49,37 +49,8 @@ public class ActivityRegistrationRequestData implements Serializable {
         
           
             
-        result.setIdProduit(idProduit);
-      
-          
-        
-          
-            
-        result.setIdSegment(idSegment);
-      
-          
-        
-          
-            
-        result.setIdSite(idSite);
-      
-          
-        
-          
-            
-        result.setLabelProduit(labelProduit);
-      
-          
-        
-          
-            
-        result.setLabelSegment(labelSegment);
-      
-          
-        
-          
-            
-        result.setLabelSite(labelSite);
+        if (produit != null)
+            result.setProduit(produit.clone());
       
           
         
@@ -91,7 +62,15 @@ public class ActivityRegistrationRequestData implements Serializable {
         
           
             
-        result.setTypeProduit(typeProduit);
+        if (segment != null)
+            result.setSegment(segment.clone());
+      
+          
+        
+          
+            
+        if (site != null)
+            result.setSite(site.clone());
       
           
         
@@ -114,203 +93,28 @@ public class ActivityRegistrationRequestData implements Serializable {
         
         
         profiles = {"preinscription"},
-        message = "idProduit"
+        message = "produit"
       )
     
-      @NotBlank(
+      @AssertValid(
         
         
         profiles = {"preinscription"},
-        message = "idProduit"
+        message = "produit"
       )
     
-    private String idProduit;
+    private fr.cg95.cvq.business.request.leisure.ArrProduit produit;
 
-    public void setIdProduit(final String idProduit) {
-        this.idProduit = idProduit;
+    public void setProduit(final fr.cg95.cvq.business.request.leisure.ArrProduit produit) {
+        this.produit = produit;
     }
 
  
-    @Column(name="id_produit"  )
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name="produit_id")
       
-    public String getIdProduit() {
-        return this.idProduit;
-    }
-  
-    
-      @NotNull(
-        
-        
-          when = "groovy:def active = true;" +
-          
-            
-            "active &= _this.conditions['typeProduit'].test(_this.typeProduit.toString());" +
-                
-              
-            
-            "return active",
-        
-        profiles = {"preinscription"},
-        message = "idSegment"
-      )
-    
-      @NotBlank(
-        
-        
-          when = "groovy:def active = true;" +
-          
-            
-            "active &= _this.conditions['typeProduit'].test(_this.typeProduit.toString());" +
-                
-              
-            
-            "return active",
-        
-        profiles = {"preinscription"},
-        message = "idSegment"
-      )
-    
-    private String idSegment;
-
-    public void setIdSegment(final String idSegment) {
-        this.idSegment = idSegment;
-    }
-
- 
-    @Column(name="id_segment"  )
-      
-    public String getIdSegment() {
-        return this.idSegment;
-    }
-  
-    
-      @NotNull(
-        
-        
-        profiles = {"preinscription"},
-        message = "idSite"
-      )
-    
-      @NotBlank(
-        
-        
-        profiles = {"preinscription"},
-        message = "idSite"
-      )
-    
-    private String idSite;
-
-    public void setIdSite(final String idSite) {
-        this.idSite = idSite;
-    }
-
- 
-    @Column(name="id_site"  )
-      
-    public String getIdSite() {
-        return this.idSite;
-    }
-  
-    
-      @NotNull(
-        
-        
-        profiles = {"preinscription"},
-        message = "labelProduit"
-      )
-    
-      @NotBlank(
-        
-        
-        profiles = {"preinscription"},
-        message = "labelProduit"
-      )
-    
-    private String labelProduit;
-
-    public void setLabelProduit(final String labelProduit) {
-        this.labelProduit = labelProduit;
-    }
-
- 
-    @Column(name="label_produit"  )
-      
-    public String getLabelProduit() {
-        return this.labelProduit;
-    }
-  
-    
-      @NotNull(
-        
-        
-          when = "groovy:def active = true;" +
-          
-            
-            "active &= _this.conditions['typeProduit'].test(_this.typeProduit.toString());" +
-                
-              
-            
-            "return active",
-        
-        profiles = {"preinscription"},
-        message = "labelSegment"
-      )
-    
-      @NotBlank(
-        
-        
-          when = "groovy:def active = true;" +
-          
-            
-            "active &= _this.conditions['typeProduit'].test(_this.typeProduit.toString());" +
-                
-              
-            
-            "return active",
-        
-        profiles = {"preinscription"},
-        message = "labelSegment"
-      )
-    
-    private String labelSegment;
-
-    public void setLabelSegment(final String labelSegment) {
-        this.labelSegment = labelSegment;
-    }
-
- 
-    @Column(name="label_segment"  )
-      
-    public String getLabelSegment() {
-        return this.labelSegment;
-    }
-  
-    
-      @NotNull(
-        
-        
-        profiles = {"preinscription"},
-        message = "labelSite"
-      )
-    
-      @NotBlank(
-        
-        
-        profiles = {"preinscription"},
-        message = "labelSite"
-      )
-    
-    private String labelSite;
-
-    public void setLabelSite(final String labelSite) {
-        this.labelSite = labelSite;
-    }
-
- 
-    @Column(name="label_site"  )
-      
-    public String getLabelSite() {
-        return this.labelSite;
+    public fr.cg95.cvq.business.request.leisure.ArrProduit getProduit() {
+        return this.produit;
     }
   
     
@@ -345,28 +149,72 @@ public class ActivityRegistrationRequestData implements Serializable {
       @NotNull(
         
         
+          when = "groovy:def active = true;" +
+          
+              
+            
+            
+            "return active",
+        
         profiles = {"preinscription"},
-        message = "typeProduit"
+        message = "segment"
       )
     
-      @NotBlank(
+      @AssertValid(
         
+        
+          when = "groovy:def active = true;" +
+          
+              
+            
+            
+            "return active",
         
         profiles = {"preinscription"},
-        message = "typeProduit"
+        message = "segment"
       )
     
-    private String typeProduit;
+    private fr.cg95.cvq.business.request.leisure.Segment segment;
 
-    public void setTypeProduit(final String typeProduit) {
-        this.typeProduit = typeProduit;
+    public void setSegment(final fr.cg95.cvq.business.request.leisure.Segment segment) {
+        this.segment = segment;
     }
 
  
-    @Column(name="type_produit"  )
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name="segment_id")
       
-    public String getTypeProduit() {
-        return this.typeProduit;
+    public fr.cg95.cvq.business.request.leisure.Segment getSegment() {
+        return this.segment;
+    }
+  
+    
+      @NotNull(
+        
+        
+        profiles = {"preinscription"},
+        message = "site"
+      )
+    
+      @AssertValid(
+        
+        
+        profiles = {"preinscription"},
+        message = "site"
+      )
+    
+    private fr.cg95.cvq.business.request.leisure.ArrSite site;
+
+    public void setSite(final fr.cg95.cvq.business.request.leisure.ArrSite site) {
+        this.site = site;
+    }
+
+ 
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name="site_id")
+      
+    public fr.cg95.cvq.business.request.leisure.ArrSite getSite() {
+        return this.site;
     }
   
 }

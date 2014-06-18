@@ -40,7 +40,7 @@
               <h3><g:message code="arr.property.site.label" /></h3>
               <dl class="required">
                 
-                  <dt class="required">${message(code:'arr.property.labelSite.label')}&nbsp;*&nbsp;:</dt><dd id="labelSite" class="action-editField validate-string required-true i18n-arr.property.labelSite" ><span>${rqt?.labelSite}</span></dd>
+                  <dt class="required">${message(code:'arr.property.labelSite.label')} * :</dt><dd id="labelSite" class="action-editField validate-string required-true i18n-arr.property.labelSite" ><span>${rqt.site?.labelSite}</span></dd>
                 
               </dl>
               
@@ -49,9 +49,9 @@
               <h3><g:message code="arr.property.produit.label" /></h3>
               <dl class="required">
                 
-                  <dt class="required">${message(code:'arr.property.labelProduit.label')}&nbsp;*&nbsp;:</dt><dd id="labelProduit" class="action-editField validate-string required-true i18n-arr.property.labelProduit" ><span>${rqt?.labelProduit}</span></dd>
+                  <dt class="required">${message(code:'arr.property.labelProduit.label')} * :</dt><dd id="labelProduit" class="action-editField validate-string required-true i18n-arr.property.labelProduit" ><span>${rqt.produit?.labelProduit}</span></dd>
                 
-                  <dt class="required condition-subscription-trigger">${message(code:'arr.property.typeProduit.label')}&nbsp;*&nbsp;:</dt><dd id="typeProduit" class="action-editField validate-string required-true i18n-arr.property.typeProduit" ><span>${rqt?.typeProduit}</span></dd>
+                  <dt class="required condition-subscription-trigger">${message(code:'arr.property.typeProduit.label')} * :</dt><dd id="typeProduit" class="action-editField validate-string required-true i18n-arr.property.typeProduit" ><span>${rqt.produit?.typeProduit}</span></dd>
                 
               </dl>
               
@@ -60,7 +60,7 @@
               <h3><g:message code="arr.property.segment.label" /></h3>
               <dl class="required condition-subscription-filled">
                 
-                  <dt class="required">${message(code:'arr.property.labelSegment.label')}&nbsp;*&nbsp;:</dt><dd id="labelSegment" class="action-editField validate-string required-true i18n-arr.property.labelSegment" ><span>${rqt?.labelSegment}</span></dd>
+                  <dt class="required">${message(code:'arr.property.labelSegment.label')} * :</dt><dd id="labelSegment" class="action-editField validate-string required-true i18n-arr.property.labelSegment" ><span>${rqt.segment?.labelSegment}</span></dd>
                 
               </dl>
               
@@ -92,7 +92,7 @@
             
               
               <dl>
-                <dt class="required">${message(code:'arr.property.reglement.label')}&nbsp;*&nbsp;:</dt><dd id="reglement" class="action-editField validate-acceptance required-true i18n-arr.property.reglement" ><span class="value-${rqt?.reglement}"><g:message code="message.${rqt?.reglement ? 'yes' : 'no'}" /></span></dd>
+                <dt class="required">${message(code:'arr.property.reglement.label')} * :</dt><dd id="reglement" class="action-editField validate-acceptance required-true i18n-arr.property.reglement" ><span class="value-${rqt?.reglement}"><g:message code="message.${rqt?.reglement ? 'yes' : 'no'}" /></span></dd>
               </dl>
               
             

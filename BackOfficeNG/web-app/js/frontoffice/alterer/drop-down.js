@@ -12,7 +12,7 @@
     , ylj  = YAHOO.lang.JSON
     , yud  = YAHOO.util.Dom
 
-  var fill = function(url) {
+  var fill = function(url, callback) {
     zct.doAjaxCall(url, this, function(o) {
       var json = ylj.parse(o.responseText)
         , dropDown = this.argument
@@ -37,6 +37,8 @@
       dropDown._tail(index)
       dropDown._onfill()
       dropDown._reselect(previous)
+
+      if(callback) callback();
     }, true)
   }
 

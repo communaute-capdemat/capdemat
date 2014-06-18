@@ -84,6 +84,7 @@
           //IE5-8 change event is buggy on checkboxes and radios, we have to use the click event.
           yue.on(yus.query('input[type="checkbox"], input[type="radio"]', 'request'), 'click',
               zcf.Condition.run, zcf.Condition, true);
+          yue.on(yus.query('input[type="text"]'), 'change', zcf.Condition.run, zcf.Condition, true);
       },
       
       /**

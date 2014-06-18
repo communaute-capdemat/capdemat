@@ -10,7 +10,7 @@ public class ActivityRegistrationRequestService extends RequestService {
     @Override
     public void init() {
         ActivityRegistrationRequest.conditions.put(
-            "typeProduit",
+            "produit.typeProduit",
             new EqualityChecker("1")
         );
     }

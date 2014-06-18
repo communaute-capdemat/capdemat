@@ -819,13 +819,6 @@ http://www.springframework.org/schema/task http://www.springframework.org/schema
     <property name="defaultDisplayGroup" value="leisure" />
   </bean>
 
-  <bean id="containerRequestService" 
-    class="fr.cg95.cvq.service.request.environment.impl.ContainerRequestService" 
-    parent="requestService">
-    <property name="label" value="Container"/>
-    <property name="localReferentialFilename" value="local_referential_cr"/>
-    <property name="defaultDisplayGroup" value="environment" />
-  </bean>
   <bean id="activityRegistrationRequestService"
         class="fr.cg95.cvq.service.request.leisure.impl.ActivityRegistrationRequestService"
         parent="requestService">

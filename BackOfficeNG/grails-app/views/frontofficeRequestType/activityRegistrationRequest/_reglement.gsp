@@ -11,7 +11,7 @@
                        title="${message(code:'arr.property.reglement.validationError')}"
                        ${rqt.reglement ? 'checked="checked"' : ''} value="true" />
                 <label for="reglement" class="required">
-                  ${message(code:'arr.property.reglement.label')}&nbsp;*
+                  ${message(code:'arr.property.reglement.label')}*
                   <g:if test="${availableRules.contains('reglement')}">
                   <a target="_blank"
                      href="${createLink(controller:'localAuthorityResource', action:'rule', params:['requestTypeLabel':rqt.requestType.label, 'filename':'reglement']).encodeAsXML()}">

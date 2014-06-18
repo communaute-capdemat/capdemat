@@ -23,10 +23,14 @@
    *
    * 'triggerId': a field id.
    *              Any time this field changes, the drop-down will update.
+   *
+   * '_prefix': Optional prefix (Needed if based upon V4_8-CG95)
+   *              Something like : 'site.'
    */
-  alterer.toDropDown = function(element, url, triggerId) {
+  alterer.toDropDown = function(element, url, triggerId, _prefix) {
+    var prefix = _prefix || ""
 
-    var fieldset = yud.get('id' + element).parentNode
+    var fieldset = yud.get(prefix + 'id' + element).parentNode
       , fields   = {}
       , labels   = {}
       , legend
@@ -40,13 +44,13 @@
     // Collect inputs composing the complex type,
     zct.each( yus.query('input', fieldset)
             , function(i, field) {
-                fields[field.id.replace(element, '')] = field
+                fields[field.id.replace(element, '').replace(prefix, '')] = field
               }
             )
     // …and associated labels.
     zct.each( yus.query('label', fieldset)
             , function(i, label) {
-                labels[label.getAttribute('for').replace(element, '')] = label
+                labels[label.getAttribute('for').replace(element, '').replace(prefix, '')] = label
               }
             )
 
@@ -92,7 +96,7 @@
               )
     }
 
-    var options = { id: 'id' + element
+    var options = { id: prefix + 'id' + element
                   , classes: required ? 'required validate-not-first' : ''
                   , onfill: onfill
                   , onchange: onchange
@@ -100,6 +104,7 @@
                                         , fields.id.value
                                         )
                   }
+
     dropDown = new zctu.DropDown(options)
 
     labels.id.innerHTML = legend.innerHTML + (required ? ' * ' : ' ')
@@ -140,8 +145,16 @@
 
     yue.on(trigger.id, 'change', function(event) {
       if (zct.val(trigger) !== '') {
-        dropDown.fill(url())
+        dropDown.fill(url(), function() {
+          if(dropDown.options.length > 1) {
+            yud.removeClass(fieldset, 'unactive')
+            //yud.removeClass(yud.get('produit.typeProduit'), 'unactive')
+            yus.query('select', fieldset, true).removeAttribute('disabled')
+            yus.query('input', fieldset, true).removeAttribute('disabled')
+          }
+        })
       } else {
+        if(trigger.options.length === 1) hide({ "0": fieldset})
         dropDown.empty()
         if (required) {
           yud.addClass(error, 'unactive')

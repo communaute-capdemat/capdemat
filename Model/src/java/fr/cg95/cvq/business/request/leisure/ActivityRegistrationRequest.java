@@ -110,23 +110,18 @@ public class ActivityRegistrationRequest extends Request implements Serializable
         ActivityRegistrationRequestDocument.ActivityRegistrationRequest activityRegistrationRequest = activityRegistrationRequestDoc.addNewActivityRegistrationRequest();
         super.fillCommonXmlInfo(activityRegistrationRequest);
         int i = 0;
-          ArrProduitType arrProduitTypeProduit = activityRegistrationRequest.addNewProduit();
-        arrProduitTypeProduit.setIdProduit(getIdProduit());
-        SegmentType segmentTypeSegment = activityRegistrationRequest.addNewSegment();
-        segmentTypeSegment.setIdSegment(getIdSegment());
-        ArrSiteType arrSiteTypeSite = activityRegistrationRequest.addNewSite();
-        arrSiteTypeSite.setIdSite(getIdSite());
-      
-        arrProduitTypeProduit.setLabelProduit(getLabelProduit());
-      
-        segmentTypeSegment.setLabelSegment(getLabelSegment());
-      
-        arrSiteTypeSite.setLabelSite(getLabelSite());
+        
+        if (getProduit() != null)
+            activityRegistrationRequest.setProduit(getProduit().modelToXml());
       
         if (getReglement() != null)
             activityRegistrationRequest.setReglement(getReglement().booleanValue());
       
-        arrProduitTypeProduit.setTypeProduit(getTypeProduit());
+        if (getSegment() != null)
+            activityRegistrationRequest.setSegment(getSegment().modelToXml());
+      
+        if (getSite() != null)
+            activityRegistrationRequest.setSite(getSite().modelToXml());
       
         return activityRegistrationRequestDoc;
     }
@@ -144,21 +139,16 @@ public class ActivityRegistrationRequest extends Request implements Serializable
         ActivityRegistrationRequest activityRegistrationRequest = new ActivityRegistrationRequest();
         activityRegistrationRequest.fillCommonModelInfo(activityRegistrationRequest, activityRegistrationRequestXml);
         
-        activityRegistrationRequest.setIdProduit(activityRegistrationRequestXml.getProduit().getIdProduit());
-      
-        activityRegistrationRequest.setIdSegment(activityRegistrationRequestXml.getSegment().getIdSegment());
-      
-        activityRegistrationRequest.setIdSite(activityRegistrationRequestXml.getSite().getIdSite());
-      
-        activityRegistrationRequest.setLabelProduit(activityRegistrationRequestXml.getProduit().getLabelProduit());
-      
-        activityRegistrationRequest.setLabelSegment(activityRegistrationRequestXml.getSegment().getLabelSegment());
-      
-        activityRegistrationRequest.setLabelSite(activityRegistrationRequestXml.getSite().getLabelSite());
+        if (activityRegistrationRequestXml.getProduit() != null)
+            activityRegistrationRequest.setProduit(ArrProduit.xmlToModel(activityRegistrationRequestXml.getProduit()));
       
         activityRegistrationRequest.setReglement(Boolean.valueOf(activityRegistrationRequestXml.getReglement()));
       
-        activityRegistrationRequest.setTypeProduit(activityRegistrationRequestXml.getProduit().getTypeProduit());
+        if (activityRegistrationRequestXml.getSegment() != null)
+            activityRegistrationRequest.setSegment(Segment.xmlToModel(activityRegistrationRequestXml.getSegment()));
+      
+        if (activityRegistrationRequestXml.getSite() != null)
+            activityRegistrationRequest.setSite(ArrSite.xmlToModel(activityRegistrationRequestXml.getSite()));
       
         return activityRegistrationRequest;
     }
@@ -200,58 +190,13 @@ public class ActivityRegistrationRequest extends Request implements Serializable
     }
 
   
-    public final void setIdProduit(final String idProduit) {
-        activityRegistrationRequestData.setIdProduit(idProduit);
+    public final void setProduit(final fr.cg95.cvq.business.request.leisure.ArrProduit produit) {
+        activityRegistrationRequestData.setProduit(produit);
     }
 
     
-    public final String getIdProduit() {
-        return activityRegistrationRequestData.getIdProduit();
-    }
-  
-    public final void setIdSegment(final String idSegment) {
-        activityRegistrationRequestData.setIdSegment(idSegment);
-    }
-
-    
-    public final String getIdSegment() {
-        return activityRegistrationRequestData.getIdSegment();
-    }
-  
-    public final void setIdSite(final String idSite) {
-        activityRegistrationRequestData.setIdSite(idSite);
-    }
-
-    
-    public final String getIdSite() {
-        return activityRegistrationRequestData.getIdSite();
-    }
-  
-    public final void setLabelProduit(final String labelProduit) {
-        activityRegistrationRequestData.setLabelProduit(labelProduit);
-    }
-
-    
-    public final String getLabelProduit() {
-        return activityRegistrationRequestData.getLabelProduit();
-    }
-  
-    public final void setLabelSegment(final String labelSegment) {
-        activityRegistrationRequestData.setLabelSegment(labelSegment);
-    }
-
-    
-    public final String getLabelSegment() {
-        return activityRegistrationRequestData.getLabelSegment();
-    }
-  
-    public final void setLabelSite(final String labelSite) {
-        activityRegistrationRequestData.setLabelSite(labelSite);
-    }
-
-    
-    public final String getLabelSite() {
-        return activityRegistrationRequestData.getLabelSite();
+    public final fr.cg95.cvq.business.request.leisure.ArrProduit getProduit() {
+        return activityRegistrationRequestData.getProduit();
     }
   
     public final void setReglement(final Boolean reglement) {
@@ -263,13 +208,22 @@ public class ActivityRegistrationRequest extends Request implements Serializable
         return activityRegistrationRequestData.getReglement();
     }
   
-    public final void setTypeProduit(final String typeProduit) {
-        activityRegistrationRequestData.setTypeProduit(typeProduit);
+    public final void setSegment(final fr.cg95.cvq.business.request.leisure.Segment segment) {
+        activityRegistrationRequestData.setSegment(segment);
     }
 
     
-    public final String getTypeProduit() {
-        return activityRegistrationRequestData.getTypeProduit();
+    public final fr.cg95.cvq.business.request.leisure.Segment getSegment() {
+        return activityRegistrationRequestData.getSegment();
+    }
+  
+    public final void setSite(final fr.cg95.cvq.business.request.leisure.ArrSite site) {
+        activityRegistrationRequestData.setSite(site);
+    }
+
+    
+    public final fr.cg95.cvq.business.request.leisure.ArrSite getSite() {
+        return activityRegistrationRequestData.getSite();
     }
   
 }

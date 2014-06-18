@@ -16,10 +16,10 @@
       <h4><g:message code="arr.property.site.label" /></h4>
       <dl>
         
-          <dt><g:message code="arr.property.idSite.label" /></dt><dd>${rqt.idSite?.toString()}</dd>
+          <dt><g:message code="arr.property.idSite.label" /></dt><dd>${rqt.site?.idSite?.toString()}</dd>
 
         
-          <dt><g:message code="arr.property.labelSite.label" /></dt><dd>${rqt.labelSite?.toString()}</dd>
+          <dt><g:message code="arr.property.labelSite.label" /></dt><dd>${rqt.site?.labelSite?.toString()}</dd>
 
         
       </dl>
@@ -29,13 +29,13 @@
       <h4><g:message code="arr.property.produit.label" /></h4>
       <dl>
         
-          <dt><g:message code="arr.property.idProduit.label" /></dt><dd>${rqt.idProduit?.toString()}</dd>
+          <dt><g:message code="arr.property.idProduit.label" /></dt><dd>${rqt.produit?.idProduit?.toString()}</dd>
 
         
-          <dt><g:message code="arr.property.labelProduit.label" /></dt><dd>${rqt.labelProduit?.toString()}</dd>
+          <dt><g:message code="arr.property.labelProduit.label" /></dt><dd>${rqt.produit?.labelProduit?.toString()}</dd>
 
         
-          <dt><g:message code="arr.property.typeProduit.label" /></dt><dd>${rqt.typeProduit?.toString()}</dd>
+          <dt><g:message code="arr.property.typeProduit.label" /></dt><dd>${rqt.produit?.typeProduit?.toString()}</dd>
 
         
       </dl>
@@ -45,17 +45,16 @@
       <h4><g:message code="arr.property.segment.label" /></h4>
       <dl>
         
-          <dt><g:message code="arr.property.idSegment.label" /></dt><dd>${rqt.idSegment?.toString()}</dd>
+          <dt><g:message code="arr.property.idSegment.label" /></dt><dd>${rqt.segment?.idSegment?.toString()}</dd>
 
         
-          <dt><g:message code="arr.property.labelSegment.label" /></dt><dd>${rqt.labelSegment?.toString()}</dd>
+          <dt><g:message code="arr.property.labelSegment.label" /></dt><dd>${rqt.segment?.labelSegment?.toString()}</dd>
 
         
       </dl>
       
     
   
-
 
   
     <h3><g:message code="arr.step.reglement.label" /></h3>
@@ -70,7 +69,6 @@
       
     
   
-
 
   
   <g:if test="${!documentsByTypes.isEmpty()}">
@@ -97,7 +95,6 @@
     </g:each>
   </g:if>
   
-
 
   
 
