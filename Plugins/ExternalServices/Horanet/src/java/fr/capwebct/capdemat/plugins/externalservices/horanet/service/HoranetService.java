@@ -1040,7 +1040,7 @@ public class HoranetService extends ConfigurableExternalProviderServiceAdapter i
         } catch (CvqException ce) {
             return "";
         }
-        List<Request> msrrList = requestSearchService.find( "requestType = ? and subjectId = ?"
+        List<Request> msrrList = requestSearchService.find( "requestType = ? and subjectId = ? and state = ? "
                                                           , msrrType
                                                           , individual.getId()
                                                           , RequestState.VALIDATED);
