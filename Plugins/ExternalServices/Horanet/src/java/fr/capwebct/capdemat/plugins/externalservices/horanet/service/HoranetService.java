@@ -83,6 +83,8 @@ import fr.cg95.cvq.business.request.workflow.event.IWorkflowPostAction;
 import fr.cg95.cvq.business.request.workflow.event.impl.WorkflowCompleteEvent;
 import fr.cg95.cvq.business.request.workflow.event.impl.WorkflowGenericEvent;
 import fr.cg95.cvq.business.request.workflow.event.impl.WorkflowPendingEvent;
+import fr.cg95.cvq.business.request.leisure.Site;
+import fr.cg95.cvq.business.request.leisure.Produit;
 import fr.cg95.cvq.business.users.Child;
 import fr.cg95.cvq.business.users.HomeFolder;
 import fr.cg95.cvq.business.users.Individual;
@@ -1109,10 +1111,10 @@ public class HoranetService extends ConfigurableExternalProviderServiceAdapter i
             String productId = null;
             Method getSiteId;
             Method getProductId;
-            getSiteId = request.getSpecificData().getClass().getMethod("getIdSite");
-            siteId = (String) getSiteId.invoke(request.getSpecificData());
-            getProductId = request.getSpecificData().getClass().getMethod("getIdProduit");
-            productId = (String) getProductId.invoke(request.getSpecificData());
+            getSiteId = request.getSpecificData().getClass().getMethod("getSite");
+            siteId = ((Site) getSiteId.invoke(request.getSpecificData())).getId().toString();
+            getProductId = request.getSpecificData().getClass().getMethod("getProduit");
+            productId = ((Produit) getProductId.invoke(request.getSpecificData())).getId().toString();
             File css = localAuthorityRegistry.getLocalAuthorityResourceFile(Type.CSS, "cssFo",
                     false);
             String cssContent = localAuthorityRegistry.getFileContent(css);
