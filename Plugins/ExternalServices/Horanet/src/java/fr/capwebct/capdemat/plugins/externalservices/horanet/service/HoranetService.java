@@ -1128,7 +1128,7 @@ public class HoranetService extends ConfigurableExternalProviderServiceAdapter i
             String cssBodyColor = cssProperties.substring(
                     cssProperties.indexOf("cssBodyColor: #") + 15,
                     cssProperties.indexOf("cssBodyColor: #") + 21);
-            logger.debug("getUrlParameters(): call Horanet with:\n" + "- postal code \""
+            logger.error("getUrlParameters(): call Horanet with:\n" + "- postal code \""
                     + postalCode + "\"\n" + "- siteId \"" + siteId + "\"\n" + "- productId \""
                     + productId + "\"\n" + "- request id \"" + msrrId + "  " + request.getId().toString() + "\"\n"
                     + "- mapping \"" + externalCapDematId + "- cssMenuColor \"" + cssMenuColor
@@ -1139,6 +1139,7 @@ public class HoranetService extends ConfigurableExternalProviderServiceAdapter i
                     cssMenuColor, cssMenuHoverColor, cssBodyColor, getConfigurationProperty("endPoint3")).get();
             try {
                 url = list.getWebsite().getUrl();
+                logger.error("GOT URL : "+url);
             } catch (NullPointerException npe) {
                 throw new Exception("getRedirectUrl(): WSClient library returned a null object; "
                         + "probably Horanet's fault.");
