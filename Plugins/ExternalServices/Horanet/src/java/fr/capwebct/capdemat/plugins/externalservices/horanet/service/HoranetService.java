@@ -1112,9 +1112,9 @@ public class HoranetService extends ConfigurableExternalProviderServiceAdapter i
             Method getSiteId;
             Method getProductId;
             getSiteId = request.getSpecificData().getClass().getMethod("getSite");
-            siteId = ((Site) getSiteId.invoke(request.getSpecificData())).getId().toString();
+            siteId = ((Site) getSiteId.invoke(request.getSpecificData())).getIdSite().toString();
             getProductId = request.getSpecificData().getClass().getMethod("getProduit");
-            productId = ((Produit) getProductId.invoke(request.getSpecificData())).getId().toString();
+            productId = ((Produit) getProductId.invoke(request.getSpecificData())).getIdProduit().toString();
             File css = localAuthorityRegistry.getLocalAuthorityResourceFile(Type.CSS, "cssFo",
                     false);
             String cssContent = localAuthorityRegistry.getFileContent(css);
